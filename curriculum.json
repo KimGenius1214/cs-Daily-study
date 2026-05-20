@@ -1,0 +1,256 @@
+{
+  "meta": {
+    "version": "1.0",
+    "owner": "yj.kim",
+    "focus": "frontend-4yr",
+    "daily_topics": 2,
+    "topic_structure": "기초 1 + 응용/심화 1",
+    "weight_strategy": {
+      "high": ["네트워크/브라우저", "프론트엔드 심화", "보안/인증"],
+      "medium": ["자료구조/알고리즘", "AI/ML/LLM", "시스템 설계"],
+      "low": ["운영체제/시스템", "데이터베이스"]
+    }
+  },
+  "categories": {
+    "자료구조/알고리즘": {
+      "weight": "medium",
+      "기초": [
+        "빅오 표기법과 시간/공간 복잡도",
+        "배열 vs 연결리스트 - 메모리 관점에서",
+        "스택과 큐 - JS 콜스택과 태스크큐로 이해하기",
+        "해시테이블 동작 원리와 충돌 해결",
+        "트리 기본 (이진트리, BST)",
+        "힙과 우선순위 큐",
+        "그래프 표현 방식 (인접리스트 vs 인접행렬)",
+        "정렬 알고리즘 비교 (퀵/머지/힙)",
+        "이진 탐색의 변형들 (lower_bound, upper_bound)",
+        "재귀와 백트래킹 기초"
+      ],
+      "응용": [
+        "DOM 트리 순회 알고리즘 (BFS/DFS) 실전",
+        "LRU 캐시 구현 - React 메모이제이션과 연결",
+        "Virtual DOM diffing 알고리즘 원리",
+        "Trie 자료구조와 자동완성 구현",
+        "Debounce/Throttle 내부 구현",
+        "Union-Find와 React Fiber의 우선순위 관리",
+        "동적 프로그래밍 - 메모이제이션 패턴",
+        "그리디 알고리즘 실전 사례",
+        "이벤트 루프 큐 구조 깊게 보기",
+        "Reconciliation 알고리즘 (React/Vue 비교)"
+      ]
+    },
+    "네트워크/브라우저": {
+      "weight": "high",
+      "기초": [
+        "HTTP/1.1 vs HTTP/2 vs HTTP/3 차이",
+        "TCP vs UDP, 그리고 QUIC",
+        "TLS 핸드셰이크 과정",
+        "DNS 동작 원리와 캐싱",
+        "CORS 완전 정복 - preflight부터",
+        "쿠키 vs LocalStorage vs SessionStorage",
+        "HTTP 캐시 헤더 (Cache-Control, ETag, Last-Modified)",
+        "브라우저 렌더링 파이프라인 (파싱→렌더트리→레이아웃→페인트)",
+        "이벤트 루프와 매크로/마이크로태스크",
+        "URL 입력부터 화면 표시까지 전 과정",
+        "Reflow vs Repaint vs Composite",
+        "Critical Rendering Path",
+        "Same-Origin Policy와 보안 모델",
+        "WebSocket과 SSE 비교",
+        "HTTP 상태코드 실전 활용"
+      ],
+      "응용": [
+        "HTTP/3 QUIC가 프론트에 미치는 영향",
+        "Service Worker와 PWA 캐싱 전략",
+        "Resource Hints (preload, prefetch, preconnect, dns-prefetch)",
+        "Long Task와 INP 최적화",
+        "Core Web Vitals 깊게 - LCP/INP/CLS 측정과 개선",
+        "Chrome DevTools Performance 패널 활용",
+        "메모리 누수 디버깅 (Heap Snapshot)",
+        "브라우저 멀티프로세스 아키텍처",
+        "V8 엔진의 JIT 컴파일 과정",
+        "Intersection Observer 내부 동작",
+        "RequestIdleCallback vs RequestAnimationFrame",
+        "Streaming SSR과 HTTP 청크 전송",
+        "BroadcastChannel API와 탭 간 통신",
+        "WebRTC 기본 구조와 시그널링",
+        "CDN 동작 원리와 캐시 무효화 전략"
+      ]
+    },
+    "운영체제/시스템": {
+      "weight": "low",
+      "기초": [
+        "프로세스 vs 스레드",
+        "동시성 vs 병렬성",
+        "컨텍스트 스위칭 비용",
+        "메모리 계층구조 (캐시/RAM/디스크)",
+        "가상 메모리와 페이징",
+        "파일 디스크립터와 I/O 모델",
+        "동기 vs 비동기 vs 블로킹 vs 논블로킹",
+        "스케줄링 알고리즘 기초"
+      ],
+      "응용": [
+        "Node.js 이벤트 루프와 libuv",
+        "Web Worker와 멀티스레딩 모델",
+        "SharedArrayBuffer와 Atomics",
+        "프로세스 간 통신 (IPC) - Electron 사례",
+        "메모리 관리 - V8 가비지 컬렉션",
+        "Race Condition과 Lock 메커니즘",
+        "Epoll/Kqueue와 Node 성능"
+      ]
+    },
+    "데이터베이스": {
+      "weight": "low",
+      "기초": [
+        "RDB vs NoSQL 선택 기준",
+        "트랜잭션과 ACID",
+        "인덱스 동작 원리 (B-Tree)",
+        "정규화와 반정규화",
+        "조인의 종류와 비용",
+        "격리 수준 (Isolation Level)",
+        "락(Lock)의 종류"
+      ],
+      "응용": [
+        "프론트에서 알아야 할 DB 쿼리 비용 감각",
+        "GraphQL N+1 문제와 DataLoader",
+        "IndexedDB 활용 패턴",
+        "낙관적 락 vs 비관적 락 - 프론트 UX 관점",
+        "이벤트 소싱과 CQRS 개념",
+        "Read Replica와 일관성 모델",
+        "캐시 전략 (Cache-aside, Write-through 등)"
+      ]
+    },
+    "보안/인증": {
+      "weight": "high",
+      "기초": [
+        "XSS - Reflected vs Stored vs DOM-based",
+        "CSRF 공격과 방어 (SameSite 쿠키)",
+        "Clickjacking과 X-Frame-Options",
+        "Content Security Policy (CSP) 작성법",
+        "HTTPS와 인증서 체인",
+        "JWT 구조와 검증",
+        "OAuth 2.0 플로우 종류",
+        "OpenID Connect (OIDC) 기본",
+        "세션 인증 vs 토큰 인증",
+        "비밀번호 해싱 (bcrypt, argon2)",
+        "대칭키 vs 비대칭키 암호화"
+      ],
+      "응용": [
+        "Refresh Token Rotation 패턴",
+        "PKCE - SPA에서의 OAuth",
+        "Passwordless 인증 (WebAuthn, Passkey)",
+        "Trusted Types로 XSS 방어",
+        "Subresource Integrity (SRI)",
+        "쿠키 보안 옵션 깊게 (Secure, HttpOnly, SameSite)",
+        "Iframe sandbox와 격리 패턴",
+        "Supply Chain Attack과 npm 보안",
+        "환경변수 노출 방지 (NEXT_PUBLIC_ 함정)",
+        "API 키 관리 - BFF 패턴",
+        "Rate Limiting과 Bot 방어"
+      ]
+    },
+    "AI/ML/LLM": {
+      "weight": "medium",
+      "기초": [
+        "지도학습 vs 비지도학습 vs 강화학습",
+        "신경망 기본 (퍼셉트론 → MLP)",
+        "역전파와 경사하강법",
+        "임베딩이란 무엇인가",
+        "토큰과 토크나이저",
+        "Attention 메커니즘 기초",
+        "Transformer 구조 개요",
+        "LLM의 학습 단계 (Pretrain → SFT → RLHF)",
+        "Temperature, Top-p 파라미터",
+        "Context Window와 토큰 한계"
+      ],
+      "응용": [
+        "RAG 아키텍처와 벡터 DB",
+        "프롬프트 엔지니어링 패턴",
+        "Function Calling / Tool Use",
+        "MCP (Model Context Protocol) 구조",
+        "Agent 패턴 - ReAct, Plan-and-Execute",
+        "LangChain vs LlamaIndex 비교",
+        "스트리밍 응답 처리 (SSE) - 프론트 구현",
+        "Vercel AI SDK 활용",
+        "임베딩 기반 시맨틱 검색 구현",
+        "LLM 캐싱 전략과 비용 최적화",
+        "Multimodal 모델 활용 (Vision)",
+        "Guardrails와 안전성"
+      ]
+    },
+    "시스템 설계/아키텍처": {
+      "weight": "medium",
+      "기초": [
+        "Monolith vs Microservices",
+        "RESTful API 설계 원칙",
+        "GraphQL vs REST",
+        "Load Balancer 동작 방식",
+        "수평 확장 vs 수직 확장",
+        "동기 vs 비동기 통신 (메시지 큐)",
+        "CAP 정리",
+        "Eventual Consistency"
+      ],
+      "응용": [
+        "BFF (Backend for Frontend) 패턴",
+        "Micro Frontend 아키텍처",
+        "Module Federation 깊게",
+        "SSR vs SSG vs ISR vs CSR - 언제 무엇을",
+        "Edge Computing과 Edge Function",
+        "Idempotency와 결제 시스템 (paysable 맥락)",
+        "분산 트랜잭션 - Saga 패턴",
+        "Feature Flag 시스템 설계",
+        "Multi-tenancy 아키텍처",
+        "Real-time 시스템 설계 (채팅, 알림)",
+        "Webhook 설계와 재시도 정책"
+      ]
+    },
+    "프론트엔드 심화": {
+      "weight": "high",
+      "기초": [
+        "JavaScript 엔진 동작 (V8 파이프라인)",
+        "JIT 컴파일과 Hidden Class",
+        "클로저와 메모리 관점",
+        "프로토타입 체인 깊게",
+        "이벤트 위임과 이벤트 전파",
+        "Promise 내부 동작과 microtask",
+        "async/await의 실제 동작",
+        "모듈 시스템 비교 (CJS/ESM/AMD)",
+        "TypeScript 타입 시스템 기초"
+      ],
+      "응용": [
+        "React Fiber 아키텍처",
+        "React Concurrent Rendering",
+        "React Server Components 깊게",
+        "Suspense와 데이터 페칭 패턴",
+        "Hook 내부 구현 (linked list 구조)",
+        "Vue 3 Reactivity (Proxy 기반)",
+        "Signals 패턴 (Solid/Preact)",
+        "Vite의 동작 원리 (esbuild + Rollup)",
+        "Turbopack vs Webpack vs Rollup",
+        "Tree Shaking 깊게",
+        "Code Splitting 전략",
+        "Source Map 구조와 디버깅",
+        "Babel AST 변환 과정",
+        "SWC vs Babel - Rust 컴파일러 시대",
+        "CSS-in-JS 런타임 비용 분석",
+        "Tailwind JIT 동작 원리",
+        "Next.js App Router 내부 동작",
+        "React Query 캐싱 메커니즘",
+        "Zustand vs Redux vs Jotai - 상태관리 패러다임",
+        "Monorepo 빌드 시스템 (Turborepo, Nx)",
+        "TypeScript Conditional Types와 Infer",
+        "Discriminated Union 패턴",
+        "고급 제네릭 활용",
+        "Web Components와 Shadow DOM"
+      ]
+    }
+  },
+  "weekly_rotation": {
+    "월": ["네트워크/브라우저", "프론트엔드 심화"],
+    "화": ["보안/인증", "자료구조/알고리즘"],
+    "수": ["네트워크/브라우저", "AI/ML/LLM"],
+    "목": ["프론트엔드 심화", "시스템 설계/아키텍처"],
+    "금": ["보안/인증", "프론트엔드 심화"],
+    "토": ["AI/ML/LLM", "운영체제/시스템"],
+    "일": ["시스템 설계/아키텍처", "데이터베이스"]
+  }
+}
