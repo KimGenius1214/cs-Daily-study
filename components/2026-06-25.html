@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Inspiration Daily — 2026-06-25 (목)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#ffffff; --surface-2:#f0f2f5; --border:#e3e6ea;
+    --text:#1a1d21; --muted:#6b7280; --brand:#4f46e5; --brand-ink:#ffffff;
+    --ok:#16a34a; --err:#dc2626; --warn:#d97706; --radius:14px;
+    --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+    --ring:0 0 0 3px color-mix(in srgb, var(--brand) 35%, transparent);
+    --dur:.18s;
+  }
+  html[data-theme="dark"]{
+    --bg:#0c0e12; --surface:#15181e; --surface-2:#1d2129; --border:#272c35;
+    --text:#e7eaf0; --muted:#9aa3b2; --brand:#7c79ff; --brand-ink:#0c0e12;
+    --ok:#34d399; --err:#f87171; --warn:#fbbf24; --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:1.5rem;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:.9rem}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:.82rem;text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    padding:6px 12px;border-radius:999px;transition:border-color var(--dur)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:none;box-shadow:var(--ring)}
+  .theme-btn{cursor:pointer;background:var(--surface);border:1px solid var(--border);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.85rem;font-family:inherit}
+  .theme-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px;margin-bottom:24px;scroll-margin-top:16px}
+  section.card>h2{margin:0 0 2px;font-size:1.15rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tag{font-size:.7rem;font-weight:600;color:var(--brand);background:color-mix(in srgb,var(--brand) 12%,transparent);
+    padding:2px 8px;border-radius:6px}
+  .lead{color:var(--muted);font-size:.92rem;margin:6px 0 20px}
+  .demo{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:22px;margin:14px 0}
+  .cap{font-size:.82rem;color:var(--muted);margin:6px 2px 0}
+  h3.demoh{font-size:.92rem;margin:18px 0 6px;color:var(--text)}
+  code.inline{background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 5px;font-size:.85em}
+
+  /* ---------- 1. Tabs / Segmented ---------- */
+  .tablist{display:flex;position:relative;gap:2px;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:4px;width:max-content;max-width:100%}
+  .tablist [role="tab"]{position:relative;z-index:1;border:none;background:transparent;color:var(--muted);
+    font:inherit;font-size:.88rem;font-weight:600;padding:8px 16px;border-radius:7px;cursor:pointer;
+    transition:color var(--dur)}
+  .tablist [role="tab"][aria-selected="true"]{color:var(--text)}
+  .tablist [role="tab"]:focus-visible{outline:none;box-shadow:var(--ring)}
+  .tab-indicator{position:absolute;top:4px;bottom:4px;z-index:0;background:var(--bg);border-radius:7px;
+    box-shadow:var(--shadow);transition:left var(--dur) ease,width var(--dur) ease}
+  .panel{padding:16px 4px 2px;font-size:.92rem;color:var(--text)}
+  .panel[hidden]{display:none}
+  /* underline 변형 */
+  .tablist.underline{background:transparent;border:none;border-bottom:1px solid var(--border);
+    border-radius:0;padding:0;gap:18px}
+  .tablist.underline .tab-indicator{top:auto;bottom:-1px;height:2px;background:var(--brand);box-shadow:none;border-radius:2px}
+  .tablist.underline [role="tab"]{padding:10px 2px;border-radius:0}
+  @media (prefers-reduced-motion: reduce){.tab-indicator{transition:none}}
+
+  /* ---------- 2. Transaction list ---------- */
+  .txlist{list-style:none;margin:0;padding:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+  .txrow{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--border);position:relative}
+  .txrow:first-child{border-top:none}
+  .txrow:hover,.txrow:focus-within{background:var(--surface-2)}
+  .av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.95rem;flex:none;
+    background:color-mix(in srgb,var(--brand) 14%,transparent);color:var(--brand)}
+  .av.in{background:color-mix(in srgb,var(--ok) 16%,transparent);color:var(--ok)}
+  .txmain{min-width:0;flex:1}
+  .txmain .t{font-weight:600;font-size:.92rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .txmain .s{font-size:.78rem;color:var(--muted)}
+  .amt{font-variant-numeric:tabular-nums;font-weight:700;font-size:.95rem;white-space:nowrap}
+  .amt.in{color:var(--ok)}
+  .actions{display:flex;gap:6px;opacity:0;transform:translateX(6px);transition:opacity var(--dur),transform var(--dur)}
+  .txrow:hover .actions,.txrow:focus-within .actions{opacity:1;transform:none}
+  .iconbtn{border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:8px;
+    width:30px;height:30px;cursor:pointer;font-size:.9rem;display:grid;place-items:center}
+  .iconbtn:hover{color:var(--text);border-color:var(--brand)}
+  .iconbtn:focus-visible{outline:none;box-shadow:var(--ring)}
+  @media (prefers-reduced-motion: reduce){.actions{transition:none}}
+  /* skeleton */
+  .sk{background:linear-gradient(90deg,var(--surface-2) 25%,var(--border) 37%,var(--surface-2) 63%);
+    background-size:400% 100%;animation:shimmer 1.3s ease infinite;border-radius:6px}
+  @keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+  @media (prefers-reduced-motion: reduce){.sk{animation:none}}
+  .sk-line{height:11px}
+  .empty{padding:34px 14px;text-align:center;color:var(--muted)}
+  .empty .em-ic{font-size:1.6rem}
+  .seg{display:inline-flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:3px;margin-bottom:12px}
+  .seg button{border:none;background:transparent;font:inherit;font-size:.82rem;font-weight:600;color:var(--muted);
+    padding:5px 12px;border-radius:6px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--surface-2);color:var(--text)}
+  .seg button:focus-visible{outline:none;box-shadow:var(--ring)}
+
+  /* ---------- 3. Popover + anchor ---------- */
+  .menu-trigger{font:inherit;font-weight:600;font-size:.88rem;background:var(--surface);border:1px solid var(--border);
+    color:var(--text);padding:9px 14px;border-radius:9px;cursor:pointer}
+  .menu-trigger:hover{border-color:var(--brand)}
+  .menu-trigger:focus-visible{outline:none;box-shadow:var(--ring)}
+  #acct-menu{position:absolute;position-anchor:--acct-btn;
+    top:anchor(bottom);left:anchor(left);margin-top:8px;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow),0 12px 28px rgba(16,24,40,.14);
+    padding:6px;min-width:200px;}
+  #acct-menu{position-try-fallbacks:flip-block,flip-inline}
+  .menu-item{display:flex;align-items:center;gap:10px;width:100%;border:none;background:transparent;color:var(--text);
+    font:inherit;font-size:.88rem;padding:9px 10px;border-radius:8px;cursor:pointer;text-align:left}
+  .menu-item:hover,.menu-item:focus-visible{background:var(--surface-2);outline:none}
+  .menu-item.danger{color:var(--err)}
+  .menu-sep{height:1px;background:var(--border);margin:5px 4px}
+  .anchored-btn{anchor-name:--acct-btn}
+  .fallback-note{font-size:.78rem;color:var(--warn);margin-top:8px}
+
+  pre.code{background:#0d1117;color:#e6edf3;border-radius:10px;padding:16px;overflow:auto;font-size:.8rem;line-height:1.55;
+    margin:10px 0 0;border:1px solid var(--border)}
+  html[data-theme="light"] pre.code{background:#1a1d21}
+  details{margin-top:10px}
+  summary{cursor:pointer;font-size:.84rem;color:var(--brand);font-weight:600}
+  .foot{color:var(--muted);font-size:.82rem;margin-top:40px;text-align:center}
+  a.ref{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="sub">2026-06-25 (목) · 오늘 다룬 항목 3건 — 직접 만져보는 라이브 예시</div>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="라이트/다크 전환">🌙 다크</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#tabs">🧭 탭·세그먼트</a>
+    <a href="#txlist">🃏 거래내역 리스트</a>
+    <a href="#popover">🌀 Popover + Anchor</a>
+  </nav>
+
+  <!-- ============ 1 ============ -->
+  <section class="card" id="tabs">
+    <h2><span class="tag">🧭 내비게이션·탭</span> 탭 & 세그먼트 컨트롤 — 슬라이딩 인디케이터와 키보드 동작</h2>
+    <p class="lead">요즘 탭은 선택된 항목 아래로 표시자(인디케이터)가 <b>미끄러지듯 이동</b>한다. 핵심은 보기보다
+      <b>접근성 구조</b>다: 탭 묶음은 <code class="inline">role="tablist"</code>, 각 탭은 <code class="inline">role="tab"</code>,
+      화살표 키로 이동하는 <b>로빙 탭인덱스</b>(roving tabindex: 묶음 안에서 Tab 키로 들어오는 진입점은 하나, 안에서는 ←→로 이동)를 쓴다.</p>
+
+    <h3 class="demoh">변형 A — 알약형(pill) 탭. 결제 대시보드의 기간 전환에 잘 맞음</h3>
+    <div class="demo">
+      <div class="tablist" role="tablist" aria-label="기간 선택" id="tl1">
+        <span class="tab-indicator" aria-hidden="true"></span>
+        <button role="tab" id="t1-1" aria-controls="p1-1" aria-selected="true" tabindex="0">일간</button>
+        <button role="tab" id="t1-2" aria-controls="p1-2" aria-selected="false" tabindex="-1">주간</button>
+        <button role="tab" id="t1-3" aria-controls="p1-3" aria-selected="false" tabindex="-1">월간</button>
+      </div>
+      <div class="panel" role="tabpanel" id="p1-1" aria-labelledby="t1-1" tabindex="0">오늘 승인 결제 <b>1,284건</b> · 거래액 ₩38.2M</div>
+      <div class="panel" role="tabpanel" id="p1-2" aria-labelledby="t1-2" tabindex="0" hidden>이번 주 승인 결제 <b>8,901건</b> · 거래액 ₩264M</div>
+      <div class="panel" role="tabpanel" id="p1-3" aria-labelledby="t1-3" tabindex="0" hidden>이번 달 승인 결제 <b>37,420건</b> · 거래액 ₩1.12B</div>
+      <p class="cap">클릭해 보고, 탭을 한 번 누른 뒤 키보드 ← → 로도 이동해 보세요. 인디케이터가 따라 움직입니다.</p>
+    </div>
+
+    <h3 class="demoh">변형 B — 밑줄형(underline) 탭. 화면 폭이 좁거나 콘텐츠 영역 상단에 적합</h3>
+    <div class="demo">
+      <div class="tablist underline" role="tablist" aria-label="결제 상세" id="tl2">
+        <span class="tab-indicator" aria-hidden="true"></span>
+        <button role="tab" id="t2-1" aria-controls="p2-1" aria-selected="true" tabindex="0">개요</button>
+        <button role="tab" id="t2-2" aria-controls="p2-2" aria-selected="false" tabindex="-1">정산</button>
+        <button role="tab" id="t2-3" aria-controls="p2-3" aria-selected="false" tabindex="-1">환불</button>
+      </div>
+      <div class="panel" role="tabpanel" id="p2-1" aria-labelledby="t2-1" tabindex="0">결제 수단·승인율·평균 거래액을 한눈에.</div>
+      <div class="panel" role="tabpanel" id="p2-2" aria-labelledby="t2-2" tabindex="0" hidden>정산 주기와 다음 입금 예정일.</div>
+      <div class="panel" role="tabpanel" id="p2-3" aria-labelledby="t2-3" tabindex="0" hidden>최근 환불 요청과 처리 상태.</div>
+      <p class="cap">밑줄 인디케이터도 같은 로직(선택 탭의 위치·너비를 측정해 이동)으로 동작합니다.</p>
+    </div>
+    <details>
+      <summary>핵심 코드 보기 (키보드 + 인디케이터)</summary>
+      <pre class="code">// roving tabindex + 화살표 이동 + 인디케이터 측정
+function setupTabs(list){
+  const tabs=[...list.querySelectorAll('[role=tab]')];
+  const ind=list.querySelector('.tab-indicator');
+  const move=el=>{ ind.style.left=el.offsetLeft+'px'; ind.style.width=el.offsetWidth+'px'; };
+  function select(el){
+    tabs.forEach(t=>{
+      const on=t===el;
+      t.setAttribute('aria-selected',on);
+      t.tabIndex=on?0:-1;                       // 선택된 것만 Tab 진입점
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    move(el);
+  }
+  list.addEventListener('click',e=>{ const t=e.target.closest('[role=tab]'); if(t) select(t); });
+  list.addEventListener('keydown',e=>{
+    const i=tabs.indexOf(document.activeElement); if(i<0) return;
+    let n; if(e.key==='ArrowRight') n=(i+1)%tabs.length;
+    else if(e.key==='ArrowLeft') n=(i-1+tabs.length)%tabs.length;
+    else if(e.key==='Home') n=0; else if(e.key==='End') n=tabs.length-1; else return;
+    e.preventDefault(); tabs[n].focus(); select(tabs[n]);   // 포커스 이동과 동시에 선택
+  });
+  move(tabs.find(t=>t.getAttribute('aria-selected')==='true'));
+}</pre>
+    </details>
+  </section>
+
+  <!-- ============ 2 ============ -->
+  <section class="card" id="txlist">
+    <h2><span class="tag">🃏 카드·리스트</span> 거래내역 리스트 — 호버 액션·스켈레톤·빈 상태</h2>
+    <p class="lead">핀테크 리스트의 한 줄(row)은 정보 밀도가 생명이다. 평소엔 깔끔하게, <b>호버/포커스 때만 보조 액션</b>(영수증·신고)을 드러내
+      시각 소음을 줄인다. 금액은 <code class="inline">tabular-nums</code>(숫자 폭 고정)로 세로 정렬하고,
+      데이터를 불러오는 동안엔 레이아웃이 안 튀도록 같은 골격의 <b>스켈레톤</b>을 보여준다.</p>
+
+    <div class="demo">
+      <div class="seg" role="group" aria-label="리스트 상태 전환">
+        <button aria-pressed="true" data-state="data">데이터</button>
+        <button aria-pressed="false" data-state="loading">로딩(스켈레톤)</button>
+        <button aria-pressed="false" data-state="empty">빈 상태</button>
+      </div>
+
+      <ul class="txlist" id="txData">
+        <li class="txrow">
+          <span class="av in" aria-hidden="true">W</span>
+          <div class="txmain"><div class="t">Wise 송금 입금</div><div class="s">06.25 · 환율 1,371.20</div></div>
+          <span class="amt in">+₩412,500</span>
+          <div class="actions"><button class="iconbtn" aria-label="영수증 보기">🧾</button><button class="iconbtn" aria-label="문제 신고">⚑</button></div>
+        </li>
+        <li class="txrow">
+          <span class="av" aria-hidden="true">S</span>
+          <div class="txmain"><div class="t">Stripe 구독 결제</div><div class="s">06.24 · Visa ····4242</div></div>
+          <span class="amt">−₩29,000</span>
+          <div class="actions"><button class="iconbtn" aria-label="영수증 보기">🧾</button><button class="iconbtn" aria-label="문제 신고">⚑</button></div>
+        </li>
+        <li class="txrow">
+          <span class="av" aria-hidden="true">A</span>
+          <div class="txmain"><div class="t">Apple App Store</div><div class="s">06.23 · Mastercard ····5100</div></div>
+          <span class="amt">−₩1,200,000</span>
+          <div class="actions"><button class="iconbtn" aria-label="영수증 보기">🧾</button><button class="iconbtn" aria-label="문제 신고">⚑</button></div>
+        </li>
+      </ul>
+
+      <ul class="txlist" id="txLoading" hidden aria-hidden="true">
+        <li class="txrow"><span class="av sk" style="background:var(--surface-2)"></span><div class="txmain"><div class="sk sk-line" style="width:55%;margin-bottom:7px"></div><div class="sk sk-line" style="width:35%;height:9px"></div></div><span class="sk sk-line" style="width:70px;height:14px"></span></li>
+        <li class="txrow"><span class="av sk" style="background:var(--surface-2)"></span><div class="txmain"><div class="sk sk-line" style="width:48%;margin-bottom:7px"></div><div class="sk sk-line" style="width:40%;height:9px"></div></div><span class="sk sk-line" style="width:70px;height:14px"></span></li>
+        <li class="txrow"><span class="av sk" style="background:var(--surface-2)"></span><div class="txmain"><div class="sk sk-line" style="width:60%;margin-bottom:7px"></div><div class="sk sk-line" style="width:30%;height:9px"></div></div><span class="sk sk-line" style="width:70px;height:14px"></span></li>
+      </ul>
+
+      <div class="txlist" id="txEmpty" hidden>
+        <div class="empty"><div class="em-ic" aria-hidden="true">📭</div>아직 거래가 없어요<div class="s" style="font-size:.82rem;margin-top:4px">결제가 발생하면 여기에 표시됩니다.</div></div>
+      </div>
+      <p class="cap">위 토글로 세 상태를 바꿔 보세요. 행에 마우스를 올리거나 Tab으로 포커스를 주면 우측 액션 버튼이 나타납니다.</p>
+    </div>
+    <details>
+      <summary>왜 호버 액션을 <code class="inline">:focus-within</code>에도 거나</summary>
+      <pre class="code">/* 마우스 없는 사용자(키보드)도 액션에 닿아야 함 */
+.actions{opacity:0}
+.txrow:hover .actions,
+.txrow:focus-within .actions{opacity:1}   /* 행 내부 어떤 요소든 포커스되면 표시 */
+
+/* 금액 세로 정렬: 숫자 폭을 고정 */
+.amt{font-variant-numeric:tabular-nums}</pre>
+    </details>
+  </section>
+
+  <!-- ============ 3 ============ -->
+  <section class="card" id="popover">
+    <h2><span class="tag">🌀 트렌드·개념</span> JS 없는 메뉴 — Popover API + CSS Anchor Positioning</h2>
+    <p class="lead"><b>Popover API</b>(<code class="inline">popover</code> 속성): 버튼에 <code class="inline">popovertarget</code>만 달면
+      열고/닫고, ESC·바깥 클릭 닫힘, 최상위 레이어 쌓임을 브라우저가 처리한다(2024년 Baseline 진입).
+      <b>CSS Anchor Positioning</b>: 팝오버를 특정 요소에 <b>붙여서</b> 위치시키는 CSS 기능 — 자리 계산용 JS 라이브러리가 필요 없다(2026년 Baseline 진입, 일부 플립 세부는 최신 버전 필요, <i>추정</i>).</p>
+
+    <div class="demo">
+      <button class="menu-trigger anchored-btn" popovertarget="acct-menu" id="acctBtn">계정 ▾</button>
+      <div id="acct-menu" popover role="menu" aria-label="계정 메뉴">
+        <button class="menu-item" role="menuitem">👤 프로필</button>
+        <button class="menu-item" role="menuitem">💳 결제 수단</button>
+        <button class="menu-item" role="menuitem">🧾 거래 내역</button>
+        <div class="menu-sep" role="separator"></div>
+        <button class="menu-item danger" role="menuitem">↩ 로그아웃</button>
+      </div>
+      <p class="cap">버튼을 누르면 메뉴가 버튼에 붙어 열립니다. ESC 또는 바깥 클릭으로 닫혀요 — 위치/닫힘 모두 JS 없이 동작.</p>
+      <p class="fallback-note" id="apNote" hidden>⚠️ 이 브라우저는 CSS Anchor Positioning 미지원으로 보입니다. 팝오버는 열리지만 위치가 기본값일 수 있어요. (실서비스에선 @supports로 폴백 위치를 줍니다.)</p>
+    </div>
+    <details>
+      <summary>핵심 코드 보기 (HTML + CSS만)</summary>
+      <pre class="code">&lt;!-- HTML: JS 0줄 --&gt;
+&lt;button popovertarget="acct-menu" style="anchor-name:--acct-btn"&gt;계정 ▾&lt;/button&gt;
+&lt;div id="acct-menu" popover role="menu"&gt;…&lt;/div&gt;
+
+/* CSS: 버튼(--acct-btn)에 메뉴를 붙임 */
+#acct-menu{
+  position:absolute;
+  position-anchor:--acct-btn;          /* 이 앵커를 기준으로 */
+  top:anchor(bottom); left:anchor(left); /* 버튼 아래-왼쪽 정렬 */
+  margin-top:8px;
+  position-try-fallbacks:flip-block;   /* 아래 공간 없으면 위로 뒤집기 */
+}
+
+/* 미지원 브라우저 폴백 */
+@supports not (anchor-name:--x){
+  #acct-menu{ position:absolute; top:48px; left:0; }
+}</pre>
+    </details>
+    <p class="cap" style="margin-top:14px">📈 <b>왜 지금 뜨나</b>: Floating UI 같은 위치 계산 라이브러리(수십 KB)를 걷어내고, 드롭다운·툴팁·메뉴를 플랫폼 기본 기능으로 만드는 흐름. 접근성(포커스 트랩·ESC·라이트 디스미스)을 브라우저가 보장해 손으로 짜던 버그가 줄어든다.</p>
+  </section>
+
+  <p class="foot">self-contained · 외부 의존성 없음 · 라이트/다크 토글 지원 · 키보드/스크린리더 기본 대응</p>
+</div>
+
+<script>
+(function(){
+  // theme toggle
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.textContent=dark?'🌙 다크':'☀️ 라이트';
+    document.querySelectorAll('.tablist').forEach(function(l){
+      var sel=l.querySelector('[role=tab][aria-selected=true]'), ind=l.querySelector('.tab-indicator');
+      if(sel&&ind){ind.style.left=sel.offsetLeft+'px';ind.style.width=sel.offsetWidth+'px';}
+    });
+  });
+
+  // tabs
+  function setupTabs(list){
+    var tabs=[].slice.call(list.querySelectorAll('[role=tab]'));
+    var ind=list.querySelector('.tab-indicator');
+    function move(el){ind.style.left=el.offsetLeft+'px';ind.style.width=el.offsetWidth+'px';}
+    function select(el){
+      tabs.forEach(function(t){
+        var on=t===el;
+        t.setAttribute('aria-selected',on?'true':'false');
+        t.tabIndex=on?0:-1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+      });
+      move(el);
+    }
+    list.addEventListener('click',function(e){var t=e.target.closest('[role=tab]');if(t)select(t);});
+    list.addEventListener('keydown',function(e){
+      var i=tabs.indexOf(document.activeElement);if(i<0)return;var n;
+      if(e.key==='ArrowRight')n=(i+1)%tabs.length;
+      else if(e.key==='ArrowLeft')n=(i-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;
+      e.preventDefault();tabs[n].focus();select(tabs[n]);
+    });
+    var cur=tabs.filter(function(t){return t.getAttribute('aria-selected')==='true';})[0]||tabs[0];
+    requestAnimationFrame(function(){move(cur);});
+  }
+  document.querySelectorAll('.tablist').forEach(setupTabs);
+
+  // tx list state toggle
+  var seg=document.querySelector('.seg');
+  var states={data:document.getElementById('txData'),loading:document.getElementById('txLoading'),empty:document.getElementById('txEmpty')};
+  seg.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-state]');if(!b)return;
+    [].slice.call(seg.querySelectorAll('button')).forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    Object.keys(states).forEach(function(k){states[k].hidden=(k!==b.dataset.state);});
+  });
+
+  // anchor positioning support note
+  var supported=CSS&&CSS.supports&&CSS.supports('anchor-name: --x');
+  if(!supported){document.getElementById('apNote').hidden=false;}
+})();
+</script>
+</body>
+</html>

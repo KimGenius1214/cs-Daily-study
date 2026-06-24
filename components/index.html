@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Inspiration Daily — 라이브 예시 인덱스</title>
+<style>
+  :root{--bg:#f7f8fa;--surface:#fff;--surface-2:#f0f2f5;--border:#e3e6ea;--text:#1a1d21;--muted:#6b7280;--brand:#4f46e5;--radius:14px;--shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1)}
+  html[data-theme="dark"]{--bg:#0c0e12;--surface:#15181e;--surface-2:#1d2129;--border:#272c35;--text:#e7eaf0;--muted:#9aa3b2;--brand:#7c79ff;--shadow:0 1px 2px rgba(0,0,0,.4)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:32px 20px 80px}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  h1{font-size:1.5rem;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:.9rem}
+  .theme-btn{cursor:pointer;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.85rem;font-family:inherit}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:26px}
+  a.entry{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;transition:border-color .18s,transform .18s}
+  a.entry:hover{border-color:var(--brand);transform:translateY(-2px)}
+  .date{font-weight:700;font-size:1.05rem;margin-bottom:8px}
+  .dow{color:var(--muted);font-weight:500}
+  ul.items{margin:0;padding-left:18px;font-size:.85rem;color:var(--muted)}
+  ul.items li{margin:2px 0}
+  .empty{color:var(--muted);margin-top:30px}
+  footer{color:var(--muted);font-size:.8rem;text-align:center;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily — 라이브 예시</h1>
+      <div class="sub">컴포넌트·패턴 동작 데모 모음 · 총 2일치 · 갱신 2026-06-24</div>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="라이트/다크 전환">🌓 테마</button>
+  </header>
+  <div class="grid">
+    <a class="entry" href="./2026-06-25.html">
+      <div class="date">2026-06-25 <span class="dow">(목)</span></div>
+      <ul class="items"><li>탭 &amp; 세그먼트 컨트롤 — 슬라이딩 인디케이터와 키보드 동작</li><li>거래내역 리스트 — 호버 액션·스켈레톤·빈 상태</li><li>JS 없는 메뉴 — Popover API + CSS Anchor Positioning</li></ul>
+    </a>
+
+    <a class="entry" href="./2026-06-24.html">
+      <div class="date">2026-06-24 <span class="dow">(수)</span></div>
+      <ul class="items"><li>⌨️ 결제 카드번호 입력</li><li>🔘 버튼 변형과 상태 설계</li><li>🌀 마이크로인터랙션 &amp; 모션 접근성</li></ul>
+    </a>
+  </div>
+  <footer>이 페이지는 build-index.mjs가 components 폴더를 스캔해 자동 생성합니다.</footer>
+</div>
+<script>
+  var root=document.documentElement;
+  root.setAttribute('data-theme','light');
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+</script>
+</body>
+</html>
