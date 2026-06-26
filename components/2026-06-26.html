@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Inspiration Daily — 2026-06-26 (금)</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --surface:#ffffff; --surface-2:#f0f2f5; --border:#e3e6ea;
+    --text:#1a1d21; --muted:#6b7280; --brand:#4f46e5; --brand-ink:#ffffff;
+    --ok:#16a34a; --err:#dc2626; --warn:#d97706; --radius:14px;
+    --shadow:0 1px 2px rgba(16,24,40,.06),0 1px 3px rgba(16,24,40,.1);
+    --ring:0 0 0 3px color-mix(in srgb, var(--brand) 35%, transparent);
+    --dur:.18s;
+  }
+  html[data-theme="dark"]{
+    --bg:#0c0e12; --surface:#15181e; --surface-2:#1d2129; --border:#272c35;
+    --text:#e7eaf0; --muted:#9aa3b2; --brand:#7c79ff; --brand-ink:#0c0e12;
+    --ok:#34d399; --err:#f87171; --warn:#fbbf24; --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:920px;margin:0 auto;padding:32px 20px 80px}
+  header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:1.5rem;margin:0 0 4px}
+  .sub{color:var(--muted);font-size:.9rem}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:.82rem;text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    padding:6px 12px;border-radius:999px;transition:border-color var(--dur)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:none;box-shadow:var(--ring)}
+  .theme-btn{cursor:pointer;background:var(--surface);border:1px solid var(--border);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.85rem;font-family:inherit}
+  .theme-btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px;margin-bottom:24px;scroll-margin-top:16px}
+  section.card>h2{margin:0 0 2px;font-size:1.15rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tag{font-size:.7rem;font-weight:600;color:var(--brand);background:color-mix(in srgb,var(--brand) 12%,transparent);
+    padding:2px 8px;border-radius:6px}
+  .lead{color:var(--muted);font-size:.92rem;margin:6px 0 20px}
+  .demo{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:22px;margin:14px 0}
+  .cap{font-size:.82rem;color:var(--muted);margin:8px 2px 0}
+  h3.demoh{font-size:.92rem;margin:18px 0 6px;color:var(--text)}
+  code.inline{background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 5px;font-size:.85em}
+  .btn{font:inherit;font-size:.85rem;font-weight:600;border-radius:9px;padding:8px 14px;cursor:pointer;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);transition:border-color var(--dur),background var(--dur)}
+  .btn:hover{border-color:var(--brand)}
+  .btn:focus-visible{outline:none;box-shadow:var(--ring)}
+  .btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+
+  /* ---------- 1. Data table ---------- */
+  .tablewrap{border:1px solid var(--border);border-radius:12px;overflow:auto;background:var(--surface);max-height:340px}
+  table.dt{border-collapse:separate;border-spacing:0;width:100%;font-size:.88rem}
+  table.dt thead th{position:sticky;top:0;z-index:2;background:var(--surface-2);text-align:left;
+    font-weight:600;color:var(--muted);padding:0;border-bottom:1px solid var(--border);white-space:nowrap}
+  table.dt thead th .sortbtn{all:unset;display:flex;align-items:center;gap:6px;width:100%;
+    padding:11px 14px;cursor:pointer;box-sizing:border-box}
+  table.dt thead th .sortbtn:focus-visible{box-shadow:var(--ring);border-radius:6px}
+  table.dt thead th.num .sortbtn{justify-content:flex-end}
+  .arrow{font-size:.7rem;opacity:0;transition:opacity var(--dur)}
+  th[aria-sort="ascending"] .arrow,th[aria-sort="descending"] .arrow{opacity:1;color:var(--brand)}
+  th .sortbtn:hover .arrow{opacity:.5}
+  table.dt tbody td{padding:11px 14px;border-bottom:1px solid var(--border);white-space:nowrap}
+  table.dt tbody tr:last-child td{border-bottom:none}
+  table.dt tbody tr:hover{background:var(--surface-2)}
+  table.dt tbody tr[aria-selected="true"]{background:color-mix(in srgb,var(--brand) 10%,transparent)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{font-size:.74rem;font-weight:600;padding:2px 9px;border-radius:999px;display:inline-block}
+  .pill.ok{color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,transparent)}
+  .pill.wait{color:var(--warn);background:color-mix(in srgb,var(--warn) 16%,transparent)}
+  .pill.fail{color:var(--err);background:color-mix(in srgb,var(--err) 14%,transparent)}
+  td.sel{width:36px;text-align:center}
+  .selbar{display:flex;align-items:center;gap:10px;font-size:.82rem;color:var(--muted);margin-top:10px;min-height:22px}
+
+  /* ---------- 2. Toast ---------- */
+  .toaster{position:fixed;z-index:50;bottom:18px;right:18px;display:flex;flex-direction:column;gap:10px;
+    width:min(330px,calc(100vw - 36px));pointer-events:none}
+  .toast{pointer-events:auto;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--brand);
+    border-radius:10px;box-shadow:0 8px 24px rgba(16,24,40,.16);padding:12px 14px;display:flex;gap:10px;align-items:flex-start;
+    animation:slidein var(--dur) ease}
+  .toast.ok{border-left-color:var(--ok)} .toast.err{border-left-color:var(--err)} .toast.warn{border-left-color:var(--warn)}
+  .toast .ic{font-size:1.05rem;line-height:1.3;flex:none}
+  .toast .body{flex:1;min-width:0}
+  .toast .ti{font-weight:600;font-size:.88rem}
+  .toast .ms{font-size:.8rem;color:var(--muted)}
+  .toast .act{margin-top:6px}
+  .toast .act button{all:unset;color:var(--brand);font-weight:600;font-size:.8rem;cursor:pointer}
+  .toast .act button:focus-visible{outline:none;box-shadow:var(--ring);border-radius:4px}
+  .toast .x{all:unset;cursor:pointer;color:var(--muted);font-size:1rem;line-height:1;flex:none;padding:2px}
+  .toast .x:focus-visible{outline:none;box-shadow:var(--ring);border-radius:4px}
+  .toast .pb{position:absolute;left:0;bottom:0;height:3px;background:color-mix(in srgb,var(--brand) 60%,transparent);border-radius:0 0 0 8px}
+  .toast{position:relative;overflow:hidden}
+  .toast.leaving{animation:slideout var(--dur) ease forwards}
+  @keyframes slidein{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+  @keyframes slideout{to{opacity:0;transform:translateX(16px)}}
+  @media (prefers-reduced-motion: reduce){.toast,.toast.leaving{animation:none}.toast .pb{display:none}}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ---------- 3. Optimistic UI ---------- */
+  .opt-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:14px 16px;max-width:420px}
+  .opt-card .meta{flex:1;min-width:0}
+  .opt-card .meta .t{font-weight:600;font-size:.92rem}
+  .opt-card .meta .s{font-size:.78rem;color:var(--muted)}
+  .likebtn{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:600;font-size:.85rem;
+    padding:7px 12px;border-radius:999px;border:1px solid var(--border);color:var(--muted);transition:all var(--dur)}
+  .likebtn[aria-pressed="true"]{color:var(--err);border-color:color-mix(in srgb,var(--err) 50%,transparent);
+    background:color-mix(in srgb,var(--err) 10%,transparent)}
+  .likebtn:focus-visible{outline:none;box-shadow:var(--ring)}
+  .likebtn.pending{opacity:.7}
+  .likebtn .heart{transition:transform var(--dur)}
+  .likebtn[aria-pressed="true"] .heart{transform:scale(1.18)}
+  @media (prefers-reduced-motion: reduce){.likebtn .heart{transition:none}}
+  .switchwrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .note{font-size:.82rem;color:var(--text);background:color-mix(in srgb,var(--warn) 12%,transparent);
+    border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);border-radius:10px;padding:12px 14px;margin-top:14px}
+  .note b{color:var(--warn)}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .seg button{all:unset;cursor:pointer;padding:6px 12px;font-size:.8rem;color:var(--muted)}
+  .seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+  .seg button:focus-visible{outline:none;box-shadow:var(--ring)}
+  footer{color:var(--muted);font-size:.8rem;text-align:center;margin-top:40px;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="sub">2026-06-26 (금) · 오늘의 컴포넌트·패턴 3건 · 직접 만지며 배우는 라이브 예시</div>
+    </div>
+    <button class="theme-btn" id="themeBtn" aria-label="라이트/다크 전환">🌓 테마</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목 목차">
+    <a href="#table">📊 데이터 테이블</a>
+    <a href="#toast">🔔 토스트 알림</a>
+    <a href="#optimistic">🌀 Optimistic UI</a>
+  </nav>
+
+  <!-- ============ 1. DATA TABLE ============ -->
+  <section class="card" id="table">
+    <h2>📊 데이터 테이블 — 정렬·고정 헤더·행 선택 <span class="tag">데이터·테이블·차트</span></h2>
+    <p class="lead">결제 백오피스의 거래 테이블. 헤더 클릭으로 정렬하고(키보드 Enter/Space도 동작), 스크롤해도 헤더가 고정되며, 체크박스로 행을 선택합니다. 금액은 우측 정렬 + <code class="inline">tabular-nums</code>(숫자 폭 고정)로 자릿수가 어긋나지 않게 했습니다.</p>
+
+    <div class="demo">
+      <div class="tablewrap">
+        <table class="dt" id="txTable">
+          <caption class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">거래 내역. 열 제목 버튼을 누르면 정렬됩니다.</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="sel"><input type="checkbox" id="selAll" aria-label="전체 선택"></th>
+              <th scope="col" aria-sort="none" data-key="merchant" data-type="text"><button type="button" class="sortbtn">가맹점 <span class="arrow">▲</span></button></th>
+              <th scope="col" aria-sort="none" data-key="date" data-type="text"><button type="button" class="sortbtn">일자 <span class="arrow">▲</span></button></th>
+              <th scope="col" class="num" aria-sort="descending" data-key="amount" data-type="num"><button type="button" class="sortbtn">금액(원) <span class="arrow">▼</span></button></th>
+              <th scope="col" aria-sort="none" data-key="status" data-type="text"><button type="button" class="sortbtn">상태 <span class="arrow">▲</span></button></th>
+            </tr>
+          </thead>
+          <tbody id="txBody"><!-- JS로 렌더 --></tbody>
+        </table>
+      </div>
+      <div class="selbar" id="selBar" role="status" aria-live="polite">행을 선택하면 여기에 개수가 표시됩니다.</div>
+      <p class="cap">왜 이렇게? 헤더는 <code class="inline">&lt;th&gt; + &lt;button&gt;</code>이고 정렬 상태를 <code class="inline">aria-sort</code>(none/ascending/descending)로 알려 스크린리더가 "오름차순 정렬됨"을 읽습니다. 화살표는 색뿐 아니라 <b>모양(▲▼)</b>으로도 방향을 구분합니다.</p>
+    </div>
+  </section>
+
+  <!-- ============ 2. TOAST ============ -->
+  <section class="card" id="toast">
+    <h2>🔔 토스트 알림 — 스택·자동 닫힘·액션·접근성 <span class="tag">피드백·상태</span></h2>
+    <p class="lead">작업 결과를 화면 모서리에 잠깐 띄우는 비모달(non-modal: 화면을 막지 않는) 알림입니다. 여러 개가 쌓이고, 일정 시간 뒤 자동으로 닫히되 <b>마우스를 올리면 타이머가 멈춥니다</b>(읽을 시간 확보). 스크린리더에는 <code class="inline">aria-live</code> 영역으로 자동 전달됩니다.</p>
+
+    <div class="demo">
+      <div class="row">
+        <button class="btn primary" onclick="toast({type:'ok',title:'결제 완료',msg:'₩42,000이 정상 승인되었습니다.'})">✅ 성공 토스트</button>
+        <button class="btn" onclick="toast({type:'err',title:'결제 실패',msg:'한도를 초과했습니다.',action:'다시 시도',live:'assertive'})">⛔ 에러(+액션)</button>
+        <button class="btn" onclick="toast({type:'warn',title:'세션 곧 만료',msg:'5분 후 자동 로그아웃됩니다.'})">⚠️ 경고</button>
+        <button class="btn" onclick="for(let i=0;i&lt;3;i++)setTimeout(()=&gt;toast({type:'ok',title:'동기화',msg:'항목 '+(i+1)+' 처리됨'}),i*250)">📚 여러 개 쌓기</button>
+      </div>
+      <p class="cap">왜 이렇게? 일반 알림은 <code class="inline">role="status"</code>(= <code class="inline">aria-live="polite"</code>, 사용자가 하던 걸 방해하지 않고 알림)로, <b>에러</b>는 즉시 알려야 하므로 <code class="inline">role="alert"</code>(assertive)로 띄웁니다. 하단 진행바가 남은 시간을 보여주고, hover 시 멈춥니다.</p>
+    </div>
+  </section>
+
+  <!-- ============ 3. OPTIMISTIC UI ============ -->
+  <section class="card" id="optimistic">
+    <h2>🌀 Optimistic UI — 응답을 기다리지 않고 먼저 반영하기 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><b>Optimistic UI(낙관적 업데이트)</b>: 서버 응답을 기다리지 않고 "성공할 것"이라 가정해 UI를 즉시 바꾸고, 실패하면 되돌리는(rollback) 패턴입니다. 좋아요·즐겨찾기·토글처럼 가볍고 되돌리기 쉬운 동작에 체감 속도를 키워줍니다. 아래 ❤️는 누르면 즉시 켜지고, 1초 뒤 서버 응답을 흉내 냅니다 — 토글로 실패를 강제하면 자동 롤백 + 에러 토스트가 뜹니다.</p>
+
+    <div class="demo">
+      <div class="switchwrap" style="margin-bottom:14px">
+        <span style="font-size:.82rem;color:var(--muted)">서버 응답:</span>
+        <div class="seg" role="group" aria-label="서버 응답 시뮬레이션">
+          <button id="modeOk" aria-pressed="true" onclick="setMode(true)">성공</button>
+          <button id="modeFail" aria-pressed="false" onclick="setMode(false)">실패(롤백 시연)</button>
+        </div>
+      </div>
+      <div class="opt-card">
+        <div class="meta">
+          <div class="t">2026 디자인 트렌드 모음.fig</div>
+          <div class="s">Figma · 공유 파일</div>
+        </div>
+        <button class="likebtn" id="likeBtn" aria-pressed="false" onclick="toggleLike()">
+          <span class="heart" aria-hidden="true">🤍</span><span id="likeCount">128</span>
+        </button>
+      </div>
+      <p class="cap">왜 이렇게? 클릭 → 즉시 카운트 +1(낙관적) → 서버 실패 시 원래 값으로 복구 + 알림. 사용자는 평소엔 빠름을 체감하고, 드문 실패만 인지합니다.</p>
+      <div class="note"><b>⚠️ 결제엔 함부로 쓰지 말 것.</b> "결제 성공"처럼 <b>되돌릴 수 없거나 돈이 오가는</b> 상태는 낙관적으로 미리 보여주면 안 됩니다. 사용자가 성공으로 오해할 수 있어서요. paysable에선 좋아요·필터·정렬·메모 같은 보조 동작에만 쓰고, 승인 결과는 반드시 서버 확정 후 표시합니다.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    self-contained 라이브 데모 · 라이트/다크 토글 · 키보드/스크린리더 대응<br>
+    Design Inspiration Daily · 2026-06-26 (금)
+  </footer>
+</div>
+
+<div class="toaster" id="toaster" role="region" aria-label="알림"></div>
+
+<script>
+  /* ---- theme ---- */
+  var root=document.documentElement;
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    root.setAttribute('data-theme', root.getAttribute('data-theme')==='dark'?'light':'dark');
+  });
+
+  /* ===== 1. DATA TABLE ===== */
+  var DATA=[
+    {merchant:'Apple Store',date:'2026-06-24',amount:1290000,status:'완료'},
+    {merchant:'Starbucks',date:'2026-06-25',amount:6500,status:'완료'},
+    {merchant:'AWS',date:'2026-06-21',amount:342100,status:'대기'},
+    {merchant:'Notion Labs',date:'2026-06-26',amount:12000,status:'완료'},
+    {merchant:'Uber',date:'2026-06-23',amount:18400,status:'실패'},
+    {merchant:'Coupang',date:'2026-06-22',amount:57900,status:'완료'},
+    {merchant:'GitHub',date:'2026-06-20',amount:28000,status:'대기'}
+  ];
+  var sortState={key:'amount',dir:'descending'};
+  var PILL={'완료':'ok','대기':'wait','실패':'fail'};
+  var tbody=document.getElementById('txBody');
+  function render(){
+    var d=DATA.slice();
+    var k=sortState.key, t=document.querySelector('th[data-key="'+k+'"]').dataset.type;
+    d.sort(function(a,b){
+      var x=a[k],y=b[k];
+      var c = t==='num' ? x-y : String(x).localeCompare(String(y),'ko');
+      return sortState.dir==='ascending'?c:-c;
+    });
+    tbody.innerHTML=d.map(function(r){
+      return '<tr><td class="sel"><input type="checkbox" class="rowsel" aria-label="'+r.merchant+' 행 선택"></td>'+
+        '<td>'+r.merchant+'</td><td>'+r.date+'</td>'+
+        '<td class="num">'+r.amount.toLocaleString('ko-KR')+'</td>'+
+        '<td><span class="pill '+PILL[r.status]+'">'+r.status+'</span></td></tr>';
+    }).join('');
+    bindRowSel();
+  }
+  document.querySelectorAll('#txTable thead th[data-key]').forEach(function(th){
+    th.querySelector('.sortbtn').addEventListener('click',function(){
+      var k=th.dataset.key;
+      if(sortState.key===k){ sortState.dir = sortState.dir==='ascending'?'descending':'ascending'; }
+      else { sortState.key=k; sortState.dir = th.dataset.type==='num'?'descending':'ascending'; }
+      document.querySelectorAll('#txTable thead th[data-key]').forEach(function(h){
+        var on=h.dataset.key===sortState.key;
+        h.setAttribute('aria-sort', on?sortState.dir:'none');
+        var ar=h.querySelector('.arrow'); ar.textContent = (on? (sortState.dir==='ascending'?'▲':'▼') : '▲');
+      });
+      render();
+    });
+  });
+  var selBar=document.getElementById('selBar');
+  function bindRowSel(){
+    var boxes=[].slice.call(document.querySelectorAll('.rowsel'));
+    boxes.forEach(function(b){ b.addEventListener('change',updateSel); });
+    function updateSel(){
+      var rows=[].slice.call(document.querySelectorAll('#txBody tr'));
+      var n=0;
+      boxes.forEach(function(b,i){ if(b.checked){n++; rows[i].setAttribute('aria-selected','true');} else rows[i].removeAttribute('aria-selected'); });
+      document.getElementById('selAll').checked = n===boxes.length && n>0;
+      selBar.textContent = n? (n+'개 행 선택됨') : '행을 선택하면 여기에 개수가 표시됩니다.';
+    }
+  }
+  document.getElementById('selAll').addEventListener('change',function(e){
+    document.querySelectorAll('.rowsel').forEach(function(b){ b.checked=e.target.checked; b.dispatchEvent(new Event('change')); });
+  });
+  render();
+
+  /* ===== 2. TOAST ===== */
+  var toaster=document.getElementById('toaster');
+  var ICON={ok:'✅',err:'⛔',warn:'⚠️',info:'🔔'};
+  function toast(o){
+    o=o||{}; var type=o.type||'info', dur=o.duration||4000;
+    var el=document.createElement('div');
+    el.className='toast '+(type==='info'?'':type);
+    el.setAttribute('role', o.live==='assertive'?'alert':'status');
+    el.innerHTML='<span class="ic" aria-hidden="true">'+(ICON[type]||'🔔')+'</span>'+
+      '<div class="body"><div class="ti">'+(o.title||'')+'</div>'+
+      (o.msg?'<div class="ms">'+o.msg+'</div>':'')+
+      (o.action?'<div class="act"><button type="button">'+o.action+'</button></div>':'')+
+      '</div><button class="x" aria-label="닫기">✕</button>'+
+      '<span class="pb"></span>';
+    toaster.appendChild(el);
+    var pb=el.querySelector('.pb'); pb.style.width='100%';
+    var t0=Date.now(), remain=dur, timer;
+    function close(){ el.classList.add('leaving'); setTimeout(function(){el.remove();},180); clearTimeout(timer); }
+    function start(){ t0=Date.now(); pb.style.transition='width '+remain+'ms linear'; requestAnimationFrame(function(){pb.style.width='0%';}); timer=setTimeout(close,remain); }
+    function pause(){ clearTimeout(timer); remain-=Date.now()-t0; var w=getComputedStyle(pb).width; pb.style.transition='none'; pb.style.width=w; }
+    el.addEventListener('mouseenter',pause); el.addEventListener('focusin',pause);
+    el.addEventListener('mouseleave',start); el.addEventListener('focusout',start);
+    el.querySelector('.x').addEventListener('click',close);
+    if(o.action) el.querySelector('.act button').addEventListener('click',function(){ close(); });
+    start();
+  }
+  window.toast=toast;
+
+  /* ===== 3. OPTIMISTIC UI ===== */
+  var willSucceed=true;
+  function setMode(ok){ willSucceed=ok;
+    document.getElementById('modeOk').setAttribute('aria-pressed', ok?'true':'false');
+    document.getElementById('modeFail').setAttribute('aria-pressed', ok?'false':'true');
+  }
+  var liked=false, count=128, busy=false;
+  var btn=document.getElementById('likeBtn'), heart=btn.querySelector('.heart'), cnt=document.getElementById('likeCount');
+  function paint(){ btn.setAttribute('aria-pressed', liked?'true':'false'); heart.textContent= liked?'❤️':'🤍'; cnt.textContent=count; }
+  function toggleLike(){
+    if(busy) return; busy=true; btn.classList.add('pending');
+    var prevLiked=liked, prevCount=count;            // 롤백용 스냅샷
+    liked=!liked; count+= liked?1:-1; paint();        // 낙관적 반영
+    setTimeout(function(){                            // 서버 응답 흉내(1s)
+      busy=false; btn.classList.remove('pending');
+      if(!willSucceed){ liked=prevLiked; count=prevCount; paint();   // 롤백
+        toast({type:'err',title:'저장 실패',msg:'잠시 후 다시 시도해 주세요.',live:'assertive'}); }
+    },1000);
+  }
+  paint();
+</script>
+</body>
+</html>
