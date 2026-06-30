@@ -1,0 +1,214 @@
+{
+  "meta": {
+    "version": "1.1",
+    "owner": "yj.kim",
+    "focus": "frontend-4yr / 비전공자도 이해 / 코테·면접 대비",
+    "daily_structure": "개념 1 + 실전문제 1 (하루 1 lesson)",
+    "languages": ["TypeScript", "Python"],
+    "principle": "초등학생·비전공자도 이해할 만큼 쉽게. 전문용어는 반드시 정의하고 일상 비유로 풀 것.",
+    "progression": "lessons 배열 순서대로 진행. 매일 다음 미완료 lesson 1개를 골라 개념+실전 2페이지 생성.",
+    "exhausted_action": "lessons 모두 완주 시(심화 40강 포함) 사용자에게 축하 + 다음 확장(고급 그래프: SCC·이분매칭·네트워크플로우, 고급 문자열: 아호코라식·접미사배열, 기하 알고리즘 등) 제안."
+  },
+  "lessons": [
+    {
+      "id": 1,
+      "concept": { "title": "빅오 표기법 - 알고리즘 속도를 재는 자", "category": "⏱️ 시간복잡도/빅오", "level": "입문", "complexity": "해당없음", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["시간복잡도", "코딩테스트", "면접"] },
+      "problem": { "title": "실전문제 - 두 코드 중 누가 더 빠를까 (O(n) vs O(n²))", "category": "⏱️ 시간복잡도/빅오", "level": "입문", "complexity": "O(n²)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["시간복잡도", "배열", "코딩테스트"] }
+    },
+    {
+      "id": 2,
+      "concept": { "title": "시간복잡도 vs 공간복잡도 - 속도와 메모리의 줄다리기", "category": "⏱️ 시간복잡도/빅오", "level": "입문", "complexity": "해당없음", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["시간복잡도", "공간복잡도", "면접"] },
+      "problem": { "title": "실전문제 - 메모리를 더 써서 속도를 사는 법 (빈도수 캐싱)", "category": "🗂️ 해시/맵", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["해시", "공간복잡도", "코딩테스트"] }
+    },
+    {
+      "id": 3,
+      "concept": { "title": "배열 기본기 - 인덱스와 순회", "category": "🔢 배열/문자열", "level": "입문", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["배열", "자료구조"] },
+      "problem": { "title": "실전문제 - 배열의 최댓값과 합 한 번에 구하기", "category": "🔢 배열/문자열", "level": "입문", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["배열", "코딩테스트"] }
+    },
+    {
+      "id": 4,
+      "concept": { "title": "문자열 다루기 기본 - 글자도 결국 배열이다", "category": "🔢 배열/문자열", "level": "입문", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["문자열", "배열"] },
+      "problem": { "title": "실전문제 - 문자열 뒤집기와 회문(팰린드롬) 판별", "category": "🔢 배열/문자열", "level": "입문", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["문자열", "투포인터", "코딩테스트"] }
+    },
+    {
+      "id": 5,
+      "concept": { "title": "해시맵 - 빠르게 찾기의 비밀 (객체와 Map)", "category": "🗂️ 해시/맵", "level": "기초", "complexity": "O(1)", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["해시", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - 두 수의 합 (Two Sum)", "category": "🗂️ 해시/맵", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["해시", "배열", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 6,
+      "concept": { "title": "빈도수 세기 - 무엇이 몇 번 나왔나", "category": "🗂️ 해시/맵", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["해시", "문자열"] },
+      "problem": { "title": "실전문제 - 애너그램 판별하기", "category": "🗂️ 해시/맵", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["해시", "문자열", "코딩테스트"] }
+    },
+    {
+      "id": 7,
+      "concept": { "title": "투포인터 - 양쪽에서 좁혀오기", "category": "👉 투포인터/슬라이딩윈도우", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["투포인터", "배열", "면접"] },
+      "problem": { "title": "실전문제 - 정렬된 배열에서 합이 target인 두 수 찾기", "category": "👉 투포인터/슬라이딩윈도우", "level": "기초", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["투포인터", "배열", "코딩테스트"] }
+    },
+    {
+      "id": 8,
+      "concept": { "title": "슬라이딩 윈도우 - 창문을 밀며 구간 보기", "category": "👉 투포인터/슬라이딩윈도우", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["슬라이딩윈도우", "배열", "면접"] },
+      "problem": { "title": "실전문제 - 최장 중복 없는 부분 문자열", "category": "👉 투포인터/슬라이딩윈도우", "level": "중급", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["슬라이딩윈도우", "해시", "문자열", "코딩테스트"] }
+    },
+    {
+      "id": 9,
+      "concept": { "title": "누적합 - 미리 더해두면 구간 합이 한 방", "category": "🔢 배열/문자열", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["누적합", "배열"] },
+      "problem": { "title": "실전문제 - 구간 합 빠르게 여러 번 구하기", "category": "🔢 배열/문자열", "level": "기초", "complexity": "O(1)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["누적합", "배열", "코딩테스트"] }
+    },
+    {
+      "id": 10,
+      "concept": { "title": "스택 - 마지막에 넣은 걸 먼저 꺼낸다 (LIFO)", "category": "📚 스택/큐", "level": "기초", "complexity": "O(1)", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["스택", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - 올바른 괄호인지 검사하기", "category": "📚 스택/큐", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["스택", "문자열", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 11,
+      "concept": { "title": "큐 - 먼저 줄 선 사람이 먼저 (FIFO)", "category": "📚 스택/큐", "level": "기초", "complexity": "O(1)", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["큐", "덱", "자료구조"] },
+      "problem": { "title": "실전문제 - 프린터 큐 (우선순위 인쇄 순서)", "category": "📚 스택/큐", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["큐", "코딩테스트"] }
+    },
+    {
+      "id": 12,
+      "concept": { "title": "기본 정렬 - 버블 정렬과 선택 정렬 (느리지만 직관적)", "category": "🔀 정렬", "level": "기초", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["정렬", "시간복잡도"] },
+      "problem": { "title": "실전문제 - 정렬 직접 구현하고 내장 정렬과 비교하기", "category": "🔀 정렬", "level": "기초", "complexity": "O(n²)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["정렬", "코딩테스트"] }
+    },
+    {
+      "id": 13,
+      "concept": { "title": "빠른 정렬 - 병합 정렬과 퀵 정렬 (O(n log n)의 세계)", "category": "🔀 정렬", "level": "중급", "complexity": "O(n log n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["정렬", "분할정복", "면접"] },
+      "problem": { "title": "실전문제 - 배열에서 K번째로 큰 수 찾기", "category": "🔀 정렬", "level": "중급", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["정렬", "힙", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 14,
+      "concept": { "title": "이진 탐색 - 반씩 잘라 찾기", "category": "🔍 탐색", "level": "기초", "complexity": "O(log n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["이진탐색", "배열", "면접"] },
+      "problem": { "title": "실전문제 - 정렬된 배열에서 값의 첫 위치 찾기 (lower bound)", "category": "🔍 탐색", "level": "중급", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["이진탐색", "배열", "코딩테스트"] }
+    },
+    {
+      "id": 15,
+      "concept": { "title": "재귀 - 자기 자신을 부르는 함수", "category": "🔁 재귀/백트래킹", "level": "기초", "complexity": "해당없음", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["재귀", "면접"] },
+      "problem": { "title": "실전문제 - 팩토리얼과 피보나치를 재귀로", "category": "🔁 재귀/백트래킹", "level": "기초", "complexity": "O(2ⁿ)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["재귀", "코딩테스트"] }
+    },
+    {
+      "id": 16,
+      "concept": { "title": "백트래킹 - 가보고 아니면 되돌아오기", "category": "🔁 재귀/백트래킹", "level": "중급", "complexity": "O(2ⁿ)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["백트래킹", "재귀", "면접"] },
+      "problem": { "title": "실전문제 - 부분집합과 순열 모두 만들기", "category": "🔁 재귀/백트래킹", "level": "중급", "complexity": "O(2ⁿ)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["백트래킹", "재귀", "코딩테스트"] }
+    },
+    {
+      "id": 17,
+      "concept": { "title": "트리 - 가지치며 뻗는 자료구조", "category": "🌳 트리", "level": "기초", "complexity": "해당없음", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["트리", "이진트리", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - 트리의 최대 깊이 구하기", "category": "🌳 트리", "level": "기초", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["트리", "재귀", "DFS", "코딩테스트"] }
+    },
+    {
+      "id": 18,
+      "concept": { "title": "DFS - 깊이 먼저 끝까지 파고들기", "category": "🕸️ 그래프", "level": "중급", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐⭐", "tags": ["DFS", "트리", "재귀", "면접"] },
+      "problem": { "title": "실전문제 - DOM 트리에서 특정 노드 찾기 (DFS 응용)", "category": "🕸️ 그래프", "level": "중급", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["DFS", "트리", "프론트엔드", "코딩테스트"] }
+    },
+    {
+      "id": 19,
+      "concept": { "title": "BFS - 가까운 곳부터 물결처럼 퍼지기", "category": "🕸️ 그래프", "level": "중급", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["BFS", "큐", "그래프", "면접"] },
+      "problem": { "title": "실전문제 - 미로 최단 거리 (칸 수) 구하기", "category": "🕸️ 그래프", "level": "중급", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["BFS", "그래프", "큐", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 20,
+      "concept": { "title": "그래프 표현 - 인접 리스트와 인접 행렬", "category": "🕸️ 그래프", "level": "중급", "complexity": "해당없음", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - 섬의 개수 세기 (연결 요소)", "category": "🕸️ 그래프", "level": "중급", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "DFS", "BFS", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 21,
+      "concept": { "title": "동적계획법(DP) 입문 - 한 번 푼 건 메모해두기", "category": "🧩 동적계획법(DP)", "level": "중급", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["DP", "메모이제이션", "재귀", "면접"] },
+      "problem": { "title": "실전문제 - 계단 오르기 경우의 수", "category": "🧩 동적계획법(DP)", "level": "중급", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["DP", "메모이제이션", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 22,
+      "concept": { "title": "그리디 - 매 순간 최선만 고르기", "category": "💰 그리디", "level": "중급", "complexity": "해당없음", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그리디", "면접"] },
+      "problem": { "title": "실전문제 - 회의실 배정 (최대한 많이 잡기)", "category": "💰 그리디", "level": "중급", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그리디", "정렬", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 23,
+      "concept": { "title": "비트 연산 - 0과 1로 빠르게 계산하기", "category": "⏱️ 시간복잡도/빅오", "level": "중급", "complexity": "O(1)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["비트연산"] },
+      "problem": { "title": "실전문제 - 숫자의 1인 비트 개수 세기", "category": "⏱️ 시간복잡도/빅오", "level": "중급", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["비트연산", "코딩테스트"] }
+    },
+    {
+      "id": 24,
+      "concept": { "title": "힙과 우선순위 큐 - 항상 제일 급한 것부터", "category": "🌳 트리", "level": "중급", "complexity": "O(log n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["힙", "큐", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - K개의 정렬된 리스트 병합", "category": "🌳 트리", "level": "중급", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["힙", "정렬", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 25,
+      "concept": { "title": "분할정복 - 나누고 정복하고 합치기", "category": "🔀 정렬", "level": "중급", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["분할정복", "재귀", "정렬"] },
+      "problem": { "title": "실전문제 - 분할정복으로 거듭제곱 빠르게 (pow)", "category": "🔀 정렬", "level": "중급", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["분할정복", "재귀", "코딩테스트"] }
+    },
+    {
+      "id": 26,
+      "concept": { "title": "다익스트라 - 가장 싼 길을 찾는 길찾기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "힙", "면접"] },
+      "problem": { "title": "실전문제 - 최소 비용으로 목적지까지 가기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "힙", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 27,
+      "concept": { "title": "유니온 파인드 - 같은 편인지 빠르게 묶고 찾기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "자료구조", "면접"] },
+      "problem": { "title": "실전문제 - 친구 네트워크 (몇 명이 연결됐나)", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "자료구조", "코딩테스트"] }
+    },
+    {
+      "id": 28,
+      "concept": { "title": "위상 정렬 - 순서가 있는 일 줄 세우기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "큐", "DFS"] },
+      "problem": { "title": "실전문제 - 선수 과목 듣는 순서 정하기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n)", "frontend": "⭐⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "큐", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 29,
+      "concept": { "title": "최소 신장 트리(MST) - 가장 싸게 모두 잇기 (크루스칼)", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "정렬", "그리디", "면접"] },
+      "problem": { "title": "실전문제 - 모든 집을 최소 비용으로 연결하기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그래프", "그리디", "정렬", "코딩테스트"] }
+    },
+    {
+      "id": 30,
+      "concept": { "title": "플로이드-워셜 - 모든 곳에서 모든 곳까지 최단거리", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["그래프", "DP", "면접"] },
+      "problem": { "title": "실전문제 - 경유지를 거친 최단 거리표 만들기", "category": "🕸️ 그래프", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["그래프", "DP", "코딩테스트"] }
+    },
+    {
+      "id": 31,
+      "concept": { "title": "트라이 - 글자를 나무처럼 심어 빠르게 찾기", "category": "🌳 트리", "level": "심화", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["트리", "문자열", "자료구조"] },
+      "problem": { "title": "실전문제 - 검색어 자동완성 만들기", "category": "🌳 트리", "level": "심화", "complexity": "O(n)", "frontend": "⭐⭐⭐", "interview": "⭐⭐", "tags": ["트리", "문자열", "프론트엔드", "코딩테스트"] }
+    },
+    {
+      "id": 32,
+      "concept": { "title": "세그먼트 트리 - 구간 질문에 빠르게 답하기", "category": "🌳 트리", "level": "심화", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["트리", "분할정복", "자료구조"] },
+      "problem": { "title": "실전문제 - 값이 바뀌는 배열의 구간 합 구하기", "category": "🌳 트리", "level": "심화", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["트리", "누적합", "코딩테스트"] }
+    },
+    {
+      "id": 33,
+      "concept": { "title": "배낭 문제 - 무게 한도 안에서 값어치 최대로", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["DP", "메모이제이션", "면접"] },
+      "problem": { "title": "실전문제 - 한정된 가방에 담아 이득 최대화 (0/1 배낭)", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["DP", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 34,
+      "concept": { "title": "최장 증가 부분 수열(LIS) - 점점 커지는 가장 긴 줄", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["DP", "이진탐색", "면접"] },
+      "problem": { "title": "실전문제 - 가장 긴 증가 수열 길이 구하기", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["DP", "이진탐색", "코딩테스트"] }
+    },
+    {
+      "id": 35,
+      "concept": { "title": "편집 거리 - 두 단어를 같게 만드는 최소 수정", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["DP", "문자열", "면접"] },
+      "problem": { "title": "실전문제 - 오타 교정에 쓰이는 편집 거리 계산", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐⭐", "interview": "⭐⭐", "tags": ["DP", "문자열", "코딩테스트"] }
+    },
+    {
+      "id": 36,
+      "concept": { "title": "동전 교환 - 가장 적은 개수로 거스름돈 만들기", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["DP", "그리디", "면접"] },
+      "problem": { "title": "실전문제 - 거스름돈 최소 동전 개수 구하기", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(n²)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["DP", "코딩테스트", "그리디"] }
+    },
+    {
+      "id": 37,
+      "concept": { "title": "파라메트릭 서치 - 답 자체를 이진탐색으로 찾기", "category": "🔍 탐색", "level": "심화", "complexity": "O(log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["이진탐색", "면접"] },
+      "problem": { "title": "실전문제 - 랜선 자르기 (최대 길이 구하기)", "category": "🔍 탐색", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["이진탐색", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 38,
+      "concept": { "title": "비트마스킹 - 켜고 끈 상태를 숫자 하나로", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(2ⁿ)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["비트연산", "DP", "면접"] },
+      "problem": { "title": "실전문제 - 외판원 순회 최소 비용 (비트마스킹 DP)", "category": "🧩 동적계획법(DP)", "level": "심화", "complexity": "O(2ⁿ)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["비트연산", "DP", "코딩테스트"] }
+    },
+    {
+      "id": 39,
+      "concept": { "title": "그리디 심화 - 매번 가장 급한 것부터 (힙과 함께)", "category": "💰 그리디", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그리디", "힙", "정렬"] },
+      "problem": { "title": "실전문제 - 강의실 최소 개수 구하기", "category": "💰 그리디", "level": "심화", "complexity": "O(n log n)", "frontend": "⭐", "interview": "⭐⭐⭐", "tags": ["그리디", "힙", "코딩테스트", "면접"] }
+    },
+    {
+      "id": 40,
+      "concept": { "title": "KMP - 실패를 기억해 빠르게 찾는 문자열 매칭", "category": "🔢 배열/문자열", "level": "심화", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["문자열", "면접"] },
+      "problem": { "title": "실전문제 - 긴 글에서 특정 단어 위치 모두 찾기", "category": "🔢 배열/문자열", "level": "심화", "complexity": "O(n)", "frontend": "⭐", "interview": "⭐⭐", "tags": ["문자열", "코딩테스트"] }
+    }
+  ]
+}
