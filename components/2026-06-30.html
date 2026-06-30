@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-06-30 (화)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  /* buttons */
+  .btn{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:14px;
+    font-weight:600;background:var(--brand);color:var(--brand-ink);transition:filter .15s,transform .05s}
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.soft{background:var(--soft);color:var(--brand)}
+  .btn.danger{background:var(--danger);color:#fff}
+
+  /* ---- 1. dialog ---- */
+  dialog.sheet{border:none;border-radius:16px;padding:0;width:min(420px,calc(100% - 32px));
+    background:var(--panel);color:var(--ink);box-shadow:0 20px 60px rgba(16,24,40,.28);
+    /* entry/exit animation via @starting-style + allow-discrete */
+    opacity:0;transform:translateY(8px) scale(.98);
+    transition:opacity .22s ease, transform .22s ease, overlay .22s allow-discrete, display .22s allow-discrete}
+  dialog.sheet[open]{opacity:1;transform:none}
+  @starting-style{dialog.sheet[open]{opacity:0;transform:translateY(8px) scale(.98)}}
+  dialog.sheet::backdrop{background:rgba(8,12,20,.45);backdrop-filter:blur(2px);
+    opacity:0;transition:opacity .22s ease, overlay .22s allow-discrete, display .22s allow-discrete}
+  dialog.sheet[open]::backdrop{opacity:1}
+  @starting-style{dialog.sheet[open]::backdrop{opacity:0}}
+  .dlg-body{padding:22px}
+  .dlg-body h3{margin:0 0 6px;font-size:17px}
+  .dlg-body p{margin:0 0 16px;color:var(--muted);font-size:14px}
+  .dlg-row{display:flex;justify-content:space-between;font-size:14px;padding:8px 0;border-top:1px solid var(--line)}
+  .dlg-row b{font-size:15px}
+  .dlg-actions{display:flex;gap:10px;margin-top:18px}
+  .dlg-actions .btn{flex:1}
+  @media(prefers-reduced-motion:reduce){
+    dialog.sheet,dialog.sheet::backdrop{transition:none}
+  }
+
+  /* ---- 2. progress / stepper ---- */
+  .stepper{display:flex;align-items:center;gap:0;margin:4px 0 18px}
+  .step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;width:84px;text-align:center}
+  .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;
+    background:var(--panel);border:2px solid var(--line);color:var(--muted);transition:all .2s}
+  .step.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+  .step.current .dot{border-color:var(--brand);color:var(--brand);box-shadow:0 0 0 4px var(--soft)}
+  .step .lbl{font-size:11.5px;color:var(--muted)}
+  .step.current .lbl,.step.done .lbl{color:var(--ink)}
+  .conn{flex:1 1 auto;height:2px;background:var(--line);position:relative;top:-9px}
+  .conn.done{background:var(--ok)}
+  .step-actions{display:flex;gap:10px;justify-content:center}
+  /* determinate bar */
+  .bar{height:10px;border-radius:999px;background:var(--soft);overflow:hidden}
+  .bar>i{display:block;height:100%;width:0;border-radius:inherit;background:var(--brand);
+    transition:width .35s cubic-bezier(.4,0,.2,1)}
+  .pct{font-variant-numeric:tabular-nums;font-weight:700;font-size:13px}
+  /* indeterminate bar */
+  .bar.indet>i{width:40%;animation:slide 1.1s ease-in-out infinite}
+  @keyframes slide{0%{margin-left:-40%}100%{margin-left:100%}}
+  @media(prefers-reduced-motion:reduce){.bar.indet>i{animation:none;width:100%;opacity:.5}}
+
+  /* ---- 3. starting-style trend ---- */
+  .pop{position:relative;display:inline-block}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(12px);
+    background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:12px;font-size:14px;
+    box-shadow:0 12px 30px rgba(0,0,0,.25);
+    opacity:0;transition:opacity .25s ease, transform .25s ease, overlay .25s allow-discrete, display .25s allow-discrete}
+  .toast[data-show="true"]{opacity:1;transform:translateX(-50%) translateY(0)}
+  @starting-style{.toast[data-show="true"]{opacity:0;transform:translateX(-50%) translateY(12px)}}
+  @media(prefers-reduced-motion:reduce){.toast{transition:opacity .01s}}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  .legend{font-size:12px;color:var(--muted);margin-top:8px}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <p class="sub">2026-06-30 (화) · 오늘의 컴포넌트·패턴 3건 — 직접 만져보는 라이브 예시</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌗 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#dialog">🪟 모달 다이얼로그</a>
+    <a href="#progress">🔔 진행 표시·스텝퍼</a>
+    <a href="#starting">🌀 @starting-style</a>
+  </nav>
+
+  <!-- ============ 1. DIALOG ============ -->
+  <section class="card" id="dialog">
+    <h2>🪟 모달 다이얼로그 — native &lt;dialog&gt; · 포커스 트랩 · 스크롤 잠금 <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lede">결제 확인처럼 "꼭 답해야 넘어가는" 흐름은 <b>모달 다이얼로그</b>로 막는다.
+      2026년엔 직접 div로 만들지 않고 브라우저 기본 <code class="k">&lt;dialog&gt;</code> 요소를 쓴다.
+      <code class="k">showModal()</code> 한 줄이면 <b>포커스 트랩</b>(탭이 모달 밖으로 안 나감), <code class="k">::backdrop</code>(뒤 어둡게),
+      ESC 닫기, 배경 <code class="k">inert</code> 처리를 브라우저가 알아서 해준다.</p>
+    <div class="demo">
+      <button class="btn" id="openDlg">결제 진행하기 — ₩42,000</button>
+      <p class="cap">버튼을 누르면 모달이 부드럽게 열립니다. <b>Tab</b>으로 돌려보면 포커스가 모달 안에만 머뭅니다.
+        <b>ESC</b> 또는 배경 클릭으로 닫힙니다(스크롤도 잠깁니다).</p>
+
+      <dialog class="sheet" id="payDlg" aria-labelledby="dlgTitle">
+        <div class="dlg-body">
+          <h3 id="dlgTitle">결제 확인</h3>
+          <p>아래 내용으로 결제를 진행할까요?</p>
+          <div class="dlg-row"><span>상품</span><span>Pro 플랜 (월간)</span></div>
+          <div class="dlg-row"><span>카드</span><span>•••• 4242</span></div>
+          <div class="dlg-row"><span>결제 금액</span><b>₩42,000</b></div>
+          <div class="dlg-actions">
+            <button class="btn ghost" id="cancelDlg" value="cancel">취소</button>
+            <button class="btn" id="confirmDlg" value="confirm" autofocus>결제하기</button>
+          </div>
+        </div>
+      </dialog>
+      <p class="cap" id="dlgResult" role="status" aria-live="polite"></p>
+    </div>
+    <ul class="note">
+      <li><b>포커스 트랩</b> = 모달이 열린 동안 Tab 키가 모달 안 요소만 순환하는 것. 키보드 사용자가 보이지 않는 배경으로 빠지지 않게 한다.</li>
+      <li><b>inert</b> = 해당 영역을 클릭·포커스·스크린리더 대상에서 통째로 빼는 속성. <code class="k">showModal()</code>이 배경에 자동 적용한다.</li>
+      <li>paysable 적용: 결제 확인·3DS 인증·세션 만료 안내처럼 <b>차단형(blocking)</b> 흐름에. 토스트(비차단)와 역할이 다르다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 2. PROGRESS ============ -->
+  <section class="card" id="progress">
+    <h2>🔔 진행 표시 — 멀티스텝 스텝퍼 · 결정형/비결정형 프로그레스 <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+    <p class="lede">"지금 어디쯤이고, 얼마나 남았나"를 보여주는 게 체크아웃 이탈을 줄인다.
+      단계가 정해진 흐름은 <b>스텝퍼</b>, 끝나는 시점을 아는 작업은 <b>결정형(determinate)</b> 막대,
+      모르는 작업은 <b>비결정형(indeterminate)</b> 막대로 구분한다.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <div class="cap" style="margin:0 0 12px">멀티스텝 스텝퍼 (결제 흐름)</div>
+        <div class="stepper" id="stepper" role="list" aria-label="결제 진행 단계">
+          <div class="step current" role="listitem"><span class="dot">1</span><span class="lbl">장바구니</span></div>
+          <span class="conn"></span>
+          <div class="step" role="listitem"><span class="dot">2</span><span class="lbl">배송</span></div>
+          <span class="conn"></span>
+          <div class="step" role="listitem"><span class="dot">3</span><span class="lbl">결제</span></div>
+          <span class="conn"></span>
+          <div class="step" role="listitem"><span class="dot">4</span><span class="lbl">완료</span></div>
+        </div>
+        <div class="step-actions">
+          <button class="btn ghost" id="stepPrev">이전</button>
+          <button class="btn" id="stepNext">다음 단계</button>
+        </div>
+        <p class="cap">완료된 단계는 ✓로 채워지고 현재 단계는 링으로 강조됩니다. 숫자가 아니라 <b>상태</b>를 보여주는 게 핵심.</p>
+      </div>
+
+      <div class="demo">
+        <div class="cap" style="margin:0 0 12px">결정형 막대 — 진행률을 알 때</div>
+        <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="detBar"><i></i></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <span class="pct" id="detPct">0%</span>
+          <button class="btn soft" id="detRun">업로드 시작</button>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--line);margin:18px 0">
+        <div class="cap" style="margin:0 0 10px">비결정형 막대 — 끝을 모를 때</div>
+        <div class="bar indet" id="indetBar" aria-label="처리 중" hidden><i></i></div>
+        <button class="btn soft" id="indetToggle">서버 응답 대기 토글</button>
+        <p class="cap">끝나는 시점을 모르면 가짜 %를 보여주지 말 것. 움직이는 막대로 "살아있다"만 전한다.</p>
+      </div>
+    </div>
+    <ul class="note">
+      <li><b>결정형 vs 비결정형</b>: 남은 시간을 계산할 수 있으면 결정형(%), 없으면 비결정형(무한 애니메이션).</li>
+      <li>접근성: 진행 막대엔 <code class="k">role="progressbar"</code> + <code class="k">aria-valuenow</code>로 실제 값을 노출한다.</li>
+      <li>paysable 적용: 체크아웃 상단 스텝퍼 + 결제 승인 대기(PG 응답)엔 비결정형. <code class="k">prefers-reduced-motion</code>이면 애니메이션을 끈다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 3. STARTING-STYLE TREND ============ -->
+  <section class="card" id="starting">
+    <h2>🌀 @starting-style — display:none에서도 부드럽게 열고 닫기 <span class="tag">트렌드·개념</span></h2>
+    <p class="lede">오랫동안 <code class="k">display:none</code>이나 <code class="k">&lt;dialog&gt;</code>·팝오버의 <b>등장/퇴장 애니메이션</b>은 JS 타이머로 클래스를 붙였다 떼며 흉내 냈다.
+      2026년엔 CSS만으로 된다. <b>@starting-style</b>(나타나기 직전의 "시작 상태"를 정의)과
+      <b><code class="k">transition-behavior: allow-discrete</code></b>(display 같은 불연속 속성도 전환에 참여)를 함께 쓰면 된다.
+      위 모달·아래 토스트가 모두 이 방식으로 움직입니다.</p>
+    <div class="demo">
+      <button class="btn" id="toastBtn">토스트 띄우기 (CSS-only 전환)</button>
+      <p class="cap">JS는 <code class="k">data-show</code> 속성만 토글합니다. 나타나고 사라지는 모션은 전부 CSS가 담당합니다.</p>
+<pre>/* 1) 평소(닫힘) → 보일 때의 목표 상태 */
+.toast { opacity:0; transform:translateY(12px);
+  transition: opacity .25s, transform .25s,
+              overlay .25s allow-discrete,
+              display .25s allow-discrete; }
+.toast[data-show="true"] { opacity:1; transform:none; }
+
+/* 2) "나타나기 직전" 시작 상태 — 이게 없으면 등장 모션이 안 돈다 */
+@starting-style {
+  .toast[data-show="true"] { opacity:0; transform:translateY(12px); }
+}</pre>
+    </div>
+    <ul class="note">
+      <li><b>왜 지금</b>: Firefox 129로 <code class="k">@starting-style</code>·<code class="k">allow-discrete</code>가 Baseline(주요 브라우저 모두 지원, 2026 기준)에 들어왔다. Chrome 117+/Safari 17.5+/Firefox 129+.</li>
+      <li><b>graceful degradation</b> = 구형 브라우저에선 모션만 생략되고 요소는 정상적으로 보였다 사라진다(기능은 안 깨짐).</li>
+      <li>paysable 적용: 토스트·모달·드롭다운의 등장/퇴장에서 Framer Motion 같은 JS 라이브러리 의존을 줄일 수 있다(번들↓).</li>
+    </ul>
+  </section>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite">✅ 저장되었습니다</div>
+
+<script>
+(function(){
+  // theme toggle
+  var btn=document.getElementById('themeBtn'), root=document.documentElement;
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.setAttribute('aria-pressed',String(!dark));
+    btn.textContent=dark?'🌗 다크 모드':'☀️ 라이트 모드';
+  });
+
+  // 1. dialog
+  var dlg=document.getElementById('payDlg'),
+      open=document.getElementById('openDlg'),
+      cancel=document.getElementById('cancelDlg'),
+      confirm=document.getElementById('confirmDlg'),
+      result=document.getElementById('dlgResult');
+  function lock(on){document.body.style.overflow=on?'hidden':'';}
+  open.addEventListener('click',function(){dlg.showModal();lock(true);});
+  cancel.addEventListener('click',function(){dlg.close('cancel');});
+  confirm.addEventListener('click',function(){dlg.close('confirm');});
+  // 배경(backdrop) 클릭 시 닫기
+  dlg.addEventListener('click',function(e){if(e.target===dlg)dlg.close('cancel');});
+  dlg.addEventListener('close',function(){
+    lock(false);
+    result.textContent = dlg.returnValue==='confirm' ? '✅ 결제가 완료되었습니다 (데모)' : '취소했습니다';
+    open.focus();
+  });
+
+  // 2-a. stepper
+  var steps=[].slice.call(document.querySelectorAll('#stepper .step')),
+      conns=[].slice.call(document.querySelectorAll('#stepper .conn')),
+      cur=0;
+  function render(){
+    steps.forEach(function(s,i){
+      s.classList.toggle('done', i<cur);
+      s.classList.toggle('current', i===cur);
+      var dot=s.querySelector('.dot');
+      dot.textContent = i<cur ? '✓' : String(i+1);
+      s.setAttribute('aria-current', i===cur ? 'step' : 'false');
+    });
+    conns.forEach(function(c,i){c.classList.toggle('done', i<cur);});
+    document.getElementById('stepPrev').disabled=cur===0;
+    document.getElementById('stepNext').disabled=cur===steps.length-1;
+  }
+  document.getElementById('stepNext').addEventListener('click',function(){if(cur<steps.length-1)cur++;render();});
+  document.getElementById('stepPrev').addEventListener('click',function(){if(cur>0)cur--;render();});
+  render();
+
+  // 2-b. determinate bar
+  var bar=document.getElementById('detBar'), fill=bar.querySelector('i'),
+      pct=document.getElementById('detPct'), run=document.getElementById('detRun'), t;
+  run.addEventListener('click',function(){
+    clearInterval(t); var v=0;
+    t=setInterval(function(){
+      v=Math.min(v+Math.random()*16,100);
+      fill.style.width=v+'%'; pct.textContent=Math.round(v)+'%';
+      bar.setAttribute('aria-valuenow',Math.round(v));
+      if(v>=100){clearInterval(t);pct.textContent='100% ✓';}
+    },220);
+  });
+
+  // 2-c. indeterminate bar
+  var indet=document.getElementById('indetBar'), toggle=document.getElementById('indetToggle'), shown=false;
+  toggle.addEventListener('click',function(){
+    shown=!shown; indet.hidden=!shown;
+    toggle.textContent = shown ? '응답 도착 (숨기기)' : '서버 응답 대기 토글';
+  });
+
+  // 3. toast (CSS-only transition)
+  var toast=document.getElementById('toast'), tb=document.getElementById('toastBtn'), tt;
+  tb.addEventListener('click',function(){
+    clearTimeout(tt);
+    toast.setAttribute('data-show','true');
+    tt=setTimeout(function(){toast.removeAttribute('data-show');},2600);
+  });
+})();
+</script>
+</body>
+</html>
