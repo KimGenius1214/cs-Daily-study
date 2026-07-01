@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-07-02 (목)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+  .btn{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:14px;
+    font-weight:600;background:var(--brand);color:var(--brand-ink);transition:filter .15s,transform .05s}
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;color:var(--muted)}
+
+  /* ---- 1. Command palette (⌘K) ---- */
+  .cmd-launch{display:flex;align-items:center;gap:10px;width:100%;max-width:420px;cursor:text;
+    border:1.5px solid var(--line);background:var(--panel);color:var(--muted);border-radius:12px;
+    padding:11px 14px;font-size:14px;text-align:left;font-family:inherit}
+  .cmd-launch:hover{border-color:var(--brand)}
+  .cmd-launch:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .cmd-launch .grow{flex:1}
+  .cmd-launch kbd{margin-left:auto}
+  .cmd-overlay{position:fixed;inset:0;background:rgba(10,14,22,.45);display:none;
+    align-items:flex-start;justify-content:center;padding:12vh 16px 16px;z-index:50}
+  .cmd-overlay.open{display:flex}
+  .cmd-panel{width:100%;max-width:560px;background:var(--panel);border:1px solid var(--line);
+    border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden}
+  .cmd-search{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+  .cmd-search input{flex:1;border:0;background:none;color:var(--ink);font-size:16px;outline:none;font-family:inherit}
+  .cmd-list{list-style:none;margin:0;padding:8px;max-height:46vh;overflow:auto}
+  .cmd-group{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;padding:8px 10px 4px}
+  .cmd-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:10px;cursor:pointer;font-size:14px}
+  .cmd-item .ic{width:26px;height:26px;border-radius:7px;background:var(--soft);display:grid;place-items:center;font-size:14px;flex:0 0 auto}
+  .cmd-item .meta{margin-left:auto;font-size:11px;color:var(--muted)}
+  .cmd-item[aria-selected="true"]{background:var(--soft)}
+  .cmd-item[aria-selected="true"] .ic{background:var(--brand);color:var(--brand-ink)}
+  .cmd-empty{padding:26px 12px;text-align:center;color:var(--muted);font-size:14px}
+  .cmd-foot{display:flex;gap:14px;padding:10px 16px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+  .cmd-run{margin-top:14px;font-size:13px;color:var(--muted);min-height:18px}
+
+  /* ---- 2. Expandable / disclosure cards ---- */
+  .txlist{display:flex;flex-direction:column;gap:10px}
+  .txcard{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+  .txhead{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;color:var(--ink);
+    cursor:pointer;padding:14px 16px;font-family:inherit;text-align:left;font-size:14px}
+  .txhead:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .txhead .ic{width:36px;height:36px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:16px;flex:0 0 auto}
+  .txhead .nm{font-weight:600}
+  .txhead .date{font-size:12px;color:var(--muted)}
+  .txhead .amt{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
+  .txhead .amt.plus{color:var(--ok)}
+  .txhead .chev{margin-left:6px;color:var(--muted);transition:transform .22s ease;flex:0 0 auto}
+  .txcard.open .chev{transform:rotate(180deg)}
+  /* height animation via grid-template-rows 0fr -> 1fr (no fixed height needed) */
+  .txbody{display:grid;grid-template-rows:0fr;transition:grid-template-rows .24s ease}
+  .txcard.open .txbody{grid-template-rows:1fr}
+  .txbody-inner{overflow:hidden}
+  .txdetail{padding:2px 16px 16px 64px;font-size:13px;color:var(--muted);display:grid;gap:6px}
+  .txdetail .row{display:flex;justify-content:space-between;gap:12px}
+  .txdetail .row b{color:var(--ink);font-weight:600}
+  @media(prefers-reduced-motion:reduce){.txbody,.chev{transition:none}}
+  /* native details variant */
+  details.nd{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:0}
+  details.nd summary{list-style:none;cursor:pointer;padding:14px 16px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px}
+  details.nd summary::-webkit-details-marker{display:none}
+  details.nd summary::after{content:"⌄";margin-left:auto;color:var(--muted);transition:transform .2s}
+  details.nd[open] summary::after{transform:rotate(180deg)}
+  details.nd summary:focus-visible{outline:2px solid var(--ring);outline-offset:-2px;border-radius:12px}
+  details.nd .ndbody{padding:0 16px 16px;font-size:13px;color:var(--muted)}
+
+  /* ---- 3. View Transitions ---- */
+  .vt-toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:14px}
+  .chip-btn{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:7px 13px;font-size:13px;font-family:inherit}
+  .chip-btn[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .chip-btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .vt-sep{width:1px;height:20px;background:var(--line);margin:0 4px}
+  .vt-list{display:flex;flex-direction:column;gap:10px}
+  .vt-list.asgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .vt-item{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;
+    background:var(--panel);padding:13px 15px;font-size:14px}
+  .vt-list.asgrid .vt-item{flex-direction:column;align-items:flex-start;gap:6px}
+  .vt-item .ic{width:34px;height:34px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:15px;flex:0 0 auto}
+  .vt-item .nm{font-weight:600}
+  .vt-item .sub2{font-size:12px;color:var(--muted)}
+  .vt-item .amt{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
+  .vt-list.asgrid .vt-item .amt{margin-left:0}
+  .vt-item .amt.plus{color:var(--ok)}
+  /* view-transition 속도만 살짝 늦추고, 모션 최소화 설정은 존중 */
+  ::view-transition-group(*){animation-duration:.28s}
+  @media(prefers-reduced-motion:reduce){::view-transition-group(*){animation:none !important}}
+  .vt-warn{font-size:12px;color:var(--warn);margin-top:10px;display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <p class="sub">2026-07-02 (목) · 오늘의 컴포넌트·패턴 3건 — 직접 만져보는 라이브 예시</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌗 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#cmdk">🧭 커맨드 팔레트 (⌘K)</a>
+    <a href="#expand">🃏 확장형 카드 (거래 펼치기)</a>
+    <a href="#vt">🌀 View Transitions (부드러운 전환)</a>
+  </nav>
+
+  <!-- ============ 1. Command palette ============ -->
+  <section class="card" id="cmdk">
+    <h2>🧭 커맨드 팔레트 — ⌘K 로 여는 키보드 우선 내비게이션 <span class="tag">내비게이션·탭</span></h2>
+    <p class="lede"><b>커맨드 팔레트</b>(command palette)는 <kbd>⌘K</kbd>(윈도우는 <kbd>Ctrl K</kbd>)를 누르면
+      화면 위에 뜨는 검색창이다. 메뉴를 마우스로 헤집는 대신 <b>이름 몇 글자만 쳐서</b> 페이지 이동·액션 실행으로
+      바로 점프한다. Linear·Vercel·Raycast가 대중화시킨 이 패턴은 이제 웹앱 내비게이션의 사실상 표준이다.
+      핵심은 <b>키보드만으로 완결</b>되는 것: 타이핑으로 필터, <kbd>↑</kbd><kbd>↓</kbd>로 이동, <kbd>Enter</kbd>로 실행, <kbd>Esc</kbd>로 닫기.</p>
+    <div class="demo">
+      <button class="cmd-launch" id="cmdLaunch">
+        <span>🔍</span><span class="grow">명령·페이지 검색…</span><kbd>⌘K</kbd>
+      </button>
+      <p class="cmd-run" id="cmdRun" role="status" aria-live="polite"></p>
+      <p class="cap"><kbd>⌘K</kbd> / <kbd>Ctrl K</kbd> 를 누르거나 위 칸을 클릭하세요. 열린 뒤 "결제", "환불", "대시" 등을 타이핑해 보세요.</p>
+    </div>
+    <ul class="note">
+      <li><b>왜 이렇게</b>: 메뉴가 깊어질수록 마우스 내비게이션은 느려진다. 팔레트는 <b>정보 구조 전체를 검색 한 칸으로 평평하게</b> 만들어, 숙련 사용자의 이동 비용을 확 줄인다.</li>
+      <li><b>접근성 핵심</b>: 오버레이는 <code class="k">role="dialog"</code> + <code class="k">aria-modal="true"</code>. 리스트는 <code class="k">role="listbox"</code>, 항목은 <code class="k">role="option"</code>, 현재 선택은 <code class="k">aria-activedescendant</code>로 알린다(입력 포커스는 검색창에 유지). 열 때 포커스를 검색창으로, 닫을 때 <b>원래 있던 곳으로 되돌린다</b>.</li>
+      <li><code class="k">aria-activedescendant</code> = 실제 DOM 포커스는 검색 input에 두면서, "지금 가상으로 선택된 항목이 무엇인지"만 스크린리더에 알리는 속성. 화살표로 목록을 훑어도 타이핑을 이어갈 수 있다.</li>
+      <li>paysable 적용: 관리자/가맹점 콘솔에서 "거래 검색 · 환불 · 정산 리포트 · 설정"으로 점프하는 전역 팔레트. 결제 도메인은 화면 수가 많아 효과가 특히 크다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 2. Expandable cards ============ -->
+  <section class="card" id="expand">
+    <h2>🃏 확장형 카드 — 목록은 요약, 누르면 상세가 펼쳐지는 disclosure <span class="tag">카드·리스트</span></h2>
+    <p class="lede">긴 리스트에서 모든 정보를 한 번에 보여주면 눈이 피곤하다. <b>확장형(disclosure) 카드</b>는
+      평소엔 핵심 요약만 보이고, <b>누르면 그 자리에서 상세가 아래로 펼쳐진다</b>. 새 페이지로 넘어가지 않아 맥락을 잃지 않는 게 장점.
+      요즘은 높이를 픽셀로 계산하지 않고 <b>CSS <code class="k">grid-template-rows: 0fr → 1fr</code></b> 트릭으로
+      내용 높이에 맞춰 부드럽게 여닫는다(내용이 몇 줄이든 알아서 맞음).</p>
+    <div class="grid cols2">
+      <div class="demo">
+        <div class="cap" style="margin:0 0 12px"><b>JS 강화형</b> — 부드러운 높이 애니메이션 + 회전 화살표</div>
+        <div class="txlist" id="txlist">
+          <div class="txcard">
+            <button class="txhead" aria-expanded="false">
+              <span class="ic">🛒</span>
+              <span><span class="nm">스타벤처 커피</span><br><span class="date">7월 2일 · 카드결제</span></span>
+              <span class="amt">-₩5,600</span><span class="chev">⌄</span>
+            </button>
+            <div class="txbody"><div class="txbody-inner"><div class="txdetail">
+              <div class="row"><span>승인번호</span><b>3048-2213</b></div>
+              <div class="row"><span>가맹점</span><b>스타벤처 코리아</b></div>
+              <div class="row"><span>결제수단</span><b>신용카드 •••• 4242</b></div>
+              <div class="row"><span>상태</span><b style="color:var(--ok)">승인 완료</b></div>
+            </div></div></div>
+          </div>
+          <div class="txcard">
+            <button class="txhead" aria-expanded="false">
+              <span class="ic">💸</span>
+              <span><span class="nm">정산 입금</span><br><span class="date">7월 1일 · 계좌이체</span></span>
+              <span class="amt plus">+₩1,240,000</span><span class="chev">⌄</span>
+            </button>
+            <div class="txbody"><div class="txbody-inner"><div class="txdetail">
+              <div class="row"><span>정산주기</span><b>일 정산 (D+1)</b></div>
+              <div class="row"><span>거래건수</span><b>38건</b></div>
+              <div class="row"><span>수수료</span><b>-₩23,400</b></div>
+              <div class="row"><span>입금계좌</span><b>페이세이블 정산계좌</b></div>
+            </div></div></div>
+          </div>
+          <div class="txcard">
+            <button class="txhead" aria-expanded="false">
+              <span class="ic">↩️</span>
+              <span><span class="nm">부분 환불</span><br><span class="date">6월 30일 · 환불</span></span>
+              <span class="amt plus">+₩12,000</span><span class="chev">⌄</span>
+            </button>
+            <div class="txbody"><div class="txbody-inner"><div class="txdetail">
+              <div class="row"><span>원거래</span><b>#3048-1990</b></div>
+              <div class="row"><span>환불사유</span><b>고객 요청 (부분)</b></div>
+              <div class="row"><span>처리상태</span><b style="color:var(--warn)">환불 진행중</b></div>
+            </div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="cap" style="margin:0 0 12px"><b>JS 없는 순정형</b> — <code class="k">&lt;details&gt;</code>만으로도 열고 닫힌다</div>
+        <details class="nd">
+          <summary>🧾 이 거래는 왜 실패했나요?</summary>
+          <div class="ndbody">한도 초과로 카드사에서 거절(코드 51). 다른 카드로 재시도하거나 한도를 확인하세요. — 이 블록은 <code class="k">&lt;details&gt;</code>/<code class="k">&lt;summary&gt;</code> 기본 요소라 자바스크립트 없이 동작하고 키보드·스크린리더 지원도 공짜입니다.</div>
+        </details>
+        <details class="nd" style="margin-top:10px">
+          <summary>🔒 결제 정보는 어떻게 보관되나요?</summary>
+          <div class="ndbody">카드번호 원본은 저장하지 않고 토큰으로 대체합니다(PCI-DSS 준수). 화면엔 마지막 4자리만 노출합니다.</div>
+        </details>
+        <p class="cap">FAQ·약관·거래 상세처럼 "필요할 때만 펼치는" 곳엔 <code class="k">&lt;details&gt;</code>가 가장 저렴하고 튼튼한 선택입니다.</p>
+      </div>
+    </div>
+    <pre>/* 높이를 픽셀로 안 재고 0fr → 1fr 로 부드럽게 펼치기 */
+.txbody      { display:grid; grid-template-rows:0fr; transition:grid-template-rows .24s ease; }
+.txcard.open .txbody { grid-template-rows:1fr; }
+.txbody-inner { overflow:hidden; }   /* 접혔을 때 내용이 삐져나오지 않게 */</pre>
+    <ul class="note">
+      <li><b>왜 grid 트릭</b>: 예전엔 <code class="k">max-height</code>를 큰 값으로 잡아 어림잡았는데, 내용이 길면 애니메이션이 튀거나 잘렸다. <code class="k">0fr→1fr</code>은 <b>실제 내용 높이</b>에 정확히 맞춰 여닫혀서 계산이 필요 없다(2026 기준 주요 브라우저 지원).</li>
+      <li><b>접근성</b>: 여는 버튼은 진짜 <code class="k">&lt;button&gt;</code>으로, <code class="k">aria-expanded</code>를 true/false로 토글한다. 순정형은 <code class="k">&lt;details&gt;</code>가 이 상태를 알아서 관리한다.</li>
+      <li><code class="k">prefers-reduced-motion</code>(사용자가 OS에서 "애니메이션 줄이기"를 켠 상태) 이면 전환을 끈다 — 어지럼증 배려.</li>
+      <li>paysable 적용: 거래 내역 리스트에서 한 줄 요약(가맹점·금액·상태)만 두고, 탭하면 승인번호·수수료·정산정보가 그 자리에서 펼쳐지게. 목록 스캔 속도와 상세 접근을 동시에 잡는다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 3. View Transitions ============ -->
+  <section class="card" id="vt">
+    <h2>🌀 View Transitions API — 목록 정렬·필터·보기 전환을 부드럽게 <span class="tag">트렌드·개념</span></h2>
+    <p class="lede">리스트를 다시 정렬하거나 필터를 바꾸면 항목들이 <b>툭 하고 순간이동</b>해 어디로 갔는지 눈이 놓친다.
+      <b>View Transitions API</b>(<code class="k">document.startViewTransition()</code>)는 DOM을 바꾸는 코드를 감싸기만 하면,
+      브라우저가 <b>바뀌기 전/후 스냅샷을 떠서 그 사이를 자동으로 애니메이션</b>해 준다. 같은 항목은 새 위치로 스르륵 이동하고,
+      사라지는 항목은 페이드아웃된다. 예전엔 FLIP 같은 기법을 손으로 짰지만, 이제 <b>업데이트 함수 한 번 감싸는 것</b>으로 끝난다.</p>
+    <div class="demo">
+      <div class="vt-toolbar" role="group" aria-label="정렬·필터·보기 전환">
+        <button class="chip-btn" data-sort="date" aria-pressed="true">최신순</button>
+        <button class="chip-btn" data-sort="amount" aria-pressed="false">금액순</button>
+        <span class="vt-sep" aria-hidden="true"></span>
+        <button class="chip-btn" data-filter="all" aria-pressed="true">전체</button>
+        <button class="chip-btn" data-filter="in" aria-pressed="false">입금만</button>
+        <span class="vt-sep" aria-hidden="true"></span>
+        <button class="chip-btn" id="vtView" aria-pressed="false">🔲 카드 보기</button>
+      </div>
+      <div class="vt-list" id="vtList" aria-live="polite"></div>
+      <p class="vt-warn" id="vtWarn">⚠️ 이 브라우저는 View Transitions를 지원하지 않아 애니메이션 없이 즉시 갱신됩니다(동작·결과는 동일).</p>
+      <p class="cap">정렬·필터·보기 버튼을 눌러보세요. 남아 있는 항목은 <b>새 위치로 이동</b>, 빠지는 항목은 <b>페이드아웃</b> 됩니다.</p>
+    </div>
+    <pre>/* ① 애니메이션시킬 요소마다 고유 이름을 준다(같은 이름끼리 morph) */
+.vt-item { view-transition-name: tx-<b>고유id</b>; }
+
+// ② DOM을 바꾸는 코드를 startViewTransition으로 감싸기만 하면 끝
+function update(){
+  if (document.startViewTransition) {
+    document.startViewTransition(() =&gt; render());   // 전/후를 자동 트윈
+  } else {
+    render();                                        // 미지원 시 즉시 갱신(점진적 축소)
+  }
+}</pre>
+    <ul class="note">
+      <li><b>왜 지금</b>: 같은 문서(SPA) 내 전환은 2026년 주요 엔진에 모두 안착 — Chrome 111+, Safari 18+, Firefox 144+. 즉 이제 <b>세 엔진 다 지원</b>한다(문서 간 cross-document 전환은 Interop 2026 논의 단계, 추정). (출처: MDN / web.dev / caniuse)</li>
+      <li><code class="k">view-transition-name</code> = "이 요소를 전환 대상으로 추적해 달라"는 이름표. <b>같은 이름</b>이 전/후에 모두 있으면 두 위치 사이를 morph, 한쪽에만 있으면 등장/퇴장 애니메이션이 된다. 이름은 화면에 보이는 요소끼리 <b>유일해야</b> 한다.</li>
+      <li><b>접근성·성능</b>: 전환 중 스냅샷은 렌더만 바꿀 뿐 DOM 구조·포커스는 그대로다. <code class="k">prefers-reduced-motion</code>(OS의 "동작 줄이기")이 켜져 있으면 <code class="k">::view-transition-group</code>의 애니메이션을 꺼서 즉시 전환한다.</li>
+      <li><b>점진적 축소</b>: <code class="k">document.startViewTransition</code>이 없으면 그냥 render()를 바로 호출 — 애니메이션만 빠지고 기능은 동일. "안 되면 깨지는" 위험이 없다.</li>
+      <li>paysable 적용: 거래 내역의 정렬·기간 필터 전환, 리스트↔카드 보기 토글, 대시보드 위젯 재배치. 특히 금액순↔최신순처럼 <b>순서가 크게 바뀌는</b> 화면에서 사용자가 항목을 눈으로 따라갈 수 있게 해준다.</li>
+    </ul>
+  </section>
+</div>
+
+<!-- command palette overlay -->
+<div class="cmd-overlay" id="cmdOverlay" role="dialog" aria-modal="true" aria-label="명령 팔레트">
+  <div class="cmd-panel">
+    <div class="cmd-search">
+      <span aria-hidden="true">🔍</span>
+      <input id="cmdInput" type="text" placeholder="명령이나 페이지 검색…" autocomplete="off"
+             role="combobox" aria-expanded="true" aria-controls="cmdList" aria-activedescendant="">
+      <kbd>Esc</kbd>
+    </div>
+    <ul class="cmd-list" id="cmdList" role="listbox" aria-label="명령 목록"></ul>
+    <div class="cmd-foot"><span><kbd>↑</kbd><kbd>↓</kbd> 이동</span><span><kbd>↵</kbd> 실행</span><span><kbd>Esc</kbd> 닫기</span></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var root=document.documentElement;
+
+  // theme toggle
+  var btn=document.getElementById('themeBtn');
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.setAttribute('aria-pressed',String(!dark));
+    btn.textContent=dark?'🌗 다크 모드':'☀️ 라이트 모드';
+  });
+
+  // ---- 1. Command palette ----
+  var COMMANDS=[
+    {g:'페이지',ic:'📊',t:'대시보드',m:'go'},
+    {g:'페이지',ic:'🧾',t:'거래 내역',m:'go'},
+    {g:'페이지',ic:'💰',t:'정산 리포트',m:'go'},
+    {g:'페이지',ic:'⚙️',t:'설정',m:'go'},
+    {g:'액션',ic:'↩️',t:'환불 처리',m:'action'},
+    {g:'액션',ic:'➕',t:'결제 링크 생성',m:'action'},
+    {g:'액션',ic:'📤',t:'정산 내역 내보내기',m:'action'},
+    {g:'액션',ic:'🔑',t:'API 키 발급',m:'action'}
+  ];
+  var overlay=document.getElementById('cmdOverlay'),
+      input=document.getElementById('cmdInput'),
+      list=document.getElementById('cmdList'),
+      launch=document.getElementById('cmdLaunch'),
+      runMsg=document.getElementById('cmdRun'),
+      lastFocus=null, filtered=[], sel=0;
+
+  function render(){
+    var q=input.value.trim().toLowerCase();
+    filtered=COMMANDS.filter(function(c){return !q || c.t.toLowerCase().indexOf(q)>-1 || c.g.toLowerCase().indexOf(q)>-1;});
+    list.innerHTML='';
+    if(!filtered.length){
+      list.innerHTML='<li class="cmd-empty">일치하는 명령이 없습니다</li>';
+      input.setAttribute('aria-activedescendant','');
+      return;
+    }
+    if(sel>=filtered.length) sel=filtered.length-1;
+    if(sel<0) sel=0;
+    var lastG='';
+    filtered.forEach(function(c,i){
+      if(c.g!==lastG){
+        var h=document.createElement('li'); h.className='cmd-group'; h.textContent=c.g; h.setAttribute('aria-hidden','true');
+        list.appendChild(h); lastG=c.g;
+      }
+      var li=document.createElement('li');
+      li.className='cmd-item'; li.id='cmd-opt-'+i; li.setAttribute('role','option');
+      li.setAttribute('aria-selected', i===sel?'true':'false');
+      li.innerHTML='<span class="ic">'+c.ic+'</span><span>'+c.t+'</span><span class="meta">'+(c.m==='go'?'이동':'실행')+'</span>';
+      li.addEventListener('click',function(){sel=i;run();});
+      li.addEventListener('mousemove',function(){if(sel!==i){sel=i;paint();}});
+      list.appendChild(li);
+    });
+    paint();
+  }
+  function paint(){
+    var opts=list.querySelectorAll('.cmd-item');
+    opts.forEach(function(o,i){o.setAttribute('aria-selected', i===sel?'true':'false');});
+    if(opts[sel]){ input.setAttribute('aria-activedescendant',opts[sel].id); opts[sel].scrollIntoView({block:'nearest'}); }
+  }
+  function open(){
+    lastFocus=document.activeElement;
+    overlay.classList.add('open'); input.value=''; sel=0; render();
+    input.focus();
+  }
+  function close(){
+    overlay.classList.remove('open');
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function run(){
+    if(!filtered.length) return;
+    var c=filtered[sel];
+    runMsg.textContent='실행됨: '+c.t+' ('+(c.m==='go'?'페이지 이동':'액션')+') — 데모';
+    close();
+  }
+  launch.addEventListener('click',open);
+  input.addEventListener('input',function(){sel=0;render();});
+  input.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){e.preventDefault();sel=Math.min(sel+1,filtered.length-1);paint();}
+    else if(e.key==='ArrowUp'){e.preventDefault();sel=Math.max(sel-1,0);paint();}
+    else if(e.key==='Enter'){e.preventDefault();run();}
+    else if(e.key==='Escape'){e.preventDefault();close();}
+  });
+  overlay.addEventListener('click',function(e){ if(e.target===overlay) close(); });
+  document.addEventListener('keydown',function(e){
+    if((e.metaKey||e.ctrlKey) && (e.key==='k'||e.key==='K')){ e.preventDefault(); overlay.classList.contains('open')?close():open(); }
+  });
+
+  // ---- 2. Expandable cards ----
+  [].forEach.call(document.querySelectorAll('#txlist .txhead'),function(h){
+    h.addEventListener('click',function(){
+      var cardEl=h.closest('.txcard'), openNow=cardEl.classList.toggle('open');
+      h.setAttribute('aria-expanded',String(openNow));
+    });
+  });
+
+  // ---- 3. View Transitions ----
+  var TX=[
+    {id:'a',ic:'🛒',nm:'스타벤처 커피',sub:'7월 2일 · 카드',amt:-5600,dir:'out',rank:5},
+    {id:'b',ic:'💸',nm:'정산 입금',sub:'7월 1일 · 이체',amt:1240000,dir:'in',rank:4},
+    {id:'c',ic:'↩️',nm:'부분 환불',sub:'6월 30일 · 환불',amt:12000,dir:'in',rank:3},
+    {id:'d',ic:'🍔',nm:'버거플레이스',sub:'6월 30일 · 카드',amt:-13900,dir:'out',rank:2},
+    {id:'e',ic:'💰',nm:'정산 입금',sub:'6월 29일 · 이체',amt:980000,dir:'in',rank:1}
+  ];
+  var vtList=document.getElementById('vtList'),
+      vtView=document.getElementById('vtView'),
+      vtWarn=document.getElementById('vtWarn'),
+      curSort='date', curFilter='all', asGrid=false;
+  function fmt(n){return (n>0?'+':'-')+'₩'+Math.abs(n).toLocaleString('ko-KR');}
+  function render(){
+    var rows=TX.filter(function(t){return curFilter==='all'||t.dir==='in';});
+    rows.sort(function(a,b){ return curSort==='amount' ? b.amt-a.amt : b.rank-a.rank; });
+    vtList.className='vt-list'+(asGrid?' asgrid':'');
+    vtList.innerHTML=rows.map(function(t){
+      return '<div class="vt-item" style="view-transition-name:tx-'+t.id+'">'
+        +'<span class="ic">'+t.ic+'</span>'
+        +'<span><span class="nm">'+t.nm+'</span><br><span class="sub2">'+t.sub+'</span></span>'
+        +'<span class="amt'+(t.amt>0?' plus':'')+'">'+fmt(t.amt)+'</span></div>';
+    }).join('');
+  }
+  function vtUpdate(){
+    if(document.startViewTransition){ document.startViewTransition(render); }
+    else { vtWarn.style.display='block'; render(); }
+  }
+  render();
+  [].forEach.call(document.querySelectorAll('[data-sort]'),function(b){
+    b.addEventListener('click',function(){
+      curSort=b.getAttribute('data-sort');
+      [].forEach.call(document.querySelectorAll('[data-sort]'),function(x){x.setAttribute('aria-pressed',String(x===b));});
+      vtUpdate();
+    });
+  });
+  [].forEach.call(document.querySelectorAll('[data-filter]'),function(b){
+    b.addEventListener('click',function(){
+      curFilter=b.getAttribute('data-filter');
+      [].forEach.call(document.querySelectorAll('[data-filter]'),function(x){x.setAttribute('aria-pressed',String(x===b));});
+      vtUpdate();
+    });
+  });
+  vtView.addEventListener('click',function(){
+    asGrid=!asGrid;
+    vtView.setAttribute('aria-pressed',String(asGrid));
+    vtView.textContent=asGrid?'☰ 리스트 보기':'🔲 카드 보기';
+    vtUpdate();
+  });
+})();
+</script>
+</body>
+</html>
