@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-07-01 (수)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+  .btn{cursor:pointer;border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:14px;
+    font-weight:600;background:var(--brand);color:var(--brand-ink);transition:filter .15s,transform .05s}
+  .btn:hover{filter:brightness(1.06)}
+  .btn:active{transform:translateY(1px)}
+  .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.soft{background:var(--soft);color:var(--brand)}
+
+  /* ---- 1. OTP / one-time-code ---- */
+  .otp{display:flex;gap:10px;margin:4px 0 6px}
+  .otp input{width:48px;height:58px;text-align:center;font-size:24px;font-weight:700;
+    border:1.5px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);
+    font-variant-numeric:tabular-nums;transition:border-color .15s,box-shadow .15s}
+  .otp input:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--soft)}
+  .otp input.filled{border-color:var(--brand)}
+  .otp.error input{border-color:var(--danger)}
+  .otp.ok input{border-color:var(--ok)}
+  .otp-msg{font-size:13px;min-height:18px}
+  .otp-msg.err{color:var(--danger)} .otp-msg.good{color:var(--ok)}
+  .mini{font-size:12px;color:var(--muted);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
+  .mini:disabled{opacity:.5;cursor:not-allowed;text-decoration:none}
+
+  /* ---- 2. payment method radio cards ---- */
+  .paygroup{display:grid;gap:12px}
+  @media(min-width:560px){.paygroup{grid-template-columns:1fr 1fr}}
+  .paycard{position:relative;display:flex;align-items:center;gap:14px;border:1.5px solid var(--line);
+    border-radius:14px;padding:16px;cursor:pointer;background:var(--panel);transition:border-color .15s,box-shadow .15s,background .15s}
+  .paycard:hover{border-color:var(--brand)}
+  .paycard .ic{width:42px;height:30px;border-radius:6px;display:grid;place-items:center;font-size:18px;
+    background:var(--soft);flex:0 0 auto}
+  .paycard .nm{font-weight:600;font-size:14px}
+  .paycard .desc{font-size:12px;color:var(--muted)}
+  .paycard .chk{margin-left:auto;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);
+    display:grid;place-items:center;color:#fff;font-size:12px;transition:all .15s;flex:0 0 auto}
+  /* the real radio is visually hidden but focusable */
+  .paycard input{position:absolute;opacity:0;width:1px;height:1px}
+  .paycard:has(input:checked){border-color:var(--brand);background:var(--soft);box-shadow:0 0 0 1px var(--brand) inset}
+  .paycard:has(input:checked) .chk{background:var(--brand);border-color:var(--brand)}
+  .paycard:has(input:focus-visible){outline:2px solid var(--ring);outline-offset:2px}
+  .pay-result{font-size:13px;color:var(--muted);margin-top:14px}
+
+  /* ---- 3. :user-valid / :user-invalid ---- */
+  .field{margin:0 0 16px}
+  .field label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}
+  .field input{width:100%;padding:11px 12px;font-size:14px;border:1.5px solid var(--line);
+    border-radius:10px;background:var(--panel);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+  .field input:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--soft)}
+  /* the whole point: only style AFTER the user has interacted */
+  .field input:user-invalid{border-color:var(--danger);box-shadow:0 0 0 4px var(--danger-soft)}
+  .field input:user-valid{border-color:var(--ok)}
+  .field .hint{font-size:12px;color:var(--muted);margin-top:6px;min-height:16px}
+  .field input:user-invalid ~ .hint{color:var(--danger)}
+  .field input:user-invalid ~ .hint .ok-txt{display:none}
+  .field input:user-invalid ~ .hint .err-txt{display:inline}
+  .field .hint .err-txt{display:none}
+  .compare input.legacy:invalid{border-color:var(--danger);box-shadow:0 0 0 4px var(--danger-soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <p class="sub">2026-07-01 (수) · 오늘의 컴포넌트·패턴 3건 — 직접 만져보는 라이브 예시</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌗 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#otp">⌨️ 인증코드(OTP) 입력</a>
+    <a href="#paymethod">💳 결제 수단 선택</a>
+    <a href="#uservalid">🌀 :user-valid / :user-invalid</a>
+  </nav>
+
+  <!-- ============ 1. OTP ============ -->
+  <section class="card" id="otp">
+    <h2>⌨️ 인증코드(OTP) 입력 — 칸 분리 · 붙여넣기 · 자동 이동 <span class="tag">입력·폼</span></h2>
+    <p class="lede"><b>OTP</b>(One-Time Password, 한 번만 쓰는 인증코드)는 결제 3DS 인증·로그인에서 자주 쓰인다.
+      한 칸짜리 입력보다 <b>자릿수만큼 칸을 나눈</b> 형태가 "몇 자리인지" 한눈에 보이고 오타를 줄인다.
+      관건은 손맛이다: 한 글자 치면 <b>다음 칸으로 자동 이동</b>, 지우면 이전 칸, 문자 메시지에서 복사한 6자리를
+      아무 칸에나 <b>붙여넣으면 알아서 분배</b>되어야 한다.</p>
+    <div class="demo">
+      <div class="cap" style="margin:0 0 12px">데모 정답은 <b>424242</b>. 한 칸씩 입력하거나, 어느 칸이든 <code class="k">424242</code>를 통째로 붙여넣어 보세요.</div>
+      <div class="otp" id="otpBox" role="group" aria-label="6자리 인증코드">
+        <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="1번째 자리">
+        <input inputmode="numeric" maxlength="1" aria-label="2번째 자리">
+        <input inputmode="numeric" maxlength="1" aria-label="3번째 자리">
+        <input inputmode="numeric" maxlength="1" aria-label="4번째 자리">
+        <input inputmode="numeric" maxlength="1" aria-label="5번째 자리">
+        <input inputmode="numeric" maxlength="1" aria-label="6번째 자리">
+      </div>
+      <p class="otp-msg" id="otpMsg" role="status" aria-live="polite"></p>
+      <button class="mini" id="otpResend" disabled>코드 재전송 (<span id="otpTimer">30</span>초)</button>
+    </div>
+    <ul class="note">
+      <li><code class="k">inputmode="numeric"</code> = 모바일에서 숫자 키패드를 띄운다. <code class="k">autocomplete="one-time-code"</code> = iOS Safari가 방금 온 SMS의 코드를 키보드 위에 자동완성으로 제안한다(추정: 안드로이드 크롬은 별도의 WebOTP API를 써야 자동 채움).</li>
+      <li>붙여넣기 처리가 핵심: 6자리를 한 칸에 붙여도 <code class="k">paste</code> 이벤트를 가로채 칸마다 나눠 넣는다. 키보드 사용자는 ← → 백스페이스로 칸을 오갈 수 있어야 한다.</li>
+      <li>paysable 적용: 결제 승인 3DS·본인확인 코드 입력 화면. 자동 이동·붙여넣기·재전송 타이머(쿨다운)까지 갖추면 입력 이탈이 크게 준다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 2. PAYMENT METHOD ============ -->
+  <section class="card" id="paymethod">
+    <h2>💳 결제 수단 선택 — 라디오 카드 그룹 <span class="tag">결제·체크아웃 UX</span></h2>
+    <p class="lede">결제 수단 고르기는 본질이 <b>라디오 버튼</b>(여럿 중 하나)이다. 하지만 작은 동그라미 대신
+      <b>카드 전체를 누르는 영역</b>으로 키우고, 아이콘·이름·설명을 함께 보여주면 손가락으로 누르기 쉽고 비교가 빠르다.
+      겉모습만 바꾸되 <b>접근성은 진짜 라디오</b>로 유지하는 게 요령이다 — 그래야 키보드 화살표로 넘기고 스크린리더가
+      "라디오, 2/4 선택됨"으로 읽는다.</p>
+    <div class="demo">
+      <div class="paygroup" role="radiogroup" aria-label="결제 수단">
+        <label class="paycard">
+          <input type="radio" name="pay" value="card" checked>
+          <span class="ic">💳</span>
+          <span><span class="nm">신용·체크카드</span><br><span class="desc">•••• 4242 · 즉시 결제</span></span>
+          <span class="chk">✓</span>
+        </label>
+        <label class="paycard">
+          <input type="radio" name="pay" value="kakao">
+          <span class="ic">🟡</span>
+          <span><span class="nm">간편결제</span><br><span class="desc">등록된 페이로 한 번에</span></span>
+          <span class="chk">✓</span>
+        </label>
+        <label class="paycard">
+          <input type="radio" name="pay" value="bank">
+          <span class="ic">🏦</span>
+          <span><span class="nm">계좌이체</span><br><span class="desc">실시간 출금 · 수수료 없음</span></span>
+          <span class="chk">✓</span>
+        </label>
+        <label class="paycard">
+          <input type="radio" name="pay" value="phone">
+          <span class="ic">📱</span>
+          <span><span class="nm">휴대폰 결제</span><br><span class="desc">통신요금에 합산 청구</span></span>
+          <span class="chk">✓</span>
+        </label>
+      </div>
+      <p class="pay-result" id="payResult" aria-live="polite">선택: 신용·체크카드</p>
+      <p class="cap">카드 아무 곳이나 클릭하면 선택됩니다. 키보드라면 <b>Tab</b>으로 그룹에 들어와 <b>← → ↑ ↓</b>로 수단을 바꿔보세요.</p>
+    </div>
+    <ul class="note">
+      <li>구조: 보이지 않게 숨긴 <code class="k">&lt;input type="radio"&gt;</code>를 <code class="k">&lt;label&gt;</code>로 감싸 카드 전체를 클릭 영역으로 만든다. 선택 표시는 CSS <code class="k">:has(input:checked)</code>로 그린다(JS 없이도 동작).</li>
+      <li><code class="k">:has()</code> = "이런 자식을 가진 부모"를 고르는 CSS 선택자. 체크된 라디오를 품은 카드를 강조할 때 쓴다(2026 기준 주요 브라우저 지원).</li>
+      <li>접근성: 시각적으로 카드를 써도 실제 요소가 라디오라 <b>화살표 키 이동·그룹 읽기</b>가 공짜로 따라온다. <code class="k">role="radiogroup"</code>로 묶어 묶음임을 알린다.</li>
+      <li>paysable 적용: 체크아웃의 결제수단 선택, 배송 옵션, 요금제 선택 등 "여럿 중 하나" 화면 전반에.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 3. :user-valid / :user-invalid TREND ============ -->
+  <section class="card" id="uservalid">
+    <h2>🌀 :user-valid / :user-invalid — '사용자가 만진 뒤에만' 검증 스타일 <span class="tag">트렌드·개념</span></h2>
+    <p class="lede">기존 <code class="k">:valid</code>/<code class="k">:invalid</code>는 페이지가 뜨자마자 빈 필수 칸을 빨갛게 칠해버려
+      "아직 입력도 안 했는데 에러" 같은 짜증을 만들었다. 2026년엔 <b><code class="k">:user-valid</code></b>/<b><code class="k">:user-invalid</code></b>를 쓴다.
+      이 둘은 <b>사용자가 실제로 입력하고 칸을 벗어난 뒤에만</b> 적용돼서, JavaScript 없이도 "건드린 칸만 검증"이 된다.</p>
+    <div class="grid cols2">
+      <div class="demo">
+        <div class="cap" style="margin:0 0 12px"><b>:user-invalid</b> — 처음엔 조용, 잘못 입력하고 벗어나야 빨갛게</div>
+        <div class="field">
+          <label for="em">이메일</label>
+          <input id="em" type="email" required placeholder="you@paysable.com">
+          <div class="hint">
+            <span class="ok-txt">올바른 이메일 형식이면 초록, 틀리면 빨강으로 바뀝니다.</span>
+            <span class="err-txt">이메일 형식이 올바르지 않습니다.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="card">카드번호 (16자리 숫자)</label>
+          <input id="card" inputmode="numeric" required pattern="\d{16}" placeholder="숫자 16자리">
+          <div class="hint">
+            <span class="ok-txt">16자리를 정확히 채우면 초록으로 바뀝니다.</span>
+            <span class="err-txt">숫자 16자리를 입력하세요.</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo compare">
+        <div class="cap" style="margin:0 0 12px"><b>옛 방식 :invalid</b> — 만지기도 전에 이미 빨강 (이게 짜증의 원인)</div>
+        <div class="field">
+          <label for="old">이메일 (legacy :invalid)</label>
+          <input id="old" class="legacy" type="email" required placeholder="you@paysable.com">
+          <div class="hint">페이지를 열자마자 빨간 테두리죠? 사용자는 아무 잘못도 안 했는데요.</div>
+        </div>
+      </div>
+    </div>
+<pre>/* 사용자가 입력하고 칸을 벗어난 뒤에만 검증 색을 입힌다 */
+input:user-invalid { border-color: var(--danger); }
+input:user-valid   { border-color: var(--ok); }
+
+/* 옛 방식: 로드 즉시 빈 필수 칸까지 빨갛게 (지양) */
+input:invalid { border-color: red; }</pre>
+    <ul class="note">
+      <li><b>왜 지금</b>: <code class="k">:user-valid</code>/<code class="k">:user-invalid</code>가 Baseline(주요 브라우저 모두 지원)이 됐다 — Chrome·Edge·Firefox·Safari, 2023년 말부터 폭넓게 사용 가능.</li>
+      <li><b>차이 한 줄</b>: <code class="k">:invalid</code>는 "값이 규칙에 안 맞으면 즉시", <code class="k">:user-invalid</code>는 "사용자가 의미 있게 상호작용한 뒤에만". UX 체감이 크게 다르다.</li>
+      <li>구형 브라우저면 검증 색만 생략될 뿐 입력 자체는 정상 동작한다(graceful degradation = 점진적 기능 축소).</li>
+      <li>paysable 적용: 결제·가입 폼의 인라인 검증을 JS 상태(touched 플래그) 없이 CSS만으로 처리 → 코드·번들 감소. 단, 제출 시 종합 에러 안내는 여전히 코드로 보완.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function(){
+  // theme toggle
+  var btn=document.getElementById('themeBtn'), root=document.documentElement;
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.setAttribute('aria-pressed',String(!dark));
+    btn.textContent=dark?'🌗 다크 모드':'☀️ 라이트 모드';
+  });
+
+  // 1. OTP
+  var box=document.getElementById('otpBox'),
+      inputs=[].slice.call(box.querySelectorAll('input')),
+      msg=document.getElementById('otpMsg'),
+      ANSWER='424242';
+  function onlyDigit(s){return (s||'').replace(/\D/g,'');}
+  function check(){
+    var code=inputs.map(function(i){return i.value;}).join('');
+    box.classList.remove('ok','error');
+    if(code.length<6){msg.textContent='';msg.className='otp-msg';return;}
+    if(code===ANSWER){box.classList.add('ok');msg.textContent='✅ 인증되었습니다 (데모)';msg.className='otp-msg good';}
+    else{box.classList.add('error');msg.textContent='코드가 일치하지 않습니다. 다시 확인하세요.';msg.className='otp-msg err';}
+  }
+  inputs.forEach(function(inp,idx){
+    inp.addEventListener('input',function(){
+      var v=onlyDigit(inp.value); inp.value=v.slice(-1);
+      inp.classList.toggle('filled', !!inp.value);
+      if(inp.value && idx<inputs.length-1) inputs[idx+1].focus();
+      check();
+    });
+    inp.addEventListener('keydown',function(e){
+      if(e.key==='Backspace' && !inp.value && idx>0){inputs[idx-1].focus();}
+      else if(e.key==='ArrowLeft' && idx>0){e.preventDefault();inputs[idx-1].focus();}
+      else if(e.key==='ArrowRight' && idx<inputs.length-1){e.preventDefault();inputs[idx+1].focus();}
+    });
+    inp.addEventListener('paste',function(e){
+      e.preventDefault();
+      var txt=onlyDigit((e.clipboardData||window.clipboardData).getData('text')).slice(0,6).split('');
+      inputs.forEach(function(x,i){x.value=txt[i]||'';x.classList.toggle('filled',!!x.value);});
+      var next=Math.min(txt.length,inputs.length-1); inputs[next].focus();
+      check();
+    });
+  });
+  // resend cooldown timer
+  var t=30, timerEl=document.getElementById('otpTimer'), resend=document.getElementById('otpResend');
+  var iv=setInterval(function(){
+    t--; timerEl.textContent=t;
+    if(t<=0){clearInterval(iv);resend.disabled=false;resend.innerHTML='코드 재전송';}
+  },1000);
+  resend.addEventListener('click',function(){
+    if(resend.disabled)return;
+    inputs.forEach(function(x){x.value='';x.classList.remove('filled');});
+    box.classList.remove('ok','error'); msg.textContent='새 코드를 전송했습니다 (데모).'; msg.className='otp-msg good';
+    inputs[0].focus();
+    t=30; resend.disabled=true; resend.innerHTML='코드 재전송 (<span id="otpTimer">30</span>초)';
+    timerEl=document.getElementById('otpTimer');
+    iv=setInterval(function(){t--;timerEl.textContent=t;if(t<=0){clearInterval(iv);resend.disabled=false;resend.innerHTML='코드 재전송';}},1000);
+  });
+
+  // 2. payment method
+  var radios=[].slice.call(document.querySelectorAll('input[name="pay"]')),
+      payResult=document.getElementById('payResult'),
+      names={card:'신용·체크카드',kakao:'간편결제',bank:'계좌이체',phone:'휴대폰 결제'};
+  radios.forEach(function(r){
+    r.addEventListener('change',function(){payResult.textContent='선택: '+names[r.value];});
+  });
+})();
+</script>
+</body>
+</html>
