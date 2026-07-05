@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-07-06 (월)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+  label.fl{display:block;font-size:12.5px;color:var(--muted);margin:0 0 6px}
+  kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;color:var(--muted)}
+
+  /* ---- shared form field ---- */
+  .field{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);border-radius:10px;padding:10px 12px;transition:border-color .12s,box-shadow .12s}
+  .field:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+
+  /* ---- 1. select & combobox ---- */
+  .sel-native{position:relative}
+  .sel-native select{appearance:none;-webkit-appearance:none;padding-right:36px;cursor:pointer}
+  .sel-native .chev{position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--muted)}
+  .combo{position:relative}
+  .combo .listbox{position:absolute;z-index:5;left:0;right:0;top:calc(100% + 6px);margin:0;padding:6px;list-style:none;
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);max-height:210px;overflow:auto}
+  .combo .listbox[hidden]{display:none}
+  .combo .opt{padding:8px 10px;border-radius:8px;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+  .combo .opt .code{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+  .combo .opt[aria-selected="true"]{background:var(--soft)}
+  .combo .opt mark{background:transparent;color:var(--brand);font-weight:700;padding:0}
+  .combo .empty{padding:10px;font-size:13px;color:var(--muted)}
+
+  /* ---- 2. switch & copy ---- */
+  .switch{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:14px}
+  .switch .track{--w:44px;--h:26px;width:var(--w);height:var(--h);border-radius:999px;background:var(--line);
+    position:relative;transition:background .18s;flex:none}
+  .switch .thumb{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .18s}
+  .switch input{position:absolute;opacity:0;width:0;height:0}
+  .switch input:checked + .track{background:var(--brand)}
+  .switch input:checked + .track .thumb{transform:translateX(18px)}
+  .switch input:focus-visible + .track{outline:2px solid var(--ring);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){.switch .track,.switch .thumb{transition:none}}
+  .copyrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .acct{font-variant-numeric:tabular-nums;font-size:15px;letter-spacing:.02em}
+  .copybtn{cursor:pointer;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);
+    background:var(--panel);color:var(--ink);border-radius:9px;padding:8px 12px;font-size:13px;font-weight:600;
+    transition:border-color .12s,background .12s}
+  .copybtn:hover{border-color:var(--brand)}
+  .copybtn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .copybtn.done{border-color:var(--ok);color:var(--ok)}
+  .copybtn .ico{width:15px;height:15px;flex:none}
+  .copybtn .ico.check{color:var(--ok)}
+
+  /* ---- 3. field-sizing ---- */
+  .fs-grow{field-sizing:content;min-height:2.6em;max-height:9em;min-width:12ch;resize:none}
+  .amount-wrap{display:inline-flex;align-items:baseline;gap:4px;border:1px solid var(--line);border-radius:10px;
+    padding:8px 12px;background:var(--panel);font-size:18px;font-weight:700}
+  .amount-wrap:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+  .amount-wrap input{field-sizing:content;min-width:2ch;max-width:12ch;border:none;background:transparent;
+    color:var(--ink);font:inherit;text-align:right;padding:0;outline:none;font-variant-numeric:tabular-nums}
+  .badge-ok{display:inline-block;font-size:11px;color:var(--ok);border:1px solid var(--ok);border-radius:6px;padding:1px 7px;margin-left:6px}
+  .live{font-size:12.5px;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Design Inspiration Daily</h1>
+      <p class="sub">2026-07-06 (월) · 오늘의 컴포넌트·패턴 3건 — 셀렉트/콤보박스 · 스위치·복사 · field-sizing</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#select">⌨️ 셀렉트 &amp; 콤보박스</a>
+    <a href="#switch">🔘 스위치 &amp; 복사 버튼</a>
+    <a href="#fieldsizing">🌀 field-sizing</a>
+  </nav>
+
+  <!-- ============ 1. SELECT & COMBOBOX ============ -->
+  <section class="card" id="select">
+    <h2>셀렉트 &amp; 콤보박스 <span class="tag">⌨️ 입력·폼</span></h2>
+    <p class="lede">선택지가 <b>7개 이하</b>면 네이티브 <code class="k">&lt;select&gt;</code>가 정답 — 모바일 휠 UI·접근성·무료 키보드 동작을 공짜로 얻는다.
+      선택지가 많고 <b>검색이 필요</b>할 때만 콤보박스(입력창+목록)를 직접 만든다. 은행·국가처럼 수십 개 항목이 그렇다.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <label class="fl" for="natSel">네이티브 select — 짧은 목록의 기본값</label>
+        <div class="sel-native">
+          <select class="field" id="natSel">
+            <option value="">결제 수단 선택…</option>
+            <option>신용·체크카드</option>
+            <option>계좌이체</option>
+            <option>간편결제</option>
+            <option>휴대폰 소액결제</option>
+          </select>
+          <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="cap">화살표만 커스텀하고 열림·키보드·모바일 동작은 브라우저에 맡긴다. 가장 안전한 선택.</div>
+      </div>
+
+      <div class="demo">
+        <label class="fl" id="cbLabel" for="cbInput">콤보박스 — 타이핑으로 좁히는 은행 선택</label>
+        <div class="combo" id="combo">
+          <div class="sel-native">
+            <input class="field" id="cbInput" type="text" role="combobox"
+                   aria-expanded="false" aria-controls="cbList" aria-autocomplete="list"
+                   aria-labelledby="cbLabel" autocomplete="off" placeholder="은행명 입력 (예: 국민)">
+            <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <ul class="listbox" id="cbList" role="listbox" aria-labelledby="cbLabel" hidden></ul>
+        </div>
+        <div class="cap"><kbd>↓</kbd><kbd>↑</kbd> 이동 · <kbd>Enter</kbd> 선택 · <kbd>Esc</kbd> 닫기. 입력한 글자는 <mark style="background:transparent;color:var(--brand);font-weight:700">강조</mark>된다.</div>
+        <p class="live" id="cbStatus" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <ul class="note">
+      <li><b>언제 무엇을</b>: 옵션 소수 → <code class="k">select</code>. 옵션 다수 + 검색 필요 → 콤보박스. "예뻐 보이려" 커스텀 드롭다운을 남발하면 접근성·모바일에서 손해다.</li>
+      <li><b>콤보박스 = ARIA 계약</b>: 입력창은 <code class="k">role="combobox"</code>, 목록은 <code class="k">role="listbox"</code>, 항목은 <code class="k">role="option"</code>. 활성 항목은 <code class="k">aria-activedescendant</code>로 가리켜 스크린리더가 읽게 한다. (ARIA = 보조기술에 의미를 알려주는 HTML 속성 규약)</li>
+      <li><b>결과 개수를 알린다</b>: <code class="k">aria-live</code> 영역에 "3개 결과"를 넣어 눈으로 못 보는 사용자도 좁혀지는 걸 안다.</li>
+    </ul>
+
+    <pre>&lt;!-- 콤보박스의 뼈대: 역할(role)이 핵심 --&gt;
+&lt;input role="combobox" aria-expanded="false" aria-controls="list"
+       aria-autocomplete="list" autocomplete="off"&gt;
+&lt;ul role="listbox" id="list"&gt;
+  &lt;li role="option" id="opt-1" aria-selected="true"&gt;국민은행&lt;/li&gt;
+  &lt;li role="option" id="opt-2"&gt;기업은행&lt;/li&gt;
+&lt;/ul&gt;
+
+// 키보드로 강조 이동 시, 실제 포커스는 input에 두고
+// input.setAttribute('aria-activedescendant', 'opt-2');  // ← 이 한 줄이 스크린리더 낭독을 만든다</pre>
+  </section>
+
+  <!-- ============ 2. SWITCH & COPY ============ -->
+  <section class="card" id="switch">
+    <h2>스위치 &amp; 복사 버튼 <span class="tag">🔘 버튼·액션</span></h2>
+    <p class="lede">두 개의 작은 액션 컴포넌트. <b>스위치</b>는 "즉시 적용되는 on/off"에만 쓰고(저장 버튼이 따로 필요하면 체크박스가 맞다),
+      <b>복사 버튼</b>은 계좌번호·쿠폰처럼 손으로 옮겨적기 싫은 값에 붙여 실수를 없앤다.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <p class="fl">토글 스위치 — 켜는 즉시 반영</p>
+        <label class="switch">
+          <input type="checkbox" role="switch" id="sw1" checked>
+          <span class="track"><span class="thumb"></span></span>
+          <span>결제 알림 받기</span>
+        </label>
+        <div style="height:12px"></div>
+        <label class="switch">
+          <input type="checkbox" role="switch" id="sw2">
+          <span class="track"><span class="thumb"></span></span>
+          <span>테스트(sandbox) 모드</span>
+        </label>
+        <div class="cap"><code class="k">role="switch"</code> + <code class="k">&lt;input type=checkbox&gt;</code> = 스페이스바 토글·포커스 링을 공짜로 얻는다. <span id="swState">알림 ON · sandbox OFF</span></div>
+      </div>
+
+      <div class="demo">
+        <p class="fl">복사 버튼 — 클릭하면 "복사됨"으로 잠깐 변신</p>
+        <div class="copyrow">
+          <span class="acct" id="acct">110-234-567890</span>
+          <button class="copybtn" id="copyBtn" data-copy="110-234-567890" aria-label="계좌번호 복사">
+            <svg class="ico copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <svg class="ico check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true" hidden><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="lbl">복사</span>
+          </button>
+        </div>
+        <div class="cap">아이콘·글자가 ✓ 복사됨으로 1.5초 바뀐 뒤 원복. <code class="k">aria-live</code>로 스크린리더도 "복사됨"을 듣는다.</div>
+        <p class="live" id="copyStatus" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <ul class="note">
+      <li><b>스위치 vs 체크박스</b>: 스위치는 <b>즉시 적용</b>(설정이 바로 켜짐), 체크박스는 <b>나중에 저장</b>(폼 제출 시 반영). 저장 버튼이 있는 폼 안이라면 스위치는 오해를 부른다.</li>
+      <li><b>낙관적 UI가 아니다</b>: 결제 관련 스위치(sandbox 전환 등)는 서버 확정 전 켜진 척하지 말 것. 실패 시 원복 애니메이션이 사용자에게 불신을 준다.</li>
+      <li><b>복사 성공은 두 채널로</b>: 시각(아이콘 변화) + 청각(<code class="k">aria-live</code>). 색만으로 성공을 표시하면 색각 이상 사용자가 놓친다.</li>
+      <li><b>reduced-motion 존중</b>: <code class="k">prefers-reduced-motion</code>(모션 최소화 설정)이면 썸(thumb) 슬라이드 전환을 끈다.</li>
+    </ul>
+
+    <pre>// 복사 + 성공 피드백 (핵심만)
+async function copy(btn){
+  await navigator.clipboard.writeText(btn.dataset.copy);
+  btn.classList.add('done');
+  btn.querySelector('.lbl').textContent = '복사됨';
+  status.textContent = '계좌번호가 클립보드에 복사됐어요';  // aria-live 낭독
+  setTimeout(() =&gt; { btn.classList.remove('done');
+    btn.querySelector('.lbl').textContent = '복사'; }, 1500);
+}</pre>
+  </section>
+
+  <!-- ============ 3. FIELD-SIZING ============ -->
+  <section class="card" id="fieldsizing">
+    <h2>field-sizing: content — 입력창이 내용만큼 자라는 CSS <span class="tag">🌀 트렌드·개념</span></h2>
+    <p class="lede"><code class="k">field-sizing: content</code>는 <code class="k">&lt;textarea&gt;</code>·<code class="k">&lt;input&gt;</code>이 <b>내용 길이에 맞춰 스스로 커지고 줄어드는</b> CSS 한 줄이다.
+      예전엔 "scrollHeight 재서 height 다시 세팅"하는 JS를 붙였는데, 이제 CSS 한 줄로 끝난다. 2026년 들어 주요 브라우저에 두루 퍼졌다(Baseline).</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <label class="fl" for="fsArea">자동으로 자라는 메모 (타이핑해 보세요)</label>
+        <textarea class="field fs-grow" id="fsArea" placeholder="여러 줄을 입력하면 스크롤 대신 높이가 늘어납니다…">결제 실패 사유를 여기 적어 두면 CS가 바로 봅니다.</textarea>
+        <div class="cap"><code class="k">field-sizing:content</code> + <code class="k">max-height</code>로 상한을 두면 무한정 커지지 않고 그 뒤엔 스크롤로 전환된다.</div>
+      </div>
+
+      <div class="demo">
+        <label class="fl" for="fsAmount">폭이 값에 맞는 금액 입력</label>
+        <div class="amount-wrap">
+          <span aria-hidden="true">₩</span>
+          <input id="fsAmount" inputmode="numeric" value="12,000" aria-label="금액(원)">
+        </div>
+        <span class="badge-ok">숫자 폭만큼만 차지</span>
+        <div class="cap">금액·태그·인라인 편집처럼 "값 길이에 딱 맞는 폭"이 필요한 곳에서 레이아웃이 깔끔해진다.</div>
+      </div>
+    </div>
+
+    <ul class="note">
+      <li><b>왜 지금 뜨나</b>: 오랫동안 auto-grow textarea는 "JS로 높이 계산" 단골 문제였다. <code class="k">field-sizing</code>이 2026년 Baseline에 들며 <b>JS·라이브러리 없이</b> 해결 가능해졌다.</li>
+      <li><b>상·하한을 꼭 건다</b>: <code class="k">min-height</code>/<code class="k">max-height</code>(또는 input은 <code class="k">min-width</code>/<code class="k">max-width</code>)로 경계를 두지 않으면 레이아웃이 튄다.</li>
+      <li><b>점진적 향상(progressive enhancement)</b>: 이 속성을 모르는 옛 브라우저는 그냥 무시하고 기본 입력창으로 보인다 — 깨지지 않으니 지금 바로 얹어도 안전하다.</li>
+      <li><b>추정</b>: 세부 지원 버전은 브라우저마다 다를 수 있으니 실제 배포 전 <code class="k">caniuse.com</code>에서 대상 브라우저를 확인하는 걸 권장.</li>
+    </ul>
+
+    <pre>/* 이것이 전부다 — JS 0줄 */
+textarea{
+  field-sizing: content;   /* 내용에 맞춰 높이 자동 */
+  min-height: 2.6em;
+  max-height: 9em;         /* 여기부턴 스크롤 */
+}
+input.amount{
+  field-sizing: content;   /* 값 길이에 맞춰 폭 자동 */
+  min-width: 2ch; max-width: 12ch;
+}</pre>
+  </section>
+
+  <p class="sub" style="text-align:center;margin-top:34px">직접 만든 self-contained 예시 · 오프라인에서도 열립니다 · 라이트/다크 토글 지원</p>
+</div>
+
+<script>
+(function(){
+  // ---- theme toggle ----
+  var btn=document.getElementById('themeBtn'), root=document.documentElement;
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.textContent=dark?'🌙 다크':'☀️ 라이트';
+    btn.setAttribute('aria-pressed',String(!dark));
+  });
+
+  // ---- 1. combobox ----
+  var BANKS=[
+    ['국민은행','004'],['신한은행','088'],['우리은행','020'],['하나은행','081'],
+    ['농협은행','011'],['기업은행','003'],['카카오뱅크','090'],['토스뱅크','092'],
+    ['SC제일은행','023'],['씨티은행','027'],['새마을금고','045'],['부산은행','032']
+  ];
+  var input=document.getElementById('cbInput'),
+      list=document.getElementById('cbList'),
+      status=document.getElementById('cbStatus'),
+      combo=document.getElementById('combo'),
+      active=-1, matches=[];
+
+  function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+  function open(){ list.hidden=false; input.setAttribute('aria-expanded','true'); }
+  function close(){ list.hidden=true; input.setAttribute('aria-expanded','false');
+    input.removeAttribute('aria-activedescendant'); active=-1; }
+
+  function render(){
+    var q=input.value.trim();
+    matches=BANKS.filter(function(b){return b[0].indexOf(q)>-1;});
+    list.innerHTML='';
+    if(!matches.length){
+      var e=document.createElement('li'); e.className='empty'; e.textContent='일치하는 은행이 없어요';
+      list.appendChild(e); status.textContent='결과 없음'; open(); return;
+    }
+    matches.forEach(function(b,i){
+      var li=document.createElement('li');
+      li.className='opt'; li.role='option'; li.id='cb-opt-'+i; li.setAttribute('role','option');
+      var name=b[0];
+      var html = q ? name.replace(new RegExp('('+esc(q)+')'),'<mark>$1</mark>') : name;
+      li.innerHTML='<span>'+html+'</span><span class="code">'+b[1]+'</span>';
+      li.addEventListener('mousedown',function(ev){ ev.preventDefault(); choose(i); });
+      list.appendChild(li);
+    });
+    status.textContent=matches.length+'개 결과';
+    open();
+  }
+  function highlight(){
+    [].forEach.call(list.querySelectorAll('.opt'),function(o,i){
+      o.setAttribute('aria-selected', i===active?'true':'false');
+      if(i===active){ input.setAttribute('aria-activedescendant',o.id); o.scrollIntoView({block:'nearest'}); }
+    });
+  }
+  function choose(i){
+    if(i<0||i>=matches.length) return;
+    input.value=matches[i][0]; status.textContent=matches[i][0]+' 선택됨'; close();
+  }
+  input.addEventListener('input',function(){ active=-1; render(); });
+  input.addEventListener('focus',function(){ if(input.value===''){ render(); } else { open(); } });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='ArrowDown'){ e.preventDefault(); if(list.hidden)render(); active=Math.min(active+1,matches.length-1); highlight(); }
+    else if(e.key==='ArrowUp'){ e.preventDefault(); active=Math.max(active-1,0); highlight(); }
+    else if(e.key==='Enter'){ if(active>-1){ e.preventDefault(); choose(active); } }
+    else if(e.key==='Escape'){ close(); }
+  });
+  document.addEventListener('click',function(e){ if(!combo.contains(e.target)) close(); });
+
+  // ---- 2a. switch state readout ----
+  var sw1=document.getElementById('sw1'), sw2=document.getElementById('sw2'), swState=document.getElementById('swState');
+  function updSw(){ swState.textContent='알림 '+(sw1.checked?'ON':'OFF')+' · sandbox '+(sw2.checked?'ON':'OFF'); }
+  sw1.addEventListener('change',updSw); sw2.addEventListener('change',updSw);
+
+  // ---- 2b. copy button ----
+  var cbtn=document.getElementById('copyBtn'), cstat=document.getElementById('copyStatus'),
+      ic=cbtn.querySelector('.copy'), ick=cbtn.querySelector('.check'), lbl=cbtn.querySelector('.lbl'), ctimer;
+  cbtn.addEventListener('click',function(){
+    var text=cbtn.getAttribute('data-copy');
+    function ok(){
+      cbtn.classList.add('done'); ic.hidden=true; ick.hidden=false; lbl.textContent='복사됨';
+      cstat.textContent='계좌번호가 클립보드에 복사됐어요';
+      clearTimeout(ctimer);
+      ctimer=setTimeout(function(){ cbtn.classList.remove('done'); ic.hidden=false; ick.hidden=true; lbl.textContent='복사'; },1500);
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(ok).catch(fallback);
+    } else { fallback(); }
+    function fallback(){
+      var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select();
+      try{ document.execCommand('copy'); }catch(e){} document.body.removeChild(t); ok();
+    }
+  });
+})();
+</script>
+</body>
+</html>
