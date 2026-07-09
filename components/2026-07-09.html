@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-07-09 (목)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px; --up:#0f9d58; --down:#d92d20;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --up:#4ade80; --down:#ff6a5e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+  kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;color:var(--muted)}
+
+  /* ---- 1. bottom nav ---- */
+  .phone{max-width:300px;margin:0 auto;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--panel);box-shadow:var(--shadow)}
+  .phone .screen{height:200px;padding:18px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
+  .phone .screen h3{margin:0;font-size:16px}
+  .phone .screen p{margin:0;font-size:13px;color:var(--muted)}
+  .bnav{display:flex;background:var(--panel);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  .bnav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;text-decoration:none;
+    color:var(--muted);font-size:11px;border-radius:10px;position:relative;transition:color .15s}
+  .bnav a .ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2}
+  .bnav a[aria-current="page"]{color:var(--brand)}
+  .bnav a[aria-current="page"] .ic{fill:var(--soft);stroke:var(--brand)}
+  .bnav a:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .bnav .badge{position:absolute;top:2px;right:calc(50% - 18px);min-width:16px;height:16px;padding:0 4px;
+    background:var(--danger);color:#fff;border-radius:999px;font-size:10px;line-height:16px;text-align:center;font-weight:700}
+
+  /* ---- 2. accordion ---- */
+  .acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .acc details{border-bottom:1px solid var(--line)}
+  .acc details:last-child{border-bottom:none}
+  .acc summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;
+    gap:12px;font-size:14px;font-weight:600;color:var(--ink)}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary:focus-visible{outline:2px solid var(--ring);outline-offset:-2px;border-radius:8px}
+  .acc summary .chev{width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:2;transition:transform .2s;flex:none}
+  .acc details[open] summary .chev{transform:rotate(180deg)}
+  .acc .body{padding:0 16px 16px;font-size:13.5px;color:var(--muted)}
+  /* 부드러운 높이 애니메이션 — 지원 브라우저에서만 (점진적 향상) */
+  @supports (interpolate-size: allow-keywords){
+    .acc details::details-content{
+      height:0;overflow:hidden;
+      transition:height .25s ease, content-visibility .25s allow-discrete;
+    }
+    .acc details[open]::details-content{ height:auto; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    .acc details::details-content{transition:none}
+    .acc summary .chev{transition:none}
+  }
+
+  /* ---- 3. interpolate-size demo ---- */
+  .isz{border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+  .isz .row{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;font-size:14px;font-weight:600}
+  .isz .panel{padding:0 16px;font-size:13.5px;color:var(--muted);
+    height:0;overflow:hidden;transition:height .28s ease;}
+  @supports (interpolate-size: allow-keywords){ :root{ interpolate-size: allow-keywords; } }
+  .isz .panel[data-open]{height:auto;padding:0 16px 16px}
+  .pill{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:999px;
+    padding:6px 12px;font-size:12.5px;font-weight:600}
+  .pill:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .warnbox{font-size:12px;color:var(--warn);border:1px solid var(--warn);border-radius:8px;padding:8px 10px;margin-top:12px;background:transparent}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Design Inspiration Daily</h1>
+      <p class="sub">2026-07-09 (목) · 오늘의 컴포넌트·패턴 3건 — 바텀 내비 · 아코디언 리스트 · interpolate-size</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#bottomnav">🧭 바텀 내비게이션</a>
+    <a href="#accordion">🃏 아코디언 리스트</a>
+    <a href="#interpolate">🌀 interpolate-size</a>
+  </nav>
+
+  <!-- ============ 1. BOTTOM NAV ============ -->
+  <section class="card" id="bottomnav">
+    <h2>바텀 내비게이션 &amp; 탭바 <span class="tag">🧭 내비게이션·탭</span></h2>
+    <p class="lede">모바일 앱의 <b>하단 고정 내비</b>는 엄지가 닿는 자리에 핵심 5개 이하를 놓는 패턴이다. 핀테크 앱(홈·거래·송금·카드·더보기)의 사실상 표준.
+      핵심은 <b>현재 위치 표시</b>(<code class="k">aria-current</code>), <b>배지 알림</b>, 그리고 노치·홈바를 피하는 <code class="k">safe-area</code> 여백이다.</p>
+
+    <div class="phone">
+      <div class="screen" id="navScreen" role="tabpanel" aria-live="polite">
+        <h3>홈</h3>
+        <p>이번 달 결제 3건 · 예정 출금 1건</p>
+      </div>
+      <nav class="bnav" aria-label="주요 메뉴">
+        <a href="#bottomnav" data-tab="홈" aria-current="page">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10l9-7 9 7v9a2 2 0 0 1-2 2h-4v-6H9v6H5a2 2 0 0 1-2-2z"/></svg>홈</a>
+        <a href="#bottomnav" data-tab="거래">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>거래</a>
+        <a href="#bottomnav" data-tab="송금">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>송금</a>
+        <a href="#bottomnav" data-tab="카드">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg>카드</a>
+        <a href="#bottomnav" data-tab="더보기"><span class="badge">3</span>
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>더보기</a>
+      </nav>
+    </div>
+    <p class="cap" style="text-align:center">아이콘을 눌러 보세요 — 화면 제목과 현재 위치(파란색)가 바뀝니다.</p>
+
+    <ul class="note">
+      <li><b>현재 위치는 <code class="k">aria-current="page"</code></b>: 색·굵기만으로 표시하면 스크린리더는 "지금 어디"인지 모른다. 이 속성이 "현재 페이지"라고 낭독하게 한다.</li>
+      <li><b>탭 개수는 5개 이하</b>: 그 이상은 마지막을 "더보기"로 묶는다. 손가락 터치 타깃은 최소 44×44px 권장.</li>
+      <li><b>safe-area</b>: <code class="k">env(safe-area-inset-bottom)</code>(노치·홈 인디케이터 영역 크기를 알려주는 CSS 값)만큼 아래 패딩을 줘 홈바에 안 가리게 한다.</li>
+      <li><b>배지</b>는 숫자 + 색 + 위치로 알린다. 색만으로는 색각 이상 사용자가 놓친다.</li>
+    </ul>
+
+    <pre>&lt;nav aria-label="주요 메뉴"&gt;
+  &lt;a href="/home" aria-current="page"&gt;홈&lt;/a&gt;   &lt;!-- 현재 위치 --&gt;
+  &lt;a href="/tx"&gt;거래&lt;/a&gt;
+&lt;/nav&gt;
+
+.bnav{ padding-bottom: calc(6px + env(safe-area-inset-bottom)); } /* 홈바 회피 */
+.bnav a[aria-current="page"]{ color: var(--brand); }             /* 활성 표시 */</pre>
+  </section>
+
+  <!-- ============ 2. ACCORDION ============ -->
+  <section class="card" id="accordion">
+    <h2>아코디언 리스트 — 접었다 펴는 disclosure <span class="tag">🃏 카드·리스트</span></h2>
+    <p class="lede">긴 정보를 <b>제목만 보여주고, 누르면 상세가 펼쳐지게</b> 접는 패턴(disclosure). FAQ·약관·주문 상세에 흔하다.
+      요즘은 JS 없이 <code class="k">&lt;details&gt;</code>/<code class="k">&lt;summary&gt;</code>로 만들고, "한 번에 하나만 열기"만 살짝 스크립트로 제어한다.</p>
+
+    <div class="acc" id="accGroup">
+      <details open>
+        <summary>결제가 실패했어요. 왜인가요?
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="body">한도 초과, 카드 정지, 잔액 부족이 대부분입니다. 결제 내역에서 실패 사유 코드를 확인하고, 카드사에 문의하거나 다른 수단으로 다시 시도하세요.</div>
+      </details>
+      <details>
+        <summary>환불은 얼마나 걸리나요?
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="body">신용카드 기준 영업일 3~5일이 일반적입니다. 카드사 매입 취소 시점에 따라 명세서 반영이 다음 달로 넘어갈 수 있습니다.</div>
+      </details>
+      <details>
+        <summary>정기결제를 해지하려면?
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <div class="body">설정 &gt; 구독 관리에서 해지할 수 있습니다. 다음 결제일 전까지 해지하면 추가 청구가 없습니다.</div>
+      </details>
+    </div>
+    <p class="cap">제목을 누르면 하나만 열립니다(다른 건 자동으로 닫힘). 지원 브라우저에선 높이가 부드럽게 전환됩니다.</p>
+
+    <ul class="note">
+      <li><b>기본은 네이티브</b>: <code class="k">&lt;details&gt;</code>는 키보드 포커스·엔터 토글·열림 상태를 공짜로 준다. "한 번에 하나만" 규칙만 JS로 얹는다.</li>
+      <li><b>부드러운 높이</b>: 예전엔 <code class="k">height:auto</code>로는 트랜지션이 안 걸렸다. 이제 <code class="k">::details-content</code>(펼쳐지는 내용 부분을 가리키는 가상 요소)에 <code class="k">interpolate-size</code>로 애니메이션한다 — 아래 세 번째 항목에서 자세히.</li>
+      <li><b>마커 커스텀</b>: 기본 삼각형은 <code class="k">summary::-webkit-details-marker{display:none}</code>로 숨기고 직접 셰브런(∨)을 넣어 회전시킨다.</li>
+    </ul>
+
+    <pre>// "한 번에 하나만 열기" (핵심만)
+const items = group.querySelectorAll('details');
+items.forEach(d =&gt; d.addEventListener('toggle', () =&gt; {
+  if(d.open) items.forEach(o =&gt; { if(o!==d) o.open = false; });
+}));</pre>
+  </section>
+
+  <!-- ============ 3. INTERPOLATE-SIZE ============ -->
+  <section class="card" id="interpolate">
+    <h2>interpolate-size — height: auto로 부드럽게 여닫기 <span class="tag">🌀 트렌드·개념</span></h2>
+    <p class="lede">오랜 숙제였던 "<code class="k">height: 0</code> → <code class="k">height: auto</code> 애니메이션"을 드디어 CSS만으로 푼다.
+      루트에 <code class="k">interpolate-size: allow-keywords</code> 한 줄이면, <code class="k">auto</code>·<code class="k">min-content</code> 같은 <b>키워드 크기로도 트랜지션</b>이 걸린다.</p>
+
+    <div class="isz" id="iszBox">
+      <div class="row">주문 요약 <button class="pill" id="iszToggle" aria-expanded="true" aria-controls="iszPanel">접기</button></div>
+      <div class="panel" id="iszPanel" data-open>
+        상품 2건 · 12,000원<br>배송비 0원<br>쿠폰 -2,000원<br><b style="color:var(--ink)">합계 10,000원</b>
+      </div>
+    </div>
+    <p class="cap">버튼을 눌러 접었다 펴 보세요 — 내용 높이를 몰라도 <code class="k">height:auto</code>로 부드럽게 전환됩니다(지원 브라우저).</p>
+
+    <div class="warnbox">⚠️ 지원 현황(2026-07 기준): Chromium 계열(Chrome/Edge 129+)만 지원, Firefox·Safari 미지원. <b>점진적 향상</b>으로 쓰면 안전 — 미지원 브라우저는 애니메이션 없이 즉시 열림/닫힘으로 동작(기능은 그대로).</div>
+
+    <ul class="note">
+      <li><b>무엇을 푸나</b>: 지금까진 내용 높이를 JS로 재거나(<code class="k">scrollHeight</code>), <code class="k">grid-template-rows: 0fr→1fr</code> 트릭을 썼다. <code class="k">interpolate-size</code>는 그걸 대체한다.</li>
+      <li><b>쓰는 법 두 가지</b>: ① 루트에 <code class="k">interpolate-size: allow-keywords</code> 선언(상속됨). ② 또는 <code class="k">calc-size(auto)</code>를 값에 쓰면 그 자리에서 자동 활성화.</li>
+      <li><b>점진적 향상(progressive enhancement)</b>: "되는 브라우저에서만 애니메이션, 안 되는 곳도 멀쩡하게" 두는 전략. 지금 얹어도 아무것도 깨지지 않는다.</li>
+      <li><b>추정</b>: 지원 버전은 계속 바뀌니 배포 전 <code class="k">caniuse.com</code>에서 대상 브라우저 확인 권장.</li>
+    </ul>
+
+    <pre>/* 방법 1 — 문서 전체에 허용 (상속) */
+:root{ interpolate-size: allow-keywords; }
+.panel{ height: 0; overflow: hidden; transition: height .28s ease; }
+.panel[data-open]{ height: auto; }   /* 이제 auto로도 트랜지션됨 */
+
+/* 방법 2 — 필요한 곳에서만 calc-size로 자동 활성화 */
+.panel{ transition: height .28s; }
+.panel.open{ height: calc-size(auto, size); }</pre>
+  </section>
+
+  <p class="sub" style="text-align:center;margin-top:34px">직접 만든 self-contained 예시 · 오프라인에서도 열립니다 · 라이트/다크 토글 지원</p>
+</div>
+
+<script>
+(function(){
+  // ---- theme toggle ----
+  var btn=document.getElementById('themeBtn'), root=document.documentElement;
+  btn.addEventListener('click',function(){
+    var dark=root.getAttribute('data-theme')==='dark';
+    root.setAttribute('data-theme',dark?'light':'dark');
+    btn.textContent=dark?'🌙 다크':'☀️ 라이트';
+    btn.setAttribute('aria-pressed',String(!dark));
+  });
+
+  // ---- 1. bottom nav ----
+  var COPY={
+    '홈':['홈','이번 달 결제 3건 · 예정 출금 1건'],
+    '거래':['거래 내역','최근 7일 12건 · 총 84,300원'],
+    '송금':['송금','자주 보낸 계좌 3곳 · 즉시이체'],
+    '카드':['내 카드','등록 카드 2장 · 이번 달 실적 32%'],
+    '더보기':['더보기','알림 3건 · 설정 · 고객센터']
+  };
+  var screen=document.getElementById('navScreen'),
+      links=document.querySelectorAll('.bnav a');
+  [].forEach.call(links,function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      [].forEach.call(links,function(x){ x.removeAttribute('aria-current'); });
+      a.setAttribute('aria-current','page');
+      var t=a.getAttribute('data-tab'), c=COPY[t];
+      screen.innerHTML='<h3>'+c[0]+'</h3><p>'+c[1]+'</p>';
+    });
+  });
+
+  // ---- 2. accordion: one-at-a-time ----
+  var items=document.querySelectorAll('#accGroup details');
+  [].forEach.call(items,function(d){
+    d.addEventListener('toggle',function(){
+      if(d.open){ [].forEach.call(items,function(o){ if(o!==d) o.open=false; }); }
+    });
+  });
+
+  // ---- 3. interpolate-size toggle ----
+  var panel=document.getElementById('iszPanel'),
+      tog=document.getElementById('iszToggle');
+  tog.addEventListener('click',function(){
+    var open=panel.hasAttribute('data-open');
+    if(open){ panel.removeAttribute('data-open'); tog.textContent='펼치기'; tog.setAttribute('aria-expanded','false'); }
+    else    { panel.setAttribute('data-open',''); tog.textContent='접기'; tog.setAttribute('aria-expanded','true'); }
+  });
+})();
+</script>
+</body>
+</html>

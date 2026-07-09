@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Inspiration Daily — 2026-07-10 (금)</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --panel:#ffffff; --ink:#15181d; --muted:#5b6573;
+    --line:#e3e7ed; --brand:#3b5bfd; --brand-ink:#fff;
+    --soft:#eaeefe; --ok:#0f9d58; --warn:#b54708; --danger:#d92d20; --danger-soft:#fef3f2;
+    --ok-soft:#ecfdf3; --warn-soft:#fffaeb; --info:#175cd3; --info-soft:#eff8ff;
+    --ring:#3b5bfd; --shadow:0 1px 2px rgba(16,24,40,.06),0 8px 24px rgba(16,24,40,.06);
+    --radius:12px; --up:#0f9d58; --down:#d92d20;
+  }
+  html[data-theme="dark"]{
+    --bg:#0e1117; --panel:#161b22; --ink:#e7ecf3; --muted:#9aa6b4;
+    --line:#27303b; --brand:#6b86ff; --brand-ink:#0b0e14; --soft:#1b2333;
+    --ok:#4ade80; --warn:#fdb022; --danger:#ff6a5e; --danger-soft:#2a1614;
+    --ok-soft:#12241b; --warn-soft:#2a2110; --info:#7cc0ff; --info-soft:#0f2233;
+    --ring:#6b86ff; --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+    --up:#4ade80; --down:#ff6a5e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:22px;margin:0;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:14px;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:999px;padding:8px 14px;font-size:13px;box-shadow:var(--shadow)}
+  .toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 28px}
+  .toc a{font-size:13px;text-decoration:none;color:var(--ink);background:var(--panel);
+    border:1px solid var(--line);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow)}
+  .toc a:hover{border-color:var(--brand)}
+  .toc a:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px;margin:0 0 26px;box-shadow:var(--shadow)}
+  section.card>h2{margin:0 0 4px;font-size:18px;letter-spacing:-.01em}
+  .tag{display:inline-block;font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:6px;padding:2px 7px;margin-left:8px;vertical-align:middle}
+  .lede{color:var(--muted);font-size:14px;margin:6px 0 18px}
+  .grid{display:grid;gap:18px}
+  @media(min-width:680px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{border:1px dashed var(--line);border-radius:10px;padding:18px;background:var(--bg)}
+  .cap{font-size:12px;color:var(--muted);margin-top:10px}
+  b{color:var(--ink)}
+  code.k{background:var(--soft);color:var(--brand);border-radius:5px;padding:1px 6px;font-size:12.5px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  pre{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:14px 0 0}
+  ul.note{margin:10px 0 0;padding-left:18px;font-size:13px;color:var(--muted)}
+  ul.note li{margin:3px 0}
+  kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11px;
+    background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;color:var(--muted)}
+  .btn{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--ink);
+    border-radius:8px;padding:7px 13px;font-size:13px;font-weight:600}
+  .btn:hover{border-color:var(--brand)}
+  .btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .btn.brand{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+  /* ---- 1. stat / KPI cards ---- */
+  .stats{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:560px){.stats{grid-template-columns:1fr 1fr}}
+  @media(min-width:820px){.stats{grid-template-columns:1fr 1fr 1fr}}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 16px 14px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .stat .label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .stat .label .dot{width:8px;height:8px;border-radius:50%;background:var(--brand)}
+  .stat .value{font-size:26px;font-weight:750;letter-spacing:-.02em;margin:8px 0 6px;
+    font-variant-numeric:tabular-nums}
+  .delta{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:700;
+    padding:2px 7px;border-radius:999px;font-variant-numeric:tabular-nums}
+  .delta.up{color:var(--up);background:var(--ok-soft)}
+  .delta.down{color:var(--down);background:var(--danger-soft)}
+  .delta .arw{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2.5}
+  .stat .vs{font-size:11.5px;color:var(--muted);margin-left:6px}
+  .stat .spark{position:absolute;right:12px;bottom:10px;width:66px;height:26px;opacity:.9}
+  .stat .spark path{fill:none;stroke:var(--brand);stroke-width:2;
+    stroke-linecap:round;stroke-linejoin:round}
+  .stat.pos .spark path{stroke:var(--up)} .stat.neg .spark path{stroke:var(--down)}
+  /* 로딩 스켈레톤 */
+  .stat.loading .label,.stat.loading .value,.stat.loading .delta{color:transparent}
+  .stat.loading .label .dot{background:transparent}
+  .sk{background:linear-gradient(90deg,var(--line) 25%,var(--soft) 37%,var(--line) 63%);
+    background-size:400% 100%;border-radius:6px;animation:shine 1.4s ease infinite}
+  .stat.loading .value{width:70%;height:26px} .stat.loading .label{width:50%;height:14px}
+  .stat.loading .delta{width:64px;height:20px} .stat.loading .spark{display:none}
+  @keyframes shine{to{background-position:-135% 0}}
+  @media (prefers-reduced-motion: reduce){.sk{animation:none}}
+
+  /* ---- 2. inline banner / alert ---- */
+  .stack{display:flex;flex-direction:column;gap:10px}
+  .alert{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);
+    border-left-width:4px;border-radius:10px;padding:12px 12px 12px 13px;background:var(--panel);font-size:13.5px}
+  .alert .ic{width:18px;height:18px;flex:none;margin-top:1px;stroke-width:2;fill:none}
+  .alert .txt{flex:1;min-width:0}
+  .alert .ttl{font-weight:700;margin:0 0 1px}
+  .alert .msg{color:var(--muted);margin:0}
+  .alert .act{margin-top:8px;display:flex;gap:8px}
+  .alert .x{flex:none;border:none;background:transparent;cursor:pointer;color:var(--muted);
+    font-size:16px;line-height:1;padding:2px 4px;border-radius:6px}
+  .alert .x:hover{color:var(--ink);background:var(--bg)}
+  .alert .x:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .alert.info{border-left-color:var(--info);background:var(--info-soft)} .alert.info .ic{stroke:var(--info)}
+  .alert.ok{border-left-color:var(--ok);background:var(--ok-soft)} .alert.ok .ic{stroke:var(--ok)}
+  .alert.warn{border-left-color:var(--warn);background:var(--warn-soft)} .alert.warn .ic{stroke:var(--warn)}
+  .alert.danger{border-left-color:var(--danger);background:var(--danger-soft)} .alert.danger .ic{stroke:var(--danger)}
+  .alert .act .btn{padding:5px 11px;font-size:12.5px}
+  /* 진입/퇴장 애니메이션 (지원 시) */
+  .alert{transition:opacity .28s ease, transform .28s ease}
+  .alert.leaving{opacity:0;transform:translateY(-6px)}
+  @media (prefers-reduced-motion: reduce){.alert{transition:none}}
+
+  /* ---- 3. @starting-style trend ---- */
+  .ss-stage{min-height:150px;display:flex;align-items:center;justify-content:center;position:relative}
+  .ss-toast{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);padding:14px 16px;display:flex;gap:10px;align-items:center;max-width:320px}
+  .ss-toast .ic{width:20px;height:20px;stroke:var(--ok);stroke-width:2;fill:none;flex:none}
+  .ss-toast .ttl{font-weight:700;font-size:14px;margin:0}
+  .ss-toast .sub{font-size:12.5px;color:var(--muted);margin:1px 0 0}
+  /* display:none 에서 등장/퇴장까지 CSS만으로 */
+  #ssToast{
+    transition: opacity .3s ease, transform .3s ease, overlay .3s allow-discrete, display .3s allow-discrete;
+    opacity:1; transform:translateY(0) scale(1);
+  }
+  #ssToast[hidden]{display:none}
+  #ssToast.enter-from, #ssToast.exit-to{opacity:0; transform:translateY(12px) scale(.96)}
+  @supports (transition-behavior: allow-discrete){
+    #ssToast{display:flex;}
+    #ssToast[data-shown="false"]{opacity:0;transform:translateY(12px) scale(.96);
+      transition-behavior: allow-discrete;}
+  }
+  @media (prefers-reduced-motion: reduce){#ssToast{transition:none}}
+  .badge-yn{font-size:11px;border-radius:6px;padding:2px 7px;font-weight:700}
+  .badge-yn.y{color:var(--ok);background:var(--ok-soft)}
+  .supdesc{font-size:12.5px;color:var(--muted);margin-top:10px}
+  footer{color:var(--muted);font-size:12.5px;text-align:center;margin-top:30px}
+  a.ext{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Design Inspiration Daily</h1>
+      <p class="sub">2026-07-10 (금) · 오늘의 컴포넌트 & 트렌드 3건 — 데이터·피드백·상태</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#stats">📊 통계·지표 카드</a>
+    <a href="#banner">🔔 인라인 배너·알럿</a>
+    <a href="#startingstyle">🌀 @starting-style 진입 애니메이션</a>
+  </nav>
+
+  <!-- ============ 1. STAT CARDS ============ -->
+  <section class="card" id="stats">
+    <h2>📊 통계·지표 카드 (Stat / KPI Card) <span class="tag">데이터·테이블·차트</span></h2>
+    <p class="lede">대시보드 맨 위에 놓이는 "숫자 한 개 + 증감 + 미니 추세" 카드. 결제 대시보드의 오늘 거래액·승인율·환불 같은 핵심 지표를 한눈에 보여준다. 값만 크게 쓰고, 전 기간 대비 변화(<b>델타</b>)를 색과 화살표로, 흐름을 <b>스파크라인</b>(축·라벨 없는 미니 라인차트)으로 압축한다.</p>
+
+    <div class="row" style="margin-bottom:14px">
+      <button class="btn" id="skBtn">↻ 로딩 상태 3초 보기</button>
+      <span class="cap" style="margin:0">데이터 도착 전에는 스켈레톤으로 레이아웃 점프(CLS)를 막는다.</span>
+    </div>
+
+    <div class="stats" id="statGrid">
+      <div class="stat pos">
+        <div class="label"><span class="dot"></span>오늘 거래액</div>
+        <div class="value">₩ 48,210,000</div>
+        <div><span class="delta up"><svg class="arw" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>12.4%</span><span class="vs">어제 대비</span></div>
+        <svg class="spark" viewBox="0 0 66 26" aria-hidden="true"><path d="M1 20 L11 18 L21 21 L31 12 L41 14 L51 6 L65 3"/></svg>
+      </div>
+      <div class="stat pos">
+        <div class="label"><span class="dot" style="background:var(--ok)"></span>결제 승인율</div>
+        <div class="value">97.3%</div>
+        <div><span class="delta up"><svg class="arw" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>0.6%p</span><span class="vs">지난주 대비</span></div>
+        <svg class="spark" viewBox="0 0 66 26" aria-hidden="true"><path d="M1 16 L11 15 L21 17 L31 12 L41 13 L51 9 L65 7"/></svg>
+      </div>
+      <div class="stat neg">
+        <div class="label"><span class="dot" style="background:var(--danger)"></span>환불 건수</div>
+        <div class="value">37건</div>
+        <div><span class="delta down"><svg class="arw" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>8.1%</span><span class="vs">어제 대비</span></div>
+        <svg class="spark" viewBox="0 0 66 26" aria-hidden="true"><path d="M1 8 L11 10 L21 7 L31 12 L41 11 L51 16 L65 18"/></svg>
+      </div>
+    </div>
+    <p class="cap">▲/▼ + 색으로 "좋음/나쁨"을 판단하되, <b>환불 건수처럼 감소가 좋은 지표</b>는 화살표 방향(감소=아래)과 의미(초록=좋음)를 분리해서 설계해야 오해가 없다. 여기선 "환불 감소"라 아래 화살표+빨강 대신 맥락상 검토가 필요함을 보여주려 빨강으로 뒀다 — 실제로는 지표별로 색 규칙을 정의하는 게 안전하다.</p>
+
+    <pre>&lt;article class="stat pos"&gt;
+  &lt;div class="label"&gt;&lt;span class="dot"&gt;&lt;/span&gt;오늘 거래액&lt;/div&gt;
+  &lt;div class="value"&gt;₩ 48,210,000&lt;/div&gt;
+  &lt;span class="delta up"&gt;▲ 12.4%&lt;/span&gt; &lt;span class="vs"&gt;어제 대비&lt;/span&gt;
+  &lt;svg class="spark" viewBox="0 0 66 26"&gt;&lt;path d="M1 20 L31 12 L65 3"/&gt;&lt;/svg&gt;
+&lt;/article&gt;
+
+/* 값은 tabular-nums 로 자릿수 흔들림 방지 */
+.stat .value{ font-variant-numeric: tabular-nums; }
+/* 스켈레톤: 데이터 오기 전 자리를 미리 잡아 레이아웃 점프 차단 */
+.stat.loading .value{ /* 배경 shimmer */ }</pre>
+  </section>
+
+  <!-- ============ 2. INLINE BANNER / ALERT ============ -->
+  <section class="card" id="banner">
+    <h2>🔔 인라인 배너·알럿 (Inline Alert) <span class="tag">피드백·상태</span></h2>
+    <p class="lede">토스트(잠깐 떴다 사라지는 알림)와 달리 <b>인라인 배너</b>는 화면 흐름 안에 <b>계속 머무는</b> 상태 메시지다. "카드 만료 임박", "정산 실패 — 재시도" 같은 <b>지속적·조치가 필요한</b> 정보에 쓴다. 4가지 톤(정보·성공·경고·위험)을 색·아이콘·역할(role)로 구분하고, 필요하면 액션 버튼과 닫기를 붙인다.</p>
+
+    <div class="stack" id="alertStack">
+      <div class="alert info" role="status">
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <div class="txt"><p class="ttl">새 정산 리포트가 준비됐어요</p><p class="msg">6월 정산 내역을 확인할 수 있습니다.</p></div>
+        <button class="x" aria-label="닫기" data-close>×</button>
+      </div>
+      <div class="alert ok" role="status">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+        <div class="txt"><p class="ttl">결제 수단이 등록됐습니다</p><p class="msg">기본 카드로 설정되었어요.</p></div>
+        <button class="x" aria-label="닫기" data-close>×</button>
+      </div>
+      <div class="alert warn" role="status">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <div class="txt"><p class="ttl">카드 만료 임박</p><p class="msg">등록된 카드가 이번 달 만료됩니다. 미리 갱신하세요.</p>
+          <div class="act"><button class="btn brand">카드 갱신</button><button class="btn" data-close>나중에</button></div>
+        </div>
+        <button class="x" aria-label="닫기" data-close>×</button>
+      </div>
+      <div class="alert danger" role="alert">
+        <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <div class="txt"><p class="ttl">정산 이체에 실패했어요</p><p class="msg">일시적 오류입니다. 잠시 후 다시 시도해 주세요.</p>
+          <div class="act"><button class="btn brand" id="retryBtn">다시 시도</button></div>
+        </div>
+        <button class="x" aria-label="닫기" data-close>×</button>
+      </div>
+    </div>
+    <div class="row" style="margin-top:14px"><button class="btn" id="resetAlerts">↻ 배너 되살리기</button></div>
+
+    <p class="cap"><b>role 구분이 핵심</b>: 정보·성공·경고는 <code class="k">role="status"</code>(=<code class="k">aria-live="polite"</code>, 하던 일 끝나면 읽어줌), 즉시 주의가 필요한 위험은 <code class="k">role="alert"</code>(=<code class="k">aria-live="assertive"</code>, 바로 끊고 읽어줌). 색만으로 구분하지 말고 아이콘·제목 텍스트로도 의미를 이중 전달해야 색맹 사용자도 안다.</p>
+
+    <pre>&lt;!-- 위험: 즉시 읽어줌 --&gt;
+&lt;div class="alert danger" role="alert"&gt;
+  &lt;svg class="ic" ...&gt;&lt;/svg&gt;
+  &lt;div class="txt"&gt;
+    &lt;p class="ttl"&gt;정산 이체에 실패했어요&lt;/p&gt;
+    &lt;p class="msg"&gt;잠시 후 다시 시도해 주세요.&lt;/p&gt;
+    &lt;button class="btn brand"&gt;다시 시도&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;button class="x" aria-label="닫기"&gt;×&lt;/button&gt;
+&lt;/div&gt;
+
+/* 정보/성공/경고 → role="status" (polite),  위험 → role="alert" (assertive) */</pre>
+  </section>
+
+  <!-- ============ 3. @starting-style TREND ============ -->
+  <section class="card" id="startingstyle">
+    <h2>🌀 @starting-style — JS 없이 "나타나는" 애니메이션 <span class="tag">트렌드·개념</span></h2>
+    <p class="lede">토스트·모달·배너를 <b>부드럽게 등장/퇴장</b>시키려면, 예전엔 <code class="k">display:none → block</code> 사이에 <code class="k">setTimeout</code>으로 클래스를 토글하는 해킹이 필요했다. 2024년 <b>Baseline</b>(주요 브라우저 공통 지원)에 오른 <code class="k">@starting-style</code> + <code class="k">transition-behavior: allow-discrete</code> 덕에, 이제 <b>CSS만으로</b> display 전환까지 트랜지션을 걸 수 있다. (<b>Baseline</b> = 크롬·사파리·파이어폭스에서 공통으로 쓸 수 있게 된 기능이란 뜻.)</p>
+
+    <div class="demo">
+      <div class="row" style="justify-content:center;margin-bottom:12px">
+        <button class="btn brand" id="ssShow">토스트 띄우기</button>
+        <button class="btn" id="ssHide">닫기</button>
+      </div>
+      <div class="ss-stage">
+        <div class="ss-toast" id="ssToast" role="status" data-shown="false">
+          <svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><p class="ttl">저장되었습니다</p><p class="sub">display:none → flex 전환까지 CSS만으로 애니메이션</p></div>
+        </div>
+      </div>
+      <p class="cap">등장·퇴장 모두 CSS 트랜지션. JS는 <code class="k">data-shown</code> 속성만 바꾼다 — 타이머로 클래스를 조율하던 코드가 사라진다.</p>
+    </div>
+
+    <div class="supdesc">브라우저 지원(2024-08 Baseline Newly available): Chrome 117+ <span class="badge-yn y">지원</span> · Safari 17.5+ <span class="badge-yn y">지원</span> · Firefox 129+ <span class="badge-yn y">지원</span> — 미지원 브라우저에선 애니메이션만 생략되고 표시/숨김은 정상 동작(점진적 향상).</div>
+
+    <pre>/* 1) 평소 상태(보일 때) */
+.toast{
+  opacity:1; transform:translateY(0);
+  transition: opacity .3s, transform .3s,
+              display .3s allow-discrete;   /* display 도 트랜지션 대상에 */
+}
+/* 2) 숨김 상태 */
+.toast[data-shown="false"]{
+  opacity:0; transform:translateY(12px);
+  display:none;                              /* discrete 라 보통은 즉시 사라짐 */
+}
+/* 3) 등장 직전의 시작값 — 이게 핵심 */
+@starting-style{
+  .toast[data-shown="true"]{ opacity:0; transform:translateY(12px); }
+}
+
+// JS 는 딱 이것뿐
+btn.onclick = () =&gt; toast.dataset.shown = "true";</pre>
+    <ul class="note">
+      <li><b>allow-discrete</b>: <code class="k">display</code>처럼 중간값이 없는(끊기는) 속성도 트랜지션 타이밍에 맞춰 바뀌게 해주는 키워드.</li>
+      <li><b>@starting-style</b>: 요소가 처음 나타날 때의 "출발 지점" 스타일. 이게 없으면 진입 애니메이션이 안 걸린다.</li>
+      <li>모달·팝오버(top layer)에도 동일하게 적용 가능. <code class="k">prefers-reduced-motion</code> 존중은 별도로 챙길 것.</li>
+    </ul>
+  </section>
+
+  <footer>self-contained · 외부 의존성 없음 · 라이트/다크 토글 · 라이브 예시 by Design Inspiration Daily</footer>
+</div>
+
+<script>
+  // theme toggle
+  var root=document.documentElement, tb=document.getElementById('themeBtn');
+  function setT(t){root.setAttribute('data-theme',t);var d=t==='dark';tb.textContent=d?'☀️ 라이트':'🌙 다크';tb.setAttribute('aria-pressed',String(d));}
+  try{var m=matchMedia('(prefers-color-scheme: dark)');setT(m.matches?'dark':'light');}catch(e){setT('light');}
+  tb.addEventListener('click',function(){setT(root.getAttribute('data-theme')==='dark'?'light':'dark');});
+
+  // 1) stat skeleton demo
+  var grid=document.getElementById('statGrid'), skBtn=document.getElementById('skBtn');
+  var savedCards=grid.innerHTML;
+  skBtn.addEventListener('click',function(){
+    var cards=grid.querySelectorAll('.stat');
+    cards.forEach(function(c){
+      c.classList.add('loading');
+      c.querySelector('.label').classList.add('sk');
+      c.querySelector('.value').classList.add('sk');
+      c.querySelector('.delta').classList.add('sk');
+    });
+    skBtn.disabled=true;
+    setTimeout(function(){grid.innerHTML=savedCards;skBtn.disabled=false;},3000);
+  });
+
+  // 2) inline banner dismiss + reset
+  var stack=document.getElementById('alertStack'), savedAlerts=stack.innerHTML;
+  function wire(){
+    stack.querySelectorAll('[data-close]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var a=b.closest('.alert'); a.classList.add('leaving');
+        var mq=matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if(mq){a.remove();return;}
+        a.addEventListener('transitionend',function(){a.remove();},{once:true});
+      });
+    });
+    var rb=document.getElementById('retryBtn');
+    if(rb) rb.addEventListener('click',function(){
+      rb.disabled=true; rb.textContent='재시도 중…';
+      setTimeout(function(){rb.textContent='다시 시도'; rb.disabled=false;},1600);
+    });
+  }
+  wire();
+  document.getElementById('resetAlerts').addEventListener('click',function(){stack.innerHTML=savedAlerts;wire();});
+
+  // 3) @starting-style toast
+  var ssT=document.getElementById('ssToast');
+  document.getElementById('ssShow').addEventListener('click',function(){ssT.dataset.shown='true';});
+  document.getElementById('ssHide').addEventListener('click',function(){ssT.dataset.shown='false';});
+</script>
+</body>
+</html>
