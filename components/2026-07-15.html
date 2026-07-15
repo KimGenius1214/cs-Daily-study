@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-15 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0f1216; --surface:#171b21; --surface-2:#1f242c; --text:#eef1f5; --muted:#9aa4b2;
+    --border:#2a313b; --brand:#8b83ff; --brand-ink:#0f1216; --brand-soft:#232041;
+    --ok:#4ade80; --ok-soft:#12261a; --warn:#fbbf24; --warn-soft:#2b2113; --danger:#f87171; --danger-soft:#2a1618;
+    --ring:#8b83ff; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;transition:background .25s,color .25s}
+  a{color:var(--brand)}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 18px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:1.4rem;margin:0}
+  .date{color:var(--muted);font-size:.95rem;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
+  .toc a{background:var(--surface);border:1px solid var(--border);border-radius:999px;
+    padding:6px 12px;text-decoration:none;color:var(--text);font-size:.86rem}
+  .toc a:hover{border-color:var(--brand)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;margin:0 0 26px;box-shadow:var(--shadow);scroll-margin-top:18px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:22px 0 8px}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 10px}
+  .lead{color:var(--muted);margin:.2rem 0 1rem}
+  .cap{color:var(--muted);font-size:.84rem;margin:.4rem 0 0}
+  .grid{display:grid;gap:16px}
+  @media(min-width:620px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px}
+  code.k{background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:.85em}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  .btn{cursor:pointer;font:inherit;font-weight:600;border-radius:10px;padding:10px 16px;border:1px solid transparent;transition:.15s}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.brand{background:var(--brand);color:var(--brand-ink)}
+  .btn.brand:hover{filter:brightness(1.06)}
+  .btn.brand:disabled{opacity:.5;cursor:not-allowed;filter:none}
+  .btn.soft{background:var(--brand-soft);color:var(--brand)}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .note{background:var(--surface-2);border-left:3px solid var(--brand);border-radius:0 8px 8px 0;
+    padding:10px 14px;margin:14px 0;font-size:.9rem;color:var(--muted)}
+  .lbl{display:block;font-size:.84rem;font-weight:600;margin:0 0 6px}
+  .hint{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  .err{font-size:.8rem;color:var(--danger);margin:6px 0 0;display:none}
+  .err.on{display:block}
+
+  /* ── 1. 금액 입력 ───────────────────────────────── */
+  .amount-field{position:relative;display:flex;align-items:center;gap:8px;
+    background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;
+    transition:border-color .15s,box-shadow .15s}
+  .amount-field:focus-within{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .amount-field.invalid{border-color:var(--danger)}
+  .amount-field.invalid:focus-within{box-shadow:0 0 0 3px var(--danger-soft)}
+  .cur{font-weight:700;color:var(--muted);font-size:1.25rem;flex:none}
+  .amount-in{flex:1;min-width:0;border:0;background:transparent;color:var(--text);
+    font:inherit;font-size:1.5rem;font-weight:700;text-align:right;
+    font-variant-numeric:tabular-nums;letter-spacing:.01em;outline:none}
+  .amount-in::placeholder{color:var(--muted);font-weight:500}
+  .unit{font-weight:600;color:var(--muted);flex:none}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{cursor:pointer;font:inherit;font-size:.84rem;font-weight:600;border-radius:999px;
+    padding:6px 12px;border:1px solid var(--border);background:var(--surface);color:var(--text);transition:.15s}
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+  .chip:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .chip[aria-pressed="true"]{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+  .bal{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);margin-top:10px}
+  .bal b{color:var(--text);font-variant-numeric:tabular-nums}
+  .readback{margin-top:10px;font-size:.86rem;color:var(--muted);min-height:1.4em}
+  .readback b{color:var(--text)}
+  .keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;max-width:280px}
+  .key{cursor:pointer;font:inherit;font-size:1.15rem;font-weight:600;padding:12px 0;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);font-variant-numeric:tabular-nums}
+  .key:hover{background:var(--brand-soft);border-color:var(--brand)}
+  .key:active{transform:scale(.96)}
+  .key:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ── 2. 날짜·기간 선택 ───────────────────────────── */
+  .date-in{font:inherit;font-size:.95rem;padding:10px 12px;border-radius:10px;
+    border:1.5px solid var(--border);background:var(--surface);color:var(--text);
+    font-variant-numeric:tabular-nums;transition:border-color .15s,box-shadow .15s}
+  .date-in:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .date-in:user-invalid{border-color:var(--danger)}
+  .range{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+  .dash{padding-bottom:11px;color:var(--muted);font-weight:700}
+  .summary{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--brand-soft);
+    color:var(--brand);font-size:.88rem;font-weight:600}
+  .summary.bad{background:var(--danger-soft);color:var(--danger)}
+  table.cal{border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.85rem;margin-top:8px}
+  table.cal th{color:var(--muted);font-weight:600;padding:6px 0;width:34px}
+  table.cal td{padding:1px}
+  .day{width:34px;height:34px;border-radius:8px;border:1px solid transparent;background:transparent;
+    color:var(--text);font:inherit;font-size:.85rem;cursor:pointer;font-variant-numeric:tabular-nums}
+  .day:hover:not(:disabled){background:var(--brand-soft);color:var(--brand)}
+  .day:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .day:disabled{color:var(--muted);opacity:.35;cursor:not-allowed}
+  .day.edge{background:var(--brand);color:var(--brand-ink);font-weight:700}
+  .day.inrange{background:var(--brand-soft);color:var(--brand);border-radius:0}
+  .day.today{border-color:var(--brand)}
+
+  /* ── 3. light-dark() ────────────────────────────── */
+  .ld-demo{color-scheme:light dark;
+    background:light-dark(#ffffff,#171b21);
+    color:light-dark(#14181f,#eef1f5);
+    border:1px solid light-dark(#e2e6ec,#2a313b);
+    border-radius:12px;padding:18px;transition:background .25s,color .25s}
+  .ld-demo .pill{display:inline-block;border-radius:999px;padding:4px 12px;font-size:.8rem;font-weight:700;
+    background:light-dark(#eef0fe,#232041); color:light-dark(#4f46e5,#8b83ff)}
+  .ld-forced{color-scheme:light dark}
+  .ld-forced.f-light{color-scheme:light}
+  .ld-forced.f-dark{color-scheme:dark}
+  .swatch{display:flex;gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-top:10px}
+  .swatch div{flex:1;padding:14px 8px;text-align:center;font-size:.78rem;font-weight:700}
+  .sw1{background:light-dark(#4f46e5,#8b83ff);color:light-dark(#fff,#0f1216)}
+  .sw2{background:light-dark(#eef0fe,#232041);color:light-dark(#4f46e5,#8b83ff)}
+  .sw3{background:light-dark(#f0f2f5,#1f242c);color:light-dark(#14181f,#eef1f5)}
+  .supbox{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:.86rem}
+  .badge-yn{font-size:.78rem;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--surface-2);border:1px solid var(--border)}
+  .badge-yn.yes{color:var(--ok);background:var(--ok-soft)}
+  .badge-yn.no{color:var(--danger);background:var(--danger-soft)}
+  .seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px}
+  .seg button{cursor:pointer;font:inherit;font-size:.82rem;font-weight:600;border:0;background:transparent;
+    color:var(--muted);border-radius:999px;padding:5px 12px}
+  .seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  .sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+    html{scroll-behavior:auto}
+  }
+  footer{color:var(--muted);font-size:.84rem;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Design Inspiration Daily</h1>
+      <p class="date">2026-07-15 (수) · 결제·체크아웃 UX / 입력·폼 / 트렌드·개념</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#amount">💳 금액 입력 필드</a>
+    <a href="#daterange">⌨️ 날짜·기간 선택</a>
+    <a href="#lightdark">🌀 light-dark()</a>
+  </nav>
+
+  <!-- ══════════ 1. 금액 입력 ══════════ -->
+  <section class="card" id="amount">
+    <h2>💳 금액 입력 필드 <span class="tag">결제·체크아웃 UX</span></h2>
+    <p class="lead">돈을 넣는 칸은 일반 텍스트 칸과 다르다. 천 단위 콤마를 <b>타이핑하는 동안</b> 붙여주고, 모바일에선 숫자 키패드가 떠야 하고, 한도를 넘으면 즉시 막아야 한다. 아래 4가지 변형을 직접 눌러보자.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <h3 style="margin-top:0">변형 A — 기본형 (자동 콤마 + 통화 기호)</h3>
+        <label class="lbl" for="amtA">송금 금액</label>
+        <div class="amount-field" id="fieldA">
+          <span class="cur" aria-hidden="true">₩</span>
+          <input class="amount-in" id="amtA" type="text" inputmode="numeric"
+                 autocomplete="off" placeholder="0" aria-describedby="hintA" />
+        </div>
+        <p class="hint" id="hintA">숫자만 입력 — 콤마는 자동으로 붙습니다.</p>
+        <p class="readback" id="readA" aria-live="polite"></p>
+        <p class="cap">왜: <code class="k">inputmode="numeric"</code>은 모바일에서 숫자 키패드를 띄운다(<code class="k">type="number"</code>는 스피너 화살표·스크롤 오작동 때문에 금액엔 잘 안 쓴다). 커서 위치를 계산해 되돌려주므로 중간을 고쳐도 안 튄다.</p>
+      </div>
+
+      <div class="demo">
+        <h3 style="margin-top:0">변형 B — 한도 검증 + 잔액 표시</h3>
+        <label class="lbl" for="amtB">출금 금액</label>
+        <div class="amount-field" id="fieldB">
+          <span class="cur" aria-hidden="true">₩</span>
+          <input class="amount-in" id="amtB" type="text" inputmode="numeric"
+                 autocomplete="off" placeholder="0" aria-describedby="errB" />
+        </div>
+        <div class="bal"><span>사용 가능 잔액</span><b id="balB">1,250,000원</b></div>
+        <p class="err" id="errB" role="alert"></p>
+        <div class="row" style="margin-top:12px">
+          <button class="btn brand" id="submitB" disabled>출금하기</button>
+        </div>
+        <p class="cap">왜: 잔액을 <b>입력칸 바로 밑</b>에 두면 "얼마까지 되나"를 찾으러 이동할 필요가 없다. 에러는 <code class="k">role="alert"</code>로 스크린리더에 즉시 읽히고, 넘으면 제출 버튼이 잠긴다.</p>
+      </div>
+    </div>
+
+    <div class="grid cols2" style="margin-top:16px">
+      <div class="demo">
+        <h3 style="margin-top:0">변형 C — 빠른 금액 칩</h3>
+        <label class="lbl" for="amtC">충전 금액</label>
+        <div class="amount-field">
+          <span class="cur" aria-hidden="true">₩</span>
+          <input class="amount-in" id="amtC" type="text" inputmode="numeric" autocomplete="off" placeholder="0" />
+        </div>
+        <div class="chips" id="chipsC" role="group" aria-label="빠른 금액 선택">
+          <button class="chip" data-add="10000" aria-pressed="false">+1만</button>
+          <button class="chip" data-add="50000" aria-pressed="false">+5만</button>
+          <button class="chip" data-add="100000" aria-pressed="false">+10만</button>
+          <button class="chip" data-set="0">지우기</button>
+        </div>
+        <p class="cap">왜: 실제 충전액은 몇 가지에 몰린다. 칩은 <b>더하기</b>로 두면(설정이 아니라) 5만+1만=6만 같은 조합을 탭 두 번에 만든다.</p>
+      </div>
+
+      <div class="demo">
+        <h3 style="margin-top:0">변형 D — 커스텀 키패드 (앱 스타일)</h3>
+        <output class="amount-field" id="fieldD" style="display:flex" aria-live="polite" aria-label="입력된 금액">
+          <span class="cur" aria-hidden="true">₩</span>
+          <span class="amount-in" id="amtD" style="padding:0">0</span>
+        </output>
+        <div class="keypad" id="padD">
+          <button class="key" data-k="1">1</button><button class="key" data-k="2">2</button><button class="key" data-k="3">3</button>
+          <button class="key" data-k="4">4</button><button class="key" data-k="5">5</button><button class="key" data-k="6">6</button>
+          <button class="key" data-k="7">7</button><button class="key" data-k="8">8</button><button class="key" data-k="9">9</button>
+          <button class="key" data-k="00">00</button><button class="key" data-k="0">0</button><button class="key" data-k="del" aria-label="지우기">⌫</button>
+        </div>
+        <p class="cap">왜: OS 키보드가 화면을 반쯤 가리는 걸 피하고 싶을 때 쓴다. 대신 <b>진짜 버튼</b>으로 만들어야 키보드·스크린리더로도 조작된다(div에 onclick 달면 접근 불가).</p>
+      </div>
+    </div>
+
+    <div class="note"><b>용어</b> — <b>tabular-nums</b>: 숫자 폭을 모두 같게 맞추는 폰트 기능. 켜두면 금액이 바뀔 때 자릿수가 좌우로 덜컹거리지 않는다. 위 모든 금액 칸에 <code class="k">font-variant-numeric:tabular-nums</code>로 적용돼 있다.</div>
+
+    <h3>💻 핵심 코드 — 커서 안 튀는 자동 콤마</h3>
+<pre><code>const fmt = new Intl.NumberFormat('ko-KR'); // 1234567 → "1,234,567"
+
+function onAmountInput(e) {
+  const el = e.target;
+  // 1) 커서 왼쪽에 숫자가 몇 개였는지 세둔다 (콤마는 무시)
+  const digitsLeft = el.value.slice(0, el.selectionStart).replace(/\D/g, '').length;
+
+  // 2) 숫자만 남겨 포맷
+  const digits = el.value.replace(/\D/g, '').slice(0, 12); // 자릿수 상한
+  el.value = digits ? fmt.format(Number(digits)) : '';
+
+  // 3) 같은 "숫자 개수" 지점으로 커서 복원 → 중간 수정해도 끝으로 안 튐
+  let pos = 0, seen = 0;
+  while (pos &lt; el.value.length &amp;&amp; seen &lt; digitsLeft) {
+    if (/\d/.test(el.value[pos])) seen++;
+    pos++;
+  }
+  el.setSelectionRange(pos, pos);
+}</code></pre>
+    <p class="cap">순진하게 <code class="k">value = format(value)</code>만 하면 콤마가 붙는 순간 커서가 맨 끝으로 날아간다. 위처럼 <b>숫자 개수 기준</b>으로 복원해야 자연스럽다.</p>
+  </section>
+
+  <!-- ══════════ 2. 날짜·기간 선택 ══════════ -->
+  <section class="card" id="daterange">
+    <h2>⌨️ 날짜·기간 선택 <span class="tag">입력·폼</span></h2>
+    <p class="lead">정산 내역, 거래 조회, 쿠폰 유효기간 — 결제 서비스는 기간 선택이 사방에 있다. 요즘 기본 원칙: <b>네이티브를 먼저 쓰고, 프리셋으로 대부분을 없애고, 캘린더는 최후에</b>.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <h3 style="margin-top:0">변형 A — 네이티브 range + 교차 제약</h3>
+        <div class="range">
+          <div>
+            <label class="lbl" for="d1">시작일</label>
+            <input class="date-in" type="date" id="d1" value="2026-07-01" max="2026-07-15" />
+          </div>
+          <span class="dash" aria-hidden="true">–</span>
+          <div>
+            <label class="lbl" for="d2">종료일</label>
+            <input class="date-in" type="date" id="d2" value="2026-07-15" max="2026-07-15" />
+          </div>
+        </div>
+        <p class="summary" id="sumA" aria-live="polite"></p>
+        <p class="cap">왜: 시작일을 고르면 종료일의 <code class="k">min</code>을 그 날짜로 <b>즉시 올린다</b>. "끝이 시작보다 빠릅니다" 에러를 띄우는 대신 <b>애초에 못 고르게</b> 하는 게 낫다. 네이티브 <code class="k">input[type=date]</code>는 공짜로 로케일·키보드·모바일 휠 UI를 준다.</p>
+      </div>
+
+      <div class="demo">
+        <h3 style="margin-top:0">변형 B — 프리셋 칩이 먼저</h3>
+        <div class="chips" id="presets" role="group" aria-label="기간 프리셋">
+          <button class="chip" data-days="0" aria-pressed="false">오늘</button>
+          <button class="chip" data-days="6" aria-pressed="true">최근 7일</button>
+          <button class="chip" data-days="29" aria-pressed="false">최근 30일</button>
+          <button class="chip" data-month="this" aria-pressed="false">이번 달</button>
+          <button class="chip" data-month="last" aria-pressed="false">지난달</button>
+        </div>
+        <div class="range" style="margin-top:12px">
+          <div>
+            <label class="lbl" for="p1">시작일</label>
+            <input class="date-in" type="date" id="p1" />
+          </div>
+          <span class="dash" aria-hidden="true">–</span>
+          <div>
+            <label class="lbl" for="p2">종료일</label>
+            <input class="date-in" type="date" id="p2" />
+          </div>
+        </div>
+        <p class="summary" id="sumB" aria-live="polite"></p>
+        <p class="cap">왜: 정산 화면 요청의 대다수는 "최근 7일/이번 달"이다. 칩을 위에 두면 <b>클릭 1번</b>으로 끝나고, 날짜칸은 예외용으로 남는다. 칩을 누르면 아래 칸도 같이 채워져 "무엇이 선택됐는지"가 투명하다.</p>
+      </div>
+    </div>
+
+    <div class="demo" style="margin-top:16px">
+      <h3 style="margin-top:0">변형 C — 커스텀 range 캘린더 (미래 비활성 + 범위 하이라이트)</h3>
+      <div class="row" style="justify-content:space-between;max-width:280px">
+        <button class="btn ghost" id="prevM" style="padding:6px 12px" aria-label="이전 달">‹</button>
+        <b id="mLabel" aria-live="polite">2026년 7월</b>
+        <button class="btn ghost" id="nextM" style="padding:6px 12px" aria-label="다음 달">›</button>
+      </div>
+      <table class="cal" id="cal">
+        <caption class="sr">날짜 범위 선택 달력</caption>
+        <thead><tr><th scope="col">일</th><th scope="col">월</th><th scope="col">화</th><th scope="col">수</th><th scope="col">목</th><th scope="col">금</th><th scope="col">토</th></tr></thead>
+        <tbody id="calBody"></tbody>
+      </table>
+      <p class="summary" id="sumC" aria-live="polite">시작일을 선택하세요</p>
+      <p class="cap">왜: 미래 날짜는 <code class="k">disabled</code>로 <b>보이되 못 누르게</b> 한다(숨기면 왜 없는지 모른다). 두 번째 클릭이 첫 번째보다 앞이면 에러 대신 <b>시작일을 다시 잡는다</b> — 사용자가 마음을 바꾼 것으로 해석하는 쪽이 친절하다.</p>
+    </div>
+  </section>
+
+  <!-- ══════════ 3. light-dark() ══════════ -->
+  <section class="card" id="lightdark">
+    <h2>🌀 light-dark() — 한 줄에 라이트·다크 색을 같이 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">지금까지 다크 모드는 "변수 세트를 두 벌 만들고 미디어 쿼리로 갈아끼우기"였다. <code class="k">light-dark()</code>는 <b>한 선언 안에</b> 두 색을 나란히 적는다. 이 카드 안의 아래 박스들은 실제로 그렇게 만들어져 있다.</p>
+
+    <div class="note"><b>용어</b> — <b>color-scheme</b>: 이 요소가 라이트/다크 중 무엇으로 그려질지 브라우저에 알리는 CSS 속성. <code class="k">light-dark()</code>는 이 값을 보고 둘 중 하나를 고른다. 그래서 <b><code class="k">color-scheme</code>을 안 켜면 light-dark()는 항상 첫 번째 값</b>을 쓴다 — 가장 흔한 실수다.</div>
+
+    <div class="demo">
+      <h3 style="margin-top:0">직접 전환 — 페이지 테마와 무관하게 강제</h3>
+      <div class="seg" id="ldSeg" role="group" aria-label="색 스킴 강제">
+        <button data-ld="auto" aria-pressed="true">자동(페이지 따라)</button>
+        <button data-ld="light" aria-pressed="false">라이트 강제</button>
+        <button data-ld="dark" aria-pressed="false">다크 강제</button>
+      </div>
+      <div class="ld-demo ld-forced" id="ldBox" style="margin-top:12px">
+        <span class="pill">light-dark()로만 칠한 박스</span>
+        <p style="margin:10px 0 0;font-size:.9rem">배경·글자·테두리·칩 색이 전부 <code class="k">light-dark(라이트값, 다크값)</code> 한 줄씩입니다. 미디어 쿼리 없음, JS로 클래스 갈아끼우기 없음 — 위 버튼은 <b><code class="k">color-scheme</code> 한 개</b>만 바꿉니다.</p>
+        <div class="swatch">
+          <div class="sw1">Brand</div><div class="sw2">Soft</div><div class="sw3">Surface</div>
+        </div>
+      </div>
+      <div class="supbox">
+        <span>내 브라우저 지원:</span><span class="badge-yn" id="ldSup">확인 중…</span>
+        <span class="hint" style="margin:0">지원 안 하면 위 박스는 라이트 색으로만 보입니다(정상 폴백).</span>
+      </div>
+    </div>
+
+    <h3>📈 왜 지금 뜨나</h3>
+    <p style="font-size:.92rem;margin:0">브라우저 지원이 다 채워졌다. Chrome 123(2024-03), Firefox 120(2023-11), Safari 17.5(2024-05)에서 지원되며, <b>2024년 5월부터 최신 브라우저 전 기종에서 동작</b>한다. Baseline 기준으로는 현재 "newly available", <b>2026년 11월 13일에 "widely available"로 승격 예정</b>이다(MDN·web-features 기준). 즉 지금 쓰면 대부분 커버되지만, 아주 오래된 브라우저를 챙기는 서비스라면 폴백을 같이 두는 게 안전하다.</p>
+
+    <h3>💻 코드 — 기존 방식 vs light-dark()</h3>
+<pre><code>/* 이전: 변수 두 벌 + 미디어 쿼리 + 수동 토글 클래스 */
+:root { --bg:#fff; --text:#14181f; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#171b21; --text:#eef1f5; }
+}
+[data-theme="dark"] { --bg:#171b21; --text:#eef1f5; }  /* 수동 토글용 중복 */
+
+/* 이후: 한 줄에 두 색. 스위치는 color-scheme 하나 */
+:root {
+  color-scheme: light dark;          /* ← 이게 없으면 항상 첫 번째 값이 나온다 */
+  --bg:   light-dark(#ffffff, #171b21);
+  --text: light-dark(#14181f, #eef1f5);
+}
+.force-light { color-scheme: light; } /* 부분 강제도 요소 단위로 */
+.force-dark  { color-scheme: dark; }
+
+/* 폴백이 필요하면: 앞줄이 구형 브라우저용, 뒷줄을 지원 브라우저가 덮어쓴다 */
+.box { background:#ffffff; background: light-dark(#ffffff, #171b21); }</code></pre>
+
+    <h3>이 방식의 장단점</h3>
+    <div class="grid cols2">
+      <div class="demo">
+        <p style="margin:0;font-size:.9rem"><b style="color:var(--ok)">좋은 점</b><br />
+        · 색 정의가 <b>한 곳</b>에 모인다 — 라이트만 고치고 다크를 까먹는 사고가 준다.<br />
+        · 미디어 쿼리 블록·중복 선택자가 사라져 CSS가 짧아진다.<br />
+        · <code class="k">color-scheme</code>은 <b>상속</b>되므로, 특정 영역만 다크로 뒤집는 게 클래스 하나로 끝난다.<br />
+        · 네이티브 위젯(스크롤바, <code class="k">input[type=date]</code> 달력, 기본 폼 컨트롤)도 <code class="k">color-scheme</code>을 따라 같이 어두워진다 — 원래도 이 속성의 본래 역할이다.</p>
+      </div>
+      <div class="demo">
+        <p style="margin:0;font-size:.9rem"><b style="color:var(--warn)">주의할 점</b><br />
+        · <b>두 가지만</b> 된다. "고대비" 같은 3번째 테마가 있으면 결국 변수 세트가 필요하다.<br />
+        · 각 색이 어디 쓰이는지 이름으로만 보이던 게, 값 두 개로 늘어 <b>줄이 길어진다</b>.<br />
+        · 색 이외 값(그림자 세기, 보더 두께)은 못 담는다 — <code class="k">light-dark()</code>는 색·이미지 전용.<br />
+        · <b>추정</b>: 아주 큰 팔레트에서 성능 차이는 없을 것으로 보이나 측정해본 바 없음.</p>
+      </div>
+    </div>
+    <p class="cap" style="margin-top:14px">참고로 <b>이 페이지 나머지 부분</b>은 일부러 예전 방식(<code class="k">[data-theme]</code> 변수 세트)으로 두었다. 위 박스 하나만 <code class="k">light-dark()</code>다 — 같은 화면에서 두 방식이 섞여도 문제없다는 것도 같이 보여주려는 의도다.</p>
+  </section>
+
+  <footer>Design Inspiration Daily · 2026-07-15 (수) · 직접 만든 라이브 예시</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  const $ = (s, r) => (r||document).querySelector(s);
+  const $$ = (s, r) => Array.from((r||document).querySelectorAll(s));
+
+  /* ── 테마 토글 ── */
+  const btn = $('#themeBtn');
+  btn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    btn.setAttribute('aria-pressed', String(!dark));
+    btn.textContent = dark ? '🌙 다크 모드' : '☀️ 라이트 모드';
+  });
+
+  /* ══════════ 1. 금액 입력 ══════════ */
+  const fmt = new Intl.NumberFormat('ko-KR');
+  const KOR_UNITS = [[100000000,'억'],[10000,'만']];
+  function toKorean(n){
+    if (!n) return '';
+    let rest = n, out = '';
+    for (const [v, label] of KOR_UNITS){
+      const q = Math.floor(rest / v);
+      if (q) { out += fmt.format(q) + label + ' '; rest -= q * v; }
+    }
+    if (rest) out += fmt.format(rest);
+    return out.trim() + '원';
+  }
+  function digitsOf(s){ return String(s).replace(/\D/g,''); }
+
+  // 커서 보존 자동 콤마
+  function attachComma(input, onChange){
+    input.addEventListener('input', () => {
+      const digitsLeft = digitsOf(input.value.slice(0, input.selectionStart)).length;
+      const d = digitsOf(input.value).replace(/^0+(?=\d)/,'').slice(0,12);
+      input.value = d ? fmt.format(Number(d)) : '';
+      let pos = 0, seen = 0;
+      while (pos < input.value.length && seen < digitsLeft){
+        if (/\d/.test(input.value[pos])) seen++;
+        pos++;
+      }
+      try { input.setSelectionRange(pos, pos); } catch(e){}
+      if (onChange) onChange(Number(d || 0));
+    });
+  }
+
+  // A: 기본형
+  const readA = $('#readA');
+  attachComma($('#amtA'), n => {
+    readA.innerHTML = n ? '읽기: <b>' + toKorean(n) + '</b>' : '';
+  });
+
+  // B: 한도 검증
+  const LIMIT = 1250000;
+  const fieldB = $('#fieldB'), errB = $('#errB'), submitB = $('#submitB');
+  attachComma($('#amtB'), n => {
+    const over = n > LIMIT;
+    const zero = n === 0;
+    fieldB.classList.toggle('invalid', over);
+    errB.classList.toggle('on', over);
+    errB.textContent = over ? '잔액을 ' + fmt.format(n - LIMIT) + '원 초과했습니다.' : '';
+    submitB.disabled = over || zero;
+  });
+  submitB.addEventListener('click', () => {
+    submitB.textContent = '처리 중…';
+    submitB.disabled = true;
+    setTimeout(() => { submitB.textContent = '✓ 완료'; }, 900);
+    setTimeout(() => { submitB.textContent = '출금하기'; submitB.disabled = false; }, 2200);
+  });
+
+  // C: 빠른 금액 칩
+  const amtC = $('#amtC');
+  $('#chipsC').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    let cur = Number(digitsOf(amtC.value) || 0);
+    if (b.dataset.set !== undefined) {
+      cur = Number(b.dataset.set);
+      $$('#chipsC .chip[aria-pressed]').forEach(c => c.setAttribute('aria-pressed','false'));
+    } else {
+      cur += Number(b.dataset.add);
+      b.setAttribute('aria-pressed','true');
+      setTimeout(() => b.setAttribute('aria-pressed','false'), 260);
+    }
+    amtC.value = cur ? fmt.format(cur) : '';
+  });
+
+  // D: 커스텀 키패드
+  const amtD = $('#amtD');
+  let dVal = '';
+  $('#padD').addEventListener('click', e => {
+    const k = e.target.closest('.key'); if (!k) return;
+    const v = k.dataset.k;
+    if (v === 'del') dVal = dVal.slice(0, -1);
+    else if (dVal.length + v.length <= 12) dVal = (dVal + v).replace(/^0+(?=\d)/,'');
+    amtD.textContent = dVal ? fmt.format(Number(dVal)) : '0';
+  });
+
+  /* ══════════ 2. 날짜·기간 선택 ══════════ */
+  const TODAY = new Date(2026, 6, 15); // 데모 고정 기준일 (2026-07-15)
+  const iso = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  const parse = s => { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+  const daysBetween = (a,b) => Math.round((b - a) / 86400000) + 1;
+
+  // A: 네이티브 교차 제약
+  const d1 = $('#d1'), d2 = $('#d2'), sumA = $('#sumA');
+  function syncA(){
+    d2.min = d1.value;           // 종료일은 시작일 이후만
+    d1.max = d2.value || iso(TODAY);
+    const n = daysBetween(parse(d1.value), parse(d2.value));
+    sumA.classList.toggle('bad', n < 1);
+    sumA.textContent = n >= 1 ? '선택된 기간: ' + n + '일 (' + d1.value + ' ~ ' + d2.value + ')' : '기간을 확인해주세요';
+  }
+  d1.addEventListener('change', syncA); d2.addEventListener('change', syncA); syncA();
+
+  // B: 프리셋 칩
+  const p1 = $('#p1'), p2 = $('#p2'), sumB = $('#sumB');
+  function setRange(a, b, label){
+    p1.value = iso(a); p2.value = iso(b); p1.max = iso(TODAY); p2.max = iso(TODAY); p2.min = iso(a);
+    sumB.textContent = (label ? label + ' · ' : '') + daysBetween(a,b) + '일 (' + iso(a) + ' ~ ' + iso(b) + ')';
+  }
+  $('#presets').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    $$('#presets .chip').forEach(c => c.setAttribute('aria-pressed', String(c === b)));
+    if (b.dataset.days !== undefined){
+      const back = Number(b.dataset.days);
+      const start = new Date(TODAY); start.setDate(start.getDate() - back);
+      setRange(start, TODAY, b.textContent);
+    } else {
+      const off = b.dataset.month === 'this' ? 0 : -1;
+      const start = new Date(TODAY.getFullYear(), TODAY.getMonth() + off, 1);
+      let end = new Date(TODAY.getFullYear(), TODAY.getMonth() + off + 1, 0);
+      if (end > TODAY) end = new Date(TODAY);
+      setRange(start, end, b.textContent);
+    }
+  });
+  (function initB(){
+    const s = new Date(TODAY); s.setDate(s.getDate() - 6);
+    setRange(s, TODAY, '최근 7일');
+  })();
+  function manualB(){
+    p2.min = p1.value;
+    if (!p1.value || !p2.value) return;
+    $$('#presets .chip').forEach(c => c.setAttribute('aria-pressed','false'));
+    const n = daysBetween(parse(p1.value), parse(p2.value));
+    sumB.textContent = '직접 지정 · ' + n + '일 (' + p1.value + ' ~ ' + p2.value + ')';
+  }
+  p1.addEventListener('change', manualB); p2.addEventListener('change', manualB);
+
+  // C: 커스텀 range 캘린더
+  let view = new Date(2026, 6, 1);
+  let selStart = null, selEnd = null;
+  const calBody = $('#calBody'), mLabel = $('#mLabel'), sumC = $('#sumC');
+
+  function render(){
+    mLabel.textContent = view.getFullYear() + '년 ' + (view.getMonth()+1) + '월';
+    const first = new Date(view.getFullYear(), view.getMonth(), 1);
+    const last  = new Date(view.getFullYear(), view.getMonth()+1, 0);
+    let html = '', day = 1 - first.getDay();
+    while (day <= last.getDate()){
+      html += '<tr>';
+      for (let i = 0; i < 7; i++, day++){
+        if (day < 1 || day > last.getDate()){ html += '<td></td>'; continue; }
+        const d = new Date(view.getFullYear(), view.getMonth(), day);
+        const future = d > TODAY;
+        const cls = ['day'];
+        if (d.getTime() === TODAY.getTime()) cls.push('today');
+        if (selStart && d.getTime() === selStart.getTime()) cls.push('edge');
+        else if (selEnd && d.getTime() === selEnd.getTime()) cls.push('edge');
+        else if (selStart && selEnd && d > selStart && d < selEnd) cls.push('inrange');
+        html += '<td><button class="' + cls.join(' ') + '" data-d="' + iso(d) + '"'
+             + (future ? ' disabled aria-label="' + iso(d) + ' (미래 날짜, 선택 불가)"' : ' aria-label="' + iso(d) + '"')
+             + '>' + day + '</button></td>';
+      }
+      html += '</tr>';
+    }
+    calBody.innerHTML = html;
+    $('#nextM').disabled = (view.getFullYear() === TODAY.getFullYear() && view.getMonth() >= TODAY.getMonth());
+  }
+  calBody.addEventListener('click', e => {
+    const b = e.target.closest('.day'); if (!b || b.disabled) return;
+    const d = parse(b.dataset.d);
+    if (!selStart || selEnd){ selStart = d; selEnd = null; sumC.textContent = '시작 ' + iso(d) + ' · 종료일을 선택하세요'; }
+    else if (d < selStart){ selStart = d; sumC.textContent = '시작 ' + iso(d) + ' · 종료일을 선택하세요'; } // 앞을 찍으면 시작 재지정
+    else { selEnd = d; sumC.textContent = '선택 완료 · ' + daysBetween(selStart, selEnd) + '일 (' + iso(selStart) + ' ~ ' + iso(selEnd) + ')'; }
+    render();
+  });
+  $('#prevM').addEventListener('click', () => { view.setMonth(view.getMonth()-1); render(); });
+  $('#nextM').addEventListener('click', () => { view.setMonth(view.getMonth()+1); render(); });
+  render();
+
+  /* ══════════ 3. light-dark() ══════════ */
+  const ldBox = $('#ldBox');
+  $('#ldSeg').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $$('#ldSeg button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    ldBox.classList.remove('f-light','f-dark');
+    if (b.dataset.ld === 'light') ldBox.classList.add('f-light');
+    if (b.dataset.ld === 'dark')  ldBox.classList.add('f-dark');
+  });
+  // '자동'일 때 페이지 테마를 따라가도록 color-scheme 동기화
+  const mo = new MutationObserver(() => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+  });
+  mo.observe(document.documentElement, { attributes:true, attributeFilter:['data-theme'] });
+  document.documentElement.style.colorScheme = 'light';
+
+  // 지원 배지
+  const sup = CSS.supports('color', 'light-dark(#fff, #000)');
+  const badge = $('#ldSup');
+  badge.textContent = sup ? '✓ light-dark() 지원' : '✗ 미지원 (라이트 폴백)';
+  badge.className = 'badge-yn ' + (sup ? 'yes' : 'no');
+})();
+</script>
+</body>
+</html>

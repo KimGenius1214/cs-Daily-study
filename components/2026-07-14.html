@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-14 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0f1216; --surface:#171b21; --surface-2:#1f242c; --text:#eef1f5; --muted:#9aa4b2;
+    --border:#2a313b; --brand:#8b83ff; --brand-ink:#0f1216; --brand-soft:#232041;
+    --ok:#4ade80; --ok-soft:#12261a; --warn:#fbbf24; --danger:#f87171; --danger-soft:#2a1618;
+    --ring:#8b83ff; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;transition:background .25s,color .25s}
+  a{color:var(--brand)}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 18px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:1.4rem;margin:0}
+  .date{color:var(--muted);font-size:.95rem;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
+  .toc a{background:var(--surface);border:1px solid var(--border);border-radius:999px;
+    padding:6px 12px;text-decoration:none;color:var(--text);font-size:.86rem}
+  .toc a:hover{border-color:var(--brand)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;margin:0 0 26px;box-shadow:var(--shadow);scroll-margin-top:18px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:22px 0 8px}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 10px}
+  .lead{color:var(--muted);margin:.2rem 0 1rem}
+  .cap{color:var(--muted);font-size:.84rem;margin:.4rem 0 0}
+  .grid{display:grid;gap:16px}
+  @media(min-width:620px){.grid.cols2{grid-template-columns:1fr 1fr}}
+  .demo{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px}
+  code.k{background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:.85em}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  .btn{cursor:pointer;font:inherit;font-weight:600;border-radius:10px;padding:10px 16px;border:1px solid transparent;transition:.15s}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.brand{background:var(--brand);color:var(--brand-ink)}
+  .btn.brand:hover{filter:brightness(1.06)}
+  .btn.soft{background:var(--brand-soft);color:var(--brand)}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .badge-yn{font-size:.78rem;font-weight:700;border-radius:999px;padding:3px 10px;background:var(--surface-2);border:1px solid var(--border)}
+  .badge-yn.yes{color:var(--ok);background:var(--ok-soft)}
+  .badge-yn.no{color:var(--danger);background:var(--danger-soft)}
+  .supdesc{color:var(--muted);font-size:.84rem;margin-left:8px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .note{border-left:3px solid var(--brand);background:var(--brand-soft);border-radius:0 8px 8px 0;
+    padding:10px 14px;margin:10px 0;font-size:.9rem}
+
+  /* ---- Bottom Sheet ---- */
+  .sheet-scrim{position:fixed;inset:0;background:rgba(0,0,0,.42);opacity:0;pointer-events:none;
+    transition:opacity .28s;z-index:40}
+  .sheet-scrim.open{opacity:1;pointer-events:auto}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;background:var(--surface);
+    border-radius:18px 18px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.3);
+    transform:translateY(105%);transition:transform .32s cubic-bezier(.22,1,.36,1);
+    max-width:520px;margin:0 auto;padding:8px 20px 26px;touch-action:none}
+  .sheet.open{transform:translateY(0)}
+  .sheet-grip{width:40px;height:5px;border-radius:999px;background:var(--border);margin:8px auto 14px}
+  .sheet h4{margin:.2rem 0 .4rem;font-size:1.05rem}
+  .pay-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:.92rem}
+  .pay-row .amt{font-weight:700}
+  @media(prefers-reduced-motion:reduce){.sheet,.sheet-scrim{transition:none}}
+
+  /* ---- Progress / Stepper ---- */
+  .pbar{height:10px;border-radius:999px;background:var(--surface-2);overflow:hidden;border:1px solid var(--border)}
+  .pbar>i{display:block;height:100%;width:0;background:var(--brand);border-radius:999px;transition:width .4s ease}
+  .pbar.indet>i{width:35%;animation:indet 1.1s ease-in-out infinite}
+  @keyframes indet{0%{margin-left:-35%}100%{margin-left:100%}}
+  @media(prefers-reduced-motion:reduce){.pbar.indet>i{animation:none;width:100%;margin-left:0;opacity:.5}}
+  .stepper{display:flex;align-items:center;gap:0;margin:6px 0 4px}
+  .step{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;width:76px;text-align:center}
+  .step .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:.85rem;font-weight:700;
+    background:var(--surface-2);border:2px solid var(--border);color:var(--muted)}
+  .step.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+  .step.active .dot{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+  .step small{font-size:.74rem;color:var(--muted)}
+  .step.active small,.step.done small{color:var(--text)}
+  .step-line{flex:1 1 auto;height:2px;background:var(--border);min-width:14px}
+  .step-line.done{background:var(--ok)}
+
+  /* ---- View Transitions ---- */
+  .vt-stage{border:1px dashed var(--border);border-radius:12px;padding:16px;background:var(--surface-2)}
+  .vt-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .vt-item{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:10px 12px;cursor:pointer}
+  .vt-item .thumb{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#a855f7);flex:0 0 auto}
+  .vt-detail{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px}
+  .vt-detail .thumb{width:80px;height:80px;border-radius:14px;background:linear-gradient(135deg,var(--brand),#a855f7)}
+  .hidden{display:none}
+  footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <p class="date">2026-07-14 (화) · 오늘의 컴포넌트 3건 — 실제로 만져보세요</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 목차">
+    <a href="#sheet">🪟 바텀시트·드로어</a>
+    <a href="#progress">🔔 진행률·스텝퍼</a>
+    <a href="#viewtransition">🌀 View Transitions API</a>
+  </nav>
+
+  <!-- ============ 1. Bottom Sheet ============ -->
+  <section class="card" id="sheet">
+    <h2>🪟 바텀시트 · 드로어 (Bottom Sheet) <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lead">모바일 결제·확인 흐름에서 화면 아래에서 슬라이드로 올라오는 시트. 모달 다이얼로그의 모바일 변형으로, 드래그 핸들·스크림(어두운 배경)·아래로 밀어 닫기를 갖춘다.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <h3>① 결제 확인 시트</h3>
+        <p class="cap">버튼을 누르면 아래에서 올라옵니다. 스크림 클릭 · Esc · 아래로 드래그로 닫힘.</p>
+        <button class="btn brand" id="openSheet" aria-haspopup="dialog">결제 진행하기</button>
+      </div>
+      <div class="demo">
+        <h3>② 왜 모달 대신 시트인가</h3>
+        <p class="cap" style="margin-top:0">모바일에서 화면 중앙 모달은 엄지 도달이 어렵다. 하단 시트는 한 손 엄지 영역에 액션 버튼을 두고, 물리적 제스처(아래로 밀기)로 닫기를 자연스럽게 만든다. 결제·필터·공유 시트에 표준.</p>
+      </div>
+    </div>
+
+    <div class="note">💡 <b>드래그 핸들(grip)</b>: 상단 짧은 회색 막대. "이건 잡아서 움직일 수 있다"는 어포던스(사용자가 조작 방법을 직관으로 알게 하는 시각 힌트) 신호다.</div>
+  </section>
+
+  <!-- ============ 2. Progress / Stepper ============ -->
+  <section class="card" id="progress">
+    <h2>🔔 진행률 표시 · 스텝퍼 (Progress &amp; Stepper) <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+    <p class="lead">"얼마나 남았나"를 알려주는 두 방식. 남은 양을 아는 작업엔 <b>결정형(determinate)</b> 막대, 모르는 대기엔 <b>비결정형(indeterminate)</b> 막대. 여러 단계 흐름엔 <b>스텝퍼</b>.</p>
+
+    <div class="grid cols2">
+      <div class="demo">
+        <h3>① 결정형 진행률</h3>
+        <p class="cap" style="margin-top:0">업로드·다운로드처럼 %를 아는 작업.</p>
+        <div class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="detBar"><i></i></div>
+        <p class="cap" id="detLbl">0%</p>
+        <button class="btn soft" id="detRun">업로드 시작</button>
+      </div>
+      <div class="demo">
+        <h3>② 비결정형 진행률</h3>
+        <p class="cap" style="margin-top:0">서버 응답 대기처럼 끝을 모를 때. 값 대신 "진행 중"만 전달.</p>
+        <div class="pbar indet" role="progressbar" aria-label="처리 중" id="indetBar"><i></i></div>
+        <p class="cap">계속 흐르는 애니메이션 = "멈춘 게 아니라 처리 중"</p>
+      </div>
+    </div>
+
+    <h3>③ 다단계 스텝퍼 — 체크아웃 진행</h3>
+    <p class="cap" style="margin-top:0">지금 어디고, 몇 단계 남았는지 한눈에. 결제 3~4단계 흐름의 표준.</p>
+    <div class="stepper" id="stepper" aria-label="결제 진행 단계">
+      <div class="step active" data-i="0"><span class="dot">1</span><small>장바구니</small></div>
+      <div class="step-line" data-line="0"></div>
+      <div class="step" data-i="1"><span class="dot">2</span><small>배송지</small></div>
+      <div class="step-line" data-line="1"></div>
+      <div class="step" data-i="2"><span class="dot">3</span><small>결제수단</small></div>
+      <div class="step-line" data-line="2"></div>
+      <div class="step" data-i="3"><span class="dot">4</span><small>완료</small></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn ghost" id="stepPrev">← 이전</button>
+      <button class="btn brand" id="stepNext">다음 →</button>
+      <span class="cap" id="stepLbl">1단계 / 4</span>
+    </div>
+
+    <div class="note">💡 <b>왜 <code class="k">role="progressbar"</code>?</b> 스크린리더에 "진행 막대, 현재 40%"로 읽힌다. 결정형은 <code class="k">aria-valuenow</code>를 갱신, 비결정형은 값을 빼고 <code class="k">aria-label</code>만 둔다.</div>
+  </section>
+
+  <!-- ============ 3. View Transitions API ============ -->
+  <section class="card" id="viewtransition">
+    <h2>🌀 View Transitions API — 상태가 바뀔 때 부드럽게 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><b>View Transitions API</b>: DOM이 바뀌는 순간을 브라우저가 스냅샷으로 찍어 자동으로 크로스페이드·이동 애니메이션을 넣어주는 표준 API. 리스트 → 상세 전환 같은 걸 라이브러리 없이 네이티브 앱처럼 매끄럽게.</p>
+
+    <div class="row" style="margin-bottom:12px">
+      <span class="badge-yn" id="vtBadge">확인 중…</span>
+      <span class="supdesc" id="vtDesc"><code class="k">document.startViewTransition</code> 지원 여부를 감지합니다.</span>
+    </div>
+
+    <div class="vt-stage">
+      <ul class="vt-list" id="vtList">
+        <li class="vt-item" data-id="1" tabindex="0" role="button"><span class="thumb"></span><span><b>스타벅스</b><br><small class="cap">-4,500원 · 오늘</small></span></li>
+        <li class="vt-item" data-id="2" tabindex="0" role="button"><span class="thumb"></span><span><b>Netflix</b><br><small class="cap">-13,500원 · 어제</small></span></li>
+        <li class="vt-item" data-id="3" tabindex="0" role="button"><span class="thumb"></span><span><b>급여 입금</b><br><small class="cap">+3,200,000원 · 7/10</small></span></li>
+      </ul>
+      <div class="vt-detail hidden" id="vtDetail">
+        <div class="row" style="align-items:flex-start"><span class="thumb"></span>
+          <div><h4 id="vtTitle" style="margin:.1rem 0">—</h4><p class="cap" id="vtSub" style="margin:0">—</p></div></div>
+        <p class="cap" style="margin-top:14px">리스트를 눌러 들어온 상세 화면입니다. 뒤로 가면 다시 리스트로 부드럽게 되돌아갑니다.</p>
+        <button class="btn ghost" id="vtBack">← 목록으로</button>
+      </div>
+    </div>
+    <p class="cap">거래내역 리스트 항목을 클릭 → 상세로 전환. 지원 브라우저면 크로스페이드가 자동으로 붙고, 미지원이면 즉시 전환(점진적 향상).</p>
+
+    <div class="note">💡 <b>점진적 향상(progressive enhancement)</b>: 미지원 브라우저에선 애니메이션만 빠지고 기능은 그대로 동작하게 설계하는 원칙. 크로스 문서(페이지 이동) 전환은 Chrome/Safari만, Firefox는 플래그 뒤 — 화면 내 전환부터 쓰는 게 안전.</div>
+  </section>
+
+  <footer>self-contained · 외부 의존성 없음 · 라이트/다크 토글 · 키보드/스크린리더 고려 — Design Inspiration Daily</footer>
+</div>
+
+<!-- Bottom Sheet markup -->
+<div class="sheet-scrim" id="scrim"></div>
+<div class="sheet" id="paySheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+  <div class="sheet-grip"></div>
+  <h4 id="sheetTitle">결제 확인</h4>
+  <div class="pay-row"><span>상품 금액</span><span class="amt">42,000원</span></div>
+  <div class="pay-row"><span>배송비</span><span class="amt">3,000원</span></div>
+  <div class="pay-row"><span>총 결제금액</span><span class="amt" style="color:var(--brand)">45,000원</span></div>
+  <div class="row" style="margin-top:18px">
+    <button class="btn brand" id="payConfirm" style="flex:1">45,000원 결제</button>
+    <button class="btn ghost" id="payCancel">취소</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Theme
+  var tb=document.getElementById('themeBtn');
+  tb.addEventListener('click',function(){
+    var dark=document.documentElement.getAttribute('data-theme')==='dark';
+    document.documentElement.setAttribute('data-theme',dark?'':'dark');
+    tb.setAttribute('aria-pressed',String(!dark));
+    tb.textContent=dark?'🌙 다크':'☀️ 라이트';
+  });
+
+  // ---- Bottom Sheet ----
+  var sheet=document.getElementById('paySheet'), scrim=document.getElementById('scrim');
+  var lastFocus=null;
+  function openSheet(){
+    lastFocus=document.activeElement;
+    sheet.hidden=false; requestAnimationFrame(function(){sheet.classList.add('open');scrim.classList.add('open');});
+    document.body.style.overflow='hidden';
+    document.getElementById('payConfirm').focus();
+  }
+  function closeSheet(){
+    sheet.classList.remove('open');scrim.classList.remove('open');
+    document.body.style.overflow='';
+    setTimeout(function(){sheet.hidden=true;},320);
+    if(lastFocus)lastFocus.focus();
+  }
+  document.getElementById('openSheet').addEventListener('click',openSheet);
+  scrim.addEventListener('click',closeSheet);
+  document.getElementById('payCancel').addEventListener('click',closeSheet);
+  document.getElementById('payConfirm').addEventListener('click',function(){closeSheet();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!sheet.hidden)closeSheet();});
+  // drag to dismiss
+  var startY=null, dy=0;
+  sheet.addEventListener('pointerdown',function(e){startY=e.clientY;dy=0;sheet.style.transition='none';});
+  sheet.addEventListener('pointermove',function(e){
+    if(startY===null)return; dy=Math.max(0,e.clientY-startY);
+    sheet.style.transform='translateY('+dy+'px)';
+  });
+  window.addEventListener('pointerup',function(){
+    if(startY===null)return; sheet.style.transition='';
+    if(dy>90){closeSheet();} sheet.style.transform=''; startY=null;
+  });
+
+  // ---- Determinate progress ----
+  var detBar=document.getElementById('detBar'), detFill=detBar.querySelector('i'),
+      detLbl=document.getElementById('detLbl'), detRun=document.getElementById('detRun'), t=null;
+  detRun.addEventListener('click',function(){
+    if(t)clearInterval(t); var p=0;
+    t=setInterval(function(){
+      p=Math.min(100,p+Math.random()*14); detFill.style.width=p+'%';
+      detBar.setAttribute('aria-valuenow',Math.round(p)); detLbl.textContent=Math.round(p)+'%';
+      if(p>=100){clearInterval(t);detLbl.textContent='완료 ✓';}
+    },260);
+  });
+
+  // ---- Stepper ----
+  var steps=[].slice.call(document.querySelectorAll('#stepper .step'));
+  var lines=[].slice.call(document.querySelectorAll('#stepper .step-line'));
+  var cur=0, stepLbl=document.getElementById('stepLbl');
+  function render(){
+    steps.forEach(function(s,i){s.classList.toggle('done',i<cur);s.classList.toggle('active',i===cur);
+      s.querySelector('.dot').textContent=i<cur?'✓':(i+1);});
+    lines.forEach(function(l,i){l.classList.toggle('done',i<cur);});
+    stepLbl.textContent=(cur+1)+'단계 / '+steps.length;
+  }
+  document.getElementById('stepNext').addEventListener('click',function(){if(cur<steps.length-1){cur++;render();}});
+  document.getElementById('stepPrev').addEventListener('click',function(){if(cur>0){cur--;render();}});
+  render();
+
+  // ---- View Transitions ----
+  var supportsVT=typeof document.startViewTransition==='function';
+  var vtBadge=document.getElementById('vtBadge'), vtDesc=document.getElementById('vtDesc');
+  vtBadge.textContent=supportsVT?'지원됨 ✓':'미지원';
+  vtBadge.classList.add(supportsVT?'yes':'no');
+  vtDesc.textContent=supportsVT?'이 브라우저는 화면 내 View Transition을 지원합니다.':'미지원 — 애니메이션 없이 즉시 전환됩니다(기능은 동일).';
+  var data={1:{t:'스타벅스',s:'-4,500원 · 오늘 09:12 · 카드결제'},2:{t:'Netflix',s:'-13,500원 · 어제 · 정기결제'},3:{t:'급여 입금',s:'+3,200,000원 · 7/10 · 입금'}};
+  var list=document.getElementById('vtList'), detail=document.getElementById('vtDetail');
+  function swap(fn){ if(supportsVT){document.startViewTransition(fn);} else {fn();} }
+  function showDetail(id){ swap(function(){
+    list.classList.add('hidden'); detail.classList.remove('hidden');
+    document.getElementById('vtTitle').textContent=data[id].t;
+    document.getElementById('vtSub').textContent=data[id].s;
+  });}
+  function showList(){ swap(function(){detail.classList.add('hidden');list.classList.remove('hidden');});}
+  [].forEach.call(document.querySelectorAll('.vt-item'),function(el){
+    function go(){showDetail(el.getAttribute('data-id'));}
+    el.addEventListener('click',go);
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+  });
+  document.getElementById('vtBack').addEventListener('click',showList);
+})();
+</script>
+</body>
+</html>
