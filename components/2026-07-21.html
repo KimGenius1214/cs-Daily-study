@@ -55,44 +55,41 @@
   .btn.ghost{background:transparent;color:var(--brand)}
   .btn.sm{padding:7px 12px;font-size:.86rem}
 
-  /* ---- 1. Popover + anchor positioning ---- */
-  .anchor-demo{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
-  .anchor-btn{position:relative}
-  /* 각 트리거를 앵커로 등록 */
-  #menuTrigger{anchor-name:--menu-anchor}
-  #helpTrigger{anchor-name:--help-anchor}
-  #tipTrigger{anchor-name:--tip-anchor}
+  /* ---- 1. Slide-over side panel ---- */
+  .txn-list{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface);max-width:520px}
+  .txn-row{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;
+    border:none;background:none;color:var(--text);text-align:left;cursor:pointer;
+    padding:13px 16px;border-bottom:1px solid var(--border);font-size:.92rem}
+  .txn-row:last-child{border-bottom:none}
+  .txn-row:hover{background:var(--surface-2)}
+  .txn-row:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .txn-row .who{font-weight:600}
+  .txn-row .amt{font-variant-numeric:tabular-nums;font-weight:700}
+  .txn-row .amt.minus{color:var(--danger)}
+  .txn-row .amt.plus{color:var(--ok)}
 
-  [popover]{margin:0;border:1px solid var(--border);border-radius:12px;background:var(--surface);
-    color:var(--text);box-shadow:var(--shadow);padding:0}
-  [popover]::backdrop{background:transparent}
-
-  /* 앵커 지원 시: 트리거 바로 아래·가운데 정렬 + 넘치면 반대편으로 flip */
-  @supports (anchor-name: --x){
-    #menuPop{position:fixed;position-anchor:--menu-anchor;
-      top:anchor(bottom);justify-self:anchor-center;margin-top:8px;
-      position-try-fallbacks:flip-block, flip-inline}
-    #helpPop{position:fixed;position-anchor:--help-anchor;
-      top:anchor(bottom);justify-self:anchor-center;margin-top:8px;
-      position-try-fallbacks:flip-block}
-    #tipPop{position:fixed;position-anchor:--tip-anchor;
-      bottom:anchor(top);justify-self:anchor-center;margin-bottom:8px;
-      position-try-fallbacks:flip-block}
-  }
-  /* 폴백(앵커 미지원): 트리거 컨테이너 기준 절대배치 */
-  @supports not (anchor-name: --x){
-    .anchor-btn [popover]:popover-open{position:absolute;top:calc(100% + 8px);left:0}
-  }
-  .menu-list{padding:6px;min-width:210px}
-  .menu-list button{display:flex;width:100%;gap:10px;align-items:center;text-align:left;border:none;background:none;
-    color:var(--text);cursor:pointer;padding:9px 12px;border-radius:8px;font-size:.9rem}
-  .menu-list button:hover,.menu-list button:focus-visible{background:var(--surface-2);outline:none}
-  .pop-card{padding:14px 16px;max-width:260px;font-size:.88rem}
-  .pop-card b{display:block;margin-bottom:4px}
-  .tip-pop{padding:8px 12px;max-width:220px;font-size:.82rem;background:#0b0e13;color:#fff;border-color:#0b0e13}
-  .support-note{margin-top:12px;font-size:.84rem;padding:8px 12px;border-radius:8px;
-    background:var(--ok-soft);color:var(--ok);display:inline-block}
-  .support-note.no{background:var(--warn-soft);color:var(--warn)}
+  dialog.sheet{border:none;padding:0;margin:0;background:transparent;max-width:none;max-height:none;
+    width:100%;height:100%;color:var(--text)}
+  dialog.sheet::backdrop{background:rgba(10,12,16,.45)}
+  .sheet-inner{position:fixed;top:0;right:0;height:100%;width:min(400px,90vw);
+    background:var(--surface);border-left:1px solid var(--border);box-shadow:-10px 0 40px rgba(0,0,0,.2);
+    display:flex;flex-direction:column;
+    transform:translateX(100%);transition:transform .28s cubic-bezier(.32,.72,0,1)}
+  dialog.sheet[open] .sheet-inner{transform:translateX(0)}
+  @media (prefers-reduced-motion:reduce){.sheet-inner{transition:none}}
+  .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:16px 18px;border-bottom:1px solid var(--border)}
+  .sheet-head h3{margin:0;font-size:1rem}
+  .x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1.3rem;line-height:1;
+    width:34px;height:34px;border-radius:8px}
+  .x:hover{background:var(--surface-2);color:var(--text)}
+  .x:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .sheet-body{padding:18px;overflow:auto;flex:1}
+  .kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border);font-size:.9rem}
+  .kv:last-child{border-bottom:none}
+  .kv .k{color:var(--muted)}
+  .kv .v{font-weight:600;text-align:right}
+  .sheet-foot{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
 
   /* ---- 2. Error summary (form feedback) ---- */
   .pay-form{max-width:460px}
@@ -114,27 +111,34 @@
   .success-line{display:none;margin-top:12px;color:var(--ok);font-weight:600;font-size:.9rem}
   .success-line.show{display:block}
 
-  /* ---- 3. interpolate-size / calc-size(auto) ---- */
-  .acc{max-width:520px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
-  .acc-item{border-bottom:1px solid var(--border)}
-  .acc-item:last-child{border-bottom:none}
-  .acc-head{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;
-    border:none;background:none;color:var(--text);cursor:pointer;padding:14px 16px;font-size:.94rem;
-    font-weight:600;text-align:left}
-  .acc-head:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
-  .acc-head .chev{transition:transform .25s}
-  .acc-head[aria-expanded="true"] .chev{transform:rotate(90deg)}
-  /* 기본: 0 → auto 를 부드럽게. interpolate-size 지원 시 실제 애니메이션, 미지원 시 스냅 */
-  .acc-panel{height:0;overflow:hidden;transition:height .3s ease}
-  .acc-panel[data-open="true"]{height:auto}
-  @supports (interpolate-size: allow-keywords){
-    html{interpolate-size:allow-keywords}
-  }
-  @media (prefers-reduced-motion:reduce){.acc-panel{transition:none}}
-  .acc-body{padding:0 16px 16px;color:var(--muted);font-size:.88rem}
-  .isize-badge{display:inline-block;margin-top:12px;font-size:.84rem;padding:8px 12px;border-radius:8px}
-  .isize-badge.yes{background:var(--ok-soft);color:var(--ok)}
-  .isize-badge.no{background:var(--warn-soft);color:var(--warn)}
+  /* ---- 3. :has() relational selector ---- */
+  .has-demo{display:grid;gap:16px}
+  .plan-group{display:grid;gap:10px;max-width:460px}
+  /* 라디오가 체크된 '라벨'을 부모 입장에서 선택 → 카드 하이라이트 (JS 없음) */
+  .plan{display:flex;align-items:center;gap:12px;border:1.5px solid var(--border);border-radius:12px;
+    padding:14px 16px;cursor:pointer;background:var(--surface);transition:border-color .15s,background .15s}
+  .plan:hover{border-color:var(--brand)}
+  .plan:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .plan:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .plan input{width:20px;height:20px;accent-color:var(--brand)}
+  .plan .pt{font-weight:600}
+  .plan .pd{color:var(--muted);font-size:.84rem}
+  .plan .price{margin-left:auto;font-weight:700}
+
+  /* 폼 컨테이너: 안에 잘못된 입력이 있으면(:has) 제출 버튼을 잠근 듯 보이게 */
+  .mini-form{max-width:460px;border:1px solid var(--border);border-radius:12px;padding:16px;background:var(--surface)}
+  .mini-form input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:8px;
+    background:var(--surface);color:var(--text);margin-top:6px}
+  .mini-form input:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .mini-form .hint{font-size:.82rem;color:var(--ok);margin-top:8px}
+  .mini-form:has(input:invalid) .hint::before{content:"입력을 완성하면 활성화됩니다";color:var(--warn)}
+  .mini-form:has(input:invalid) .hint span{display:none}
+  .mini-form:has(input:invalid) .go{opacity:.5;pointer-events:none}
+  .go{margin-top:12px}
+
+  .support-note{margin-top:12px;font-size:.84rem;padding:8px 12px;border-radius:8px;
+    background:var(--ok-soft);color:var(--ok);display:inline-block}
+  .support-note.no{background:var(--warn-soft);color:var(--warn)}
 
   .footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:30px}
 
@@ -167,79 +171,89 @@
   </header>
 
   <nav class="toc" aria-label="오늘 항목">
-    <a href="#popover">🪟 팝오버 · 앵커 포지셔닝</a>
+    <a href="#slideover">🪟 슬라이드오버 패널</a>
     <a href="#errsum">🔔 폼 에러 요약</a>
-    <a href="#isize">🌀 height:auto 애니메이션</a>
+    <a href="#has">🌀 :has() 관계형 선택자</a>
   </nav>
 
-  <!-- ============ 1. Popover API + CSS Anchor Positioning ============ -->
-  <section class="card" id="popover">
-    <h2>🪟 팝오버 · 앵커 포지셔닝 — 트리거에 딱 붙는 메뉴·툴팁 <span class="tag">오버레이·모달·토스트</span></h2>
-    <p class="lead">드롭다운 메뉴·툴팁을 <b>버튼 바로 옆에 붙이고, 화면 밖으로 넘칠 것 같으면 반대편으로 자동으로 뒤집는</b> 일 — 예전엔 Floating&nbsp;UI 같은 JS 라이브러리가 필요했습니다. 이제 <b>Popover API + CSS 앵커 포지셔닝(anchor positioning)</b>으로 JS 없이 됩니다. 세 트리거를 눌러보세요.</p>
+  <!-- ============ 1. Slide-over side panel ============ -->
+  <section class="card" id="slideover">
+    <h2>🪟 슬라이드오버 패널 — 목록에서 상세를 옆에서 열기 <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lead">화면 <b>가운데를 덮는 모달</b> 대신, 오른쪽에서 <b>스윽 밀려 들어오는 패널</b>로 상세를 보여주는 패턴입니다(슬라이드오버 / 사이드 시트). 목록 맥락을 유지한 채 상세를 확인·편집하기 좋아 대시보드·핀테크에서 표준이 됐습니다. 거래 한 줄을 눌러보세요.</p>
 
     <div class="demo">
-      <div class="anchor-demo">
-        <span class="anchor-btn">
-          <button class="btn" id="menuTrigger" popovertarget="menuPop">⋯ 계정 메뉴</button>
-          <div id="menuPop" popover class="menu-list" role="menu" aria-label="계정">
-            <button role="menuitem">👤 프로필</button>
-            <button role="menuitem">💳 결제 수단</button>
-            <button role="menuitem">🧾 영수증 내역</button>
-            <button role="menuitem">🚪 로그아웃</button>
-          </div>
-        </span>
-
-        <span class="anchor-btn">
-          <button class="btn ghost" id="helpTrigger" popovertarget="helpPop">결제 도움말 ⓘ</button>
-          <div id="helpPop" popover class="pop-card">
-            <b>가맹점 표기가 다른가요?</b>
-            카드사 명세서엔 대표 가맹점명으로 찍힐 수 있어요. 실제 결제처와 금액은 영수증 내역에서 확인하세요.
-          </div>
-        </span>
-
-        <span class="anchor-btn">
-          <button class="btn ghost" id="tipTrigger" popovertarget="tipPop">위쪽에 뜨는 툴팁 ↑</button>
-          <div id="tipPop" popover class="tip-pop">
-            이 팝오버는 <b>트리거 위</b>에 붙습니다. 위 공간이 부족하면 아래로 flip 됩니다.
-          </div>
-        </span>
+      <div class="txn-list" role="list" aria-label="최근 거래">
+        <button class="txn-row" role="listitem" data-id="t1" data-who="스타벅스 강남점" data-when="2026-07-21 09:12" data-amt="-5,600원" data-method="신한카드 ****1234" data-status="승인 완료">
+          <span class="who">스타벅스 강남점</span><span class="amt minus">-5,600원</span>
+        </button>
+        <button class="txn-row" role="listitem" data-id="t2" data-who="급여 (에이블유니온)" data-when="2026-07-20 10:00" data-amt="+3,120,000원" data-method="입금" data-status="처리 완료">
+          <span class="who">급여 (에이블유니온)</span><span class="amt plus">+3,120,000원</span>
+        </button>
+        <button class="txn-row" role="listitem" data-id="t3" data-who="쿠팡" data-when="2026-07-19 21:44" data-amt="-38,900원" data-method="계좌이체" data-status="승인 완료">
+          <span class="who">쿠팡</span><span class="amt minus">-38,900원</span>
+        </button>
       </div>
-      <p class="cap">각 버튼은 <code class="k">popovertarget</code> 속성 하나로 열리고(바깥 클릭·<code class="k">Esc</code>로 닫힘), 위치는 CSS <code class="k">position-anchor</code>가 잡습니다. 스크롤해도 트리거를 따라다닙니다.</p>
-      <span class="support-note" id="anchorSupport">확인 중…</span>
+      <p class="cap">행을 누르면 오른쪽에서 상세 패널이 열립니다. <b>Esc</b> 또는 바깥 클릭, ✕ 버튼으로 닫히고, 닫으면 <b>눌렀던 행으로 포커스가 되돌아갑니다</b>.</p>
+
+      <dialog class="sheet" id="txnSheet" aria-labelledby="sheetTitle">
+        <div class="sheet-inner">
+          <div class="sheet-head">
+            <h3 id="sheetTitle">거래 상세</h3>
+            <button class="x" id="sheetClose" aria-label="닫기">✕</button>
+          </div>
+          <div class="sheet-body">
+            <div class="kv"><span class="k">가맹점</span><span class="v" id="d-who">—</span></div>
+            <div class="kv"><span class="k">일시</span><span class="v" id="d-when">—</span></div>
+            <div class="kv"><span class="k">금액</span><span class="v" id="d-amt">—</span></div>
+            <div class="kv"><span class="k">결제수단</span><span class="v" id="d-method">—</span></div>
+            <div class="kv"><span class="k">상태</span><span class="v" id="d-status">—</span></div>
+          </div>
+          <div class="sheet-foot">
+            <button class="btn ghost sm" id="sheetCancel">닫기</button>
+            <button class="btn sm">영수증 보기</button>
+          </div>
+        </div>
+      </dialog>
     </div>
 
     <h3>🎯 이건 뭐고, 요즘은 왜 이렇게 하나</h3>
     <ul class="clean">
-      <li><b>Popover API</b>: <code class="k">popover</code> 속성을 단 요소는 브라우저 <b>top layer</b>(항상 맨 위 레이어)에 뜨고, 바깥 클릭으로 닫힘(light-dismiss)·<code class="k">Esc</code> 닫힘·포커스 관리를 <b>기본 제공</b>합니다. 여는 버튼은 <code class="k">popovertarget</code> 하나면 끝(2024년 Baseline·주요 브라우저 공통 지원).</li>
-      <li><b>앵커 포지셔닝(anchor positioning)</b>: "이 팝오버를 저 버튼 기준으로 배치" 를 CSS만으로 선언합니다. 버튼에 <code class="k">anchor-name</code>, 팝오버에 <code class="k">position-anchor</code> + <code class="k">anchor()</code> 값. 스크롤·리사이즈에도 자동으로 따라붙어, 좌표를 JS로 계산하던 코드가 사라집니다.</li>
-      <li><b>자동 flip</b>: <code class="k">position-try-fallbacks: flip-block</code> — 팝오버가 화면 밖으로 넘칠 것 같으면 위/아래(또는 좌/우)를 <b>알아서 뒤집습니다</b>. 툴팁 라이브러리의 핵심 기능이 CSS 한 줄로.</li>
+      <li><b>모달과 뭐가 다른가</b>: 가운데 모달은 화면을 완전히 가로막아 "이것부터 처리"를 강제합니다. 슬라이드오버는 <b>옆에서 열려 목록 맥락을 남기며</b>, 항목을 이어 훑어보기(다음 거래 클릭) 좋습니다.</li>
+      <li><b>native <code class="k">&lt;dialog&gt;</code> 재활용</b>: 모달용 <code class="k">&lt;dialog&gt;</code>를 그대로 쓰되 <b>CSS로 오른쪽에 붙이고 슬라이드</b>시킵니다. <code class="k">showModal()</code>이 <b>포커스 트랩</b>(초점을 패널 안에 가둠), <code class="k">Esc</code> 닫기, 배경 <code class="k">::backdrop</code>, 배경 비활성화를 <b>공짜로</b> 처리합니다.</li>
+      <li><b>포커스 복귀</b>: 닫을 때 <b>열었던 그 행으로 포커스를 되돌립니다</b>. 키보드 사용자가 "어디였지" 하고 헤매지 않게 하는, 눈에 안 띄지만 중요한 디테일입니다.</li>
     </ul>
 
     <h3>💻 코드 (복붙용)</h3>
-    <pre><code>&lt;!-- 여는 버튼: popovertarget 하나면 끝 --&gt;
-&lt;button id="trigger" popovertarget="menu"&gt;계정 메뉴&lt;/button&gt;
-&lt;div id="menu" popover&gt; … &lt;/div&gt;</code></pre>
-    <pre><code>/* 버튼을 앵커로 등록 */
-#trigger { anchor-name: --menu-anchor; }
-
-/* 팝오버를 그 앵커의 '아래·가운데'에 배치, 넘치면 flip */
-#menu {
-  position: fixed;
-  position-anchor: --menu-anchor;
-  top: anchor(bottom);          /* 앵커의 아래 모서리에 top 정렬 */
-  justify-self: anchor-center;  /* 가로 가운데 */
-  margin-top: 8px;
-  position-try-fallbacks: flip-block;  /* 넘치면 위로 뒤집기 */
-}</code></pre>
+    <pre><code>&lt;dialog class="sheet" id="sheet"&gt;
+  &lt;div class="sheet-inner"&gt; … 상세 내용 … &lt;/div&gt;
+&lt;/dialog&gt;</code></pre>
+    <pre><code>/* dialog 는 전체를 덮고, 실제 패널만 오른쪽에서 슬라이드 */
+dialog.sheet{width:100%;height:100%;background:transparent;border:none}
+dialog.sheet::backdrop{background:rgba(10,12,16,.45)}
+.sheet-inner{position:fixed;inset:0 0 0 auto;width:min(400px,90vw);
+  transform:translateX(100%);transition:transform .28s}
+dialog.sheet[open] .sheet-inner{transform:translateX(0)}
+@media (prefers-reduced-motion:reduce){.sheet-inner{transition:none}}</code></pre>
+    <pre><code>let opener = null;
+row.addEventListener('click', () =&gt; {
+  opener = row;              // 포커스 복귀용으로 기억
+  fillDetail(row.dataset);
+  sheet.showModal();         // 포커스 트랩 + Esc + backdrop 자동
+});
+sheet.addEventListener('close', () =&gt; opener && opener.focus()); // 복귀
+// 바깥(backdrop) 클릭으로 닫기
+sheet.addEventListener('click', e =&gt; {
+  if (e.target === sheet) sheet.close();   // inner 바깥 = backdrop
+});</code></pre>
 
     <h3>♿ 접근성·상태 설계</h3>
     <ul class="clean">
-      <li>Popover는 <b>키보드·포커스·<code class="k">Esc</code> 닫기</b>를 브라우저가 처리하지만, 메뉴라면 <code class="k">role="menu"</code>/<code class="k">role="menuitem"</code> 시맨틱은 직접 챙깁니다.</li>
-      <li><b>지원 범위(검색 기준)</b>: 앵커 포지셔닝은 <b>Baseline 2026</b>으로 Chrome 125+, Firefox 132+, Safari 18.2+ 지원. 단 flip 폴백(<code class="k">position-try</code>)은 Safari 18.4+부터 완전합니다. 그래서 <code class="k">@supports (anchor-name:--x)</code>로 감지해 <b>미지원 브라우저엔 일반 절대배치 폴백</b>을 넣었습니다.</li>
-      <li>툴팁 용도로 쓸 땐 hover만이 아니라 <b>포커스·키보드</b>로도 열리게 하고, 유일한 라벨이면 안 됩니다(WCAG).</li>
+      <li><code class="k">showModal()</code>로 열면 <code class="k">aria-modal</code> 의미가 적용돼 배경이 보조기기에서 비활성화됩니다. 패널엔 <code class="k">aria-labelledby</code>로 제목 연결.</li>
+      <li><b>포커스 복귀</b>(위 코드)와 <code class="k">Esc</code> 닫기는 필수. 닫힘 애니메이션 때문에 <code class="k">close()</code>를 미루면 포커스 타이밍이 꼬일 수 있어 주의(추정: 구현별 검증 권장).</li>
+      <li>모션 최소화(<code class="k">prefers-reduced-motion</code>: 사용자가 OS에서 애니메이션 줄이기를 켠 상태) 시 슬라이드를 끕니다.</li>
     </ul>
 
-    <div class="note"><b>paysable 적용:</b> 헤더 계정 메뉴, 거래 행의 "⋯ 더보기", 결제 필드 옆 도움말 툴팁("가맹점 표기가 왜 달라요?"). Floating&nbsp;UI 의존을 걷어내 번들을 줄이고, 스크롤 컨테이너 안에서도 위치가 어긋나지 않습니다. 다만 구형 브라우저 비중이 있는 결제 환경이면 <code class="k">@supports</code> 폴백은 필수(추정: 사용자층에 맞춰 검증).</div>
+    <div class="note"><b>paysable 적용:</b> 거래 내역에서 행 클릭 → 상세/영수증을 옆 패널로. 목록을 떠나지 않아 여러 건을 빠르게 검토할 수 있습니다. 편집 폼을 패널에 담을 땐 "저장 안 함 상태로 닫기"에 확인을 붙이고, 모바일에선 같은 <code class="k">&lt;dialog&gt;</code>를 <b>바텀시트</b>로 바꿔 반응형 처리하면 됩니다.</div>
   </section>
 
   <!-- ============ 2. Error summary (form feedback) ============ -->
@@ -279,7 +293,7 @@
     <ul class="clean">
       <li><b>흩뿌린 인라인 에러의 한계</b>: 칸 밑 메시지는 그 칸을 볼 때만 유용합니다. 화면 밖으로 스크롤됐거나 개수가 많으면 사용자는 전체 그림을 못 봅니다.</li>
       <li><b>에러 요약 배너</b>: 폼 맨 위에 "3개 항목을 확인하세요" 처럼 <b>모아서</b> 보여주고, 각 항목은 문제 입력으로 가는 <b>링크</b>입니다. GOV.UK·많은 디자인 시스템의 표준 패턴입니다.</li>
-      <li><b>포커스 이동이 핵심</b>: 제출 실패 시 요약 배너(<code class="k">tabindex="-1"</code>)에 <code class="k">focus()</code>를 줍니다. 스크린리더 사용자는 즉시 "오류가 몇 개 있다"를 듣고, 시각 사용자는 배너가 눈에 들어옵니다.</li>
+      <li><b>포커스 이동이 핵심</b>: 제출 실패 시 요약 배너(<code class="k">tabindex="-1"</code>: 클릭 순서엔 안 들어가지만 스크립트로 포커스는 줄 수 있게)에 <code class="k">focus()</code>를 줍니다. 스크린리더 사용자는 즉시 "오류가 몇 개 있다"를 듣고, 시각 사용자는 배너가 눈에 들어옵니다.</li>
     </ul>
 
     <h3>💻 코드 (복붙용)</h3>
@@ -310,92 +324,72 @@ list.addEventListener('click', e =&gt; {
 
     <h3>♿ 접근성·상태 설계</h3>
     <ul class="clean">
-      <li>배너는 <code class="k">role="alert"</code>(또는 <code class="k">aria-live</code>)로 즉시 알림. 문제 입력엔 <code class="k">aria-invalid="true"</code> + 에러 메시지를 <code class="k">aria-describedby</code>로 연결(이 데모는 인접 요소로 간단화).</li>
-      <li>색만으로 오류를 표시하지 않기 — 아이콘·텍스트·테두리를 함께(색맹 배려, WCAG 1.4.1).</li>
+      <li>배너는 <code class="k">role="alert"</code>(또는 <code class="k">aria-live</code>: 내용이 바뀌면 스크린리더가 자동으로 읽는 영역)로 즉시 알림. 문제 입력엔 <code class="k">aria-invalid="true"</code> + 에러 메시지를 <code class="k">aria-describedby</code>로 연결(이 데모는 인접 요소로 간단화).</li>
+      <li>색만으로 오류를 표시하지 않기 — 아이콘·텍스트·테두리를 함께(색각 이상 배려, WCAG 1.4.1).</li>
       <li><b>제출 시점에</b> 요약을, 개별 칸은 <b>사용자가 만진 뒤</b>(blur/입력)에 검증하는 게 덜 성가십니다.</li>
     </ul>
 
     <div class="note"><b>paysable 적용:</b> 카드 등록·결제 폼, 정산 계좌 등록처럼 <b>칸이 많고 규칙이 빡빡한</b> 폼에 그대로 맞습니다. 서버 검증 실패(예: 카드 거절)도 같은 요약 배너에 얹어 <b>클라이언트·서버 오류를 한 UI로</b> 통일하면 사용자가 헷갈리지 않습니다.</div>
   </section>
 
-  <!-- ============ 3. interpolate-size / calc-size(auto) ============ -->
-  <section class="card" id="isize">
-    <h2>🌀 height:auto 로 부드럽게 펼치기 — interpolate-size <span class="tag">트렌드·개념</span></h2>
-    <p class="lead">아코디언·상세 토글을 <b>부드럽게 펼치는</b> 건 오래된 난제였습니다. CSS는 <code class="k">height:0 → auto</code> 전환을 애니메이션 못 해서, 다들 <code class="k">max-height</code> 꼼수나 JS로 픽셀을 재곤 했죠. <code class="k">interpolate-size: allow-keywords</code>가 이걸 <b>진짜로</b> 해결합니다. 아래 항목을 펼쳐보세요.</p>
+  <!-- ============ 3. :has() relational selector ============ -->
+  <section class="card" id="has">
+    <h2>🌀 :has() — 부모·형제를 선택하는 관계형 선택자 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><code class="k">:has()</code>는 "<b>안에 ○○를 가진 요소</b>"를 고르는 CSS 선택자입니다. 오랫동안 없던 "부모 선택자"가 드디어 생긴 셈이라, 예전엔 JS로 클래스를 토글하던 <b>상태 기반 스타일</b>을 CSS만으로 처리합니다. 아래 둘 다 <b>JS 한 줄 없이</b> 동작합니다.</p>
 
-    <div class="demo">
-      <div class="acc" id="acc">
-        <div class="acc-item">
-          <button class="acc-head" aria-expanded="false" aria-controls="p1">
-            <span>주문 상세 — 아메리카노 외 2건</span><span class="chev" aria-hidden="true">›</span>
-          </button>
-          <div class="acc-panel" id="p1" data-open="false">
-            <div class="acc-body">
-              아메리카노 ×2 · 4,000원<br>크루아상 ×1 · 3,500원<br>배송비 · 3,000원<br><b>합계 · 10,500원</b>
-            </div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-head" aria-expanded="false" aria-controls="p2">
-            <span>결제 수단 · 유의사항</span><span class="chev" aria-hidden="true">›</span>
-          </button>
-          <div class="acc-panel" id="p2" data-open="false">
-            <div class="acc-body">
-              신용/체크카드, 계좌이체, 간편결제를 지원합니다. 할부는 5만원 이상 카드 결제에서 선택할 수 있고, 취소 시 승인 취소로 처리됩니다. 내용 길이가 서로 달라도 각자 제 높이만큼 부드럽게 펼쳐집니다.
-            </div>
-          </div>
-        </div>
-        <div class="acc-item">
-          <button class="acc-head" aria-expanded="false" aria-controls="p3">
-            <span>환불 정책</span><span class="chev" aria-hidden="true">›</span>
-          </button>
-          <div class="acc-panel" id="p3" data-open="false">
-            <div class="acc-body">
-              결제 후 7일 이내, 미사용 상품에 한해 전액 환불됩니다. 승인 취소는 카드사 사정에 따라 3~5영업일이 걸릴 수 있습니다.
-            </div>
-          </div>
+    <div class="demo has-demo">
+      <div>
+        <p class="cap" style="margin:0 0 8px"><b>① 선택된 카드 하이라이트</b> — 라디오를 고르면 그 카드가 켜집니다(<code class="k">.plan:has(input:checked)</code>).</p>
+        <div class="plan-group" role="radiogroup" aria-label="요금제">
+          <label class="plan"><input type="radio" name="plan" checked /><span><span class="pt">Basic</span><br><span class="pd">개인 · 결제 100건/월</span></span><span class="price">무료</span></label>
+          <label class="plan"><input type="radio" name="plan" /><span><span class="pt">Pro</span><br><span class="pd">팀 · 결제 무제한 + 정산 리포트</span></span><span class="price">₩29,000</span></label>
+          <label class="plan"><input type="radio" name="plan" /><span><span class="pt">Enterprise</span><br><span class="pd">전용 지원 · SLA</span></span><span class="price">문의</span></label>
         </div>
       </div>
-      <span class="isize-badge" id="isizeBadge">확인 중…</span>
-      <p class="cap">지원 브라우저에선 <b>부드럽게</b> 펼쳐지고, 미지원 브라우저에선 <b>즉시</b> 펼쳐집니다 — 어느 쪽이든 <b>기능은 동일</b>하게 동작(점진적 향상).</p>
+
+      <div>
+        <p class="cap" style="margin:0 0 8px"><b>② 폼이 유효할 때만 버튼 활성</b> — 컨테이너가 "안에 <code class="k">:invalid</code> 입력이 있는지"를 <code class="k">:has()</code>로 보고 버튼을 잠급니다.</p>
+        <div class="mini-form">
+          <label>쿠폰 코드 (4자 이상)
+            <input type="text" required minlength="4" placeholder="예: SAVE10" />
+          </label>
+          <p class="hint"><span>✅ 적용할 수 있어요</span></p>
+          <button class="btn sm go">쿠폰 적용</button>
+        </div>
+      </div>
+      <span class="support-note" id="hasSupport">확인 중…</span>
     </div>
 
     <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
     <ul class="clean">
-      <li><b>오래된 통증 해소</b>: <code class="k">height</code>를 <code class="k">auto</code>(내용 크기)로 전환하는 걸 CSS가 못 하던 문제를, <code class="k">interpolate-size: allow-keywords</code> 한 줄이 풀어줍니다. 브라우저가 <code class="k">auto</code>를 실제 픽셀로 환산해 사이 값을 그려 줍니다.</li>
-      <li><b><code class="k">calc-size()</code></b>: <code class="k">auto</code> 같은 키워드로 <b>계산</b>도 가능합니다. 예: <code class="k">calc-size(auto, size - 20px)</code> = "펼친 높이에서 20px 뺀 값". <code class="k">size</code>는 환산된 내부 크기를 가리킵니다.</li>
-      <li><b>지원 범위(검색 기준)</b>: 현재 <b>Chromium 계열(Chrome·Edge 129+)만</b> 지원, Firefox·Safari 미지원. 그래서 <b>점진적 향상</b>으로 씁니다 — 미지원 브라우저는 애니메이션 없이 <b>바로 펼침</b>(깨지지 않음).</li>
+      <li><b>부모/형제 선택</b>: <code class="k">.card:has(img)</code> = "이미지를 가진 카드", <code class="k">label:has(input:checked)</code> = "체크된 입력을 가진 라벨". 자식·상태를 보고 <b>조상</b>을 꾸밀 수 있어, JS로 클래스를 붙였다 떼던 일이 사라집니다.</li>
+      <li><b>Baseline 도달(검색 기준)</b>: 2023년 말부터 Chrome 105+, Firefox 121+, Safari 15.4+에서 지원돼 이제 <b>어디서나</b> 쓸 수 있습니다. IE는 미지원(단종).</li>
+      <li><b>상태 기반 스타일이 선언적으로</b>: 폼 유효성(<code class="k">:has(input:invalid)</code>), 선택 상태, "빈 목록일 때(<code class="k">:has(:empty)</code>) 안내 문구" 같은 UI를 CSS 안에서 끝냅니다 — 버그날 자바스크립트가 줄어듭니다.</li>
     </ul>
 
     <h3>💻 코드 (복붙용)</h3>
-    <pre><code>/* 문서 전역에 딱 한 번 켜기 (지원 브라우저에서만) */
-@supports (interpolate-size: allow-keywords){
-  :root { interpolate-size: allow-keywords; }
+    <pre><code>/* ① 체크된 라디오를 가진 카드(부모)를 하이라이트 */
+.plan:has(input:checked){
+  border-color: var(--brand);
+  background: var(--brand-soft);
 }
 
-.panel{
-  height: 0;
-  overflow: hidden;
-  transition: height .3s ease;   /* 이제 auto 로의 전환이 애니메이션됨 */
+/* ② 폼 안에 잘못된 입력이 하나라도 있으면 제출 버튼 잠금 */
+.mini-form:has(input:invalid) .go{
+  opacity:.5; pointer-events:none;
 }
-.panel[data-open="true"]{ height: auto; }
 
-/* 모션 최소화 사용자 배려 */
-@media (prefers-reduced-motion: reduce){
-  .panel{ transition: none; }
-}</code></pre>
-    <pre><code>&lt;!-- JS는 aria 상태 토글만 --&gt;
-&lt;button aria-expanded="false" aria-controls="p1"&gt;주문 상세&lt;/button&gt;
-&lt;div class="panel" id="p1" data-open="false"&gt; … &lt;/div&gt;</code></pre>
+/* 응용: 이미지 있는 카드 vs 없는 카드 레이아웃 분기 */
+.card:has(img){ grid-template-columns: 120px 1fr; }</code></pre>
 
     <h3>♿ 접근성·상태 설계</h3>
     <ul class="clean">
-      <li>헤더 버튼에 <code class="k">aria-expanded</code>(펼침 상태)와 <code class="k">aria-controls</code>(어떤 패널인지)를 연결 — 스크린리더가 "펼침/접힘"을 읽습니다.</li>
-      <li>애니메이션은 장식일 뿐, <b>없어도 기능은 그대로</b>. <code class="k">prefers-reduced-motion</code>(모션 최소화 설정)에선 전환을 끕니다.</li>
-      <li>펼쳐진 내용은 실제 DOM에 있어야(단순히 시각적으로만 숨기지 않기) 검색·포커스가 됩니다.</li>
+      <li><code class="k">:has()</code>는 <b>보이는 스타일</b>만 바꿉니다. 버튼을 흐리게만 하지 말고 실제로도 못 누르게(위 <code class="k">pointer-events:none</code>) 하거나, 진짜 잠금이 필요하면 <code class="k">disabled</code>/<code class="k">aria-disabled</code>를 함께 둡니다 — 시각 상태와 실제 동작을 일치시킵니다.</li>
+      <li>선택 상태는 색만이 아니라 테두리·체크 표시 등 <b>형태로도</b> 구분(색각 이상 배려).</li>
+      <li>미지원 브라우저(구형)에선 <code class="k">:has()</code> 규칙이 통째로 무시되니, <b>기본 상태가 그 자체로 쓸 만하게</b>(점진적 향상) 설계합니다.</li>
     </ul>
 
-    <div class="note"><b>paysable 적용:</b> 결제 확인 화면의 "주문 상세 접기/펼치기", 영수증 항목 더보기, FAQ·약관 아코디언. <code class="k">max-height</code> 꼼수는 큰 값을 잡아 두면 타이밍이 어색했는데, <code class="k">interpolate-size</code>는 <b>내용 실제 높이</b>에 맞아 자연스럽습니다. 지금은 점진적 향상으로 얹고, Firefox·Safari가 따라오면 그대로 전면 적용하면 됩니다.</div>
+    <div class="note"><b>paysable 적용:</b> 결제수단·요금제 <b>선택 카드</b> 하이라이트, 카드 입력 폼의 "모두 유효할 때만 결제 버튼 활성", "거래 없음일 때 빈 상태 문구 노출" 등에 바로 씁니다. 상태 관리 코드를 CSS로 밀어내 컴포넌트가 가벼워집니다. 단, <b>진짜 잠금·검증은 JS/서버</b>가 최종 책임 — CSS는 표현일 뿐입니다.</div>
   </section>
 
   <div class="footer">🔗 이 파일은 self-contained 라이브 예시입니다 · Design Inspiration Daily 2026-07-21</div>
@@ -411,16 +405,33 @@ list.addEventListener('click', e =&gt; {
     themeBtn.setAttribute('aria-pressed', String(!dark));
   });
 
-  /* 1. anchor positioning support badge */
+  /* 1. slide-over sheet */
   (function(){
-    const el = document.getElementById('anchorSupport');
-    const ok = (window.CSS && CSS.supports && CSS.supports('anchor-name: --x'));
-    if(ok){
-      el.textContent = '✅ 이 브라우저는 CSS 앵커 포지셔닝을 지원합니다 — 팝오버가 트리거에 붙어 뜹니다.';
-    } else {
-      el.classList.add('no');
-      el.textContent = '⚠️ 이 브라우저는 앵커 포지셔닝 미지원 — 절대배치 폴백으로 동작합니다(위치가 단순).';
-    }
+    const sheet = document.getElementById('txnSheet');
+    const closeBtn = document.getElementById('sheetClose');
+    const cancelBtn = document.getElementById('sheetCancel');
+    let opener = null;
+    const fill = (d) => {
+      document.getElementById('d-who').textContent = d.who;
+      document.getElementById('d-when').textContent = d.when;
+      document.getElementById('d-amt').textContent = d.amt;
+      document.getElementById('d-method').textContent = d.method;
+      document.getElementById('d-status').textContent = d.status;
+    };
+    document.querySelectorAll('#slideover .txn-row').forEach(row => {
+      row.addEventListener('click', () => {
+        opener = row;
+        fill(row.dataset);
+        sheet.showModal();
+      });
+    });
+    const close = () => sheet.close();
+    closeBtn.addEventListener('click', close);
+    cancelBtn.addEventListener('click', close);
+    // backdrop click (dialog fills viewport; clicking outside .sheet-inner = on dialog itself)
+    sheet.addEventListener('click', (e) => { if(e.target === sheet) close(); });
+    // focus return
+    sheet.addEventListener('close', () => { if(opener) opener.focus(); });
   })();
 
   /* 2. error summary form */
@@ -435,7 +446,6 @@ list.addEventListener('click', e =&gt; {
       expiry:   document.getElementById('expiry'),
     };
     const labels = { cardName:'카드 소유자 이름', cardNo:'카드 번호', expiry:'유효기간' };
-
     function validate(){
       const errs = [];
       if(!fields.cardName.value.trim()) errs.push({id:'cardName', msg:'이름을 입력해 주세요.'});
@@ -475,31 +485,21 @@ list.addEventListener('click', e =&gt; {
       const t = document.querySelector(a.getAttribute('href'));
       if(t) t.focus();
     });
-    // 만진 뒤 오류 해제
     Object.values(fields).forEach(f => f.addEventListener('input', () => {
       if(f.getAttribute('aria-invalid') === 'true') f.setAttribute('aria-invalid','false');
     }));
   })();
 
-  /* 3. accordion (interpolate-size aware) */
+  /* 3. :has() support badge */
   (function(){
-    const badge = document.getElementById('isizeBadge');
-    const supported = (window.CSS && CSS.supports && CSS.supports('interpolate-size: allow-keywords'));
-    if(supported){
-      badge.classList.add('yes');
-      badge.textContent = '✅ interpolate-size 지원 — 부드럽게 펼쳐집니다.';
+    const el = document.getElementById('hasSupport');
+    const ok = (window.CSS && CSS.supports && CSS.supports('selector(:has(*))'));
+    if(ok){
+      el.textContent = '✅ 이 브라우저는 :has() 를 지원합니다 — 위 두 데모가 JS 없이 CSS로 동작합니다.';
     } else {
-      badge.classList.add('no');
-      badge.textContent = '⚠️ 미지원 브라우저 — 애니메이션 없이 즉시 펼쳐집니다(기능은 동일).';
+      el.classList.add('no');
+      el.textContent = '⚠️ 이 브라우저는 :has() 미지원 — 기본 상태로만 보입니다(점진적 향상).';
     }
-    document.querySelectorAll('#acc .acc-head').forEach(head => {
-      head.addEventListener('click', () => {
-        const open = head.getAttribute('aria-expanded') === 'true';
-        head.setAttribute('aria-expanded', String(!open));
-        const panel = document.getElementById(head.getAttribute('aria-controls'));
-        panel.dataset.open = String(!open);
-      });
-    });
   })();
 
   /* embed compact mode: ?embed=<id> 이면 그 섹션 데모만 표시 */
