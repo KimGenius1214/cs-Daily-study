@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-24 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0f1216; --surface:#171b21; --surface-2:#1f242c; --text:#eef1f5; --muted:#9aa4b2;
+    --border:#2a313b; --brand:#8b83ff; --brand-ink:#0f1216; --brand-soft:#232041;
+    --ok:#4ade80; --ok-soft:#12261a; --warn:#fbbf24; --warn-soft:#2b2113; --danger:#f87171; --danger-soft:#2a1618;
+    --ring:#8b83ff; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;transition:background .25s,color .25s}
+  a{color:var(--brand)}
+  .wrap{max-width:960px;margin:0 auto;padding:24px 18px 80px}
+  header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+  h1{font-size:1.4rem;margin:0}
+  .date{color:var(--muted);font-size:.95rem;margin:2px 0 0}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 22px}
+  .toc a{background:var(--surface);border:1px solid var(--border);border-radius:999px;
+    padding:6px 12px;text-decoration:none;color:var(--text);font-size:.86rem}
+  .toc a:hover{border-color:var(--brand)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    padding:22px;margin:0 0 26px;box-shadow:var(--shadow);scroll-margin-top:18px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  h3{font-size:.98rem;margin:22px 0 8px}
+  p.lead{color:var(--muted);margin:4px 0 14px}
+  .cap{color:var(--muted);font-size:.86rem;margin:8px 0 0}
+  .demo{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:20px}
+  code.k{background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:1px 6px;font-size:.86em}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.55}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  .note{font-size:.86rem;color:var(--muted);border-left:3px solid var(--brand);padding:6px 0 6px 12px;margin:12px 0}
+  ul.clean{margin:8px 0;padding-left:20px}
+  ul.clean li{margin:4px 0}
+  .btn{cursor:pointer;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink);
+    border-radius:10px;padding:10px 16px;font-size:.92rem;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--brand)}
+  .btn.sm{padding:7px 12px;font-size:.86rem}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .support-note{margin-top:14px;font-size:.84rem;padding:8px 12px;border-radius:8px;
+    background:var(--ok-soft);color:var(--ok);display:inline-block}
+  .support-note.no{background:var(--warn-soft);color:var(--warn)}
+
+  /* ---- 1. Progress / gauge ---- */
+  .pg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+  .pg-tile{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .pg-tile h4{margin:0 0 4px;font-size:.9rem}
+  .pg-sub{color:var(--muted);font-size:.78rem;margin:0 0 14px}
+  /* linear progress (한도 소진) */
+  .bar{height:12px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}
+  .bar > span{display:block;height:100%;border-radius:999px;background:var(--brand);
+    transition:width .5s cubic-bezier(.22,1,.36,1),background .3s}
+  .bar.warn > span{background:var(--warn)}
+  .bar.danger > span{background:var(--danger)}
+  .bar-legend{display:flex;justify-content:space-between;font-size:.8rem;margin-top:8px}
+  .bar-legend b{font-variant-numeric:tabular-nums}
+  .bar-legend .st{font-weight:700}
+  .bar-legend .st.ok{color:var(--ok)} .bar-legend .st.warn{color:var(--warn)} .bar-legend .st.danger{color:var(--danger)}
+  /* segmented meter (정산 단계) */
+  .seg{display:flex;gap:4px;margin:4px 0 10px}
+  .seg i{flex:1;height:10px;border-radius:4px;background:var(--surface-2);transition:background .35s}
+  .seg i.on{background:var(--ok)}
+  .seg-label{font-size:.82rem;color:var(--muted)}
+  .seg-label b{color:var(--text)}
+  /* radial gauge (SVG) */
+  .gauge-wrap{display:flex;align-items:center;gap:16px}
+  .gauge{--val:0;width:104px;height:104px;flex:none}
+  .gauge circle{fill:none;stroke-width:11;stroke-linecap:round}
+  .gauge .track{stroke:var(--surface-2)}
+  .gauge .fill{stroke:var(--brand);
+    stroke-dasharray:283; /* 2*pi*45 ≈ 283 */
+    stroke-dashoffset:calc(283 - 283 * var(--val) / 100);
+    transform:rotate(-90deg);transform-origin:50% 50%;
+    transition:stroke-dashoffset .6s cubic-bezier(.22,1,.36,1),stroke .3s}
+  .gauge.warn .fill{stroke:var(--warn)} .gauge.danger .fill{stroke:var(--danger)}
+  .gauge-num{font-size:1.5rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+  .gauge-cap{color:var(--muted);font-size:.8rem;margin-top:2px}
+  .pg-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px;align-items:center}
+  .pg-controls input[type=range]{accent-color:var(--brand);flex:1;min-width:140px}
+
+  /* ---- 2. Toast / snackbar ---- */
+  .toast-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .toast-region{position:relative;min-height:70px;margin-top:16px;border:1px dashed var(--border);
+    border-radius:12px;background:var(--surface);padding:10px}
+  .toast-region .hint{color:var(--muted);font-size:.8rem;text-align:center;padding:14px 0}
+  .toast-stack{position:absolute;right:12px;bottom:12px;left:12px;display:flex;flex-direction:column;
+    gap:8px;align-items:flex-end;pointer-events:none}
+  .toast{pointer-events:auto;min-width:230px;max-width:340px;display:flex;align-items:flex-start;gap:10px;
+    background:var(--surface);border:1px solid var(--border);border-left-width:4px;border-radius:10px;
+    padding:11px 12px;box-shadow:var(--shadow);
+    animation:toast-in .28s cubic-bezier(.22,1,.36,1) both}
+  .toast.leaving{animation:toast-out .22s ease-in forwards}
+  .toast.ok{border-left-color:var(--ok)} .toast.err{border-left-color:var(--danger)}
+  .toast.info{border-left-color:var(--brand)}
+  .toast .t-ico{font-size:1.05rem;line-height:1.3}
+  .toast .t-body{flex:1;min-width:0}
+  .toast .t-title{font-weight:700;font-size:.88rem}
+  .toast .t-msg{color:var(--muted);font-size:.8rem}
+  .toast .t-undo{background:transparent;border:none;color:var(--brand);font-weight:700;
+    font-size:.82rem;cursor:pointer;padding:2px 4px;border-radius:6px;white-space:nowrap}
+  .toast .t-undo:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .toast .t-close{background:transparent;border:none;color:var(--muted);cursor:pointer;
+    font-size:1rem;line-height:1;padding:2px 4px;border-radius:6px}
+  .toast .t-close:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .toast .t-progress{position:absolute;left:0;bottom:0;height:3px;background:currentColor;opacity:.35;
+    border-radius:0 0 0 10px;animation:t-drain linear forwards}
+  @keyframes toast-in{from{opacity:0;transform:translateY(12px) scale(.96)}to{opacity:1;transform:none}}
+  @keyframes toast-out{to{opacity:0;transform:translateX(24px)}}
+  @keyframes t-drain{from{width:100%}to{width:0%}}
+  @media (prefers-reduced-motion: reduce){
+    .toast{animation:none} .toast.leaving{animation:none;opacity:0}
+    .toast .t-progress{animation:none;width:0}
+  }
+
+  /* ---- 3. CSS Anchor Positioning + Popover ---- */
+  .ap-demo{display:flex;gap:26px;flex-wrap:wrap;align-items:flex-start}
+  .ap-col{flex:1;min-width:230px}
+  .ap-col h4{margin:0 0 10px;font-size:.9rem}
+  /* tooltip via anchor + popover */
+  .tip-btn{anchor-name:--tipbtn}
+  .menu-btn{anchor-name:--menubtn}
+  [popover]{margin:0;border:none;padding:0;background:transparent;overflow:visible}
+  .tip{position:absolute;position-anchor:--tipbtn;
+    bottom:anchor(top);justify-self:anchor-center;margin-bottom:8px;
+    background:#111827;color:#fff;font-size:.8rem;padding:7px 10px;border-radius:8px;
+    max-width:220px;box-shadow:0 4px 14px rgba(0,0,0,.28);
+    position-try-fallbacks:flip-block;opacity:0;transition:opacity .14s}
+  .tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+    border:6px solid transparent;border-top-color:#111827}
+  .tip:popover-open{opacity:1}
+  .menu{position:absolute;position-anchor:--menubtn;
+    top:anchor(bottom);justify-self:anchor-start;margin-top:6px;
+    min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    box-shadow:var(--shadow);padding:6px;position-try-fallbacks:flip-block,flip-inline}
+  .menu button{display:flex;width:100%;align-items:center;gap:8px;background:transparent;border:none;
+    color:var(--text);text-align:left;font-size:.88rem;padding:8px 10px;border-radius:7px;cursor:pointer}
+  .menu button:hover,.menu button:focus-visible{background:var(--brand-soft);outline:none}
+  .ap-scrollbox{height:120px;overflow:auto;border:1px solid var(--border);border-radius:10px;
+    padding:10px 12px;background:var(--surface);margin-top:10px;font-size:.85rem;color:var(--muted)}
+  .ap-fallnote{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+  .footer{color:var(--muted);font-size:.85rem;text-align:center;margin-top:30px}
+
+  /* ---- embed compact mode (?embed=<section>) : 데모만 크게, 나머지 숨김 ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <p class="date">2026-07-24 (금) · 오늘 3건 — 데이터·차트 / 피드백·상태 / 트렌드</p>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#progress">📊 진행률·게이지</a>
+    <a href="#toast">🔔 토스트·스낵바</a>
+    <a href="#anchor">🌀 앵커 포지셔닝</a>
+  </nav>
+
+  <!-- ============ 1. Progress / gauge ============ -->
+  <section class="card" id="progress">
+    <h2>📊 진행률·게이지 — 한도 소진·정산 단계를 CSS·SVG로 <span class="tag">데이터·테이블·차트</span></h2>
+    <p class="lead"><b>진행률 표시(progress indicator)</b>는 "얼마나 찼는지 / 어디까지 왔는지"를 한눈에 보여 주는 시각 요소입니다. 결제 도메인에선 <b>카드 한도 소진, 정산 진행 단계, 목표 달성률</b> 같은 데 매일 씁니다. 차트 라이브러리 없이 <b>가로 바·단계 미터·원형 게이지</b> 세 가지를 CSS와 SVG만으로 만들었습니다. 아래 슬라이더를 움직이면 세 표현이 <b>임계값(warning/danger)</b>에 따라 색까지 함께 바뀝니다.</p>
+
+    <div class="demo">
+      <div class="pg-grid">
+        <!-- linear -->
+        <div class="pg-tile">
+          <h4>카드 한도 소진</h4>
+          <p class="pg-sub">가로 바 · 임계값 색 전환</p>
+          <div class="bar" id="pgBar"><span style="width:0%"></span></div>
+          <div class="bar-legend">
+            <b id="pgBarVal">₩0 / ₩5,000,000</b>
+            <span class="st ok" id="pgBarState">여유</span>
+          </div>
+        </div>
+        <!-- segmented -->
+        <div class="pg-tile">
+          <h4>정산 진행 단계</h4>
+          <p class="pg-sub">단계 미터 · 5단계</p>
+          <div class="seg" id="pgSeg" role="img" aria-label="정산 진행 단계">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <p class="seg-label"><b id="pgSegStep">0</b> / 5 단계 · <span id="pgSegName">요청 접수</span></p>
+        </div>
+        <!-- radial gauge -->
+        <div class="pg-tile">
+          <h4>월 목표 달성률</h4>
+          <p class="pg-sub">원형 게이지 · SVG</p>
+          <div class="gauge-wrap">
+            <svg class="gauge" id="pgGauge" viewBox="0 0 100 100" role="img" aria-label="월 목표 달성률 게이지">
+              <circle class="track" cx="50" cy="50" r="45"></circle>
+              <circle class="fill" cx="50" cy="50" r="45"></circle>
+            </svg>
+            <div>
+              <div class="gauge-num" id="pgGaugeNum">0%</div>
+              <div class="gauge-cap">목표 대비</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pg-controls">
+        <label for="pgRange" style="font-size:.85rem">값 조절</label>
+        <input type="range" id="pgRange" min="0" max="100" value="0"
+          aria-label="진행률 값" aria-valuetext="0 퍼센트" />
+        <output id="pgOut" style="font-variant-numeric:tabular-nums;font-weight:700;min-width:3.4ch">0%</output>
+      </div>
+      <p class="cap">가로 바·게이지는 <b>0~70% 브랜드색 · 70~90% 주황(warn) · 90%+ 빨강(danger)</b>으로 임계값을 색으로도 알립니다(색만으로 판단하지 않도록 옆에 상태 글자·숫자를 함께 둡니다).</p>
+    </div>
+
+    <h3>🎯 이건 뭐고, 요즘은 왜 이렇게 하나</h3>
+    <ul class="clean">
+      <li><b>세 가지 표현, 다른 쓰임새</b>: <b>가로 바</b>는 연속 비율(한도 소진·업로드)에, <b>단계 미터</b>는 이산적인 몇 단계(정산 요청→검토→승인→송금→완료)에, <b>원형 게이지</b>는 목표 대비 달성률처럼 "요약 한 숫자"를 도드라지게 보일 때 씁니다.</li>
+      <li><b>라이브러리 없이</b>: 가로 바는 <code class="k">width%</code>, 단계 미터는 <code class="k">flex</code> 칸, 게이지는 <b>SVG 원 하나의 <code class="k">stroke-dasharray/offset</code></b>으로 그립니다. Chart.js·D3 같은 무거운 의존성 없이 수 KB로 끝나고, 색·굵기를 토큰(CSS 변수)으로 자유롭게 맞춥니다.</li>
+      <li><b>임계값을 색으로</b>: 결제·한도는 "얼마 남았나"가 중요하므로 70%/90% 같은 경계에서 색을 바꿔 위험을 미리 알립니다. 단, <b>색만으로 알리면 색각 사용자가 놓치므로</b> 숫자·상태 글자를 항상 곁들입니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>&lt;!-- 원형 게이지: SVG 원 하나로. r=45 → 둘레 2·π·45 ≈ 283 --&gt;
+&lt;svg class="gauge" viewBox="0 0 100 100" style="--val:64"&gt;
+  &lt;circle class="track" cx="50" cy="50" r="45"/&gt;
+  &lt;circle class="fill"  cx="50" cy="50" r="45"/&gt;
+&lt;/svg&gt;</code></pre>
+    <pre><code>.gauge .fill{
+  fill:none; stroke:var(--brand); stroke-width:11; stroke-linecap:round;
+  stroke-dasharray:283;                    /* 둘레 전체 */
+  stroke-dashoffset:calc(283 - 283 * var(--val) / 100); /* 값만큼만 채움 */
+  transform:rotate(-90deg); transform-origin:50% 50%;   /* 12시부터 시작 */
+  transition:stroke-dashoffset .6s ease;
+}
+/* 가로 바는 자식 span 의 width% 만 바꾸면 됨 */
+.bar &gt; span{ width:64%; transition:width .5s ease; }</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><b>진짜 진행률엔 role="progressbar"</b>: 결정적 진행(파일 업로드 등)은 <code class="k">&lt;div role="progressbar" aria-valuenow aria-valuemin aria-valuemax&gt;</code> 또는 네이티브 <code class="k">&lt;progress&gt;</code>를 써서 낭독기가 "64%"를 읽게 합니다. 순수 장식 게이지엔 <code class="k">aria-label</code>로 요약을 줍니다.</li>
+      <li><b>색 + 텍스트 이중 표기</b>: warn/danger를 색으로만 두지 말고 "위험 · 92%"처럼 글자·숫자를 함께 둡니다(<code class="k">:focus</code>·색각·흑백 출력 대비).</li>
+      <li><b>모션 최소화</b>: 채워지는 <code class="k">transition</code>은 <code class="k">prefers-reduced-motion</code>(모션 줄이기 OS 설정)에서 짧게/없이 처리해도 정보 전달엔 지장 없게 합니다.</li>
+    </ul>
+
+    <div class="note"><b>paysable 적용:</b> 카드·계좌 <b>한도 소진 바</b>, 정산 <b>단계 미터</b>(요청→검토→승인→송금→완료), 대시보드 상단 <b>월 목표 게이지</b>에 바로 씁니다. 이미 다룬 스파크라인·통계 카드와 한 세트로 묶으면 라이브러리 없이도 가벼운 대시보드가 완성됩니다.</div>
+  </section>
+
+  <!-- ============ 2. Toast / snackbar ============ -->
+  <section class="card" id="toast">
+    <h2>🔔 토스트·스낵바 — 스택·자동 소멸·되돌리기(Undo) <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+    <p class="lead"><b>토스트(toast) / 스낵바(snackbar)</b>는 화면 구석에 잠깐 떴다 사라지는 <b>비차단(non-blocking)</b> 알림입니다. 모달과 달리 사용자의 작업을 막지 않죠. 결제·정산 앱에선 "저장됨 / 전송 실패 / 삭제됨 — 되돌리기"에 씁니다. 아래 버튼으로 여러 개를 <b>쌓아</b> 보고, 실패 토스트의 <b>되돌리기</b>·자동 소멸 타이머를 확인하세요.</p>
+
+    <div class="demo">
+      <div class="toast-actions">
+        <button class="btn sm" type="button" data-toast="ok">✅ 저장 성공</button>
+        <button class="btn sm" type="button" data-toast="err">⚠️ 전송 실패</button>
+        <button class="btn sm ghost" type="button" data-toast="undo">🗑️ 삭제 + 되돌리기</button>
+        <button class="btn sm ghost" type="button" id="toastClear">모두 닫기</button>
+      </div>
+      <div class="toast-region">
+        <p class="hint" id="toastHint">여기 우하단에 토스트가 쌓입니다. 최대 3개까지 보이고, 넘치면 가장 오래된 게 밀려납니다.</p>
+        <div class="toast-stack" id="toastStack" role="region" aria-label="알림"></div>
+      </div>
+      <p class="cap">각 토스트는 <b>약 4초 뒤 자동으로</b> 사라지고(하단 진행 바가 남은 시간), <b>마우스를 올리면 타이머가 멈춥니다</b>. "되돌리기"가 있는 토스트는 <b>실행을 잠시 미뤄</b> 두었다가, 되돌리면 취소합니다(optimistic 삭제).</p>
+    </div>
+
+    <h3>🎯 이건 뭐고, 요즘은 왜 이렇게 하나</h3>
+    <ul class="clean">
+      <li><b>토스트 vs 모달·인라인</b>: 결과를 <b>알리기만</b> 하면 토스트, <b>확인·선택을 강제</b>해야 하면 모달, <b>특정 입력의 잘못</b>이면 그 필드 옆 인라인 메시지가 맞습니다. 토스트에 "정말 삭제?" 같은 중요한 결정을 담지 마세요(놓치면 끝).</li>
+      <li><b>되돌리기(Undo) 패턴</b>: "삭제했습니다 — 되돌리기"는 삭제를 <b>즉시 UI에 반영(optimistic UI: 서버 응답을 기다리지 않고 성공을 가정해 먼저 화면을 바꾸는 방식)</b>하되, 실제 실행은 토스트가 살아 있는 몇 초간 <b>미뤄</b> 둡니다. 그동안 되돌리면 아무 일도 없던 것처럼 취소됩니다.</li>
+      <li><b>스택·개수 제한</b>: 여러 알림이 동시에 나면 <b>세로로 쌓되</b> 최대 3~4개까지만 두고 오래된 것부터 밀어냅니다. 무한정 쌓이면 화면을 덮어 오히려 방해가 됩니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>&lt;!-- 낭독기가 자동으로 읽도록: 컨테이너에 aria-live --&gt;
+&lt;div id="stack" role="region" aria-label="알림" aria-live="polite"&gt;&lt;/div&gt;</code></pre>
+    <pre><code>function toast({title, msg, type='info', undo}) {
+  const el = document.createElement('div');
+  el.className = 'toast ' + type;
+  el.setAttribute('role', type === 'err' ? 'alert' : 'status'); // 에러는 즉시 낭독
+  // ...title/msg/undo 버튼 구성...
+  stack.prepend(el);
+
+  let timer = setTimeout(() =&gt; dismiss(el), 4000);
+  el.onmouseenter = () =&gt; clearTimeout(timer);          // hover 시 멈춤
+  el.onmouseleave = () =&gt; timer = setTimeout(() =&gt; dismiss(el), 1500);
+
+  if (undo) el.querySelector('.t-undo').onclick = () =&gt; { undo(); dismiss(el); };
+}
+function dismiss(el){ el.classList.add('leaving');
+  el.addEventListener('animationend', () =&gt; el.remove(), {once:true}); }</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><b>aria-live로 낭독</b>: 스택 컨테이너에 <code class="k">aria-live="polite"</code>(중요·에러는 <code class="k">role="alert"</code>=assertive)를 두면 새 토스트 텍스트가 자동으로 읽힙니다. 토스트마다 낱개로 붙이기보다 <b>컨테이너에 한 번</b> 두는 게 정석입니다.</li>
+      <li><b>충분한 시간·hover 정지</b>: 자동 소멸은 읽을 시간을 줘야 합니다(짧은 글 4초±). <b>hover/focus 시 타이머를 멈춰</b> 마우스·키보드 사용자가 놓치지 않게 합니다(WCAG의 "충분한 시간" 원칙).</li>
+      <li><b>키보드 도달·닫기</b>: 되돌리기·닫기는 진짜 <code class="k">&lt;button&gt;</code>으로 <code class="k">Tab</code> 도달·<code class="k">Enter</code> 실행이 되게 합니다. 중요한 액션(되돌리기)을 자동 소멸 뒤로 숨기면 접근성상 위험하니 시간을 넉넉히 주세요.</li>
+    </ul>
+
+    <div class="note"><b>paysable 적용:</b> 정산 요청 전송·환불 처리·설정 저장 결과 알림에 씁니다. 특히 <b>삭제/취소엔 되돌리기 토스트</b>를 붙이면 실수 복구가 쉬워 지원 문의가 줍니다. 단 <b>결제 승인/실패처럼 돈이 오가는 결정적 결과</b>는 토스트로만 흘리지 말고 화면 본문·영수증에 확정 상태로 남기세요(토스트는 보조 알림).</div>
+  </section>
+
+  <!-- ============ 3. CSS Anchor Positioning + Popover ============ -->
+  <section class="card" id="anchor">
+    <h2>🌀 CSS 앵커 포지셔닝 + Popover — JS 위치계산 라이브러리 없이 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><b>앵커 포지셔닝(CSS Anchor Positioning)</b>은 어떤 요소를 <b>다른 요소(앵커)에 붙여</b> 위치시키는 CSS 기능입니다. 지금까진 툴팁·드롭다운·메뉴를 정확히 붙이려면 <b>Floating UI(옛 Popper.js)</b> 같은 JS 라이브러리로 좌표를 계산했는데, 이제 <b>CSS 몇 줄</b>로 됩니다. 여기에 <b>Popover API</b>(<code class="k">popover</code> 속성)를 얹으면 열고 닫기·바깥 클릭·<code class="k">Esc</code> 닫기·최상단 레이어까지 공짜입니다. 아래 툴팁·메뉴를 눌러 보고, <b>스크롤 상자 안</b>에서 공간이 부족할 때 <b>자동으로 위아래가 뒤집히는지</b>(flip) 보세요.</p>
+
+    <div class="demo">
+      <div class="ap-demo">
+        <div class="ap-col">
+          <h4>툴팁 (anchor + popover)</h4>
+          <button class="btn sm tip-btn" type="button" popovertarget="tip1"
+            aria-describedby="tip1">ⓘ 수수료 안내</button>
+          <div id="tip1" class="tip" popover>결제 건당 2.9% + ₩100의 수수료가 정산 시 자동 차감됩니다.</div>
+          <p class="ap-fallnote">버튼 위에 붙습니다. 위가 좁으면 <code class="k">position-try-fallbacks</code>로 아래로 뒤집힙니다.</p>
+        </div>
+
+        <div class="ap-col">
+          <h4>메뉴 (anchor + popover)</h4>
+          <button class="btn sm ghost menu-btn" type="button" popovertarget="menu1"
+            aria-haspopup="menu">⋯ 거래 액션</button>
+          <div id="menu1" class="menu" popover role="menu">
+            <button type="button" role="menuitem">🧾 영수증 보기</button>
+            <button type="button" role="menuitem">↩️ 환불 요청</button>
+            <button type="button" role="menuitem">📌 메모 추가</button>
+            <button type="button" role="menuitem">🗑️ 거래 숨기기</button>
+          </div>
+
+          <div class="ap-scrollbox" id="apScroll">
+            <p>이 상자를 스크롤해 아래 버튼을 위쪽으로 밀어 보세요. 메뉴를 열면 <b>공간이 없는 쪽을 피해</b> 자동으로 방향이 바뀝니다.</p>
+            <div style="height:40px"></div>
+            <button class="btn sm ghost menu-btn" type="button" popovertarget="menu2" aria-haspopup="menu">⋯ 하단 액션</button>
+            <div style="height:60px"></div>
+          </div>
+          <div id="menu2" class="menu" popover role="menu">
+            <button type="button" role="menuitem">✅ 승인</button>
+            <button type="button" role="menuitem">⏸️ 보류</button>
+            <button type="button" role="menuitem">❌ 반려</button>
+          </div>
+        </div>
+      </div>
+      <span class="support-note" id="apSupport">확인 중…</span>
+      <p class="cap">열림/닫힘·바깥 클릭·<code class="k">Esc</code> 닫기는 <b>Popover API</b>가, 붙는 위치와 <b>뒤집기(flip)</b>는 <b>앵커 포지셔닝</b>이 담당합니다 — 둘 다 JS 좌표 계산 없이.</p>
+    </div>
+
+    <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><b>JS 위치 라이브러리를 대체</b>: 툴팁·드롭다운·콤보박스·팝오버의 좌표 계산·뒤집기·화면 밖 방지 로직을 <code class="k">anchor()</code>·<code class="k">position-anchor</code>·<code class="k">position-try-fallbacks</code>로 CSS화합니다. 번들에서 Floating UI를 걷어낼 수 있습니다(요구 브라우저가 받쳐줄 때).</li>
+      <li><b>Popover API와 궁합</b>: <code class="k">popover</code> 속성 + <code class="k">popovertarget</code> 버튼이면 JS 없이 토글됩니다. <b>top layer</b>(최상단 레이어)에 떠서 <code class="k">overflow:hidden</code>·<code class="k">z-index</code> 지옥·부모 <code class="k">transform</code>에 잘리는 고질병에서 벗어납니다.</li>
+      <li><b>지원 현황(검색 기준, 2026-07)</b>: <b>앵커 포지셔닝은 Baseline 2026</b>으로, Chrome·Edge 125+(2024), Safari 26(2025), Firefox 147(2026 초)에서 지원한다고 보고됩니다(자료마다 Firefox 버전 표기가 132~147로 갈려 <b>정확한 최소 버전은 추정</b>). <b>Popover API는 Baseline 2024</b>로 더 넓게 깔렸습니다. 아직 미지원 사용자를 위해 <b>정적 위치 폴백</b>을 두는 게 안전합니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>&lt;!-- Popover API: JS 없이 토글 --&gt;
+&lt;button popovertarget="tip1" aria-describedby="tip1"&gt;ⓘ 수수료 안내&lt;/button&gt;
+&lt;div id="tip1" popover class="tip"&gt;건당 2.9% + ₩100&lt;/div&gt;</code></pre>
+    <pre><code>/* 앵커 이름 붙이기 */
+button[popovertarget="tip1"]{ anchor-name:--tipbtn; }
+
+.tip{
+  position:absolute;
+  position-anchor:--tipbtn;      /* 이 앵커 기준으로 */
+  bottom:anchor(top);           /* 앵커의 top 에 내 bottom 을 맞춤(=위에 붙음) */
+  justify-self:anchor-center;   /* 가로 가운데 정렬 */
+  margin-bottom:8px;
+  position-try-fallbacks:flip-block; /* 위가 좁으면 아래로 자동 뒤집기 */
+}</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><b>관계를 ARIA로</b>: 툴팁은 트리거에 <code class="k">aria-describedby</code>, 메뉴 버튼은 <code class="k">aria-haspopup</code>·(열림 시)<code class="k">aria-expanded</code>를 줍니다. 위치는 CSS가 잡아도 <b>의미 연결은 ARIA</b>가 해야 낭독기가 압니다.</li>
+      <li><b>Popover의 기본 접근성</b>: <code class="k">popover</code>는 <code class="k">Esc</code> 닫기·바깥 클릭 닫기·포커스 관리 일부를 브라우저가 처리합니다. 다만 <b>메뉴 내부 화살표 이동</b> 같은 세부 키보드 패턴은 직접 보완해야 합니다(순수 메뉴면 <code class="k">role="menu"</code> 규약 고려).</li>
+      <li><b>폴백 필수</b>: 미지원 브라우저에선 앵커가 무시되어 요소가 엉뚱한 곳에 뜰 수 있으므로, <code class="k">@supports(anchor-name:--x)</code>로 감지하거나 <b>정적 <code class="k">position</code> 기본값</b>을 먼저 깔아 두세요.</li>
+    </ul>
+
+    <div class="note"><b>paysable 적용:</b> 거래 행의 <b>⋯ 액션 메뉴</b>, 수수료·상태 <b>툴팁</b>, 날짜·카테고리 <b>드롭다운</b>에 씁니다. Next.js에선 이런 UI에 흔히 Floating UI/Radix를 쓰는데, 지원 브라우저가 확정되면 <b>앵커+Popover로 번들을 줄이는</b> 선택지가 생깁니다. 지금 단계에선 <b>점진적 향상</b>(폴백 유지)으로 실험하기 좋습니다.</div>
+  </section>
+
+  <div class="footer">🔗 이 파일은 self-contained 라이브 예시입니다 · Design Inspiration Daily 2026-07-24</div>
+</div>
+
+<script>
+  /* theme toggle */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '\u{1F319} 다크 모드' : '☀️ 라이트 모드';
+    themeBtn.setAttribute('aria-pressed', String(!dark));
+  });
+
+  /* 1. Progress / gauge */
+  (function(){
+    const LIMIT = 5000000;
+    const STEPS = ['요청 접수','서류 검토','승인','송금 처리','정산 완료'];
+    const range = document.getElementById('pgRange');
+    const out = document.getElementById('pgOut');
+    const barFill = document.querySelector('#pgBar > span');
+    const bar = document.getElementById('pgBar');
+    const barVal = document.getElementById('pgBarVal');
+    const barState = document.getElementById('pgBarState');
+    const segEl = document.getElementById('pgSeg');
+    const segStep = document.getElementById('pgSegStep');
+    const segName = document.getElementById('pgSegName');
+    const gauge = document.getElementById('pgGauge');
+    const gaugeNum = document.getElementById('pgGaugeNum');
+    const segBars = segEl.querySelectorAll('i');
+
+    function won(n){ return '₩' + Math.round(n).toLocaleString('ko-KR'); }
+    function level(v){ return v >= 90 ? 'danger' : v >= 70 ? 'warn' : 'ok'; }
+    function stateWord(l){ return l==='danger'?'위험':l==='warn'?'주의':'여유'; }
+
+    function apply(v){
+      out.textContent = v + '%';
+      range.setAttribute('aria-valuetext', v + ' 퍼센트');
+      const l = level(v);
+      // linear bar
+      barFill.style.width = v + '%';
+      bar.classList.toggle('warn', l==='warn');
+      bar.classList.toggle('danger', l==='danger');
+      barVal.textContent = won(LIMIT * v/100) + ' / ' + won(LIMIT);
+      barState.textContent = stateWord(l) + ' · ' + v + '%';
+      barState.className = 'st ' + l;
+      // segmented (5 steps)
+      const step = Math.min(5, Math.ceil(v/20));
+      segBars.forEach((i,idx)=> i.classList.toggle('on', idx < step));
+      segStep.textContent = step;
+      segName.textContent = STEPS[Math.max(0, step-1)];
+      segEl.setAttribute('aria-label', '정산 진행 ' + step + '/5 단계 · ' + STEPS[Math.max(0,step-1)]);
+      // radial gauge
+      gauge.style.setProperty('--val', v);
+      gauge.classList.toggle('warn', l==='warn');
+      gauge.classList.toggle('danger', l==='danger');
+      gaugeNum.textContent = v + '%';
+      gauge.setAttribute('aria-label', '월 목표 달성률 ' + v + '퍼센트');
+    }
+    range.addEventListener('input', e => apply(+e.target.value));
+    apply(64); range.value = 64;
+  })();
+
+  /* 2. Toast / snackbar */
+  (function(){
+    const stack = document.getElementById('toastStack');
+    const hint = document.getElementById('toastHint');
+    const MAX = 3;
+    const presets = {
+      ok:   {type:'ok',  ico:'✅', title:'저장 완료', msg:'변경 사항이 정산 설정에 반영됐어요.'},
+      err:  {type:'err', ico:'⚠️', title:'전송 실패', msg:'네트워크 오류로 정산 요청을 보내지 못했어요.'},
+    };
+    function syncHint(){ hint.style.display = stack.children.length ? 'none' : 'block'; }
+
+    function dismiss(el){
+      if(el.dataset.leaving) return;
+      el.dataset.leaving = '1';
+      el.classList.add('leaving');
+      const done = () => { el.remove(); syncHint(); };
+      el.addEventListener('animationend', done, {once:true});
+      setTimeout(done, 400); // reduced-motion 안전망
+    }
+    function makeToast(cfg){
+      const el = document.createElement('div');
+      el.className = 'toast ' + cfg.type;
+      el.setAttribute('role', cfg.type === 'err' ? 'alert' : 'status');
+      let html =
+        '<span class="t-ico" aria-hidden="true">'+cfg.ico+'</span>'+
+        '<div class="t-body"><div class="t-title">'+cfg.title+'</div>'+
+        '<div class="t-msg">'+cfg.msg+'</div></div>';
+      if(cfg.undo) html += '<button class="t-undo" type="button">되돌리기</button>';
+      html += '<button class="t-close" type="button" aria-label="알림 닫기">✕</button>';
+      html += '<span class="t-progress" style="animation-duration:'+(cfg.ms||4000)+'ms"></span>';
+      el.innerHTML = html;
+      stack.prepend(el);
+      // 개수 제한
+      while(stack.children.length > MAX) dismiss(stack.lastElementChild);
+      syncHint();
+
+      let timer = setTimeout(()=>run(el, cfg, false), cfg.ms||4000);
+      const prog = el.querySelector('.t-progress');
+      el.addEventListener('mouseenter', ()=>{ clearTimeout(timer); if(prog) prog.style.animationPlayState='paused'; });
+      el.addEventListener('mouseleave', ()=>{ if(prog) prog.style.animationPlayState='running';
+        timer = setTimeout(()=>run(el, cfg, false), 1500); });
+      el.querySelector('.t-close').addEventListener('click', ()=>{ clearTimeout(timer); run(el, cfg, false); });
+      if(cfg.undo){
+        el.querySelector('.t-undo').addEventListener('click', ()=>{ clearTimeout(timer); cfg.undo(); dismiss(el); });
+      }
+      function run(node, c, undone){ dismiss(node); if(!undone && c.commit) c.commit(); }
+    }
+
+    document.querySelectorAll('[data-toast]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const kind = btn.dataset.toast;
+        if(kind === 'undo'){
+          makeToast({type:'info', ico:'🗑️', title:'거래를 숨겼어요',
+            msg:'목록에서 제거됨 · 되돌릴 수 있어요',
+            undo:()=>flash('되돌렸습니다 — 거래가 복구됐어요','info'),
+            commit:()=>{}, ms:5000});
+        } else {
+          makeToast(presets[kind]);
+        }
+      });
+    });
+    function flash(msg,type){ makeToast({type:type,ico:type==='info'?'↩️':'✅',title:msg,msg:'',ms:2500}); }
+    document.getElementById('toastClear').addEventListener('click', ()=>{
+      [...stack.children].forEach(dismiss);
+    });
+  })();
+
+  /* 3. Anchor positioning support badge */
+  (function(){
+    const el = document.getElementById('apSupport');
+    const anchorOK = (window.CSS && CSS.supports && CSS.supports('anchor-name: --x'));
+    const popOK = (typeof HTMLElement !== 'undefined' && 'popover' in HTMLElement.prototype);
+    if(anchorOK && popOK){
+      el.textContent = '✅ 이 브라우저는 앵커 포지셔닝 + Popover 를 모두 지원합니다 — 위 툴팁·메뉴가 CSS만으로 위치를 잡고 뒤집힙니다.';
+    } else if(popOK && !anchorOK){
+      el.classList.add('no');
+      el.textContent = '⚠️ Popover 는 되지만 앵커 포지셔닝 미지원 — 팝오버는 열리되 위치는 정적 폴백을 씁니다(점진적 향상).';
+    } else {
+      el.classList.add('no');
+      el.textContent = '⚠️ 이 브라우저는 Popover/앵커 미지원 — 실서비스라면 JS 폴백(Floating UI 등)이 필요합니다.';
+    }
+  })();
+
+  /* embed compact mode: ?embed=<id> 이면 그 섹션 데모만 표시 */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get('embed') || q.get('demo');
+    if(!id) return;
+    document.documentElement.classList.add('embed-mode');
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add('embed-show');
+    if(q.get('theme') === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  })();
+</script>
+</body>
+</html>
