@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-28 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:.92rem;font-family:inherit;
+    cursor:pointer;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn-brand{background:var(--brand);color:var(--brand-ink)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  /* ---------- 1. Notification center ---------- */
+  .nc-stage{position:relative;min-height:420px}
+  .nc-bar{display:flex;align-items:center;justify-content:space-between;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 14px}
+  .nc-bar .brand{font-weight:700;font-size:.95rem}
+  .bell{position:relative;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    width:42px;height:42px;border-radius:12px;font-size:1.15rem;cursor:pointer;font-family:inherit}
+  .bell:hover{background:var(--surface-2)}
+  .bell:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .bell .badge{position:absolute;top:-5px;right:-5px;min-width:19px;height:19px;padding:0 5px;
+    background:var(--danger);color:#fff;border-radius:999px;font-size:.68rem;font-weight:700;
+    display:grid;place-items:center;line-height:1;border:2px solid var(--surface)}
+  .bell .badge.zero{display:none}
+  .nc-panel{position:absolute;top:60px;right:0;width:340px;max-width:calc(100% - 4px);
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);
+    overflow:hidden;transform-origin:top right;
+    opacity:0;transform:scale(.96) translateY(-6px);pointer-events:none;
+    transition:opacity .16s ease, transform .16s ease}
+  .nc-panel.open{opacity:1;transform:none;pointer-events:auto}
+  @media (prefers-reduced-motion:reduce){ .nc-panel{transition:none} }
+  .nc-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;
+    border-bottom:1px solid var(--border)}
+  .nc-head strong{font-size:.95rem}
+  .nc-head button{border:none;background:transparent;color:var(--brand);font-size:.82rem;
+    cursor:pointer;font-family:inherit;padding:4px 6px;border-radius:6px;font-weight:600}
+  .nc-head button:disabled{color:var(--muted);cursor:not-allowed}
+  .nc-head button:focus-visible{outline:2px solid var(--ring)}
+  .nc-list{max-height:300px;overflow:auto;margin:0;padding:0;list-style:none}
+  .nc-group{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;
+    letter-spacing:.03em;padding:9px 14px 4px}
+  .nc-item{display:flex;gap:11px;padding:11px 14px;border-bottom:1px solid var(--border);
+    cursor:pointer;position:relative}
+  .nc-item:hover{background:var(--surface-2)}
+  .nc-item:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .nc-item.unread{background:var(--brand-soft)}
+  .nc-item.unread:hover{background:var(--brand-soft);filter:brightness(.98)}
+  .nc-item .ava{width:34px;height:34px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;
+    font-size:1rem;background:var(--surface-2)}
+  .nc-item .ava.pay{background:var(--ok-soft);color:var(--ok)}
+  .nc-item .ava.warn{background:var(--warn-soft);color:var(--warn)}
+  .nc-item .ava.sys{background:var(--brand-soft);color:var(--brand)}
+  .nc-item .body{flex:1 1 auto;min-width:0}
+  .nc-item .body .t{font-size:.87rem}
+  .nc-item .body .t b{font-weight:700}
+  .nc-item .body .ago{font-size:.74rem;color:var(--muted);margin-top:2px}
+  .nc-item .dot{position:absolute;right:12px;top:14px;width:8px;height:8px;border-radius:50%;
+    background:var(--brand)}
+  .nc-item:not(.unread) .dot{display:none}
+  .nc-empty{padding:44px 20px;text-align:center;color:var(--muted)}
+  .nc-empty .em{font-size:2rem}
+  .nc-empty .et{font-size:.9rem;margin-top:8px}
+  .nc-foot{padding:9px 14px;text-align:center;border-top:1px solid var(--border)}
+  .nc-foot a{color:var(--brand);font-size:.83rem;text-decoration:none;font-weight:600}
+  .nc-reset{margin-top:14px}
+
+  /* ---------- 2. Async 4-state view ---------- */
+  .as-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .seg button{border:none;background:var(--surface);color:var(--text);padding:8px 12px;font-size:.83rem;
+    cursor:pointer;font-family:inherit;border-right:1px solid var(--border)}
+  .seg button:last-child{border-right:none}
+  .seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+  .seg button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .as-panel{border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    min-height:230px;padding:8px}
+  .as-view{display:none}
+  .as-view.on{display:block}
+  /* loading skeleton */
+  .sk-row{display:flex;gap:12px;align-items:center;padding:12px 10px;border-bottom:1px solid var(--border)}
+  .sk-row:last-child{border-bottom:none}
+  .sk{background:linear-gradient(90deg,var(--surface-2) 25%,var(--border) 37%,var(--surface-2) 63%);
+    background-size:400% 100%;border-radius:7px;animation:sh 1.3s ease-in-out infinite}
+  @keyframes sh{0%{background-position:100% 0}100%{background-position:-100% 0}}
+  @media (prefers-reduced-motion:reduce){ .sk{animation:none} }
+  .sk-av{width:38px;height:38px;border-radius:10px;flex:0 0 auto}
+  .sk-l1{height:11px;width:55%}
+  .sk-l2{height:10px;width:35%;margin-top:7px}
+  .sk-amt{height:14px;width:64px;margin-left:auto}
+  /* success list */
+  .tx{display:flex;gap:12px;align-items:center;padding:12px 10px;border-bottom:1px solid var(--border)}
+  .tx:last-child{border-bottom:none}
+  .tx .ic{width:38px;height:38px;border-radius:10px;flex:0 0 auto;display:grid;place-items:center;
+    background:var(--surface-2);font-size:1rem}
+  .tx .m{flex:1 1 auto;min-width:0}
+  .tx .m .n{font-size:.88rem}
+  .tx .m .d{font-size:.75rem;color:var(--muted)}
+  .tx .amt{font-weight:700;font-size:.9rem}
+  .tx .amt.in{color:var(--ok)}
+  /* empty / error shared */
+  .state-mid{display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;min-height:214px;padding:20px;gap:6px}
+  .state-mid .big{font-size:2.4rem;line-height:1}
+  .state-mid h4{margin:8px 0 0;font-size:1rem}
+  .state-mid p{margin:0;color:var(--muted);font-size:.86rem;max-width:300px}
+  .state-mid .err-ic{color:var(--danger)}
+
+  /* ---------- 3. inert ---------- */
+  .in-stage{display:grid;grid-template-columns:1fr;gap:14px}
+  .in-app{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px;position:relative;overflow:hidden}
+  .in-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+  .in-field{display:flex;flex-direction:column;gap:4px;font-size:.82rem}
+  .in-field input{padding:9px 11px;border:1px solid var(--border);border-radius:9px;background:var(--surface);
+    color:var(--text);font-family:inherit;font-size:.9rem;min-width:150px}
+  .in-field input:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .in-bg{transition:filter .2s, opacity .2s}
+  .in-bg[inert]{filter:grayscale(.4) blur(1px);opacity:.55}
+  .in-overlay{margin-top:14px;border:1px solid var(--brand);background:var(--brand-soft);
+    border-radius:10px;padding:14px;display:none}
+  .in-overlay.show{display:block}
+  .in-status{font-size:.8rem;color:var(--muted);margin-top:10px}
+  .in-status b{color:var(--text)}
+  .in-status .live{color:var(--ok);font-weight:700}
+  .in-status .live.blocked{color:var(--danger)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-07-28 (화) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#notifcenter">🪟 알림 센터 인박스</a>
+    <a href="#asyncstate">🔔 비동기 4상태 뷰</a>
+    <a href="#inert">🌀 inert 속성</a>
+  </nav>
+
+  <!-- ============ 1. Notification center ============ -->
+  <section class="card" id="notifcenter">
+    <h2>🪟 알림 센터 — 벨 배지·읽음/안읽음·그룹·빈 상태 인박스 <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lead"><b>알림 센터(notification center)</b>는 벨 아이콘을 눌러 여는 <b>쌓이는 알림 목록</b>입니다. 잠깐 떴다 사라지는 <b>토스트(toast)</b>와 달리, 놓친 알림을 나중에 다시 확인하는 <b>영구 보관함(inbox)</b>이라는 점이 다릅니다. 아래 데모는 <b>안읽음 배지, 날짜 그룹, 개별/전체 읽음 처리, 다 읽으면 배지 사라짐, 비면 빈 상태</b>를 담았고, 패널은 <span class="kbd">Esc</span>·바깥 클릭으로 닫힙니다.</p>
+
+    <div class="demo">
+      <div class="nc-stage">
+        <div class="nc-bar">
+          <span class="brand">paysable 콘솔</span>
+          <button class="bell" id="ncBell" aria-haspopup="true" aria-expanded="false" aria-controls="ncPanel" aria-label="알림 열기">
+            🔔<span class="badge" id="ncBadge">3</span>
+          </button>
+        </div>
+
+        <div class="nc-panel" id="ncPanel" role="dialog" aria-label="알림 센터" aria-modal="false">
+          <div class="nc-head">
+            <strong>알림</strong>
+            <button id="ncReadAll">모두 읽음</button>
+          </div>
+          <ul class="nc-list" id="ncList" aria-live="polite"></ul>
+          <div class="nc-foot"><a href="#" onclick="return false">알림 설정</a></div>
+        </div>
+      </div>
+      <div class="nc-reset">
+        <button class="btn btn-ghost" id="ncRefill" type="button">↺ 새 알림 3건 다시 채우기</button>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>안읽음 배지(unread badge)</b> — 벨 위 숫자로 "몇 개 놓쳤나"를 한눈에. 0이 되면 배지를 숨겨 시선을 안 뺏습니다.</li>
+      <li><b>읽음/안읽음 구분</b> — 안읽은 항목은 배경·점(dot)으로 강조하고, 열어 보면 자동으로 읽음 처리합니다.</li>
+      <li><b>날짜·유형 그룹</b> — "오늘 / 지난 7일"처럼 묶어 스캔을 돕습니다(결제·시스템·경고 유형 아이콘 색 구분).</li>
+      <li><b>빈 상태(empty state)</b> — 다 읽거나 없을 때 빈 화면 대신 "새 알림이 없어요" 안내로 마무리감을 줍니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 열기·읽음·배지 동기화)</h3>
+    <pre><code>function openPanel(){
+  panel.classList.add('open');
+  bell.setAttribute('aria-expanded','true');
+  panel.querySelector('.nc-item')?.focus();   // 첫 항목으로 포커스
+}
+function markRead(id){
+  const n = items.find(i =&gt; i.id === id);
+  if(n) n.read = true;
+  syncBadge();                                 // 배지 다시 계산
+}
+function syncBadge(){
+  const unread = items.filter(i =&gt; !i.read).length;
+  badge.textContent = unread;
+  badge.classList.toggle('zero', unread === 0); // 0이면 숨김
+}
+// 바깥 클릭·Esc로 닫기
+document.addEventListener('click', e =&gt; {
+  if(open &amp;&amp; !panel.contains(e.target) &amp;&amp; e.target !== bell) closePanel();
+});
+document.addEventListener('keydown', e =&gt; { if(e.key === 'Escape') closePanel(); });</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>벨에 <code>aria-haspopup</code>·<code>aria-expanded</code>·<code>aria-controls</code>로 "여닫는 팝업"임을 알립니다.</li>
+      <li>목록은 <code>aria-live="polite"</code>로, 새 알림·읽음 변화를 스크린리더가 조용히 읽습니다.</li>
+      <li>토스트가 아니라 <b>비모달(non-modal) 패널</b>이라 <code>aria-modal="false"</code> — 뒤 배경을 잠그지 않고 <span class="kbd">Esc</span>/바깥 클릭으로 닫습니다.</li>
+      <li>안읽음을 <b>색만이 아니라 점(dot)·굵기</b>로도 구분해 색각 이상에서도 알 수 있게 합니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제 승인·정산 완료·이상거래 경고·정산 실패처럼 "지나가면 안 되는" 이벤트는 토스트로 잠깐 알리고 <b>알림 센터에 남겨</b> 두는 이중 구조가 안전합니다. 유형별(결제/시스템/경고) 아이콘 색을 나누면, 운영자가 급한 경고를 먼저 집어냅니다. 실제 서비스는 안읽음 수를 서버와 동기화하고, 오래된 알림은 페이지네이션/무한스크롤로 나눠 부릅니다.</p>
+
+    <div class="note">🔗 참고: 토스트(휘발) ↔ 알림 센터(보관)는 역할이 다릅니다. WAI-ARIA "Menu Button / Dialog(non-modal)" 패턴 참고. 이 데모는 외부 라이브러리 없이 self-contained.</div>
+  </section>
+
+  <!-- ============ 2. Async 4-state view ============ -->
+  <section class="card" id="asyncstate">
+    <h2>🔔 비동기 4상태 뷰 — 로딩·성공·빈·에러를 한 자리에서 전환하고 재시도 <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+    <p class="lead">데이터를 불러오는 화면은 사실 <b>네 가지 상태</b>를 가집니다: <b>로딩(loading) → 성공(데이터 있음) · 빈 상태(empty) · 에러(error)</b>. 흔한 실수는 로딩·에러를 대충 처리하고 "데이터 있음"만 예쁘게 만드는 것입니다. 아래 데모에서 상태를 직접 바꿔 보세요. 로딩은 <b>스켈레톤(skeleton, 내용 자리를 회색 뼈대로 미리 잡아 두는 것)</b>으로, 에러는 <b>재시도 버튼</b>과 함께 보여 줍니다.</p>
+
+    <div class="demo">
+      <div class="as-toolbar">
+        <div class="seg" role="group" aria-label="상태 전환">
+          <button data-st="loading" aria-pressed="false">⏳ 로딩</button>
+          <button data-st="success" aria-pressed="true">✅ 데이터</button>
+          <button data-st="empty" aria-pressed="false">📭 빈 상태</button>
+          <button data-st="error" aria-pressed="false">⚠️ 에러</button>
+        </div>
+        <button class="btn btn-brand" id="asReload" type="button">↻ 새로 불러오기</button>
+      </div>
+
+      <div class="as-panel" id="asPanel" aria-live="polite" aria-busy="false">
+        <!-- loading -->
+        <div class="as-view" data-view="loading">
+          <div class="sk-row"><div class="sk sk-av"></div><div style="flex:1"><div class="sk sk-l1"></div><div class="sk sk-l2"></div></div><div class="sk sk-amt"></div></div>
+          <div class="sk-row"><div class="sk sk-av"></div><div style="flex:1"><div class="sk sk-l1"></div><div class="sk sk-l2"></div></div><div class="sk sk-amt"></div></div>
+          <div class="sk-row"><div class="sk sk-av"></div><div style="flex:1"><div class="sk sk-l1"></div><div class="sk sk-l2"></div></div><div class="sk sk-amt"></div></div>
+          <div class="sk-row"><div class="sk sk-av"></div><div style="flex:1"><div class="sk sk-l1"></div><div class="sk sk-l2"></div></div><div class="sk sk-amt"></div></div>
+        </div>
+        <!-- success -->
+        <div class="as-view on" data-view="success">
+          <div class="tx"><div class="ic">🍔</div><div class="m"><div class="n">배달의민족</div><div class="d">오늘 12:41 · 카드결제</div></div><div class="amt">−₩18,500</div></div>
+          <div class="tx"><div class="ic">💰</div><div class="m"><div class="n">정산 입금</div><div class="d">오늘 09:00 · 주 1회 정산</div></div><div class="amt in">+₩842,300</div></div>
+          <div class="tx"><div class="ic">🚕</div><div class="m"><div class="n">카카오 T</div><div class="d">어제 22:18 · 간편결제</div></div><div class="amt">−₩9,700</div></div>
+          <div class="tx"><div class="ic">☕</div><div class="m"><div class="n">스타벅스</div><div class="d">어제 15:02 · 카드결제</div></div><div class="amt">−₩5,400</div></div>
+        </div>
+        <!-- empty -->
+        <div class="as-view" data-view="empty">
+          <div class="state-mid">
+            <div class="big">📭</div>
+            <h4>아직 거래 내역이 없어요</h4>
+            <p>첫 결제가 발생하면 여기에서 바로 확인할 수 있어요.</p>
+            <button class="btn btn-brand" type="button" style="margin-top:10px">결제 링크 만들기</button>
+          </div>
+        </div>
+        <!-- error -->
+        <div class="as-view" data-view="error">
+          <div class="state-mid">
+            <div class="big err-ic">⚠️</div>
+            <h4>내역을 불러오지 못했어요</h4>
+            <p>네트워크가 불안정할 수 있어요. 잠시 후 다시 시도해 주세요.</p>
+            <button class="btn btn-brand" id="asRetry" type="button" style="margin-top:10px">다시 시도</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>스켈레톤 우선</b> — 빈 화면·큰 스피너 대신, 실제 목록과 같은 뼈대를 깔아 "곧 여기 뜬다"를 예고하면 체감 대기가 짧아집니다.</li>
+      <li><b>빈 상태 ≠ 에러</b> — "데이터가 0개"와 "불러오기 실패"는 전혀 다릅니다. 빈 상태는 <b>다음 행동(첫 결제 만들기)</b>을 제안하고, 에러는 <b>재시도</b>를 줍니다.</li>
+      <li><b>부분 실패 구분</b> — 전체 실패와 "일부만 실패"는 다르게. 목록 일부만 못 불러오면 그 행만 재시도하게 하는 편이 낫습니다.</li>
+      <li><b>낙관적 갱신은 신중히</b> — 결제 확정처럼 되돌리기 어려운 건 성공을 미리 보여주지 말고 서버 확정 후 표시합니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 상태 머신으로 렌더)</h3>
+    <pre><code>// UI를 4개 상태 중 하나로만 그린다 (한 번에 하나)
+async function load(){
+  render('loading');                       // aria-busy=true
+  try{
+    const rows = await fetchTransactions();
+    render(rows.length ? 'success' : 'empty');   // 0개면 빈 상태
+  }catch(e){
+    render('error');                        // 실패 → 재시도 UI
+  }
+}
+function render(state){
+  panel.setAttribute('aria-busy', state === 'loading');
+  views.forEach(v =&gt; v.classList.toggle('on', v.dataset.view === state));
+}
+retryBtn.addEventListener('click', load);   // 에러에서 다시</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>로딩 중엔 컨테이너에 <code>aria-busy="true"</code>를 걸어 보조기기가 "작업 중"임을 알게 합니다.</li>
+      <li>상태 영역을 <code>aria-live="polite"</code>로 감싸 로딩→성공/에러 전환을 스크린리더가 읽습니다.</li>
+      <li>에러 문구는 <b>원인과 다음 행동</b>을 담고("다시 시도"), 재시도는 실제 <code>&lt;button&gt;</code>이라 키보드로 눌립니다.</li>
+      <li>스켈레톤 애니메이션은 <code>prefers-reduced-motion</code>(움직임 최소화 선호)에서 멈춥니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">거래 내역·정산 목록·대시보드처럼 데이터를 불러오는 모든 화면의 <b>공통 뼈대</b>로 쓰면 좋습니다. 특히 결제 도메인에선 <b>에러 상태의 품질</b>이 신뢰를 좌우합니다 — "불러오지 못했어요 + 다시 시도"가 흰 화면보다 훨씬 안심됩니다. 네 상태를 한 컴포넌트(예: <code>&lt;AsyncBoundary&gt;</code>)로 표준화하면 화면마다 로딩·에러를 다시 짜지 않아도 됩니다.</p>
+
+    <div class="note">🔗 참고: React라면 Suspense + Error Boundary가 로딩/에러 상태의 표준 뼈대입니다. 스켈레톤은 <b>레이아웃 이동(CLS)</b>을 줄이는 부수효과도 있습니다(뼈대가 실제 크기를 미리 차지).</div>
+  </section>
+
+  <!-- ============ 3. inert ============ -->
+  <section class="card" id="inert">
+    <h2>🌀 inert 속성 — 화면 한 덩어리를 통째로 "만질 수 없게" 만들기 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><code>inert</code>는 어떤 요소와 그 안쪽 전체를 <b>클릭·포커스·탭 이동·스크린리더 탐색에서 통째로 제외</b>하는 HTML 속성입니다(2023년 표준화, 2025년부터 모든 최신 브라우저 지원 — Baseline 안정). 모달을 띄웠는데 <span class="kbd">Tab</span>이 뒤 배경으로 새는 <b>포커스 누수</b>를 <code>disabled</code> 없이 한 방에 막습니다. 아래에서 토글해, 뒤 폼에 <span class="kbd">Tab</span>·클릭이 정말 안 먹는지 확인해 보세요.</p>
+
+    <div class="demo">
+      <div class="in-stage">
+        <div class="in-app">
+          <div class="in-bg" id="inBg">
+            <strong style="font-size:.95rem">결제 정보</strong>
+            <div class="in-row">
+              <label class="in-field">카드번호<input type="text" value="4242 4242 4242 4242" aria-label="카드번호"></label>
+              <label class="in-field">유효기간<input type="text" value="12/28" aria-label="유효기간"></label>
+            </div>
+            <div class="in-row">
+              <button class="btn btn-ghost" type="button">취소</button>
+              <button class="btn btn-brand" type="button">저장</button>
+            </div>
+          </div>
+
+          <div class="in-overlay" id="inOverlay" role="dialog" aria-label="결제 확인" aria-modal="true">
+            <strong style="font-size:.95rem">결제를 진행할까요?</strong>
+            <p style="margin:6px 0 0;color:var(--muted);font-size:.85rem">확인을 누르면 ₩18,500이 청구됩니다.</p>
+            <div class="in-row">
+              <button class="btn btn-ghost" id="inCancel" type="button">뒤로</button>
+              <button class="btn btn-brand" id="inConfirm" type="button">확인하고 결제</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="in-row">
+          <button class="btn btn-brand" id="inOpen" type="button">확인 오버레이 열기 (뒤 배경 inert)</button>
+        </div>
+        <p class="in-status">뒤 배경 상태: <b id="inState">활성</b> · <span class="in-field" style="display:inline">아래 칸에 <span class="kbd">Tab</span>으로 들어가지는지 시도해 보세요</span></p>
+        <p class="in-status">테스트용 뒤 배경 입력: <input type="text" id="inProbe" placeholder="여기로 Tab이 새면 실패" style="padding:7px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-family:inherit"> <span class="live" id="inProbeState">지금은 포커스 가능</span></p>
+      </div>
+    </div>
+
+    <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><b>포커스 트랩의 반쪽</b> — 모달을 열면 뒤 배경 컨테이너에 <code>inert</code>를 걸어, 탭이 뒤로 새지 않게 합니다(WCAG 포커스 순서 요건 충족).</li>
+      <li><b>disabled 남발 대신</b> — 폼 전체를 비활성화할 때 입력마다 <code>disabled</code>를 붙이는 대신, 부모에 <code>inert</code> 한 줄이면 안쪽 전부가 잠깁니다(값은 그대로 제출됨).</li>
+      <li><b>로딩·전환 구간</b> — 저장 중 화면을 잠깐 못 만지게 하거나, 슬라이드 전환 중 화면 밖 패널을 접근 대상에서 빼는 데 씁니다.</li>
+      <li><code>&lt;dialog&gt;</code>의 <code>showModal()</code>은 이걸 자동으로 해 줍니다. 직접 만든 오버레이엔 <code>inert</code>를 손수 걸어야 합니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>const overlay = document.getElementById('confirm');
+const bg      = document.getElementById('appBg');
+
+function openConfirm(){
+  overlay.classList.add('show');
+  bg.inert = true;                 // 뒤 배경 전체를 비활성 (탭·클릭·리더 제외)
+  overlay.querySelector('button').focus();
+}
+function closeConfirm(){
+  overlay.classList.remove('show');
+  bg.inert = false;                // 되살리기
+}
+
+/* CSS로 '비활성처럼 보이게' 시각 힌트도 함께 */
+.in-bg[inert]{ filter:grayscale(.4) blur(1px); opacity:.55; }</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><code>inert</code>는 <b>시각 표시를 자동으로 주지 않습니다</b> — <code>[inert]</code> 선택자로 흐리게 처리해 "지금 못 만진다"를 눈으로도 알려야 합니다.</li>
+      <li>안쪽 요소는 접근성 트리에서 사라지므로, 스크린리더 사용자도 실수로 뒤 배경을 읽지 않습니다.</li>
+      <li>모달을 <b>열 때 배경 inert · 닫을 때 해제</b>를 짝으로 관리하고, 닫은 뒤 포커스를 열었던 버튼으로 되돌립니다.</li>
+      <li>주의: <code>inert</code>가 걸린 영역 안에 포커스가 남아 있으면 안 됩니다 — 열기 직전 포커스를 오버레이로 옮기세요.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제 확인 오버레이·바텀시트·저장 중 로딩처럼 "지금은 뒤를 만지면 안 되는" 순간에 씁니다. 특히 <b>결제 더블탭·중복 제출</b>을 막을 때, 처리 중 화면을 <code>inert</code>로 잠그면 <code>disabled</code>를 버튼마다 다는 것보다 안전하고 간단합니다. 다만 <code>inert</code>는 <b>시각·상호작용 차단일 뿐 보안 경계가 아니므로</b>, 서버 측 중복 방지(멱등키 등)는 별도로 둡니다.</p>
+
+    <div class="note">🔗 참고: MDN <code>inert</code>(HTML global attribute), web.dev "The inert attribute". Baseline: 2023 신규 → 2025년 광범위 지원(96%+). 이 데모는 self-contained.</div>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px">
+    Design Inspiration Daily · 2026-07-28 (화) · self-contained live demo
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '\u{1F319} 다크 모드' : '☀️ 라이트 모드';
+    themeBtn.setAttribute('aria-pressed', String(!dark));
+  });
+
+  /* ================= 1. Notification center ================= */
+  (function(){
+    const bell = document.getElementById('ncBell');
+    const panel = document.getElementById('ncPanel');
+    const badge = document.getElementById('ncBadge');
+    const list = document.getElementById('ncList');
+    const readAll = document.getElementById('ncReadAll');
+    const refill = document.getElementById('ncRefill');
+    let open = false;
+
+    const seed = () => ([
+      {id:1, grp:'오늘', ava:'pay', ic:'💳', html:'<b>결제 승인</b> ₩18,500 · 배달의민족', ago:'방금', read:false},
+      {id:2, grp:'오늘', ava:'warn', ic:'⚠️', html:'<b>이상 거래 감지</b> 해외 결제 시도 차단됨', ago:'12분 전', read:false},
+      {id:3, grp:'지난 7일', ava:'sys', ic:'✅', html:'<b>정산 완료</b> ₩842,300 입금 처리', ago:'2일 전', read:false},
+    ]);
+    let items = seed();
+
+    function render(){
+      list.innerHTML = '';
+      if(items.length === 0){
+        const li = document.createElement('li');
+        li.innerHTML = '<div class="nc-empty"><div class="em">📭</div><div class="et">새 알림이 없어요</div></div>';
+        list.appendChild(li);
+      } else {
+        let lastGrp = null;
+        items.forEach(n => {
+          if(n.grp !== lastGrp){
+            const g = document.createElement('li');
+            g.className = 'nc-group'; g.textContent = n.grp;
+            list.appendChild(g); lastGrp = n.grp;
+          }
+          const li = document.createElement('li');
+          li.className = 'nc-item' + (n.read ? '' : ' unread');
+          li.tabIndex = 0;
+          li.setAttribute('role','button');
+          li.innerHTML =
+            '<span class="ava '+n.ava+'">'+n.ic+'</span>'+
+            '<span class="body"><span class="t">'+n.html+'</span><span class="ago">'+n.ago+'</span></span>'+
+            '<span class="dot" aria-hidden="true"></span>';
+          const doRead = () => { n.read = true; render(); syncBadge(); };
+          li.addEventListener('click', doRead);
+          li.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); doRead(); } });
+          list.appendChild(li);
+        });
+      }
+      readAll.disabled = items.every(i => i.read) || items.length === 0;
+    }
+    function syncBadge(){
+      const unread = items.filter(i => !i.read).length;
+      badge.textContent = unread;
+      badge.classList.toggle('zero', unread === 0);
+      bell.setAttribute('aria-label', unread ? ('알림 열기, 안읽음 '+unread+'건') : '알림 열기');
+    }
+    function openPanel(){
+      open = true; panel.classList.add('open');
+      bell.setAttribute('aria-expanded','true');
+      const first = panel.querySelector('.nc-item'); if(first) first.focus();
+    }
+    function closePanel(){
+      open = false; panel.classList.remove('open');
+      bell.setAttribute('aria-expanded','false');
+    }
+    bell.addEventListener('click', e => { e.stopPropagation(); open ? closePanel() : openPanel(); });
+    readAll.addEventListener('click', () => { items.forEach(i => i.read = true); render(); syncBadge(); });
+    refill.addEventListener('click', () => { items = seed(); render(); syncBadge(); if(!open) openPanel(); });
+    document.addEventListener('click', e => {
+      if(open && !panel.contains(e.target) && e.target !== bell) closePanel();
+    });
+    document.addEventListener('keydown', e => { if(e.key==='Escape' && open){ closePanel(); bell.focus(); } });
+
+    render(); syncBadge();
+  })();
+
+  /* ================= 2. Async 4-state view ================= */
+  (function(){
+    const panel = document.getElementById('asPanel');
+    const views = panel.querySelectorAll('.as-view');
+    const segBtns = document.querySelectorAll('.seg [data-st]');
+    const reload = document.getElementById('asReload');
+    const retry = document.getElementById('asRetry');
+    let loadTimer = null;
+
+    function show(state){
+      panel.setAttribute('aria-busy', String(state === 'loading'));
+      views.forEach(v => v.classList.toggle('on', v.dataset.view === state));
+      segBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.st === state)));
+    }
+    // 로딩을 잠깐 보여준 뒤 목표 상태로 (실제 fetch 흉내)
+    function loadThen(target){
+      clearTimeout(loadTimer);
+      show('loading');
+      loadTimer = setTimeout(() => show(target), 900);
+    }
+    segBtns.forEach(b => b.addEventListener('click', () => {
+      const st = b.dataset.st;
+      if(st === 'loading'){ show('loading'); return; }
+      show(st);
+    }));
+    reload.addEventListener('click', () => loadThen('success'));
+    if(retry) retry.addEventListener('click', () => loadThen('success'));
+
+    show('success');
+  })();
+
+  /* ================= 3. inert ================= */
+  (function(){
+    const bg = document.getElementById('inBg');
+    const overlay = document.getElementById('inOverlay');
+    const openBtn = document.getElementById('inOpen');
+    const cancel = document.getElementById('inCancel');
+    const confirm = document.getElementById('inConfirm');
+    const stateEl = document.getElementById('inState');
+    const probe = document.getElementById('inProbe');
+    const probeState = document.getElementById('inProbeState');
+    let lastFocus = null;
+
+    function open(){
+      lastFocus = document.activeElement;
+      overlay.classList.add('show');
+      bg.inert = true;
+      stateEl.textContent = 'inert (잠김)';
+      probeState.textContent = '지금은 포커스 불가 (inert)';
+      probeState.classList.add('blocked');
+      confirm.focus();
+    }
+    function close(){
+      overlay.classList.remove('show');
+      bg.inert = false;
+      stateEl.textContent = '활성';
+      probeState.textContent = '지금은 포커스 가능';
+      probeState.classList.remove('blocked');
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+    openBtn.addEventListener('click', open);
+    cancel.addEventListener('click', close);
+    confirm.addEventListener('click', close);
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape' && overlay.classList.contains('show')) close();
+    });
+    probe.addEventListener('focus', () => {
+      // inert가 제대로 걸리면 이 콜백은 오버레이 열림 중엔 절대 안 불린다
+      if(!bg.hasAttribute('inert')) { probeState.textContent = '방금 포커스됨 ✔'; }
+    });
+  })();
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get('embed') || q.get('demo');
+    if(q.get('theme') === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    if(!id) return;
+    document.documentElement.classList.add('embed-mode');
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add('embed-show');
+  })();
+})();
+</script>
+</body>
+</html>
