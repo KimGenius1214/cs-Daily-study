@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-27 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:.92rem;font-family:inherit;
+    cursor:pointer;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn-brand{background:var(--brand);color:var(--brand-ink)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+  /* ---------- 1. File upload dropzone ---------- */
+  .dz{border:2px dashed var(--border);border-radius:14px;padding:26px 18px;text-align:center;
+    background:var(--surface);transition:border-color .15s, background .15s;cursor:pointer;position:relative}
+  .dz:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .dz.over{border-color:var(--brand);background:var(--brand-soft)}
+  .dz .big{font-size:1.7rem;line-height:1}
+  .dz .hint{font-size:.9rem;margin-top:8px}
+  .dz .sub{font-size:.78rem;color:var(--muted);margin-top:4px}
+  .dz .browse{color:var(--brand);font-weight:700;text-decoration:underline}
+  .files{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .file{display:flex;align-items:center;gap:11px;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:9px 11px}
+  .file .ic{width:34px;height:34px;border-radius:8px;flex:0 0 auto;display:grid;place-items:center;
+    background:var(--brand-soft);color:var(--brand);font-weight:700;font-size:.72rem}
+  .file .fmeta{flex:1 1 auto;min-width:0}
+  .file .fn{font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .file .fsz{font-size:.75rem;color:var(--muted)}
+  .file .prog{height:5px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:5px}
+  .file .prog i{display:block;height:100%;width:0%;background:var(--brand);transition:width .2s}
+  .file.done .prog i{background:var(--ok)}
+  .file.err{border-color:var(--danger)}
+  .file.err .ic{background:var(--danger-soft);color:var(--danger)}
+  .file .errmsg{font-size:.75rem;color:var(--danger)}
+  .file .st{font-size:.9rem;flex:0 0 auto}
+  .file .rm{border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:1rem;
+    padding:4px;border-radius:6px;flex:0 0 auto}
+  .file .rm:focus-visible{outline:2px solid var(--ring)}
+
+  /* ---------- 2. Number stepper ---------- */
+  .stp-grid{display:flex;gap:22px;flex-wrap:wrap}
+  .stp-box{flex:1 1 220px;min-width:210px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:16px}
+  .stp{display:inline-flex;align-items:stretch;border:1px solid var(--border);border-radius:10px;
+    overflow:hidden;background:var(--surface);margin-top:8px}
+  .stp button{border:none;background:var(--surface);color:var(--text);width:42px;font-size:1.2rem;
+    cursor:pointer;font-family:inherit;line-height:1}
+  .stp button:hover:not(:disabled){background:var(--surface-2)}
+  .stp button:active:not(:disabled){background:var(--brand-soft)}
+  .stp button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .stp button:disabled{opacity:.35;cursor:not-allowed}
+  .stp input{width:58px;text-align:center;border:none;border-left:1px solid var(--border);
+    border-right:1px solid var(--border);background:transparent;color:var(--text);font-size:1rem;
+    font-family:inherit;-moz-appearance:textfield}
+  .stp input::-webkit-outer-spin-button,.stp input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .stp input:focus{outline:none;background:var(--brand-soft)}
+  .stp-out{font-size:.85rem;color:var(--muted);margin-top:10px}
+  .stp-out b{color:var(--text)}
+
+  /* ---------- 3. Customizable select ---------- */
+  .cs-wrap{max-width:340px}
+  .cs-label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+  select.cs{width:100%;font-family:inherit;font-size:.95rem;padding:11px 13px;border:1px solid var(--border);
+    border-radius:10px;background:var(--surface);color:var(--text)}
+  select.cs:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  /* 새 표준: 지원 브라우저에서만 base-select 로 전환되어 아래 스타일이 먹는다 */
+  @supports (appearance:base-select){
+    select.cs, ::picker(select){appearance:base-select}
+    select.cs{display:flex;align-items:center;justify-content:space-between}
+    select.cs::picker-icon{color:var(--brand);transition:transform .2s}
+    select.cs:open::picker-icon{transform:rotate(180deg)}
+    ::picker(select){border:1px solid var(--border);border-radius:12px;background:var(--surface);
+      box-shadow:var(--shadow);padding:6px;margin-top:6px}
+    select.cs option{border-radius:8px;padding:9px 11px;display:flex;align-items:center;gap:9px}
+    select.cs option:hover, select.cs option:focus{background:var(--brand-soft)}
+    select.cs option::checkmark{color:var(--brand)}
+    select.cs option .dot{width:10px;height:10px;border-radius:50%}
+  }
+  .cs-badge{font-size:.82rem;margin-top:12px;padding:10px 12px;border-radius:8px}
+  .cs-yes{background:var(--ok-soft);color:var(--ok)}
+  .cs-no{background:var(--warn-soft);color:var(--warn)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-07-27 (월) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#upload">⌨️ 파일 업로드 드롭존</a>
+    <a href="#stepper">🔘 수량 스텝퍼</a>
+    <a href="#baseselect">🌀 커스터마이즈 셀렉트</a>
+  </nav>
+
+  <!-- ============ 1. File upload dropzone ============ -->
+  <section class="card" id="upload">
+    <h2>⌨️ 파일 업로드 드롭존 — 끌어다 놓기·진행률·용량 검증 <span class="tag">입력·폼</span></h2>
+    <p class="lead"><b>드롭존(dropzone)</b>은 파일을 끌어다 놓거나 클릭해서 올리는 입력 영역입니다. 결제 도메인에선 <b>정산 증빙, 사업자등록증, 세금계산서</b> 업로드에 매일 씁니다. 아래 데모는 <b>드래그 하이라이트, 다중 선택, 파일별 진행률, 용량·형식 검증 에러, 삭제</b>를 담았고, 마우스 없이도 올릴 수 있게 <b>클릭·키보드로 파일 선택</b>을 지원합니다. 진짜 서버는 없어 업로드는 흉내만 냅니다.</p>
+
+    <div class="demo">
+      <div class="dz" id="dz" role="button" tabindex="0"
+        aria-label="파일을 끌어다 놓거나 눌러서 선택. jpg·png·pdf, 5MB 이하">
+        <div class="big">📎</div>
+        <div class="hint">파일을 여기로 <b>끌어다 놓거나</b> <span class="browse">눌러서 선택</span></div>
+        <div class="sub">JPG · PNG · PDF · 각 5MB 이하 · 여러 개 가능</div>
+        <input type="file" id="dzInput" multiple accept=".jpg,.jpeg,.png,.pdf" hidden />
+      </div>
+      <ul class="files" id="dzFiles" aria-live="polite"></ul>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>드래그 하이라이트</b> — 파일이 위에 올라오면 테두리·배경을 바꿔 "여기 놓으면 된다"를 알립니다.</li>
+      <li><b>파일별 진행률</b> — 여러 파일을 각각의 바로 보여 줘, 하나가 느려도 전체가 멈춘 것처럼 보이지 않습니다.</li>
+      <li><b>즉시 검증</b> — 용량·형식을 올리는 즉시 확인해 잘못된 파일은 붉게 표시하고 이유를 붙입니다.</li>
+      <li><b>클릭·키보드 대체</b> — 드래그만 강요하지 않고, 눌러서 OS 파일창을 여는 길을 항상 함께 둡니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 드롭 처리 + 검증)</h3>
+    <pre><code>const MAX = 5 * 1024 * 1024;               // 5MB
+const OK  = ['image/jpeg','image/png','application/pdf'];
+
+dz.addEventListener('dragover', (e) =&gt; { e.preventDefault(); dz.classList.add('over'); });
+dz.addEventListener('dragleave', () =&gt; dz.classList.remove('over'));
+dz.addEventListener('drop', (e) =&gt; {
+  e.preventDefault(); dz.classList.remove('over');
+  handle(e.dataTransfer.files);            // 끌어다 놓은 파일
+});
+function handle(fileList){
+  for (const f of fileList){
+    if (!OK.includes(f.type)) return addError(f, '지원하지 않는 형식');
+    if (f.size &gt; MAX)         return addError(f, '5MB를 넘음');
+    upload(f);                             // 통과 → 업로드
+  }
+}</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>드롭존 자체를 <code>role="button"</code> + <code>tabindex="0"</code>로 만들어 <span class="kbd">Enter</span>/<span class="kbd">Space</span>로 파일창을 열 수 있게 합니다.</li>
+      <li>진행·완료·에러는 <code>aria-live</code> 영역에 텍스트로도 알려 스크린리더가 읽게 합니다.</li>
+      <li>에러는 색만이 아니라 <b>아이콘·문구</b>로도 구분(색맹 대비). 삭제 버튼엔 <code>aria-label</code>.</li>
+      <li>업로드 중 취소·재시도 경로를 제공하는 걸 권장(느린 네트워크 대비).</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">가맹점 심사·정산 증빙·세금계산서 업로드가 전형적입니다. 특히 <b>용량/형식 즉시 검증</b>과 <b>파일별 진행률</b>은 반려·재업로드를 줄여 CS 문의를 낮춥니다. 서버 검증은 반드시 별도로(클라이언트 검증은 UX용일 뿐 보안 경계 아님).</p>
+
+    <div class="note">🔗 참고: HTML <code>&lt;input type="file"&gt;</code> + Drag and Drop API(MDN). 이 데모는 외부 라이브러리 없이 self-contained로 구현.</div>
+  </section>
+
+  <!-- ============ 2. Number stepper ============ -->
+  <section class="card" id="stepper">
+    <h2>🔘 수량 스텝퍼 — +/− 버튼·길게 눌러 가속·경계 클램프 <span class="tag">버튼·액션</span></h2>
+    <p class="lead"><b>수량 스텝퍼(number stepper)</b>는 −/＋ 버튼과 숫자 입력으로 값을 조금씩 바꾸는 컨트롤입니다. (여러 <b>단계</b>로 진행 상황을 보여 주는 "스텝퍼/진행 표시"와는 다릅니다.) 결제에선 <b>주문 수량, 할부 개월수, 인원</b> 같은 데 씁니다. 아래는 <b>최소·최대 클램프, 경계에서 버튼 비활성, 길게 누르면 가속 반복, 직접 타이핑 후 보정</b>을 담았습니다.</p>
+
+    <div class="demo">
+      <div class="stp-grid">
+        <div class="stp-box">
+          <h4>주문 수량</h4>
+          <p class="cap">1 ~ 99 · 1씩 · 길게 누르면 빨라짐</p>
+          <div class="stp" data-min="1" data-max="99" data-step="1">
+            <button type="button" class="dec" aria-label="수량 1 줄이기">−</button>
+            <input type="text" inputmode="numeric" value="1" aria-label="주문 수량" />
+            <button type="button" class="inc" aria-label="수량 1 늘리기">＋</button>
+          </div>
+          <p class="stp-out">합계: <b class="out1">₩12,900</b> <span>(개당 ₩12,900)</span></p>
+        </div>
+        <div class="stp-box">
+          <h4>할부 개월</h4>
+          <p class="cap">1 ~ 24개월 · 경계에서 버튼 잠김</p>
+          <div class="stp" data-min="1" data-max="24" data-step="1">
+            <button type="button" class="dec" aria-label="개월 줄이기">−</button>
+            <input type="text" inputmode="numeric" value="3" aria-label="할부 개월" />
+            <button type="button" class="inc" aria-label="개월 늘리기">＋</button>
+          </div>
+          <p class="stp-out"><b class="out2">3개월</b> 할부 · 월 <b class="out2b">₩4,300</b></p>
+        </div>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 — 놓치기 쉬운 것</h3>
+    <ul class="clean">
+      <li><b>경계 클램프 + 버튼 비활성</b> — 최소/최대에 닿으면 값이 넘어가지 않고, 해당 버튼을 <code>disabled</code>로 잠가 헛클릭을 막습니다.</li>
+      <li><b>길게 눌러 가속(press-and-hold)</b> — 오래 누르면 반복 속도가 빨라져 큰 값도 빠르게. 뗄 때 멈춥니다.</li>
+      <li><b>직접 입력 보정</b> — 타이핑으로 범위를 벗어나면 <code>blur</code>·<code>Enter</code> 시 최소/최대로 되돌립니다(빈 값도 처리).</li>
+      <li><b>스피너 숨김</b> — 브라우저 기본 숫자 화살표를 없애 커스텀 버튼과 겹치지 않게.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 클램프 + 길게 눌러 반복)</h3>
+    <pre><code>const clamp = (v) =&gt; Math.min(max, Math.max(min, v));
+function set(v){
+  v = clamp(v || min);
+  input.value = v;
+  dec.disabled = v &lt;= min;      // 경계에서 버튼 잠금
+  inc.disabled = v &gt;= max;
+  render(v);
+}
+// 길게 누르면 점점 빨라지는 반복
+function hold(dir){
+  let delay = 300;
+  const run = () =&gt; {
+    set(+input.value + dir * step);
+    delay = Math.max(40, delay * 0.8);   // 가속
+    timer = setTimeout(run, delay);
+  };
+  run();
+}
+btn.addEventListener('pointerdown', () =&gt; hold(+1));
+addEventListener('pointerup', () =&gt; clearTimeout(timer));</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>−/＋ 버튼엔 명확한 <code>aria-label</code>("수량 1 늘리기"). 값은 실제 <code>&lt;input&gt;</code>이라 스크린리더가 읽습니다.</li>
+      <li><code>inputmode="numeric"</code>로 모바일에서 숫자 키패드를 띄웁니다.</li>
+      <li>경계에서 <code>disabled</code>로 잠가 "왜 안 눌리지?"를 시각·의미 양쪽으로 전달.</li>
+      <li>키보드 <span class="kbd">↑</span><span class="kbd">↓</span>로도 증감(네이티브 number가 아니면 직접 핸들링).</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">주문 수량·인원·할부 개월처럼 "정해진 범위에서 조금씩 바꾸는" 값에 씁니다. 값이 바뀔 때 <b>합계·월 납입액을 즉시 다시 계산</b>해 보여 주면(위 데모처럼) 사용자가 선택의 결과를 바로 이해합니다.</p>
+
+    <div class="note">🔗 참고: 자유 입력 필드보다 스텝퍼가 오입력을 줄입니다. 단, 값 범위가 아주 넓으면(예: 금액) 스텝퍼보다 직접 입력이 낫습니다.</div>
+  </section>
+
+  <!-- ============ 3. Customizable select ============ -->
+  <section class="card" id="baseselect">
+    <h2>🌀 커스터마이즈 셀렉트 — 네이티브 select를 CSS로 직접 꾸미기 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">지금까지 <code>&lt;select&gt;</code>의 펼침 목록은 CSS로 거의 못 꾸며서, 다들 JS로 가짜 드롭다운을 만들었습니다(접근성·키보드를 다시 구현해야 함). 새 표준 <b><code>appearance: base-select</code></b>는 <b>진짜 네이티브 select를 그대로 두고</b> 펼침 목록·옵션·체크표시·화살표까지 CSS로 꾸미게 해 줍니다. 접근성·키보드는 브라우저가 공짜로 유지합니다. 아래 셀렉트를 열어 보세요(지원 브라우저면 옵션에 색점·체크표시가 보입니다).</p>
+
+    <div class="demo">
+      <div class="cs-wrap">
+        <label class="cs-label" for="csSel">정산 주기</label>
+        <select class="cs" id="csSel">
+          <option value="d"><span class="dot" style="background:#16a34a"></span> 매일 정산</option>
+          <option value="w" selected><span class="dot" style="background:#4f46e5"></span> 주 1회 정산</option>
+          <option value="m"><span class="dot" style="background:#d97706"></span> 월 1회 정산</option>
+          <option value="q"><span class="dot" style="background:#dc2626"></span> 분기 정산</option>
+        </select>
+      </div>
+      <div class="cs-badge" id="csBadge">지원 여부 확인 중…</div>
+    </div>
+
+    <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li>Chrome/Edge 135+에서 안정 지원, Safari는 Technology Preview, Firefox는 Nightly 플래그 단계 — 아직 <b>실험적</b>이라 폴백 전제로 씁니다(2026년 기준, 배포 전 재확인 권장).</li>
+      <li>미지원 브라우저는 <code>base-select</code>를 <b>그냥 무시하고 기본 select</b>로 렌더 → 점진적 향상(progressive enhancement)에 안전합니다.</li>
+      <li>그동안 JS 커스텀 드롭다운에서 새로 짜야 했던 <b>키보드 이동·타입어헤드·스크린리더</b>를 브라우저가 유지해 줘 코드·버그가 줍니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>/* select와 그 펼침 목록을 '꾸밀 수 있는 모드'로 전환 */
+select, ::picker(select){ appearance: base-select; }
+
+::picker(select){                 /* 펼쳐지는 목록 상자 */
+  border:1px solid #e2e6ec; border-radius:12px; padding:6px;
+}
+option{ border-radius:8px; padding:9px 11px; }
+option:hover{ background:#eef0fe; }
+option::checkmark{ color:#4f46e5; }   /* 선택된 항목의 체크표시 */
+select::picker-icon{ transition:transform .2s; }
+select:open::picker-icon{ transform:rotate(180deg); }  /* 열리면 화살표 회전 */</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>핵심 장점이 <b>접근성 유지</b>입니다 — 네이티브 select라 키보드·타입어헤드·모바일 롤러가 그대로 동작.</li>
+      <li>옵션 안에 아이콘·색점을 넣더라도 <b>텍스트 라벨</b>을 함께 둬 의미를 색에만 의존하지 않게.</li>
+      <li>미지원 환경에서도 값 선택은 문제없어야 하므로, 커스텀 스타일은 "있으면 좋은" 향상으로만 설계.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">정산 주기·통화·결제수단처럼 옵션이 정해진 선택에서, 그동안 유지비 크던 JS 커스텀 드롭다운을 <b>네이티브 + CSS</b>로 대체할 여지가 생깁니다. 다만 아직 실험적이라 <b>지금은 폴백 필수</b> — 미지원 브라우저에서 기본 select로 멀쩡히 동작하는지 반드시 확인하세요.</p>
+
+    <div class="note">🔗 참고: <b>Chrome for Developers — Customizable select</b>, <b>CSS-Tricks / modern-css</b>. 브라우저 지원은 빠르게 바뀌므로 배포 전 caniuse 재확인 권장.</div>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px">
+    Design Inspiration Daily · 2026-07-27 (월) · self-contained live demo
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '\u{1F319} 다크 모드' : '☀️ 라이트 모드';
+    themeBtn.setAttribute('aria-pressed', String(!dark));
+  });
+
+  /* ================= 1. File upload dropzone ================= */
+  const dz = document.getElementById('dz');
+  const dzInput = document.getElementById('dzInput');
+  const dzFiles = document.getElementById('dzFiles');
+  const MAX = 5 * 1024 * 1024;
+  const OKTYPE = ['image/jpeg','image/png','application/pdf'];
+  const OKEXT = ['jpg','jpeg','png','pdf'];
+
+  function fmtSize(b){
+    if(b < 1024) return b + ' B';
+    if(b < 1024*1024) return (b/1024).toFixed(0) + ' KB';
+    return (b/1024/1024).toFixed(1) + ' MB';
+  }
+  function extOf(name){ return (name.split('.').pop() || '').toLowerCase(); }
+
+  function addFileRow(file, valid, reason){
+    const li = document.createElement('li');
+    li.className = 'file' + (valid ? '' : ' err');
+    const ext = extOf(file.name).toUpperCase().slice(0,4) || 'FILE';
+    li.innerHTML =
+      '<span class="ic">'+ext+'</span>'+
+      '<span class="fmeta"><span class="fn"></span>'+
+        '<span class="fsz">'+fmtSize(file.size)+(valid?'':' · <span class="errmsg">'+reason+'</span>')+'</span>'+
+        (valid?'<span class="prog"><i></i></span>':'')+
+      '</span>'+
+      (valid?'<span class="st" aria-hidden="true">⏳</span>':'')+
+      '<button class="rm" type="button" aria-label="목록에서 제거">✕</button>';
+    li.querySelector('.fn').textContent = file.name; // textContent로 안전하게
+    dzFiles.appendChild(li);
+    li.querySelector('.rm').addEventListener('click', () => li.remove());
+    if(valid) fakeUpload(li);
+  }
+  function fakeUpload(li){
+    const bar = li.querySelector('.prog i');
+    const st = li.querySelector('.st');
+    let p = 0;
+    const iv = setInterval(() => {
+      p += Math.random() * 22 + 8;
+      if(p >= 100){ p = 100; clearInterval(iv);
+        li.classList.add('done'); if(st) st.textContent = '✅'; }
+      bar.style.width = p + '%';
+    }, 180);
+  }
+  function handle(list){
+    for(const f of list){
+      const typeOk = OKTYPE.includes(f.type) || OKEXT.includes(extOf(f.name));
+      if(!typeOk){ addFileRow(f, false, '지원하지 않는 형식'); continue; }
+      if(f.size > MAX){ addFileRow(f, false, '5MB를 넘어 업로드 불가'); continue; }
+      addFileRow(f, true);
+    }
+  }
+  dz.addEventListener('click', () => dzInput.click());
+  dz.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); dzInput.click(); }
+  });
+  dzInput.addEventListener('change', () => { handle(dzInput.files); dzInput.value=''; });
+  ['dragenter','dragover'].forEach(ev =>
+    dz.addEventListener(ev, (e)=>{ e.preventDefault(); dz.classList.add('over'); }));
+  ['dragleave','drop'].forEach(ev =>
+    dz.addEventListener(ev, (e)=>{ e.preventDefault(); if(ev!=='dragleave'||e.target===dz) dz.classList.remove('over'); }));
+  dz.addEventListener('drop', (e)=>{ if(e.dataTransfer) handle(e.dataTransfer.files); });
+
+  /* ================= 2. Number stepper ================= */
+  document.querySelectorAll('.stp').forEach(stp => {
+    const min = +stp.dataset.min, max = +stp.dataset.max, step = +stp.dataset.step;
+    const input = stp.querySelector('input');
+    const dec = stp.querySelector('.dec'), inc = stp.querySelector('.inc');
+    const clamp = v => Math.min(max, Math.max(min, v));
+    let timer = null;
+
+    function render(v){
+      const box = stp.closest('.stp-box');
+      const o1 = box.querySelector('.out1');
+      if(o1){ o1.textContent = '₩' + (v * 12900).toLocaleString('ko-KR'); }
+      const o2 = box.querySelector('.out2'), o2b = box.querySelector('.out2b');
+      if(o2){ o2.textContent = v + '개월'; o2b.textContent = '₩' + Math.round(129000 / v).toLocaleString('ko-KR'); }
+    }
+    function set(v){
+      v = clamp(isNaN(v) ? min : v);
+      input.value = v;
+      dec.disabled = v <= min;
+      inc.disabled = v >= max;
+      render(v);
+    }
+    function hold(dir){
+      let delay = 320;
+      const run = () => {
+        set(+input.value + dir * step);
+        if((dir < 0 && +input.value <= min) || (dir > 0 && +input.value >= max)) return;
+        delay = Math.max(45, delay * 0.8);
+        timer = setTimeout(run, delay);
+      };
+      run();
+    }
+    function startHold(dir){ clearTimeout(timer); hold(dir); }
+    function stopHold(){ clearTimeout(timer); }
+
+    inc.addEventListener('pointerdown', e => { e.preventDefault(); startHold(+1); });
+    dec.addEventListener('pointerdown', e => { e.preventDefault(); startHold(-1); });
+    ['pointerup','pointerleave','pointercancel'].forEach(ev => {
+      inc.addEventListener(ev, stopHold); dec.addEventListener(ev, stopHold);
+    });
+    input.addEventListener('input', () => { input.value = input.value.replace(/[^0-9]/g,''); });
+    input.addEventListener('change', () => set(parseInt(input.value,10)));
+    input.addEventListener('blur', () => set(parseInt(input.value,10)));
+    input.addEventListener('keydown', e => {
+      if(e.key==='ArrowUp'){ set(+input.value + step); e.preventDefault(); }
+      else if(e.key==='ArrowDown'){ set(+input.value - step); e.preventDefault(); }
+    });
+    set(parseInt(input.value,10)); // init
+  });
+
+  /* ================= 3. Customizable select support ================= */
+  const csBadge = document.getElementById('csBadge');
+  const csOk = (window.CSS && CSS.supports && CSS.supports('appearance','base-select'));
+  if(csOk){ csBadge.className = 'cs-badge cs-yes';
+    csBadge.textContent = '✔ 이 브라우저는 appearance: base-select 를 지원합니다 — 셀렉트를 열면 커스텀 스타일(색점·체크표시)이 보입니다.'; }
+  else { csBadge.className = 'cs-badge cs-no';
+    csBadge.textContent = '⚠ 이 브라우저는 아직 base-select 미지원 — 기본 select로 안전하게 동작합니다(폴백). 커스텀 스타일은 지원 브라우저에서만 보여요.'; }
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get('embed') || q.get('demo');
+    if(q.get('theme') === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    if(!id) return;
+    document.documentElement.classList.add('embed-mode');
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add('embed-show');
+  })();
+})();
+</script>
+</body>
+</html>
