@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-29 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:.92rem;font-family:inherit;
+    cursor:pointer;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn-brand{background:var(--brand);color:var(--brand-ink)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  /* ---------- 1. Payment method selector ---------- */
+  .pm-wrap{max-width:440px}
+  .pm-group{display:flex;flex-direction:column;gap:10px}
+  .pm-card{display:flex;align-items:center;gap:13px;border:1.5px solid var(--border);border-radius:12px;
+    padding:13px 15px;cursor:pointer;background:var(--surface);position:relative;
+    transition:border-color .15s, background .15s, box-shadow .15s}
+  .pm-card:hover{border-color:var(--brand)}
+  .pm-card:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .pm-card[aria-checked="true"]{border-color:var(--brand);background:var(--brand-soft);
+    box-shadow:0 0 0 1px var(--brand) inset}
+  .pm-card .radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--muted);flex:0 0 auto;
+    display:grid;place-items:center;transition:border-color .15s}
+  .pm-card[aria-checked="true"] .radio{border-color:var(--brand)}
+  .pm-card[aria-checked="true"] .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--brand)}
+  .pm-card .pm-ic{width:38px;height:38px;border-radius:9px;flex:0 0 auto;display:grid;place-items:center;
+    font-size:1.15rem;background:var(--surface-2)}
+  .pm-card .pm-txt{flex:1 1 auto;min-width:0}
+  .pm-card .pm-txt .pm-t{font-size:.92rem;font-weight:600}
+  .pm-card .pm-txt .pm-d{font-size:.78rem;color:var(--muted)}
+  .pm-card .pm-badge{font-size:.68rem;font-weight:700;color:var(--ok);background:var(--ok-soft);
+    border-radius:999px;padding:2px 8px}
+  .pm-detail{margin-top:2px;border:1px solid var(--border);border-left:3px solid var(--brand);
+    border-radius:10px;background:var(--surface-2);padding:13px 15px;font-size:.85rem;
+    display:grid;gap:10px}
+  .pm-detail label{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--muted)}
+  .pm-detail input{padding:9px 11px;border:1px solid var(--border);border-radius:9px;background:var(--surface);
+    color:var(--text);font-family:inherit;font-size:.9rem}
+  .pm-detail input:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .pm-saved{display:flex;gap:9px;flex-wrap:wrap}
+  .pm-chip{border:1.5px solid var(--border);border-radius:10px;padding:8px 12px;cursor:pointer;
+    background:var(--surface);font-family:inherit;font-size:.83rem;color:var(--text);display:flex;gap:8px;align-items:center}
+  .pm-chip[aria-pressed="true"]{border-color:var(--brand);background:var(--brand-soft)}
+  .pm-chip:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .pm-total{display:flex;justify-content:space-between;align-items:center;margin-top:16px;
+    padding-top:14px;border-top:1px solid var(--border)}
+  .pm-total .lbl{font-size:.85rem;color:var(--muted)}
+  .pm-total .amt{font-size:1.15rem;font-weight:800}
+  .pm-pay{width:100%;margin-top:12px}
+  .pm-out{font-size:.8rem;color:var(--muted);margin-top:10px}
+  .pm-out b{color:var(--text)}
+
+  /* ---------- 2. Combobox ---------- */
+  .cb-wrap{max-width:420px;position:relative}
+  .cb-label{font-size:.82rem;color:var(--muted);display:block;margin-bottom:5px}
+  .cb-inputwrap{position:relative}
+  .cb-input{width:100%;padding:11px 40px 11px 13px;border:1.5px solid var(--border);border-radius:11px;
+    background:var(--surface);color:var(--text);font-family:inherit;font-size:.95rem}
+  .cb-input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .cb-caret{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);
+    pointer-events:none;font-size:.8rem;transition:transform .15s}
+  .cb-wrap.open .cb-caret{transform:translateY(-50%) rotate(180deg)}
+  .cb-list{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:5;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
+    max-height:230px;overflow:auto;margin:0;padding:5px;list-style:none;display:none}
+  .cb-wrap.open .cb-list{display:block}
+  .cb-opt{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:8px;cursor:pointer;font-size:.9rem}
+  .cb-opt .flag{font-size:1.05rem}
+  .cb-opt .sub{color:var(--muted);font-size:.78rem;margin-left:auto}
+  .cb-opt[aria-selected="true"]{background:var(--brand-soft)}
+  .cb-opt.active{background:var(--brand);color:var(--brand-ink)}
+  .cb-opt.active .sub{color:var(--brand-ink);opacity:.85}
+  .cb-empty{padding:14px 12px;color:var(--muted);font-size:.86rem;text-align:center}
+  .cb-mark{font-weight:800;color:var(--brand);background:transparent}
+  .cb-opt.active .cb-mark{color:var(--brand-ink);text-decoration:underline}
+  .cb-out{font-size:.8rem;color:var(--muted);margin-top:12px}
+  .cb-out b{color:var(--text)}
+
+  /* ---------- 3. field-sizing ---------- */
+  .fs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:620px){ .fs-grid{grid-template-columns:1fr} }
+  .fs-col h4{font-size:.85rem;margin-bottom:8px}
+  .fs-col .cap{margin:8px 0 0}
+  .fs-ta{width:100%;min-height:44px;padding:10px 12px;border:1.5px solid var(--border);border-radius:11px;
+    background:var(--surface);color:var(--text);font-family:inherit;font-size:.92rem;line-height:1.5;resize:none}
+  .fs-ta:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .fs-fixed{height:44px;overflow:auto}
+  .fs-auto{field-sizing:content;max-height:220px;overflow:auto}
+  .fs-inputrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .fs-tagin{field-sizing:content;min-width:60px;max-width:100%;padding:8px 11px;border:1.5px solid var(--border);
+    border-radius:9px;background:var(--surface);color:var(--text);font-family:inherit;font-size:.9rem}
+  .fs-tagin:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .fs-support{margin-top:14px;font-size:.82rem;padding:10px 12px;border-radius:9px;
+    background:var(--surface-2);border:1px solid var(--border)}
+  .fs-support b{color:var(--text)}
+  .fs-support .yes{color:var(--ok);font-weight:700}
+  .fs-support .no{color:var(--danger);font-weight:700}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-07-29 (수) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#paymethod">💳 결제 수단 선택</a>
+    <a href="#combobox">⌨️ 콤보박스 자동완성</a>
+    <a href="#fieldsizing">🌀 field-sizing</a>
+  </nav>
+
+  <!-- ============ 1. Payment method selector ============ -->
+  <section class="card" id="paymethod">
+    <h2>💳 결제 수단 선택 — 라디오 카드 그룹·저장카드/새카드 전환 <span class="tag">결제·체크아웃 UX</span></h2>
+    <p class="lead"><b>결제 수단 선택기(payment method selector)</b>는 체크아웃에서 "무엇으로 낼지"를 고르는 첫 관문입니다. 요즘은 밋밋한 <code>&lt;select&gt;</code>·기본 라디오 대신, <b>탭 하나로 고르는 큰 카드(radio card)</b>로 만들어 실수를 줄이고, 고른 수단에 맞는 입력만 <b>그 자리에서 펼치는(progressive disclosure, 필요한 것만 단계적으로 노출)</b> 방식이 표준입니다. 아래에서 방향키·<span class="kbd">Space</span>로 골라 보세요.</p>
+
+    <div class="demo">
+      <div class="pm-wrap">
+        <div class="pm-group" role="radiogroup" aria-label="결제 수단" id="pmGroup">
+          <div class="pm-card" role="radio" aria-checked="true" tabindex="0" data-pm="card">
+            <span class="pm-ic">💳</span>
+            <span class="pm-txt"><span class="pm-t">신용·체크카드</span><span class="pm-d">국내외 카드 · 최대 12개월 무이자</span></span>
+            <span class="radio" aria-hidden="true"></span>
+          </div>
+          <div class="pm-card" role="radio" aria-checked="false" tabindex="-1" data-pm="easy">
+            <span class="pm-ic">⚡</span>
+            <span class="pm-txt"><span class="pm-t">간편결제</span><span class="pm-d">토스페이 · 카카오페이 · 네이버페이</span></span>
+            <span class="pm-badge">추천</span>
+            <span class="radio" aria-hidden="true"></span>
+          </div>
+          <div class="pm-card" role="radio" aria-checked="false" tabindex="-1" data-pm="bank">
+            <span class="pm-ic">🏦</span>
+            <span class="pm-txt"><span class="pm-t">계좌이체</span><span class="pm-d">실시간 계좌이체 · 수수료 없음</span></span>
+            <span class="radio" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <!-- 수단별 상세 (선택된 것만 노출) -->
+        <div class="pm-detail" id="pmDetail" style="margin-top:12px"></div>
+
+        <div class="pm-total">
+          <span class="lbl">결제 금액</span>
+          <span class="amt">₩42,000</span>
+        </div>
+        <button class="btn btn-brand pm-pay" id="pmPay" type="button">₩42,000 결제하기</button>
+        <p class="pm-out">현재 선택: <b id="pmOut">신용·체크카드</b></p>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>라디오 카드(radio card)</b> — 작은 원형 라디오 대신 카드 전체가 탭 영역. 손가락·마우스 타깃이 커져 오탭이 줄고, 아이콘·설명·배지를 함께 담습니다.</li>
+      <li><b>선택 시 상세 펼침</b> — 카드 결제를 고르면 카드번호 칸이, 간편결제를 고르면 저장된 페이 목록이 그 자리에서 나타납니다. 안 쓰는 입력을 미리 다 보여주지 않습니다.</li>
+      <li><b>저장 수단 + "새로 추가"</b> — 재구매 고객은 저장된 카드를 칩(chip)으로 바로 고르고, 필요할 때만 새 카드 폼을 엽니다(입력 마찰 최소화).</li>
+      <li><b>추천·혜택 배지</b> — "추천", "무이자 12개월"처럼 결정에 영향을 주는 정보를 카드 위에 붙여 선택을 유도합니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 라디오 그룹 방향키 + 상세 전환)</h3>
+    <pre><code>const cards = [...group.querySelectorAll('[role=radio]')];
+function select(card){
+  cards.forEach(c =&gt; {
+    const on = c === card;
+    c.setAttribute('aria-checked', on);
+    c.tabIndex = on ? 0 : -1;        // roving tabindex: 선택된 것만 Tab 대상
+  });
+  renderDetail(card.dataset.pm);     // 고른 수단의 입력만 펼침
+}
+group.addEventListener('keydown', e =&gt; {
+  const i = cards.indexOf(document.activeElement);
+  if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
+    e.preventDefault(); const n = cards[(i+1) % cards.length]; n.focus(); select(n);
+  }
+  if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+    e.preventDefault(); const n = cards[(i-1+cards.length) % cards.length]; n.focus(); select(n);
+  }
+  if(e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); select(document.activeElement); }
+});</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>컨테이너는 <code>role="radiogroup"</code>, 각 카드는 <code>role="radio"</code> + <code>aria-checked</code> — 네이티브 라디오가 아니어도 스크린리더가 "3개 중 1개 선택"으로 읽습니다.</li>
+      <li><b>로빙 탭인덱스(roving tabindex)</b> — 그룹 전체가 <span class="kbd">Tab</span> 한 번으로 들어오고, 안에서는 <b>방향키</b>로 이동합니다(라디오의 표준 키보드 동작). 선택된 카드만 <code>tabindex="0"</code>.</li>
+      <li>선택 표시는 색만이 아니라 <b>원형 라디오 채움·테두리</b>로도 줘서 색각 이상에서도 구분됩니다.</li>
+      <li>상세를 펼칠 때 새로 뜬 입력으로 포커스를 옮기면 키보드 사용자가 자연스럽게 이어서 입력합니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">체크아웃 첫 화면의 전환율을 좌우하는 핵심 컴포넌트입니다. 간편결제를 <b>맨 위·"추천" 배지</b>로 두면 결제 완료율이 올라가는 경우가 많고(추정 — A/B로 검증 권장), 재구매 고객에겐 <b>저장 카드 원탭</b>을 기본 노출해 입력 단계를 0으로 줄입니다. 수단별 상세를 지연 렌더(선택 시에만)하면 초기 화면이 가벼워지고, 카드번호 같은 민감 입력을 <b>필요할 때만</b> DOM에 올려 노출 시간을 줄이는 부수효과도 있습니다.</p>
+
+    <div class="note">🔗 참고: WAI-ARIA "Radio Group" 패턴(로빙 탭인덱스). 상세 펼침은 progressive disclosure. Stripe·Toss 체크아웃이 라디오 카드 + 지연 상세의 대표 사례. 이 데모는 self-contained.</div>
+  </section>
+
+  <!-- ============ 2. Combobox ============ -->
+  <section class="card" id="combobox">
+    <h2>⌨️ 콤보박스 자동완성 — 타이핑 필터·키보드 탐색·ARIA 설계 <span class="tag">입력·폼</span></h2>
+    <p class="lead"><b>콤보박스(combobox)</b>는 텍스트 입력과 목록을 합친 컴포넌트입니다. 타이핑하면 후보가 <b>실시간 필터</b>되고, 방향키로 고릅니다. 국가·은행·통화처럼 <b>항목이 수십~수백 개</b>인 선택에서 기본 <code>&lt;select&gt;</code>보다 훨씬 빠릅니다. 아래 칸에 "kor", "미국", "en"처럼 쳐 보세요 — 이름·코드 어느 쪽으로도 걸립니다.</p>
+
+    <div class="demo">
+      <div class="cb-wrap" id="cbWrap">
+        <label class="cb-label" id="cbLabel" for="cbInput">국가 / 통화 선택</label>
+        <div class="cb-inputwrap">
+          <input class="cb-input" id="cbInput" type="text" role="combobox" autocomplete="off"
+            aria-expanded="false" aria-controls="cbList" aria-autocomplete="list"
+            aria-labelledby="cbLabel" placeholder="국가명·코드로 검색…">
+          <span class="cb-caret" aria-hidden="true">▾</span>
+        </div>
+        <ul class="cb-list" id="cbList" role="listbox" aria-labelledby="cbLabel"></ul>
+      </div>
+      <p class="cb-out">선택된 값: <b id="cbOut">(없음)</b></p>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>이름·코드 동시 검색</b> — "대한민국"도, "KR"도, "krw"도 같은 항목을 찾게 하면 사용자가 아는 대로 칠 수 있습니다.</li>
+      <li><b>매칭 하이라이트</b> — 친 글자를 결과에서 <b>굵게</b> 표시해 왜 걸렸는지 즉시 보여 줍니다.</li>
+      <li><b>빈 결과 상태</b> — 후보가 0개면 "결과 없음" 안내로 마무리감을 줍니다(빈 목록만 덩그러니 두지 않기).</li>
+      <li><b>열림 방식 선택</b> — 포커스 시 전체 목록을 열지, 타이핑 후에만 열지는 항목 수·맥락에 따라. 여기선 포커스 시 전체를 엽니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 필터 + aria-activedescendant)</h3>
+    <pre><code>input.addEventListener('input', () =&gt; {
+  const q = input.value.trim().toLowerCase();
+  const hits = data.filter(d =&gt;
+    d.name.toLowerCase().includes(q) || d.code.toLowerCase().includes(q));
+  renderList(hits); open();                 // 실시간 필터
+});
+input.addEventListener('keydown', e =&gt; {
+  if(e.key === 'ArrowDown'){ e.preventDefault(); move(+1); }
+  if(e.key === 'ArrowUp'){   e.preventDefault(); move(-1); }
+  if(e.key === 'Enter'){ e.preventDefault(); choose(activeEl); }
+  if(e.key === 'Escape'){ close(); }
+});
+function move(dir){
+  active = (active + dir + opts.length) % opts.length;
+  opts.forEach((o,i) =&gt; o.classList.toggle('active', i === active));
+  // 실제 포커스는 input에 두고, 활성 옵션만 id로 가리킨다
+  input.setAttribute('aria-activedescendant', opts[active].id);
+}</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>입력은 <code>role="combobox"</code> + <code>aria-expanded</code> + <code>aria-controls</code>, 목록은 <code>role="listbox"</code>, 항목은 <code>role="option"</code> — WAI-ARIA "Combobox with listbox" 패턴 그대로입니다.</li>
+      <li><b><code>aria-activedescendant</code></b> — 실제 DOM 포커스는 <b>입력창에 그대로</b> 두고, "지금 하이라이트된 옵션"만 이 속성으로 가리킵니다. 그래서 타이핑과 목록 탐색이 끊기지 않습니다.</li>
+      <li>키보드: <span class="kbd">↓</span><span class="kbd">↑</span> 이동, <span class="kbd">Enter</span> 선택, <span class="kbd">Esc</span> 닫기, 바깥 클릭으로도 닫힘.</li>
+      <li>매칭 하이라이트는 <b>굵기</b>로 주고, 활성 옵션은 <b>배경색 + 밑줄</b>을 함께 써서 색에만 의존하지 않습니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제·정산 화면엔 국가·통화·은행·카드사·수취인 검색 등 "긴 목록 선택"이 자주 나옵니다. 콤보박스로 만들면 스크롤 대신 <b>서너 글자 타이핑</b>으로 끝나 입력 시간이 확 줄죠. 항목이 수백 개를 넘거나 서버에서 와야 하면 <b>디바운스(debounce, 입력이 멎을 때까지 잠깐 기다렸다 요청)</b>로 원격 검색을 붙입니다. 직접 만들기 부담되면 접근성이 검증된 헤드리스 콤보박스(예: Downshift, Radix, React Aria)를 쓰는 편이 안전합니다.</p>
+
+    <div class="note">🔗 참고: WAI-ARIA APG "Combobox (with listbox popup)". 원격 데이터면 debounce + 로딩/빈 상태 처리 필수. 이 데모는 self-contained(로컬 데이터).</div>
+  </section>
+
+  <!-- ============ 3. field-sizing ============ -->
+  <section class="card" id="fieldsizing">
+    <h2>🌀 field-sizing: content — CSS 한 줄로 입력창이 내용만큼 자라기 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><code>field-sizing: content</code>는 <code>&lt;textarea&gt;</code>·<code>&lt;input&gt;</code>·<code>&lt;select&gt;</code>가 <b>내용 길이에 맞춰 스스로 커지고 줄어들게</b> 하는 CSS 속성입니다. 예전엔 "타이핑할 때 자동으로 커지는 textarea"를 만들려면 <code>scrollHeight</code>를 재서 높이를 바꾸는 JS가 필요했는데, 이제 <b>CSS 한 줄</b>로 됩니다. <b>2026년 6월 파이어폭스 152까지 지원이 붙어 Baseline "새로 사용 가능(Newly available)"</b>이 됐습니다(그 전엔 크롬 123·사파리 26.2부터). 아래 왼쪽 칸에 여러 줄 쳐 보세요.</p>
+
+    <div class="demo">
+      <div class="fs-grid">
+        <div class="fs-col">
+          <h4>❌ 고정 높이 (예전 방식)</h4>
+          <textarea class="fs-ta fs-fixed" placeholder="여러 줄 입력해 보세요… 넘치면 안에서 스크롤됩니다"></textarea>
+          <p class="cap">높이가 고정 → 내용이 넘치면 작은 칸 안에서 스크롤(내용 파악이 어려움).</p>
+        </div>
+        <div class="fs-col">
+          <h4>✅ field-sizing: content</h4>
+          <textarea class="fs-ta fs-auto" placeholder="여기 여러 줄 입력해 보세요… 줄이 늘면 칸이 함께 자랍니다"></textarea>
+          <p class="cap">CSS <code>field-sizing:content</code> 한 줄 → 내용만큼 자동으로 성장(최대 높이까지). JS 0줄.</p>
+        </div>
+      </div>
+
+      <h4 style="margin:18px 0 4px;font-size:.85rem">태그 입력처럼 가로로 자라는 input</h4>
+      <div class="fs-inputrow">
+        <span style="font-size:.85rem;color:var(--muted)">메모 태그:</span>
+        <input class="fs-tagin" value="정산" aria-label="태그 입력, 내용 길이에 맞춰 폭이 늘어남">
+        <span style="font-size:.8rem;color:var(--muted)">← 타이핑하면 폭이 내용만큼 늘어납니다</span>
+      </div>
+
+      <div class="fs-support" id="fsSupport">지원 여부 확인 중…</div>
+    </div>
+
+    <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><b>JS 제거</b> — "auto-grow textarea"는 거의 모든 서비스가 쓰는 패턴인데, 이제 라이브러리·<code>scrollHeight</code> 계산 없이 CSS 한 줄로 끝납니다(유지보수·성능 이득).</li>
+      <li><b>Baseline 진입(2026-06)</b> — 파이어폭스 152 지원으로 3대 엔진(Chrome·Safari·Firefox) 최신판을 모두 커버해 "이제 실무에 써도 되는" 단계에 들어섰습니다.</li>
+      <li><b>어디에</b> — 채팅·댓글·메모 입력창, 주소·요청사항처럼 길이를 모르는 필드, 태그·금액처럼 내용만큼만 폭을 주고 싶은 인라인 입력.</li>
+      <li><b>제어 포인트</b> — 무한정 커지지 않게 <code>max-height</code>(세로)·<code>max-width</code>(가로)를, 처음 크기는 <code>min-height</code>·<code>rows</code>로 잡습니다.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용)</h3>
+    <pre><code>/* 예전: JS로 높이 재계산 (이제 불필요) */
+// el.style.height = 'auto';
+// el.style.height = el.scrollHeight + 'px';
+
+/* 지금: CSS 한 줄 */
+textarea{
+  field-sizing: content;   /* 내용만큼 자라고 줄어듦 */
+  min-height: 44px;        /* 시작 높이 */
+  max-height: 220px;       /* 이 이상은 내부 스크롤 */
+}
+
+/* 인라인으로 가로로 자라는 input (태그·금액 등) */
+input.tag{
+  field-sizing: content;
+  min-width: 60px;
+  max-width: 100%;
+}</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>레이아웃이 커질 때 주변이 밀리므로, <b>최대 높이/폭을 정해</b> 갑작스러운 점프와 <b>레이아웃 이동(CLS)</b>을 억제합니다.</li>
+      <li>지원하지 않는 구형 브라우저에서는 <b>그냥 기본 크기로 동작</b>하는 <b>점진적 향상(progressive enhancement, 되는 곳에선 더 좋게, 안 되는 곳에서도 멀쩡하게)</b>이라 안전합니다.</li>
+      <li>자동 성장이라도 <code>resize</code> 손잡이를 남길지(수동 조절 허용) 여부는 UX 판단 — 이 데모는 <code>resize:none</code>으로 자동에 맡겼습니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제 요청·정산 메모·CS 문의처럼 "얼마나 길지 모르는" 입력에 바로 적용할 수 있습니다. 기존에 auto-grow용 JS나 라이브러리를 붙여 뒀다면 <b>CSS 한 줄로 대체</b>하고 걷어내 번들을 줄일 수 있고요(추정 — 실제 제거 전 대상 브라우저 지원표 확인 권장). 다만 사내 지원 브라우저 하한이 낮다면, 걷어내기 전에 폴백(기존 JS 유지 또는 <code>rows</code> 기본값)을 함께 두세요.</p>
+
+    <div class="note">🔗 참고: MDN <code>field-sizing</code>, web.dev "New to the web platform in June(2026)". Baseline: Newly available(2026-06, Firefox 152). 이 데모는 self-contained — <b>지원 브라우저에서만</b> 오른쪽 칸이 자랍니다.</div>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px">
+    Design Inspiration Daily · 2026-07-29 (수) · self-contained live demo
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '\u{1F319} 다크 모드' : '☀️ 라이트 모드';
+    themeBtn.setAttribute('aria-pressed', String(!dark));
+  });
+
+  /* ================= 1. Payment method selector ================= */
+  (function(){
+    const group = document.getElementById('pmGroup');
+    const cards = [...group.querySelectorAll('[role=radio]')];
+    const detail = document.getElementById('pmDetail');
+    const out = document.getElementById('pmOut');
+    const labels = { card:'신용·체크카드', easy:'간편결제', bank:'계좌이체' };
+
+    function renderDetail(pm){
+      if(pm === 'card'){
+        detail.innerHTML =
+          '<label>카드 번호<input type="text" inputmode="numeric" placeholder="0000 0000 0000 0000" aria-label="카드 번호"></label>'+
+          '<div style="display:flex;gap:10px">'+
+            '<label style="flex:1">유효기간<input type="text" placeholder="MM/YY" aria-label="유효기간"></label>'+
+            '<label style="flex:1">CVC<input type="text" inputmode="numeric" placeholder="•••" aria-label="CVC"></label>'+
+          '</div>';
+      } else if(pm === 'easy'){
+        detail.innerHTML =
+          '<div style="font-size:.82rem;color:var(--muted);margin-bottom:2px">저장된 간편결제 · 탭해서 선택</div>'+
+          '<div class="pm-saved" id="pmSaved">'+
+            '<button class="pm-chip" type="button" aria-pressed="true">💙 토스페이</button>'+
+            '<button class="pm-chip" type="button" aria-pressed="false">💛 카카오페이</button>'+
+            '<button class="pm-chip" type="button" aria-pressed="false">💚 네이버페이</button>'+
+            '<button class="pm-chip" type="button" aria-pressed="false">＋ 새 수단</button>'+
+          '</div>';
+        const chips = [...detail.querySelectorAll('.pm-chip')];
+        chips.forEach(ch => ch.addEventListener('click', () => {
+          chips.forEach(c => c.setAttribute('aria-pressed', String(c === ch)));
+        }));
+      } else {
+        detail.innerHTML =
+          '<label>은행 선택<input type="text" placeholder="예: 토스뱅크" aria-label="은행 선택"></label>'+
+          '<div style="font-size:.8rem;color:var(--muted)">실시간 계좌이체는 수수료가 없어요. 이체 후 자동으로 결제가 확인됩니다.</div>';
+      }
+    }
+    function select(card){
+      cards.forEach(c => {
+        const on = c === card;
+        c.setAttribute('aria-checked', String(on));
+        c.tabIndex = on ? 0 : -1;
+      });
+      renderDetail(card.dataset.pm);
+      out.textContent = labels[card.dataset.pm];
+    }
+    cards.forEach(c => c.addEventListener('click', () => { c.focus(); select(c); }));
+    group.addEventListener('keydown', e => {
+      const i = cards.indexOf(document.activeElement);
+      if(i < 0) return;
+      if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
+        e.preventDefault(); const n = cards[(i+1)%cards.length]; n.focus(); select(n);
+      } else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+        e.preventDefault(); const n = cards[(i-1+cards.length)%cards.length]; n.focus(); select(n);
+      } else if(e.key === ' ' || e.key === 'Enter'){
+        e.preventDefault(); select(document.activeElement);
+      }
+    });
+    renderDetail('card'); // 초기 상세
+  })();
+
+  /* ================= 2. Combobox ================= */
+  (function(){
+    const wrap = document.getElementById('cbWrap');
+    const input = document.getElementById('cbInput');
+    const listEl = document.getElementById('cbList');
+    const out = document.getElementById('cbOut');
+    const data = [
+      {name:'대한민국', code:'KR', cur:'KRW', flag:'🇰🇷'},
+      {name:'미국', code:'US', cur:'USD', flag:'🇺🇸'},
+      {name:'일본', code:'JP', cur:'JPY', flag:'🇯🇵'},
+      {name:'중국', code:'CN', cur:'CNY', flag:'🇨🇳'},
+      {name:'영국', code:'GB', cur:'GBP', flag:'🇬🇧'},
+      {name:'독일', code:'DE', cur:'EUR', flag:'🇩🇪'},
+      {name:'프랑스', code:'FR', cur:'EUR', flag:'🇫🇷'},
+      {name:'캐나다', code:'CA', cur:'CAD', flag:'🇨🇦'},
+      {name:'호주', code:'AU', cur:'AUD', flag:'🇦🇺'},
+      {name:'싱가포르', code:'SG', cur:'SGD', flag:'🇸🇬'},
+      {name:'홍콩', code:'HK', cur:'HKD', flag:'🇭🇰'},
+      {name:'인도', code:'IN', cur:'INR', flag:'🇮🇳'},
+      {name:'베트남', code:'VN', cur:'VND', flag:'🇻🇳'},
+      {name:'태국', code:'TH', cur:'THB', flag:'🇹🇭'},
+      {name:'브라질', code:'BR', cur:'BRL', flag:'🇧🇷'}
+    ];
+    let opts = [];      // 현재 렌더된 옵션 DOM
+    let active = -1;    // 활성(하이라이트) 인덱스
+    let isOpen = false;
+
+    function esc(s){ return s.replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+    function hi(text, q){
+      if(!q) return esc(text);
+      const i = text.toLowerCase().indexOf(q);
+      if(i < 0) return esc(text);
+      return esc(text.slice(0,i)) + '<span class="cb-mark">' + esc(text.slice(i,i+q.length)) + '</span>' + esc(text.slice(i+q.length));
+    }
+    function render(q){
+      const hits = data.filter(d =>
+        d.name.toLowerCase().includes(q) ||
+        d.code.toLowerCase().includes(q) ||
+        d.cur.toLowerCase().includes(q));
+      listEl.innerHTML = '';
+      opts = []; active = -1;
+      if(hits.length === 0){
+        listEl.innerHTML = '<li class="cb-empty" role="presentation">일치하는 국가가 없어요</li>';
+        return;
+      }
+      hits.forEach((d, idx) => {
+        const li = document.createElement('li');
+        li.className = 'cb-opt';
+        li.id = 'cb-opt-' + idx;
+        li.setAttribute('role','option');
+        li.setAttribute('aria-selected','false');
+        li.dataset.val = d.name + ' (' + d.cur + ')';
+        li.innerHTML = '<span class="flag" aria-hidden="true">'+d.flag+'</span>'+
+          '<span>'+hi(d.name, q)+'</span>'+
+          '<span class="sub">'+hi(d.code, q)+' · '+hi(d.cur, q)+'</span>';
+        li.addEventListener('mousemove', () => setActive(idx));
+        li.addEventListener('mousedown', e => { e.preventDefault(); choose(li); });
+        listEl.appendChild(li);
+        opts.push(li);
+      });
+    }
+    function open(){ if(isOpen) return; isOpen = true; wrap.classList.add('open'); input.setAttribute('aria-expanded','true'); }
+    function close(){ isOpen = false; wrap.classList.remove('open'); input.setAttribute('aria-expanded','false');
+      input.removeAttribute('aria-activedescendant'); active = -1; opts.forEach(o=>o.classList.remove('active')); }
+    function setActive(i){
+      active = i;
+      opts.forEach((o,idx) => o.classList.toggle('active', idx === i));
+      if(opts[i]){
+        input.setAttribute('aria-activedescendant', opts[i].id);
+        opts[i].scrollIntoView({block:'nearest'});
+      }
+    }
+    function move(dir){
+      if(!isOpen){ open(); }
+      if(opts.length === 0) return;
+      let i = active + dir;
+      if(i < 0) i = opts.length - 1;
+      if(i >= opts.length) i = 0;
+      setActive(i);
+    }
+    function choose(li){
+      if(!li) return;
+      input.value = li.dataset.val;
+      opts.forEach(o => o.setAttribute('aria-selected', String(o === li)));
+      out.textContent = li.dataset.val;
+      close();
+    }
+
+    input.addEventListener('focus', () => { render(input.value.trim().toLowerCase()); open(); });
+    input.addEventListener('input', () => { render(input.value.trim().toLowerCase()); open(); });
+    input.addEventListener('keydown', e => {
+      if(e.key === 'ArrowDown'){ e.preventDefault(); move(+1); }
+      else if(e.key === 'ArrowUp'){ e.preventDefault(); move(-1); }
+      else if(e.key === 'Enter'){ if(isOpen && active >= 0){ e.preventDefault(); choose(opts[active]); } }
+      else if(e.key === 'Escape'){ close(); }
+      else if(e.key === 'Tab'){ close(); }
+    });
+    document.addEventListener('click', e => { if(!wrap.contains(e.target)) close(); });
+  })();
+
+  /* ================= 3. field-sizing support check ================= */
+  (function(){
+    const box = document.getElementById('fsSupport');
+    const supported = (window.CSS && CSS.supports && CSS.supports('field-sizing', 'content'));
+    if(supported){
+      box.innerHTML = '이 브라우저는 <span class="yes">field-sizing 지원 ✔</span> — 오른쪽 칸과 태그 input이 내용만큼 자랍니다. <b>Baseline Newly available(2026-06)</b>.';
+    } else {
+      box.innerHTML = '이 브라우저는 <span class="no">field-sizing 미지원</span> — 자동 성장 대신 기본 크기로 동작합니다(점진적 향상이라 깨지진 않아요). 최신 Chrome·Safari·Firefox에서 확인해 보세요.';
+    }
+  })();
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get('embed') || q.get('demo');
+    if(q.get('theme') === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    if(!id) return;
+    document.documentElement.classList.add('embed-mode');
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add('embed-show');
+  })();
+})();
+</script>
+</body>
+</html>
