@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-30 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:.92rem;font-family:inherit;
+    cursor:pointer;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn-brand{background:var(--brand);color:var(--brand-ink)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+
+  /* ---------- 1. Collapsible sidebar nav ---------- */
+  .sb-shell{display:flex;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    background:var(--surface);min-height:340px}
+  .sb{flex:0 0 auto;width:230px;background:var(--surface-2);border-right:1px solid var(--border);
+    display:flex;flex-direction:column;transition:width .22s ease;overflow:hidden}
+  .sb.collapsed{width:64px}
+  .sb-head{display:flex;align-items:center;gap:10px;padding:14px 14px 10px;min-height:56px}
+  .sb-logo{width:34px;height:34px;flex:0 0 auto;border-radius:9px;background:var(--brand);color:var(--brand-ink);
+    display:grid;place-items:center;font-weight:800;font-size:1rem}
+  .sb-brand{font-weight:800;font-size:.98rem;white-space:nowrap;transition:opacity .15s}
+  .sb.collapsed .sb-brand{opacity:0;pointer-events:none}
+  .sb-toggle{margin-left:auto;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:.9rem;flex:0 0 auto;display:grid;place-items:center}
+  .sb-toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .sb.collapsed .sb-toggle{margin-left:0}
+  .sb-nav{list-style:none;margin:6px 0 0;padding:0 8px;display:flex;flex-direction:column;gap:3px}
+  .sb-link{display:flex;align-items:center;gap:12px;padding:10px 11px;border-radius:9px;cursor:pointer;
+    color:var(--text);text-decoration:none;position:relative;white-space:nowrap;font-size:.9rem}
+  .sb-link .ic{flex:0 0 auto;width:22px;text-align:center;font-size:1.05rem}
+  .sb-link .lbl{transition:opacity .15s}
+  .sb.collapsed .sb-link .lbl{opacity:0}
+  .sb-link .badge{margin-left:auto;font-size:.68rem;font-weight:700;color:var(--brand-ink);background:var(--brand);
+    border-radius:999px;padding:1px 7px}
+  .sb.collapsed .sb-link .badge{display:none}
+  .sb-link:hover{background:var(--brand-soft)}
+  .sb-link:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .sb-link[aria-current="page"]{background:var(--brand-soft);color:var(--brand);font-weight:700}
+  .sb-link[aria-current="page"]::before{content:"";position:absolute;left:-8px;top:8px;bottom:8px;width:3px;
+    border-radius:0 3px 3px 0;background:var(--brand)}
+  /* tooltip only when collapsed */
+  .sb-link .tip{position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%) scale(.96);
+    background:var(--text);color:var(--bg);font-size:.78rem;padding:5px 9px;border-radius:7px;white-space:nowrap;
+    opacity:0;pointer-events:none;transition:opacity .12s, transform .12s;z-index:6;box-shadow:var(--shadow)}
+  .sb:not(.collapsed) .sb-link .tip{display:none}
+  .sb.collapsed .sb-link:hover .tip,
+  .sb.collapsed .sb-link:focus-visible .tip{opacity:1;transform:translateY(-50%) scale(1)}
+  .sb-main{flex:1 1 auto;padding:18px 20px;min-width:0}
+  .sb-main h4{font-size:1rem;margin:0 0 4px}
+  .sb-main p{color:var(--muted);font-size:.88rem;margin:.3rem 0 0}
+  .sb-state{margin-top:12px;font-size:.8rem;color:var(--muted)}
+  .sb-state b{color:var(--text)}
+  @media(max-width:560px){ .sb{width:190px} .sb.collapsed{width:60px} }
+
+  /* ---------- 2. Selectable list + bulk actions ---------- */
+  .bl-wrap{max-width:560px}
+  .bl-head{display:flex;align-items:center;gap:12px;padding:8px 12px;border:1px solid var(--border);
+    border-radius:11px 11px 0 0;background:var(--surface-2);font-size:.82rem;color:var(--muted)}
+  .bl-head .col-amt{margin-left:auto}
+  .bl-list{list-style:none;margin:0;padding:0;border:1px solid var(--border);border-top:none;
+    border-radius:0 0 11px 11px;overflow:hidden}
+  .bl-row{display:flex;align-items:center;gap:12px;padding:11px 12px;background:var(--surface);
+    border-top:1px solid var(--border);font-size:.9rem;transition:background .12s}
+  .bl-row:first-child{border-top:none}
+  .bl-row:hover{background:var(--surface-2)}
+  .bl-row[data-selected="true"]{background:var(--brand-soft)}
+  .bl-row .meta{min-width:0}
+  .bl-row .meta .t{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bl-row .meta .s{font-size:.76rem;color:var(--muted)}
+  .bl-row .amt{margin-left:auto;font-weight:700;white-space:nowrap}
+  .bl-row .amt.minus{color:var(--danger)}
+  .bl-row .amt.plus{color:var(--ok)}
+  .bl-cb{width:18px;height:18px;flex:0 0 auto;accent-color:var(--brand);cursor:pointer}
+  .bl-cb:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  /* bulk action bar */
+  .bl-bar{display:flex;align-items:center;gap:10px;margin-top:12px;padding:10px 14px;border-radius:11px;
+    background:var(--text);color:var(--bg);font-size:.86rem;
+    transform:translateY(8px);opacity:0;pointer-events:none;transition:opacity .16s, transform .16s}
+  .bl-bar.show{transform:translateY(0);opacity:1;pointer-events:auto}
+  .bl-bar .count{font-weight:800}
+  .bl-bar .spacer{margin-left:auto}
+  .bl-bar button{border:1px solid rgba(255,255,255,.28);background:transparent;color:var(--bg);
+    border-radius:8px;padding:6px 12px;font-size:.82rem;font-family:inherit;cursor:pointer;font-weight:600}
+  .bl-bar button:hover{background:rgba(255,255,255,.14)}
+  .bl-bar button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .bl-bar button.danger{border-color:rgba(248,113,113,.6);color:#ffd7d7}
+  .bl-toast{margin-top:10px;font-size:.82rem;color:var(--muted)}
+  .bl-toast b{color:var(--text)}
+
+  /* ---------- 3. Popover API + anchor positioning ---------- */
+  .pp-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
+  .pp-anchor{position:relative}
+  .pp-menu{margin:0;padding:6px;border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    box-shadow:var(--shadow);min-width:190px;color:var(--text)}
+  .pp-menu[popover]{ /* anchor positioning: placed under the trigger */
+    position-anchor:--ppTrigger;
+    top:anchor(bottom);left:anchor(left);margin-top:8px;
+    position-try-fallbacks:flip-block, flip-inline;
+  }
+  .pp-menu ul{list-style:none;margin:0;padding:0}
+  .pp-menu li>button{width:100%;text-align:left;border:none;background:transparent;color:var(--text);
+    font-family:inherit;font-size:.88rem;padding:9px 11px;border-radius:8px;cursor:pointer;display:flex;gap:9px;align-items:center}
+  .pp-menu li>button:hover{background:var(--brand-soft)}
+  .pp-menu li>button:focus-visible{outline:3px solid var(--ring);outline-offset:-2px}
+  .pp-menu li>button.danger{color:var(--danger)}
+  .pp-menu hr{border:none;border-top:1px solid var(--border);margin:5px 4px}
+  #ppTrigger{anchor-name:--ppTrigger}
+  .pp-tipwrap{position:relative}
+  .pp-tipbtn{anchor-name:--ppTip}
+  .pp-tip[popover]{position-anchor:--ppTip;bottom:anchor(top);
+    justify-self:anchor-center;margin-bottom:8px;
+    background:var(--text);color:var(--bg);border:none;border-radius:8px;padding:7px 11px;font-size:.8rem;
+    max-width:220px;box-shadow:var(--shadow);position-try-fallbacks:flip-block;}
+  .pp-fallback{margin-top:14px;font-size:.82rem;padding:10px 12px;border-radius:9px;
+    background:var(--surface-2);border:1px solid var(--border)}
+  .pp-fallback b{color:var(--text)}
+  .pp-fallback .yes{color:var(--ok);font-weight:700}
+  .pp-fallback .no{color:var(--warn);font-weight:700}
+  /* JS fallback positioning when anchor positioning unsupported */
+  .pp-menu.js-pos[popover]{position-anchor:none;position:fixed;top:auto;left:auto;margin:0}
+  .pp-tip.js-pos[popover]{position-anchor:none;position:fixed;bottom:auto;margin:0;justify-self:auto}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-07-30 (목) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#sidebar">🧭 접히는 사이드바 내비</a>
+    <a href="#bulklist">🃏 선택형 리스트·대량작업</a>
+    <a href="#popover">🌀 Popover + Anchor 위치잡기</a>
+  </nav>
+
+  <!-- ============ 1. Collapsible sidebar nav ============ -->
+  <section class="card" id="sidebar">
+    <h2>🧭 접히는 사이드바 내비게이션 — 아이콘 레일·활성 표시·툴팁 <span class="tag">내비게이션·탭</span></h2>
+    <p class="lead"><b>사이드바 내비게이션(sidebar nav)</b>은 대시보드형 제품의 왼쪽 기둥입니다. 요즘은 화면이 좁거나 집중이 필요할 때 <b>아이콘만 남기고 접히는 레일(icon rail)</b>로 줄였다가, 필요하면 라벨까지 펼치는 방식이 표준입니다. 접혔을 때는 각 항목에 <b>툴팁</b>을 띄워 아이콘의 뜻을 알려 줍니다. 아래 <span class="kbd">«</span> 버튼으로 접고 펴 보고, 항목을 눌러 활성 표시를 확인하세요.</p>
+
+    <div class="demo">
+      <div class="sb-shell">
+        <nav class="sb" id="sb" aria-label="주 메뉴">
+          <div class="sb-head">
+            <span class="sb-logo" aria-hidden="true">P</span>
+            <span class="sb-brand">paysable</span>
+            <button class="sb-toggle" id="sbToggle" type="button" aria-expanded="true" aria-controls="sb" aria-label="사이드바 접기">«</button>
+          </div>
+          <ul class="sb-nav">
+            <li><a class="sb-link" href="#sidebar" aria-current="page" data-nav="대시보드"><span class="ic" aria-hidden="true">📊</span><span class="lbl">대시보드</span><span class="tip" role="tooltip">대시보드</span></a></li>
+            <li><a class="sb-link" href="#sidebar" data-nav="결제"><span class="ic" aria-hidden="true">💳</span><span class="lbl">결제</span><span class="tip" role="tooltip">결제</span></a></li>
+            <li><a class="sb-link" href="#sidebar" data-nav="정산"><span class="ic" aria-hidden="true">🧾</span><span class="lbl">정산</span><span class="badge">3</span><span class="tip" role="tooltip">정산 · 3건 대기</span></a></li>
+            <li><a class="sb-link" href="#sidebar" data-nav="고객"><span class="ic" aria-hidden="true">👥</span><span class="lbl">고객</span><span class="tip" role="tooltip">고객</span></a></li>
+            <li><a class="sb-link" href="#sidebar" data-nav="설정"><span class="ic" aria-hidden="true">⚙️</span><span class="lbl">설정</span><span class="tip" role="tooltip">설정</span></a></li>
+          </ul>
+        </nav>
+        <div class="sb-main">
+          <h4 id="sbTitle">대시보드</h4>
+          <p>선택된 메뉴의 본문이 여기 들어옵니다. 사이드바를 접으면 아이콘만 남고, 마우스를 올리거나 <span class="kbd">Tab</span>으로 포커스하면 툴팁이 뜹니다.</p>
+          <p class="sb-state">상태: 사이드바 <b id="sbStateTxt">펼침</b> · 활성 메뉴 <b id="sbActiveTxt">대시보드</b></p>
+        </div>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>아이콘 레일 ↔ 확장</b> — 접으면 폭 64px로 아이콘만, 펴면 라벨·배지까지. 넓은 화면에선 펼침, 좁으면 접힘을 기본값으로 두는 경우가 많습니다.</li>
+      <li><b>활성 표시(active indicator)</b> — 현재 페이지는 배경색 + 왼쪽 세로 바 + 굵은 글씨로, 색 하나에만 기대지 않고 여러 신호를 겹칩니다.</li>
+      <li><b>접힘 시 툴팁</b> — 라벨이 사라진 만큼, 아이콘의 의미를 hover·focus 툴팁으로 보완합니다(정산의 "3건 대기"처럼 배지 내용도 함께).</li>
+      <li><b>배지(badge)</b> — 처리할 일이 있는 메뉴에 숫자를 붙여 주의를 끕니다. 접힌 상태에선 툴팁 텍스트로 옮겨 줍니다.</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — 접기 토글 + 활성 표시)</h3>
+    <pre><code>toggle.addEventListener('click', () =&gt; {
+  const collapsed = sb.classList.toggle('collapsed');
+  // 접힘 상태를 보조기술에도 알림
+  toggle.setAttribute('aria-expanded', String(!collapsed));
+  toggle.setAttribute('aria-label', collapsed ? '사이드바 펼치기' : '사이드바 접기');
+});
+
+// 활성 메뉴: 색이 아니라 aria-current로 "지금 이 페이지"를 표시
+links.forEach(a =&gt; a.addEventListener('click', e =&gt; {
+  e.preventDefault();
+  links.forEach(l =&gt; l.removeAttribute('aria-current'));
+  a.setAttribute('aria-current', 'page');   // 스크린리더가 "현재 페이지"로 읽음
+}));</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>컨테이너는 <code>&lt;nav aria-label="주 메뉴"&gt;</code>. 현재 페이지 링크에 <b><code>aria-current="page"</code></b> — 색뿐 아니라 의미로도 "여기"를 알립니다.</li>
+      <li>접기 버튼은 <b><code>aria-expanded</code></b> + <code>aria-controls</code>로 상태를 노출하고, 라벨을 "접기/펼치기"로 갱신합니다.</li>
+      <li>툴팁은 <b>focus로도</b> 떠야 키보드 사용자가 접힌 아이콘의 뜻을 압니다(hover 전용 금지). 여기선 <code>:focus-visible</code>에도 툴팁을 띄웠습니다.</li>
+      <li>아이콘은 장식이라 <code>aria-hidden</code> 처리하고, 링크 텍스트(라벨)가 접근 이름을 담당합니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">대시보드·결제·정산·고객 같은 상위 내비를 사이드바로 두면 화면 전환 없이 이동이 빠릅니다. 좁은 노트북·집중 모드에선 접어서 표를 넓게 쓰고, "정산 3건 대기"처럼 <b>액션이 필요한 곳에 배지</b>를 달아 놓치지 않게 합니다. 접힘 상태 저장은 실제 제품에선 서버·쿠키로 하되, 이 데모는 메모리에만 둡니다(스토리지 미사용).</p>
+
+    <div class="note">🔗 참고: WAI-ARIA <code>aria-current</code>, 툴팁 패턴(focus로도 노출). 접힘 상태는 화면 폭에 따라 기본값을 다르게 두는 편이 흔합니다. 이 데모는 self-contained.</div>
+  </section>
+
+  <!-- ============ 2. Selectable list + bulk actions ============ -->
+  <section class="card" id="bulklist">
+    <h2>🃏 선택 가능한 리스트 — 전체선택(indeterminate)·대량 작업 바 <span class="tag">카드·리스트</span></h2>
+    <p class="lead">표·리스트에서 여러 항목을 <b>골라 한 번에 처리</b>하는 패턴입니다. 핵심은 두 가지 — 머리글의 <b>전체 선택 체크박스</b>가 "일부만 선택"일 때 보여 주는 <b>중간 상태(indeterminate, 체크도 해제도 아닌 대시 표시)</b>, 그리고 하나라도 고르면 아래에서 올라오는 <b>대량 작업 바(bulk action bar)</b>입니다. 아래에서 몇 개 체크해 보세요.</p>
+
+    <div class="demo">
+      <div class="bl-wrap">
+        <div class="bl-head">
+          <input type="checkbox" class="bl-cb" id="blAll" aria-label="전체 선택">
+          <span>거래</span>
+          <span class="col-amt">금액</span>
+        </div>
+        <ul class="bl-list" id="blList">
+          <li class="bl-row"><input type="checkbox" class="bl-cb" aria-label="선택: 스타벅스 정산"><span class="meta"><div class="t">스타벅스 코리아</div><div class="s">7/29 · 카드 정산</div></span><span class="amt plus">+₩128,400</span></li>
+          <li class="bl-row"><input type="checkbox" class="bl-cb" aria-label="선택: 네이버페이 환불"><span class="meta"><div class="t">네이버페이 환불</div><div class="s">7/29 · 간편결제</div></span><span class="amt minus">−₩24,900</span></li>
+          <li class="bl-row"><input type="checkbox" class="bl-cb" aria-label="선택: 배달의민족 정산"><span class="meta"><div class="t">배달의민족</div><div class="s">7/28 · 카드 정산</div></span><span class="amt plus">+₩56,200</span></li>
+          <li class="bl-row"><input type="checkbox" class="bl-cb" aria-label="선택: 쿠팡 정산"><span class="meta"><div class="t">쿠팡</div><div class="s">7/28 · 계좌이체</div></span><span class="amt plus">+₩312,000</span></li>
+          <li class="bl-row"><input type="checkbox" class="bl-cb" aria-label="선택: 카카오T 결제"><span class="meta"><div class="t">카카오 T</div><div class="s">7/27 · 간편결제</div></span><span class="amt minus">−₩11,800</span></li>
+        </ul>
+
+        <div class="bl-bar" id="blBar" role="region" aria-label="선택 항목 작업">
+          <span class="count" id="blCount">0개</span> 선택됨
+          <span class="spacer"></span>
+          <button type="button" id="blExport">내보내기</button>
+          <button type="button" class="danger" id="blDelete">삭제</button>
+          <button type="button" id="blClear">해제</button>
+        </div>
+        <p class="bl-toast" id="blToast">항목을 선택하면 아래에 작업 바가 나타납니다.</p>
+      </div>
+    </div>
+
+    <h3>🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><b>전체 선택 + indeterminate</b> — 머리글 체크박스는 셋 중 하나: 모두 선택(체크)·일부 선택(대시)·선택 없음(빈칸). 일부 선택 상태를 대시로 보여 줘야 "부분 선택 중"임이 드러납니다.</li>
+      <li><b>대량 작업 바</b> — 선택이 0이면 숨고, 1개 이상이면 떠오릅니다. "내보내기·삭제·해제"처럼 선택 대상에 할 수 있는 동작만 모읍니다.</li>
+      <li><b>선택 행 강조</b> — 고른 행은 배경색으로 표시해, 스크롤해도 무엇을 골랐는지 보입니다.</li>
+      <li><b>개수 라이브 표시</b> — "3개 선택됨"을 실시간으로 갱신해 규모를 감 잡게 합니다(삭제 전 확인용).</li>
+    </ul>
+
+    <h3>💻 코드 (핵심 — indeterminate + 선택 집계)</h3>
+    <pre><code>function sync(){
+  const boxes = [...list.querySelectorAll('.row-cb')];
+  const on = boxes.filter(b =&gt; b.checked).length;
+  // 머리글 체크박스의 3가지 상태
+  all.checked = on === boxes.length &amp;&amp; on &gt; 0;
+  all.indeterminate = on &gt; 0 &amp;&amp; on &lt; boxes.length;  // 일부만 → 대시 표시
+  bar.classList.toggle('show', on &gt; 0);              // 하나라도 있으면 작업 바
+  count.textContent = on + '개';
+}
+all.addEventListener('change', () =&gt; {               // 전체 선택/해제
+  list.querySelectorAll('.row-cb').forEach(b =&gt; b.checked = all.checked);
+  sync();
+});</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>머리글 체크박스는 <code>aria-label="전체 선택"</code>, 각 행 체크박스도 <b>무엇을 선택하는지</b> 라벨을 답니다(스크린리더가 "선택: 스타벅스 정산"으로 읽음).</li>
+      <li><b>indeterminate는 JS 속성</b>입니다(<code>el.indeterminate = true</code>) — HTML 속성으로는 못 켭니다. 시각적 대시도 브라우저가 그려 줍니다.</li>
+      <li>작업 바는 <code>role="region"</code> + 라벨로 묶어, 선택 후 나타나는 동작 묶음임을 알립니다.</li>
+      <li>파괴적 동작(삭제)은 색·라벨로 구분하고, 실제 제품에선 <b>취소(undo)</b> 토스트나 확인 단계를 두는 편이 안전합니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">거래·정산·환불 목록에서 "여러 건 골라 CSV 내보내기 / 일괄 승인 / 일괄 취소"에 그대로 씁니다. 대량 삭제·취소는 실수 비용이 크므로, 여기 데모처럼 <b>개수를 크게 보여 주고</b> 실제로는 <b>실행 후 몇 초간 되돌리기(undo)</b>를 제공하면 확인 모달보다 흐름이 매끄럽습니다(추정 — 도메인 위험도에 따라 확인 모달이 나을 수도).</p>
+
+    <div class="note">🔗 참고: 체크박스 <code>indeterminate</code>(MDN), 대량 선택 패턴(Gmail·Linear·Notion 표). 이 데모는 self-contained, 삭제는 화면에서만 제거(서버 미연동).</div>
+  </section>
+
+  <!-- ============ 3. Popover API + anchor positioning ============ -->
+  <section class="card" id="popover">
+    <h2>🌀 Popover API + CSS Anchor Positioning — JS 없이 뜨고 위치잡는 메뉴·툴팁 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">떠 있는 메뉴·툴팁·팝오버를 만들 때, 예전엔 (1) 다른 요소에 가리지 않게 <b>맨 위 레이어로 띄우기</b>와 (2) 트리거 옆에 <b>정확히 위치잡기</b> 둘 다 JS·라이브러리(Floating UI 등)로 했습니다. 이제 <b>Popover API</b>(HTML <code>popover</code> 속성)가 (1)을, <b>CSS Anchor Positioning</b>(<code>anchor-name</code>/<code>anchor()</code>)이 (2)를 <b>플랫폼 기본 기능</b>으로 해결합니다. 아래 버튼을 눌러/올려 보세요.</p>
+
+    <div class="demo">
+      <div class="pp-row">
+        <div class="pp-anchor">
+          <button class="btn btn-ghost" id="ppTrigger" popovertarget="ppMenu" aria-haspopup="menu">⋯ 작업 메뉴</button>
+          <div class="pp-menu" id="ppMenu" popover role="menu" aria-label="작업">
+            <ul>
+              <li><button type="button" role="menuitem">✏️ 이름 변경</button></li>
+              <li><button type="button" role="menuitem">📄 복제</button></li>
+              <li><button type="button" role="menuitem">🔗 링크 복사</button></li>
+              <li><hr></li>
+              <li><button type="button" role="menuitem" class="danger">🗑️ 삭제</button></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pp-tipwrap">
+          <button class="btn btn-ghost pp-tipbtn" id="ppTipBtn" popovertarget="ppTip" popovertargetaction="toggle"
+            aria-describedby="ppTip">ℹ️ 수수료 안내</button>
+          <div class="pp-tip" id="ppTip" popover="hint" role="tooltip">
+            국내 카드 결제 수수료는 건당 2.9% + ₩30입니다. 정산은 D+2 영업일에 이뤄져요.
+          </div>
+        </div>
+      </div>
+      <p class="cap">메뉴는 클릭으로 열고 <span class="kbd">Esc</span>·바깥 클릭으로 닫힙니다(브라우저 기본 제공, JS 0줄). 툴팁 버튼은 hover·focus·click로 뜹니다.</p>
+
+      <div class="pp-fallback" id="ppFallback">지원 여부 확인 중…</div>
+    </div>
+
+    <h3>📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><b>Popover API</b> — <code>popover</code> 속성을 붙이면 요소가 <b>top layer</b>(맨 위 레이어)로 떠서 <code>overflow:hidden</code>·<code>z-index</code> 지옥을 피합니다. <b>가벼운 해제(light dismiss)</b> — 바깥 클릭·<span class="kbd">Esc</span>로 닫힘 — 를 브라우저가 공짜로 줍니다. <b>Baseline 널리 사용 가능</b>(Chrome 114·Safari 17.4·Firefox 125 이상, 출처 확인).</li>
+      <li><b>CSS Anchor Positioning</b> — 트리거에 <code>anchor-name</code>, 팝오버에 <code>position-anchor</code>+<code>anchor()</code>를 주면 <b>CSS만으로</b> 트리거 기준 배치가 됩니다. 화면 밖으로 나갈 것 같으면 <code>position-try-fallbacks: flip-block</code>으로 자동으로 위/아래를 뒤집습니다. <b>2026년 Baseline 진입</b>(Chrome 125·Safari 26·Firefox 147 계열, 출처 확인). 옛 사파리 등에선 미지원이라 <b>폴백</b>이 필요합니다.</li>
+      <li><b>어디에</b> — 행 단위 "⋯ 더보기" 메뉴, 필드 옆 도움말 툴팁, 알림 드롭다운, 셀렉트 대체 목록 등 "떠서 트리거 옆에 붙는" 거의 모든 것.</li>
+    </ul>
+
+    <h3>💻 코드 (복붙용 — 선언만으로 동작)</h3>
+    <pre><code>&lt;!-- 트리거와 팝오버를 popovertarget으로 연결. JS 불필요 --&gt;
+&lt;button popovertarget="menu"&gt;⋯ 작업&lt;/button&gt;
+&lt;div id="menu" popover&gt; … 메뉴 … &lt;/div&gt;
+
+&lt;style&gt;
+  /* (2) 위치잡기: 트리거를 앵커로 지정 */
+  button{ anchor-name: --t; }
+  #menu{
+    position-anchor: --t;
+    top: anchor(bottom);      /* 트리거 아래에 */
+    left: anchor(left);
+    margin-top: 8px;
+    position-try-fallbacks: flip-block;  /* 넘치면 위로 뒤집기 */
+  }
+&lt;/style&gt;
+
+/* 폴백: anchor positioning 미지원이면 JS로 좌표 계산 */
+if(!CSS.supports('anchor-name: --x')){ positionWithJS(trigger, menu); }</code></pre>
+
+    <h3>♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>메뉴 트리거엔 <code>aria-haspopup="menu"</code>, 툴팁 트리거엔 <code>aria-describedby</code>로 관계를 알립니다. 팝오버가 열리면 포커스 이동·<span class="kbd">Esc</span> 닫기를 브라우저가 처리합니다.</li>
+      <li>순수 정보성 툴팁은 <code>popover="hint"</code>(다른 팝오버를 닫지 않고 겹쳐 뜨는 유형)로, 메뉴는 기본 <code>popover</code>(auto)로 구분해 씁니다.</li>
+      <li><b>폴백 필수</b> — 앵커 위치잡기를 지원 안 하면 팝오버가 엉뚱한 데 뜰 수 있습니다. <code>CSS.supports</code>로 확인해 JS 좌표 계산으로 대체하거나, 최소한 트리거 근처에 고정 배치합니다(이 데모가 그렇게 합니다).</li>
+      <li>키보드 도달성·색 대비는 일반 메뉴/툴팁 기준을 그대로 지킵니다.</li>
+    </ul>
+
+    <h3>🧠 paysable 적용 포인트</h3>
+    <p class="lead">거래 행의 "⋯ 더보기", 수수료·정산일 같은 <b>도움말 툴팁</b>, 상단 알림 드롭다운을 Floating UI 같은 라이브러리 없이 만들 수 있어 번들이 줄고 <code>z-index</code>·<code>overflow</code>로 잘리는 버그가 사라집니다. 다만 사내 지원 브라우저 하한이 낮으면(구형 사파리 등) <b>앵커 위치잡기 폴백</b>을 반드시 두세요 — Popover 자체는 넓게 되지만 위치잡기는 아직 더 새롭습니다(출처 확인, 미지원 환경 단정 금지).</p>
+
+    <div class="note">🔗 참고: MDN <a href="https://developer.mozilla.org/en-US/docs/Web/API/Popover_API" target="_blank" rel="noopener">Popover API</a>, MDN <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/position-anchor" target="_blank" rel="noopener">CSS anchor positioning</a>. Popover=Baseline 널리 사용 가능, Anchor Positioning=2026 Baseline 진입(구형 브라우저 폴백 필요). 이 데모는 self-contained.</div>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px">
+    Design Inspiration Daily · 2026-07-30 (목) · self-contained live demo
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.textContent = dark ? '\u{1F319} 다크 모드' : '☀️ 라이트 모드';
+    themeBtn.setAttribute('aria-pressed', String(!dark));
+  });
+
+  /* ================= 1. Collapsible sidebar nav ================= */
+  (function(){
+    const sb = document.getElementById('sb');
+    const toggle = document.getElementById('sbToggle');
+    const links = [...sb.querySelectorAll('.sb-link')];
+    const title = document.getElementById('sbTitle');
+    const stateTxt = document.getElementById('sbStateTxt');
+    const activeTxt = document.getElementById('sbActiveTxt');
+
+    toggle.addEventListener('click', () => {
+      const collapsed = sb.classList.toggle('collapsed');
+      toggle.setAttribute('aria-expanded', String(!collapsed));
+      toggle.setAttribute('aria-label', collapsed ? '사이드바 펼치기' : '사이드바 접기');
+      toggle.textContent = collapsed ? '»' : '«';
+      stateTxt.textContent = collapsed ? '접힘' : '펼침';
+    });
+    links.forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      links.forEach(l => l.removeAttribute('aria-current'));
+      a.setAttribute('aria-current', 'page');
+      const name = a.dataset.nav;
+      title.textContent = name;
+      activeTxt.textContent = name;
+    }));
+  })();
+
+  /* ================= 2. Selectable list + bulk actions ================= */
+  (function(){
+    const list = document.getElementById('blList');
+    const all = document.getElementById('blAll');
+    const bar = document.getElementById('blBar');
+    const count = document.getElementById('blCount');
+    const toast = document.getElementById('blToast');
+    const rows = () => [...list.querySelectorAll('.bl-row')];
+    const boxes = () => [...list.querySelectorAll('.bl-row .bl-cb')];
+
+    function sync(){
+      const bs = boxes();
+      const on = bs.filter(b => b.checked).length;
+      all.checked = on === bs.length && on > 0;
+      all.indeterminate = on > 0 && on < bs.length;
+      bar.classList.toggle('show', on > 0);
+      count.textContent = on + '개';
+      rows().forEach(r => r.setAttribute('data-selected', String(r.querySelector('.bl-cb').checked)));
+      if(on === 0) toast.textContent = '항목을 선택하면 아래에 작업 바가 나타납니다.';
+    }
+    all.addEventListener('change', () => {
+      boxes().forEach(b => b.checked = all.checked);
+      sync();
+    });
+    boxes().forEach(b => b.addEventListener('change', sync));
+
+    document.getElementById('blClear').addEventListener('click', () => {
+      boxes().forEach(b => b.checked = false); sync();
+    });
+    document.getElementById('blExport').addEventListener('click', () => {
+      const n = boxes().filter(b => b.checked).length;
+      toast.innerHTML = '<b>' + n + '개</b> 항목을 CSV로 내보냈습니다. (데모 — 실제 파일은 생성 안 함)';
+    });
+    document.getElementById('blDelete').addEventListener('click', () => {
+      const sel = rows().filter(r => r.querySelector('.bl-cb').checked);
+      const n = sel.length;
+      sel.forEach(r => r.remove());
+      sync();
+      toast.innerHTML = '<b>' + n + '개</b> 삭제됨. (실제 제품이라면 여기에 "되돌리기" 버튼을 둡니다)';
+    });
+    sync();
+  })();
+
+  /* ================= 3. Popover + anchor positioning ================= */
+  (function(){
+    const box = document.getElementById('ppFallback');
+    const menu = document.getElementById('ppMenu');
+    const tip = document.getElementById('ppTip');
+    const trigger = document.getElementById('ppTrigger');
+    const tipBtn = document.getElementById('ppTipBtn');
+
+    const popoverOK = (typeof HTMLElement !== 'undefined') && ('popover' in HTMLElement.prototype);
+    const anchorOK = (window.CSS && CSS.supports && CSS.supports('anchor-name', '--x'));
+
+    // hint 팝오버 미지원 브라우저 대비: hover/focus로도 tooltip 토글
+    if(popoverOK && tip){
+      const showTip = () => { try{ tip.showPopover(); }catch(e){} };
+      const hideTip = () => { try{ tip.hidePopover(); }catch(e){} };
+      tipBtn.addEventListener('mouseenter', showTip);
+      tipBtn.addEventListener('mouseleave', hideTip);
+      tipBtn.addEventListener('focus', showTip);
+      tipBtn.addEventListener('blur', hideTip);
+    }
+
+    // 앵커 위치잡기 폴백: 미지원이면 JS로 트리거 아래/위에 고정 배치
+    if(!anchorOK){
+      menu.classList.add('js-pos');
+      tip.classList.add('js-pos');
+      const place = (pop, anchorEl, above) => {
+        const r = anchorEl.getBoundingClientRect();
+        pop.style.left = r.left + 'px';
+        if(above){
+          pop.style.top = (r.top - pop.offsetHeight - 8) + 'px';
+        } else {
+          pop.style.top = (r.bottom + 8) + 'px';
+        }
+      };
+      menu.addEventListener('toggle', e => { if(e.newState === 'open') place(menu, trigger, false); });
+      const placeTip = () => place(tip, tipBtn, true);
+      tip.addEventListener('toggle', e => { if(e.newState === 'open') placeTip(); });
+    }
+
+    if(popoverOK && anchorOK){
+      box.innerHTML = '이 브라우저: <span class="yes">Popover ✔ · Anchor 위치잡기 ✔</span> — 메뉴·툴팁이 CSS만으로 트리거 옆에 붙습니다.';
+    } else if(popoverOK && !anchorOK){
+      box.innerHTML = '이 브라우저: <span class="yes">Popover ✔</span> · <span class="no">Anchor 위치잡기 미지원</span> — top layer로 뜨긴 하되, 위치는 <b>JS 폴백</b>으로 잡았습니다.';
+    } else {
+      box.innerHTML = '이 브라우저: <span class="no">Popover API 미지원</span> — 최신 Chrome·Safari·Firefox에서 확인해 보세요(구형에선 라이브러리 폴백 필요).';
+    }
+  })();
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get('embed') || q.get('demo');
+    if(q.get('theme') === 'dark') document.documentElement.setAttribute('data-theme','dark');
+    if(!id) return;
+    document.documentElement.classList.add('embed-mode');
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add('embed-show');
+  })();
+})();
+</script>
+</body>
+</html>
