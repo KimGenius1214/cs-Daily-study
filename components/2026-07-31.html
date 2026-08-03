@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-07-31 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{border:1px solid transparent;border-radius:10px;padding:10px 16px;font-size:.92rem;font-family:inherit;
+    cursor:pointer;font-weight:600}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn-brand{background:var(--brand);color:var(--brand-ink)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+
+  /* ---- section 1: sticky table ---- */
+  .tbl-scroll{overflow:auto;max-height:290px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}
+  table.pt{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:.86rem}
+  table.pt th,table.pt td{padding:10px 14px;border-bottom:1px solid var(--border);white-space:nowrap;text-align:left}
+  table.pt thead th{position:sticky;top:0;z-index:2;background:var(--surface-2);font-weight:700}
+  table.pt tbody-mark{}
+  table.pt th:first-child,table.pt td:first-child{position:sticky;left:0;z-index:1;background:var(--surface);
+    box-shadow:1px 0 0 var(--border)}
+  table.pt thead th:first-child{z-index:3;background:var(--surface-2)}
+  table.pt td.num,table.pt th.num{text-align:right;font-variant-numeric:tabular-nums}
+  table.pt tbody tr:hover td{background:var(--brand-soft)}
+  table.pt tbody tr:hover td:first-child{background:var(--brand-soft)}
+  .badge{display:inline-block;font-size:.74rem;font-weight:600;padding:2px 8px;border-radius:999px}
+  .badge.ok{color:var(--ok);background:var(--ok-soft)}
+  .badge.warn{color:var(--warn);background:var(--warn-soft)}
+  .badge.bad{color:var(--danger);background:var(--danger-soft)}
+  .pager{display:flex;align-items:center;gap:6px;margin-top:12px;flex-wrap:wrap}
+  .pager button{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;
+    min-width:34px;height:34px;padding:0 8px;font-family:inherit;font-size:.86rem;cursor:pointer}
+  .pager button[aria-current="page"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .pager button:disabled{opacity:.4;cursor:not-allowed}
+  .pager button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .pager .info{color:var(--muted);font-size:.82rem;margin-left:auto}
+
+  /* ---- section 2: optimistic UI ---- */
+  .opt-list{list-style:none;margin:.4rem 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .opt-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--border);
+    border-radius:10px;background:var(--surface)}
+  .opt-row .name{font-weight:600;font-size:.9rem}
+  .opt-row .sub{color:var(--muted);font-size:.78rem}
+  .opt-row .grow{flex:1;min-width:0}
+  .sw{position:relative;width:46px;height:26px;border-radius:999px;border:none;background:var(--border);cursor:pointer;
+    transition:background .18s ease;flex:none}
+  .sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.35);transition:transform .18s ease}
+  .sw[aria-checked="true"]{background:var(--ok)}
+  .sw[aria-checked="true"]::after{transform:translateX(20px)}
+  .sw[data-pending="1"]{opacity:.65}
+  .sw:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .state{font-size:.74rem;font-weight:600;min-width:74px;text-align:right}
+  .state.pending{color:var(--warn)}
+  .state.saved{color:var(--ok)}
+  .state.err{color:var(--danger)}
+  .retry{border:1px solid var(--danger);color:var(--danger);background:transparent;border-radius:8px;
+    padding:3px 9px;font-size:.75rem;font-family:inherit;cursor:pointer}
+  .retry:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .opt-ctrls{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+  .opt-ctrls label{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:6px}
+
+  /* ---- section 3: field-sizing ---- */
+  .fs-grid{display:grid;gap:16px;grid-template-columns:1fr 1fr}
+  @media(max-width:640px){.fs-grid{grid-template-columns:1fr}}
+  .fs-box{border:1px solid var(--border);border-radius:10px;padding:14px;background:var(--surface)}
+  .fs-box label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px}
+  .fs-input,.fs-ta,.fs-sel{width:100%;font-family:inherit;font-size:.9rem;color:var(--text);
+    background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;line-height:1.5}
+  .fs-input:focus-visible,.fs-ta:focus-visible,.fs-sel:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .fs-ta{resize:none;min-height:2.4em}
+  .fs-on .fs-input,.fs-on .fs-ta,.fs-on .fs-sel{field-sizing:content;max-width:100%}
+  .fs-on .fs-input{min-width:6ch}
+  .fs-on .fs-ta{max-height:12em}
+  .fs-chip{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:999px;background:var(--brand-soft);color:var(--brand);font-weight:600}
+  .support{margin-top:12px;font-size:.82rem;padding:8px 10px;border-radius:8px}
+  .support.yes{background:var(--ok-soft);color:var(--ok)}
+  .support.no{background:var(--warn-soft);color:var(--warn)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-07-31 (금) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#stickytable">📊 고정 열·헤더 테이블</a>
+    <a href="#optimistic">🔔 낙관적 업데이트</a>
+    <a href="#fieldsizing">🌀 field-sizing: content</a>
+  </nav>
+
+  <!-- ============ 1. Sticky column + header + pagination ============ -->
+  <section class="card" id="stickytable">
+    <h2>📊 넓은 데이터 테이블 — 고정 열·고정 헤더·페이지네이션 <span class="tag">데이터·테이블·차트</span></h2>
+    <p class="lead">열이 많은 정산·거래 테이블은 가로로 스크롤된다. 이때 첫 열(거래ID·상점명)과 헤더를 <b>고정(sticky)</b>해 두면 어느 행·어느 열인지 놓치지 않는다. 여기에 페이지네이션으로 한 번에 보는 행 수를 제한한다.</p>
+
+    <div class="demo">
+      <h4>가로/세로 스크롤 + 고정 열·헤더</h4>
+      <div class="tbl-scroll" tabindex="0" aria-label="거래 내역 표(스크롤 가능)">
+        <table class="pt">
+          <thead>
+            <tr>
+              <th scope="col">거래 ID</th>
+              <th scope="col">상점명</th>
+              <th scope="col">결제수단</th>
+              <th scope="col" class="num">결제금액</th>
+              <th scope="col" class="num">수수료</th>
+              <th scope="col" class="num">정산액</th>
+              <th scope="col">승인시각</th>
+              <th scope="col">상태</th>
+            </tr>
+          </thead>
+          <tbody id="ptBody"><!-- rows injected --></tbody>
+        </table>
+      </div>
+      <div class="pager" id="pager" role="navigation" aria-label="페이지 이동"></div>
+      <p class="cap">첫 열과 헤더가 스크롤 중에도 고정된다. 금액 열은 우측 정렬 + tabular-nums(숫자 폭 고정)로 자릿수가 정렬된다. 페이지 버튼으로 8행씩 끊어 본다.</p>
+    </div>
+
+    <div class="note">왜 이렇게? 고정 열엔 반드시 <b>불투명 배경색</b>을 줘야 아래로 흐르는 다른 열이 비쳐 보이지 않는다. 좌상단 모서리 셀은 헤더·첫 열이 겹치므로 <code>z-index</code>를 가장 높게 준다. 한 화면에 수백 행을 그리면 느려지니 서버 페이지네이션(또는 가상 스크롤)로 DOM 행 수를 제한한다.</p>
+  </section>
+
+  <!-- ============ 2. Optimistic UI ============ -->
+  <section class="card" id="optimistic">
+    <h2>🔔 낙관적 업데이트(Optimistic UI) — 즉시 반영하고 실패 시 되돌리기 <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+    <p class="lead"><b>낙관적 업데이트</b>는 서버 응답을 기다리지 않고 UI를 먼저 바꿔 "됐다"고 보여준 뒤, 뒤에서 요청을 보내고 실패하면 원래대로 <b>롤백(rollback)</b>하는 방식이다. 토글·좋아요·자동저장처럼 대개 성공하는 동작에서 체감 속도를 크게 높인다.</p>
+
+    <div class="demo">
+      <h4>알림 설정 토글 — 낙관적 vs 비관적(서버 대기)</h4>
+      <ul class="opt-list" id="optList"></ul>
+      <div class="opt-ctrls">
+        <label><input type="checkbox" id="optMode" checked /> 낙관적 모드(즉시 반영)</label>
+        <label><input type="checkbox" id="optFail" /> 서버 실패 강제(롤백 확인)</label>
+        <span class="cap">토글을 눌러보세요. 실패 강제 시 잠깐 켜졌다가 원위치로 롤백되고 재시도 버튼이 뜬다.</span>
+      </div>
+    </div>
+
+    <div class="note">왜 이렇게? 낙관적 UI의 핵심은 <b>실패 처리</b>다. 롤백 없이 "먼저 켜두기"만 하면 서버가 거절해도 화면은 켜진 채 남아 데이터가 어긋난다. 결제·금액처럼 되돌리기 힘든 동작엔 낙관적 UI를 쓰지 말고, 서버 확정 후 반영(비관적)하거나 명시적 확인을 둔다. 상태 변화는 <code>aria-live</code>로 스크린리더에도 알린다.</p>
+  </section>
+
+  <!-- ============ 3. field-sizing: content ============ -->
+  <section class="card" id="fieldsizing">
+    <h2>🌀 CSS <code>field-sizing: content</code> — JS 없이 입력창이 내용에 맞춰 커진다 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">textarea·input·select가 <b>입력한 내용 크기에 맞춰 자동으로</b> 늘고 줄게 하는 CSS 한 줄이다. 예전엔 JS로 <code>scrollHeight</code>를 재서 높이를 계산했지만, 이제 <code>field-sizing:content</code> 하나면 된다.</p>
+
+    <div class="demo">
+      <h4>왼쪽=자동 크기 켬 / 오른쪽=끔(기본). 타이핑해 비교</h4>
+      <div class="fs-grid">
+        <div class="fs-box fs-on" id="fsOn">
+          <span class="fs-chip">field-sizing: content</span>
+          <label for="ta1" style="margin-top:8px">메모(자동 높이)</label>
+          <textarea id="ta1" class="fs-ta" rows="1" placeholder="여러 줄을 입력해 보세요. 줄이 늘면 높이가 따라 커집니다.">환불 사유: 고객 변심으로 전액 환불 처리 요청.</textarea>
+          <label for="in1" style="margin-top:10px">태그(자동 너비)</label>
+          <input id="in1" class="fs-input" value="정산" />
+        </div>
+        <div class="fs-box" id="fsOff">
+          <span class="fs-chip" style="background:var(--surface-2);color:var(--muted)">기본(고정 크기)</span>
+          <label for="ta2" style="margin-top:8px">메모(고정 높이)</label>
+          <textarea id="ta2" class="fs-ta" rows="1" placeholder="여러 줄을 입력해도 높이가 고정입니다.">환불 사유: 고객 변심으로 전액 환불 처리 요청.</textarea>
+          <label for="in2" style="margin-top:10px">태그(고정 너비)</label>
+          <input id="in2" class="fs-input" value="정산" />
+        </div>
+      </div>
+      <div class="support" id="fsSupport">지원 여부 확인 중…</div>
+      <p class="cap">지원 브라우저에선 왼쪽 칸이 내용에 맞춰 늘어난다. 미지원 브라우저에선 두 칸이 똑같이 보인다(폴백 필요 신호).</p>
+    </div>
+
+    <div class="note">브라우저 지원(2026-07 기준): Chrome/Edge 123+, Firefox 152+, Safari 26.2+. <b>Baseline Newly Available는 2026-06-16</b>부터라 아직 "널리 사용 가능(Widely available)"은 아니다 → 구형 대응이 필요하면 JS 자동높이 폴백을 함께 둔다. <code>max-height</code>를 걸어 무한정 커지지 않게 막는 게 안전하다.</p>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;margin-top:8px">
+    Design Inspiration Daily · 2026-07-31 (금) · self-contained 라이브 예시
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- 1. sticky table + pagination ---------- */
+  (function(){
+    var shops=["블루보틀 성수","오늘의집","마켓컬리","배민상회","무신사","교보문고","야놀자","쿠팡이츠","여기어때","당근마켓","토스페이먼츠","네이버페이","카카오T","리디북스","왓챠","클래스101","오늘회","런드리고","마이리얼트립","트리플"];
+    var methods=["신용카드","간편결제","계좌이체","가상계좌","휴대폰"];
+    var states=[["승인","ok"],["정산완료","ok"],["대기","warn"],["부분환불","warn"],["실패","bad"]];
+    function won(n){return n.toLocaleString("ko-KR")+"원";}
+    var rows=[];
+    for(var i=0;i<44;i++){
+      var amt=(Math.floor(Math.random()*480)+12)*1000;
+      var fee=Math.round(amt*0.028);
+      var st=states[Math.floor(Math.random()*states.length)];
+      var h=String(Math.floor(Math.random()*24)).padStart(2,"0");
+      var m=String(Math.floor(Math.random()*60)).padStart(2,"0");
+      rows.push({
+        id:"TXN-"+(90210+i),
+        shop:shops[i%shops.length],
+        method:methods[i%methods.length],
+        amt:amt, fee:fee, net:amt-fee,
+        time:"07-31 "+h+":"+m,
+        st:st
+      });
+    }
+    var per=8, page=1, pages=Math.ceil(rows.length/per);
+    var body=document.getElementById("ptBody"), pager=document.getElementById("pager");
+    function render(){
+      var start=(page-1)*per, slice=rows.slice(start,start+per);
+      body.innerHTML=slice.map(function(r){
+        return "<tr>"+
+          "<td>"+r.id+"</td>"+
+          "<td>"+r.shop+"</td>"+
+          "<td>"+r.method+"</td>"+
+          "<td class='num'>"+won(r.amt)+"</td>"+
+          "<td class='num'>"+won(r.fee)+"</td>"+
+          "<td class='num'>"+won(r.net)+"</td>"+
+          "<td>"+r.time+"</td>"+
+          "<td><span class='badge "+r.st[1]+"'>"+r.st[0]+"</span></td>"+
+        "</tr>";
+      }).join("");
+      var html="<button id='prev' "+(page===1?"disabled":"")+" aria-label='이전 페이지'>‹</button>";
+      for(var p=1;p<=pages;p++){
+        html+="<button data-p='"+p+"' "+(p===page?"aria-current='page'":"")+">"+p+"</button>";
+      }
+      html+="<button id='next' "+(page===pages?"disabled":"")+" aria-label='다음 페이지'>›</button>";
+      html+="<span class='info'>"+((page-1)*per+1)+"–"+Math.min(page*per,rows.length)+" / 총 "+rows.length+"건</span>";
+      pager.innerHTML=html;
+    }
+    pager.addEventListener("click",function(e){
+      var b=e.target.closest("button"); if(!b) return;
+      if(b.id==="prev"&&page>1) page--;
+      else if(b.id==="next"&&page<pages) page++;
+      else if(b.dataset.p) page=+b.dataset.p;
+      render();
+    });
+    render();
+  })();
+
+  /* ---------- 2. optimistic UI ---------- */
+  (function(){
+    var items=[
+      {id:"a",name:"결제 승인 알림",sub:"승인·취소 즉시 푸시",on:true},
+      {id:"b",name:"정산 완료 알림",sub:"매일 정산 마감 시",on:false},
+      {id:"c",name:"이상거래 경고",sub:"의심 거래 실시간 경고",on:true}
+    ];
+    var list=document.getElementById("optList");
+    var modeEl=document.getElementById("optMode"), failEl=document.getElementById("optFail");
+    function draw(){
+      list.innerHTML=items.map(function(it){
+        return "<li class='opt-row' data-id='"+it.id+"'>"+
+          "<button class='sw' role='switch' aria-checked='"+it.on+"' aria-label='"+it.name+"'></button>"+
+          "<span class='grow'><span class='name'>"+it.name+"</span><br><span class='sub'>"+it.sub+"</span></span>"+
+          "<span class='state' aria-live='polite'></span>"+
+        "</li>";
+      }).join("");
+    }
+    draw();
+    function fakeServer(){ // 700ms 뒤 성공/실패
+      return new Promise(function(res,rej){
+        setTimeout(function(){ failEl.checked ? rej() : res(); },700);
+      });
+    }
+    list.addEventListener("click",function(e){
+      var sw=e.target.closest(".sw"); if(!sw) return;
+      var li=sw.closest(".opt-row"), id=li.dataset.id;
+      var it=items.filter(function(x){return x.id===id;})[0];
+      var stateEl=li.querySelector(".state");
+      if(sw.dataset.pending==="1") return;
+      var target=!it.on;
+      if(modeEl.checked){
+        // Optimistic: 즉시 반영
+        it.on=target; sw.setAttribute("aria-checked",String(target));
+        sw.dataset.pending="1";
+        stateEl.className="state pending"; stateEl.textContent="저장 중…";
+        fakeServer().then(function(){
+          sw.dataset.pending="";
+          stateEl.className="state saved"; stateEl.textContent="✓ 저장됨";
+          setTimeout(function(){ if(stateEl.textContent==="✓ 저장됨"){stateEl.textContent="";} },1400);
+        }).catch(function(){
+          // 롤백
+          it.on=!target; sw.setAttribute("aria-checked",String(it.on));
+          sw.dataset.pending="";
+          stateEl.className="state err";
+          stateEl.innerHTML="⚠ 실패 <button class='retry'>재시도</button>";
+        });
+      } else {
+        // Pessimistic: 서버 확정까지 대기
+        sw.dataset.pending="1";
+        stateEl.className="state pending"; stateEl.textContent="요청 중…";
+        fakeServer().then(function(){
+          it.on=target; sw.setAttribute("aria-checked",String(target));
+          sw.dataset.pending="";
+          stateEl.className="state saved"; stateEl.textContent="✓ 저장됨";
+          setTimeout(function(){ if(stateEl.textContent==="✓ 저장됨"){stateEl.textContent="";} },1400);
+        }).catch(function(){
+          sw.dataset.pending="";
+          stateEl.className="state err";
+          stateEl.innerHTML="⚠ 실패 <button class='retry'>재시도</button>";
+        });
+      }
+    });
+  })();
+
+  /* ---------- 3. field-sizing support probe ---------- */
+  (function(){
+    var box=document.getElementById("fsSupport");
+    var ok=false;
+    try{ ok=CSS.supports("field-sizing","content"); }catch(e){ ok=false; }
+    if(ok){
+      box.className="support yes";
+      box.textContent="✓ 이 브라우저는 field-sizing: content 를 지원합니다 — 왼쪽 칸이 내용에 맞춰 커집니다.";
+    }else{
+      box.className="support no";
+      box.textContent="이 브라우저는 field-sizing 미지원 — 두 칸이 똑같이 보입니다. 구형 대응 시 JS 자동높이 폴백이 필요합니다.";
+    }
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>

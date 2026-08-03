@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-03 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:6px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+
+  /* ---------- 1. Segmented control ---------- */
+  .seg-row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+  .seg{position:relative;display:inline-flex;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:12px;padding:4px;gap:2px}
+  .seg input{position:absolute;opacity:0;pointer-events:none}
+  .seg label{position:relative;z-index:2;display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+    padding:8px 16px;font-size:.9rem;font-weight:600;color:var(--muted);border-radius:9px;
+    user-select:none;transition:color .18s ease;white-space:nowrap}
+  .seg label:hover{color:var(--text)}
+  .seg input:checked + label{color:var(--brand)}
+  .seg input:focus-visible + label{outline:3px solid var(--ring);outline-offset:2px}
+  /* sliding indicator */
+  .seg .thumb{position:absolute;z-index:1;top:4px;bottom:4px;border-radius:9px;background:var(--surface);
+    box-shadow:0 1px 4px rgba(20,24,31,.14);transition:transform .22s cubic-bezier(.4,0,.2,1),width .22s cubic-bezier(.4,0,.2,1);
+    left:4px;width:0}
+  [data-theme="dark"] .seg .thumb{box-shadow:0 1px 6px rgba(0,0,0,.5)}
+  .seg-out{margin-top:14px;font-size:.86rem;color:var(--muted)}
+  .seg-out b{color:var(--text)}
+  @media(prefers-reduced-motion:reduce){.seg .thumb{transition:none}}
+
+  /* ---------- 2. OTP code input ---------- */
+  .otp{display:flex;gap:10px;flex-wrap:wrap}
+  .otp input{width:48px;height:58px;text-align:center;font-size:1.5rem;font-weight:700;color:var(--text);
+    background:var(--surface);border:1.5px solid var(--border);border-radius:12px;font-family:inherit;
+    caret-color:var(--brand);transition:border-color .15s ease,box-shadow .15s ease}
+  .otp input:focus-visible{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .otp input.filled{border-color:var(--brand)}
+  .otp.err input{border-color:var(--danger);animation:shake .3s}
+  .otp.ok input{border-color:var(--ok)}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  @media(prefers-reduced-motion:reduce){.otp.err input{animation:none}}
+  .otp-status{margin-top:14px;font-size:.88rem;min-height:1.4em}
+  .otp-status.pending{color:var(--warn)}
+  .otp-status.ok{color:var(--ok);font-weight:600}
+  .otp-status.err{color:var(--danger);font-weight:600}
+  .otp-resend{margin-top:10px;font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .otp-resend button{border:1px solid var(--border);background:var(--surface);color:var(--brand);
+    border-radius:8px;padding:5px 12px;font-family:inherit;font-size:.84rem;font-weight:600;cursor:pointer}
+  .otp-resend button:disabled{color:var(--muted);cursor:not-allowed;opacity:.7}
+  .otp-resend button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .otp-hint{margin-top:10px}
+  .otp-hint code{background:var(--surface-2);padding:2px 6px;border-radius:5px}
+
+  /* ---------- 3. CSS anchor positioning ---------- */
+  .anchor-stage{position:relative;display:flex;flex-wrap:wrap;gap:14px;align-items:center;min-height:120px}
+  .anc-btn{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:10px;
+    padding:10px 16px;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+  .anc-btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .anc-btn.b1{anchor-name:--anc1}
+  .anc-btn.b2{anchor-name:--anc2}
+  .pop{margin:0;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);max-width:250px;font-size:.86rem}
+  .pop h5{margin:0 0 6px;font-size:.9rem}
+  .pop p{margin:0;color:var(--muted);font-size:.82rem;line-height:1.5}
+  .pop:popover-open{display:block}
+  /* the actual anchor positioning */
+  #popMenu{position-anchor:--anc1;position-area:bottom center;position-try-fallbacks:flip-block, flip-inline;margin-top:8px}
+  #popTip{position-anchor:--anc2;position-area:top center;position-try-fallbacks:flip-block;margin-bottom:8px}
+  .pop-arrow-note{margin-top:14px}
+  .fallback-menu{position:relative;display:inline-block}
+  .anc-support{margin-top:14px;font-size:.84rem;padding:8px 10px;border-radius:8px}
+  .anc-support.yes{background:var(--ok-soft);color:var(--ok)}
+  .anc-support.no{background:var(--warn-soft);color:var(--warn)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-03 (월) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#segmented">🔘 세그먼트 컨트롤</a>
+    <a href="#otp">⌨️ OTP 인증코드 입력</a>
+    <a href="#anchor">🌀 CSS 앵커 포지셔닝</a>
+  </nav>
+
+  <!-- ============ 1. Segmented control ============ -->
+  <section class="card" id="segmented">
+    <h2>🔘 세그먼트 컨트롤 — 라디오 기반 분할 토글과 슬라이딩 인디케이터 <span class="tag">버튼·액션</span></h2>
+    <p class="lead"><b>세그먼트 컨트롤(segmented control)</b>은 2~4개의 배타적 선택지를 한 줄 캡슐 안에 나란히 놓고 하나만 고르게 하는 컨트롤이다. 탭과 달리 페이지 전체를 바꾸기보다 <b>같은 화면의 표시 방식·범위</b>(기간·정렬·통화 등)를 바꿀 때 쓴다. 내부는 <code>radio</code> 그룹이라 화살표 키 이동·스크린리더 지원이 공짜로 따라온다.</p>
+
+    <div class="demo">
+      <h4>기본 · 슬라이딩 인디케이터가 선택 칸으로 미끄러진다 (클릭/화살표 키)</h4>
+      <div class="seg-row">
+        <div>
+          <div class="seg" role="radiogroup" aria-label="정산 기간" id="seg1">
+            <span class="thumb" aria-hidden="true"></span>
+            <input type="radio" name="period" id="p-day" checked><label for="p-day">일간</label>
+            <input type="radio" name="period" id="p-week"><label for="p-week">주간</label>
+            <input type="radio" name="period" id="p-month"><label for="p-month">월간</label>
+          </div>
+          <div class="seg-out">선택: <b id="seg1out">일간</b></div>
+        </div>
+
+        <div>
+          <div class="seg" role="radiogroup" aria-label="표시 통화" id="seg2">
+            <span class="thumb" aria-hidden="true"></span>
+            <input type="radio" name="cur" id="c-krw" checked><label for="c-krw">₩ KRW</label>
+            <input type="radio" name="cur" id="c-usd"><label for="c-usd">$ USD</label>
+          </div>
+          <div class="seg-out">선택: <b id="seg2out">₩ KRW</b></div>
+        </div>
+      </div>
+      <p class="cap">라벨을 클릭하거나, 컨트롤에 포커스를 준 뒤 <span class="kbd">←</span><span class="kbd">→</span> 로 이동해 보세요. 흰 인디케이터가 선택 칸으로 애니메이션되며, 값이 바로 아래에 반영됩니다. (모션 최소화 설정이면 애니메이션은 자동으로 꺼집니다.)</p>
+    </div>
+
+    <div class="note">왜 이렇게? 겉보기엔 버튼 무리지만 속을 <b>진짜 <code>radio</code></b> 로 만들면 "하나만 선택"이라는 의미와 키보드 동작을 브라우저가 알아서 처리한다(버튼 <code>div</code> 로 흉내 내면 전부 직접 구현해야 함). 인디케이터는 <b>포지션 계산</b>(선택 칸의 <code>offsetLeft</code>/<code>offsetWidth</code>)으로 옮겨 텍스트 길이가 달라도 정확히 맞춘다. 옵션이 5개를 넘으면 세그먼트 대신 <code>select</code>나 드롭다운이 낫다.</div>
+  </section>
+
+  <!-- ============ 2. OTP code input ============ -->
+  <section class="card" id="otp">
+    <h2>⌨️ OTP 인증코드 입력 — 자동 포커스 이동·붙여넣기 분배·재전송 타이머 <span class="tag">입력·폼</span></h2>
+    <p class="lead">문자로 받은 <b>OTP(One-Time Password, 일회용 인증번호)</b>를 칸별로 나눠 입력받는 패턴. 결제 3DS 인증·로그인 2단계 인증에서 매일 쓰인다. 핵심은 사용자가 손을 거의 안 대도 되게 만드는 것: <b>한 자 입력하면 자동으로 다음 칸</b>, <b>6자리를 붙여넣으면 칸마다 분배</b>, <b>재전송은 타이머로 도배 방지</b>.</p>
+
+    <div class="demo">
+      <h4>정답은 <code>428913</code> — 한 칸씩 타이핑하거나 6자리를 통째로 붙여넣어 보세요</h4>
+      <form id="otpForm" autocomplete="off" novalidate>
+        <div class="otp" id="otpBoxes" role="group" aria-label="6자리 인증번호">
+          <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="1번째 자리" />
+          <input inputmode="numeric" maxlength="1" aria-label="2번째 자리" />
+          <input inputmode="numeric" maxlength="1" aria-label="3번째 자리" />
+          <input inputmode="numeric" maxlength="1" aria-label="4번째 자리" />
+          <input inputmode="numeric" maxlength="1" aria-label="5번째 자리" />
+          <input inputmode="numeric" maxlength="1" aria-label="6번째 자리" />
+        </div>
+        <div class="otp-status" id="otpStatus" role="status" aria-live="polite"></div>
+        <div class="otp-resend">
+          <span id="resendLabel">남은 시간 <b id="resendTimer">30</b>초</span>
+          <button type="button" id="resendBtn" disabled>코드 재전송</button>
+        </div>
+      </form>
+      <p class="cap">입력이 다 차면 자동 검증한다. 틀리면 흔들림 + 재입력, 맞으면 초록 확정. <span class="kbd">Backspace</span> 는 빈 칸에서 이전 칸으로, <span class="kbd">←</span><span class="kbd">→</span> 로도 칸 이동. 재전송 버튼은 카운트다운이 끝나야 활성화됩니다.</p>
+    </div>
+
+    <div class="note otp-hint">왜 이렇게? 실제 앱에선 각 <code>input</code> 에 <code>inputmode="numeric"</code>(모바일 숫자 키패드)과 첫 칸에 <code>autocomplete="one-time-code"</code> 를 준다. 그러면 iOS Safari가 문자로 온 코드를 키보드 위에 <b>자동 채우기</b> 로 띄워준다(안드로이드·크롬은 <code>WebOTP API</code> 로 보완 — 이건 추정 포함, 플랫폼별 동작 차이 있음). <b>붙여넣기 분배</b>가 이 패턴의 진짜 편의: <code>paste</code> 이벤트에서 숫자만 뽑아 칸마다 흩뿌리면 비밀번호 관리자/문자 복사와 궁합이 좋다. 단일 <code>input</code> 한 칸도 복붙·자동채우기엔 오히려 단순·안전하니, 6칸 UI는 "예뻐서"가 아니라 팀 합의로 고른다.</div>
+  </section>
+
+  <!-- ============ 3. CSS anchor positioning ============ -->
+  <section class="card" id="anchor">
+    <h2>🌀 CSS 앵커 포지셔닝 — JS 없이 요소를 기준점에 붙여 배치 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><b>앵커 포지셔닝(anchor positioning)</b>은 한 요소(기준=anchor)에 이름을 붙이고, 다른 요소(팝오버·툴팁·메뉴)를 그 기준의 위/아래/옆에 <b>CSS만으로</b> 붙이는 새 기능이다. 예전엔 Floating UI 같은 JS 라이브러리로 좌표를 계산했는데, 이제 <code>anchor-name</code> + <code>position-anchor</code> + <code>position-area</code> 몇 줄로 끝난다. 화면 밖으로 나가면 <code>position-try-fallbacks</code> 가 자동으로 반대편으로 뒤집는다.</p>
+
+    <div class="demo">
+      <h4>버튼을 눌러 메뉴/툴팁을 띄워 보세요 — 위치는 100% CSS가 잡습니다</h4>
+      <div class="anchor-stage">
+        <button class="anc-btn b1" popovertarget="popMenu" id="menuBtn">⚙️ 정산 옵션 ▾</button>
+        <button class="anc-btn b2" popovertarget="popTip" id="tipBtn">ℹ️ 수수료란?</button>
+
+        <div class="pop" id="popMenu" popover>
+          <h5>정산 옵션</h5>
+          <p>이 카드는 버튼 <b>아래</b>에 자동 정렬됩니다. 공간이 부족하면 위로 뒤집힙니다(fallback).</p>
+        </div>
+        <div class="pop" id="popTip" popover>
+          <h5>수수료 안내</h5>
+          <p>결제액의 2.8%가 수수료로 차감된 뒤 정산됩니다. 이 툴팁은 버튼 <b>위</b>에 붙습니다.</p>
+        </div>
+      </div>
+      <div class="anc-support" id="ancSupport">지원 여부 확인 중…</div>
+      <p class="cap">팝오버는 브라우저 기본 <code>popover</code> 속성으로 열고(바깥 클릭·<span class="kbd">Esc</span> 로 닫힘), 위치만 앵커 CSS가 잡습니다. 미지원 브라우저에선 아래 안내가 뜨고 팝오버는 화면 기본 위치에 나타납니다.</p>
+    </div>
+
+    <div class="note">왜 지금 뜨나? 2026년 기준 앵커 포지셔닝은 Chrome/Edge 125+, Firefox 132+, Safari 18.2+ 에서 동작해 <b>Baseline(주요 브라우저 도달)</b> 에 들어왔다(자동 뒤집기 <code>@position-try</code> 는 Safari 18.4+ 필요). 드롭다운·툴팁·태그 자동완성 위치 계산을 JS 없이 처리할 수 있어 번들이 가벼워지고, 팝오버가 <code>overflow:hidden</code> 부모에 잘려도 <b>top layer</b> 로 떠서 안 잘린다. 다만 구형 브라우저 폴백(JS 위치 계산 또는 정적 배치)은 아직 함께 둬야 한다.</div>
+  </section>
+
+  <div class="footer" style="color:var(--muted);font-size:.82rem;margin-top:8px">
+    Design Inspiration Daily · 2026-08-03 (월) · self-contained 라이브 예시
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- 1. segmented control ---------- */
+  function initSeg(rootId, outId){
+    var root=document.getElementById(rootId);
+    var out=document.getElementById(outId);
+    var thumb=root.querySelector(".thumb");
+    var inputs=Array.prototype.slice.call(root.querySelectorAll("input"));
+    function labelFor(inp){ return root.querySelector('label[for="'+inp.id+'"]'); }
+    function moveThumb(){
+      var sel=inputs.filter(function(i){return i.checked;})[0]||inputs[0];
+      var lb=labelFor(sel);
+      thumb.style.width=lb.offsetWidth+"px";
+      thumb.style.transform="translateX("+(lb.offsetLeft-4)+"px)";
+      if(out) out.textContent=lb.textContent;
+    }
+    inputs.forEach(function(inp){
+      inp.addEventListener("change",moveThumb);
+    });
+    // reflect after fonts/layout settle
+    moveThumb();
+    setTimeout(moveThumb,60);
+    window.addEventListener("resize",moveThumb);
+  }
+  initSeg("seg1","seg1out");
+  initSeg("seg2","seg2out");
+
+  /* ---------- 2. OTP input ---------- */
+  (function(){
+    var CODE="428913";
+    var wrap=document.getElementById("otpBoxes");
+    var boxes=Array.prototype.slice.call(wrap.querySelectorAll("input"));
+    var status=document.getElementById("otpStatus");
+    function setFilled(){
+      boxes.forEach(function(b){ b.classList.toggle("filled", b.value!==""); });
+    }
+    function current(){ return boxes.map(function(b){return b.value;}).join(""); }
+    function clearState(){ wrap.classList.remove("err","ok"); }
+    function focusAt(i){ if(boxes[i]){ boxes[i].focus(); boxes[i].select&&boxes[i].select(); } }
+    function verify(){
+      var v=current();
+      if(v.length<6) return;
+      if(v===CODE){
+        wrap.classList.remove("err"); wrap.classList.add("ok");
+        boxes.forEach(function(b){b.disabled=true;});
+        status.className="otp-status ok"; status.textContent="✓ 인증 완료 — 결제를 계속합니다.";
+      }else{
+        wrap.classList.remove("ok"); wrap.classList.add("err");
+        status.className="otp-status err"; status.textContent="✕ 코드가 일치하지 않습니다. 다시 입력해 주세요.";
+        setTimeout(function(){
+          boxes.forEach(function(b){b.value="";});
+          setFilled(); clearState(); focusAt(0);
+          status.className="otp-status"; status.textContent="";
+        },900);
+      }
+    }
+    boxes.forEach(function(box,i){
+      box.addEventListener("input",function(){
+        // keep digits only
+        box.value=box.value.replace(/[^0-9]/g,"").slice(0,1);
+        setFilled();
+        if(box.value && i<boxes.length-1) focusAt(i+1);
+        if(current().length===6) verify();
+      });
+      box.addEventListener("keydown",function(e){
+        if(e.key==="Backspace" && !box.value && i>0){ focusAt(i-1); e.preventDefault(); }
+        else if(e.key==="ArrowLeft" && i>0){ focusAt(i-1); e.preventDefault(); }
+        else if(e.key==="ArrowRight" && i<boxes.length-1){ focusAt(i+1); e.preventDefault(); }
+      });
+      box.addEventListener("paste",function(e){
+        e.preventDefault();
+        var txt=(e.clipboardData||window.clipboardData).getData("text")||"";
+        var digits=txt.replace(/[^0-9]/g,"").slice(0,6).split("");
+        if(!digits.length) return;
+        clearState();
+        for(var k=0;k<6;k++){ boxes[k].value=digits[k]||boxes[k].value||""; }
+        setFilled();
+        var next=Math.min(digits.length, boxes.length-1);
+        focusAt(next);
+        if(current().length===6) verify();
+      });
+    });
+    focusAt(0);
+
+    /* resend countdown */
+    var timerEl=document.getElementById("resendTimer");
+    var btn=document.getElementById("resendBtn");
+    var label=document.getElementById("resendLabel");
+    var t=30, iv;
+    function tick(){
+      t--; timerEl.textContent=t;
+      if(t<=0){
+        clearInterval(iv);
+        label.style.display="none";
+        btn.disabled=false;
+      }
+    }
+    iv=setInterval(tick,1000);
+    btn.addEventListener("click",function(){
+      // reset flow
+      boxes.forEach(function(b){b.value="";b.disabled=false;});
+      setFilled(); clearState(); focusAt(0);
+      status.className="otp-status pending"; status.textContent="새 코드를 전송했습니다. (데모 코드는 그대로 428913)";
+      t=30; timerEl.textContent=t; label.style.display=""; btn.disabled=true;
+      iv=setInterval(tick,1000);
+    });
+  })();
+
+  /* ---------- 3. anchor positioning support probe ---------- */
+  (function(){
+    var box=document.getElementById("ancSupport");
+    var ok=false;
+    try{ ok=CSS.supports("anchor-name","--x") && CSS.supports("position-area","bottom"); }catch(e){ ok=false; }
+    if(ok){
+      box.className="anc-support yes";
+      box.textContent="✓ 이 브라우저는 CSS 앵커 포지셔닝을 지원합니다 — 팝오버가 버튼에 정확히 붙습니다.";
+    }else{
+      box.className="anc-support no";
+      box.textContent="이 브라우저는 앵커 포지셔닝 미지원 — 팝오버는 열리지만 위치는 화면 기본값입니다(폴백 필요 신호).";
+    }
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
