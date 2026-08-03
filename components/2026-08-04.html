@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-04 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+
+  /* ---------- 1. Bottom sheet ---------- */
+  dialog.sheet{border:none;padding:0;margin:0 auto;width:min(440px,100%);max-width:100%;
+    position:fixed;left:0;right:0;bottom:0;top:auto;
+    background:var(--surface);color:var(--text);
+    border-radius:20px 20px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.28);
+    transform:translateY(100%);transition:transform .32s cubic-bezier(.32,.72,0,1);touch-action:none}
+  dialog.sheet[open]{transform:translateY(0)}
+  dialog.sheet::backdrop{background:rgba(6,8,12,.5);backdrop-filter:blur(2px)}
+  dialog.sheet.dragging{transition:none}
+  .sheet-grab{padding:12px 0 4px;display:flex;justify-content:center;cursor:grab}
+  .sheet-grab:active{cursor:grabbing}
+  .sheet-grab .bar{width:40px;height:5px;border-radius:999px;background:var(--border)}
+  .sheet-body{padding:6px 20px 22px}
+  .sheet-body h3{margin:6px 0 12px;font-size:1.05rem}
+  .pay-opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:13px 14px;
+    font-family:inherit;font-size:.95rem;color:var(--text);margin-bottom:9px}
+  .pay-opt:hover{border-color:var(--brand)}
+  .pay-opt:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .pay-opt .ico{font-size:1.3rem;width:30px;text-align:center}
+  .pay-opt .sub{display:block;font-size:.78rem;color:var(--muted)}
+  .sheet-result{margin-top:12px;font-size:.9rem;color:var(--muted);min-height:1.4em}
+  .sheet-result b{color:var(--text)}
+  @media(prefers-reduced-motion:reduce){dialog.sheet{transition:none}}
+
+  /* ---------- 2. Optimistic UI ---------- */
+  .opt-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;max-width:460px}
+  .opt-item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px}
+  .opt-item .who{font-weight:600;font-size:.94rem}
+  .opt-item .amt{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);font-size:.9rem}
+  .opt-star{cursor:pointer;background:none;border:none;font-size:1.35rem;line-height:1;padding:2px 4px;
+    border-radius:8px;color:var(--muted);font-family:inherit;position:relative}
+  .opt-star:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .opt-star.on{color:#f5a623}
+  .opt-star.saving{opacity:.55}
+  .opt-star.reverted{animation:nudge .4s}
+  @keyframes nudge{0%,100%{transform:translateX(0)}30%{transform:translateX(-4px)}70%{transform:translateX(4px)}}
+  @media(prefers-reduced-motion:reduce){.opt-star.reverted{animation:none}}
+  .opt-ctl{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:.88rem;color:var(--muted);flex-wrap:wrap}
+  .opt-ctl label{display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+  .opt-live{margin-top:14px;font-size:.88rem;min-height:1.4em}
+  .opt-live.ok{color:var(--ok)}
+  .opt-live.err{color:var(--danger);font-weight:600}
+  .opt-live.pending{color:var(--warn)}
+
+  /* ---------- 3. View Transitions ---------- */
+  .vt-stage{position:relative}
+  .vt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+  .vt-card{cursor:pointer;background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:16px 14px;text-align:left;font-family:inherit;color:var(--text)}
+  .vt-card:hover{border-color:var(--brand)}
+  .vt-card:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .vt-card .emoji{font-size:1.7rem}
+  .vt-card .name{display:block;margin-top:8px;font-weight:600;font-size:.92rem}
+  .vt-card .mini{display:block;font-size:.78rem;color:var(--muted)}
+  .vt-detail{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px}
+  .vt-detail .big{font-size:2.6rem}
+  .vt-detail h3{margin:6px 0 4px}
+  .vt-detail p{margin:.2rem 0;color:var(--muted);font-size:.9rem}
+  .vt-hidden{display:none}
+  @media(prefers-reduced-motion:reduce){
+    ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none !important}
+  }
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-04 (화) · 오버레이·피드백·트렌드 3건 · 직접 만든 라이브 예시</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#sheet">🪟 바텀시트</a>
+    <a href="#optimistic">🔔 낙관적 UI</a>
+    <a href="#viewtransition">🌀 View Transitions</a>
+  </nav>
+
+  <!-- ============ 1. Bottom sheet ============ -->
+  <section class="card" id="sheet">
+    <h2>🪟 바텀시트 — 드래그로 닫기·백드롭·포커스 관리 <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lead">모바일 결제 흐름의 기본기. 화면 아래에서 올라와 <b>맥락을 덜 가리고</b>, 손가락이 닿는 하단에 액션을 둔다. 손잡이(grabber)를 아래로 끌면 닫힌다.</p>
+    <div class="demo">
+      <button class="btn" id="openSheet">💳 결제수단 선택</button>
+      <div class="sheet-result" id="sheetResult" role="status" aria-live="polite">아직 선택 안 함</div>
+      <p class="cap">native <code>&lt;dialog&gt;</code> + <code>showModal()</code> → 포커스 트랩·<code>Esc</code> 닫기·백드롭이 공짜. 여기에 손잡이 드래그(pointer 이벤트)만 얹었다. 아래로 30% 넘게 끌면 닫히고, 덜 끌면 제자리로 스냅.</p>
+
+      <dialog class="sheet" id="paySheet" aria-labelledby="sheetTitle">
+        <div class="sheet-grab" id="grab" aria-hidden="true"><span class="bar"></span></div>
+        <div class="sheet-body">
+          <h3 id="sheetTitle">결제수단 선택</h3>
+          <button class="pay-opt" data-m="신용·체크카드"><span class="ico">💳</span><span>신용·체크카드<span class="sub">등록된 카드 2장</span></span></button>
+          <button class="pay-opt" data-m="계좌 간편이체"><span class="ico">🏦</span><span>계좌 간편이체<span class="sub">국민 ****12</span></span></button>
+          <button class="pay-opt" data-m="포인트"><span class="ico">🎁</span><span>포인트 결제<span class="sub">보유 24,500P</span></span></button>
+          <button class="btn ghost" id="closeSheet" style="width:100%;margin-top:6px">닫기</button>
+        </div>
+      </dialog>
+    </div>
+    <div class="note">왜 모달 대신 바텀시트? 가운데 모달은 화면을 통째로 막아 "이것부터"를 강제한다. 바텀시트는 위쪽 맥락(주문 요약)을 남겨 되돌아가기 쉽고, 엄지 도달 범위(thumb zone)에 버튼이 온다. 대신 접근성은 그대로 챙겨야 한다 — 여기선 <code>dialog</code>가 그 부담을 대신 진다.</div>
+  </section>
+
+  <!-- ============ 2. Optimistic UI ============ -->
+  <section class="card" id="optimistic">
+    <h2>🔔 낙관적 UI — 즉시 반영하고, 실패하면 되돌리기 <span class="tag">피드백·상태</span></h2>
+    <p class="lead">낙관적 UI(optimistic update): 서버 응답을 기다리지 않고 <b>일단 화면부터 바꾼다</b>. 대개 성공하니 체감 속도가 빨라진다. 핵심은 <b>실패했을 때 깔끔히 롤백</b>하고 이유를 알리는 것.</p>
+    <div class="demo">
+      <div class="opt-ctl">
+        <label><input type="checkbox" id="failMode"> 다음 요청을 강제로 실패시키기</label>
+        <span>· 별을 눌러 즐겨찾기 토글</span>
+      </div>
+      <ul class="opt-list" id="optList">
+        <li class="opt-item">
+          <button class="opt-star" aria-pressed="false" aria-label="김세일 즐겨찾기">☆</button>
+          <span class="who">김세일</span><span class="amt">₩ 120,000</span>
+        </li>
+        <li class="opt-item">
+          <button class="opt-star on" aria-pressed="true" aria-label="이하나 즐겨찾기">★</button>
+          <span class="who">이하나</span><span class="amt">₩ 48,500</span>
+        </li>
+        <li class="opt-item">
+          <button class="opt-star" aria-pressed="false" aria-label="박도현 즐겨찾기">☆</button>
+          <span class="who">박도현</span><span class="amt">₩ 9,900</span>
+        </li>
+      </ul>
+      <div class="opt-live" id="optLive" role="status" aria-live="polite"></div>
+      <p class="cap">누르는 순간 별이 바뀌고(즉시 반영), 흐릿해지며 저장 중. 성공하면 그대로 확정. "강제 실패"를 켜면 900ms 뒤 서버가 거절 → 원래 상태로 롤백 + 에러 안내. 값을 잠깐 흐리게(<code>saving</code>) 두어 아직 미확정임을 표시.</p>
+    </div>
+    <div class="note">돈이 오가는 액션엔 함부로 쓰지 말 것. 좋아요·즐겨찾기·읽음처럼 <b>실패해도 손해가 작고 되돌리기 쉬운</b> 것에 적합하다. "결제 승인" 같은 건 낙관적으로 보이면 위험 — 진짜 확정은 서버 응답 뒤 본문 상태로 못박는다.</div>
+  </section>
+
+  <!-- ============ 3. View Transitions ============ -->
+  <section class="card" id="viewtransition">
+    <h2>🌀 View Transitions API — 상태 전환을 라이브러리 없이 부드럽게 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">DOM을 바꾸기 직전/직후를 브라우저가 스냅샷 떠서 <b>사이를 애니메이션</b>해 준다(same-document). 목록→상세처럼 요소가 "이어져 움직이는" 모핑을 <code>framer-motion</code> 없이. 2025-10 기준 주요 브라우저 Baseline.</p>
+    <div class="demo">
+      <div class="vt-stage">
+        <div class="vt-grid" id="vtGrid">
+          <button class="vt-card" data-k="card" style="view-transition-name:vt-card">
+            <span class="emoji">💳</span><span class="name">카드 매출</span><span class="mini">₩ 3.2M</span>
+          </button>
+          <button class="vt-card" data-k="acct" style="view-transition-name:vt-acct">
+            <span class="emoji">🏦</span><span class="name">계좌이체</span><span class="mini">₩ 1.1M</span>
+          </button>
+          <button class="vt-card" data-k="point" style="view-transition-name:vt-point">
+            <span class="emoji">🎁</span><span class="name">포인트</span><span class="mini">₩ 240K</span>
+          </button>
+        </div>
+        <div class="vt-detail vt-hidden" id="vtDetail" tabindex="-1">
+          <div class="big" id="vtBig">💳</div>
+          <h3 id="vtName">카드 매출</h3>
+          <p id="vtAmt">₩ 3,204,900</p>
+          <p>전월 대비 <b>+8.4%</b> · 승인 1,204건 · 취소 7건</p>
+          <button class="btn ghost" id="vtBack" style="margin-top:12px">← 목록으로</button>
+        </div>
+      </div>
+      <div class="support" id="vtSupport">지원 여부 확인 중…</div>
+      <p class="cap">카드를 누르면 그 카드가 상세 패널로 <b>확장되며 이어진다</b>. 같은 <code>view-transition-name</code>을 공유한 요소끼리 브라우저가 위치·크기를 보간. 미지원 브라우저에선 애니메이션 없이 즉시 교체(폴백). <code>prefers-reduced-motion</code>이면 모션 제거.</p>
+    </div>
+    <div class="note">주의: <code>startViewTransition</code>의 콜백 <b>안에서 DOM을 바꿔야</b> 스냅샷이 맞물린다. 모든 전환에 쓰면 오히려 산만하니, "맥락이 이어진다"는 신호가 필요한 목록↔상세·탭 전환 정도에 절제해 쓴다. 크로스-도큐먼트(페이지 이동) 버전은 Chrome·Safari만 지원(Firefox 미지원, 2026 추정) — 없어도 그냥 즉시 이동하니 안전.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<script>
+(function(){
+  /* ---------- 1. Bottom sheet ---------- */
+  (function(){
+    var dlg=document.getElementById("paySheet");
+    var openBtn=document.getElementById("openSheet");
+    var closeBtn=document.getElementById("closeSheet");
+    var grab=document.getElementById("grab");
+    var result=document.getElementById("sheetResult");
+    if(!dlg) return;
+    function open(){ if(!dlg.open) dlg.showModal(); }
+    function close(){ if(dlg.open) dlg.close(); }
+    openBtn.addEventListener("click",open);
+    closeBtn.addEventListener("click",close);
+    // choose payment method
+    dlg.querySelectorAll(".pay-opt").forEach(function(b){
+      b.addEventListener("click",function(){
+        result.innerHTML="선택됨: <b>"+b.getAttribute("data-m")+"</b>";
+        close();
+      });
+    });
+    // backdrop click to close (click landing on dialog element itself = outside content)
+    dlg.addEventListener("click",function(e){ if(e.target===dlg) close(); });
+    // drag-to-dismiss on the grabber
+    var startY=0,dy=0,dragging=false;
+    grab.addEventListener("pointerdown",function(e){
+      dragging=true;dy=0;startY=e.clientY;dlg.classList.add("dragging");
+      grab.setPointerCapture(e.pointerId);
+    });
+    grab.addEventListener("pointermove",function(e){
+      if(!dragging) return;
+      dy=Math.max(0,e.clientY-startY);
+      dlg.style.transform="translateY("+dy+"px)";
+    });
+    function endDrag(){
+      if(!dragging) return;
+      dragging=false;dlg.classList.remove("dragging");dlg.style.transform="";
+      if(dy>dlg.offsetHeight*0.3) close();   // dragged >30% → dismiss
+    }
+    grab.addEventListener("pointerup",endDrag);
+    grab.addEventListener("pointercancel",endDrag);
+  })();
+
+  /* ---------- 2. Optimistic UI ---------- */
+  (function(){
+    var live=document.getElementById("optLive");
+    var failMode=document.getElementById("failMode");
+    function fakeServer(){
+      return new Promise(function(res,rej){
+        setTimeout(function(){ failMode.checked ? rej(new Error("서버 저장 실패")) : res(); },900);
+      });
+    }
+    document.querySelectorAll(".opt-star").forEach(function(star){
+      star.addEventListener("click",function(){
+        if(star.classList.contains("saving")) return;
+        var wasOn=star.classList.contains("on");
+        // optimistic flip
+        setStar(star,!wasOn);
+        star.classList.add("saving");
+        live.className="opt-live pending";live.textContent="저장 중…";
+        fakeServer().then(function(){
+          star.classList.remove("saving");
+          live.className="opt-live ok";live.textContent="저장됨 ✓";
+        }).catch(function(){
+          // rollback
+          setStar(star,wasOn);
+          star.classList.remove("saving");
+          star.classList.add("reverted");
+          setTimeout(function(){star.classList.remove("reverted");},400);
+          live.className="opt-live err";live.textContent="저장 실패 — 원래대로 되돌렸습니다. 잠시 후 다시 시도하세요.";
+        });
+      });
+    });
+    function setStar(star,on){
+      star.classList.toggle("on",on);
+      star.textContent=on?"★":"☆";
+      star.setAttribute("aria-pressed",String(on));
+    }
+  })();
+
+  /* ---------- 3. View Transitions ---------- */
+  (function(){
+    var grid=document.getElementById("vtGrid");
+    var detail=document.getElementById("vtDetail");
+    var big=document.getElementById("vtBig"), nm=document.getElementById("vtName"), amt=document.getElementById("vtAmt");
+    var back=document.getElementById("vtBack");
+    var support=document.getElementById("vtSupport");
+    var data={
+      card:{e:"💳",n:"카드 매출",a:"₩ 3,204,900",vt:"vt-card"},
+      acct:{e:"🏦",n:"계좌이체",a:"₩ 1,102,300",vt:"vt-acct"},
+      point:{e:"🎁",n:"포인트",a:"₩ 240,000",vt:"vt-point"}
+    };
+    var canVT = typeof document.startViewTransition==="function";
+    support.className="support "+(canVT?"yes":"no");
+    support.textContent=canVT
+      ? "✓ 이 브라우저는 View Transitions(same-document)를 지원합니다 — 카드가 상세로 이어져 모핑됩니다."
+      : "이 브라우저는 View Transitions 미지원 — 애니메이션 없이 즉시 교체됩니다(폴백은 정상 동작).";
+
+    function run(fn){ canVT ? document.startViewTransition(fn) : fn(); }
+
+    grid.querySelectorAll(".vt-card").forEach(function(c){
+      c.addEventListener("click",function(){
+        var d=data[c.getAttribute("data-k")];
+        run(function(){
+          big.textContent=d.e; nm.textContent=d.n; amt.textContent=d.a;
+          // share the name so the tapped card morphs into the detail panel
+          detail.style.viewTransitionName=d.vt;
+          grid.classList.add("vt-hidden");
+          detail.classList.remove("vt-hidden");
+        });
+        detail.focus();
+      });
+    });
+    back.addEventListener("click",function(){
+      run(function(){
+        detail.classList.add("vt-hidden");
+        grid.classList.remove("vt-hidden");
+        detail.style.viewTransitionName="";
+      });
+    });
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
