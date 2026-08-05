@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-06 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+
+  /* ---------- 1. Breadcrumbs ---------- */
+  .crumbs{--sep:"/"}
+  nav.bc{font-size:.9rem}
+  nav.bc ol{list-style:none;display:flex;flex-wrap:wrap;align-items:center;gap:2px;margin:0;padding:0}
+  nav.bc li{display:flex;align-items:center;max-width:100%}
+  nav.bc li+li::before{content:"›";color:var(--muted);margin:0 8px;font-size:1rem}
+  nav.bc a{color:var(--muted);text-decoration:none;border-radius:6px;padding:3px 6px;white-space:nowrap}
+  nav.bc a:hover{color:var(--brand);background:var(--brand-soft)}
+  nav.bc a:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  nav.bc [aria-current="page"]{color:var(--text);font-weight:600;padding:3px 6px;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bc-expand{border:none;background:var(--surface);color:var(--muted);cursor:pointer;font-family:inherit;
+    border-radius:6px;padding:3px 8px;font-size:.9rem;line-height:1}
+  .bc-expand:hover{color:var(--brand);background:var(--brand-soft)}
+  .bc-expand:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .bc-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:14px}
+  .bc-title{font-size:.78rem;color:var(--muted);margin:0 0 8px}
+  .bc-page{margin-top:14px;font-size:.9rem;color:var(--muted)}
+  .bc-page b{color:var(--text)}
+
+  /* ---------- 2. Swipe-to-reveal list ---------- */
+  .txn-list{list-style:none;margin:0;padding:0;max-width:460px;border:1px solid var(--border);
+    border-radius:14px;overflow:hidden;background:var(--surface)}
+  .swipe-item{position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+  .swipe-item:last-child{border-bottom:none}
+  .swipe-actions{position:absolute;inset:0 0 0 auto;display:flex;height:100%}
+  .swipe-actions button{border:none;color:#fff;font-family:inherit;font-size:.82rem;font-weight:600;
+    width:76px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+  .swipe-actions .archive{background:var(--warn)}
+  .swipe-actions .delete{background:var(--danger)}
+  .swipe-actions button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .swipe-content{position:relative;background:var(--surface);display:flex;align-items:center;gap:12px;
+    padding:14px 14px;touch-action:pan-y;transition:transform .22s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .swipe-content.dragging{transition:none}
+  .swipe-item.open .swipe-content{transform:translateX(var(--open-x,-152px))}
+  .txn-ic{width:38px;height:38px;border-radius:11px;flex:none;display:grid;place-items:center;font-size:1.1rem;
+    background:var(--brand-soft)}
+  .txn-main{flex:1;min-width:0}
+  .txn-main .t{font-size:.92rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .txn-main .s{font-size:.78rem;color:var(--muted)}
+  .txn-amt{font-size:.92rem;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .txn-amt.in{color:var(--ok)}
+  .txn-more{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;
+    padding:4px 6px;border-radius:8px;font-family:inherit;flex:none}
+  .txn-more:hover{background:var(--surface-2);color:var(--text)}
+  .txn-more:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .swipe-empty{padding:20px;text-align:center;color:var(--muted);font-size:.9rem}
+  .undo-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;
+    background:var(--text);color:var(--bg);border-radius:10px;padding:10px 14px;font-size:.86rem;max-width:460px}
+  .undo-bar[hidden]{display:none}
+  .undo-bar button{border:none;background:none;color:var(--brand);font-weight:700;cursor:pointer;
+    font-family:inherit;font-size:.86rem}
+  [data-theme="dark"] .undo-bar button{color:var(--brand)}
+
+  /* ---------- 3. CSS Carousel ---------- */
+  .carousel{position:relative}
+  .track{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;padding:4px 2px 14px;scrollbar-width:thin;
+    /* progressive enhancement: native scroll-marker dots */
+    scroll-marker-group:after;}
+  .slide{scroll-snap-align:center;flex:0 0 78%;max-width:300px;border:1px solid var(--border);
+    border-radius:14px;padding:20px;background:linear-gradient(140deg,var(--brand-soft),var(--surface));
+    min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
+  .slide h4{font-size:1rem;margin:0}
+  .slide p{margin:6px 0 0;font-size:.85rem;color:var(--muted)}
+  .slide .pill{align-self:flex-start;font-size:.72rem;font-weight:700;color:var(--brand);
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:3px 10px;margin-top:12px}
+  /* native scroll buttons + markers (Chromium 135+, 미지원 브라우저는 JS 폴백) */
+  .track::scroll-button(left),.track::scroll-button(right){
+    content:"";position:absolute;top:46%;width:36px;height:36px;border-radius:50%;
+    background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow);cursor:pointer}
+  .track::scroll-button(left){content:"‹" / "이전";left:-6px}
+  .track::scroll-button(right){content:"›" / "다음";right:-6px}
+  .track::scroll-button(*):disabled{opacity:.35;cursor:default}
+  .track::scroll-marker-group{display:flex;justify-content:center;gap:8px;margin-top:6px}
+  .track li::scroll-marker,.slide::scroll-marker{content:"";width:8px;height:8px;border-radius:50%;
+    background:var(--border);border:none;cursor:pointer}
+  .slide::scroll-marker:target-current{background:var(--brand)}
+  /* JS fallback controls (shown only when native carousel unsupported) */
+  .car-fallback{display:none;align-items:center;justify-content:center;gap:14px;margin-top:6px}
+  .no-native-carousel .car-fallback{display:flex}
+  .car-fallback .arw{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);cursor:pointer;font-size:1.1rem;font-family:inherit}
+  .car-fallback .arw:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .car-fallback .arw:disabled{opacity:.35;cursor:default}
+  .car-dots{display:flex;gap:8px}
+  .car-dots button{width:9px;height:9px;border-radius:50%;border:none;background:var(--border);
+    cursor:pointer;padding:0}
+  .car-dots button[aria-current="true"]{background:var(--brand)}
+  .car-dots button:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-06 (목) · 내비·리스트·트렌드 3건 · 직접 만든 라이브 예시</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#breadcrumbs">🧭 브레드크럼</a>
+    <a href="#swipe">🃏 스와이프 액션 리스트</a>
+    <a href="#carousel">🌀 CSS 캐러셀</a>
+  </nav>
+
+  <!-- ============ 1. Breadcrumbs ============ -->
+  <section class="card" id="breadcrumbs">
+    <h2>🧭 브레드크럼 — 현재 위치·긴 경로 접기·aria-current 설계 <span class="tag">내비게이션·탭</span></h2>
+    <p class="lead">브레드크럼(breadcrumb)은 "지금 이 화면이 사이트 구조 어디쯤인지"를 한 줄로 보여주고 상위로 되돌아갈 링크를 주는 내비다. 정산·설정처럼 <b>깊이가 있는</b> 관리 화면에서 길잃음을 막는다. 요즘 설계의 핵심은 세 가지: 마지막 항목은 링크가 아니라 <code>aria-current="page"</code>, 경로가 길면 <b>가운데를 …로 접기</b>, 좁은 화면에선 현재 항목만 말줄임.</p>
+    <div class="demo">
+      <div class="bc-block">
+        <p class="bc-title">① 기본 — 마지막은 현재 페이지(링크 아님)</p>
+        <nav class="bc" aria-label="현재 위치">
+          <ol>
+            <li><a href="#" data-nav="대시보드">대시보드</a></li>
+            <li><a href="#" data-nav="결제">결제</a></li>
+            <li><span aria-current="page">거래 내역</span></li>
+          </ol>
+        </nav>
+      </div>
+
+      <div class="bc-block">
+        <p class="bc-title">② 긴 경로 접기 — 가운데를 … 로 숨기고, 눌러 펼침</p>
+        <nav class="bc" id="bcCollapse" aria-label="현재 위치(접힘)">
+          <ol id="bcCollapseList"></ol>
+        </nav>
+      </div>
+
+      <div class="bc-page" id="bcPage" role="status" aria-live="polite">현재 페이지: <b>거래 내역</b> — 상위 링크를 눌러 이동해 보세요.</div>
+      <p class="cap">구분자(<code>›</code>)는 CSS <code>::before</code>로 그린다 — 실제 텍스트가 아니라 스크린리더가 "슬래시"를 읽지 않는다. 마지막 항목은 <code>&lt;a&gt;</code>가 아니라 <code>aria-current="page"</code>를 단 <code>&lt;span&gt;</code>이라, 스스로에게 가는 죽은 링크를 없앤다.</p>
+    </div>
+    <div class="note">전체 구조는 <code>&lt;nav aria-label="현재 위치"&gt; &gt; &lt;ol&gt; &gt; &lt;li&gt;</code>. 순서가 의미 있으니 <b>순서 리스트(ol)</b>를 쓴다. 접기 버튼(<code>…</code>)은 장식이 아니라 진짜 <code>&lt;button&gt;</code>이라 키보드로도 펼칠 수 있고, <code>aria-expanded</code>로 상태를 알린다. 모바일에선 전체 경로 대신 "← 상위 한 단계"만 남기는 것도 흔한 대안이다.</div>
+  </section>
+
+  <!-- ============ 2. Swipe-to-reveal list ============ -->
+  <section class="card" id="swipe">
+    <h2>🃏 스와이프 액션 리스트 — 밀어서 보관·삭제, 버튼 폴백·되돌리기 <span class="tag">카드·리스트</span></h2>
+    <p class="lead">거래·알림 리스트에서 항목을 <b>왼쪽으로 밀면</b> 보관·삭제 버튼이 나오는 패턴. 핀테크 거래 목록의 사실상 표준이다. 하지만 스와이프는 <b>숨은 동작</b>이라, 마우스·키보드 사용자를 위한 <code>⋯</code> 버튼 폴백과 실수 삭제를 되살리는 <b>되돌리기(undo)</b>가 함께 있어야 진짜 설계다.</p>
+    <div class="demo">
+      <ul class="txn-list" id="txnList" aria-label="거래 내역"></ul>
+      <div class="undo-bar" id="undoBar" hidden role="status" aria-live="polite">
+        <span id="undoText">항목을 삭제했습니다.</span>
+        <button id="undoBtn">되돌리기</button>
+      </div>
+      <p class="cap">데스크톱에선 항목을 <b>마우스로 잡고 왼쪽으로 드래그</b>, 모바일에선 손가락으로 스와이프. 열기 싫으면 오른쪽 <code>⋯</code> 버튼으로도 같은 액션을 연다. 삭제는 <b>토스트가 뜬 5초 안에 되돌리기</b> 가능.</p>
+    </div>
+    <div class="note">접근성이 관건이다: 스와이프만으로 삭제를 걸면 스크린리더·키보드 사용자는 영영 못 쓴다. 그래서 각 항목에 항상 보이는 <code>⋯</code> 버튼을 두고, 열렸을 때 액션 버튼이 <b>실제로 포커스를 받게</b> 한다(닫혔을 땐 <code>inert</code>로 탭 순서에서 제외). 드래그 임계값(약 절반)을 넘기면 열림으로 스냅, 아니면 닫힘으로 되돌아간다 — <code>touch-action:pan-y</code>로 세로 스크롤은 살린다. 파괴적 동작(삭제)엔 항상 되돌릴 길을 남긴다.</div>
+  </section>
+
+  <!-- ============ 3. CSS Carousel ============ -->
+  <section class="card" id="carousel">
+    <h2>🌀 CSS 캐러셀 — ::scroll-button·::scroll-marker로 JS 없이 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">캐러셀(carousel)은 카드를 옆으로 넘겨 보는 슬라이드 UI다. 그동안 화살표·점(dot) 페이지네이션을 만들려면 JS가 필수였는데, CSS Overflow Level 5의 <code>::scroll-button()</code>(이전/다음 버튼)과 <code>::scroll-marker</code>(점 표시자)가 이를 <b>CSS만으로</b> 만들 수 있게 했다. 스크롤 스냅 위에 얹으면 접근성·키보드까지 브라우저가 챙긴다.</p>
+    <div class="demo">
+      <div class="carousel" id="carousel">
+        <ol class="track" id="carTrack" tabindex="0" role="group" aria-label="혜택 카드 캐러셀" style="list-style:none;margin:0;padding-left:0">
+          <li class="slide"><h4>무이자 할부</h4><p>2~6개월 무이자, 카드사별 자동 적용.</p><span class="pill">결제</span></li>
+          <li class="slide"><h4>즉시 정산</h4><p>영업일 기준 다음 날, 원하면 당일 정산.</p><span class="pill">정산</span></li>
+          <li class="slide"><h4>수수료 0.8%</h4><p>월 거래액 구간에 따라 자동 할인.</p><span class="pill">수수료</span></li>
+          <li class="slide"><h4>간편 링크결제</h4><p>URL 하나로 카드·계좌·간편결제 모두.</p><span class="pill">결제</span></li>
+          <li class="slide"><h4>매출 대시보드</h4><p>승인율·환불·정산을 한 화면에서.</p><span class="pill">분석</span></li>
+        </ol>
+        <div class="car-fallback" id="carFallback" aria-hidden="true">
+          <button class="arw" id="carPrev" aria-label="이전 카드">‹</button>
+          <div class="car-dots" id="carDots"></div>
+          <button class="arw" id="carNext" aria-label="다음 카드">›</button>
+        </div>
+      </div>
+      <div class="support" id="carSupport">지원 여부 확인 중…</div>
+      <p class="cap">지원 브라우저에선 위 화살표·점이 <b>순수 CSS</b>로 그려져 동작한다(HTML엔 버튼이 없다). 미지원 브라우저에선 아래에 JS로 만든 화살표·점 폴백이 대신 나타나, 어디서든 넘길 수 있다. 트랙을 <span class="kbd">Tab</span>으로 포커스한 뒤 화살표 키로도 스크롤된다.</p>
+    </div>
+    <div class="note">왜 지금 뜨나: Chromium 135(2025)부터 <code>::scroll-button()</code>·<code>::scroll-marker</code>·<code>scroll-marker-group</code>가 들어와, 캐러셀의 대표적 JS 뭉치(현재 인덱스 추적·점 하이라이트·경계에서 버튼 비활성)를 브라우저가 대신한다. 생성된 요소는 <b>포커스 가능·키보드 접근·경계에서 자동 비활성</b>이고 스크린리더엔 탭 목록처럼 읽힌다. 다만 <b>Firefox는 부분 지원, Safari는 아직</b>이라(2026-08 기준, 추정) 프로덕션에선 <code>scroll-snap</code> + 가벼운 JS 폴백을 함께 둔다 — 오늘 데모가 그 형태다.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<script>
+(function(){
+  /* ---------- 1. Breadcrumbs ---------- */
+  (function(){
+    var page=document.getElementById("bcPage");
+    // clickable crumbs update "current page" display
+    document.querySelectorAll("#breadcrumbs .bc a[data-nav]").forEach(function(a){
+      a.addEventListener("click",function(e){
+        e.preventDefault();
+        page.innerHTML="현재 페이지: <b>"+a.getAttribute("data-nav")+"</b> (이동 시뮬레이션)";
+      });
+    });
+
+    // collapsible long breadcrumb
+    var full=["대시보드","결제","정산","2026년 8월","가맹점 12,041","거래 상세"];
+    var list=document.getElementById("bcCollapseList");
+    var expanded=false;
+    function crumbLink(label){
+      var li=document.createElement("li");
+      var a=document.createElement("a"); a.href="#"; a.textContent=label;
+      a.addEventListener("click",function(e){e.preventDefault();
+        page.innerHTML="현재 페이지: <b>"+label+"</b> (이동 시뮬레이션)";});
+      li.appendChild(a); return li;
+    }
+    function render(){
+      list.innerHTML="";
+      var render_items;
+      if(expanded || full.length<=4){ render_items=full.map(function(l){return{label:l};}); }
+      else {
+        render_items=[{label:full[0]},{ellipsis:true},{label:full[full.length-2]},{label:full[full.length-1]}];
+      }
+      render_items.forEach(function(it,idx){
+        if(it.ellipsis){
+          var li=document.createElement("li");
+          var btn=document.createElement("button");
+          btn.className="bc-expand"; btn.type="button"; btn.textContent="…";
+          btn.setAttribute("aria-label","생략된 상위 경로 펼치기");
+          btn.setAttribute("aria-expanded","false");
+          btn.addEventListener("click",function(){ expanded=true; render(); });
+          li.appendChild(btn); list.appendChild(li);
+        } else if(idx===render_items.length-1){
+          var li2=document.createElement("li");
+          var span=document.createElement("span");
+          span.setAttribute("aria-current","page"); span.textContent=it.label;
+          li2.appendChild(span); list.appendChild(li2);
+        } else {
+          list.appendChild(crumbLink(it.label));
+        }
+      });
+    }
+    render();
+  })();
+
+  /* ---------- 2. Swipe-to-reveal list ---------- */
+  (function(){
+    var listEl=document.getElementById("txnList");
+    var undoBar=document.getElementById("undoBar");
+    var undoText=document.getElementById("undoText");
+    var undoBtn=document.getElementById("undoBtn");
+    var OPEN_X=-152; // two 76px buttons
+    var undoTimer=null, lastRemoved=null;
+
+    var DATA=[
+      {id:1,ic:"☕",t:"스타벅스 코엑스",s:"오늘 09:12 · 카드결제",amt:"-₩ 5,600",inc:false},
+      {id:2,ic:"💸",t:"정산 입금",s:"어제 · 즉시정산",amt:"+₩ 482,000",inc:true},
+      {id:3,ic:"🛒",t:"쿠팡",s:"어제 · 정기결제",amt:"-₩ 38,900",inc:false},
+      {id:4,ic:"🚕",t:"카카오T",s:"8/4 · 간편결제",amt:"-₩ 12,300",inc:false}
+    ];
+
+    function closeAll(except){
+      listEl.querySelectorAll(".swipe-item.open").forEach(function(it){
+        if(it!==except){ setOpen(it,false); }
+      });
+    }
+    function setOpen(item,open){
+      item.classList.toggle("open",open);
+      var actions=item.querySelector(".swipe-actions");
+      var more=item.querySelector(".txn-more");
+      if(open){ actions.removeAttribute("inert"); more.setAttribute("aria-expanded","true"); }
+      else { actions.setAttribute("inert",""); more.setAttribute("aria-expanded","false"); }
+    }
+
+    function makeItem(d){
+      var li=document.createElement("li"); li.className="swipe-item"; li.dataset.id=d.id;
+      li.style.setProperty("--open-x",OPEN_X+"px");
+      var actions=document.createElement("div");
+      actions.className="swipe-actions"; actions.setAttribute("inert","");
+      actions.innerHTML='<button class="archive" data-act="archive">🗄️<span>보관</span></button>'+
+                        '<button class="delete" data-act="delete">🗑️<span>삭제</span></button>';
+      var content=document.createElement("div"); content.className="swipe-content";
+      content.innerHTML='<span class="txn-ic" aria-hidden="true">'+d.ic+'</span>'+
+        '<span class="txn-main"><span class="t">'+d.t+'</span><span class="s">'+d.s+'</span></span>'+
+        '<span class="txn-amt '+(d.inc?"in":"")+'">'+d.amt+'</span>'+
+        '<button class="txn-more" aria-label="'+d.t+' 액션 열기" aria-expanded="false">⋯</button>';
+      li.appendChild(actions); li.appendChild(content);
+
+      // more button toggles open
+      content.querySelector(".txn-more").addEventListener("click",function(e){
+        e.stopPropagation();
+        var isOpen=li.classList.contains("open");
+        closeAll(li); setOpen(li,!isOpen);
+        if(!isOpen){ actions.querySelector("button").focus(); }
+      });
+      // action buttons
+      actions.querySelector('[data-act="archive"]').addEventListener("click",function(){
+        flash(li,"보관했습니다."); removeItem(li,d,false);
+      });
+      actions.querySelector('[data-act="delete"]').addEventListener("click",function(){
+        removeItem(li,d,true);
+      });
+
+      // drag / swipe
+      var startX=0,curX=0,dragging=false;
+      content.addEventListener("pointerdown",function(e){
+        if(e.target.closest(".txn-more")) return;
+        dragging=true; startX=e.clientX;
+        curX=li.classList.contains("open")?OPEN_X:0;
+        content.classList.add("dragging"); content.setPointerCapture(e.pointerId);
+      });
+      content.addEventListener("pointermove",function(e){
+        if(!dragging) return;
+        var dx=e.clientX-startX; var x=curX+dx;
+        if(x>0)x=0; if(x<OPEN_X-20)x=OPEN_X-20;
+        content.style.transform="translateX("+x+"px)";
+      });
+      function endDrag(e){
+        if(!dragging) return; dragging=false;
+        content.classList.remove("dragging"); content.style.transform="";
+        var dx=e.clientX-startX; var x=(li.classList.contains("open")?OPEN_X:0)+dx;
+        var willOpen = x < OPEN_X/2;
+        closeAll(li); setOpen(li,willOpen);
+      }
+      content.addEventListener("pointerup",endDrag);
+      content.addEventListener("pointercancel",endDrag);
+      return li;
+    }
+
+    function flash(li,msg){
+      undoText.textContent=msg; undoBar.hidden=false; lastRemoved=null;
+      clearTimeout(undoTimer); undoTimer=setTimeout(function(){undoBar.hidden=true;},3500);
+    }
+
+    function removeItem(li,d,undoable){
+      var idx=Array.prototype.indexOf.call(listEl.children,li);
+      li.style.transition="opacity .2s,height .2s"; li.style.opacity="0";
+      setTimeout(function(){ li.remove(); checkEmpty(); },180);
+      if(undoable){
+        lastRemoved={data:d,index:idx};
+        undoText.textContent='"'+d.t+'"을(를) 삭제했습니다.';
+        undoBar.hidden=false;
+        clearTimeout(undoTimer);
+        undoTimer=setTimeout(function(){ undoBar.hidden=true; lastRemoved=null; },5000);
+      }
+    }
+
+    undoBtn.addEventListener("click",function(){
+      if(!lastRemoved) return;
+      var li=makeItem(lastRemoved.data);
+      var ref=listEl.children[lastRemoved.index]||null;
+      listEl.insertBefore(li,ref);
+      lastRemoved=null; undoBar.hidden=true; checkEmpty();
+    });
+
+    function checkEmpty(){
+      if(listEl.querySelector(".swipe-item")) return;
+      listEl.innerHTML='<li class="swipe-empty">거래가 없습니다.</li>';
+    }
+
+    DATA.forEach(function(d){ listEl.appendChild(makeItem(d)); });
+    document.addEventListener("click",function(e){
+      if(!e.target.closest("#swipe .swipe-item")) closeAll(null);
+    });
+  })();
+
+  /* ---------- 3. CSS Carousel ---------- */
+  (function(){
+    var support=document.getElementById("carSupport");
+    var carousel=document.getElementById("carousel");
+    var track=document.getElementById("carTrack");
+    var native=false;
+    try{ native = CSS.supports("selector(::scroll-marker)"); }catch(e){ native=false; }
+
+    support.className="support "+(native?"yes":"no");
+    support.textContent=native
+      ? "✓ 이 브라우저는 CSS 캐러셀(::scroll-button/::scroll-marker)을 지원합니다 — 화살표·점이 순수 CSS로 동작합니다."
+      : "이 브라우저는 CSS 캐러셀 미지원 — 아래 JS 폴백 화살표·점으로 동작합니다(scroll-snap은 어디서나 동작).";
+
+    if(native) return; // native CSS handles everything
+
+    // ---- JS fallback: build dots + arrows, sync with scroll ----
+    carousel.classList.add("no-native-carousel");
+    var fallback=document.getElementById("carFallback");
+    fallback.setAttribute("aria-hidden","false");
+    var slides=Array.prototype.slice.call(track.querySelectorAll(".slide"));
+    var dotsWrap=document.getElementById("carDots");
+    var prev=document.getElementById("carPrev"), next=document.getElementById("carNext");
+
+    slides.forEach(function(s,i){
+      var b=document.createElement("button");
+      b.type="button"; b.setAttribute("aria-label",(i+1)+"번 카드로 이동");
+      b.addEventListener("click",function(){ scrollTo(i); });
+      dotsWrap.appendChild(b);
+    });
+    var dots=Array.prototype.slice.call(dotsWrap.children);
+
+    function currentIndex(){
+      var mid=track.scrollLeft+track.clientWidth/2, best=0, bestD=Infinity;
+      slides.forEach(function(s,i){
+        var c=s.offsetLeft+s.offsetWidth/2;
+        var d=Math.abs(c-mid); if(d<bestD){bestD=d;best=i;}
+      });
+      return best;
+    }
+    function scrollTo(i){
+      i=Math.max(0,Math.min(slides.length-1,i));
+      var s=slides[i];
+      track.scrollTo({left:s.offsetLeft-(track.clientWidth-s.offsetWidth)/2,behavior:"smooth"});
+    }
+    function sync(){
+      var i=currentIndex();
+      dots.forEach(function(d,di){ d.setAttribute("aria-current",di===i?"true":"false"); });
+      prev.disabled=(i===0); next.disabled=(i===slides.length-1);
+    }
+    prev.addEventListener("click",function(){ scrollTo(currentIndex()-1); });
+    next.addEventListener("click",function(){ scrollTo(currentIndex()+1); });
+    var raf=null;
+    track.addEventListener("scroll",function(){
+      if(raf) return; raf=requestAnimationFrame(function(){ sync(); raf=null; });
+    });
+    sync();
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
