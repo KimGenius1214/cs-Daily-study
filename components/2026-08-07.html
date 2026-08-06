@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-07 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#2563eb; --info-soft:#e7effe;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+    --c1:#4f46e5; --c2:#0ea5e9; --c3:#10b981; --c4:#f59e0b; --c5:#ef4444;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#60a5fa; --info-soft:#12203a;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+    --c1:#8b8cf9; --c2:#38bdf8; --c3:#34d399; --c4:#fbbf24; --c5:#f87171;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{font-family:inherit;font-size:.88rem;font-weight:600;border-radius:10px;padding:9px 15px;cursor:pointer;
+    border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .btn.warn{background:var(--warn);color:#fff;border-color:var(--warn)}
+  .btn.danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap}
+
+  /* ---------- 1. CSS-only charts ---------- */
+  .chart-grid{display:grid;grid-template-columns:1fr;gap:22px}
+  @media(min-width:680px){.chart-grid{grid-template-columns:1fr 1fr}}
+  .chart-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 16px 14px}
+  .chart-box h4{display:flex;justify-content:space-between;align-items:baseline}
+  .chart-box h4 .sum{font-size:.78rem;color:var(--muted);font-weight:500}
+  /* bar chart */
+  .bars{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
+  .bars li{display:grid;grid-template-columns:64px 1fr auto;align-items:center;gap:10px;font-size:.82rem}
+  .bars .lbl{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bar-track{background:var(--surface-2);border-radius:999px;height:14px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:999px;width:0;
+    transition:width .9s cubic-bezier(.22,.61,.36,1)}
+  .bars .val{font-variant-numeric:tabular-nums;font-weight:700;font-size:.8rem}
+  /* donut chart (conic-gradient) */
+  .donut-wrap{display:flex;align-items:center;gap:18px;margin-top:12px;flex-wrap:wrap}
+  .donut{--deg:0deg;width:132px;height:132px;border-radius:50%;flex:none;position:relative;
+    background:conic-gradient(var(--c1) 0 0);
+    transition:background .2s}
+  .donut::after{content:"";position:absolute;inset:20px;border-radius:50%;background:var(--surface)}
+  .donut .mid{position:absolute;inset:0;display:grid;place-items:center;z-index:1;text-align:center}
+  .donut .mid b{font-size:1.05rem;font-variant-numeric:tabular-nums}
+  .donut .mid span{display:block;font-size:.7rem;color:var(--muted)}
+  .legend{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:.82rem;min-width:150px}
+  .legend li{display:flex;align-items:center;gap:8px}
+  .legend .sw{width:11px;height:11px;border-radius:3px;flex:none}
+  .legend .lv{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted)}
+  /* progress / gauge */
+  .goal{margin-top:12px}
+  .goal .meta{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:6px}
+  .goal .meta b{font-variant-numeric:tabular-nums}
+  .prog{height:20px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative}
+  .prog>i{display:block;height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--c3),var(--c2));transition:width 1s cubic-bezier(.22,.61,.36,1)}
+  .prog[data-over="true"]>i{background:linear-gradient(90deg,var(--c4),var(--c5))}
+  .spark{margin-top:6px}
+
+  /* ---------- 2. Toast queue ---------- */
+  .toast-region{position:fixed;z-index:50;bottom:18px;right:18px;display:flex;flex-direction:column;
+    gap:10px;width:min(340px,86vw);pointer-events:none}
+  html.embed-mode .toast-region{position:static;width:min(340px,86vw);margin:0 auto}
+  .toast{pointer-events:auto;background:var(--surface);border:1px solid var(--border);border-left-width:4px;
+    border-radius:12px;box-shadow:var(--shadow);padding:12px 12px 12px 14px;display:flex;gap:10px;align-items:flex-start;
+    animation:toast-in .28s cubic-bezier(.22,.61,.36,1);position:relative;overflow:hidden}
+  .toast.leaving{animation:toast-out .22s ease forwards}
+  @keyframes toast-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+  @keyframes toast-out{to{opacity:0;transform:translateX(30px);margin-bottom:-52px;height:0;padding-top:0;padding-bottom:0}}
+  .toast .ic{font-size:1.05rem;line-height:1.3;flex:none}
+  .toast .body{flex:1;min-width:0}
+  .toast .body b{display:block;font-size:.88rem}
+  .toast .body p{margin:2px 0 0;font-size:.8rem;color:var(--muted)}
+  .toast .x{border:none;background:none;color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;
+    padding:2px 4px;border-radius:6px;font-family:inherit;flex:none}
+  .toast .x:hover{background:var(--surface-2);color:var(--text)}
+  .toast .x:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .toast .life{position:absolute;left:0;bottom:0;height:3px;width:100%;transform-origin:left;background:currentColor;opacity:.5}
+  .toast.ok{border-left-color:var(--ok);color:var(--ok)}
+  .toast.info{border-left-color:var(--info);color:var(--info)}
+  .toast.warn{border-left-color:var(--warn);color:var(--warn)}
+  .toast.danger{border-left-color:var(--danger);color:var(--danger)}
+  .toast .body b,.toast .body p{color:var(--text)}
+  @media(prefers-reduced-motion:reduce){
+    .toast{animation:none}.toast.leaving{animation:none;opacity:0}.toast .life{display:none}
+  }
+
+  /* ---------- 3. View Transitions ---------- */
+  .vt-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:3px}
+  .seg button{border:none;background:none;font-family:inherit;font-size:.82rem;padding:6px 12px;border-radius:7px;
+    cursor:pointer;color:var(--muted)}
+  .seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+  .seg button:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .vt-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .vt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;
+    display:flex;flex-direction:column;gap:6px}
+  .vt-card .amt{font-size:1.05rem;font-weight:700;font-variant-numeric:tabular-nums}
+  .vt-card .who{font-size:.86rem}
+  .vt-card .st{font-size:.72rem;font-weight:600;border-radius:999px;padding:2px 8px;align-self:flex-start}
+  .st.paid{background:var(--ok-soft);color:var(--ok)}
+  .st.pending{background:var(--warn-soft);color:var(--warn)}
+  .st.failed{background:var(--danger-soft);color:var(--danger)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-07 (금) · 데이터·피드백·트렌드 3건 · 직접 만든 라이브 예시</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#chart">📊 CSS-only 차트</a>
+    <a href="#toast">🔔 토스트 큐 시스템</a>
+    <a href="#viewtransition">🌀 View Transitions API</a>
+  </nav>
+
+  <!-- ============ 1. CSS-only charts ============ -->
+  <section class="card" id="chart">
+    <h2>📊 CSS-only 차트 — 막대·도넛·목표 게이지를 라이브러리 없이 <span class="tag">데이터·테이블·차트</span></h2>
+    <p class="lead">대시보드 숫자 몇 개를 보여주자고 차트 라이브러리(Chart.js·Recharts 등) 전체를 번들에 넣을 필요는 없다. 막대·도넛·진행률 같은 <b>단순 비교·비율·목표 달성률</b>은 순수 CSS로 충분하다. 핵심 도구는 세 가지 — 막대는 <code>width %</code>, 도넛은 <code>conic-gradient()</code>(원을 각도만큼 색칠하는 CSS 함수), 게이지는 진행 바. 값은 <b>텍스트로도 함께</b> 두어 스크린리더·색맹 사용자도 읽게 한다.</p>
+    <div class="demo">
+      <div class="chart-grid">
+        <!-- bar chart -->
+        <div class="chart-box">
+          <h4>결제 수단별 거래액 <span class="sum">이번 달</span></h4>
+          <ul class="bars" id="barChart" aria-label="결제 수단별 거래액">
+            <li><span class="lbl">카드</span><span class="bar-track"><span class="bar-fill" style="background:var(--c1)" data-pct="72"></span></span><span class="val">₩8.6M</span></li>
+            <li><span class="lbl">계좌이체</span><span class="bar-track"><span class="bar-fill" style="background:var(--c2)" data-pct="41"></span></span><span class="val">₩4.9M</span></li>
+            <li><span class="lbl">간편결제</span><span class="bar-track"><span class="bar-fill" style="background:var(--c3)" data-pct="58"></span></span><span class="val">₩6.9M</span></li>
+            <li><span class="lbl">가상계좌</span><span class="bar-track"><span class="bar-fill" style="background:var(--c4)" data-pct="17"></span></span><span class="val">₩2.0M</span></li>
+          </ul>
+        </div>
+        <!-- donut chart -->
+        <div class="chart-box">
+          <h4>승인 결과 비율 <span class="sum">최근 1,000건</span></h4>
+          <div class="donut-wrap">
+            <div class="donut" id="donut" role="img" aria-label="승인 84%, 취소 9%, 실패 7%">
+              <span class="mid"><b id="donutMid">84%</b><span>승인</span></span>
+            </div>
+            <ul class="legend" id="donutLegend">
+              <li><span class="sw" style="background:var(--c3)"></span>승인<span class="lv">84%</span></li>
+              <li><span class="sw" style="background:var(--c4)"></span>취소<span class="lv">9%</span></li>
+              <li><span class="sw" style="background:var(--c5)"></span>실패<span class="lv">7%</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- goal gauge -->
+      <div class="chart-box goal" style="margin-top:16px">
+        <h4>월 정산 목표 <span class="sum">달성률</span></h4>
+        <div class="meta"><span>₩ 23.4M / 목표 ₩ 20M</span><b id="goalPct">117%</b></div>
+        <div class="prog" id="goalProg" data-over="true"><i data-pct="100"></i></div>
+        <p class="cap">목표를 넘기면(117%) 막대 색이 초록→호박/빨강 그라데이션으로 바뀐다 — 색만으로 판단하지 않게 숫자(117%)를 항상 함께 보여준다.</p>
+      </div>
+      <div class="btnrow" style="margin-top:16px">
+        <button class="btn" id="chartReplay">↻ 애니메이션 다시</button>
+        <button class="btn" id="chartRandom">🎲 데이터 랜덤</button>
+      </div>
+      <p class="cap">막대는 로드 시 0%→목표폭으로 자라며(<code>transition:width</code>), 도넛은 <code>conic-gradient</code>의 각도만 바꿔 다시 칠한다. 셋 다 <b>DOM 요소 하나 + CSS</b>로 끝난다.</p>
+    </div>
+    <div class="note">언제 라이브러리를 쓰나: 축·툴팁·줌·수십 개 시리즈가 필요한 <b>분석용</b> 차트는 Chart.js/Recharts가 맞다. 반대로 카드 위 <b>요약 지표 하나</b>를 보여줄 땐 CSS가 더 가볍고 빠르다(번들 0KB, 리플로우 적음). 접근성: 도넛은 <code>role="img"</code>+<code>aria-label</code>로 "승인 84%…"를 통째로 읽히고, 막대·게이지는 옆의 텍스트 값이 곧 대체 텍스트다. <code>conic-gradient</code>는 모든 최신 브라우저에서 동작한다(추정: 2023 이후 Baseline).</div>
+  </section>
+
+  <!-- ============ 2. Toast queue ============ -->
+  <section class="card" id="toast">
+    <h2>🔔 토스트 큐 시스템 — 쌓기·자동 dismiss·hover 일시정지·aria-live <span class="tag">피드백·상태</span></h2>
+    <p class="lead">토스트(toast)는 화면 구석에 잠깐 떴다 사라지는 알림이다. 하나 띄우는 건 쉽지만, <b>여러 개가 연달아</b> 발생할 때가 진짜다: 위로 쌓고(stack), 각자 타이머로 사라지고, 마우스를 올리면(hover) 타이머를 멈춰 읽을 시간을 주고, 스크린리더엔 <code>aria-live</code>로 읽히게 해야 한다. optimistic UI(낙관적 UI — 응답 전에 화면부터 바꾸는 방식)와 짝을 이뤄 "저장됨/실패" 결과 통지에 많이 쓴다.</p>
+    <div class="demo">
+      <div class="btnrow">
+        <button class="btn ok" data-toast="ok">✓ 성공 토스트</button>
+        <button class="btn primary" data-toast="info">ℹ️ 정보 토스트</button>
+        <button class="btn warn" data-toast="warn">⚠️ 경고 토스트</button>
+        <button class="btn danger" data-toast="danger">✕ 에러 토스트</button>
+        <button class="btn" id="toastBurst">⚡ 3개 연속</button>
+      </div>
+      <p class="cap">여러 번 눌러 <b>쌓임</b>을 확인하고, 뜬 토스트에 <b>마우스를 올리면</b> 하단 진행 바(남은 시간)가 멈춘다 — 떼면 다시 흐른다. 에러 토스트는 더 오래 유지된다.</p>
+    </div>
+    <div class="note">역할 구분이 핵심이다: 대부분의 토스트는 <code>role="status"</code>(<code>aria-live="polite"</code> — 읽던 걸 끊지 않고 이어 읽음), <b>에러·긴급</b>은 <code>role="alert"</code>(<code>assertive</code> — 즉시 끼어들어 읽음)를 쓴다. WCAG 2.2.1(시간 조절 가능)에 따라 <b>자동 사라짐엔 멈출 방법</b>이 있어야 하므로 hover·focus 시 타이머를 멈춘다(느린 독자·화면 확대 사용자 배려). 색은 보조 신호일 뿐, 아이콘·제목 텍스트로 의미가 통해야 한다. 이 데모의 라이브 영역은 화면 밖에 두지 않고 실제 토스트 컨테이너 자체에 <code>aria-live</code>를 걸었다.</div>
+  </section>
+
+  <!-- ============ 3. View Transitions API ============ -->
+  <section class="card" id="viewtransition">
+    <h2>🌀 View Transitions API — 정렬·필터가 툭 바뀌지 않고 부드럽게 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">View Transitions API는 <b>DOM이 바뀌는 순간을 브라우저가 스냅샷으로 이어붙여</b> 부드럽게 전환해 주는 표준 기능이다. 리스트를 정렬·필터할 때 항목이 순간이동하듯 툭 재배치되던 걸, 각 항목이 <b>제자리로 미끄러지게</b> 만든다. 예전엔 Framer Motion 같은 애니메이션 라이브러리가 하던 일을 이제 <code>document.startViewTransition()</code> 한 줄로 시작한다.</p>
+    <div class="demo">
+      <div class="vt-toolbar">
+        <div class="seg" role="group" aria-label="정렬 기준">
+          <button data-sort="amount" aria-pressed="true">금액순</button>
+          <button data-sort="name" aria-pressed="false">이름순</button>
+          <button data-sort="status" aria-pressed="false">상태순</button>
+        </div>
+        <div class="seg" role="group" aria-label="상태 필터">
+          <button data-filter="all" aria-pressed="true">전체</button>
+          <button data-filter="paid" aria-pressed="false">완료</button>
+          <button data-filter="pending" aria-pressed="false">대기</button>
+        </div>
+      </div>
+      <ul class="vt-grid" id="vtGrid" aria-label="거래 목록"></ul>
+      <div class="support" id="vtSupport">지원 여부 확인 중…</div>
+      <p class="cap">정렬·필터 버튼을 눌러 보면 카드가 <b>새 위치로 미끄러진다</b>(지원 브라우저). 각 카드에 <code>view-transition-name</code>을 고유하게 주면 브라우저가 "같은 카드가 여기서 저기로 갔다"를 알고 이어붙인다. <code>prefers-reduced-motion</code>이 켜져 있으면 전환을 건너뛴다.</p>
+    </div>
+    <div class="note">왜 지금 뜨나: <b>같은 문서(SPA) 안 전환</b>은 2025-10-14부로 Baseline("newly available") — Chrome 111+, Safari 18+, Firefox 144+에서 동작한다(WebSearch 확인). <b>문서 간(MPA) 전환</b>은 아직 Chromium(Chrome 126+) 위주이고 Firefox·Safari는 미지원이라, 프로덕션에선 "지원되면 부드럽게, 아니면 즉시 반영"의 <b>점진적 향상</b>으로 쓴다 — 이 데모가 그 형태다(미지원 브라우저에선 애니메이션 없이 그냥 재배치). 주의: 전환 중엔 화면이 잠깐 캡처되므로 무거운 리스트에선 성능을 확인해야 한다.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<!-- toast live region (assertive errors escalate role at runtime) -->
+<div class="toast-region" id="toastRegion" role="status" aria-live="polite" aria-label="알림"></div>
+
+<script>
+(function(){
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  /* ---------- 1. CSS-only charts ---------- */
+  (function(){
+    var bars=document.querySelectorAll("#barChart .bar-fill");
+    var goalFill=document.querySelector("#goalProg > i");
+    var donut=document.getElementById("donut");
+    var donutMid=document.getElementById("donutMid");
+    var legend=document.getElementById("donutLegend");
+    var colors=["var(--c3)","var(--c4)","var(--c5)"];
+
+    function paintBars(){
+      bars.forEach(function(b){ b.style.width="0"; });
+      // reflow then animate
+      void document.body.offsetWidth;
+      bars.forEach(function(b){ b.style.width=b.dataset.pct+"%"; });
+      if(goalFill){ goalFill.style.width="0"; void document.body.offsetWidth; goalFill.style.width=goalFill.dataset.pct+"%"; }
+    }
+    function paintDonut(parts){
+      // parts: [{label,pct,color}]
+      var stops=[], acc=0;
+      parts.forEach(function(p){
+        stops.push(p.color+" "+acc+"% "+(acc+p.pct)+"%");
+        acc+=p.pct;
+      });
+      donut.style.background="conic-gradient("+stops.join(",")+")";
+      donutMid.textContent=parts[0].pct+"%";
+      donut.setAttribute("aria-label",parts.map(function(p){return p.label+" "+p.pct+"%";}).join(", "));
+      legend.innerHTML=parts.map(function(p){
+        return '<li><span class="sw" style="background:'+p.color+'"></span>'+p.label+'<span class="lv">'+p.pct+'%</span></li>';
+      }).join("");
+    }
+    var defaultDonut=[{label:"승인",pct:84,color:"var(--c3)"},{label:"취소",pct:9,color:"var(--c4)"},{label:"실패",pct:7,color:"var(--c5)"}];
+    paintDonut(defaultDonut);
+    // initial bar animation shortly after load
+    setTimeout(paintBars, 120);
+
+    document.getElementById("chartReplay").addEventListener("click",function(){ paintBars(); paintDonut(defaultDonut); });
+    document.getElementById("chartRandom").addEventListener("click",function(){
+      // random bars
+      var vals=[];
+      bars.forEach(function(b){ var v=15+Math.floor(Math.random()*80); b.dataset.pct=v; vals.push(v); });
+      var li=document.querySelectorAll("#barChart li .val");
+      vals.forEach(function(v,i){ li[i].textContent="₩"+(v/8).toFixed(1)+"M"; });
+      // random donut (approve dominant)
+      var approve=70+Math.floor(Math.random()*25);
+      var cancel=Math.floor((100-approve)*0.6);
+      var fail=100-approve-cancel;
+      paintDonut([{label:"승인",pct:approve,color:"var(--c3)"},{label:"취소",pct:cancel,color:"var(--c4)"},{label:"실패",pct:fail,color:"var(--c5)"}]);
+      // random goal
+      var g=80+Math.floor(Math.random()*60);
+      document.getElementById("goalPct").textContent=g+"%";
+      document.getElementById("goalProg").setAttribute("data-over", g>100?"true":"false");
+      goalFill.dataset.pct=Math.min(100,g);
+      paintBars();
+    });
+  })();
+
+  /* ---------- 2. Toast queue ---------- */
+  (function(){
+    var region=document.getElementById("toastRegion");
+    var TITLES={ok:"저장되었습니다",info:"동기화 중입니다",warn:"확인이 필요합니다",danger:"결제에 실패했습니다"};
+    var MSGS={ok:"변경 사항이 반영됐어요.",info:"잠시 후 최신 상태로 갱신됩니다.",warn:"카드 유효기간을 다시 확인하세요.",danger:"잔액 부족 — 다른 수단으로 시도하세요."};
+    var ICONS={ok:"✓",info:"ℹ️",warn:"⚠️",danger:"✕"};
+    var seq=0;
+
+    function addToast(kind){
+      var id=++seq;
+      var life=(kind==="danger")?7000:4000;
+      var t=document.createElement("div");
+      t.className="toast "+kind;
+      // errors escalate the whole region politeness is polite; give this node alert role
+      if(kind==="danger"){ t.setAttribute("role","alert"); }
+      t.innerHTML='<span class="ic" aria-hidden="true">'+ICONS[kind]+'</span>'+
+        '<span class="body"><b>'+TITLES[kind]+'</b><p>'+MSGS[kind]+'</p></span>'+
+        '<button class="x" aria-label="알림 닫기">✕</button>'+
+        '<span class="life" aria-hidden="true"></span>';
+      region.appendChild(t);
+
+      var lifeBar=t.querySelector(".life");
+      var start=null, remaining=life, paused=false, raf=null, endAt;
+      function tick(now){
+        if(paused) return;
+        if(start===null){ start=now; endAt=now+remaining; }
+        var left=endAt-now;
+        var ratio=Math.max(0,left/life);
+        if(!reduceMotion) lifeBar.style.transform="scaleX("+ratio+")";
+        if(left<=0){ dismiss(); return; }
+        raf=requestAnimationFrame(tick);
+      }
+      function pause(){ if(paused) return; paused=true; cancelAnimationFrame(raf);
+        remaining=endAt-performance.now(); }
+      function resume(){ if(!paused) return; paused=false; start=null; raf=requestAnimationFrame(tick); }
+      function dismiss(){
+        cancelAnimationFrame(raf);
+        t.classList.add("leaving");
+        var done=function(){ t.remove(); };
+        if(reduceMotion){ done(); } else { t.addEventListener("animationend",done,{once:true}); setTimeout(done,400); }
+      }
+      t.addEventListener("mouseenter",pause);
+      t.addEventListener("mouseleave",resume);
+      t.addEventListener("focusin",pause);
+      t.addEventListener("focusout",resume);
+      t.querySelector(".x").addEventListener("click",dismiss);
+      raf=requestAnimationFrame(tick);
+    }
+
+    document.querySelectorAll("[data-toast]").forEach(function(b){
+      b.addEventListener("click",function(){ addToast(b.dataset.toast); });
+    });
+    document.getElementById("toastBurst").addEventListener("click",function(){
+      var kinds=["ok","info","warn"];
+      kinds.forEach(function(k,i){ setTimeout(function(){ addToast(k); }, i*350); });
+    });
+  })();
+
+  /* ---------- 3. View Transitions ---------- */
+  (function(){
+    var grid=document.getElementById("vtGrid");
+    var support=document.getElementById("vtSupport");
+    var canVT = typeof document.startViewTransition === "function" && !reduceMotion;
+
+    support.className="support "+(canVT?"yes":"no");
+    support.textContent=canVT
+      ? "✓ 이 브라우저는 View Transitions(같은 문서)를 지원합니다 — 정렬·필터 시 카드가 부드럽게 이동합니다."
+      : (reduceMotion
+          ? "동작 최소화(prefers-reduced-motion)가 켜져 있어 전환 애니메이션을 건너뜁니다 — 재배치는 즉시 반영됩니다."
+          : "이 브라우저는 View Transitions 미지원 — 정렬·필터는 애니메이션 없이 즉시 반영됩니다(점진적 향상).");
+
+    var DATA=[
+      {id:"a",who:"김가맹",amt:482000,status:"paid"},
+      {id:"b",who:"이스토어",amt:38900,status:"pending"},
+      {id:"c",who:"박커머스",amt:1204000,status:"paid"},
+      {id:"d",who:"최마켓",amt:12300,status:"failed"},
+      {id:"e",who:"정샵",amt:256400,status:"pending"},
+      {id:"f",who:"한상점",amt:99000,status:"paid"}
+    ];
+    var STLABEL={paid:"완료",pending:"대기",failed:"실패"};
+    var sort="amount", filter="all";
+
+    function render(){
+      var items=DATA.filter(function(d){ return filter==="all"||d.status===filter; });
+      items.sort(function(x,y){
+        if(sort==="amount") return y.amt-x.amt;
+        if(sort==="name") return x.who.localeCompare(y.who,"ko");
+        return x.status.localeCompare(y.status);
+      });
+      grid.innerHTML=items.map(function(d){
+        return '<li class="vt-card" style="view-transition-name:vt-'+d.id+'">'+
+          '<span class="st '+d.status+'">'+STLABEL[d.status]+'</span>'+
+          '<span class="who">'+d.who+'</span>'+
+          '<span class="amt">₩'+d.amt.toLocaleString("ko-KR")+'</span></li>';
+      }).join("");
+    }
+    function update(){
+      if(canVT){ document.startViewTransition(render); }
+      else { render(); }
+    }
+    render();
+
+    document.querySelectorAll("#viewtransition [data-sort]").forEach(function(b){
+      b.addEventListener("click",function(){
+        sort=b.dataset.sort;
+        document.querySelectorAll("#viewtransition [data-sort]").forEach(function(x){ x.setAttribute("aria-pressed",String(x===b)); });
+        update();
+      });
+    });
+    document.querySelectorAll("#viewtransition [data-filter]").forEach(function(b){
+      b.addEventListener("click",function(){
+        filter=b.dataset.filter;
+        document.querySelectorAll("#viewtransition [data-filter]").forEach(function(x){ x.setAttribute("aria-pressed",String(x===b)); });
+        update();
+      });
+    });
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
