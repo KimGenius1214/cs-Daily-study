@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-11 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#2563eb; --info-soft:#e7effe;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+    --c1:#4f46e5; --c2:#0ea5e9; --c3:#10b981; --c4:#f59e0b; --c5:#ef4444;
+    --skel:#e6e9ef; --skel-hi:#f4f6fa;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#60a5fa; --info-soft:#12203a;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+    --c1:#8b8cf9; --c2:#38bdf8; --c3:#34d399; --c4:#fbbf24; --c5:#f87171;
+    --skel:#222937; --skel-hi:#2d3545;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.98rem;margin:20px 0 8px;color:var(--text)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{font-family:inherit;font-size:.88rem;font-weight:600;border-radius:10px;padding:9px 15px;cursor:pointer;
+    border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  .btn.ok{background:var(--ok);color:#fff;border-color:var(--ok)}
+  .btn.warn{background:var(--warn);color:#fff;border-color:var(--warn)}
+  .btn.danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+  /* ---------- 1. Skeleton screens ---------- */
+  .skel-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.82rem;
+    padding:7px 12px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-2px}
+  .txn-list{display:grid;gap:10px;margin-top:4px}
+  .txn{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .txn .ava{width:44px;height:44px;border-radius:12px;flex:none}
+  .txn .l1{font-weight:600;font-size:.92rem}
+  .txn .l2{font-size:.8rem;color:var(--muted);margin-top:3px}
+  .txn .amt{font-variant-numeric:tabular-nums;font-weight:700;font-size:.95rem;text-align:right}
+  .txn .amt.minus{color:var(--danger)} .txn .amt.plus{color:var(--ok)}
+  /* skeleton blocks */
+  .sk{background:var(--skel);border-radius:8px;position:relative;overflow:hidden}
+  .sk.avatar{width:44px;height:44px;border-radius:12px}
+  .sk.line{height:12px}
+  .sk.w40{width:40%} .sk.w60{width:60%} .sk.w25{width:25%;height:14px}
+  .txn.is-skeleton .l2{margin-top:8px}
+  /* shimmer variant */
+  .shimmer .sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,var(--skel-hi),transparent);
+    animation:shimmer 1.3s infinite}
+  @keyframes shimmer{100%{transform:translateX(100%)}}
+  /* pulse variant */
+  .pulse .sk{animation:pulse 1.2s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.45}}
+  @media (prefers-reduced-motion: reduce){
+    .shimmer .sk::after{animation:none;display:none}
+    .pulse .sk{animation:none}
+    .sk{opacity:.8}
+  }
+  .rm-note{font-size:.78rem;color:var(--muted);margin-top:10px}
+
+  /* ---------- 2. Destructive confirm dialog ---------- */
+  dialog.confirm{border:1px solid var(--border);border-radius:16px;padding:0;max-width:420px;width:92vw;
+    background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+  dialog.confirm::backdrop{background:rgba(8,10,14,.5);backdrop-filter:blur(2px)}
+  .cd-body{padding:22px 22px 8px}
+  .cd-ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:1.2rem;
+    background:var(--danger-soft);color:var(--danger);margin-bottom:12px}
+  dialog.confirm h4{font-size:1.05rem;margin:0 0 6px}
+  dialog.confirm p{margin:0;color:var(--muted);font-size:.9rem}
+  .cd-confirm-label{display:block;margin:16px 0 6px;font-size:.82rem;color:var(--text)}
+  .cd-confirm-label b{color:var(--danger)}
+  .cd-input{width:100%;font-family:inherit;font-size:.92rem;padding:9px 11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--text)}
+  .cd-input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .cd-foot{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px 20px}
+  .undo-bar{margin-top:14px;display:none;align-items:center;gap:12px;font-size:.86rem;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px}
+  .undo-bar.show{display:flex}
+  .undo-bar .grow{flex:1}
+  .undo-bar a{color:var(--brand);font-weight:600;cursor:pointer;text-decoration:underline}
+  .acct{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px;max-width:340px}
+  .acct .dot{width:36px;height:36px;border-radius:10px;background:var(--brand-soft);color:var(--brand);
+    display:grid;place-items:center;font-weight:700}
+  .acct .num{font-variant-numeric:tabular-nums;font-weight:600}
+  .acct .sub{font-size:.78rem;color:var(--muted)}
+
+  /* ---------- 3. @starting-style entry/exit ---------- */
+  .ea-pop{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+    border:1px solid var(--border);border-radius:16px;padding:0;max-width:360px;width:90vw;
+    background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+  .ea-pop::backdrop{background:rgba(8,10,14,.45)}
+  .ea-inner{padding:22px}
+  .ea-inner h4{margin:0 0 6px;font-size:1.02rem}
+  .ea-inner p{margin:0;color:var(--muted);font-size:.88rem}
+  .ea-inner .btnrow{margin-top:16px;justify-content:flex-end}
+  /* animated variant: transitions display+overlay (discrete) + transform/opacity */
+  dialog.animated{
+    opacity:0; transform:translate(-50%,-50%) scale(.92) translateY(8px);
+    transition:opacity .26s ease, transform .26s cubic-bezier(.22,.61,.36,1),
+               overlay .26s allow-discrete, display .26s allow-discrete;
+  }
+  dialog.animated[open]{opacity:1;transform:translate(-50%,-50%) scale(1) translateY(0)}
+  @starting-style{ dialog.animated[open]{opacity:0;transform:translate(-50%,-50%) scale(.92) translateY(8px)} }
+  dialog.animated::backdrop{background:rgba(8,10,14,0);transition:background .26s ease, overlay .26s allow-discrete, display .26s allow-discrete}
+  dialog.animated[open]::backdrop{background:rgba(8,10,14,.45)}
+  @starting-style{ dialog.animated[open]::backdrop{background:rgba(8,10,14,0)} }
+  @media (prefers-reduced-motion: reduce){
+    dialog.animated,dialog.animated[open]{transition:none;transform:translate(-50%,-50%)}
+  }
+
+  /* ---------- embed compact mode (?embed=<section id>) ---------- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-11 (화) · 오늘의 컴포넌트·패턴 3건</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="오늘 항목">
+    <a href="#skeleton">🔔 스켈레톤 스크린</a>
+    <a href="#confirm">🪟 위험 액션 확인</a>
+    <a href="#entryanim">🌀 진입·퇴장 애니메이션</a>
+  </nav>
+
+  <!-- ============ 1. Skeleton screens ============ -->
+  <section class="card" id="skeleton">
+    <h2>🔔 스켈레톤 스크린 <span class="tag">피드백·상태</span></h2>
+    <p class="lead">스피너 대신, 들어올 콘텐츠의 <b>모양 그대로</b> 회색 자리표시를 먼저 그린다. 화면이 튀지 않고(레이아웃 시프트↓) 체감 대기가 짧아진다.</p>
+
+    <div class="demo" data-anim="shimmer">
+      <div class="skel-toolbar">
+        <button class="btn primary" id="skReload" type="button">↻ 다시 로딩</button>
+        <div class="seg" role="group" aria-label="애니메이션 방식">
+          <button type="button" data-anim="shimmer" aria-pressed="true">Shimmer</button>
+          <button type="button" data-anim="pulse" aria-pressed="false">Pulse</button>
+        </div>
+      </div>
+      <div class="txn-list" id="skList" aria-busy="true" aria-live="polite" aria-label="거래 내역"></div>
+      <p class="rm-note">💡 OS에서 “동작 줄이기”를 켜면(prefers-reduced-motion) shimmer·pulse가 자동으로 멈추고 정적 회색으로 표시됩니다.</p>
+    </div>
+    <p class="cap">캡션: 아바타·2줄 텍스트·금액이 들어올 <b>실제 레이아웃과 같은 격자</b>로 스켈레톤을 짜야 로딩→완료 시 요소가 제자리에 붙는다.</p>
+
+    <h3 class="sec-lead">언제 쓰나 / 언제 쓰지 말까</h3>
+    <ul class="clean">
+      <li><b>쓴다</b>: 목록·카드·대시보드처럼 <b>구조가 예측 가능한</b> 첫 로딩. 0.3~2초대 대기.</li>
+      <li><b>스피너가 낫다</b>: 구조를 모르는 짧은 액션(버튼 제출), 아주 빠른(&lt;300ms) 응답, 페이지 일부의 소규모 갱신.</li>
+      <li><b>과유불급</b>: 스켈레톤이 1초 미만이면 오히려 깜빡임처럼 보인다 → 최소 표시시간(예 400ms)을 두거나 지연 표시.</li>
+    </ul>
+    <div class="note">용어: <b>레이아웃 시프트</b> = 콘텐츠가 늦게 로드되며 화면이 밀려 덜컥이는 현상(CLS). 스켈레톤이 자리를 미리 잡아 이를 줄인다. <b>prefers-reduced-motion</b> = 사용자가 OS에서 “동작 줄이기”를 켰는지 알려주는 CSS 미디어 쿼리.</div>
+  </section>
+
+  <!-- ============ 2. Destructive confirm dialog ============ -->
+  <section class="card" id="confirm">
+    <h2>🪟 위험 액션 확인 다이얼로그 <span class="tag">오버레이·모달</span></h2>
+    <p class="lead">삭제·해지처럼 되돌리기 어려운 액션은 <b>마찰을 의도적으로</b> 준다. 확인 문구를 타이핑해야 위험 버튼이 열리고, 기본 포커스는 안전한 “취소”에 둔다.</p>
+
+    <div class="demo">
+      <div class="acct" aria-label="삭제 대상 계좌">
+        <span class="dot" aria-hidden="true">P</span>
+        <div>
+          <div class="num">paysable ···· 4021</div>
+          <div class="sub">연결된 자동결제 3건</div>
+        </div>
+      </div>
+      <div class="btnrow" style="margin-top:14px">
+        <button class="btn danger" id="openConfirm" type="button">계좌 삭제</button>
+        <span class="cap" style="margin:0">되돌리기 어려운 액션 → 확인 문구 필요</span>
+      </div>
+
+      <div class="undo-bar" id="undoBar" role="status">
+        <span class="grow">🗑️ 계좌를 삭제했습니다.</span>
+        <a id="undoLink" role="button" tabindex="0">실행취소</a>
+      </div>
+    </div>
+    <p class="cap">캡션: 파괴적 확인의 3원칙 — ① 무엇이 사라지는지 명시(자동결제 3건), ② 위험 버튼은 <b>빨강 + 기본 비활성</b>, ③ 실행 후 <b>실행취소</b>를 함께 제공.</p>
+
+    <h3 class="sec-lead">디자인 포인트</h3>
+    <ul class="clean">
+      <li>기본 포커스를 <b>취소</b>에 두어 <span class="kbd">Enter</span> 오타로 삭제되지 않게.</li>
+      <li>“삭제”를 입력해야 위험 버튼 활성화 → 실수 방지(type-to-confirm).</li>
+      <li>가능하면 <b>확인창보다 실행취소</b>가 더 낫다. 되돌릴 수 있는 액션은 굳이 막지 말고 취소 기회를 준다.</li>
+    </ul>
+    <div class="note">용어: <b>type-to-confirm</b> = 대상 이름이나 지정 단어를 직접 타이핑해야 실행되게 하는 확인 방식(GitHub 저장소 삭제 등). <b>&lt;dialog&gt;</b> = 브라우저 기본 모달 요소로 포커스 트랩·<code>Esc</code> 닫기·백드롭을 표준 제공.</div>
+  </section>
+
+  <!-- ============ 3. @starting-style entry/exit ============ -->
+  <section class="card" id="entryanim">
+    <h2>🌀 진입·퇴장 애니메이션 (@starting-style) <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">모달·팝오버·토스트처럼 <b>화면에 새로 나타났다 사라지는</b> 요소를, 이제 JS 애니메이션 라이브러리 없이 <b>순수 CSS</b>로 부드럽게 들여보내고 내보낼 수 있다.</p>
+
+    <div class="demo">
+      <div class="btnrow">
+        <button class="btn primary" id="openAnimated" type="button">애니메이션 O 로 열기</button>
+        <button class="btn" id="openPlain" type="button">애니메이션 X (즉시)</button>
+      </div>
+      <p class="cap" style="margin-top:12px">두 버튼을 번갈아 눌러 열고 닫아 보세요. <b>@starting-style</b>을 준 쪽만 나타날 때·사라질 때 모두 스르륵 전환됩니다.</p>
+    </div>
+
+    <h3 class="sec-lead">왜 지금 뜨나 / 무엇을 배워가나</h3>
+    <ul class="clean">
+      <li>예전엔 <code>display:none → block</code>은 애니메이션이 안 걸려서, JS로 클래스를 두 번(다음 프레임에) 토글하는 트릭이 필요했다.</li>
+      <li>이제 <b>@starting-style</b>(나타나는 순간의 시작값) + <b>transition-behavior: allow-discrete</b>(display·overlay 같은 “켜짐/꺼짐” 속성도 전환 허용)로 CSS만으로 진입·퇴장을 처리한다.</li>
+      <li>모달·팝오버·토스트를 한 규칙으로 다룰 수 있어 코드가 준다.</li>
+    </ul>
+
+    <div class="support yes" id="eaSupport">브라우저 지원(확인함, 2026-08): Chrome 121+ · Firefox 129+ · Safari 17.5+ 에서 진입 애니메이션 동작. Baseline에 진입한 기능이라 최신 브라우저 대부분 커버(추정 85~90%).</div>
+    <div class="support no">주의(확인함): Safari는 <code>overlay allow-discrete</code> 미지원이라 <b>닫힐 때</b> 애니메이션이 즉시 사라짐으로 폴백될 수 있음. 진입 효과는 “있으면 좋은” 향상(progressive enhancement)으로 다뤄 없어도 기능은 그대로 되게.</div>
+    <div class="note">용어: <b>top layer</b> = 모달·팝오버가 다른 요소 위에 겹겹 순서 걱정 없이 뜨는 브라우저 최상위 레이어. <b>overlay</b> 속성은 요소가 이 레이어에 머무는지를 나타내며, 닫힐 때 사라지는 타이밍을 애니메이션과 맞추려면 <code>allow-discrete</code>가 필요하다.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<!-- 확인 다이얼로그 -->
+<dialog class="confirm" id="confirmDlg" aria-labelledby="cdTitle">
+  <div class="cd-body">
+    <div class="cd-ico" aria-hidden="true">⚠️</div>
+    <h4 id="cdTitle">계좌를 삭제할까요?</h4>
+    <p><b>paysable ···· 4021</b> 계좌와 연결된 <b>자동결제 3건</b>이 함께 해지됩니다. 이 작업은 되돌릴 수 없습니다.</p>
+    <label class="cd-confirm-label" for="cdInput">계속하려면 <b>삭제</b> 를 입력하세요</label>
+    <input class="cd-input" id="cdInput" type="text" autocomplete="off" placeholder="삭제" aria-describedby="cdTitle" />
+  </div>
+  <div class="cd-foot">
+    <button class="btn" id="cdCancel" type="button" autofocus>취소</button>
+    <button class="btn danger" id="cdDelete" type="button" disabled>영구 삭제</button>
+  </div>
+</dialog>
+
+<!-- 진입 애니메이션 데모 다이얼로그 -->
+<dialog class="ea-pop animated" id="animatedDlg" aria-labelledby="eaT1">
+  <div class="ea-inner">
+    <h4 id="eaT1">스르륵 나타났죠?</h4>
+    <p>이 창은 @starting-style + allow-discrete 로 열릴 때와 닫힐 때 모두 CSS만으로 전환됩니다.</p>
+    <div class="btnrow"><button class="btn primary" type="button" data-close="animatedDlg">닫기</button></div>
+  </div>
+</dialog>
+<dialog class="ea-pop" id="plainDlg" aria-labelledby="eaT2">
+  <div class="ea-inner">
+    <h4 id="eaT2">즉시 등장</h4>
+    <p>전환 규칙이 없어 딱 나타나고 딱 사라집니다. 차이가 느껴지나요?</p>
+    <div class="btnrow"><button class="btn primary" type="button" data-close="plainDlg">닫기</button></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- 1. Skeleton ---------- */
+  var demo=document.querySelector('#skeleton .demo');
+  var list=document.getElementById('skList');
+  var segBtns=demo.querySelectorAll('.seg button');
+  var reload=document.getElementById('skReload');
+  var loadTimer=null;
+  var realData=[
+    {i:'☕',t:'스타벅스 강남',s:'오늘 09:12 · 카드결제',a:'-4,800',c:'minus'},
+    {i:'💰',t:'급여 입금',s:'어제 · Ableunion',a:'+3,120,000',c:'plus'},
+    {i:'🛒',t:'쿠팡',s:'8/9 · 정기결제',a:'-28,400',c:'minus'},
+    {i:'🎬',t:'넷플릭스',s:'8/8 · 구독',a:'-13,500',c:'minus'}
+  ];
+  function skeletonRows(n){
+    var h='';
+    for(var i=0;i<n;i++){
+      h+='<div class="txn is-skeleton" aria-hidden="true">'+
+         '<div class="sk avatar"></div>'+
+         '<div><div class="sk line w40"></div><div class="sk line w60" style="margin-top:8px"></div></div>'+
+         '<div class="sk line w25"></div></div>';
+    }
+    return h;
+  }
+  function realRows(){
+    return realData.map(function(d){
+      return '<div class="txn"><div class="ava" style="background:var(--brand-soft);display:grid;place-items:center;font-size:1.2rem">'+d.i+'</div>'+
+        '<div><div class="l1">'+d.t+'</div><div class="l2">'+d.s+'</div></div>'+
+        '<div class="amt '+d.c+'">'+d.a+'원</div></div>';
+    }).join('');
+  }
+  function loadSequence(){
+    if(loadTimer) clearTimeout(loadTimer);
+    list.setAttribute('aria-busy','true');
+    list.innerHTML=skeletonRows(4);
+    loadTimer=setTimeout(function(){
+      list.innerHTML=realRows();
+      list.setAttribute('aria-busy','false');
+    },1600);
+  }
+  reload.addEventListener('click',loadSequence);
+  segBtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      segBtns.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      demo.setAttribute('data-anim',b.dataset.anim);
+      demo.classList.remove('shimmer','pulse');
+      demo.classList.add(b.dataset.anim);
+    });
+  });
+  demo.classList.add('shimmer');
+  loadSequence();
+
+  /* ---------- 2. Confirm dialog ---------- */
+  var dlg=document.getElementById('confirmDlg');
+  var openC=document.getElementById('openConfirm');
+  var cancelC=document.getElementById('cdCancel');
+  var deleteC=document.getElementById('cdDelete');
+  var input=document.getElementById('cdInput');
+  var undoBar=document.getElementById('undoBar');
+  var undoLink=document.getElementById('undoLink');
+  var acct=document.querySelector('#confirm .acct');
+  var undoTimer=null;
+  function supportsDialog(d){return d && typeof d.showModal==='function';}
+  openC.addEventListener('click',function(){
+    input.value=''; deleteC.disabled=true;
+    if(supportsDialog(dlg)){ dlg.showModal(); setTimeout(function(){cancelC.focus();},0); }
+  });
+  input.addEventListener('input',function(){
+    deleteC.disabled = input.value.trim()!=='삭제';
+  });
+  cancelC.addEventListener('click',function(){ dlg.close('cancel'); });
+  deleteC.addEventListener('click',function(){
+    dlg.close('delete');
+    if(acct) acct.style.opacity='.4';
+    undoBar.classList.add('show');
+    if(undoTimer) clearTimeout(undoTimer);
+    undoTimer=setTimeout(function(){ undoBar.classList.remove('show'); },6000);
+  });
+  undoLink.addEventListener('click',function(){
+    if(acct) acct.style.opacity='';
+    undoBar.classList.remove('show');
+    if(undoTimer) clearTimeout(undoTimer);
+    openC.focus();
+  });
+  undoLink.addEventListener('keydown',function(e){
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); undoLink.click(); }
+  });
+
+  /* ---------- 3. Entry/exit animation ---------- */
+  var animDlg=document.getElementById('animatedDlg');
+  var plainDlg=document.getElementById('plainDlg');
+  document.getElementById('openAnimated').addEventListener('click',function(){
+    if(animDlg.showModal) animDlg.showModal();
+  });
+  document.getElementById('openPlain').addEventListener('click',function(){
+    if(plainDlg.showModal) plainDlg.showModal();
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var d=document.getElementById(b.dataset.close);
+      if(d && d.close) d.close();
+    });
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
