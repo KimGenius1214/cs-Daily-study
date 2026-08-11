@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-12 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .txt{font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:11px 13px;width:100%}
+  .txt:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* ---------- 1. Order summary ---------- */
+  .order{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;max-width:720px}
+  @media(max-width:640px){.order{grid-template-columns:1fr}}
+  .lines{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+  .line{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:10px 12px}
+  .line .thumb{width:44px;height:44px;border-radius:10px;flex:none;display:grid;place-items:center;
+    font-size:1.3rem;background:var(--brand-soft)}
+  .line .info{flex:1;min-width:0}
+  .line .nm{font-size:.9rem;font-weight:600}
+  .line .pr{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .stepper{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:9px;overflow:hidden}
+  .stepper button{width:30px;height:30px;border:none;background:var(--surface-2);color:var(--text);
+    font-size:1rem;cursor:pointer;font-family:inherit}
+  .stepper button:hover:not(:disabled){background:var(--brand-soft);color:var(--brand)}
+  .stepper button:disabled{opacity:.4;cursor:not-allowed}
+  .stepper button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .stepper .qty{min-width:30px;text-align:center;font-size:.9rem;font-variant-numeric:tabular-nums}
+  .summary{align-self:start;border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    padding:16px 18px;position:sticky;top:12px}
+  .summary h4{margin:0 0 10px;font-size:.95rem}
+  .summary .row{display:flex;justify-content:space-between;gap:12px;font-size:.9rem;padding:4px 0;color:var(--muted)}
+  .summary .row.disc{color:var(--ok)}
+  .summary .row.total{border-top:1px solid var(--border);margin-top:8px;padding-top:10px;
+    font-size:1.1rem;font-weight:700;color:var(--text)}
+  .summary .amt{font-variant-numeric:tabular-nums;transition:color .25s}
+  .summary .amt.flash{color:var(--brand)}
+  @media(prefers-reduced-motion:reduce){.summary .amt{transition:none}}
+  .free-ship{margin-top:10px;font-size:.78rem;color:var(--muted)}
+  .free-ship .bar{height:6px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:5px}
+  .free-ship .bar > i{display:block;height:100%;background:var(--ok);width:0;transition:width .35s}
+  @media(prefers-reduced-motion:reduce){.free-ship .bar > i{transition:none}}
+
+  /* ---------- 2. OTP input ---------- */
+  .otp-grids{display:flex;flex-wrap:wrap;gap:28px}
+  .otp-col{min-width:260px;flex:1}
+  .otp-seg{display:flex;gap:8px}
+  .otp-seg input{width:44px;height:54px;text-align:center;font-size:1.3rem;font-weight:600;
+    font-variant-numeric:tabular-nums;border:1px solid var(--border);border-radius:11px;background:var(--surface);
+    color:var(--text);font-family:inherit;caret-color:var(--brand)}
+  .otp-seg input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .otp-seg input.filled{border-color:var(--brand);background:var(--brand-soft)}
+  .otp-seg.err input{border-color:var(--danger);animation:shake .3s}
+  .otp-seg.ok input{border-color:var(--ok);background:var(--ok-soft)}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+  @media(prefers-reduced-motion:reduce){.otp-seg.err input{animation:none}}
+  .otp-single{max-width:220px}
+  .otp-single input{letter-spacing:.5em;text-align:center;font-size:1.25rem;font-weight:600;
+    font-variant-numeric:tabular-nums;padding-left:.5em}
+  .otp-msg{min-height:1.4em;margin-top:10px;font-size:.86rem;font-weight:600}
+  .otp-msg.err{color:var(--danger)}
+  .otp-msg.ok{color:var(--ok)}
+  .otp-actions{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+  .resend{background:none;border:none;color:var(--brand);font-family:inherit;font-size:.86rem;cursor:pointer;
+    padding:4px 2px;text-decoration:underline}
+  .resend:disabled{color:var(--muted);cursor:not-allowed;text-decoration:none}
+  .resend:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px}
+
+  /* ---------- 3. field-sizing ---------- */
+  .fs-grid{display:flex;flex-wrap:wrap;gap:26px}
+  .fs-col{min-width:260px;flex:1}
+  .fs-label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:6px}
+  .fs-auto{field-sizing:content;min-width:8ch;max-width:100%;min-height:2.6em;
+    font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .fs-auto:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  textarea.fs-auto{resize:none;width:auto;max-width:100%}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .fs-chip{field-sizing:content;min-width:3ch;max-width:180px;text-align:center;
+    border:1px dashed var(--border);border-radius:999px;padding:6px 12px;font-family:inherit;
+    font-size:.9rem;background:var(--surface-2);color:var(--text)}
+  .fs-chip:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .fs-fixed{width:100%;min-height:2.6em;font-family:inherit;font-size:.95rem;color:var(--text);
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px;padding-top:18px;
+    border-top:1px solid var(--border)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-12 (수) · 결제·입력·트렌드 3건 · 직접 만든 라이브 예시</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#order-summary">💳 주문 요약</a>
+    <a href="#otp">⌨️ OTP 인증번호</a>
+    <a href="#field-sizing">🌀 field-sizing</a>
+  </nav>
+
+  <!-- ============ 1. Order summary ============ -->
+  <section class="card" id="order-summary">
+    <h2>💳 주문 요약 — 가격 분해·수량 반영·스티키 합계 <span class="tag">결제·체크아웃 UX</span></h2>
+    <p class="lead">체크아웃 마지막 관문. 사용자가 "내가 지금 정확히 얼마를 왜 내는지" 한눈에 납득해야 이탈이 준다. 수량을 바꾸면 소계·할인·배송·세금·합계가 즉시 다시 계산되고, 합계 카드는 스크롤해도 따라붙는다.</p>
+    <div class="demo">
+      <div class="order">
+        <ul class="lines" id="lines">
+          <li class="line" data-price="18000">
+            <div class="thumb" aria-hidden="true">🎧</div>
+            <div class="info"><div class="nm">무선 이어버드</div><div class="pr">18,000원</div></div>
+            <div class="stepper" role="group" aria-label="무선 이어버드 수량">
+              <button type="button" data-d="-1" aria-label="수량 줄이기">−</button>
+              <span class="qty" aria-live="polite">1</span>
+              <button type="button" data-d="1" aria-label="수량 늘리기">+</button>
+            </div>
+          </li>
+          <li class="line" data-price="9500">
+            <div class="thumb" aria-hidden="true">🧴</div>
+            <div class="info"><div class="nm">클렌징 폼</div><div class="pr">9,500원</div></div>
+            <div class="stepper" role="group" aria-label="클렌징 폼 수량">
+              <button type="button" data-d="-1" aria-label="수량 줄이기">−</button>
+              <span class="qty" aria-live="polite">2</span>
+              <button type="button" data-d="1" aria-label="수량 늘리기">+</button>
+            </div>
+          </li>
+          <li class="line" data-price="4200">
+            <div class="thumb" aria-hidden="true">☕</div>
+            <div class="info"><div class="nm">드립백 커피</div><div class="pr">4,200원</div></div>
+            <div class="stepper" role="group" aria-label="드립백 커피 수량">
+              <button type="button" data-d="-1" aria-label="수량 줄이기">−</button>
+              <span class="qty" aria-live="polite">1</span>
+              <button type="button" data-d="1" aria-label="수량 늘리기">+</button>
+            </div>
+          </li>
+        </ul>
+        <div class="summary" aria-label="결제 금액 요약">
+          <h4>결제 금액</h4>
+          <div class="row"><span>상품 합계</span><span class="amt" id="s-sub">0원</span></div>
+          <div class="row disc"><span>할인 (WELCOME10)</span><span class="amt" id="s-disc">0원</span></div>
+          <div class="row"><span>배송비</span><span class="amt" id="s-ship">0원</span></div>
+          <div class="row"><span>부가세 포함</span><span class="amt" id="s-tax">0원</span></div>
+          <div class="row total"><span>총 결제금액</span><span class="amt" id="s-total">0원</span></div>
+          <div class="free-ship" id="freeship">
+            <span id="freeship-txt"></span>
+            <div class="bar"><i id="freeship-bar"></i></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">왜 이렇게? — 금액은 <b>tabular-nums</b>(숫자 폭 고정)로 정렬해 자릿수가 흔들리지 않게. 합계 변동은 색으로 잠깐 강조하되 <code>prefers-reduced-motion</code>이면 끈다. "무료배송까지 N원" 진행바로 장바구니 추가를 유도.</p>
+    </div>
+    <h3 class="sec-lead">핵심 패턴</h3>
+    <ul class="clean">
+      <li>단일 계산 함수 하나가 소계→할인→배송→세금→합계를 순서대로 도출. UI는 그 결과만 그린다(계산 로직 분산 금지).</li>
+      <li>합계 카드는 <code>position:sticky</code>로 긴 목록에서도 항상 보이게.</li>
+      <li>수량 <span class="kbd">−</span>는 1에서 <code>disabled</code>로 막아 0/음수 진입 차단.</li>
+    </ul>
+    <div class="note">용어: <b>tabular-nums</b> = 모든 숫자를 같은 폭으로 그리는 글꼴 기능. 금액이 바뀌어도 자리가 안 흔들린다. · <b>sticky</b> = 스크롤하다 특정 지점에서 화면에 고정되는 CSS position.</div>
+  </section>
+
+  <!-- ============ 2. OTP ============ -->
+  <section class="card" id="otp">
+    <h2>⌨️ OTP 인증번호 입력 — 세그먼트 vs 단일 필드 <span class="tag">입력·폼</span></h2>
+    <p class="lead">문자로 온 6자리 코드를 넣는 화면. 두 방식을 나란히: 칸을 나눈 <b>세그먼트형</b>(붙여넣기 자동 분배·자동 이동)과, 자동완성에 가장 강한 <b>단일 필드형</b>. 정답은 <code>123456</code> — 넣어보면 통과/실패가 실제로 뜬다.</p>
+    <div class="demo">
+      <div class="otp-grids">
+        <div class="otp-col">
+          <h4>세그먼트형 (6칸)</h4>
+          <div class="otp-seg" id="otpSeg" role="group" aria-label="6자리 인증번호">
+            <input inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="1번째 자리" />
+            <input inputmode="numeric" maxlength="1" aria-label="2번째 자리" />
+            <input inputmode="numeric" maxlength="1" aria-label="3번째 자리" />
+            <input inputmode="numeric" maxlength="1" aria-label="4번째 자리" />
+            <input inputmode="numeric" maxlength="1" aria-label="5번째 자리" />
+            <input inputmode="numeric" maxlength="1" aria-label="6번째 자리" />
+          </div>
+          <div class="otp-msg" id="segMsg" role="status"></div>
+          <p class="cap">붙여넣기(<span class="kbd">Ctrl/⌘+V</span>) 하면 6칸에 자동 분배 · 입력하면 다음 칸 자동 이동 · <span class="kbd">←</span><span class="kbd">→</span><span class="kbd">Backspace</span> 이동</p>
+        </div>
+        <div class="otp-col">
+          <h4>단일 필드형 (자동완성 강함)</h4>
+          <div class="otp-single">
+            <label class="sr-only" for="otpOne">인증번호 6자리</label>
+            <input class="txt" id="otpOne" type="text" inputmode="numeric" autocomplete="one-time-code"
+              maxlength="6" pattern="\d{6}" placeholder="••••••" aria-describedby="oneMsg" />
+          </div>
+          <div class="otp-actions">
+            <button class="btn" id="otpVerify">확인</button>
+            <button class="resend" id="otpResend" disabled>재전송 <span id="rc"></span></button>
+          </div>
+          <div class="otp-msg" id="oneMsg" role="status"></div>
+          <p class="cap"><code>autocomplete="one-time-code"</code> 덕에 iOS/안드로이드가 문자 코드를 키보드 위에 제안 → 한 번 탭으로 채움. 한 칸이라 붙여넣기·자동완성이 가장 매끄럽다.</p>
+        </div>
+      </div>
+    </div>
+    <h3 class="sec-lead">핵심 패턴 / 어느 쪽을 쓰나</h3>
+    <ul class="clean">
+      <li><b>단일 필드</b>가 자동완성·붙여넣기·폼 제출에 제일 유리(web.dev 권장). 세그먼트형은 예쁘지만 붙여넣기·자동완성을 직접 처리해줘야 한다.</li>
+      <li>공통: <code>type="text"</code> + <code>inputmode="numeric"</code>(숫자 키패드) + <code>autocomplete="one-time-code"</code>. <code>type="number"</code>는 증감 화살표가 생겨 부적합.</li>
+      <li>세그먼트형은 코드를 "칸마다 상태"가 아니라 "하나의 문자열"로 관리하면 붙여넣기·삭제가 단순해진다.</li>
+    </ul>
+    <div class="note">용어: <b>one-time-code</b> = 브라우저에게 "이건 일회용 인증코드"라 알려 문자 자동완성을 켜는 autocomplete 값. · <b>inputmode="numeric"</b> = 모바일에서 숫자 키패드를 띄우는 힌트(값 검증은 아님).</div>
+  </section>
+
+  <!-- ============ 3. field-sizing ============ -->
+  <section class="card" id="field-sizing">
+    <h2>🌀 CSS <code>field-sizing: content</code> — 입력값에 맞춰 자라는 입력창 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">JS로 <code>scrollHeight</code> 재서 높이 늘리던 오토그로우 textarea, 이제 CSS 한 줄로 끝난다. 입력·삭제해 보면 아래 필드가 내용에 맞춰 늘고 줄어든다. 오른쪽 "고정폭"과 비교해 보라.</p>
+    <div class="demo">
+      <div class="fs-grid">
+        <div class="fs-col">
+          <label class="fs-label" for="fsArea">field-sizing:content — 자동 높이</label>
+          <textarea class="fs-auto" id="fsArea" rows="1" placeholder="여러 줄 입력해 보세요. 줄이 늘면 상자가 같이 커집니다.">결제 실패 사유를 자유롭게 적어주세요.</textarea>
+          <label class="fs-label" style="margin-top:14px">field-sizing:content — 자동 너비 (칩)</label>
+          <div class="chip-row">
+            <input class="fs-chip" value="서울" aria-label="태그 1" />
+            <input class="fs-chip" value="당일배송" aria-label="태그 2" />
+            <input class="fs-chip" value="선물포장" aria-label="태그 3" />
+          </div>
+          <p class="cap">칩은 글자 수에 딱 맞게 폭이 줄고 늘어난다(<code>min/max</code>로 한계만 지정).</p>
+        </div>
+        <div class="fs-col">
+          <label class="fs-label" for="fsFixed">비교 — 고정 크기 (기존 방식)</label>
+          <textarea class="fs-fixed" id="fsFixed" rows="1" placeholder="이 상자는 내용이 넘쳐도 그대로. 스크롤이 생긴다.">결제 실패 사유를 자유롭게 적어주세요.</textarea>
+          <p class="cap">같은 글을 넣어도 이쪽은 안 자란다 — 스크롤이 생기거나 잘린다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="support yes" id="fsSupport">지원 확인 중…</div>
+    <h3 class="sec-lead">왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li>Chrome·Edge·Opera 123+에서 지원, Safari도 최신에 추가(2026-06 시점 "최신 브라우저 대부분에서 동작"). 다만 일부 널리 쓰는 브라우저 미지원이라 아직 완전한 <b>Baseline</b>은 아니다 — Firefox 미지원(추정).</li>
+      <li>미지원 브라우저는 그냥 고정 크기로 렌더되므로 <b>점진적 향상</b>으로 안전하게 도입 가능(깨지지 않음).</li>
+      <li>쓸 곳: 코멘트·사유 입력, 인라인 편집, 태그·칩 입력, 검색창처럼 "내용만큼만 커지면 좋은" 필드.</li>
+    </ul>
+    <pre><code>/* 예전: JS로 높이 계산 → 이제 CSS 한 줄 */
+textarea {
+  field-sizing: content;   /* 내용에 맞춰 크기 조절 */
+  min-height: 2.6em;       /* 최소 */
+  max-height: 12em;        /* 최대(넘으면 스크롤) */
+}
+.chip { field-sizing: content; min-width: 3ch; max-width: 180px; }</code></pre>
+    <div class="note">용어: <b>field-sizing</b> = input·textarea 등 폼 요소의 크기를 내용(content)에 맞출지 지정하는 CSS 속성. · <b>Baseline</b> = 주요 브라우저 전반에서 안전하게 쓸 수 있는 상태를 뜻하는 웹 표준 지표. · <b>점진적 향상</b> = 지원 브라우저엔 좋은 경험, 미지원엔 최소 동작을 보장하는 설계.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<script>
+(function(){
+  var won = function(n){ return n.toLocaleString("ko-KR") + "원"; };
+
+  /* ---------- 1. Order summary ---------- */
+  (function(){
+    var lines = document.getElementById("lines");
+    if(!lines) return;
+    var DISCOUNT_RATE = 0.10;      // WELCOME10
+    var FREE_SHIP_AT  = 50000;     // 5만원 이상 무료배송
+    var SHIP_FEE      = 3000;
+    var ids = ["s-sub","s-disc","s-ship","s-tax","s-total"];
+    var el = {}; ids.forEach(function(i){ el[i]=document.getElementById(i); });
+
+    function flash(node){
+      node.classList.add("flash");
+      setTimeout(function(){ node.classList.remove("flash"); }, 320);
+    }
+    function recompute(){
+      var sub = 0;
+      lines.querySelectorAll(".line").forEach(function(li){
+        var price = +li.getAttribute("data-price");
+        var qty = +li.querySelector(".qty").textContent;
+        sub += price * qty;
+      });
+      var disc = Math.round(sub * DISCOUNT_RATE);
+      var afterDisc = sub - disc;
+      var ship = (afterDisc >= FREE_SHIP_AT || sub === 0) ? 0 : SHIP_FEE;
+      var tax  = Math.round(afterDisc / 11);   // 부가세 포함가 표시(참고용)
+      var total = afterDisc + ship;
+      el["s-sub"].textContent   = won(sub);
+      el["s-disc"].textContent  = "-" + won(disc);
+      el["s-ship"].textContent  = ship === 0 ? "무료" : won(ship);
+      el["s-tax"].textContent   = won(tax);
+      el["s-total"].textContent = won(total);
+      flash(el["s-total"]);
+      // free ship progress
+      var txt = document.getElementById("freeship-txt");
+      var bar = document.getElementById("freeship-bar");
+      var remain = FREE_SHIP_AT - afterDisc;
+      if(remain > 0){
+        txt.textContent = "무료배송까지 " + won(remain);
+        bar.style.width = Math.min(100, afterDisc / FREE_SHIP_AT * 100) + "%";
+      } else {
+        txt.textContent = "🎉 무료배송 적용";
+        bar.style.width = "100%";
+      }
+    }
+    lines.addEventListener("click", function(e){
+      var b = e.target.closest("button[data-d]");
+      if(!b) return;
+      var stepper = b.parentElement;
+      var q = stepper.querySelector(".qty");
+      var next = Math.max(1, +q.textContent + (+b.getAttribute("data-d")));
+      q.textContent = next;
+      stepper.querySelector('button[data-d="-1"]').disabled = (next <= 1);
+      recompute();
+    });
+    // init disabled state
+    lines.querySelectorAll(".stepper").forEach(function(s){
+      var q = +s.querySelector(".qty").textContent;
+      s.querySelector('button[data-d="-1"]').disabled = (q <= 1);
+    });
+    recompute();
+  })();
+
+  /* ---------- 2a. OTP segmented ---------- */
+  (function(){
+    var seg = document.getElementById("otpSeg");
+    if(!seg) return;
+    var msg = document.getElementById("segMsg");
+    var inputs = Array.prototype.slice.call(seg.querySelectorAll("input"));
+    var CODE = "123456";
+
+    function value(){ return inputs.map(function(i){ return i.value; }).join(""); }
+    function paint(){ inputs.forEach(function(i){ i.classList.toggle("filled", i.value !== ""); }); }
+    function clearState(){ seg.classList.remove("err","ok"); msg.textContent=""; msg.className="otp-msg"; }
+    function check(){
+      var v = value();
+      if(v.length < 6) return;
+      if(v === CODE){
+        seg.classList.remove("err"); seg.classList.add("ok");
+        msg.textContent = "✓ 인증 완료"; msg.className = "otp-msg ok";
+      } else {
+        seg.classList.remove("ok"); seg.classList.add("err");
+        msg.textContent = "✗ 코드가 일치하지 않아요 (정답 123456)"; msg.className = "otp-msg err";
+      }
+    }
+    inputs.forEach(function(inp, idx){
+      inp.addEventListener("input", function(e){
+        clearState();
+        // keep digits only
+        inp.value = inp.value.replace(/\D/g,"").slice(0,1);
+        paint();
+        if(inp.value && idx < inputs.length-1) inputs[idx+1].focus();
+        check();
+      });
+      inp.addEventListener("keydown", function(e){
+        if(e.key === "Backspace" && !inp.value && idx > 0){ inputs[idx-1].focus(); }
+        else if(e.key === "ArrowLeft" && idx > 0){ e.preventDefault(); inputs[idx-1].focus(); }
+        else if(e.key === "ArrowRight" && idx < inputs.length-1){ e.preventDefault(); inputs[idx+1].focus(); }
+      });
+      inp.addEventListener("paste", function(e){
+        e.preventDefault();
+        var txt = (e.clipboardData || window.clipboardData).getData("text").replace(/\D/g,"").slice(0,6);
+        if(!txt) return;
+        clearState();
+        txt.split("").forEach(function(ch, i){ if(inputs[i]) inputs[i].value = ch; });
+        paint();
+        var last = Math.min(txt.length, inputs.length) - 1;
+        inputs[last < 0 ? 0 : last].focus();
+        check();
+      });
+    });
+  })();
+
+  /* ---------- 2b. OTP single + resend timer ---------- */
+  (function(){
+    var one = document.getElementById("otpOne");
+    if(!one) return;
+    var msg = document.getElementById("oneMsg");
+    var verify = document.getElementById("otpVerify");
+    var resend = document.getElementById("otpResend");
+    var rc = document.getElementById("rc");
+    var CODE = "123456";
+    one.addEventListener("input", function(){
+      one.value = one.value.replace(/\D/g,"").slice(0,6);
+      msg.textContent=""; msg.className="otp-msg";
+    });
+    verify.addEventListener("click", function(){
+      if(one.value.length < 6){ msg.textContent = "6자리를 모두 입력해 주세요."; msg.className="otp-msg err"; return; }
+      if(one.value === CODE){ msg.textContent = "✓ 인증 완료"; msg.className="otp-msg ok"; }
+      else { msg.textContent = "✗ 코드가 일치하지 않아요 (정답 123456)"; msg.className="otp-msg err"; }
+    });
+    // resend countdown
+    var left = 15;
+    function tick(){
+      if(left <= 0){ resend.disabled = false; rc.textContent=""; return; }
+      rc.textContent = "(" + left + "s)";
+      left--; setTimeout(tick, 1000);
+    }
+    resend.addEventListener("click", function(){
+      if(resend.disabled) return;
+      resend.disabled = true; left = 15; tick();
+      msg.textContent = "새 코드를 보냈어요."; msg.className="otp-msg ok";
+    });
+    tick();
+  })();
+
+  /* ---------- 3. field-sizing support probe ---------- */
+  (function(){
+    var box = document.getElementById("fsSupport");
+    if(!box) return;
+    var ok = false;
+    try { ok = CSS.supports("field-sizing", "content"); } catch(e){ ok = false; }
+    if(ok){
+      box.className = "support yes";
+      box.textContent = "✓ 이 브라우저는 field-sizing: content 를 지원합니다 — 왼쪽 상자가 내용에 맞춰 자랍니다.";
+    } else {
+      box.className = "support no";
+      box.textContent = "ⓘ 이 브라우저는 field-sizing 미지원 — 왼쪽도 고정 크기로 보입니다(점진적 향상: 깨지지 않고 그냥 안 자람).";
+    }
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
