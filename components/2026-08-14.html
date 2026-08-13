@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-14 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* ---------- 1. 인라인 편집 테이블 + 행 확장 ---------- */
+  .tbl-wrap{max-width:720px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+  table.dt{width:100%;border-collapse:collapse;font-size:.88rem}
+  table.dt th,table.dt td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--border)}
+  table.dt th{background:var(--surface-2);font-size:.78rem;color:var(--muted);font-weight:600;
+    text-transform:uppercase;letter-spacing:.03em}
+  table.dt td.num,table.dt th.num{text-align:right;font-variant-numeric:tabular-nums}
+  table.dt tr.main:hover{background:var(--brand-soft)}
+  .cell-edit{border:1px solid transparent;border-radius:7px;padding:5px 8px;cursor:text;
+    display:inline-block;min-width:60px;transition:border-color .12s,background .12s}
+  .cell-edit:hover{border-color:var(--border);background:var(--surface)}
+  .cell-edit:focus{outline:none;border-color:var(--brand);background:var(--surface);
+    box-shadow:0 0 0 3px var(--brand-soft)}
+  td.num .cell-edit{text-align:right}
+  .row-toggle{background:none;border:1px solid var(--border);border-radius:7px;width:26px;height:26px;
+    cursor:pointer;color:var(--muted);font-size:.8rem;display:grid;place-items:center;font-family:inherit;
+    transition:transform .2s,color .12s}
+  .row-toggle:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  tr.main[aria-expanded="true"] .row-toggle{transform:rotate(90deg);color:var(--brand);border-color:var(--brand)}
+  @media(prefers-reduced-motion:reduce){.row-toggle{transition:none}}
+  tr.detail td{background:var(--surface-2);padding:0;border-bottom:1px solid var(--border)}
+  .detail-inner{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .28s ease,padding .28s ease}
+  tr.detail.open .detail-inner{max-height:220px;padding:16px}
+  @media(prefers-reduced-motion:reduce){.detail-inner{transition:none}}
+  .detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .detail-grid .k{font-size:.74rem;color:var(--muted)}
+  .detail-grid .v{font-size:.88rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .st{font-size:.74rem;font-weight:600;border-radius:999px;padding:3px 10px}
+  .st.done{color:var(--ok);background:var(--ok-soft)}
+  .st.pend{color:var(--warn);background:var(--warn-soft)}
+  .st.fail{color:var(--danger);background:var(--danger-soft)}
+  .dt-note{margin-top:10px;font-size:.8rem;color:var(--muted)}
+  .save-flash{display:inline-block;margin-left:8px;font-size:.76rem;color:var(--ok);opacity:0;transition:opacity .2s}
+  .save-flash.show{opacity:1}
+
+  /* ---------- 2. 실행 취소 토스트 (Undo snackbar) ---------- */
+  .undo-list{max-width:520px;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  .undo-item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px}
+  .undo-item .ico{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
+    font-size:1.05rem;background:var(--surface-2)}
+  .undo-item .meta{flex:1;min-width:0}
+  .undo-item .nm{font-size:.9rem;font-weight:600}
+  .undo-item .sub{font-size:.78rem;color:var(--muted)}
+  .undo-item .amt{font-size:.88rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .del-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;
+    color:var(--danger);font-family:inherit;font-size:.82rem;font-weight:600}
+  .del-btn:hover{background:var(--danger-soft)}
+  .del-btn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .undo-empty{text-align:center;color:var(--muted);font-size:.86rem;padding:20px 0;display:none}
+  .undo-empty.show{display:block}
+  .snack{position:absolute;left:50%;bottom:16px;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--text);color:var(--bg);border-radius:12px;padding:0;min-width:300px;max-width:90%;
+    box-shadow:var(--shadow);z-index:40;pointer-events:none;overflow:hidden;
+    transition:opacity .22s ease,transform .22s ease}
+  .snack.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+  @media(prefers-reduced-motion:reduce){.snack{transition:opacity .01s}}
+  .snack-row{display:flex;align-items:center;gap:14px;padding:12px 16px}
+  .snack-msg{flex:1;font-size:.88rem}
+  .snack-undo{background:none;border:none;color:#7cc4ff;font-family:inherit;font-weight:700;
+    font-size:.88rem;cursor:pointer;padding:4px 6px;border-radius:6px}
+  .snack-undo:focus-visible{outline:2px solid #7cc4ff;outline-offset:2px}
+  .snack-x{background:none;border:none;color:var(--bg);opacity:.6;cursor:pointer;font-size:1rem;
+    padding:2px 6px;font-family:inherit}
+  .snack-x:hover{opacity:1}
+  .snack-bar{height:3px;background:#7cc4ff;width:100%;transform-origin:left;animation:snackcount 5s linear forwards}
+  @keyframes snackcount{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+  @media(prefers-reduced-motion:reduce){.snack-bar{animation:none;transform:scaleX(0)}}
+
+  /* ---------- 3. View Transitions API ---------- */
+  .vt-panel{max-width:640px}
+  .vt-controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .vt-controls .btn.ghost[aria-pressed="true"]{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+  .vt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  @media(max-width:560px){.vt-grid{grid-template-columns:repeat(2,1fr)}}
+  .vt-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;
+    cursor:pointer;text-align:left;font-family:inherit;color:inherit}
+  .vt-card:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .vt-thumb{height:70px;border-radius:8px;margin-bottom:10px}
+  .vt-card .nm{font-size:.86rem;font-weight:600}
+  .vt-card .sub{font-size:.76rem;color:var(--muted)}
+  .vt-detail{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;
+    display:flex;gap:16px;align-items:flex-start}
+  .vt-detail .vt-thumb{width:120px;height:120px;flex:none;margin:0}
+  .vt-detail .body h4{margin:0 0 6px;font-size:1.05rem}
+  .vt-detail .body p{margin:0;font-size:.86rem;color:var(--muted)}
+  .vt-back{margin-bottom:12px}
+  .hidden{display:none}
+  /* named view-transition targets: the thumbnail morphs list<->detail */
+  .vt-morph{view-transition-name:vt-hero}
+
+  /* ---------- footer ---------- */
+  .footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+  html.embed-mode .snack{position:absolute}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-14 (금) · 오늘의 컴포넌트·패턴 3건 · 데이터/피드백/트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#table-edit">📊 인라인 편집 테이블</a>
+    <a href="#undo-toast">🔔 실행 취소 토스트</a>
+    <a href="#view-transitions">🌀 View Transitions API</a>
+  </nav>
+
+  <!-- ============ 1. 인라인 편집 테이블 + 행 확장 ============ -->
+  <section class="card" id="table-edit">
+    <h2>📊 인라인 편집 테이블 + 행 확장 <span class="tag">데이터·테이블</span></h2>
+    <p class="lead">정산표처럼 값이 자주 바뀌는 표는, 별도 편집 화면으로 가는 대신 <strong>셀을 그 자리에서 고치고</strong>(inline edit) 필요할 때만 <strong>행을 펼쳐 상세</strong>를 본다. 화면 전환·왕복을 없애 수정 속도를 높이는 요즘의 데이터 그리드 패턴이다.</p>
+
+    <div class="demo">
+      <div class="tbl-wrap">
+        <table class="dt" id="dtable">
+          <thead>
+            <tr>
+              <th style="width:34px"><span class="sr-only">펼치기</span></th>
+              <th>가맹점</th>
+              <th class="num">금액</th>
+              <th>상태</th>
+            </tr>
+          </thead>
+          <tbody id="dtbody"><!-- rows injected --></tbody>
+        </table>
+      </div>
+      <p class="dt-note">셀을 클릭하거나 <span class="kbd">Tab</span>으로 이동해 값을 고치세요. <span class="kbd">Enter</span> 또는 포커스 아웃 시 저장(합계 자동 반영). ▸ 버튼(또는 <span class="kbd">Enter</span>)으로 행을 펼쳐 상세를 봅니다.</p>
+      <div class="dt-note" style="margin-top:6px">합계 <strong id="dtsum" style="font-variant-numeric:tabular-nums">—</strong><span class="save-flash" id="saveFlash">저장됨 ✓</span></div>
+    </div>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong>인라인 셀 편집</strong> — <code>contenteditable</code> 또는 셀 안 input. "저장" 버튼 없이 blur/Enter로 커밋하고 작은 "저장됨 ✓" 플래시로 확인.</li>
+      <li><strong>행 확장(expandable row)</strong> — 표는 요약만, 세부(수수료·승인번호·타임스탬프)는 펼쳤을 때만. 열을 무한정 늘리지 않는 밀도 관리법.</li>
+      <li><strong>숫자 우측 정렬 + tabular-nums</strong> — 자릿수를 세로로 맞춰 금액 비교가 쉬워진다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- 편집 가능한 셀: contenteditable + inputmode --&gt;
+&lt;td class="num"&gt;
+  &lt;span class="cell-edit" contenteditable="true"
+        inputmode="decimal" role="textbox" aria-label="금액"&gt;12,000&lt;/span&gt;
+&lt;/td&gt;
+
+// Enter는 줄바꿈 대신 커밋(blur)
+cell.addEventListener("keydown", e =&gt; {
+  if (e.key === "Enter") { e.preventDefault(); cell.blur(); }
+});
+cell.addEventListener("blur", () =&gt; { commit(cell); flashSaved(); });</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>편집 셀에 <code>role="textbox"</code>·<code>aria-label</code>. 숫자는 <code>inputmode="decimal"</code>로 모바일 키패드 유도. <em>inputmode: 화면 키보드 종류 힌트.</em></li>
+      <li>확장 토글은 <code>&lt;button aria-expanded&gt;</code>로, 상세 영역은 <code>role="region"</code>. 접힘/펼침을 보조기기가 읽는다.</li>
+      <li>펼침 애니메이션은 <code>prefers-reduced-motion</code>에서 끔. <em>prefers-reduced-motion: 사용자가 OS에서 "동작 줄이기"를 켠 상태.</em></li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">정산·환불 관리 표에서 상담원이 금액/메모를 그 자리에서 고치게 하면 화면 왕복이 준다. 단, 결제 금액 같은 민감 필드는 인라인 편집 후 <strong>서버 검증 + 낙관적 UI 롤백</strong>을 붙이고, 확장 행에 승인번호·PG 응답코드를 담아 감사(audit) 흐름을 한 화면에서 처리한다.</p>
+
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-14.html</code> · 참고: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable" target="_blank" rel="noopener">MDN contenteditable</a>, <a href="https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/" target="_blank" rel="noopener">ARIA Disclosure 패턴</a></div>
+  </section>
+
+  <!-- ============ 2. 실행 취소 토스트 (Undo snackbar) ============ -->
+  <section class="card" id="undo-toast">
+    <h2>🔔 실행 취소 토스트 (Undo Snackbar) <span class="tag">피드백·상태</span></h2>
+    <p class="lead">"정말 삭제할까요?" 모달로 매번 막는 대신, <strong>먼저 실행하고 잠깐 되돌릴 기회를 준다.</strong> 삭제하면 항목은 바로 사라지지만 하단 스낵바에 <strong>실행 취소</strong> 버튼과 카운트다운이 뜬다. 확인 클릭 수를 줄이면서도 안전한, 요즘 표준 패턴이다.</p>
+
+    <div class="demo" style="position:relative;min-height:230px" id="undoStage">
+      <ul class="undo-list" id="undoList"><!-- items injected --></ul>
+      <p class="undo-empty" id="undoEmpty">모든 항목이 삭제됐습니다. 스낵바의 <strong>실행 취소</strong>로 되돌리거나 아래 버튼으로 초기화하세요.</p>
+      <div style="margin-top:14px"><button class="btn ghost sm" id="undoReset">목록 초기화</button></div>
+      <!-- snackbar -->
+      <div class="snack" id="snack" role="status" aria-live="polite">
+        <div class="snack-row">
+          <span class="snack-msg" id="snackMsg">항목을 삭제했습니다</span>
+          <button class="snack-undo" id="snackUndo">실행 취소</button>
+          <button class="snack-x" id="snackClose" aria-label="닫기">✕</button>
+        </div>
+        <div class="snack-bar" id="snackBar"></div>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong>Undo 스낵바</strong> — 삭제 직후 되돌리기. 카운트다운 바가 끝나면 실제 커밋(서버 반영).</li>
+      <li><strong>단일 슬롯</strong> — 연속 삭제 시 이전 스낵바는 즉시 커밋하고 새 것만 표시. 스낵바가 쌓여 화면을 덮지 않게.</li>
+      <li><strong>aria-live로 안내</strong> — 스낵바 등장 문구를 스크린리더가 자동 낭독(<code>role="status"</code>).</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>let pending = null;                 // {item, timer}
+function remove(item){
+  commitPrevious();                 // 이전 삭제는 확정
+  item.el.remove();                 // 화면에서 즉시 제거(낙관적)
+  pending = { item, timer:setTimeout(commitPrevious, 5000) };
+  showSnack("삭제했습니다");
+}
+function undo(){                     // 실행 취소
+  clearTimeout(pending.timer);
+  restore(pending.item);            // DOM 복원
+  pending = null; hideSnack();
+}
+function commitPrevious(){           // 카운트다운 종료 → 서버 반영
+  if(!pending) return;
+  api.delete(pending.item.id);
+  pending = null; hideSnack();
+}</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>스낵바는 <code>role="status"</code> + <code>aria-live="polite"</code>. 포커스를 강제로 뺏지 않으면서 알린다. <em>aria-live: 영역 내용이 바뀌면 보조기기가 읽어줌.</em></li>
+      <li>키보드로도 실행 취소 가능해야 함 — 버튼에 도달 가능하고 <span class="kbd">Enter</span>로 눌림.</li>
+      <li>카운트다운 바 애니메이션은 <code>prefers-reduced-motion</code>에서 즉시 완료 상태로.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">거래 숨김·메모 삭제·필터 초기화처럼 <strong>되돌릴 수 있는</strong> 액션에 적합. 반대로 <strong>환불 실행·정산 확정</strong>처럼 비가역·금전 이동은 확인 모달을 유지한다. 낙관적 제거 + 5초 유예로 UX를 매끄럽게 하되, 유예 종료 시점에만 실제 API를 호출해 서버 부하와 롤백 복잡도를 줄인다.</p>
+
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-14.html</code> · 참고: <a href="https://m3.material.io/components/snackbar/guidelines" target="_blank" rel="noopener">Material 3 Snackbar 가이드</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/status_role" target="_blank" rel="noopener">MDN role="status"</a></div>
+  </section>
+
+  <!-- ============ 3. View Transitions API ============ -->
+  <section class="card" id="view-transitions">
+    <h2>🌀 View Transitions API <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><strong>View Transitions API</strong>는 DOM이 바뀌기 전/후 상태를 브라우저가 알아서 스냅샷으로 잡아 <strong>부드럽게 교차(morph)시켜 주는</strong> 표준 API다. 예전엔 Framer Motion 같은 라이브러리로 하던 리스트→상세 전환을, 이제 CSS와 짧은 JS로 처리한다.</p>
+
+    <div class="demo">
+      <div class="vt-panel">
+        <div class="vt-controls" role="group" aria-label="옵션">
+          <button class="btn ghost sm" id="vtToggle" aria-pressed="true">✨ 전환 애니메이션: 켬</button>
+          <span class="cap" style="align-self:center" id="vtSupport"></span>
+        </div>
+
+        <!-- 리스트 뷰 -->
+        <div id="vtList">
+          <div class="vt-grid" id="vtGrid"><!-- cards injected --></div>
+        </div>
+
+        <!-- 상세 뷰 -->
+        <div id="vtDetail" class="hidden">
+          <button class="btn ghost sm vt-back" id="vtBack">← 목록</button>
+          <div class="vt-detail">
+            <div class="vt-thumb vt-morph" id="vtDetailThumb"></div>
+            <div class="body">
+              <h4 id="vtDetailName">상품명</h4>
+              <p id="vtDetailDesc">설명</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">카드를 클릭하면 썸네일이 상세 뷰로 <strong>이어져 커지는</strong> 전환이 실행됩니다(지원 브라우저). "전환 애니메이션: 끔"으로 비교해 보세요.</p>
+    </div>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><strong>같은 문서(SPA) 전환</strong>은 Chrome/Edge 111+, Safari 18+, 그리고 최근 Firefox 버전에서 지원(정확 버전은 브라우저별 상이 — 배포 전 caniuse 확인 권장, 추정).</li>
+      <li><strong>문서 간(MPA) 전환</strong>은 Chromium 계열이 앞서 있고 Safari·Firefox는 아직 제한적(2026 진행 중, 추정). 그래서 <strong>점진적 향상</strong>으로 쓴다 — 미지원 시 애니메이션 없이 즉시 교체.</li>
+      <li>리스트→상세, 탭 전환, 좋아요 토글 등 "같은 요소가 위치·크기만 바뀌는" 장면에 특히 잘 맞는다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>// 점진적 향상: 미지원이면 그냥 콜백만 실행
+function withTransition(update){
+  if (!document.startViewTransition) { update(); return; }
+  document.startViewTransition(update);   // 스냅샷 → DOM 변경 → 교차 애니메이션
+}
+
+// 이어지는 요소는 같은 이름을 부여 → 브라우저가 morph
+// (리스트 썸네일과 상세 썸네일에 동일 이름)
+.thumb-active { view-transition-name: vt-hero; }
+
+// 동작 줄이기 존중
+@media (prefers-reduced-motion: reduce){
+  ::view-transition-group(*){ animation: none; }
+}</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>전환은 <strong>장식</strong>이다 — 미지원/저사양에서도 콘텐츠 접근에 지장이 없어야 하고, 실제로 <code>startViewTransition</code>이 없으면 즉시 교체된다.</li>
+      <li><code>prefers-reduced-motion</code>에서 <code>::view-transition-group</code> 애니메이션을 꺼 어지럼을 방지.</li>
+      <li>포커스 관리는 별개 — 상세로 갈 때 제목/뒤로가기에 포커스를 옮겨 키보드 흐름을 유지.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">거래 리스트 → 거래 상세, 카드 목록 → 카드 관리처럼 <strong>같은 카드가 확대되는</strong> 흐름에 적용하면 맥락 유지가 좋아진다. Next.js(App Router) 환경에선 라우트 전환에 얹을 수 있으나 브라우저 지원 편차가 있으니 <strong>필수 기능이 아닌 향상</strong>으로만 쓰고, 미지원 시 동일하게 동작하는지 반드시 회귀 확인.</p>
+
+    <div class="support yes" id="vtSupportBox">지원 여부는 아래 데모 상단에 실시간 표시됩니다.</div>
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-14.html</code> · 참고: <a href="https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API" target="_blank" rel="noopener">MDN View Transition API</a></div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원 · 섹션 id: <code>table-edit</code> / <code>undo-toast</code> / <code>view-transitions</code></div>
+</div>
+
+<script>
+(function(){
+  var KRW = function(n){ return n.toLocaleString("ko-KR"); };
+
+  /* ========== 1. 인라인 편집 테이블 + 행 확장 ========== */
+  (function(){
+    var rows = [
+      {id:"tx1", m:"스타벅스 강남", amt:12000, st:"done", fee:120, appr:"A88213", pg:"토스페이먼츠", ts:"08-14 09:12"},
+      {id:"tx2", m:"쿠팡", amt:38900, st:"done", fee:389, appr:"A88240", pg:"NICE", ts:"08-14 10:03"},
+      {id:"tx3", m:"배달의민족", amt:24500, st:"pend", fee:245, appr:"—", pg:"토스페이먼츠", ts:"08-14 12:41"},
+      {id:"tx4", m:"GS25 역삼", amt:8300, st:"fail", fee:0, appr:"—", pg:"NICE", ts:"08-14 13:20"}
+    ];
+    var stLabel = {done:"승인", pend:"대기", fail:"실패"};
+    var tbody = document.getElementById("dtbody");
+    var flash = document.getElementById("saveFlash");
+    var flashTimer;
+
+    function render(){
+      tbody.innerHTML = "";
+      rows.forEach(function(r, i){
+        var tr = document.createElement("tr");
+        tr.className = "main"; tr.setAttribute("aria-expanded","false");
+        tr.innerHTML =
+          '<td><button class="row-toggle" aria-label="상세 펼치기">▸</button></td>' +
+          '<td><span class="cell-edit" contenteditable="true" role="textbox" aria-label="가맹점">'+r.m+'</span></td>' +
+          '<td class="num"><span class="cell-edit" contenteditable="true" inputmode="decimal" role="textbox" aria-label="금액">'+KRW(r.amt)+'</span></td>' +
+          '<td><span class="st '+r.st+'">'+stLabel[r.st]+'</span></td>';
+        var det = document.createElement("tr");
+        det.className = "detail";
+        det.innerHTML =
+          '<td colspan="4"><div class="detail-inner"><div class="detail-grid">' +
+          '<div><div class="k">수수료</div><div class="v">'+KRW(r.fee)+'원</div></div>' +
+          '<div><div class="k">승인번호</div><div class="v">'+r.appr+'</div></div>' +
+          '<div><div class="k">PG</div><div class="v">'+r.pg+'</div></div>' +
+          '<div><div class="k">시각</div><div class="v">'+r.ts+'</div></div>' +
+          '</div></div></td>';
+        tbody.appendChild(tr); tbody.appendChild(det);
+
+        // toggle expand
+        var toggle = tr.querySelector(".row-toggle");
+        function toggleRow(){
+          var open = det.classList.toggle("open");
+          tr.setAttribute("aria-expanded", String(open));
+          toggle.setAttribute("aria-label", open ? "상세 접기" : "상세 펼치기");
+        }
+        toggle.addEventListener("click", toggleRow);
+
+        // inline edit commit
+        var cells = tr.querySelectorAll(".cell-edit");
+        cells.forEach(function(cell){
+          cell.addEventListener("keydown", function(e){
+            if(e.key === "Enter"){ e.preventDefault(); cell.blur(); }
+          });
+          cell.addEventListener("blur", function(){ commit(r, cell); });
+        });
+      });
+      updateSum();
+    }
+    function commit(r, cell){
+      var label = cell.getAttribute("aria-label");
+      if(label === "금액"){
+        var n = parseInt(cell.textContent.replace(/[^0-9]/g,""),10);
+        if(isNaN(n)) n = 0;
+        r.amt = n; cell.textContent = KRW(n);
+        updateSum();
+      } else {
+        r.m = cell.textContent.trim() || r.m;
+        cell.textContent = r.m;
+      }
+      flashSaved();
+    }
+    function updateSum(){
+      var s = rows.reduce(function(a,r){ return a + r.amt; },0);
+      document.getElementById("dtsum").textContent = KRW(s) + "원";
+    }
+    function flashSaved(){
+      flash.classList.add("show");
+      clearTimeout(flashTimer);
+      flashTimer = setTimeout(function(){ flash.classList.remove("show"); }, 1100);
+    }
+    render();
+  })();
+
+  /* ========== 2. 실행 취소 토스트 ========== */
+  (function(){
+    var seed = [
+      {id:"n1", ico:"🧾", nm:"정산 리포트 08-13", sub:"PDF · 2.1MB", amt:""},
+      {id:"n2", ico:"💳", nm:"거래 메모 — 배민", sub:"메모 3건", amt:""},
+      {id:"n3", ico:"🔖", nm:"저장한 필터 “실패 거래”", sub:"필터", amt:""},
+      {id:"n4", ico:"📌", nm:"고정 대시보드 위젯", sub:"위젯", amt:""}
+    ];
+    var listEl = document.getElementById("undoList");
+    var emptyEl = document.getElementById("undoEmpty");
+    var snack = document.getElementById("snack");
+    var snackMsg = document.getElementById("snackMsg");
+    var snackBar = document.getElementById("snackBar");
+    var pending = null; // {item, node, next, timer}
+
+    function build(){
+      listEl.innerHTML = "";
+      seed.forEach(function(it){ listEl.appendChild(makeNode(it)); });
+      checkEmpty();
+    }
+    function makeNode(it){
+      var li = document.createElement("li");
+      li.className = "undo-item"; li.dataset.id = it.id;
+      li.innerHTML =
+        '<span class="ico">'+it.ico+'</span>' +
+        '<span class="meta"><span class="nm">'+it.nm+'</span><br><span class="sub">'+it.sub+'</span></span>' +
+        '<button class="del-btn">삭제</button>';
+      li.querySelector(".del-btn").addEventListener("click", function(){ remove(li, it); });
+      return li;
+    }
+    function checkEmpty(){
+      emptyEl.classList.toggle("show", listEl.children.length === 0);
+    }
+    function remove(node, it){
+      commitPrevious();                 // 이전 삭제 확정
+      var next = node.nextElementSibling;
+      node.remove();
+      checkEmpty();
+      pending = { item:it, node:node, next:next, timer:setTimeout(commitPrevious, 5000) };
+      showSnack("“"+it.nm+"” 삭제됨");
+    }
+    function commitPrevious(){
+      if(!pending) return;
+      // 실제로는 여기서 api.delete(pending.item.id)
+      pending = null; hideSnack();
+    }
+    function undo(){
+      if(!pending) return;
+      clearTimeout(pending.timer);
+      if(pending.next && pending.next.parentNode === listEl){
+        listEl.insertBefore(pending.node, pending.next);
+      } else {
+        listEl.appendChild(pending.node);
+      }
+      pending = null; checkEmpty(); hideSnack();
+    }
+    function showSnack(msg){
+      snackMsg.textContent = msg;
+      snack.classList.remove("show");
+      // restart countdown animation
+      snackBar.style.animation = "none"; void snackBar.offsetWidth; snackBar.style.animation = "";
+      requestAnimationFrame(function(){ snack.classList.add("show"); });
+    }
+    function hideSnack(){ snack.classList.remove("show"); }
+
+    document.getElementById("snackUndo").addEventListener("click", undo);
+    document.getElementById("snackClose").addEventListener("click", commitPrevious);
+    document.getElementById("undoReset").addEventListener("click", function(){
+      pending = null; hideSnack(); build();
+    });
+    build();
+  })();
+
+  /* ========== 3. View Transitions API ========== */
+  (function(){
+    var items = [
+      {id:"c1", nm:"블랙 체크카드", sub:"paysable", grad:"linear-gradient(135deg,#1f2937,#4b5563)", desc:"연회비 무료 · 실적 무관 0.7% 적립. 실물/모바일 동시 발급."},
+      {id:"c2", nm:"트래블 카드", sub:"해외 결제", grad:"linear-gradient(135deg,#0ea5e9,#6366f1)", desc:"해외 수수료 0원 · 실시간 환율. 여행 카테고리 2% 적립."},
+      {id:"c3", nm:"비즈니스 카드", sub:"법인", grad:"linear-gradient(135deg,#7c3aed,#db2777)", desc:"사업자 지출 자동 분류 · 세금계산서 연동. 팀 카드 다중 발급."},
+      {id:"c4", nm:"세이브 카드", sub:"생활", grad:"linear-gradient(135deg,#059669,#10b981)", desc:"편의점·마트 3% · 교통 정액 할인. 소액 자동 저축 라운드업."},
+      {id:"c5", nm:"프리미엄 카드", sub:"멤버십", grad:"linear-gradient(135deg,#b45309,#f59e0b)", desc:"공항 라운지 · 전용 상담. 연 30만 바우처 제공."},
+      {id:"c6", nm:"학생 카드", sub:"20대", grad:"linear-gradient(135deg,#e11d48,#f43f5e)", desc:"스트리밍·카페 5% · 소액 한도. 첫 카드용 안심 설계."}
+    ];
+    var grid = document.getElementById("vtGrid");
+    var listView = document.getElementById("vtList");
+    var detailView = document.getElementById("vtDetail");
+    var dThumb = document.getElementById("vtDetailThumb");
+    var dName = document.getElementById("vtDetailName");
+    var dDesc = document.getElementById("vtDetailDesc");
+    var backBtn = document.getElementById("vtBack");
+    var toggleBtn = document.getElementById("vtToggle");
+    var supportSpan = document.getElementById("vtSupport");
+    var supported = typeof document.startViewTransition === "function";
+    var animOn = true;
+    var activeThumb = null;
+
+    supportSpan.textContent = supported
+      ? "이 브라우저: View Transitions 지원 ✓"
+      : "이 브라우저: 미지원 — 즉시 교체로 폴백";
+
+    items.forEach(function(it){
+      var b = document.createElement("button");
+      b.className = "vt-card"; b.setAttribute("aria-label", it.nm + " 상세 보기");
+      b.innerHTML =
+        '<div class="vt-thumb" style="background:'+it.grad+'"></div>' +
+        '<div class="nm">'+it.nm+'</div><div class="sub">'+it.sub+'</div>';
+      b.addEventListener("click", function(){ openDetail(it, b.querySelector(".vt-thumb")); });
+      grid.appendChild(b);
+    });
+
+    function withVT(update){
+      if(supported && animOn && document.startViewTransition){
+        document.startViewTransition(update);
+      } else { update(); }
+    }
+    function openDetail(it, thumbEl){
+      if(activeThumb) activeThumb.classList.remove("vt-morph");
+      thumbEl.classList.add("vt-morph"); activeThumb = thumbEl;
+      withVT(function(){
+        dThumb.style.background = it.grad;
+        dName.textContent = it.nm; dDesc.textContent = it.desc;
+        listView.classList.add("hidden"); detailView.classList.remove("hidden");
+      });
+      // focus 관리
+      setTimeout(function(){ backBtn.focus(); }, 0);
+    }
+    function closeDetail(){
+      withVT(function(){
+        detailView.classList.add("hidden"); listView.classList.remove("hidden");
+      });
+    }
+    backBtn.addEventListener("click", closeDetail);
+    toggleBtn.addEventListener("click", function(){
+      animOn = !animOn;
+      toggleBtn.setAttribute("aria-pressed", String(animOn));
+      toggleBtn.textContent = animOn ? "✨ 전환 애니메이션: 켬" : "✨ 전환 애니메이션: 끔";
+    });
+  })();
+
+  /* ========== theme toggle ========== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ========== embed compact mode: ?embed=<id> ========== */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get("embed") || q.get("demo");
+    if(q.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
