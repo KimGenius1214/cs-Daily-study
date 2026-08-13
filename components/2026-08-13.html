@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-13 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* ---------- 1. Scrollspy 앵커 내비 ---------- */
+  .spy{display:grid;grid-template-columns:180px 1fr;gap:18px;max-width:760px}
+  @media(max-width:640px){.spy{grid-template-columns:1fr}}
+  nav.spy-nav{position:sticky;top:0;align-self:start}
+  nav.spy-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  @media(max-width:640px){nav.spy-nav ul{flex-direction:row;flex-wrap:wrap}}
+  nav.spy-nav a{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--muted);
+    font-size:.88rem;padding:8px 12px;border-radius:9px;border-left:3px solid transparent}
+  nav.spy-nav a:hover{background:var(--surface);color:var(--text)}
+  nav.spy-nav a:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  nav.spy-nav a[aria-current="true"]{color:var(--brand);background:var(--brand-soft);
+    border-left-color:var(--brand);font-weight:600}
+  @media(max-width:640px){nav.spy-nav a[aria-current="true"]{border-left:none;border-bottom:3px solid var(--brand)}}
+  .spy-scroll{height:280px;overflow-y:auto;border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);padding:0 18px;scroll-behavior:smooth}
+  .spy-scroll h4{position:sticky;top:0;background:var(--surface);margin:0;padding:14px 0 8px;
+    font-size:.98rem;border-bottom:1px solid var(--border)}
+  .spy-sec{padding:6px 0 26px}
+  .spy-sec p{font-size:.88rem;color:var(--muted);margin:.5rem 0}
+
+  /* ---------- 2. 선택형 리스트 + 벌크 액션바 ---------- */
+  .bl-wrap{max-width:620px;position:relative}
+  .bl-head{display:flex;align-items:center;gap:12px;padding:6px 4px 10px;color:var(--muted);font-size:.85rem}
+  .bl-head label{display:flex;align-items:center;gap:8px;cursor:pointer}
+  ul.bl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+  li.bl-item{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:12px 14px;transition:border-color .15s,background .15s}
+  li.bl-item:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  li.bl-item .who{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;
+    font-size:1.05rem;background:var(--surface-2)}
+  li.bl-item .meta{flex:1;min-width:0}
+  li.bl-item .nm{font-size:.92rem;font-weight:600}
+  li.bl-item .sub{font-size:.78rem;color:var(--muted)}
+  li.bl-item .amt{font-size:.9rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .bl-cb{width:18px;height:18px;accent-color:var(--brand);cursor:pointer;flex:none}
+  .bl-cb:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .bulkbar{position:sticky;bottom:10px;margin-top:14px;display:flex;align-items:center;gap:12px;
+    background:var(--text);color:var(--bg);border-radius:12px;padding:10px 14px;box-shadow:var(--shadow);
+    transform:translateY(140%);opacity:0;transition:transform .25s ease,opacity .25s ease;pointer-events:none}
+  .bulkbar.show{transform:translateY(0);opacity:1;pointer-events:auto}
+  @media(prefers-reduced-motion:reduce){.bulkbar{transition:none}}
+  .bulkbar .cnt{font-size:.88rem;font-weight:600;flex:1}
+  .bulkbar button{cursor:pointer;font-family:inherit;font-size:.84rem;font-weight:600;border-radius:8px;
+    padding:6px 11px;border:1px solid transparent;background:rgba(255,255,255,.16);color:inherit}
+  .bulkbar button:hover{background:rgba(255,255,255,.28)}
+  .bulkbar button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+  .bulkbar button.danger{background:var(--danger);color:#fff}
+  .bl-empty{text-align:center;color:var(--muted);font-size:.88rem;padding:24px 0;display:none}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--text);color:var(--bg);border-radius:10px;padding:10px 16px;font-size:.86rem;
+    display:flex;align-items:center;gap:14px;box-shadow:var(--shadow);transition:opacity .2s,transform .2s;
+    z-index:50;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+  .toast button{background:none;border:none;color:#7cc4ff;font-family:inherit;font-weight:700;font-size:.86rem;cursor:pointer}
+  html.embed-mode .toast{position:absolute}
+
+  /* ---------- 3. Popover API ---------- */
+  .pop-row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+  .menu-pop{margin:0;padding:6px;border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    color:var(--text);box-shadow:var(--shadow);min-width:180px;position:fixed}
+  .menu-pop:popover-open{display:block}
+  .menu-pop ul{list-style:none;margin:0;padding:0}
+  .menu-pop button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;border:none;background:none;
+    color:inherit;font-family:inherit;font-size:.88rem;padding:9px 12px;border-radius:8px;cursor:pointer}
+  .menu-pop button:hover{background:var(--brand-soft);color:var(--brand)}
+  .menu-pop button:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .menu-pop hr{border:none;border-top:1px solid var(--border);margin:5px 4px}
+  .menu-pop button.danger{color:var(--danger)}
+  .hint-pop{margin:0;padding:14px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    color:var(--text);box-shadow:var(--shadow);max-width:280px;font-size:.86rem}
+  .hint-pop h4{margin:0 0 6px;color:var(--brand)}
+  .hint-pop::backdrop{background:rgba(10,12,18,.35)}
+  .pop-status{margin-top:6px;font-size:.82rem;color:var(--muted);min-height:1.3em}
+  .iconbtn{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);cursor:pointer;font-size:1rem}
+  .iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .iconbtn:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:30px;padding-top:18px;
+    border-top:1px solid var(--border)}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-13 (목) · 내비·리스트·트렌드 3건 · 직접 만든 라이브 예시</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#scrollspy">🧭 스크롤 스파이 내비</a>
+    <a href="#bulklist">🃏 선택형 리스트 + 벌크 액션</a>
+    <a href="#popover">🌀 Popover API</a>
+  </nav>
+
+  <!-- ============ 1. Scrollspy ============ -->
+  <section class="card" id="scrollspy">
+    <h2>🧭 스크롤 스파이 내비게이션 — 현재 보는 섹션 자동 하이라이트 <span class="tag">내비게이션·탭</span></h2>
+    <p class="lead">긴 문서·설정 페이지에서 "내가 지금 어디 있는지"를 왼쪽 목차가 실시간으로 알려주는 패턴. 아래 회색 영역을 스크롤하면 왼쪽 항목의 하이라이트가 따라 움직이고, 항목을 클릭하면 해당 섹션으로 부드럽게 이동한다. 스크롤 이벤트를 직접 계산하지 않고 <code>IntersectionObserver</code>로 감지한다.</p>
+    <div class="demo">
+      <div class="spy">
+        <nav class="spy-nav" aria-label="설정 섹션">
+          <ul id="spyNav">
+            <li><a href="#sp-account" data-spy="sp-account">👤 계정</a></li>
+            <li><a href="#sp-pay" data-spy="sp-pay">💳 결제 수단</a></li>
+            <li><a href="#sp-noti" data-spy="sp-noti">🔔 알림</a></li>
+            <li><a href="#sp-security" data-spy="sp-security">🔒 보안</a></li>
+          </ul>
+        </nav>
+        <div class="spy-scroll" id="spyScroll" tabindex="0" aria-label="설정 내용(스크롤)">
+          <section class="spy-sec" id="sp-account">
+            <h4>👤 계정</h4>
+            <p>이름, 이메일, 프로필 이미지를 관리합니다. 이메일 변경 시 인증 메일이 발송됩니다.</p>
+            <p>연결된 소셜 로그인(구글·애플)을 해제하거나 추가할 수 있습니다.</p>
+            <p>계정 언어와 시간대를 설정하면 영수증·알림 시각이 그에 맞춰 표시됩니다.</p>
+          </section>
+          <section class="spy-sec" id="sp-pay">
+            <h4>💳 결제 수단</h4>
+            <p>등록한 카드·계좌를 확인하고 기본 결제 수단을 지정합니다.</p>
+            <p>카드 번호는 마지막 4자리만 노출되고 나머지는 마스킹됩니다.</p>
+            <p>정기결제에 사용 중인 수단은 삭제 전 대체 수단 지정을 요구합니다.</p>
+          </section>
+          <section class="spy-sec" id="sp-noti">
+            <h4>🔔 알림</h4>
+            <p>결제 완료, 정산, 마케팅 알림을 채널(앱·이메일·문자)별로 켜고 끕니다.</p>
+            <p>야간 방해금지 시간대를 지정하면 그 시간엔 푸시가 묶여 아침에 요약됩니다.</p>
+            <p>중요 보안 알림은 끌 수 없도록 잠겨 있습니다.</p>
+          </section>
+          <section class="spy-sec" id="sp-security">
+            <h4>🔒 보안</h4>
+            <p>비밀번호 변경, 2단계 인증(OTP), 로그인 기기 목록을 관리합니다.</p>
+            <p>의심스러운 로그인이 감지되면 이 화면 상단에 배너로 표시됩니다.</p>
+            <p>계정 삭제는 되돌릴 수 없으므로 재인증을 거칩니다.</p>
+          </section>
+        </div>
+      </div>
+      <p class="cap">왜 이렇게? — 활성 항목엔 <code>aria-current="true"</code>를 줘서 스크린리더도 "현재 위치"를 읽는다. 색만으로 구분하지 않고 왼쪽 막대·굵기까지 함께 바꿔 <b>색맹 사용자</b>도 구분되게 했다.</p>
+    </div>
+    <h3 class="sec-lead">핵심 패턴</h3>
+    <ul class="clean">
+      <li>스크롤 위치는 <code>scroll</code> 이벤트로 매 프레임 계산하지 말고 <code>IntersectionObserver</code>로 "지금 화면에 들어온 섹션"만 콜백 받는다(성능·배터리 유리).</li>
+      <li><code>rootMargin</code>을 위쪽으로 당겨(예: 상단 40% 지점) "제목이 상단에 닿는 순간"을 활성 기준으로 삼는다.</li>
+      <li>목차 클릭 → <code>scrollIntoView({behavior:"smooth"})</code>. 활성 표시는 관찰자가 알아서 갱신하므로 클릭 핸들러에서 색을 직접 바꾸지 않는다(상태 출처 하나로 통일).</li>
+    </ul>
+    <div class="note">용어: <b>IntersectionObserver</b> = 어떤 요소가 화면(또는 스크롤 컨테이너)에 얼마나 들어왔는지를 비동기로 알려주는 브라우저 API. 스크롤 계산을 대신 해준다. · <b>aria-current</b> = 여러 항목 중 지금 활성/현재인 것을 보조기술에 알리는 ARIA 속성.</div>
+  </section>
+
+  <!-- ============ 2. 선택형 리스트 + 벌크 액션바 ============ -->
+  <section class="card" id="bulklist">
+    <h2>🃏 선택형 리스트 + 벌크 액션바 — 다중 선택·전체선택·되돌리기 <span class="tag">카드·리스트</span></h2>
+    <p class="lead">정산 내역·메일함처럼 "여러 개를 골라 한 번에 처리"하는 리스트. 하나라도 고르면 아래에서 액션 바가 올라오고, 헤더 체크박스는 부분선택일 때 <b>중간(indeterminate)</b> 상태가 된다. 삭제하면 사라지되 토스트의 <b>되돌리기</b>로 3초 안에 복구된다.</p>
+    <div class="demo">
+      <div class="bl-wrap">
+        <div class="bl-head">
+          <label><input type="checkbox" class="bl-cb" id="blAll" aria-label="전체 선택"> <span id="blHeadLabel">전체 선택</span></label>
+        </div>
+        <ul class="bl-list" id="blList">
+          <li class="bl-item"><input type="checkbox" class="bl-cb" aria-label="스타벅스 정산 선택">
+            <div class="who" aria-hidden="true">☕</div>
+            <div class="meta"><div class="nm">스타벅스 코리아</div><div class="sub">정산 대기 · 8/12</div></div>
+            <div class="amt">142,800원</div></li>
+          <li class="bl-item"><input type="checkbox" class="bl-cb" aria-label="쿠팡 정산 선택">
+            <div class="who" aria-hidden="true">📦</div>
+            <div class="meta"><div class="nm">쿠팡</div><div class="sub">정산 완료 · 8/11</div></div>
+            <div class="amt">89,400원</div></li>
+          <li class="bl-item"><input type="checkbox" class="bl-cb" aria-label="배달의민족 정산 선택">
+            <div class="who" aria-hidden="true">🛵</div>
+            <div class="meta"><div class="nm">배달의민족</div><div class="sub">정산 대기 · 8/11</div></div>
+            <div class="amt">57,200원</div></li>
+          <li class="bl-item"><input type="checkbox" class="bl-cb" aria-label="토스 정산 선택">
+            <div class="who" aria-hidden="true">💸</div>
+            <div class="meta"><div class="nm">토스페이먼츠</div><div class="sub">보류 · 8/10</div></div>
+            <div class="amt">213,050원</div></li>
+        </ul>
+        <div class="bl-empty" id="blEmpty">모든 항목을 처리했어요. (되돌리기로 복구 가능)</div>
+        <div class="bulkbar" id="bulkbar" role="toolbar" aria-label="선택 항목 작업">
+          <span class="cnt" id="bulkCnt">0개 선택</span>
+          <button type="button" id="bulkExport">내보내기</button>
+          <button type="button" id="bulkArchive">보관</button>
+          <button type="button" class="danger" id="bulkDelete">삭제</button>
+          <button type="button" id="bulkClear" aria-label="선택 해제">✕</button>
+        </div>
+      </div>
+      <p class="cap">왜 이렇게? — 선택된 행은 테두리·배경까지 바꿔 <code>:has(input:checked)</code> CSS 한 줄로 강조(JS 없이). 액션 바는 <b>필요할 때만</b> 올라와 평소 화면을 어지럽히지 않는다.</p>
+    </div>
+    <h3 class="sec-lead">핵심 패턴</h3>
+    <ul class="clean">
+      <li>헤더 체크박스는 3상태: 전부 선택=체크, 일부만=<code>indeterminate</code>, 없음=해제. 이 중간 상태는 CSS로는 못 만들고 JS로 <code>el.indeterminate=true</code>를 줘야 한다.</li>
+      <li>파괴적 액션(삭제)은 즉시 지우되 <b>낙관적 처리 + 되돌리기</b>: 화면에서 먼저 빼고 3초 토스트를 주면, 확인 모달보다 흐름이 덜 끊긴다.</li>
+      <li>행 강조는 상태(<code>:checked</code>)에서 파생 — 클릭 때마다 클래스를 손으로 토글하지 않는다.</li>
+    </ul>
+    <div class="note">용어: <b>indeterminate</b> = 체크박스의 "일부만 선택됨"을 나타내는 중간 상태(시각적으로 대개 줄표). · <b>낙관적 UI(optimistic)</b> = 서버 응답을 기다리지 않고 성공을 가정해 화면을 먼저 바꾸고, 실패하면 되돌리는 방식. · <b>:has()</b> = 자식·상태를 조건으로 부모를 선택하는 CSS 관계 선택자.</div>
+  </section>
+
+  <!-- ============ 3. Popover API ============ -->
+  <section class="card" id="popover">
+    <h2>🌀 Popover API — <code>popover</code> 속성으로 만드는 네이티브 팝오버 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">메뉴·툴팁·힌트를 띄우려고 z-index 싸움·바깥 클릭 감지·ESC 처리를 매번 손으로 짜던 시대가 끝났다. HTML <code>popover</code> 속성 하나면 브라우저가 <b>최상위 레이어</b>에 띄우고, 바깥 클릭·ESC로 닫아준다(라이트 디스미스). 아래 버튼들을 눌러 보라 — 바깥을 클릭하거나 <span class="kbd">Esc</span>를 누르면 저절로 닫힌다.</p>
+    <div class="demo">
+      <div class="pop-row">
+        <div>
+          <button class="btn" id="menuTrigger" popovertarget="rowMenu" aria-haspopup="menu">⋯ 작업 메뉴 열기</button>
+          <div class="pop-status" id="menuStatus" role="status"></div>
+        </div>
+        <button class="iconbtn" popovertarget="helpHint" aria-label="도움말 열기">?</button>
+      </div>
+
+      <!-- auto popover: 바깥클릭/ESC로 닫힘, 위치는 JS로 트리거 옆에 -->
+      <div class="menu-pop" id="rowMenu" popover role="menu" aria-label="작업 메뉴">
+        <ul>
+          <li><button type="button" role="menuitem" data-act="상세 보기">🔍 상세 보기</button></li>
+          <li><button type="button" role="menuitem" data-act="영수증 다운로드">🧾 영수증 다운로드</button></li>
+          <li><button type="button" role="menuitem" data-act="보관">📥 보관</button></li>
+          <li><hr></li>
+          <li><button type="button" role="menuitem" class="danger" data-act="삭제">🗑 삭제</button></li>
+        </ul>
+      </div>
+
+      <!-- manual popover(모달성): backdrop 있고 ESC로 닫힘 -->
+      <div class="hint-pop" id="helpHint" popover="auto">
+        <h4>정산 상태란?</h4>
+        <p style="margin:0">‘대기’는 심사 중, ‘완료’는 입금 예정, ‘보류’는 확인 필요 상태입니다. 바깥을 누르거나 <b>Esc</b>로 닫으세요.</p>
+      </div>
+
+      <p class="cap">왜 이렇게? — <code>popovertarget</code>만 연결하면 <b>JS 없이</b> 열고 닫힌다. 여기선 메뉴를 트리거 <b>옆에</b> 붙이려 위치만 JS로 잡았다(정렬 자체는 브라우저가 top-layer로 처리).</p>
+    </div>
+    <div class="support yes" id="popSupport">지원 확인 중…</div>
+    <h3 class="sec-lead">왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li>2025년 4월 <b>Baseline 안정(Widely available)</b> — Chrome·Edge·Firefox·Safari 최신에서 폭넓게 동작. 이제 프로덕션에서 라이브러리 없이 써도 되는 단계.</li>
+      <li>브라우저가 <b>top layer</b>(z-index 최상위)에 올려줘 <code>overflow:hidden</code>·부모 <code>transform</code>에 잘리지 않는다. 오랜 드롭다운 잘림 문제 해결.</li>
+      <li><code>popover="auto"</code>는 바깥 클릭·ESC로 닫히고 같은 그룹은 하나만 열림(라이트 디스미스). <code>popover="manual"</code>은 코드로만 닫음(예: 단계 안내 툴팁).</li>
+      <li>쓸 곳: 행 작업 메뉴, 필터 드롭다운, 툴팁·도움말, 알림 목록, 간단한 확인 팝오버. 복잡한 폼·강제 상호작용은 여전히 <code>&lt;dialog&gt;</code> 모달이 적합.</li>
+    </ul>
+    <pre><code>&lt;!-- JS 0줄: 버튼이 팝오버를 토글 --&gt;
+&lt;button popovertarget="menu"&gt;메뉴&lt;/button&gt;
+&lt;div id="menu" popover&gt; ... &lt;/div&gt;
+
+/* 열렸을 때만 적용되는 상태 선택자 */
+#menu:popover-open { display: block; }
+#menu::backdrop  { background: rgba(0,0,0,.35); }  /* 뒤 배경 */</code></pre>
+    <div class="note">용어: <b>top layer</b> = 문서 위에 따로 쌓이는 최상위 렌더 레이어. 팝오버·모달이 여기 올라가 다른 요소에 안 가려진다. · <b>라이트 디스미스(light dismiss)</b> = 바깥을 클릭하거나 Esc를 누르면 저절로 닫히는 동작. · <b>Baseline(Widely available)</b> = 주요 브라우저에서 충분히 오래 지원돼 안심하고 쓸 수 있는 상태.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원</div>
+</div>
+
+<div class="toast" id="toast" role="status"><span id="toastMsg"></span><button type="button" id="toastUndo">되돌리기</button></div>
+
+<script>
+(function(){
+  /* ---------- 1. Scrollspy ---------- */
+  (function(){
+    var scroller = document.getElementById("spyScroll");
+    if(!scroller) return;
+    var links = Array.prototype.slice.call(document.querySelectorAll("#spyNav a"));
+    var byId = {};
+    links.forEach(function(a){ byId[a.getAttribute("data-spy")] = a; });
+    function setActive(id){
+      links.forEach(function(a){
+        a.setAttribute("aria-current", a.getAttribute("data-spy")===id ? "true" : "false");
+      });
+    }
+    setActive("sp-account");
+    var secs = Array.prototype.slice.call(scroller.querySelectorAll(".spy-sec"));
+    var io = new IntersectionObserver(function(entries){
+      // 화면 상단에 가장 가까운, 교차 중인 섹션을 활성으로
+      var visible = entries.filter(function(e){ return e.isIntersecting; });
+      if(visible.length){
+        visible.sort(function(a,b){ return a.boundingClientRect.top - b.boundingClientRect.top; });
+        setActive(visible[0].target.id);
+      }
+    }, { root: scroller, rootMargin: "0px 0px -60% 0px", threshold: 0.01 });
+    secs.forEach(function(s){ io.observe(s); });
+    // 목차 클릭 → 컨테이너 내부 스크롤
+    links.forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        var target = document.getElementById(a.getAttribute("data-spy"));
+        if(target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  })();
+
+  /* ---------- 2. 선택형 리스트 + 벌크 액션바 ---------- */
+  (function(){
+    var list = document.getElementById("blList");
+    if(!list) return;
+    var all = document.getElementById("blAll");
+    var headLabel = document.getElementById("blHeadLabel");
+    var bar = document.getElementById("bulkbar");
+    var cnt = document.getElementById("bulkCnt");
+    var empty = document.getElementById("blEmpty");
+    var toast = document.getElementById("toast");
+    var toastMsg = document.getElementById("toastMsg");
+    var toastUndo = document.getElementById("toastUndo");
+    var toastTimer = null, lastRemoved = [];
+
+    function items(){ return Array.prototype.slice.call(list.querySelectorAll(".bl-item")); }
+    function boxes(){ return items().map(function(li){ return li.querySelector(".bl-cb"); }); }
+    function selected(){ return boxes().filter(function(b){ return b.checked; }); }
+
+    function sync(){
+      var bs = boxes(), sel = selected();
+      var n = sel.length;
+      // 헤더 3상태
+      if(n === 0){ all.checked=false; all.indeterminate=false; headLabel.textContent="전체 선택"; }
+      else if(n === bs.length){ all.checked=true; all.indeterminate=false; headLabel.textContent="전체 해제"; }
+      else { all.checked=false; all.indeterminate=true; headLabel.textContent=n+"개 선택됨"; }
+      // 액션 바
+      cnt.textContent = n + "개 선택";
+      bar.classList.toggle("show", n > 0);
+      // 빈 상태
+      empty.style.display = bs.length ? "none" : "block";
+    }
+
+    list.addEventListener("change", function(e){ if(e.target.classList.contains("bl-cb")) sync(); });
+    all.addEventListener("change", function(){
+      var on = all.checked;
+      boxes().forEach(function(b){ b.checked = on; });
+      sync();
+    });
+    document.getElementById("bulkClear").addEventListener("click", function(){
+      boxes().forEach(function(b){ b.checked=false; }); sync();
+    });
+    document.getElementById("bulkArchive").addEventListener("click", function(){
+      var n = selected().length;
+      boxes().forEach(function(b){ b.checked=false; }); sync();
+      showToast(n + "개를 보관함으로 옮겼어요.", null);
+    });
+    document.getElementById("bulkExport").addEventListener("click", function(){
+      var n = selected().length;
+      showToast(n + "개 내역을 CSV로 내보냈어요.", null);
+    });
+    document.getElementById("bulkDelete").addEventListener("click", function(){
+      var sel = selected();
+      lastRemoved = sel.map(function(b){
+        var li = b.closest(".bl-item");
+        return { node: li, next: li.nextElementSibling };
+      });
+      lastRemoved.forEach(function(r){ r.node.remove(); });
+      sync();
+      showToast(lastRemoved.length + "개를 삭제했어요.", function(){
+        // 되돌리기: 원위치 복구
+        lastRemoved.forEach(function(r){
+          if(r.next && r.next.parentNode === list) list.insertBefore(r.node, r.next);
+          else list.appendChild(r.node);
+          r.node.querySelector(".bl-cb").checked = false;
+        });
+        lastRemoved = [];
+        sync();
+      });
+    });
+
+    function showToast(msg, undoFn){
+      toastMsg.textContent = msg;
+      toastUndo.style.display = undoFn ? "inline" : "none";
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastUndo.onclick = function(){
+        if(undoFn) undoFn();
+        toast.classList.remove("show");
+        clearTimeout(toastTimer);
+      };
+      toastTimer = setTimeout(function(){
+        toast.classList.remove("show");
+        lastRemoved = []; // 시간 지나면 확정
+      }, 3000);
+    }
+    sync();
+  })();
+
+  /* ---------- 3. Popover API ---------- */
+  (function(){
+    var menu = document.getElementById("rowMenu");
+    var trigger = document.getElementById("menuTrigger");
+    var status = document.getElementById("menuStatus");
+    var support = document.getElementById("popSupport");
+
+    var ok = (typeof HTMLElement !== "undefined") && HTMLElement.prototype.hasOwnProperty("popover");
+    if(support){
+      if(ok){
+        support.className = "support yes";
+        support.textContent = "✓ 이 브라우저는 Popover API를 지원합니다 — 버튼이 JS 없이 팝오버를 열고 바깥클릭·Esc로 닫습니다.";
+      } else {
+        support.className = "support no";
+        support.textContent = "ⓘ 이 브라우저는 Popover API 미지원 — 팝오버가 인라인으로 보일 수 있습니다(점진적 향상 대상).";
+      }
+    }
+    if(!menu || !trigger) return;
+
+    // auto popover이지만 트리거 옆에 위치시키기(top-layer라 position:fixed로 좌표 지정)
+    function place(){
+      var r = trigger.getBoundingClientRect();
+      menu.style.top = (r.bottom + 6) + "px";
+      menu.style.left = r.left + "px";
+      // 화면 밖으로 넘치면 오른쪽 정렬 보정
+      var mw = menu.offsetWidth || 180;
+      if(r.left + mw > window.innerWidth - 8){
+        menu.style.left = Math.max(8, r.right - mw) + "px";
+      }
+    }
+    if(menu.addEventListener){
+      menu.addEventListener("beforetoggle", function(e){
+        if(e.newState === "open") place();
+      });
+      menu.addEventListener("toggle", function(e){
+        if(e.newState === "open"){ trigger.setAttribute("aria-expanded","true"); var f=menu.querySelector("button"); if(f) f.focus(); }
+        else { trigger.setAttribute("aria-expanded","false"); }
+      });
+    }
+    menu.querySelectorAll("button[data-act]").forEach(function(b){
+      b.addEventListener("click", function(){
+        status.textContent = "선택: " + b.getAttribute("data-act");
+        if(menu.hidePopover) menu.hidePopover();
+        trigger.focus();
+      });
+    });
+    window.addEventListener("resize", function(){ if(menu.matches && menu.matches(":popover-open")) place(); });
+  })();
+
+  /* ---------- theme toggle ---------- */
+  var themeBtn=document.getElementById("themeBtn");
+  themeBtn.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    document.documentElement.setAttribute("data-theme",dark?"light":"dark");
+    themeBtn.textContent=dark?"\u{1F319} 다크 모드":"☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed",String(!dark));
+  });
+
+  /* ---------- embed compact mode: ?embed=<id> ---------- */
+  (function(){
+    var q=new URLSearchParams(location.search);
+    var id=q.get("embed")||q.get("demo");
+    if(q.get("theme")==="dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec=document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
