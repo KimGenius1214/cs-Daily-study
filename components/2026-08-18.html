@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-18 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+  /* ---------- 1. 다단계 모달 위저드 ---------- */
+  dialog.wiz{border:none;padding:0;border-radius:16px;background:var(--surface);color:var(--text);
+    width:min(440px,92vw);box-shadow:var(--shadow);overflow:hidden}
+  dialog.wiz::backdrop{background:rgba(10,13,20,.55);backdrop-filter:blur(2px)}
+  .wiz-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:16px 18px 12px;border-bottom:1px solid var(--border)}
+  .wiz-head h3{margin:0;font-size:1rem}
+  .wiz-x{background:none;border:1px solid transparent;border-radius:8px;width:30px;height:30px;cursor:pointer;
+    color:var(--muted);font-size:1rem;font-family:inherit}
+  .wiz-x:hover{background:var(--surface-2);color:var(--text)}
+  .wiz-x:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .steps{display:flex;align-items:center;gap:6px;padding:12px 18px 0}
+  .steps .dot{flex:1;height:5px;border-radius:999px;background:var(--surface-2);transition:background .2s}
+  .steps .dot.done{background:var(--brand)}
+  .steps .dot.cur{background:var(--brand);opacity:.55}
+  .wiz-count{padding:8px 18px 0;font-size:.76rem;color:var(--muted)}
+  /* 높이 전환: JS가 실측한 px로 부드럽게 */
+  .wiz-body{overflow:hidden;transition:height .26s cubic-bezier(.3,.7,.3,1)}
+  .wiz-pane{padding:12px 18px 4px}
+  .wiz-pane[hidden]{display:none}
+  .wiz-pane h4{font-size:.98rem;margin:0 0 8px}
+  .wiz-foot{display:flex;gap:8px;justify-content:flex-end;padding:14px 18px 18px;
+    border-top:1px solid var(--border);margin-top:10px}
+  .wiz-foot #wizBack{margin-right:auto}
+  .pm{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;border:0}
+  .pm label{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:11px;
+    padding:11px 13px;cursor:pointer;font-size:.9rem;background:var(--surface)}
+  .pm label:hover{border-color:var(--brand)}
+  .pm input{accent-color:var(--brand);width:17px;height:17px}
+  .pm input:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
+  .pm label:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .pm .pm-sub{font-size:.76rem;color:var(--muted);display:block}
+  .sum-row{display:flex;justify-content:space-between;font-size:.88rem;padding:6px 0;
+    font-variant-numeric:tabular-nums}
+  .sum-row.total{border-top:1px dashed var(--border);margin-top:6px;padding-top:10px;font-weight:700;font-size:.98rem}
+  .wiz-done{text-align:center;padding:14px 0 6px}
+  .wiz-done .big{font-size:2rem;line-height:1}
+  .wiz-agree{display:flex;gap:9px;align-items:flex-start;font-size:.82rem;color:var(--muted);margin-top:10px}
+  .leave{border:none;padding:0;border-radius:14px;background:var(--surface);color:var(--text);
+    width:min(340px,90vw);box-shadow:var(--shadow)}
+  .leave::backdrop{background:rgba(10,13,20,.4)}
+  .leave .inner{padding:20px}
+  .leave p{margin:0 0 14px;font-size:.9rem}
+  .wiz-stage{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  .wiz-echo{font-size:.82rem;color:var(--muted)}
+  @media(prefers-reduced-motion:reduce){.wiz-body{transition:none}.steps .dot{transition:none}}
+
+  /* ---------- 2. 재시도·백오프 ---------- */
+  .rt{max-width:520px}
+  .rt-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:16px 17px}
+  .rt-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .rt-title{font-size:.94rem;font-weight:700}
+  .rt-amt{font-size:1.05rem;font-weight:700;font-variant-numeric:tabular-nums}
+  .rt-state{margin-top:14px;border-radius:11px;padding:12px 14px;font-size:.87rem;
+    display:flex;align-items:center;gap:11px;background:var(--surface-2)}
+  .rt-state.busy{background:var(--brand-soft);color:var(--brand)}
+  .rt-state.wait{background:var(--warn-soft);color:var(--warn)}
+  .rt-state.fail{background:var(--danger-soft);color:var(--danger)}
+  .rt-state.ok{background:var(--ok-soft);color:var(--ok)}
+  .rt-state .txt{flex:1;min-width:0}
+  .rt-state .sub{display:block;font-size:.76rem;opacity:.85;font-weight:400}
+  .spin{width:17px;height:17px;flex:none;border-radius:50%;border:2px solid currentColor;
+    border-right-color:transparent;animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.spin{animation-duration:2.4s}}
+  .ring{width:22px;height:22px;flex:none;display:grid;place-items:center;font-size:.7rem;font-weight:700;
+    border-radius:50%;border:2px solid currentColor;font-variant-numeric:tabular-nums}
+  .rt-log{list-style:none;margin:12px 0 0;padding:0;font-size:.79rem;color:var(--muted);
+    display:flex;flex-direction:column;gap:4px;max-height:132px;overflow:auto}
+  .rt-log li{display:flex;gap:8px}
+  .rt-log .t{font-variant-numeric:tabular-nums;opacity:.7;flex:none}
+  .rt-log .bad{color:var(--danger)}
+  .rt-log .good{color:var(--ok)}
+  .rt-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .rt-switch{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);margin-top:12px}
+  .rt-switch input{accent-color:var(--brand);width:16px;height:16px}
+  .rt-bar{height:4px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:10px}
+  .rt-bar > i{display:block;height:100%;background:var(--warn);width:0%;transition:width .25s linear}
+
+  /* ---------- 3. interpolate-size / calc-size ---------- */
+  .is-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .is-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 15px}
+  .is-box h4{font-size:.88rem;margin:0 0 8px}
+  .is-box .why{font-size:.76rem;color:var(--muted);margin:8px 0 0}
+  .acc{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+  .acc + .acc{margin-top:8px}
+  .acc-btn{width:100%;text-align:left;background:none;border:0;padding:11px 13px;cursor:pointer;
+    font-family:inherit;font-size:.87rem;font-weight:600;color:var(--text);display:flex;
+    justify-content:space-between;align-items:center;gap:8px}
+  .acc-btn:focus-visible{outline:2px solid var(--ring);outline-offset:-2px}
+  .acc-btn .chev{transition:transform .22s;color:var(--muted);font-size:.8rem}
+  .acc-btn[aria-expanded="true"] .chev{transform:rotate(90deg);color:var(--brand)}
+  .acc-p{padding:0 13px;font-size:.83rem;color:var(--muted)}
+  .acc-p > div{padding-bottom:12px}
+  /* (A) 신문법: 0 -> auto 로 바로 전환 (interpolate-size 지원 시 부드럽게) */
+  html{interpolate-size:allow-keywords}
+  .acc-new .acc-p{height:0;overflow:hidden;transition:height .28s ease}
+  .acc-new .acc-btn[aria-expanded="true"] + .acc-p{height:auto}
+  /* (B) 구식 해킹: max-height 추측값 */
+  .acc-old .acc-p{max-height:0;overflow:hidden;transition:max-height .28s ease}
+  .acc-old .acc-btn[aria-expanded="true"] + .acc-p{max-height:70px}
+  @media(prefers-reduced-motion:reduce){
+    .acc-new .acc-p,.acc-old .acc-p,.acc-btn .chev{transition:none}
+  }
+  .calcsize-demo{margin-top:6px}
+  .cs-box{background:var(--brand-soft);border:1px solid var(--brand);border-radius:10px;
+    padding:0 13px;height:0;overflow:hidden;transition:height .3s ease;color:var(--text)}
+  .cs-box.open{height:calc-size(auto, size + 16px)}
+  .cs-box .in{padding:12px 0;font-size:.84rem}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+  .footer{margin-top:10px;font-size:.8rem;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-18 (화) · 오늘의 컴포넌트·패턴 3건 · 오버레이/피드백/트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#modal-wizard">🪟 다단계 모달 위저드</a>
+    <a href="#retry-backoff">🔔 재시도·백오프</a>
+    <a href="#interpolate-size">🌀 interpolate-size</a>
+  </nav>
+
+  <!-- ============ 1. 다단계 모달 위저드 ============ -->
+  <section class="card" id="modal-wizard">
+    <h2>🪟 다단계 모달 위저드 <span class="tag">오버레이·모달</span></h2>
+    <p class="lead">입력이 3~4단계로 나뉘는 흐름을 <strong>페이지 이동 없이 모달 하나 안에서</strong> 처리하는 패턴이다. 핵심은 세 가지 — 단계 진행률을 항상 보여주고, 단계마다 <strong>모달 높이가 튀지 않게 부드럽게</strong> 바뀌고, 중간에 닫으려 하면 <strong>작성 내용을 잃는다고 한 번 확인</strong>받는 것.</p>
+
+    <div class="demo">
+      <div class="wiz-stage">
+        <button class="btn" id="wizOpen">💳 결제 진행하기</button>
+        <span class="wiz-echo" id="wizEcho">아직 결제하지 않았습니다.</span>
+      </div>
+      <p class="cap"><span class="kbd">Esc</span>로 닫기 → 1단계가 아니면 이탈 확인 모달이 뜹니다. <span class="kbd">Tab</span>은 모달 안에서만 순환(포커스 트랩)하고, 단계가 바뀌면 스크린리더에 "2단계 / 3단계"가 읽힙니다.</p>
+    </div>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong>진행 바(segmented progress)</strong> — 점 3개짜리 막대로 "지금 몇 번째, 몇 개 남음"을 항상 노출. 단계 수를 숨기면 이탈률이 올라간다.</li>
+      <li><strong>높이 애니메이션</strong> — 단계마다 내용 길이가 달라 모달이 덜컹거리기 쉽다. 다음 화면 높이를 미리 재서(<code>scrollHeight</code>) <code>height</code>를 px로 전환하면 매끄럽다. (또는 아래 3번의 <code>interpolate-size</code>)</li>
+      <li><strong>이탈 확인(leave confirmation)</strong> — 1단계에서 닫으면 그냥 닫고, 2단계 이상에서 닫으면 "작성 중인 내용이 사라집니다" 중첩 확인. 무조건 묻지 않는 게 요점이다.</li>
+      <li><strong>뒤로 가면 값이 남는다</strong> — 이전 단계로 돌아갔을 때 선택이 초기화되면 신뢰가 깨진다. 상태는 위저드 바깥(폼 state)에 둔다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- native dialog: 포커스 트랩·백드롭·Esc가 브라우저 기본 제공 --&gt;
+&lt;dialog class="wiz" id="wiz" aria-labelledby="wizTitle"&gt;
+  &lt;div class="wiz-body" id="wizBody"&gt;
+    &lt;div class="wiz-pane" id="p1"&gt;…&lt;/div&gt;
+    &lt;div class="wiz-pane" id="p2" hidden&gt;…&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/dialog&gt;
+
+// 단계 전환 시 높이를 실측해서 전환 (덜컹거림 제거)
+function goTo(next) {
+  const from = body.offsetHeight;          // 현재 높이 고정
+  body.style.height = from + "px";
+  panes.forEach((p, i) =&gt; p.hidden = i !== next);
+  const to = body.scrollHeight;            // 새 내용 높이 실측
+  requestAnimationFrame(() =&gt; { body.style.height = to + "px"; });
+}
+body.addEventListener("transitionend", () =&gt; { body.style.height = ""; });
+
+// Esc/닫기: 1단계가 아니면 이탈 확인
+dlg.addEventListener("cancel", e =&gt; {
+  if (step &gt; 0) { e.preventDefault(); leaveDlg.showModal(); }
+});</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><code>&lt;dialog&gt;.showModal()</code>은 <strong>포커스 트랩</strong>(탭이 모달 밖으로 안 나감), 배경 <code>inert</code> 처리, <code>Esc</code> 닫기를 브라우저가 알아서 해준다. 직접 구현하지 말 것.</li>
+      <li>단계 전환 뒤 포커스를 새 단계의 제목(<code>tabindex="-1"</code>)으로 옮긴다. 안 그러면 스크린리더 사용자는 화면이 바뀐 걸 모른다.</li>
+      <li>진행 상태는 <code>aria-live="polite"</code> 영역에 "3단계 중 2단계"로 텍스트 제공. <em>aria-live: 값이 바뀌면 보조기기가 자동으로 읽어주는 영역.</em></li>
+      <li>진행 바 자체는 장식이라 <code>aria-hidden="true"</code>. 같은 정보를 텍스트로 이미 주고 있으니 중복 낭독을 막는다.</li>
+      <li>높이 전환은 <code>prefers-reduced-motion</code>에서 끈다. <em>prefers-reduced-motion: 사용자가 OS에서 "동작 줄이기"를 켠 상태.</em></li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제 수단 선택 → 금액·수수료 확인 → 인증 같은 흐름을 페이지 라우팅으로 쪼개면 뒤로가기·새로고침에서 상태가 날아간다. 모달 위저드로 묶되, <strong>단계 인덱스를 URL 쿼리(<code>?step=2</code>)에 반영</strong>하면 브라우저 뒤로가기와도 맞물린다. 이탈 확인은 "카드번호를 이미 입력한 단계"부터만 띄워서 마찰을 최소화하고, 마지막 완료 단계에서는 이탈 확인을 <strong>끄는</strong> 게 맞다(이미 승인이 끝났으므로).</p>
+
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-18.html</code> · 참고: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog" target="_blank" rel="noopener">MDN &lt;dialog&gt;</a>, <a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/" target="_blank" rel="noopener">ARIA APG Dialog(Modal) 패턴</a></div>
+  </section>
+
+  <!-- ============ 2. 재시도·백오프 ============ -->
+  <section class="card" id="retry-backoff">
+    <h2>🔔 재시도·백오프 UI <span class="tag">피드백·상태</span></h2>
+    <p class="lead">네트워크나 PG 응답이 한 번 실패했다고 곧장 "오류가 발생했습니다"를 띄우는 건 요즘 기준으로 성의 없는 UI다. <strong>자동으로 몇 번 다시 시도하되 그 사실을 사용자에게 보이고</strong>, 간격을 점점 늘리고(지수 백오프), 그래도 안 되면 <strong>수동 재시도와 대안</strong>을 준다.</p>
+
+    <div class="demo">
+      <div class="rt">
+        <div class="rt-card">
+          <div class="rt-top">
+            <div>
+              <div class="rt-title">결제 승인 요청</div>
+              <div style="font-size:.78rem;color:var(--muted)">신한카드 ****1234 · 주문 #A-20826</div>
+            </div>
+            <div class="rt-amt">₩ 47,000</div>
+          </div>
+
+          <div class="rt-state" id="rtState" role="status" aria-live="polite">
+            <span class="ring" id="rtIcon" aria-hidden="true">–</span>
+            <span class="txt"><strong id="rtMsg">대기 중</strong><span class="sub" id="rtSub">아래 버튼을 눌러 승인을 요청하세요.</span></span>
+          </div>
+          <div class="rt-bar" id="rtBarWrap" hidden><i id="rtBar"></i></div>
+
+          <div class="rt-actions">
+            <button class="btn" id="rtStart">승인 요청</button>
+            <button class="btn ghost" id="rtNow" hidden>지금 재시도</button>
+            <button class="btn ghost" id="rtCancel" hidden>취소</button>
+            <button class="btn ghost sm" id="rtReset">초기화</button>
+          </div>
+
+          <label class="rt-switch"><input type="checkbox" id="rtLucky" /> 이번엔 2번째 시도에서 성공하게 하기</label>
+
+          <ul class="rt-log" id="rtLog" aria-label="시도 기록"></ul>
+        </div>
+      </div>
+      <p class="cap">자동 재시도는 최대 3회, 간격은 <strong>2초 → 4초</strong>로 늘어납니다(지수 백오프). 카운트다운 중에도 "지금 재시도"로 건너뛰거나 "취소"할 수 있고, 3회 모두 실패하면 자동 반복을 멈추고 사람에게 결정을 넘깁니다.</p>
+    </div>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong>지수 백오프(exponential backoff)</strong> — 재시도 간격을 2초, 4초, 8초처럼 배로 늘리는 방식. <em>서버가 이미 힘든 상황에서 전체 클라이언트가 1초마다 두드리면 장애가 더 커지기 때문.</em></li>
+      <li><strong>지터(jitter)</strong> — 간격에 랜덤을 조금 섞어 모든 클라이언트가 같은 순간에 재시도하는 "떼몰림"을 흩는다. 예: <code>2초 × (0.8~1.2)</code>.</li>
+      <li><strong>"조용한 재시도" 금지</strong> — 뒤에서 몰래 재시도하면 사용자는 그냥 멈춘 줄 알고 새로고침·중복 결제를 한다. 시도 횟수와 남은 시간을 보여주는 쪽이 안전하다.</li>
+      <li><strong>중단권 제공</strong> — 카운트다운 중 "지금 재시도"와 "취소"를 함께. 기다림을 강요하지 않는다.</li>
+      <li><strong>최종 실패 화면</strong> — 재시도 버튼 + <strong>대안</strong>(다른 결제수단, 고객센터) + <strong>참조 코드</strong>. 오류 코드가 있어야 문의가 처리된다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>// 지수 백오프 + 지터, 그리고 UI에 남은 시간을 노출
+const MAX = 3;
+function delayFor(attempt) {            // attempt: 1,2,3...
+  const base = 2000 * 2 ** (attempt - 1);      // 2s, 4s, 8s
+  return Math.round(base * (0.8 + Math.random() * 0.4)); // ±20% 지터
+}
+
+async function requestWithRetry(run, onWait) {
+  for (let attempt = 1; attempt &lt;= MAX; attempt++) {
+    try { return await run(); }
+    catch (err) {
+      if (!isRetryable(err) || attempt === MAX) throw err;
+      await onWait(attempt, delayFor(attempt)); // ← 카운트다운을 화면에 그린다
+    }
+  }
+}
+
+// 재시도해도 되는 오류만 재시도 (중요)
+const isRetryable = e =&gt;
+  e.status === 429 || e.status &gt;= 500 || e.name === "NetworkError";</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>상태 영역에 <code>role="status"</code> + <code>aria-live="polite"</code>. 실패·성공·대기 전환이 스크린리더에 자동으로 읽힌다. 매초 바뀌는 카운트다운 숫자는 <code>aria-hidden</code>으로 빼서 1초마다 낭독되는 사고를 막는다.</li>
+      <li>상태를 <strong>색으로만</strong> 구분하지 않는다. 아이콘·문구를 함께 둬야 색각 이상 사용자도 구분한다.</li>
+      <li>회전 스피너는 <code>prefers-reduced-motion</code>에서 아주 느리게(또는 정지 + 텍스트로 대체).</li>
+      <li>요청 중에는 실행 버튼을 <code>disabled</code>로. 결제는 중복 제출이 곧 금전 사고다. 서버 쪽 <strong>멱등키(idempotency key)</strong>가 최종 방어선. <em>멱등키: 같은 키로 온 요청은 몇 번을 받아도 한 번만 처리하게 만드는 식별자.</em></li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">결제 승인 API는 타임아웃·5xx가 실제로 발생하고, 그때 "실패"로 단정하면 <strong>승인은 됐는데 화면은 실패</strong>인 최악의 상태가 된다. 그래서 (1) 재시도 가능한 오류만 재시도하고(<code>4xx</code> 중 카드 거절 같은 건 재시도 금지), (2) 모든 재시도에 <strong>동일한 멱등키</strong>를 실어 중복 승인을 막고, (3) 최종 실패 화면엔 승인 조회로 이어지는 참조 코드를 반드시 노출한다. UI 쪽 재시도는 어디까지나 <strong>서버 멱등성이 보장될 때만</strong> 안전하다.</p>
+
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-18.html</code> · 참고: <a href="https://docs.stripe.com/error-low-level" target="_blank" rel="noopener">Stripe — 오류 처리와 재시도</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role" target="_blank" rel="noopener">MDN status role</a></div>
+  </section>
+
+  <!-- ============ 3. interpolate-size / calc-size ============ -->
+  <section class="card" id="interpolate-size">
+    <h2>🌀 interpolate-size와 calc-size() <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">"아코디언을 부드럽게 펼치기"는 CSS에서 오래 안 되던 일이다. <code>height: 0 → auto</code>는 애니메이션이 안 걸려서, 다들 <code>max-height: 500px</code> 같은 <strong>대충 큰 값</strong>을 넣거나 JS로 높이를 실측해왔다. <code>interpolate-size: allow-keywords</code> 한 줄이면 <code>auto</code>·<code>min-content</code> 같은 <strong>키워드 크기까지 전환 대상</strong>이 된다.</p>
+
+    <div class="demo">
+      <div class="is-grid">
+        <div class="is-box">
+          <h4>✅ 새 방식 — <code>height: 0 → auto</code></h4>
+          <div class="acc acc-new">
+            <button class="acc-btn" aria-expanded="false" aria-controls="an1"><span>짧은 내용</span><span class="chev" aria-hidden="true">▸</span></button>
+            <div class="acc-p" id="an1"><div>두 줄짜리 짧은 설명.</div></div>
+          </div>
+          <div class="acc acc-new">
+            <button class="acc-btn" aria-expanded="false" aria-controls="an2"><span>긴 내용</span><span class="chev" aria-hidden="true">▸</span></button>
+            <div class="acc-p" id="an2"><div>내용이 얼마나 길든 상관없습니다. 실제 높이를 브라우저가 계산해서 그만큼만 부드럽게 펼칩니다. 여기에 문단이 더 붙어도, 이미지가 들어와도 코드를 고칠 필요가 없습니다. 이게 핵심입니다.</div></div>
+          </div>
+          <p class="why">높이를 미리 알 필요가 없다. 내용이 늘어도 코드 수정 없음.</p>
+        </div>
+
+        <div class="is-box">
+          <h4>⚠️ 옛 방식 — <code>max-height: 70px</code> 추측</h4>
+          <div class="acc acc-old">
+            <button class="acc-btn" aria-expanded="false" aria-controls="ao1"><span>짧은 내용</span><span class="chev" aria-hidden="true">▸</span></button>
+            <div class="acc-p" id="ao1"><div>두 줄짜리 짧은 설명.</div></div>
+          </div>
+          <div class="acc acc-old">
+            <button class="acc-btn" aria-expanded="false" aria-controls="ao2"><span>긴 내용 (잘림!)</span><span class="chev" aria-hidden="true">▸</span></button>
+            <div class="acc-p" id="ao2"><div>내용이 얼마나 길든 상관없습니다. 실제 높이를 브라우저가 계산해서 그만큼만 부드럽게 펼칩니다. 여기에 문단이 더 붙어도, 이미지가 들어와도 코드를 고칠 필요가 없습니다. 이게 핵심입니다.</div></div>
+          </div>
+          <p class="why">추측값이 작으면 <strong>내용이 잘리고</strong>, 크면 짧은 항목이 늦게 열리는 것처럼 보인다(빈 공간을 지나가느라).</p>
+        </div>
+      </div>
+
+      <div class="is-box" style="margin-top:14px">
+        <h4>🧮 <code>calc-size(auto, size + 16px)</code> — 실제 높이에 계산 얹기</h4>
+        <div class="calcsize-demo">
+          <button class="btn sm ghost" id="csBtn" aria-expanded="false" aria-controls="csBox">패널 열기 / 닫기</button>
+          <div class="cs-box" id="csBox"><div class="in"><code>auto</code>가 계산한 진짜 높이에 여백 16px을 더한 값으로 전환합니다. <code>calc-size()</code>를 쓰면 <code>interpolate-size</code>는 따로 안 켜도 자동 적용됩니다.</div></div>
+        </div>
+        <p class="why">키워드 크기를 <strong>수식에 넣을 수 있는</strong> 유일한 방법. <code>calc(auto + 16px)</code>은 안 되고 <code>calc-size(auto, size + 16px)</code>만 된다(<code>size</code>가 auto의 실제 값).</p>
+      </div>
+
+      <div class="support" id="isSupport">지원 여부 확인 중…</div>
+    </div>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><strong>JS 높이 실측 코드를 지운다</strong> — 아코디언·<code>&lt;details&gt;</code>·알림 배너·1번 섹션의 모달 위저드 높이 전환까지, "높이를 재서 px로 넣는" 보일러플레이트가 통째로 사라진다.</li>
+      <li><strong>점진적 향상(progressive enhancement)에 완벽히 맞는다</strong> — 미지원 브라우저는 전환 없이 그냥 0에서 auto로 <em>툭</em> 바뀔 뿐, 깨지지 않는다. 폴백을 따로 짤 필요가 없다. <em>점진적 향상: 기본 동작은 어디서나 되게 하고, 지원되는 곳에서만 더 좋은 경험을 얹는 방식.</em></li>
+      <li><strong>어디에 쓰나</strong> — 결제 요약 접기/펼치기, 주문 상세 아코디언, 인라인 에러 메시지 등장, 필터 패널 확장.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* 1) 전역으로 한 번 켜두는 게 요즘 CSS 리셋의 관례 */
+:root { interpolate-size: allow-keywords; }
+
+/* 2) 그러면 이게 그냥 된다 */
+.panel {
+  height: 0;
+  overflow: hidden;
+  transition: height .3s ease;
+}
+.panel[data-open="true"] { height: auto; }
+
+/* 3) 키워드 크기에 계산을 얹고 싶으면 calc-size()
+      (calc-size를 쓰면 interpolate-size는 자동 적용) */
+.panel-b { transition: height .3s; height: 0; }
+.panel-b.open { height: calc-size(auto, size + 16px); }
+
+/* 주의: 한쪽 끝은 반드시 길이값이어야 한다.
+   auto ↔ min-content 처럼 키워드끼리는 전환되지 않는다. */
+
+/* 지원 여부로 분기하고 싶다면 */
+@supports (interpolate-size: allow-keywords) { /* ... */ }</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>접힌 영역은 <code>overflow:hidden</code>만으로 <strong>포커스 가능한 요소가 숨겨지지 않는다.</strong> 안쪽에 링크·버튼이 있으면 Tab으로 들어가 보이지 않는 곳에 포커스가 갇힌다. 닫힘 상태에서 <code>hidden="until-found"</code>나 <code>inert</code>를 함께 쓰는 게 안전하다. <em>inert: 그 안의 모든 요소를 클릭·포커스·낭독 대상에서 통째로 빼는 속성.</em></li>
+      <li>토글 버튼에 <code>aria-expanded</code>와 <code>aria-controls</code>. 순수 CSS로 만들 수 있어도 상태 전달은 결국 속성이 한다.</li>
+      <li>전환은 <code>prefers-reduced-motion</code>에서 끈다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <p class="lead">체크아웃의 "주문 상세 펼치기", 정산 화면의 행 확장처럼 <strong>내용 길이를 미리 알 수 없는 영역</strong>이 딱 이 문법의 대상이다. 다만 <strong>2026-08 기준 Chrome·Edge 계열만 지원(그 외는 미지원, Safari·Firefox 상태는 재확인 필요 — 추정)</strong>이므로, "전환이 안 되면 그냥 즉시 열림"이라는 폴백을 전제로만 쓴다. 애니메이션이 UX의 필수 조건인 곳(예: 잔액 부족 안내처럼 시선을 끌어야 하는 곳)이라면 아직 JS 실측이나 <code>grid-template-rows: 0fr → 1fr</code> 기법을 병행하는 게 안전하다.</p>
+
+    <div class="support no" style="margin-top:12px">⚠️ 브라우저 지원 — 검색 결과 기준 <strong>Chrome·Edge만 지원</strong>이며 Safari·Firefox는 미지원으로 보인다(2026-08 시점, 최신 상태는 caniuse에서 재확인 필요 — 추정).</div>
+
+    <div class="note">🔗 라이브 예시: 오늘 자 <code>components/2026-08-18.html</code> · 참고: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/interpolate-size" target="_blank" rel="noopener">MDN interpolate-size</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/calc-size" target="_blank" rel="noopener">MDN calc-size()</a>, <a href="https://developer.chrome.com/docs/css-ui/animate-to-height-auto" target="_blank" rel="noopener">Chrome for Developers — Animate to height:auto</a>, <a href="https://caniuse.com/mdn-css_properties_interpolate-size_allow-keywords" target="_blank" rel="noopener">caniuse</a></div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원 · 섹션 id: <code>modal-wizard</code> / <code>retry-backoff</code> / <code>interpolate-size</code></div>
+</div>
+
+<!-- ===== 위저드 모달 ===== -->
+<dialog class="wiz" id="wiz" aria-labelledby="wizTitle">
+  <div class="wiz-head">
+    <h3 id="wizTitle">결제 진행</h3>
+    <button class="wiz-x" id="wizX" aria-label="닫기">✕</button>
+  </div>
+  <div class="steps" aria-hidden="true">
+    <span class="dot" data-i="0"></span><span class="dot" data-i="1"></span><span class="dot" data-i="2"></span>
+  </div>
+  <div class="wiz-count" id="wizCount" role="status" aria-live="polite">3단계 중 1단계 · 결제 수단</div>
+
+  <div class="wiz-body" id="wizBody">
+    <div class="wiz-pane" id="wp0">
+      <h4 tabindex="-1">결제 수단을 고르세요</h4>
+      <fieldset class="pm">
+        <legend class="sr-only">결제 수단</legend>
+        <label><input type="radio" name="pm" value="신한카드 ****1234" checked /><span>신한카드 ****1234<span class="pm-sub">저장된 카드 · 즉시 승인</span></span></label>
+        <label><input type="radio" name="pm" value="계좌이체" /><span>계좌이체<span class="pm-sub">수수료 없음 · 영업일 기준 처리</span></span></label>
+        <label><input type="radio" name="pm" value="간편결제" /><span>간편결제<span class="pm-sub">앱에서 인증 필요</span></span></label>
+      </fieldset>
+    </div>
+
+    <div class="wiz-pane" id="wp1" hidden>
+      <h4 tabindex="-1">금액을 확인하세요</h4>
+      <div class="sum-row"><span>상품 금액</span><span>₩ 45,000</span></div>
+      <div class="sum-row"><span>결제 수수료</span><span id="wizFee">₩ 2,000</span></div>
+      <div class="sum-row"><span>결제 수단</span><span id="wizPm">신한카드 ****1234</span></div>
+      <div class="sum-row total"><span>합계</span><span id="wizTotal">₩ 47,000</span></div>
+      <label class="wiz-agree"><input type="checkbox" id="wizAgree" /> <span>결제 대행 서비스 약관과 개인정보 제3자 제공에 동의합니다.</span></label>
+    </div>
+
+    <div class="wiz-pane" id="wp2" hidden>
+      <h4 tabindex="-1" class="sr-only">결제 완료</h4>
+      <div class="wiz-done">
+        <div class="big">✅</div>
+        <p style="margin:10px 0 2px;font-weight:700">결제가 완료됐습니다</p>
+        <p style="margin:0;font-size:.83rem;color:var(--muted)">승인번호 <strong>APP-20826-7741</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wiz-foot">
+    <button class="btn ghost" id="wizBack">뒤로</button>
+    <button class="btn" id="wizNext">다음</button>
+  </div>
+</dialog>
+
+<!-- ===== 이탈 확인 모달 (중첩) ===== -->
+<dialog class="leave" id="leaveDlg" aria-labelledby="leaveTitle">
+  <div class="inner">
+    <h3 id="leaveTitle" style="margin:0 0 8px;font-size:.98rem">결제를 그만두시겠어요?</h3>
+    <p>지금 닫으면 입력한 내용이 사라집니다.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn ghost sm" id="leaveStay">계속하기</button>
+      <button class="btn danger sm" id="leaveGo">그만두기</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ========== 1. 다단계 모달 위저드 ========== */
+  (function(){
+    var dlg = document.getElementById("wiz");
+    var leaveDlg = document.getElementById("leaveDlg");
+    if(!dlg || typeof dlg.showModal !== "function") return;
+
+    var body   = document.getElementById("wizBody");
+    var panes  = [document.getElementById("wp0"), document.getElementById("wp1"), document.getElementById("wp2")];
+    var dots   = Array.prototype.slice.call(dlg.querySelectorAll(".steps .dot"));
+    var count  = document.getElementById("wizCount");
+    var backBtn= document.getElementById("wizBack");
+    var nextBtn= document.getElementById("wizNext");
+    var echo   = document.getElementById("wizEcho");
+    var agree  = document.getElementById("wizAgree");
+    var labels = ["결제 수단", "금액 확인", "완료"];
+    var step = 0;
+
+    function render(){
+      dots.forEach(function(d,i){
+        d.classList.toggle("done", i < step);
+        d.classList.toggle("cur", i === step);
+      });
+      count.textContent = "3단계 중 " + (step+1) + "단계 · " + labels[step];
+      backBtn.hidden = (step === 0 || step === 2);
+      nextBtn.textContent = step === 0 ? "다음" : (step === 1 ? "결제하기" : "닫기");
+      if(step === 1){
+        var pm = dlg.querySelector('input[name="pm"]:checked').value;
+        var fee = pm === "계좌이체" ? 0 : 2000;
+        document.getElementById("wizPm").textContent = pm;
+        document.getElementById("wizFee").textContent = "₩ " + fee.toLocaleString();
+        document.getElementById("wizTotal").textContent = "₩ " + (45000 + fee).toLocaleString();
+        nextBtn.disabled = !agree.checked;
+      } else {
+        nextBtn.disabled = false;
+      }
+    }
+
+    function goTo(next){
+      if(next === step) return;
+      var from = body.offsetHeight;
+      body.style.height = from + "px";
+      step = next;
+      panes.forEach(function(p,i){ p.hidden = i !== step; });
+      render();
+      var to = body.scrollHeight;
+      requestAnimationFrame(function(){ body.style.height = to + "px"; });
+      // 새 단계 제목으로 포커스 이동 (스크린리더가 화면 변화를 인지)
+      var h = panes[step].querySelector("h4");
+      if(h) h.focus();
+    }
+    body.addEventListener("transitionend", function(e){
+      if(e.propertyName === "height") body.style.height = "";
+    });
+
+    agree.addEventListener("change", render);
+    dlg.addEventListener("change", function(e){ if(e.target.name === "pm" && step === 1) render(); });
+
+    nextBtn.addEventListener("click", function(){
+      if(step < 2) goTo(step + 1);
+      else { echo.textContent = "결제 완료 · 승인번호 APP-20826-7741"; dlg.close(); }
+    });
+    backBtn.addEventListener("click", function(){ if(step > 0) goTo(step - 1); });
+
+    function tryClose(){
+      if(step === 0 || step === 2){ dlg.close(); return; }
+      leaveDlg.showModal();               // 중첩 확인
+    }
+    document.getElementById("wizX").addEventListener("click", tryClose);
+    // Esc(cancel)도 같은 규칙을 타게 가로챈다
+    dlg.addEventListener("cancel", function(e){
+      if(step === 0 || step === 2) return;
+      e.preventDefault();
+      leaveDlg.showModal();
+    });
+    document.getElementById("leaveStay").addEventListener("click", function(){ leaveDlg.close(); });
+    document.getElementById("leaveGo").addEventListener("click", function(){
+      leaveDlg.close(); dlg.close();
+      echo.textContent = "결제를 중간에 그만뒀습니다.";
+    });
+
+    document.getElementById("wizOpen").addEventListener("click", function(){
+      step = 0; agree.checked = false;
+      panes.forEach(function(p,i){ p.hidden = i !== 0; });
+      body.style.height = "";
+      render();
+      echo.textContent = "결제 진행 중…";
+      dlg.showModal();
+    });
+    render();
+  })();
+
+  /* ========== 2. 재시도·백오프 ========== */
+  (function(){
+    var MAX = 3;
+    var msg = document.getElementById("rtMsg");
+    var sub = document.getElementById("rtSub");
+    var box = document.getElementById("rtState");
+    var ico = document.getElementById("rtIcon");
+    var log = document.getElementById("rtLog");
+    var barWrap = document.getElementById("rtBarWrap");
+    var bar = document.getElementById("rtBar");
+    var startBtn = document.getElementById("rtStart");
+    var nowBtn = document.getElementById("rtNow");
+    var cancelBtn = document.getElementById("rtCancel");
+    var resetBtn = document.getElementById("rtReset");
+    var lucky = document.getElementById("rtLucky");
+    var timers = [], attempt = 0, t0 = 0;
+
+    function clearTimers(){ timers.forEach(clearTimeout); timers.forEach(clearInterval); timers = []; }
+    function at(ms){ return (ms/1000).toFixed(1) + "s"; }
+    function addLog(text, cls){
+      var li = document.createElement("li");
+      li.innerHTML = '<span class="t">+' + at(Date.now() - t0) + '</span><span class="' + (cls||"") + '">' + text + '</span>';
+      log.appendChild(li); log.scrollTop = log.scrollHeight;
+    }
+    function setState(kind, title, detail, icon){
+      box.className = "rt-state " + kind;
+      msg.textContent = title; sub.textContent = detail;
+      ico.innerHTML = ""; ico.className = icon === "spin" ? "spin" : "ring";
+      if(icon !== "spin") ico.textContent = icon;
+    }
+
+    function finishFail(){
+      clearTimers(); barWrap.hidden = true;
+      setState("fail", "승인에 실패했습니다", "3회 시도 모두 실패 · 참조코드 ERR-52901", "✕");
+      addLog("자동 재시도 중단 (최대 " + MAX + "회 도달)", "bad");
+      startBtn.hidden = false; startBtn.disabled = false; startBtn.textContent = "다시 시도";
+      nowBtn.hidden = true; cancelBtn.hidden = true;
+    }
+    function finishOk(){
+      clearTimers(); barWrap.hidden = true;
+      setState("ok", "승인 완료", "승인번호 APP-20826-7741", "✓");
+      addLog("시도 " + attempt + "회차 성공", "good");
+      startBtn.hidden = false; startBtn.disabled = true; startBtn.textContent = "승인 완료됨";
+      nowBtn.hidden = true; cancelBtn.hidden = true;
+    }
+
+    function tryOnce(){
+      attempt++;
+      barWrap.hidden = true;
+      nowBtn.hidden = true;
+      cancelBtn.hidden = false;
+      setState("busy", "승인 요청 중… (" + attempt + "/" + MAX + ")", "PG사 응답을 기다리는 중입니다.", "spin");
+      addLog("시도 " + attempt + "회차 — 요청 전송");
+      timers.push(setTimeout(function(){
+        var ok = lucky.checked && attempt >= 2;
+        if(ok){ finishOk(); return; }
+        addLog("시도 " + attempt + "회차 실패 — 504 Gateway Timeout", "bad");
+        if(attempt >= MAX){ finishFail(); return; }
+        waitThenRetry();
+      }, 1200));
+    }
+
+    function waitThenRetry(){
+      var wait = 2000 * Math.pow(2, attempt - 1);   // 2s, 4s
+      var jitter = Math.round(wait * (0.9 + Math.random()*0.2));
+      var started = Date.now();
+      cancelBtn.hidden = false; nowBtn.hidden = false;
+      barWrap.hidden = false; bar.style.width = "0%";
+      function paint(){
+        var left = Math.max(0, jitter - (Date.now() - started));
+        var pct = 100 * (1 - left/jitter);
+        bar.style.width = pct.toFixed(1) + "%";
+        setState("wait", "재시도 대기 중 — " + Math.ceil(left/1000) + "초",
+                 "간격을 늘려가며 다시 시도합니다(지수 백오프 " + (jitter/1000).toFixed(1) + "초).", "⏱");
+        ico.setAttribute("aria-hidden","true");
+      }
+      paint();
+      var iv = setInterval(paint, 100); timers.push(iv);
+      addLog("다음 시도까지 " + (jitter/1000).toFixed(1) + "초 대기 (지터 포함)");
+      timers.push(setTimeout(function(){ clearInterval(iv); tryOnce(); }, jitter));
+    }
+
+    startBtn.addEventListener("click", function(){
+      clearTimers(); log.innerHTML = ""; attempt = 0; t0 = Date.now();
+      startBtn.hidden = true;
+      tryOnce();
+    });
+    nowBtn.addEventListener("click", function(){ clearTimers(); addLog("사용자가 대기를 건너뜀"); tryOnce(); });
+    cancelBtn.addEventListener("click", function(){
+      clearTimers(); barWrap.hidden = true;
+      setState("", "취소됨", "사용자가 재시도를 중단했습니다.", "–");
+      addLog("사용자가 취소");
+      startBtn.hidden = false; startBtn.disabled = false; startBtn.textContent = "다시 시도";
+      nowBtn.hidden = true; cancelBtn.hidden = true;
+    });
+    resetBtn.addEventListener("click", function(){
+      clearTimers(); log.innerHTML = ""; attempt = 0; barWrap.hidden = true;
+      setState("", "대기 중", "아래 버튼을 눌러 승인을 요청하세요.", "–");
+      startBtn.hidden = false; startBtn.disabled = false; startBtn.textContent = "승인 요청";
+      nowBtn.hidden = true; cancelBtn.hidden = true;
+    });
+  })();
+
+  /* ========== 3. 아코디언 토글 + 지원 배너 ========== */
+  (function(){
+    Array.prototype.forEach.call(document.querySelectorAll(".acc-btn"), function(btn){
+      btn.addEventListener("click", function(){
+        var open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", String(!open));
+      });
+    });
+    var csBtn = document.getElementById("csBtn"), csBox = document.getElementById("csBox");
+    csBtn.addEventListener("click", function(){
+      var open = csBox.classList.toggle("open");
+      csBtn.setAttribute("aria-expanded", String(open));
+    });
+
+    var el = document.getElementById("isSupport");
+    var okA = window.CSS && CSS.supports && CSS.supports("interpolate-size", "allow-keywords");
+    var okB = window.CSS && CSS.supports && CSS.supports("height", "calc-size(auto, size)");
+    if(okA || okB){
+      el.className = "support yes";
+      el.innerHTML = "✅ 이 브라우저는 <code>interpolate-size</code>" + (okB ? "와 <code>calc-size()</code>" : "") +
+                     "를 지원합니다 — 왼쪽 아코디언이 부드럽게 펼쳐집니다.";
+    } else {
+      el.className = "support no";
+      el.innerHTML = "⚠️ 이 브라우저는 <code>interpolate-size</code>를 지원하지 않습니다 — 왼쪽 아코디언은 전환 없이 <em>즉시</em> 열립니다. " +
+                     "깨지지 않고 그냥 애니메이션만 없는 것, 이게 점진적 향상입니다.";
+    }
+  })();
+
+  /* ========== theme toggle ========== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ========== embed compact mode: ?embed=<id> ========== */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get("embed") || q.get("demo");
+    if(q.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>

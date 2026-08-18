@@ -75,7 +75,7 @@ const html = `<!DOCTYPE html>
   <header class="top">
     <div>
       <h1>🎨 Design Inspiration Daily — 라이브 예시</h1>
-      <div class="sub">컴포넌트·패턴 동작 데모 모음 · 총 ${entries.length}일치 · 갱신 ${new Date().toISOString().slice(0,10)}</div>
+      <div class="sub">컴포넌트·패턴 동작 데모 모음 · 총 ${entries.length}일치 · 갱신 ${new Date().toLocaleDateString('sv-SE', { timeZone: 'Asia/Seoul' })}</div>
     </div>
     <button class="theme-btn" id="themeBtn" aria-label="라이트/다크 전환">🌓 테마</button>
   </header>
