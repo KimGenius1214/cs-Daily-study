@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-19 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+
+  /* ---------- 1. OTP 인증번호 입력 ---------- */
+  .otp-wrap{max-width:520px}
+  .otp-title{font-size:.95rem;font-weight:700;margin:0 0 2px}
+  .otp-sub{font-size:.82rem;color:var(--muted);margin:0 0 14px}
+  .otp-cells{display:flex;gap:8px}
+  .otp-cells input{width:46px;height:56px;text-align:center;font-size:1.35rem;font-weight:700;
+    font-variant-numeric:tabular-nums;border:1.5px solid var(--border);border-radius:11px;
+    background:var(--surface);color:var(--text);font-family:inherit;transition:border-color .15s,box-shadow .15s}
+  .otp-cells input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .otp-cells input:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .otp-cells.filled input{border-color:var(--ok)}
+  .otp-cells.bad input{border-color:var(--danger);background:var(--danger-soft)}
+  .otp-cells.bad{animation:shake .32s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  @media(prefers-reduced-motion:reduce){.otp-cells.bad{animation:none}}
+  .otp-single{width:220px;height:54px;text-align:center;font-size:1.3rem;font-weight:700;letter-spacing:.55em;
+    text-indent:.55em;font-variant-numeric:tabular-nums;border:1.5px solid var(--border);border-radius:11px;
+    background:var(--surface);color:var(--text);font-family:inherit}
+  .otp-single:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .otp-msg{margin-top:12px;font-size:.85rem;min-height:1.4em}
+  .otp-msg.err{color:var(--danger)}
+  .otp-msg.ok{color:var(--ok)}
+  .otp-foot{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+  .otp-timer{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .otp-hint{font-size:.78rem;color:var(--muted);margin-top:8px}
+
+  /* ---------- 2. 주소·배송지 폼 ---------- */
+  .af{max-width:560px}
+  .af fieldset{border:1px solid var(--border);border-radius:12px;padding:14px 16px 16px;margin:0 0 14px;
+    background:var(--surface)}
+  .af legend{font-size:.85rem;font-weight:700;padding:0 6px}
+  .af .row{display:grid;gap:10px;margin-bottom:10px}
+  .af .row.two{grid-template-columns:1fr 1fr}
+  .af label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px;color:var(--muted)}
+  .af input[type="text"],.af input[type="tel"]{width:100%;padding:10px 12px;font-size:.92rem;font-family:inherit;
+    border:1.5px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+  .af input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .af input:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .af input[readonly]{background:var(--surface-2);cursor:default}
+  .af input.autofilled{border-color:var(--ok);background:var(--ok-soft)}
+  .af .zip-line{display:flex;gap:8px;align-items:flex-end}
+  .af .zip-line > div{flex:0 0 130px}
+  .af .same{display:flex;align-items:center;gap:9px;font-size:.86rem;margin:0 0 14px;cursor:pointer}
+  .af .same input{width:17px;height:17px;accent-color:var(--brand)}
+  .af .same input:focus-visible{outline:2px solid var(--ring);outline-offset:3px}
+  .af fieldset[hidden]{display:none}
+  dialog.zipdlg{border:none;padding:0;border-radius:14px;background:var(--surface);color:var(--text);
+    width:min(420px,92vw);box-shadow:var(--shadow)}
+  dialog.zipdlg::backdrop{background:rgba(10,13,20,.5)}
+  .zip-inner{padding:18px}
+  .zip-inner h4{margin:0 0 10px;font-size:1rem}
+  .zip-inner input{width:100%;padding:10px 12px;font-size:.92rem;font-family:inherit;
+    border:1.5px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+  .zip-inner input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .zip-list{list-style:none;margin:12px 0 0;padding:0;max-height:210px;overflow:auto}
+  .zip-list li{margin:0 0 6px}
+  .zip-list button{width:100%;text-align:left;background:var(--surface);border:1px solid var(--border);
+    border-radius:9px;padding:9px 11px;cursor:pointer;font-family:inherit;font-size:.86rem;color:var(--text)}
+  .zip-list button:hover{border-color:var(--brand);background:var(--brand-soft)}
+  .zip-list button:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+  .zip-list .z{font-weight:700;font-variant-numeric:tabular-nums;margin-right:8px;color:var(--brand)}
+  .zip-empty{font-size:.85rem;color:var(--muted);padding:10px 2px}
+  .af-echo{margin-top:12px;font-size:.85rem;color:var(--muted)}
+
+  /* ---------- 3. appearance: base-select ---------- */
+  .bs-stage{display:flex;gap:26px;flex-wrap:wrap}
+  .bs-col{flex:1 1 240px;min-width:240px}
+  .bs-col h4{font-size:.86rem;margin:0 0 8px}
+  .bs-col > label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px;color:var(--muted)}
+  select.plain{width:100%;padding:10px 12px;font-size:.92rem;font-family:inherit;border:1.5px solid var(--border);
+    border-radius:9px;background:var(--surface);color:var(--text)}
+  select.plain:focus-visible{outline:2px solid var(--ring);outline-offset:2px}
+
+  /* --- 여기부터가 커스터마이즈 가능한 select 본체 --- */
+  select.fancy, ::picker(select){ appearance: base-select; }
+  select.fancy{
+    width:100%;display:flex;align-items:center;gap:10px;
+    padding:11px 13px;font-family:inherit;font-size:.92rem;text-align:left;
+    border:1.5px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  select.fancy:hover{border-color:var(--brand)}
+  select.fancy:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  select.fancy::picker-icon{color:var(--muted);transition:transform .2s;margin-left:auto}
+  select.fancy:open::picker-icon{transform:rotate(180deg)}
+  ::picker(select){
+    border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    box-shadow:var(--shadow);padding:6px;margin-top:6px;
+    opacity:0;transform:translateY(-6px);transition:opacity .18s,transform .18s,overlay .18s allow-discrete,display .18s allow-discrete;
+  }
+  select.fancy:open::picker(select){opacity:1;transform:translateY(0)}
+  @starting-style{ select.fancy:open::picker(select){opacity:0;transform:translateY(-6px)} }
+  select.fancy option{
+    display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;font-size:.9rem;
+    color:var(--text);background:transparent;
+  }
+  select.fancy option:hover, select.fancy option:focus{background:var(--brand-soft)}
+  select.fancy option:checked{background:var(--brand-soft);font-weight:600}
+  select.fancy option::checkmark{order:99;margin-left:auto;color:var(--brand)}
+  select.fancy .pm-ico{font-size:1.15rem;line-height:1}
+  select.fancy .pm-txt{display:flex;flex-direction:column;line-height:1.3}
+  select.fancy .pm-sub{font-size:.74rem;color:var(--muted)}
+  select.fancy selectedcontent .pm-sub{display:none} /* 닫힌 상태 버튼엔 부제 숨김 */
+  @media(prefers-reduced-motion:reduce){
+    ::picker(select){transition:none}
+    select.fancy::picker-icon{transition:none}
+  }
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-19 (수) · 오늘의 컴포넌트·패턴 3건 · 입력·폼 / 결제·체크아웃 / 트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#otp-input">⌨️ OTP 인증번호 입력</a>
+    <a href="#address-form">💳 주소·배송지 폼</a>
+    <a href="#base-select">🌀 base-select</a>
+  </nav>
+
+  <!-- ============ 1. OTP 인증번호 입력 ============ -->
+  <section class="card" id="otp-input">
+    <h2>⌨️ OTP 인증번호 입력 <span class="tag">입력·폼</span></h2>
+    <p class="lead">문자로 온 6자리 코드를 넣는 그 화면. 사용자가 실제로 겪는 마찰은 세 군데다 — <strong>붙여넣기가 안 됨</strong>, <strong>지우려는데 커서가 안 돌아감</strong>, <strong>SMS 자동입력이 안 뜸</strong>. 이 셋을 해결한 칸 분리형과, 자동입력이 가장 잘 붙는 단일 입력형을 나란히 놓았다.</p>
+
+    <div class="demo">
+      <div class="otp-wrap">
+        <p class="otp-title">인증번호를 입력하세요</p>
+        <p class="otp-sub">010-****-1234 로 6자리 코드를 보냈습니다. <strong>테스트 코드: 482913</strong></p>
+
+        <h4 style="font-size:.82rem;color:var(--muted);margin:0 0 6px">변형 A — 칸 분리형 (segmented)</h4>
+        <div class="otp-cells" id="otpCells" role="group" aria-labelledby="otpLbl">
+          <span id="otpLbl" class="sr-only">6자리 인증번호</span>
+          <input type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="1번째 자리" />
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="2번째 자리" />
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="3번째 자리" />
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="4번째 자리" />
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="5번째 자리" />
+          <input type="text" inputmode="numeric" maxlength="1" aria-label="6번째 자리" />
+        </div>
+        <p class="otp-hint">6칸이 다 차면 <strong>자동 제출</strong>됩니다. <span class="kbd">Backspace</span>는 빈 칸에서 앞 칸으로, <span class="kbd">←</span><span class="kbd">→</span>로 이동, <span class="kbd">Ctrl/⌘+V</span>로 6자리 한 번에 붙여넣기.</p>
+        <div class="otp-msg" id="otpMsg" role="status" aria-live="polite"></div>
+
+        <div class="otp-foot">
+          <button class="btn ghost sm" id="otpResend" disabled>인증번호 재전송</button>
+          <span class="otp-timer" id="otpTimer">30초 후 재전송할 수 있습니다</span>
+          <button class="btn ghost sm" id="otpReset" type="button">초기화</button>
+        </div>
+
+        <h4 style="font-size:.82rem;color:var(--muted);margin:22px 0 6px">변형 B — 단일 입력형 (자동입력 안정성 ↑)</h4>
+        <label for="otpOne" class="sr-only">인증번호 6자리</label>
+        <input class="otp-single" id="otpOne" type="text" inputmode="numeric" autocomplete="one-time-code"
+               maxlength="6" pattern="[0-9]{6}" placeholder="000000" aria-describedby="otpOneCap" />
+        <p class="cap" id="otpOneCap">칸을 나누지 않은 입력 하나. 겉보기는 수수하지만 <strong>iOS/안드로이드의 SMS 코드 자동입력이 가장 잘 붙는 형태</strong>이고, 붙여넣기·스크린리더·비밀번호 관리자와도 충돌이 적다. (칸 분리형은 시각적 만족도가 높은 대신 자동입력이 첫 칸에만 걸리는 경우가 있다 — 추정, 기기·OS별 편차 있음)</p>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong>붙여넣기 분배</strong> — 어느 칸에 붙여넣든 6자리를 잘라 각 칸에 배분한다. 이게 없으면 사용자는 문자 앱에서 복사해 온 코드를 한 글자씩 다시 친다.</li>
+      <li><strong>자동 제출(auto-submit)</strong> — 마지막 칸이 채워지면 "확인" 버튼을 누르지 않아도 검증을 시작한다. 다만 <em>검증 중</em>임을 문구로 알리고, 실패 시엔 자동 제출을 반복하지 않게 한다.</li>
+      <li><strong>실패 처리</strong> — 값을 지우고 <strong>첫 칸으로 포커스를 되돌린다</strong>. 틀린 값을 남겨두면 사용자가 어디를 고쳐야 할지 모른다. 흔들림 애니메이션은 <code>prefers-reduced-motion</code>(사용자가 OS에서 "동작 줄이기"를 켰는지 알려주는 미디어 쿼리)일 때 끈다.</li>
+      <li><strong>재전송 타이머</strong> — 즉시 재전송을 열어두면 문자 폭탄이 된다. 30초 카운트다운 뒤 활성화하고, 남은 시간을 숫자로 보여준다.</li>
+      <li><strong>단일 입력형</strong> — <code>letter-spacing</code>으로 자릿수를 시각화하면 칸을 나누지 않고도 "6자리구나"가 읽힌다. 자동입력 신뢰도를 최우선으로 둘 때의 선택.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- 자동입력 힌트: 첫 칸(또는 단일 입력)에만 one-time-code --&gt;
+&lt;input type="text" inputmode="numeric" autocomplete="one-time-code"
+       maxlength="1" aria-label="1번째 자리" /&gt;
+
+// 붙여넣기 6자리 분배 + 백스페이스 되돌아가기
+cells.addEventListener('paste', (e) =&gt; {
+  const digits = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+  if (!digits) return;
+  e.preventDefault();
+  [...cells.querySelectorAll('input')].forEach((el, i) =&gt; { el.value = digits[i] ?? ''; });
+  const next = Math.min(digits.length, 5);
+  cells.querySelectorAll('input')[next].focus();
+});
+
+cells.addEventListener('keydown', (e) =&gt; {
+  const el = e.target, i = inputs.indexOf(el);
+  if (e.key === 'Backspace' &amp;&amp; !el.value &amp;&amp; i &gt; 0) { inputs[i-1].focus(); inputs[i-1].value=''; e.preventDefault(); }
+  if (e.key === 'ArrowLeft'  &amp;&amp; i &gt; 0) inputs[i-1].focus();
+  if (e.key === 'ArrowRight' &amp;&amp; i &lt; 5) inputs[i+1].focus();
+});</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>칸마다 <code>aria-label="3번째 자리"</code>. 라벨 없는 6개의 빈 입력은 스크린리더에서 "편집, 편집, 편집…"으로만 읽힌다.</li>
+      <li>결과 문구는 <code>role="status" aria-live="polite"</code> 영역에. 색(빨강/초록)만으로 성패를 알리지 않는다 — 색각 이상 사용자에겐 안 보인다.</li>
+      <li><code>inputmode="numeric"</code>은 모바일에서 숫자 키패드를 띄운다. <code>type="number"</code>는 스피너·자동 스크롤 문제 때문에 OTP엔 권장되지 않는다.</li>
+      <li>재전송 버튼은 대기 중 <code>disabled</code> + 남은 초를 텍스트로 노출. 비활성 이유를 안 알려주는 버튼은 고장으로 보인다.</li>
+      <li>포커스 링(<code>:focus-visible</code> — 키보드로 이동했을 때만 나타나는 외곽선)을 지우지 않는다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>본인확인 SMS, 카드사 인증, 3DS 추가 인증 — 결제 퍼널에서 OTP는 <strong>이탈률이 가장 높은 한 칸</strong>이다. 붙여넣기 분배 하나만 넣어도 체감이 크다.</li>
+      <li>자동 제출 시 <em>버튼 로딩 상태 + 중복 제출 잠금</em>을 반드시. 결제 인증은 중복 호출이 그대로 비용/락으로 이어진다.</li>
+      <li>실패 횟수 제한이 있다면 "남은 시도 2회"를 숫자로 노출. 갑작스러운 잠금은 CS 문의로 돌아온다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 라이브 예시 / 참고</h3>
+    <ul class="clean">
+      <li>오늘 자 <code>components/2026-08-19.html</code> → <code>#otp-input</code></li>
+      <li><a href="https://web.dev/articles/sms-otp-form" target="_blank" rel="noopener">web.dev — SMS OTP form best practices</a></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebOTP_API" target="_blank" rel="noopener">MDN — WebOTP API</a></li>
+    </ul>
+    <div class="note">WebOTP API(문자 수신을 브라우저가 읽어 코드를 자동 채우는 API)는 지원 범위가 좁아 <strong>보조 수단</strong>으로만 쓰는 게 안전하다. 기본은 <code>autocomplete="one-time-code"</code> + 붙여넣기 분배.</div>
+  </section>
+
+  <!-- ============ 2. 주소·배송지 폼 ============ -->
+  <section class="card" id="address-form">
+    <h2>💳 주소·배송지 입력 폼 <span class="tag">결제·체크아웃</span></h2>
+    <p class="lead">체크아웃에서 가장 길고 지루한 구간. 줄일 수 있는 방법은 세 가지뿐이다 — <strong>브라우저 자동완성을 제대로 받아먹기</strong>(<code>autocomplete</code> 토큰), <strong>우편번호 검색으로 두세 칸을 한 번에 채우기</strong>, <strong>청구지=배송지 체크 하나로 폼 절반을 접기</strong>.</p>
+
+    <div class="demo">
+      <form class="af" id="addrForm" novalidate>
+        <label class="same">
+          <input type="checkbox" id="sameAddr" checked />
+          <span>청구지 주소가 배송지와 동일합니다</span>
+        </label>
+
+        <fieldset>
+          <legend>배송지</legend>
+          <div class="row">
+            <div>
+              <label for="sName">받는 분</label>
+              <input type="text" id="sName" name="sName" autocomplete="shipping name" placeholder="홍길동" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="sTel">연락처</label>
+              <input type="tel" id="sTel" name="sTel" autocomplete="shipping tel" placeholder="010-0000-0000" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="zip-line">
+              <div>
+                <label for="sZip">우편번호</label>
+                <input type="text" id="sZip" name="sZip" autocomplete="shipping postal-code"
+                       inputmode="numeric" readonly placeholder="00000" />
+              </div>
+              <button type="button" class="btn ghost" id="zipBtn" aria-haspopup="dialog">우편번호 찾기</button>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="sAddr1">기본 주소</label>
+              <input type="text" id="sAddr1" name="sAddr1" autocomplete="shipping address-line1" readonly
+                     placeholder="우편번호 찾기로 입력됩니다" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="sAddr2">상세 주소 <span style="font-weight:400">(동·호수)</span></label>
+              <input type="text" id="sAddr2" name="sAddr2" autocomplete="shipping address-line2" placeholder="101동 1004호" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset id="billFs" hidden>
+          <legend>청구지</legend>
+          <div class="row two">
+            <div>
+              <label for="bName">이름</label>
+              <input type="text" id="bName" autocomplete="billing name" placeholder="홍길동" />
+            </div>
+            <div>
+              <label for="bZip">우편번호</label>
+              <input type="text" id="bZip" autocomplete="billing postal-code" inputmode="numeric" placeholder="00000" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="bAddr1">기본 주소</label>
+              <input type="text" id="bAddr1" autocomplete="billing address-line1" placeholder="시/도 시/군/구 도로명" />
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="bAddr2">상세 주소</label>
+              <input type="text" id="bAddr2" autocomplete="billing address-line2" placeholder="동·호수" />
+            </div>
+          </div>
+        </fieldset>
+
+        <button class="btn" type="submit">결제 계속하기</button>
+        <div class="af-echo" id="addrEcho" role="status" aria-live="polite">청구지 폼이 접혀 있습니다 — 입력 칸 4개가 줄었습니다.</div>
+      </form>
+    </div>
+    <p class="cap">"우편번호 찾기"를 열어 <span class="kbd">강남</span> / <span class="kbd">판교</span> / <span class="kbd">해운대</span> 같은 키워드를 넣어보세요. 선택하면 우편번호·기본 주소가 채워지고 <strong>커서가 상세 주소로 자동 이동</strong>하며, 스크린리더에도 "주소가 입력되었습니다"가 읽힙니다.</p>
+
+    <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+    <ul class="clean">
+      <li><strong><code>autocomplete</code> 토큰 정확히 쓰기</strong> — <code>name</code>/<code>tel</code>/<code>postal-code</code>/<code>address-line1</code>은 정해진 이름이다. 여기에 <code>shipping</code>/<code>billing</code> 접두어를 붙이면 브라우저가 배송지·청구지를 구분해 채운다. 이름을 틀리면 자동완성이 통째로 죽는다 — 폼 길이를 줄이는 가장 싼 방법인데 가장 자주 빠뜨린다.</li>
+      <li><strong>검색으로 채우는 칸은 <code>readonly</code></strong> — 우편번호·기본 주소는 직접 타이핑을 막고 검색 결과로만 채운다. 오타 주소가 그대로 배송 실패가 되는 걸 막는다. (<code>disabled</code>가 아니라 <code>readonly</code>여야 폼 전송에 값이 포함된다.)</li>
+      <li><strong>채운 뒤 포커스 이동</strong> — 검색 모달을 닫으면 사용자가 다음에 할 일은 "동·호수 입력"뿐이다. 거기로 커서를 옮겨준다.</li>
+      <li><strong>청구지 접기</strong> — 기본값을 "동일함 체크됨"으로. 대부분의 사용자에게 청구지 4칸은 그냥 사라진다. 체크를 풀 때만 펼친다.</li>
+      <li><strong>자동 채워진 칸 표시</strong> — 초록 테두리로 "내가 안 쳤는데 값이 들어왔다"를 납득시킨다. 색만으로 끝내지 말고 안내 문구를 함께.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- 자동완성 토큰: [shipping|billing] + 표준 필드명 --&gt;
+&lt;input autocomplete="shipping name"          /&gt;
+&lt;input autocomplete="shipping tel"           type="tel" /&gt;
+&lt;input autocomplete="shipping postal-code"   inputmode="numeric" readonly /&gt;
+&lt;input autocomplete="shipping address-line1" readonly /&gt;
+&lt;input autocomplete="shipping address-line2" /&gt;  &lt;!-- 상세주소만 직접 입력 --&gt;
+
+// 검색 결과 적용 → 값 채우고 → 다음 할 일로 포커스 → 스크린리더 안내
+function applyAddress({ zip, road }) {
+  zipEl.value = zip; addr1El.value = road;
+  [zipEl, addr1El].forEach(el =&gt; el.classList.add('autofilled'));
+  dialog.close();
+  addr2El.focus();                       // 사용자가 이어서 할 일
+  echo.textContent = `주소가 입력되었습니다: ${zip} ${road}. 상세 주소를 입력하세요.`;
+}
+
+// 청구지 접기 (hidden 은 자식까지 포커스 불가 처리됨)
+sameChk.addEventListener('change', () =&gt; { billFs.hidden = sameChk.checked; });</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>모든 입력에 실제 <code>&lt;label for&gt;</code>. placeholder는 라벨이 아니다 — 입력하는 순간 사라져서 "이 칸이 뭐였지"가 된다.</li>
+      <li>배송지/청구지는 <code>&lt;fieldset&gt;&lt;legend&gt;</code>로 묶는다. 스크린리더가 "배송지 그룹, 이름 편집"처럼 맥락을 함께 읽는다.</li>
+      <li>접는 영역은 <code>hidden</code> 속성으로. CSS <code>display:none</code>만 쓰면 상황에 따라 숨은 칸에 포커스가 들어가는 사고가 난다.</li>
+      <li>우편번호 검색은 네이티브 <code>&lt;dialog&gt;</code> + <code>showModal()</code> — 포커스 트랩(모달 밖으로 Tab이 새지 않게 가두는 것)과 <span class="kbd">Esc</span> 닫기를 브라우저가 공짜로 준다.</li>
+      <li>값이 자동으로 바뀐 사실은 <code>aria-live="polite"</code>로 알린다. 화면을 못 보는 사용자에겐 초록 테두리가 아무 정보도 아니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>가맹점 등록·정산 계좌 주소 입력 같은 관리 화면에도 그대로 재사용 가능한 구조다. 검색 소스만 실제 주소 API로 갈아끼우면 된다.</li>
+      <li>청구지 주소는 카드사 AVS(주소 검증)나 해외 결제에서 필요해지는 값이다. "동일함" 기본 체크 + 필요 시 펼치기가 안전한 기본값.</li>
+      <li><code>readonly</code> 칸이라도 서버 검증은 별도로. 프론트 <code>readonly</code>는 UX 장치이지 보안 장치가 아니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 라이브 예시 / 참고</h3>
+    <ul class="clean">
+      <li>오늘 자 <code>components/2026-08-19.html</code> → <code>#address-form</code></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/autocomplete" target="_blank" rel="noopener">MDN — HTML autocomplete 속성 값 목록</a></li>
+    </ul>
+    <div class="note">데모의 주소 검색은 <strong>내장 더미 데이터 3건</strong>으로 동작한다(오프라인에서도 열려야 하므로). 실서비스에선 우편번호 서비스 API를 붙이되, 이 컴포넌트의 <em>흐름</em>(모달 → 선택 → 채움 → 포커스 이동 → 안내)은 동일하게 유지하면 된다.</div>
+  </section>
+
+  <!-- ============ 3. appearance: base-select ============ -->
+  <section class="card" id="base-select">
+    <h2>🌀 커스터마이즈 가능한 select <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><code>&lt;select&gt;</code>의 드롭다운 목록은 오랫동안 CSS로 손댈 수 없는 영역이었다. 그래서 다들 <code>div</code>로 콤보박스를 새로 만들었고, 키보드·스크린리더 대응을 매번 다시 짰다. <strong><code>appearance: base-select</code></strong>는 그 목록을 CSS가 만질 수 있는 영역으로 끌어내려, <em>네이티브 select 그대로</em> 아이콘·설명·체크마크·애니메이션을 넣게 해준다.</p>
+
+    <div class="demo">
+      <div class="bs-stage">
+        <div class="bs-col">
+          <h4>기존 — 네이티브 select</h4>
+          <label for="selPlain">결제 수단</label>
+          <select class="plain" id="selPlain">
+            <option>신용·체크카드</option>
+            <option>계좌이체</option>
+            <option>간편결제</option>
+            <option>가상계좌</option>
+          </select>
+          <p class="cap">드롭다운 목록은 OS가 그린다. 폰트·색·아이콘 전부 불가.</p>
+        </div>
+
+        <div class="bs-col">
+          <h4>base-select — 목록까지 내 CSS로</h4>
+          <label for="selFancy">결제 수단</label>
+          <select class="fancy" id="selFancy">
+            <button type="button">
+              <selectedcontent></selectedcontent>
+            </button>
+            <option value="card">
+              <span class="pm-ico">💳</span>
+              <span class="pm-txt"><span>신용·체크카드</span><span class="pm-sub">국내 전 카드사 · 할부 가능</span></span>
+            </option>
+            <option value="transfer">
+              <span class="pm-ico">🏦</span>
+              <span class="pm-txt"><span>계좌이체</span><span class="pm-sub">즉시 출금 · 수수료 낮음</span></span>
+            </option>
+            <option value="easy">
+              <span class="pm-ico">⚡</span>
+              <span class="pm-txt"><span>간편결제</span><span class="pm-sub">등록된 수단으로 1초 결제</span></span>
+            </option>
+            <option value="virtual">
+              <span class="pm-ico">🧾</span>
+              <span class="pm-txt"><span>가상계좌</span><span class="pm-sub">입금 확인 후 처리</span></span>
+            </option>
+          </select>
+          <p class="cap">아이콘 + 부제 + 체크마크 + 열림 애니메이션. 그런데도 <strong>여전히 진짜 <code>&lt;select&gt;</code></strong> — 키보드 화살표·타이핑 점프·폼 전송·스크린리더가 전부 그대로 동작한다.</p>
+        </div>
+      </div>
+      <div class="support" id="bsSupport">지원 여부 확인 중…</div>
+    </div>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><strong>직접 만든 드롭다운의 비용이 컸다</strong> — <code>div</code> 콤보박스는 <code>role="listbox"</code>, <code>aria-activedescendant</code>, 포커스 관리, 모바일 스크롤 잠금까지 직접 짜야 하고, 대부분 어딘가 하나는 어긋난다.</li>
+      <li><strong>동작은 브라우저, 모양은 나</strong> — <code>select</code>와 <code>::picker(select)</code>(드롭다운 패널을 가리키는 새 가상 요소)에 <code>appearance: base-select</code>를 주면 OS 위젯 대신 브라우저가 그리는 스타일 가능한 팝업이 뜬다. <code>option</code> 안에 <code>&lt;span&gt;</code>·아이콘 같은 진짜 HTML을 넣을 수 있다.</li>
+      <li><strong>새로 생긴 훅들</strong> — <code>&lt;selectedcontent&gt;</code>(선택된 옵션의 내용을 닫힌 버튼에 그대로 비춰주는 요소), <code>::picker-icon</code>(화살표), <code>option::checkmark</code>(체크 표시), <code>select:open</code>(열린 상태). 이것들로 열림 회전·페이드까지 CSS만으로 처리된다.</li>
+      <li><strong>지원 현황(2026-08 기준)</strong> — Chromium 계열(Chrome/Edge 135+)에 정식 탑재, Safari는 Technology Preview 단계, Firefox는 Nightly 플래그 뒤에서 구현 중으로 보고돼 있다. 즉 <strong>지금은 점진적 향상(progressive enhancement)으로만</strong> 쓴다 — 지원하면 예쁜 목록, 아니면 평범한 네이티브 목록. 어느 쪽이든 기능은 멀쩡하다.</li>
+      <li><strong>안 어울리는 곳</strong> — 옵션이 수백 개고 검색이 필요한 경우는 여전히 콤보박스(자동완성) 영역이다. base-select는 "선택지가 10개 안쪽이고 각 항목에 설명·아이콘을 붙이고 싶은" 케이스에 맞는다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* 1) select와 드롭다운 패널을 모두 base 모드로 */
+select, ::picker(select) { appearance: base-select; }
+
+/* 2) 이제 목록이 내 CSS 대상이 된다 */
+::picker(select){
+  border:1px solid var(--border); border-radius:12px; padding:6px;
+  background:var(--surface); box-shadow:var(--shadow);
+  opacity:0; transform:translateY(-6px);
+  transition:opacity .18s, transform .18s, overlay .18s allow-discrete, display .18s allow-discrete;
+}
+select:open::picker(select){ opacity:1; transform:translateY(0); }
+@starting-style { select:open::picker(select){ opacity:0; transform:translateY(-6px);} }
+
+option{ display:flex; align-items:center; gap:11px; padding:9px 10px; border-radius:9px; }
+option:checked{ background:var(--brand-soft); font-weight:600; }
+option::checkmark{ order:99; margin-left:auto; color:var(--brand); }
+select::picker-icon{ margin-left:auto; transition:transform .2s; }
+select:open::picker-icon{ transform:rotate(180deg); }
+
+&lt;!-- 3) 닫힌 상태 버튼 + selectedcontent (선택값이 그대로 비침) --&gt;
+&lt;select&gt;
+  &lt;button type="button"&gt;&lt;selectedcontent&gt;&lt;/selectedcontent&gt;&lt;/button&gt;
+  &lt;option value="card"&gt;&lt;span&gt;💳&lt;/span&gt;&lt;span&gt;신용·체크카드&lt;/span&gt;&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li>가장 큰 이점이 접근성이다. 화살표 이동, 글자 타이핑으로 항목 점프, <span class="kbd">Enter</span>/<span class="kbd">Esc</span>, 폼 전송, 스크린리더 역할 — 전부 브라우저 기본 동작을 그대로 물려받는다. 직접 만든 드롭다운이 늘 놓치던 부분이다.</li>
+      <li><code>option</code> 안에 넣은 내용은 그대로 읽힌다. 아이콘 이모지가 소리로 읽혀 방해되면 <code>aria-hidden="true"</code>를 붙인다.</li>
+      <li><code>:focus-visible</code> 외곽선은 <code>select</code>에 직접 준다. base 모드에선 OS가 그려주던 포커스 표시가 사라질 수 있다.</li>
+      <li>열림 애니메이션은 <code>prefers-reduced-motion</code>에서 끈다.</li>
+      <li>미지원 브라우저에서 <code>appearance: base-select</code>는 <strong>그냥 무시</strong>되고 평범한 select가 된다. 이게 이 기능을 지금 써도 되는 이유다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>결제 수단 선택처럼 <strong>항목마다 로고·수수료·설명이 붙는 드롭다운</strong>이 정확히 이 기능의 표적이다. 지금 커스텀 콤보박스로 짜여 있다면, 라이브러리 의존을 한 겹 걷어낼 후보.</li>
+      <li>지원 브라우저 비중이 관리자 화면(사내 Chrome 위주)과 고객 결제 화면(모바일 Safari 다수)에서 크게 다르다. <strong>관리자/백오피스부터 먼저</strong> 도입하는 게 위험이 적다.</li>
+      <li>도입 시 <code>@supports (appearance: base-select)</code>로 감싸 스타일을 분기하면, 미지원 환경의 레이아웃 사고를 원천 차단할 수 있다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 라이브 예시 / 참고</h3>
+    <ul class="clean">
+      <li>오늘 자 <code>components/2026-08-19.html</code> → <code>#base-select</code></li>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Customizable_select" target="_blank" rel="noopener">MDN — Customizable select elements</a></li>
+      <li><a href="https://developer.chrome.com/blog/a-customizable-select" target="_blank" rel="noopener">Chrome for Developers — The &lt;select&gt; element can now be customized with CSS</a></li>
+    </ul>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원 · 섹션 id: <code>otp-input</code> / <code>address-form</code> / <code>base-select</code></div>
+</div>
+
+<!-- 우편번호 검색 모달 -->
+<dialog class="zipdlg" id="zipDlg" aria-labelledby="zipTitle">
+  <div class="zip-inner">
+    <h4 id="zipTitle">우편번호 찾기</h4>
+    <label for="zipQ" class="sr-only">주소 검색어</label>
+    <input type="text" id="zipQ" placeholder="예: 강남 / 판교 / 해운대" autocomplete="off" />
+    <ul class="zip-list" id="zipList"></ul>
+    <div style="display:flex;justify-content:flex-end;margin-top:12px">
+      <button class="btn ghost sm" type="button" id="zipClose">닫기</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ========== 1. OTP ========== */
+  (function(){
+    var CODE = "482913";
+    var cells = document.getElementById("otpCells");
+    var inputs = [].slice.call(cells.querySelectorAll("input"));
+    var msg = document.getElementById("otpMsg");
+    var resend = document.getElementById("otpResend");
+    var timerEl = document.getElementById("otpTimer");
+    var resetBtn = document.getElementById("otpReset");
+    var busy = false;
+
+    function value(){ return inputs.map(function(i){ return i.value; }).join(""); }
+    function setMsg(text, cls){ msg.textContent = text; msg.className = "otp-msg" + (cls ? " " + cls : ""); }
+    function clearAll(focus){
+      inputs.forEach(function(i){ i.value = ""; });
+      cells.classList.remove("filled","bad");
+      if(focus !== false) inputs[0].focus();
+    }
+
+    function verify(){
+      if(busy) return;
+      busy = true;
+      setMsg("확인 중…", "");
+      setTimeout(function(){
+        busy = false;
+        if(value() === CODE){
+          cells.classList.add("filled");
+          setMsg("✅ 인증이 완료되었습니다.", "ok");
+          inputs.forEach(function(i){ i.readOnly = true; });
+        } else {
+          cells.classList.add("bad");
+          setMsg("❌ 인증번호가 일치하지 않습니다. 다시 입력해 주세요. (남은 시도 2회)", "err");
+          setTimeout(function(){ cells.classList.remove("bad"); clearAll(true); }, 420);
+        }
+      }, 550);
+    }
+
+    cells.addEventListener("input", function(e){
+      var el = e.target;
+      el.value = el.value.replace(/\D/g, "").slice(0,1);
+      var i = inputs.indexOf(el);
+      if(el.value && i < inputs.length - 1) inputs[i+1].focus();
+      if(value().length === 6) verify();
+    });
+
+    cells.addEventListener("keydown", function(e){
+      var el = e.target, i = inputs.indexOf(el);
+      if(i < 0) return;
+      if(e.key === "Backspace" && !el.value && i > 0){
+        e.preventDefault(); inputs[i-1].value = ""; inputs[i-1].focus();
+        cells.classList.remove("filled","bad");
+      } else if(e.key === "ArrowLeft" && i > 0){ e.preventDefault(); inputs[i-1].focus(); }
+      else if(e.key === "ArrowRight" && i < inputs.length-1){ e.preventDefault(); inputs[i+1].focus(); }
+    });
+
+    cells.addEventListener("paste", function(e){
+      var t = (e.clipboardData || window.clipboardData).getData("text") || "";
+      var d = t.replace(/\D/g,"").slice(0,6);
+      if(!d) return;
+      e.preventDefault();
+      inputs.forEach(function(el, i){ el.value = d[i] || ""; });
+      inputs[Math.min(d.length, 5)].focus();
+      setMsg("📋 붙여넣은 " + d.length + "자리를 각 칸에 채웠습니다.", "");
+      if(d.length === 6) verify();
+    });
+
+    resetBtn.addEventListener("click", function(){
+      inputs.forEach(function(i){ i.readOnly = false; });
+      clearAll(true); setMsg("", "");
+    });
+
+    var left = 30, tick;
+    function startTimer(){
+      left = 30; resend.disabled = true;
+      timerEl.textContent = left + "초 후 재전송할 수 있습니다";
+      clearInterval(tick);
+      tick = setInterval(function(){
+        left--;
+        if(left <= 0){
+          clearInterval(tick);
+          resend.disabled = false;
+          timerEl.textContent = "문자를 못 받으셨나요?";
+        } else {
+          timerEl.textContent = left + "초 후 재전송할 수 있습니다";
+        }
+      }, 1000);
+    }
+    resend.addEventListener("click", function(){
+      setMsg("📨 인증번호를 다시 보냈습니다. (테스트 코드는 그대로 482913)", "");
+      clearAll(true); startTimer();
+    });
+    startTimer();
+
+    /* 변형 B — 단일 입력 */
+    var one = document.getElementById("otpOne");
+    one.addEventListener("input", function(){
+      one.value = one.value.replace(/\D/g,"").slice(0,6);
+    });
+  })();
+
+  /* ========== 2. 주소 폼 ========== */
+  (function(){
+    var DATA = [
+      { zip:"06236", road:"서울특별시 강남구 테헤란로 152", old:"역삼동 737" },
+      { zip:"13494", road:"경기도 성남시 분당구 판교역로 235", old:"삼평동 681" },
+      { zip:"48058", road:"부산광역시 해운대구 센텀중앙로 79", old:"우동 1476" },
+      { zip:"04520", road:"서울특별시 중구 세종대로 110", old:"태평로1가 31" },
+      { zip:"35242", road:"대전광역시 서구 둔산중로 100", old:"둔산동 1420" }
+    ];
+    var dlg = document.getElementById("zipDlg");
+    var q = document.getElementById("zipQ");
+    var list = document.getElementById("zipList");
+    var openBtn = document.getElementById("zipBtn");
+    var closeBtn = document.getElementById("zipClose");
+    var zipEl = document.getElementById("sZip");
+    var a1 = document.getElementById("sAddr1");
+    var a2 = document.getElementById("sAddr2");
+    var echo = document.getElementById("addrEcho");
+
+    function render(term){
+      var t = (term || "").trim();
+      var rows = t ? DATA.filter(function(d){ return (d.road + " " + d.old + " " + d.zip).indexOf(t) > -1; }) : DATA;
+      list.innerHTML = "";
+      if(!rows.length){
+        var li = document.createElement("li");
+        li.className = "zip-empty";
+        li.textContent = "검색 결과가 없습니다. 다른 키워드로 시도해 보세요.";
+        list.appendChild(li);
+        return;
+      }
+      rows.forEach(function(d){
+        var li = document.createElement("li");
+        var b = document.createElement("button");
+        b.type = "button";
+        b.innerHTML = '<span class="z">' + d.zip + '</span>' + d.road +
+                      '<br><span style="font-size:.78rem;color:var(--muted)">(지번) ' + d.old + '</span>';
+        b.addEventListener("click", function(){ apply(d); });
+        li.appendChild(b); list.appendChild(li);
+      });
+    }
+
+    function apply(d){
+      zipEl.value = d.zip; a1.value = d.road;
+      zipEl.classList.add("autofilled"); a1.classList.add("autofilled");
+      dlg.close();
+      a2.focus();
+      echo.textContent = "주소가 입력되었습니다: " + d.zip + " " + d.road + ". 이어서 상세 주소를 입력하세요.";
+    }
+
+    openBtn.addEventListener("click", function(){
+      render(""); q.value = "";
+      if(typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open","");
+      q.focus();
+    });
+    closeBtn.addEventListener("click", function(){ dlg.close(); openBtn.focus(); });
+    dlg.addEventListener("close", function(){ if(document.activeElement === document.body) openBtn.focus(); });
+    q.addEventListener("input", function(){ render(q.value); });
+
+    var same = document.getElementById("sameAddr");
+    var billFs = document.getElementById("billFs");
+    same.addEventListener("change", function(){
+      billFs.hidden = same.checked;
+      echo.textContent = same.checked
+        ? "청구지 폼이 접혔습니다 — 입력 칸 4개가 줄었습니다."
+        : "청구지 주소를 따로 입력합니다 — 칸 4개가 추가되었습니다.";
+    });
+
+    document.getElementById("addrForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      if(!zipEl.value){
+        echo.textContent = "⚠️ 우편번호 찾기로 배송지 주소를 먼저 선택해 주세요.";
+        openBtn.focus();
+        return;
+      }
+      echo.textContent = "✅ 배송지 확인 완료 — " + zipEl.value + " " + a1.value + " " + (a2.value || "");
+    });
+  })();
+
+  /* ========== 3. base-select 지원 배너 ========== */
+  (function(){
+    var el = document.getElementById("bsSupport");
+    var ok = window.CSS && CSS.supports && CSS.supports("appearance", "base-select");
+    if(ok){
+      el.className = "support yes";
+      el.innerHTML = "✅ 이 브라우저는 <code>appearance: base-select</code>를 지원합니다 — 오른쪽 드롭다운을 열면 아이콘·부제·체크마크가 보이고 부드럽게 나타납니다.";
+    } else {
+      el.className = "support no";
+      el.innerHTML = "⚠️ 이 브라우저는 <code>appearance: base-select</code>를 지원하지 않습니다 — 오른쪽도 <em>평범한 네이티브 드롭다운</em>으로 보입니다. 깨지지 않고 모양만 소박한 것, 이게 점진적 향상입니다. (Chromium 계열에서 열어 보면 차이가 보입니다)";
+    }
+  })();
+
+  /* ========== theme toggle ========== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ========== embed compact mode: ?embed=<id> ========== */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get("embed") || q.get("demo");
+    if(q.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
