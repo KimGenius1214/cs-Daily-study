@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-08-21 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--brand);
+    border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.spin{animation-duration:2s}}
+
+  /* ================= 1. 필터 툴바 + 활성 필터 칩 ================= */
+  .ft-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .ft-search{position:relative;flex:1 1 200px;min-width:180px}
+  .ft-search input{width:100%;font-family:inherit;font-size:.88rem;padding:9px 32px 9px 32px;
+    border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
+  .ft-search input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .ft-search .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:.85rem}
+  .ft-search .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:none;background:transparent;
+    color:var(--muted);cursor:pointer;font-size:1rem;line-height:1;padding:4px 6px;border-radius:6px;font-family:inherit}
+  .ft-search .clr:hover{color:var(--text);background:var(--surface-2)}
+  .ft-search .clr:focus-visible{outline:3px solid var(--ring)}
+  .ft-search .clr[hidden]{display:none}
+  .ft-drop{position:relative}
+  .ft-trigger{cursor:pointer;font-family:inherit;font-size:.86rem;font-weight:600;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:10px;padding:9px 13px;display:inline-flex;align-items:center;gap:7px}
+  .ft-trigger:hover{border-color:var(--brand)}
+  .ft-trigger:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .ft-trigger[aria-expanded="true"]{border-color:var(--brand);color:var(--brand)}
+  .ft-trigger .cnt{background:var(--brand);color:var(--brand-ink);border-radius:999px;
+    font-size:.7rem;padding:1px 7px;font-variant-numeric:tabular-nums}
+  .ft-trigger .cnt[hidden]{display:none}
+  .ft-trigger .caret{font-size:.6rem;color:var(--muted)}
+  .ft-panel{position:absolute;z-index:30;top:calc(100% + 6px);left:0;min-width:225px;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:8px}
+  .ft-panel[hidden]{display:none}
+  .ft-opt{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:8px;cursor:pointer;font-size:.86rem}
+  .ft-opt:hover{background:var(--surface-2)}
+  .ft-opt input{accent-color:var(--brand);width:16px;height:16px;margin:0;flex:0 0 auto}
+  .ft-opt input:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .ft-opt .lbl{flex:1}
+  .ft-opt .facet{color:var(--muted);font-size:.76rem;font-variant-numeric:tabular-nums}
+  .ft-opt.zero .lbl,.ft-opt.zero .facet{opacity:.45}
+  .ft-panel .sep{height:1px;background:var(--border);margin:6px 4px}
+  .ft-panel .foot{display:flex;justify-content:space-between;gap:8px;padding:2px 4px}
+  .linkbtn{border:none;background:transparent;color:var(--brand);font-family:inherit;font-size:.82rem;
+    font-weight:600;cursor:pointer;padding:4px 6px;border-radius:6px}
+  .linkbtn:hover{background:var(--brand-soft)}
+  .linkbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  select.ft-select{font-family:inherit;font-size:.86rem;font-weight:600;padding:9px 13px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer}
+  select.ft-select:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-top:12px;min-height:30px}
+  .chips:empty{display:none}
+  .chip{display:inline-flex;align-items:center;gap:6px;background:var(--brand-soft);color:var(--brand);
+    border:1px solid transparent;border-radius:999px;padding:4px 6px 4px 11px;font-size:.79rem;font-weight:600}
+  .chip .x{border:none;background:transparent;color:inherit;cursor:pointer;font-size:.95rem;line-height:1;
+    padding:1px 5px;border-radius:999px;font-family:inherit}
+  .chip .x:hover{background:rgba(0,0,0,.09)}
+  [data-theme="dark"] .chip .x:hover{background:rgba(255,255,255,.13)}
+  .chip .x:focus-visible{outline:2px solid var(--ring);outline-offset:1px}
+  .ft-count{font-size:.8rem;color:var(--muted);margin:12px 0 0;font-variant-numeric:tabular-nums}
+  .ft-count b{color:var(--text)}
+  .tbl{width:100%;border-collapse:collapse;margin-top:10px;font-size:.85rem;background:var(--surface);
+    border:1px solid var(--border);border-radius:11px;overflow:hidden}
+  .tbl th,.tbl td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--border);white-space:nowrap}
+  .tbl thead th{background:var(--surface-2);font-size:.78rem;color:var(--muted);font-weight:700}
+  .tbl tbody tr:last-child td{border-bottom:none}
+  .tbl tbody tr:hover{background:var(--surface-2)}
+  .tbl td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  .tbl mark{background:#fde68a;color:#111;border-radius:3px;padding:0 1px}
+  [data-theme="dark"] .tbl mark{background:#7c5c11;color:#fff}
+  .st{display:inline-block;border-radius:999px;padding:2px 9px;font-size:.74rem;font-weight:700}
+  .st.paid{color:var(--ok);background:var(--ok-soft)}
+  .st.pend{color:var(--warn);background:var(--warn-soft)}
+  .st.fail{color:var(--danger);background:var(--danger-soft)}
+  .st.refund{color:var(--muted);background:var(--surface-2)}
+  .empty{text-align:center;padding:34px 18px;color:var(--muted);background:var(--surface);
+    border:1px solid var(--border);border-radius:11px;margin-top:10px}
+  .empty .big{font-size:1.7rem;display:block;margin-bottom:6px}
+  .empty strong{color:var(--text);display:block;margin-bottom:4px}
+  .tblwrap{overflow-x:auto;border-radius:11px}
+
+  /* ================= 2. 연결 상태 · 저장 인디케이터 ================= */
+  .app{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+  .banner{display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:.84rem;font-weight:600;
+    background:var(--warn-soft);color:var(--warn);border-bottom:1px solid var(--border)}
+  .banner[hidden]{display:none}
+  .banner.reconnect{background:var(--brand-soft);color:var(--brand)}
+  .banner.back{background:var(--ok-soft);color:var(--ok)}
+  .banner .dot{width:8px;height:8px;border-radius:50%;background:currentColor;flex:0 0 auto;
+    animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @media(prefers-reduced-motion:reduce){.banner .dot{animation:none}}
+  .banner .grow{flex:1}
+  .appbody{padding:16px}
+  .memo{width:100%;min-height:76px;font-family:inherit;font-size:.88rem;padding:11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);resize:vertical;line-height:1.55}
+  .memo:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .saverow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:11px;min-height:34px}
+  .saveind{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;font-weight:600;color:var(--muted)}
+  .saveind.saving{color:var(--brand)}
+  .saveind.saved{color:var(--ok)}
+  .saveind.queued{color:var(--warn)}
+  .saveind.error{color:var(--danger)}
+  .saveind .ck{font-size:.9rem}
+  .simrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.84rem;font-weight:600;cursor:pointer;
+    border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:7px 14px;
+    color:var(--text);font-family:inherit}
+  .switch:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .switch .track{width:34px;height:19px;border-radius:999px;background:var(--border);position:relative;
+    transition:background .18s ease;flex:0 0 auto}
+  .switch .knob{position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;
+    box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .18s ease}
+  .switch[aria-pressed="true"] .track{background:var(--danger)}
+  .switch[aria-pressed="true"] .knob{transform:translateX(15px)}
+  @media(prefers-reduced-motion:reduce){.switch .track,.switch .knob{transition:none}}
+  .queue{margin-top:14px;border:1px solid var(--border);border-radius:10px;background:var(--surface-2);padding:11px 13px}
+  .queue h4{font-size:.8rem;color:var(--muted);margin:0 0 6px;text-transform:uppercase;letter-spacing:.04em}
+  .queue ol{margin:0;padding-left:1.15rem;font-size:.83rem}
+  .queue ol li{margin:.2rem 0;font-variant-numeric:tabular-nums}
+  .queue .none{font-size:.83rem;color:var(--muted)}
+  .stale{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;color:var(--warn);
+    background:var(--warn-soft);border-radius:999px;padding:2px 10px;font-weight:600}
+  .stale[hidden]{display:none}
+  .livelog{margin-top:12px;font-size:.78rem;color:var(--muted);background:var(--surface-2);
+    border-radius:8px;padding:8px 11px;max-height:110px;overflow:auto;font-variant-numeric:tabular-nums}
+  .livelog div{margin:.12rem 0}
+
+  /* ================= 3. CSS Anchor Positioning ================= */
+  .ap-stage{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center;
+    padding:30px 16px;background:var(--surface);border:1px solid var(--border);border-radius:11px;
+    min-height:120px;position:relative}
+  .ap-scroll{max-width:100%;overflow:auto;padding:8px 0}
+  .ap-btn{cursor:pointer;font-family:inherit;font-size:.86rem;font-weight:600;border-radius:10px;
+    padding:9px 14px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .ap-btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .ap-btn:hover{border-color:var(--brand);color:var(--brand)}
+  #apAnchor1{anchor-name:--tip-anchor}
+  #apAnchor2{anchor-name:--menu-anchor}
+  .ap-tip{position:absolute;margin:0;border:none;padding:8px 12px;border-radius:9px;
+    background:var(--text);color:var(--bg);font-size:.8rem;font-weight:600;box-shadow:var(--shadow);
+    width:max-content;max-width:220px;white-space:normal}
+  .ap-tip[hidden]{display:none}
+  #apTip{position-anchor:--tip-anchor;position-area:top;margin-bottom:8px}
+  .ap-menu{position:absolute;margin:0;padding:6px;border-radius:11px;background:var(--surface);
+    border:1px solid var(--border);box-shadow:var(--shadow);width:max-content;min-width:170px;list-style:none}
+  .ap-menu[hidden]{display:none}
+  #apMenu{position-anchor:--menu-anchor;position-area:bottom span-right;margin-top:8px;
+    position-try-fallbacks:--flip-up, flip-block;}
+  @position-try --flip-up{
+    position-area:top span-right;
+    margin-top:0;margin-bottom:8px;
+  }
+  .ap-menu li button{display:block;width:100%;text-align:left;border:none;background:transparent;color:var(--text);
+    font-family:inherit;font-size:.85rem;padding:8px 11px;border-radius:8px;cursor:pointer}
+  .ap-menu li button:hover{background:var(--surface-2)}
+  .ap-menu li button:focus-visible{outline:3px solid var(--ring);outline-offset:-2px}
+  .ap-fallback-note{font-size:.78rem;color:var(--muted);margin-top:8px}
+  .ap-side{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+  .ap-side .ap-btn{flex:0 0 auto}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-21 (금) · 오늘의 컴포넌트·패턴 3건 · 데이터·테이블 / 피드백·상태 / 트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#filter-toolbar">📊 필터 툴바와 활성 필터 칩</a>
+    <a href="#connection-status">🔔 연결 상태와 저장 인디케이터</a>
+    <a href="#anchor-positioning">🌀 CSS 앵커 포지셔닝</a>
+  </nav>
+
+  <!-- ============ 1. 필터 툴바 ============ -->
+  <section class="card" id="filter-toolbar">
+    <h2>📊 필터 툴바와 활성 필터 칩 <span class="tag">패싯 · 칩 · 결과 없음</span></h2>
+    <p class="lead">정산표처럼 행이 많은 표에서 진짜 어려운 건 표 자체가 아니라 <strong>"지금 뭘로 걸러진 상태인지"</strong>를 보여주는 일입니다. 요즘 패턴은 셋으로 정리됩니다 — ① 툴바에 필터 컨트롤을 모으고, ② 걸린 조건을 <strong>칩(chip)</strong>으로 표 위에 늘어놓고, ③ 각 옵션 옆에 <strong>패싯 카운트</strong>(그 옵션을 고르면 몇 건이 남는지)를 미리 보여줍니다.</p>
+
+    <div class="demo">
+      <div class="ft-bar">
+        <div class="ft-search">
+          <span class="ico" aria-hidden="true">🔍</span>
+          <label class="sr-only" for="ftQ">가맹점·거래번호 검색</label>
+          <input id="ftQ" type="search" placeholder="가맹점 또는 거래번호 검색" autocomplete="off" />
+          <button class="clr" id="ftQClr" type="button" hidden aria-label="검색어 지우기">✕</button>
+        </div>
+
+        <div class="ft-drop" id="ftStatusDrop">
+          <button class="ft-trigger" id="ftStatusBtn" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="ftStatusPanel">
+            상태 <span class="cnt" id="ftStatusCnt" hidden>0</span> <span class="caret" aria-hidden="true">▼</span>
+          </button>
+          <div class="ft-panel" id="ftStatusPanel" role="group" aria-labelledby="ftStatusBtn" hidden></div>
+        </div>
+
+        <label class="sr-only" for="ftPeriod">기간</label>
+        <select class="ft-select" id="ftPeriod">
+          <option value="all">전체 기간</option>
+          <option value="7">최근 7일</option>
+          <option value="30">최근 30일</option>
+          <option value="90">최근 90일</option>
+        </select>
+
+        <label class="sr-only" for="ftAmount">금액</label>
+        <select class="ft-select" id="ftAmount">
+          <option value="all">금액 전체</option>
+          <option value="lt50">5만 원 미만</option>
+          <option value="50to200">5만~20만 원</option>
+          <option value="gte200">20만 원 이상</option>
+        </select>
+      </div>
+
+      <div class="chips" id="ftChips" role="group" aria-label="적용된 필터"></div>
+
+      <p class="ft-count" id="ftCount" role="status" aria-live="polite"></p>
+
+      <div class="tblwrap">
+        <table class="tbl" id="ftTable">
+          <caption class="sr-only">필터가 적용된 거래 목록</caption>
+          <thead>
+            <tr><th scope="col">거래번호</th><th scope="col">가맹점</th><th scope="col">상태</th><th scope="col">일자</th><th scope="col" style="text-align:right">금액</th></tr>
+          </thead>
+          <tbody id="ftBody"></tbody>
+        </table>
+      </div>
+
+      <div class="empty" id="ftEmpty" hidden>
+        <span class="big" aria-hidden="true">🔍</span>
+        <strong>조건에 맞는 거래가 없습니다</strong>
+        <span id="ftEmptyWhy">필터를 하나씩 풀어 보세요.</span>
+        <div style="margin-top:12px"><button class="btn sm ghost" id="ftEmptyReset" type="button">필터 전체 초기화</button></div>
+      </div>
+
+      <p class="cap">칩의 <span class="kbd">✕</span>는 <strong>그 조건 하나만</strong> 풉니다. 상태 드롭다운 옆 숫자는 몇 개가 걸려 있는지, 옵션 옆 회색 숫자는 그 옵션을 고르면 몇 건이 남는지(패싯 카운트)입니다. 0건인 옵션은 흐리게 처리해 "눌러봤자 빈 화면"을 미리 알려줍니다.</p>
+    </div>
+
+    <h3 class="sec-lead">왜 이렇게 하나</h3>
+    <ul class="clean">
+      <li><strong>칩이 없으면 "왜 3건밖에 없지?"가 됩니다.</strong> 드롭다운 안에 숨은 체크는 닫으면 안 보입니다. 조건은 반드시 <em>표 위에 펼쳐서</em> 보여야 합니다.</li>
+      <li><strong>패싯 카운트(facet count)</strong> = 각 필터 옵션을 선택했을 때 남을 결과 수를 미리 계산해 옆에 붙이는 것. 사용자가 빈 결과에 부딪히는 횟수를 줄입니다.</li>
+      <li><strong>디바운스(debounce)</strong> = 입력이 멈춘 뒤 일정 시간(여기선 250ms) 지나서야 실제 필터/요청을 실행하는 기법. 글자마다 서버를 때리는 걸 막습니다.</li>
+      <li>결과 수는 <code>role="status"</code> + <code>aria-live="polite"</code>로 읽어줍니다. 화면을 못 보는 사용자에게 "12건 중 3건"이 전달돼야 필터가 먹혔는지 압니다.</li>
+      <li>빈 상태는 <strong>사과문이 아니라 탈출구</strong>여야 합니다. "왜 비었는지 + 초기화 버튼"을 함께 둡니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">복붙용 — 필터 칩</h3>
+<pre><code>function FilterChips({ filters, onRemove, onReset }) {
+  if (filters.length === 0) return null;
+  return (
+    &lt;div role="group" aria-label="적용된 필터" className="chips"&gt;
+      {filters.map((f) =&gt; (
+        &lt;span key={f.id} className="chip"&gt;
+          {f.label}
+          &lt;button
+            type="button"
+            className="x"
+            aria-label={`${f.label} 필터 제거`}
+            onClick={() =&gt; onRemove(f.id)}
+          &gt;✕&lt;/button&gt;
+        &lt;/span&gt;
+      ))}
+      &lt;button type="button" className="linkbtn" onClick={onReset}&gt;전체 초기화&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+
+    <div class="note">필터 상태는 <strong>URL 쿼리스트링</strong>에 넣는 걸 권합니다(<code>?status=failed&amp;period=30</code>). 그래야 "이 화면 그대로" 동료에게 링크로 넘길 수 있고, 새로고침·뒤로가기도 자연스럽습니다. Next.js라면 <code>useSearchParams</code> + <code>router.replace</code> 조합. 이 데모는 self-contained라 메모리 상태만 씁니다.</div>
+  </section>
+
+  <!-- ============ 2. 연결 상태 ============ -->
+  <section class="card" id="connection-status">
+    <h2>🔔 연결 상태와 저장 인디케이터 <span class="tag">오프라인 배너 · 저장 중 · 큐 · 재동기화</span></h2>
+    <p class="lead">자동 저장되는 화면에서 사용자가 가장 불안해하는 순간은 <strong>"방금 쓴 게 저장됐나?"</strong>입니다. 네트워크가 끊기면 그 불안이 손실로 바뀝니다. 요즘 패턴은 ① 연결이 끊기면 배너로 알리고, ② 저장 상태를 <em>글자로</em> 항상 보여주고, ③ 오프라인 편집은 큐에 쌓았다가 복귀 시 자동으로 밀어 넣는 것입니다.</p>
+
+    <div class="demo">
+      <div class="app">
+        <div class="banner" id="csBanner" role="status" aria-live="polite" hidden>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="grow" id="csBannerMsg"></span>
+          <button class="btn sm ghost" id="csRetryBtn" type="button" hidden>지금 재시도</button>
+        </div>
+        <div class="appbody">
+          <label for="csMemo" style="font-size:.84rem;font-weight:600">정산 메모 <span style="color:var(--muted);font-weight:400">(입력을 멈추면 1초 뒤 자동 저장)</span></label>
+          <textarea class="memo" id="csMemo" placeholder="예: 8월 3주차 PG사 수수료 정산 건 — 카드 승인 취소 2건 반영 예정">8월 3주차 정산 검토 중.</textarea>
+          <div class="saverow">
+            <span class="saveind" id="csInd"><span class="ck" aria-hidden="true">•</span><span id="csIndTxt">변경 없음</span></span>
+            <span class="stale" id="csStale" hidden>⏳ 이 화면 데이터는 <span id="csStaleAge">0</span>초 전 기준입니다</span>
+          </div>
+
+          <div class="queue">
+            <h4>대기 중인 저장 큐</h4>
+            <ol id="csQueue"></ol>
+            <div class="none" id="csQueueNone">비어 있음 — 저장할 변경 사항이 없습니다.</div>
+          </div>
+
+          <div class="simrow">
+            <button class="switch" id="csOffBtn" type="button" aria-pressed="false">
+              <span class="track" aria-hidden="true"><span class="knob"></span></span>
+              오프라인 흉내내기
+            </button>
+            <button class="btn sm ghost" id="csFailBtn" type="button" aria-pressed="false">다음 저장 실패시키기</button>
+          </div>
+
+          <div class="livelog" id="csLog" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <p class="cap">토글을 켜서 오프라인으로 만든 뒤 메모를 고쳐 보세요. 저장이 <strong>큐에 쌓이고</strong>, 토글을 다시 끄면 순서대로 밀려 나갑니다. 실제 <code>online</code>/<code>offline</code> 이벤트에도 반응하므로, 진짜로 와이파이를 꺼도 배너가 뜹니다.</p>
+    </div>
+
+    <h3 class="sec-lead">상태를 몇 개로 쪼갤 것인가</h3>
+    <table class="cmp">
+      <thead><tr><th>상태</th><th>사용자에게 보이는 말</th><th>왜 필요한가</th></tr></thead>
+      <tbody>
+        <tr><td><code>idle</code></td><td>"변경 없음"</td><td>아무 일도 안 일어나는 게 정상임을 알려 불안을 줄임</td></tr>
+        <tr><td><code>dirty</code></td><td>"저장되지 않은 변경 사항"</td><td>지금 창을 닫으면 잃는다는 신호</td></tr>
+        <tr><td><code>saving</code></td><td>"저장 중…"</td><td>요청이 실제로 나갔다는 증거</td></tr>
+        <tr><td><code>saved</code></td><td>"오후 8:41에 저장됨"</td><td>시각을 같이 줘야 "언제 것"인지 확인 가능</td></tr>
+        <tr><td><code>queued</code></td><td>"오프라인 — 3건 대기 중"</td><td>실패가 아니라 <em>보류</em>임을 구분</td></tr>
+        <tr><td><code>error</code></td><td>"저장 실패 — 재시도"</td><td>사용자에게 행동권을 넘김</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-lead">복붙용 — 연결 상태 훅</h3>
+<pre><code>import { useEffect, useState } from "react";
+
+// navigator.onLine 은 "false면 확실히 오프라인, true여도 인터넷이 된다는 보장은 없다".
+// 그래서 기능을 막는 데 쓰지 말고 '힌트'로만 쓴다. (MDN 권고)
+export function useOnlineHint() {
+  const [online, setOnline] = useState(
+    () =&gt; (typeof navigator === "undefined" ? true : navigator.onLine)
+  );
+
+  useEffect(() =&gt; {
+    const up = () =&gt; setOnline(true);
+    const down = () =&gt; setOnline(false);
+    window.addEventListener("online", up);
+    window.addEventListener("offline", down);
+    return () =&gt; {
+      window.removeEventListener("online", up);
+      window.removeEventListener("offline", down);
+    };
+  }, []);
+
+  return online;
+}</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성 메모</h3>
+    <ul class="clean">
+      <li>배너는 <code>role="status"</code> + <code>aria-live="polite"</code> — 스크린리더가 <strong>지금 하던 낭독을 끊지 않고</strong> 이어서 알립니다. <code>alert</code>(assertive)은 진짜 급한 것에만 씁니다.</li>
+      <li>저장 인디케이터는 색만으로 구분하지 않고 <strong>텍스트</strong>를 함께 둡니다. 색각 이상 사용자에겐 초록/빨강 점만으론 구분이 안 됩니다.</li>
+      <li>깜빡이는 점은 <code>prefers-reduced-motion: reduce</code>(OS의 "움직임 줄이기" 설정)에서 애니메이션을 끕니다.</li>
+      <li>오프라인이라고 <strong>입력창을 disabled 시키지 마세요.</strong> 판정이 틀릴 수 있고(위 MDN 주의), 틀렸을 때 사용자는 멀쩡한 상황에서 앱을 못 씁니다. 저장을 미루되 입력은 계속 받습니다.</li>
+    </ul>
+  </section>
+
+  <!-- ============ 3. Anchor Positioning ============ -->
+  <section class="card" id="anchor-positioning">
+    <h2>🌀 CSS 앵커 포지셔닝 <span class="tag">anchor-name · position-area · @position-try</span></h2>
+    <p class="lead">툴팁·드롭다운을 버튼 옆에 붙이려고 우리는 오랫동안 JS로 좌표를 쟀습니다(<code>getBoundingClientRect</code>, Floating UI 등). <strong>앵커 포지셔닝</strong>은 이 계산을 CSS에게 넘깁니다. 기준이 될 요소에 이름표(<code>anchor-name</code>)를 붙이고, 따라다닐 요소가 그 이름을 가리키면(<code>position-anchor</code>) 브라우저가 알아서 붙여 놓습니다.</p>
+
+    <div class="demo">
+      <div class="support yes" id="apSupport">지원 여부 확인 중…</div>
+
+      <div class="ap-scroll">
+        <div class="ap-stage">
+          <button class="ap-btn" id="apAnchor1" type="button" aria-describedby="apTip">🛈 수수료 안내 (마우스 올리거나 Tab)</button>
+          <div class="ap-tip" id="apTip" role="tooltip" hidden>PG 수수료 2.9% + 건당 30원. 정산 시 자동 차감됩니다.</div>
+
+          <button class="ap-btn" id="apAnchor2" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="apMenu">⋯ 이 거래 작업</button>
+          <ul class="ap-menu" id="apMenu" role="menu" aria-labelledby="apAnchor2" hidden>
+            <li role="none"><button role="menuitem" type="button">영수증 다시 보내기</button></li>
+            <li role="none"><button role="menuitem" type="button">부분 취소</button></li>
+            <li role="none"><button role="menuitem" type="button">정산 메모 남기기</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="ap-fallback-note" id="apNote"></p>
+      <p class="cap">툴팁은 버튼 <strong>위</strong>에(<code>position-area: top</code>), 메뉴는 <strong>아래</strong>에(<code>bottom span-right</code>) 붙습니다. 창을 세로로 좁히거나 스크롤해서 메뉴가 화면 밖으로 밀릴 것 같으면 <code>@position-try</code> 규칙에 따라 <strong>스스로 위로 뒤집힙니다</strong>. 미지원 브라우저에선 아래 JS 폴백이 좌표를 계산해 같은 자리에 놓습니다.</p>
+    </div>
+
+    <h3 class="sec-lead">핵심 3줄</h3>
+<pre><code>/* 1) 기준 요소에 이름표를 붙인다 (dashed-ident: -- 로 시작) */
+#trigger { anchor-name: --tx-menu; }
+
+/* 2) 따라다닐 요소가 그 이름을 가리킨다 */
+#menu {
+  position: absolute;
+  position-anchor: --tx-menu;
+  position-area: bottom span-right;  /* 기준 아래, 오른쪽으로 뻗기 */
+  margin-top: 8px;
+}
+
+/* 3) 화면 밖으로 나갈 것 같으면 대안 위치로 갈아탄다 */
+#menu { position-try-fallbacks: --flip-up, flip-block; }
+@position-try --flip-up {
+  position-area: top span-right;
+  margin-top: 0; margin-bottom: 8px;
+}</code></pre>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><strong>2026년 기준 주요 브라우저에 대체로 들어왔습니다.</strong> 검색 결과상 Chrome/Edge 125+, Firefox 132+, Safari 18.2+에서 핵심 기능이 동작하고, <code>@position-try</code>의 자동 뒤집기는 Safari 18.4+부터라는 설명이 있습니다 — 실제 프로젝트에 넣기 전엔 caniuse/MDN에서 <em>직접 재확인</em>하시길 권합니다(여기 수치는 검색 기반, 미검증).</li>
+      <li><strong>Popover API와 짝입니다.</strong> <code>popover</code> 속성이 "띄우고 닫고 포커스 관리"를 맡고, 앵커 포지셔닝이 "어디에 띄울지"를 맡습니다. 둘 다 쓰면 드롭다운에서 JS가 거의 사라집니다.</li>
+      <li><strong>top layer 문제가 풀립니다.</strong> 부모에 <code>overflow: hidden</code>이나 <code>transform</code>이 걸려 있어도, popover/top layer 위의 요소를 원래 자리 기준으로 배치할 수 있습니다. 테이블 셀 안의 "⋯" 메뉴가 잘려 나가던 그 문제입니다.</li>
+      <li><strong>번들이 줄어듭니다.</strong> Floating UI 같은 포지셔닝 라이브러리를 안 쓰거나, <code>@supports</code>로 감싸 점진적으로 걷어낼 수 있습니다.</li>
+      <li>주의: <code>anchor-name</code> 값은 페이지에서 유일해야 예측 가능합니다. 리스트에서 행마다 메뉴를 쓴다면 행 단위로 이름을 만들거나(<code>style="anchor-name: --row-12"</code>), 열려 있는 하나에만 이름을 붙이는 방식이 안전합니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">점진적 향상으로 감싸기</h3>
+<pre><code>/* 지원하면 CSS가, 아니면 JS 폴백이 위치를 잡게 한다 */
+@supports (anchor-name: --x) {
+  .js-positioned { position-anchor: --tx-menu; position-area: bottom span-right; }
+}
+</code></pre>
+<pre><code>// JS 쪽
+const supported = CSS.supports("anchor-name", "--x");
+if (!supported) attachFloatingFallback(trigger, menu); // 기존 방식 유지</code></pre>
+
+    <div class="note"><strong>paysable 적용 포인트</strong> — 거래 목록의 행 단위 "⋯" 액션 메뉴, 수수료·정산 주기 툴팁, 금액 입력 옆 한도 안내 말풍선. 특히 <code>overflow:auto</code>인 테이블 래퍼 안에서 메뉴가 잘리는 문제를 popover + 앵커 포지셔닝 조합으로 지울 수 있습니다. 단, 결제 흐름의 핵심 UI라면 <code>@supports</code> 폴백을 반드시 유지하세요.</div>
+  </section>
+
+  <div class="footer">self-contained 라이브 예시 · <code>?embed=&lt;섹션id&gt;</code> 로 데모만 컴팩트 렌더 · <code>?theme=dark</code> 지원 · 섹션 id: <code>filter-toolbar</code> / <code>connection-status</code> / <code>anchor-positioning</code></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ==================================================================
+     1. 필터 툴바 + 활성 필터 칩
+  ================================================================== */
+  var TODAY = new Date(2026, 7, 21); // 2026-08-21 KST 기준 (데모용 고정)
+  function daysAgo(n){ var d = new Date(TODAY.getTime()); d.setDate(d.getDate() - n); return d; }
+  function fmtDate(d){
+    return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0");
+  }
+  function won(n){ return n.toLocaleString("ko-KR") + "원"; }
+
+  var STATUS = [
+    { id:"paid",   label:"승인완료", cls:"paid" },
+    { id:"pend",   label:"대기중",   cls:"pend" },
+    { id:"fail",   label:"실패",     cls:"fail" },
+    { id:"refund", label:"환불",     cls:"refund" }
+  ];
+  var STATUS_MAP = {}; STATUS.forEach(function(s){ STATUS_MAP[s.id] = s; });
+
+  var RAW = [
+    ["TX-240821-01","커피스탠드 성수","paid",0,4800],
+    ["TX-240821-02","오늘의책방","pend",0,23500],
+    ["TX-240820-07","블루밍 플라워","paid",1,68000],
+    ["TX-240820-11","성수 프린트샵","fail",1,132000],
+    ["TX-240819-03","커피스탠드 성수","paid",2,5600],
+    ["TX-240818-09","한강뷰 스튜디오","paid",3,450000],
+    ["TX-240817-02","오늘의책방","refund",4,18000],
+    ["TX-240815-05","블루밍 플라워","paid",6,72000],
+    ["TX-240814-01","성수 프린트샵","paid",7,96000],
+    ["TX-240812-08","한강뷰 스튜디오","pend",9,320000],
+    ["TX-240809-04","커피스탠드 성수","paid",12,4200],
+    ["TX-240805-06","오늘의책방","fail",16,31000],
+    ["TX-240730-02","블루밍 플라워","paid",22,88000],
+    ["TX-240722-10","한강뷰 스튜디오","paid",30,510000],
+    ["TX-240715-03","성수 프린트샵","refund",37,145000],
+    ["TX-240701-01","커피스탠드 성수","paid",51,6100],
+    ["TX-240620-05","오늘의책방","paid",62,27400],
+    ["TX-240605-09","한강뷰 스튜디오","pend",77,280000]
+  ];
+  var ROWS = RAW.map(function(r){
+    return { id:r[0], shop:r[1], status:r[2], ago:r[3], date:fmtDate(daysAgo(r[3])), amount:r[4] };
+  });
+
+  var PERIOD_LABEL = { all:"전체 기간", "7":"최근 7일", "30":"최근 30일", "90":"최근 90일" };
+  var AMOUNT_LABEL = { all:"금액 전체", lt50:"5만 원 미만", "50to200":"5만~20만 원", gte200:"20만 원 이상" };
+
+  var state = { q:"", statuses:[], period:"all", amount:"all" };
+
+  function matchQ(r, q){
+    if(!q) return true;
+    var s = q.toLowerCase();
+    return r.shop.toLowerCase().indexOf(s) !== -1 || r.id.toLowerCase().indexOf(s) !== -1;
+  }
+  function matchPeriod(r, p){ return p === "all" ? true : r.ago <= Number(p); }
+  function matchAmount(r, a){
+    if(a === "all") return true;
+    if(a === "lt50") return r.amount < 50000;
+    if(a === "50to200") return r.amount >= 50000 && r.amount < 200000;
+    return r.amount >= 200000;
+  }
+  function matchStatus(r, list){ return list.length === 0 ? true : list.indexOf(r.status) !== -1; }
+
+  function filtered(overrideStatuses){
+    var st = overrideStatuses || state.statuses;
+    return ROWS.filter(function(r){
+      return matchQ(r, state.q) && matchPeriod(r, state.period) && matchAmount(r, state.amount) && matchStatus(r, st);
+    });
+  }
+
+  var ftQ = document.getElementById("ftQ");
+  var ftQClr = document.getElementById("ftQClr");
+  var ftPeriod = document.getElementById("ftPeriod");
+  var ftAmount = document.getElementById("ftAmount");
+  var ftChips = document.getElementById("ftChips");
+  var ftCount = document.getElementById("ftCount");
+  var ftBody = document.getElementById("ftBody");
+  var ftTable = document.getElementById("ftTable");
+  var ftEmpty = document.getElementById("ftEmpty");
+  var ftEmptyWhy = document.getElementById("ftEmptyWhy");
+  var ftStatusBtn = document.getElementById("ftStatusBtn");
+  var ftStatusPanel = document.getElementById("ftStatusPanel");
+  var ftStatusCnt = document.getElementById("ftStatusCnt");
+  var ftStatusDrop = document.getElementById("ftStatusDrop");
+
+  // 상태 패널 렌더 (패싯 카운트 포함)
+  function renderStatusPanel(){
+    ftStatusPanel.innerHTML = "";
+    STATUS.forEach(function(s){
+      // 이 옵션만 켰을 때 남는 건수 = 패싯 카운트
+      var n = filtered([s.id]).length;
+      var lab = document.createElement("label");
+      lab.className = "ft-opt" + (n === 0 ? " zero" : "");
+      var cb = document.createElement("input");
+      cb.type = "checkbox"; cb.value = s.id;
+      cb.checked = state.statuses.indexOf(s.id) !== -1;
+      cb.addEventListener("change", function(){
+        if(cb.checked){ if(state.statuses.indexOf(s.id) === -1) state.statuses.push(s.id); }
+        else { state.statuses = state.statuses.filter(function(x){ return x !== s.id; }); }
+        render();
+      });
+      var txt = document.createElement("span"); txt.className = "lbl"; txt.textContent = s.label;
+      var fc = document.createElement("span"); fc.className = "facet"; fc.textContent = n;
+      fc.setAttribute("aria-label", n + "건");
+      lab.appendChild(cb); lab.appendChild(txt); lab.appendChild(fc);
+      ftStatusPanel.appendChild(lab);
+    });
+    var sep = document.createElement("div"); sep.className = "sep"; ftStatusPanel.appendChild(sep);
+    var foot = document.createElement("div"); foot.className = "foot";
+    var clearAll = document.createElement("button");
+    clearAll.type = "button"; clearAll.className = "linkbtn"; clearAll.textContent = "상태 선택 해제";
+    clearAll.addEventListener("click", function(){ state.statuses = []; render(); ftStatusBtn.focus(); });
+    var close = document.createElement("button");
+    close.type = "button"; close.className = "linkbtn"; close.textContent = "닫기";
+    close.addEventListener("click", function(){ closeStatus(true); });
+    foot.appendChild(clearAll); foot.appendChild(close);
+    ftStatusPanel.appendChild(foot);
+  }
+
+  function openStatus(){
+    ftStatusPanel.hidden = false;
+    ftStatusBtn.setAttribute("aria-expanded","true");
+    var first = ftStatusPanel.querySelector("input");
+    if(first) first.focus();
+  }
+  function closeStatus(focusBack){
+    ftStatusPanel.hidden = true;
+    ftStatusBtn.setAttribute("aria-expanded","false");
+    if(focusBack) ftStatusBtn.focus();
+  }
+  ftStatusBtn.addEventListener("click", function(){
+    if(ftStatusPanel.hidden) openStatus(); else closeStatus(true);
+  });
+  document.addEventListener("click", function(e){
+    if(!ftStatusPanel.hidden && !ftStatusDrop.contains(e.target)) closeStatus(false);
+  });
+  ftStatusDrop.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && !ftStatusPanel.hidden){ e.stopPropagation(); closeStatus(true); }
+  });
+
+  function activeFilters(){
+    var out = [];
+    if(state.q) out.push({ id:"q", label:'검색: "' + state.q + '"' });
+    state.statuses.forEach(function(s){
+      out.push({ id:"status:" + s, label:"상태: " + STATUS_MAP[s].label });
+    });
+    if(state.period !== "all") out.push({ id:"period", label:PERIOD_LABEL[state.period] });
+    if(state.amount !== "all") out.push({ id:"amount", label:AMOUNT_LABEL[state.amount] });
+    return out;
+  }
+  function removeFilter(id){
+    if(id === "q"){ state.q = ""; ftQ.value = ""; }
+    else if(id === "period") state.period = "all";
+    else if(id === "amount") state.amount = "all";
+    else if(id.indexOf("status:") === 0){
+      var s = id.slice(7);
+      state.statuses = state.statuses.filter(function(x){ return x !== s; });
+    }
+    render();
+  }
+  function resetAll(){
+    state = { q:"", statuses:[], period:"all", amount:"all" };
+    ftQ.value = ""; ftPeriod.value = "all"; ftAmount.value = "all";
+    render();
+  }
+
+  function esc(s){ return s.replace(/[&<>"]/g, function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function hl(text, q){
+    if(!q) return esc(text);
+    var i = text.toLowerCase().indexOf(q.toLowerCase());
+    if(i === -1) return esc(text);
+    return esc(text.slice(0,i)) + "<mark>" + esc(text.slice(i, i+q.length)) + "</mark>" + esc(text.slice(i+q.length));
+  }
+
+  function render(){
+    // 칩
+    var fs = activeFilters();
+    ftChips.innerHTML = "";
+    fs.forEach(function(f){
+      var chip = document.createElement("span"); chip.className = "chip";
+      chip.appendChild(document.createTextNode(f.label));
+      var x = document.createElement("button");
+      x.type = "button"; x.className = "x"; x.textContent = "✕";
+      x.setAttribute("aria-label", f.label + " 필터 제거");
+      x.addEventListener("click", function(){ removeFilter(f.id); });
+      chip.appendChild(x);
+      ftChips.appendChild(chip);
+    });
+    if(fs.length > 0){
+      var reset = document.createElement("button");
+      reset.type = "button"; reset.className = "linkbtn"; reset.textContent = "전체 초기화 (" + fs.length + ")";
+      reset.addEventListener("click", resetAll);
+      ftChips.appendChild(reset);
+    }
+
+    // 상태 버튼 배지
+    if(state.statuses.length > 0){ ftStatusCnt.hidden = false; ftStatusCnt.textContent = state.statuses.length; }
+    else ftStatusCnt.hidden = true;
+
+    // 표
+    var rows = filtered();
+    ftCount.innerHTML = "전체 " + ROWS.length + "건 중 <b>" + rows.length + "건</b>" +
+      (fs.length ? " · 필터 " + fs.length + "개 적용" : " · 필터 없음");
+
+    ftBody.innerHTML = "";
+    rows.forEach(function(r){
+      var tr = document.createElement("tr");
+      var s = STATUS_MAP[r.status];
+      tr.innerHTML =
+        "<td>" + hl(r.id, state.q) + "</td>" +
+        "<td>" + hl(r.shop, state.q) + "</td>" +
+        '<td><span class="st ' + s.cls + '">' + s.label + "</span></td>" +
+        "<td>" + r.date + "</td>" +
+        '<td class="num">' + won(r.amount) + "</td>";
+      ftBody.appendChild(tr);
+    });
+
+    var none = rows.length === 0;
+    ftTable.parentNode.hidden = none;
+    ftEmpty.hidden = !none;
+    if(none){
+      // 어떤 필터를 풀면 결과가 생기는지 힌트
+      var hint = "필터를 하나씩 풀어 보세요.";
+      for(var i = 0; i < fs.length; i++){
+        var saved = JSON.stringify(state);
+        var f = fs[i];
+        var bk = { q:state.q, statuses:state.statuses.slice(), period:state.period, amount:state.amount };
+        if(f.id === "q") state.q = "";
+        else if(f.id === "period") state.period = "all";
+        else if(f.id === "amount") state.amount = "all";
+        else state.statuses = state.statuses.filter(function(x){ return x !== f.id.slice(7); });
+        var n = filtered().length;
+        state.q = bk.q; state.statuses = bk.statuses; state.period = bk.period; state.amount = bk.amount;
+        void saved;
+        if(n > 0){ hint = '"' + f.label + '" 하나만 풀면 ' + n + "건이 나옵니다."; break; }
+      }
+      ftEmptyWhy.textContent = hint;
+    }
+
+    renderStatusPanel();
+  }
+
+  var qTimer = null;
+  ftQ.addEventListener("input", function(){
+    ftQClr.hidden = ftQ.value.length === 0;
+    clearTimeout(qTimer);
+    qTimer = setTimeout(function(){ state.q = ftQ.value.trim(); render(); }, 250); // debounce
+  });
+  ftQClr.addEventListener("click", function(){ ftQ.value = ""; ftQClr.hidden = true; state.q = ""; render(); ftQ.focus(); });
+  ftPeriod.addEventListener("change", function(){ state.period = ftPeriod.value; render(); });
+  ftAmount.addEventListener("change", function(){ state.amount = ftAmount.value; render(); });
+  document.getElementById("ftEmptyReset").addEventListener("click", function(){ resetAll(); ftQ.focus(); });
+  render();
+
+
+  /* ==================================================================
+     2. 연결 상태 · 저장 인디케이터
+  ================================================================== */
+  var csMemo = document.getElementById("csMemo");
+  var csInd = document.getElementById("csInd");
+  var csIndTxt = document.getElementById("csIndTxt");
+  var csBanner = document.getElementById("csBanner");
+  var csBannerMsg = document.getElementById("csBannerMsg");
+  var csRetryBtn = document.getElementById("csRetryBtn");
+  var csOffBtn = document.getElementById("csOffBtn");
+  var csFailBtn = document.getElementById("csFailBtn");
+  var csQueue = document.getElementById("csQueue");
+  var csQueueNone = document.getElementById("csQueueNone");
+  var csLog = document.getElementById("csLog");
+  var csStale = document.getElementById("csStale");
+  var csStaleAge = document.getElementById("csStaleAge");
+
+  var simOffline = false;
+  var forceFail = false;
+  var queue = [];
+  var saveTimer = null;
+  var lastSavedAt = null;
+  var seq = 0;
+  var busy = false;
+
+  function isOffline(){ return simOffline || (typeof navigator !== "undefined" && navigator.onLine === false); }
+
+  function log(msg){
+    var t = new Date();
+    var d = document.createElement("div");
+    d.textContent = "[" + String(t.getHours()).padStart(2,"0") + ":" + String(t.getMinutes()).padStart(2,"0") + ":" + String(t.getSeconds()).padStart(2,"0") + "] " + msg;
+    csLog.insertBefore(d, csLog.firstChild);
+    while(csLog.childNodes.length > 25) csLog.removeChild(csLog.lastChild);
+  }
+
+  function setInd(kind, text, mark){
+    csInd.className = "saveind " + kind;
+    csIndTxt.textContent = text;
+    csInd.querySelector(".ck").textContent = mark;
+  }
+
+  function fmtTime(d){
+    var h = d.getHours(), ap = h < 12 ? "오전" : "오후", hh = h % 12 || 12;
+    return ap + " " + hh + ":" + String(d.getMinutes()).padStart(2,"0");
+  }
+
+  function renderQueue(){
+    csQueue.innerHTML = "";
+    queue.forEach(function(item){
+      var li = document.createElement("li");
+      li.textContent = "#" + item.id + " · " + item.chars + "자 · " + item.status;
+      csQueue.appendChild(li);
+    });
+    csQueueNone.hidden = queue.length > 0;
+  }
+
+  function renderBanner(){
+    if(isOffline()){
+      csBanner.hidden = false;
+      csBanner.className = "banner";
+      csBannerMsg.textContent = queue.length > 0
+        ? "오프라인입니다 — 변경 사항 " + queue.length + "건을 안전하게 보관 중입니다. 연결되면 자동으로 저장합니다."
+        : "오프라인입니다 — 계속 입력하셔도 됩니다. 연결되면 자동으로 저장합니다.";
+      csRetryBtn.hidden = true;
+    } else if(queue.length > 0){
+      csBanner.hidden = false;
+      csBanner.className = "banner reconnect";
+      csBannerMsg.textContent = "연결됨 — 대기 중인 " + queue.length + "건을 저장하는 중…";
+      csRetryBtn.hidden = true;
+    } else if(csBanner.dataset.justBack === "1"){
+      csBanner.hidden = false;
+      csBanner.className = "banner back";
+      csBannerMsg.textContent = "모든 변경 사항이 저장되었습니다.";
+      csRetryBtn.hidden = true;
+      setTimeout(function(){
+        if(csBanner.dataset.justBack === "1"){ csBanner.dataset.justBack = "0"; renderBanner(); }
+      }, 2600);
+    } else {
+      csBanner.hidden = true;
+    }
+  }
+
+  function enqueue(){
+    seq += 1;
+    queue.push({ id: seq, chars: csMemo.value.length, status: isOffline() ? "대기(오프라인)" : "대기" });
+    renderQueue();
+    log("변경 #" + seq + " 큐에 추가");
+    flush();
+  }
+
+  function flush(){
+    if(busy) return;
+    if(queue.length === 0){ renderBanner(); return; }
+    if(isOffline()){
+      setInd("queued", "오프라인 — " + queue.length + "건 대기 중", "⏸");
+      renderBanner();
+      return;
+    }
+    busy = true;
+    var item = queue[0];
+    item.status = "전송 중";
+    renderQueue();
+    setInd("saving", "저장 중…", "⟳");
+    renderBanner();
+    log("변경 #" + item.id + " 전송 시작");
+
+    setTimeout(function(){
+      busy = false;
+      if(isOffline()){ // 전송 중 끊긴 경우
+        item.status = "대기(오프라인)";
+        renderQueue(); log("변경 #" + item.id + " 전송 중 연결 끊김 — 큐 유지");
+        flush(); return;
+      }
+      if(forceFail){
+        forceFail = false;
+        csFailBtn.setAttribute("aria-pressed","false");
+        csFailBtn.textContent = "다음 저장 실패시키기";
+        item.status = "실패";
+        renderQueue();
+        setInd("error", "저장 실패 — 재시도가 필요합니다", "⚠");
+        csBanner.hidden = false;
+        csBanner.className = "banner";
+        csBannerMsg.textContent = "저장에 실패했습니다. 입력한 내용은 그대로 있습니다.";
+        csRetryBtn.hidden = false;
+        log("변경 #" + item.id + " 실패 (서버 오류 흉내)");
+        return;
+      }
+      queue.shift();
+      lastSavedAt = new Date();
+      renderQueue();
+      log("변경 #" + item.id + " 저장 완료");
+      if(queue.length > 0){ flush(); }
+      else {
+        setInd("saved", fmtTime(lastSavedAt) + "에 저장됨", "✓");
+        csBanner.dataset.justBack = csBanner.dataset.wasOffline === "1" ? "1" : "0";
+        csBanner.dataset.wasOffline = "0";
+        renderBanner();
+      }
+    }, 900);
+  }
+
+  csRetryBtn.addEventListener("click", function(){
+    if(queue.length > 0) queue[0].status = "대기";
+    renderQueue();
+    csRetryBtn.hidden = true;
+    log("사용자가 재시도 요청");
+    flush();
+  });
+
+  csMemo.addEventListener("input", function(){
+    setInd("dirty", "저장되지 않은 변경 사항", "•");
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(enqueue, 1000); // 입력이 멈춘 뒤 1초
+  });
+
+  csOffBtn.addEventListener("click", function(){
+    simOffline = !simOffline;
+    csOffBtn.setAttribute("aria-pressed", String(simOffline));
+    if(simOffline){
+      csBanner.dataset.wasOffline = "1";
+      log("오프라인 흉내내기 ON");
+      queue.forEach(function(i){ if(i.status !== "전송 중") i.status = "대기(오프라인)"; });
+      renderQueue();
+      if(queue.length > 0) setInd("queued", "오프라인 — " + queue.length + "건 대기 중", "⏸");
+      renderBanner();
+    } else {
+      log("오프라인 흉내내기 OFF — 큐 밀어내기");
+      flush();
+      renderBanner();
+    }
+  });
+
+  csFailBtn.addEventListener("click", function(){
+    forceFail = !forceFail;
+    csFailBtn.setAttribute("aria-pressed", String(forceFail));
+    csFailBtn.textContent = forceFail ? "실패 예약됨 (취소하려면 클릭)" : "다음 저장 실패시키기";
+  });
+
+  window.addEventListener("offline", function(){ log("브라우저 offline 이벤트"); csBanner.dataset.wasOffline = "1"; renderBanner(); });
+  window.addEventListener("online", function(){ log("브라우저 online 이벤트"); flush(); renderBanner(); });
+
+  // 데이터 신선도(stale) 표시 — 마지막 동기화 이후 경과
+  var staleBase = Date.now();
+  setInterval(function(){
+    var base = lastSavedAt ? lastSavedAt.getTime() : staleBase;
+    var age = Math.round((Date.now() - base) / 1000);
+    if(age >= 20){ csStale.hidden = false; csStaleAge.textContent = age; }
+    else csStale.hidden = true;
+  }, 1000);
+
+  setInd("idle", "변경 없음", "•");
+  renderQueue();
+  renderBanner();
+  log("데모 준비 완료");
+
+
+  /* ==================================================================
+     3. CSS Anchor Positioning
+  ================================================================== */
+  var apSupport = document.getElementById("apSupport");
+  var apNote = document.getElementById("apNote");
+  var apA1 = document.getElementById("apAnchor1");
+  var apTip = document.getElementById("apTip");
+  var apA2 = document.getElementById("apAnchor2");
+  var apMenu = document.getElementById("apMenu");
+
+  var anchorOK = (typeof CSS !== "undefined" && CSS.supports && CSS.supports("anchor-name", "--x"));
+  var tryOK = (typeof CSS !== "undefined" && CSS.supports && CSS.supports("position-try-fallbacks", "flip-block"));
+
+  if(anchorOK){
+    apSupport.className = "support yes";
+    apSupport.innerHTML = "✅ 이 브라우저는 <code>anchor-name</code>을 지원합니다 — 아래 툴팁·메뉴 위치는 <strong>CSS가</strong> 잡고 있습니다." +
+      (tryOK ? " <code>@position-try</code> 자동 뒤집기도 지원합니다." : " 다만 <code>position-try-fallbacks</code>는 미지원이라 화면 밖으로 밀릴 때 자동으로 뒤집히지 않습니다.");
+    apNote.textContent = "JS는 여는/닫는 역할만 합니다. 좌표 계산 코드는 한 줄도 없습니다.";
+  } else {
+    apSupport.className = "support no";
+    apSupport.innerHTML = "⚠️ 이 브라우저는 <code>anchor-name</code>을 지원하지 않습니다 — 아래는 <strong>JS 폴백</strong>이 <code>getBoundingClientRect</code>로 좌표를 계산해 같은 자리에 놓은 결과입니다. 깨지지 않고 똑같이 동작하는 것, 이게 점진적 향상의 목표입니다.";
+    apNote.textContent = "폴백 경로로 동작 중입니다.";
+  }
+
+  function fallbackPlace(anchorEl, floatEl, where){
+    if(anchorOK) return;
+    var stage = anchorEl.offsetParent || anchorEl.parentElement;
+    var ar = anchorEl.getBoundingClientRect();
+    var sr = stage.getBoundingClientRect();
+    floatEl.style.left = (ar.left - sr.left) + "px";
+    var fh = floatEl.offsetHeight;
+    if(where === "top"){
+      var topPos = ar.top - sr.top - fh - 8;
+      if(topPos < 0) topPos = ar.bottom - sr.top + 8; // 위 공간 없으면 아래로
+      floatEl.style.top = topPos + "px";
+    } else {
+      var btm = ar.bottom - sr.top + 8;
+      if(ar.bottom + fh + 12 > window.innerHeight) btm = ar.top - sr.top - fh - 8; // 아래 공간 없으면 위로
+      floatEl.style.top = btm + "px";
+    }
+  }
+
+  function showTip(){ apTip.hidden = false; fallbackPlace(apA1, apTip, "top"); }
+  function hideTip(){ apTip.hidden = true; }
+  apA1.addEventListener("mouseenter", showTip);
+  apA1.addEventListener("mouseleave", hideTip);
+  apA1.addEventListener("focus", showTip);
+  apA1.addEventListener("blur", hideTip);
+
+  function openMenu(){
+    apMenu.hidden = false;
+    apA2.setAttribute("aria-expanded","true");
+    fallbackPlace(apA2, apMenu, "bottom");
+    var first = apMenu.querySelector("button");
+    if(first) first.focus();
+  }
+  function closeMenu(focusBack){
+    apMenu.hidden = true;
+    apA2.setAttribute("aria-expanded","false");
+    if(focusBack) apA2.focus();
+  }
+  apA2.addEventListener("click", function(e){
+    e.stopPropagation();
+    if(apMenu.hidden) openMenu(); else closeMenu(true);
+  });
+  apMenu.addEventListener("keydown", function(e){
+    var items = Array.prototype.slice.call(apMenu.querySelectorAll("button"));
+    var i = items.indexOf(document.activeElement);
+    if(e.key === "Escape"){ e.stopPropagation(); closeMenu(true); }
+    else if(e.key === "ArrowDown"){ e.preventDefault(); items[(i+1) % items.length].focus(); }
+    else if(e.key === "ArrowUp"){ e.preventDefault(); items[(i-1+items.length) % items.length].focus(); }
+  });
+  apMenu.addEventListener("click", function(e){
+    if(e.target.tagName === "BUTTON"){ closeMenu(true); }
+  });
+  document.addEventListener("click", function(e){
+    if(!apMenu.hidden && !apMenu.contains(e.target) && e.target !== apA2) closeMenu(false);
+  });
+  window.addEventListener("resize", function(){
+    if(!apMenu.hidden) fallbackPlace(apA2, apMenu, "bottom");
+    if(!apTip.hidden) fallbackPlace(apA1, apTip, "top");
+  });
+
+
+  /* ================== theme toggle ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var q = new URLSearchParams(location.search);
+    var id = q.get("embed") || q.get("demo");
+    if(q.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
