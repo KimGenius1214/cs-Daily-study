@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-01 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;
+    border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:7px;opacity:.9}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.spin{animation-duration:2.4s}}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .switch input{accent-color:var(--brand);width:16px;height:16px}
+  .switch:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ================= 1. 슬라이드오버 드로어 ================= */
+  .stage{position:relative;overflow:hidden;border-radius:12px;border:1px solid var(--border);
+    background:var(--surface);min-height:290px}
+  .stage-bg{padding:16px}
+  .stage-bg h5{margin:0 0 10px;font-size:.82rem;color:var(--muted);font-weight:700}
+  .txn{display:flex;justify-content:space-between;align-items:center;gap:10px;
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin-bottom:8px;background:var(--surface-2)}
+  .txn .who{font-size:.88rem;font-weight:600}
+  .txn .meta{font-size:.76rem;color:var(--muted)}
+  /* inert 가 걸린 영역은 눈으로도 구분되게 — 접근성 권장 사항 */
+  .stage-bg[inert]{opacity:.45;filter:saturate(.5)}
+  /* 슬라이드오버 본체: dialog 를 오른쪽에 붙인 시트로 */
+  dialog.sheet{
+    margin:0 0 0 auto;height:100%;max-height:100%;width:min(340px,86%);border:none;
+    border-left:1px solid var(--border);background:var(--surface);color:var(--text);
+    padding:0;box-shadow:var(--shadow);
+    /* 데모용: 페이지 전체가 아니라 이 스테이지 안에서만 보이게 */
+    position:absolute;inset:0 0 0 auto;
+  }
+  dialog.sheet::backdrop{background:rgba(10,13,20,.42)}
+  /* 진입·퇴장 전환: display 를 애니메이션 가능 속성으로 승격 */
+  dialog.sheet{transform:translateX(100%);opacity:0;
+    transition:transform .26s ease, opacity .26s ease, overlay .26s allow-discrete, display .26s allow-discrete}
+  dialog.sheet[open]{transform:translateX(0);opacity:1}
+  @starting-style{ dialog.sheet[open]{transform:translateX(100%);opacity:0} }
+  @media(prefers-reduced-motion:reduce){ dialog.sheet{transition-duration:.01ms} }
+  .sheet-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface)}
+  .sheet-head h4{margin:0;font-size:.95rem}
+  .sheet-body{padding:16px;overflow:auto}
+  .sheet-foot{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;flex-wrap:wrap}
+  .x{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;
+    width:30px;height:30px;cursor:pointer;font-size:1rem;line-height:1;font-family:inherit}
+  .x:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.85rem;margin:0}
+  .kv dt{color:var(--muted)}
+  .kv dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+  /* 중첩 확인 다이얼로그 */
+  dialog.confirm{border:1px solid var(--border);border-radius:14px;background:var(--surface);color:var(--text);
+    padding:18px;max-width:320px;box-shadow:var(--shadow)}
+  dialog.confirm::backdrop{background:rgba(10,13,20,.5)}
+  /* 비모달 패널(변형 2) — dialog 가 아니라 그냥 div. inert 를 직접 걸어야 한다 */
+  .panel{position:absolute;inset:0 0 0 auto;width:min(300px,84%);background:var(--surface);
+    border-left:1px solid var(--border);box-shadow:var(--shadow);padding:16px;
+    transform:translateX(100%);transition:transform .26s ease;visibility:hidden}
+  .panel[data-open="1"]{transform:translateX(0);visibility:visible}
+  @media(prefers-reduced-motion:reduce){ .panel{transition-duration:.01ms} }
+  .focuslog{margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+    padding:10px 12px;font-size:.8rem}
+  .focuslog b{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;color:var(--brand)}
+  .stacklog{margin-top:10px;font-size:.8rem;color:var(--muted)}
+  .stacklog code{background:var(--surface-2);border-radius:5px;padding:1px 6px}
+
+  /* ================= 2. 장기 작업 진행률 ================= */
+  .bar{height:9px;border-radius:999px;background:var(--surface-2);overflow:hidden;position:relative;
+    border:1px solid var(--border)}
+  .bar > i{display:block;height:100%;background:var(--brand);width:0%;transition:width .3s ease}
+  @media(prefers-reduced-motion:reduce){ .bar > i{transition:none} }
+  .bar.indet > i{width:35%;animation:slide 1.3s ease-in-out infinite}
+  @keyframes slide{0%{transform:translateX(-110%)}100%{transform:translateX(320%)}}
+  @media(prefers-reduced-motion:reduce){ .bar.indet > i{animation-duration:3.2s} }
+  .bar.err > i{background:var(--danger)}
+  .bar.done > i{background:var(--ok)}
+  .jobbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .jobbox + .jobbox{margin-top:14px}
+  .jobtitle{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
+  .jobtitle strong{font-size:.9rem}
+  .jobtitle .pct{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .steps{list-style:none;margin:12px 0 0;padding:0;font-size:.84rem}
+  .steps li{display:flex;align-items:center;gap:9px;padding:5px 0}
+  .steps .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex:none;
+    display:grid;place-items:center;font-size:.66rem;color:var(--muted)}
+  .steps li[data-s="run"] .dot{border-color:var(--brand);border-top-color:transparent;animation:sp .8s linear infinite}
+  @media(prefers-reduced-motion:reduce){ .steps li[data-s="run"] .dot{animation-duration:2.6s} }
+  .steps li[data-s="done"] .dot{border-color:var(--ok);background:var(--ok);color:#fff}
+  .steps li[data-s="err"] .dot{border-color:var(--danger);background:var(--danger);color:#fff}
+  .steps li[data-s="wait"]{color:var(--muted)}
+  .steps .lbl{flex:1}
+  .steps .sub{font-size:.76rem;color:var(--muted)}
+  .eta{font-size:.78rem;color:var(--muted);margin-top:8px}
+  /* 백그라운드 작업 트레이 */
+  .traystage{position:relative;min-height:230px;border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);padding:16px;overflow:hidden}
+  .tray{position:absolute;right:12px;bottom:12px;width:min(260px,80%);background:var(--surface);
+    border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:11px 13px;
+    transform:translateY(140%);transition:transform .26s ease}
+  .tray[data-open="1"]{transform:translateY(0)}
+  @media(prefers-reduced-motion:reduce){ .tray{transition-duration:.01ms} }
+  .tray h5{margin:0 0 7px;font-size:.8rem;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .tray .sm2{font-size:.76rem;color:var(--muted);margin-top:6px}
+  progress{width:100%;height:9px;accent-color:var(--brand)}
+
+  /* ================= 3. light-dark() ================= */
+  /* 이 데모 영역만 별도 색 체계: 페이지 테마와 독립적으로 동작시킨다 */
+  .ldbox{border:1px solid var(--border);border-radius:12px;padding:16px;background:var(--surface)}
+  .ldscope{
+    /* color-scheme 이 light-dark() 의 스위치. 아래 두 줄이 전부다. */
+    color-scheme:light dark;
+    background:light-dark(#ffffff, #10151d);
+    color:light-dark(#14181f, #e7ebf2);
+    border:1px solid light-dark(#e2e6ec, #2a3240);
+    border-radius:12px;padding:16px;margin-top:12px;
+    transition:background-color .2s ease,color .2s ease;
+  }
+  @media(prefers-reduced-motion:reduce){ .ldscope{transition:none} }
+  .ldscope[data-cs="light"]{color-scheme:light}
+  .ldscope[data-cs="dark"]{color-scheme:dark}
+  .ldscope[data-cs="auto"]{color-scheme:light dark}
+  .ldcard{
+    background:light-dark(#f6f7f9, #1b2230);
+    border:1px solid light-dark(#e2e6ec, #2f3a4a);
+    color:light-dark(#14181f, #e7ebf2);
+    border-radius:10px;padding:13px 15px;
+  }
+  .ldcard .amt{font-size:1.2rem;font-weight:700;font-variant-numeric:tabular-nums;
+    color:light-dark(#4f46e5, #a5a6ff)}
+  .ldcard .sub2{font-size:.78rem;color:light-dark(#5b6472, #9aa4b2)}
+  .ldcard .badge{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px;
+    color:light-dark(#166534, #6ee7b7); background:light-dark(#e9f7ee, #12261d)}
+  .ldform{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;font-size:.84rem}
+  .ldform input[type="text"],.ldform select{font-family:inherit;font-size:.84rem;padding:6px 9px;border-radius:8px;
+    border:1px solid light-dark(#d6dbe3, #3a4657);
+    background:light-dark(#fff, #171e29); color:light-dark(#14181f, #e7ebf2)}
+  .ldscroll{margin-top:12px;height:74px;overflow:auto;border-radius:8px;padding:8px 10px;font-size:.8rem;
+    border:1px solid light-dark(#e2e6ec, #2f3a4a); background:light-dark(#fff, #171e29)}
+  .segmented{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+  .segmented button{font-family:inherit;font-size:.82rem;padding:7px 13px;border:none;cursor:pointer;
+    background:transparent;color:var(--text)}
+  .segmented button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand);font-weight:700}
+  .segmented button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .lines{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:12px}
+  .lines pre{margin:0;font-size:.76rem;max-height:230px}
+  .linehead{font-size:.8rem;font-weight:700;margin-bottom:5px}
+  .linehead .n{color:var(--muted);font-weight:400}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .lines,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-09-01 (화) · 오늘의 컴포넌트·패턴 3건 · 오버레이 / 피드백·상태 / 트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#slideover">🪟 슬라이드오버 드로어</a>
+    <a href="#longtask">🔔 장기 작업 진행률</a>
+    <a href="#light-dark">🌀 light-dark()</a>
+  </nav>
+
+  <!-- ============================================================ 1 -->
+  <section class="card" id="slideover">
+    <h2>🪟 슬라이드오버 드로어 패널 <span class="tag">오버레이·모달·토스트</span></h2>
+    <p class="lead">목록에서 한 건을 눌러 옆에서 밀려 나오는 상세 패널. 모달로 만들면 배경이 자동으로 잠기고, 비모달로 만들면 직접 잠가야 합니다. 그 차이와 중첩(드로어 안의 확인창)을 실제로 눌러 봅니다.</p>
+
+    <h3 class="sec-lead">변형 1 — <code>&lt;dialog&gt;.showModal()</code> 슬라이드오버 (배경 자동 잠금)</h3>
+    <div class="demo">
+      <div class="stage" id="stage1">
+        <div class="stage-bg" id="stage1bg">
+          <h5>오늘 결제 내역</h5>
+          <div class="txn">
+            <div><div class="who">김이현</div><div class="meta">14:22 · 카드 승인</div></div>
+            <button class="btn sm" data-open-sheet="1">54,000원 상세</button>
+          </div>
+          <div class="txn">
+            <div><div class="who">박서준</div><div class="meta">13:58 · 카드 승인</div></div>
+            <button class="btn ghost sm">12,900원 상세</button>
+          </div>
+          <div class="txn">
+            <div><div class="who">이수민</div><div class="meta">13:10 · 부분 취소</div></div>
+            <button class="btn ghost sm">7,000원 상세</button>
+          </div>
+        </div>
+
+        <dialog class="sheet" id="sheet1" aria-labelledby="sheet1title">
+          <div class="sheet-head">
+            <h4 id="sheet1title">결제 상세 · 김이현</h4>
+            <button class="x" id="sheet1close" aria-label="상세 패널 닫기">✕</button>
+          </div>
+          <div class="sheet-body">
+            <dl class="kv">
+              <dt>승인번호</dt><dd>30412887</dd>
+              <dt>결제수단</dt><dd>신한 1234</dd>
+              <dt>금액</dt><dd>54,000원</dd>
+              <dt>수수료</dt><dd>1,566원</dd>
+              <dt>정산예정</dt><dd>2026-09-03</dd>
+            </dl>
+            <p class="cap" style="margin-top:14px"><span class="kbd">Tab</span> 을 계속 눌러 보세요. 포커스가 이 패널 밖(뒤쪽 목록)으로 절대 나가지 않습니다.</p>
+          </div>
+          <div class="sheet-foot">
+            <button class="btn danger sm" id="refundBtn">환불하기</button>
+            <button class="btn ghost sm" id="sheet1close2">닫기</button>
+          </div>
+        </dialog>
+
+        <!-- 중첩: 드로어 위에 또 하나의 모달 -->
+        <dialog class="confirm" id="confirm1" aria-labelledby="cf1t">
+          <h4 id="cf1t" style="margin:0 0 6px">54,000원을 환불할까요?</h4>
+          <p style="margin:0 0 14px;font-size:.85rem;color:var(--muted)">환불은 되돌릴 수 없습니다.</p>
+          <div class="row">
+            <button class="btn danger sm" id="cf1ok">환불</button>
+            <button class="btn ghost sm" id="cf1no">취소</button>
+          </div>
+        </dialog>
+      </div>
+
+      <p class="cap"><strong>환불하기</strong>를 눌러 드로어 위에 확인창을 띄운 뒤 <span class="kbd">Esc</span> 를 두 번 눌러 보세요. 안쪽(확인창) → 바깥쪽(드로어) 순서로 하나씩 닫힙니다. 브라우저가 <em>top layer</em>(맨 위 층) 스택을 알아서 관리해 줍니다.</p>
+      <p class="stacklog">현재 열린 오버레이 스택: <code id="stackView">(없음)</code></p>
+      <div class="focuslog">닫은 뒤 포커스가 돌아간 곳: <b id="focusBack">—</b> <span class="cap" style="display:block;margin-top:4px">모달을 닫으면 브라우저가 <em>연 버튼</em>으로 포커스를 되돌립니다. 직접 <code>ref.focus()</code> 를 부를 필요가 없습니다.</span></div>
+    </div>
+
+    <h3 class="sec-lead">변형 2 — 비모달 패널: <code>inert</code> 를 직접 걸어야 하는 경우</h3>
+    <div class="demo">
+      <label class="switch"><input type="checkbox" id="inertChk" checked /><span>배경에 <code>inert</code> 적용</span></label>
+      <p class="cap"><em>inert</em>(무반응): 이 속성이 붙은 요소와 그 자식은 클릭·탭 이동·스크린리더 탐색에서 통째로 빠집니다. 아래 <strong>패널 열기</strong>를 누른 다음 <span class="kbd">Tab</span> 을 반복해 보세요. 끄면 포커스가 뒤쪽 목록으로 새어 나갑니다.</p>
+      <div class="row" style="margin-top:12px"><button class="btn sm" id="panelOpen">패널 열기</button></div>
+      <div class="stage" id="stage2" style="min-height:220px;margin-top:12px">
+        <div class="stage-bg" id="stage2bg">
+          <h5>배경 콘텐츠 (탭 이동 대상)</h5>
+          <div class="row">
+            <button class="btn ghost sm">배경 버튼 A</button>
+            <button class="btn ghost sm">배경 버튼 B</button>
+            <a href="#slideover">배경 링크</a>
+          </div>
+          <p class="cap">비모달 패널은 <code>::backdrop</code> 도, 자동 포커스 관리도 없습니다. 전부 수동입니다.</p>
+        </div>
+        <div class="panel" id="panel2" role="dialog" aria-modal="false" aria-labelledby="p2t" data-open="0">
+          <h4 id="p2t" style="margin:0 0 8px;font-size:.92rem">필터</h4>
+          <div class="row" style="gap:8px">
+            <button class="btn ghost sm">전체</button>
+            <button class="btn ghost sm">승인</button>
+            <button class="btn ghost sm">취소</button>
+          </div>
+          <div class="row" style="margin-top:14px"><button class="btn sm" id="panelClose">닫기</button></div>
+        </div>
+      </div>
+      <div class="focuslog" style="margin-top:12px">지금 포커스: <b id="focusNow">—</b></div>
+    </div>
+
+    <h3 class="sec-lead">💻 코드 — 슬라이드오버의 뼈대</h3>
+<pre><code>&lt;dialog class="sheet" id="sheet" aria-labelledby="t"&gt;…&lt;/dialog&gt;
+
+/* 오른쪽에 붙이고, 열릴 때 밀려 들어오게 */
+dialog.sheet{
+  margin:0 0 0 auto; height:100dvh; width:min(420px,90%);
+  transform:translateX(100%); opacity:0;
+  /* display 는 원래 애니메이션이 안 된다. allow-discrete 로 전환 대상에 포함시킨다 */
+  transition:transform .26s ease, opacity .26s ease,
+             overlay .26s allow-discrete, display .26s allow-discrete;
+}
+dialog.sheet[open]{ transform:translateX(0); opacity:1 }
+/* @starting-style = "열리기 직전의 시작값". 없으면 첫 프레임부터 제자리라 전환이 안 보인다 */
+@starting-style{ dialog.sheet[open]{ transform:translateX(100%); opacity:0 } }
+@media (prefers-reduced-motion:reduce){ dialog.sheet{ transition-duration:.01ms } }
+
+// 열기: showModal() 이면 배경 inert·Esc 닫기·포커스 복귀가 전부 공짜
+openBtn.addEventListener('click', () =&gt; sheet.showModal());
+// 취소(Esc·백드롭)와 확정 종료를 구분하고 싶으면 close(value) 로 값을 넘긴다
+sheet.addEventListener('close', () =&gt; console.log(sheet.returnValue));</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><strong>모달이면 <code>showModal()</code></strong> — 배경 <code>inert</code>, <span class="kbd">Esc</span> 닫기, 포커스 가두기, 포커스 복귀가 브라우저 기본 동작입니다. 손으로 만든 포커스 트랩보다 안전합니다.</li>
+      <li><strong>비모달이면 직접</strong> — 사이드 내비, 오프캔버스처럼 <code>showModal()</code>을 안 쓰는 패널은 배경에 <code>inert</code>를 직접 걸고 <span class="kbd">Esc</span> 핸들러도 직접 답니다.</li>
+      <li><strong>제목 연결</strong> — <code>aria-labelledby</code>로 패널 제목을 가리켜, 열렸을 때 스크린리더가 "무슨 패널인지" 읽게 합니다.</li>
+      <li><strong>inert 영역은 눈에도 보이게</strong> — 배경을 흐리거나 어둡게 해 "지금 못 만진다"를 시각적으로도 알립니다.</li>
+      <li><strong>모션 감속 존중</strong> — <code>prefers-reduced-motion</code>(사용자 OS의 "동작 줄이기" 설정)일 때 슬라이드 전환을 사실상 끕니다.</li>
+      <li><strong>모바일 높이</strong> — <code>100vh</code> 대신 <code>100dvh</code>를 써야 주소창이 접힐 때 시트 바닥이 잘리지 않습니다.</li>
+    </ul>
+
+    <div class="support yes">브라우저 지원: <code>&lt;dialog&gt;</code>·<code>::backdrop</code>·<code>inert</code>는 주요 엔진에 모두 구현돼 있습니다. <code>@starting-style</code>/<code>allow-discrete</code>는 이보다 늦게 들어온 기능이라, 미지원 브라우저에서는 <strong>전환 없이 즉시 나타나는</strong> 형태로 자연스럽게 낮아집니다(기능은 그대로 동작).</div>
+    <div class="note">📌 데모 편의를 위해 이 페이지의 시트는 <code>position:absolute</code>로 스테이지 박스 안에 가뒀습니다. 실제 서비스에서는 위치 지정을 빼면 화면 전체 오른쪽에 붙습니다.</div>
+  </section>
+
+  <!-- ============================================================ 2 -->
+  <section class="card" id="longtask">
+    <h2>🔔 장기 작업 진행률 <span class="tag">피드백·상태</span></h2>
+    <p class="lead">3초 넘게 걸리는 작업(정산 파일 생성, 대량 업로드)에 스피너 하나만 돌리면 사용자는 멈춘 줄 압니다. 남은 시간을 알 수 있으면 <strong>결정형</strong>, 모르면 <strong>비결정형</strong>, 오래 걸리면 <strong>백그라운드로 보내기</strong> — 세 가지를 비교합니다.</p>
+
+    <h3 class="sec-lead">변형 1 — 비결정형 vs 결정형</h3>
+    <div class="demo">
+      <div class="grid2">
+        <div class="jobbox">
+          <div class="jobtitle"><strong>비결정형 (indeterminate)</strong><span class="pct" id="p1s">대기</span></div>
+          <div class="bar indet" id="p1bar" role="progressbar" aria-label="정산 파일 생성 진행" aria-busy="false" style="display:none"><i></i></div>
+          <div class="bar" id="p1idle"><i></i></div>
+          <p class="cap">서버가 얼마나 걸릴지 못 알려줄 때. "일하고 있다"만 전합니다. 대신 <strong>지금 무슨 단계인지</strong> 글로 같이 알려야 불안하지 않습니다.</p>
+          <div class="row" style="margin-top:10px"><button class="btn sm" id="p1go">시작</button></div>
+        </div>
+        <div class="jobbox">
+          <div class="jobtitle"><strong>결정형 (determinate)</strong><span class="pct num" id="p2s">0%</span></div>
+          <div class="bar" id="p2bar" role="progressbar" aria-label="정산 파일 생성 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+          <p class="eta" id="p2eta">예상 남은 시간 —</p>
+          <p class="cap">전체 건수를 아는 작업(1,240건 중 380건 처리)이라면 반드시 결정형으로. 백분율보다 <strong>"380 / 1,240건"</strong> 같은 실제 단위가 더 잘 읽힙니다.</p>
+          <div class="row" style="margin-top:10px"><button class="btn sm" id="p2go">시작</button></div>
+        </div>
+      </div>
+      <p class="cap" style="margin-top:12px">⚠️ 결정형인 척하는 가짜 진행바(시간만 보고 90%까지 채우고 멈춰 있는 것)는 신뢰를 깎습니다. 실제 진행을 모르면 비결정형이 정직합니다.</p>
+    </div>
+
+    <h3 class="sec-lead">변형 2 — 다단계 진행과 단계별 실패·재시도</h3>
+    <div class="demo">
+      <div class="jobbox">
+        <div class="jobtitle"><strong>8월 정산 파일 생성</strong><span class="pct num" id="mpct">0%</span></div>
+        <div class="bar" id="mbar" role="progressbar" aria-label="정산 파일 생성 전체 진행" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i></i></div>
+        <ul class="steps" id="msteps">
+          <li data-s="wait"><span class="dot"></span><span class="lbl">거래 내역 수집<span class="sub" data-sub></span></span></li>
+          <li data-s="wait"><span class="dot"></span><span class="lbl">금액 검증<span class="sub" data-sub></span></span></li>
+          <li data-s="wait"><span class="dot"></span><span class="lbl">수수료 집계<span class="sub" data-sub></span></span></li>
+          <li data-s="wait"><span class="dot"></span><span class="lbl">파일 만들기<span class="sub" data-sub></span></span></li>
+        </ul>
+        <div class="row" style="margin-top:14px">
+          <button class="btn sm" id="mgo">시작</button>
+          <button class="btn ghost sm" id="mretry" hidden>실패한 단계부터 재시도</button>
+          <label class="switch"><input type="checkbox" id="mfail" /><span>2단계에서 실패시키기</span></label>
+        </div>
+        <p class="sr-only" id="mlive" role="status" aria-live="polite"></p>
+      </div>
+      <p class="cap">전체 진행률 하나만 두면 어디서 오래 걸리는지 알 수 없습니다. 단계를 쪼개면 <strong>실패 지점이 특정</strong>되고, 처음부터가 아니라 <strong>그 단계부터</strong> 재시도할 수 있습니다. 상태 변화는 <code>role="status"</code> 영역으로 화면 낭독기에도 전달합니다.</p>
+    </div>
+
+    <h3 class="sec-lead">변형 3 — 백그라운드 작업 트레이</h3>
+    <div class="demo">
+      <div class="traystage" id="traystage">
+        <h5 style="margin:0 0 8px;font-size:.82rem;color:var(--muted)">정산 관리</h5>
+        <p style="font-size:.86rem;margin:0 0 12px">파일 생성이 오래 걸립니다. 기다리는 동안 다른 일을 하게 두는 편이 낫습니다.</p>
+        <div class="row">
+          <button class="btn sm" id="tgo">파일 생성 시작</button>
+          <button class="btn ghost sm">다른 작업 (눌러도 됩니다)</button>
+        </div>
+        <div class="tray" id="tray" data-open="0" role="region" aria-label="백그라운드 작업">
+          <h5><span id="ttitle">8월 정산 파일</span> <button class="x" id="tclose" aria-label="트레이 닫기" style="width:22px;height:22px;font-size:.75rem">✕</button></h5>
+          <progress id="tprog" max="100" value="0" aria-labelledby="ttitle"></progress>
+          <p class="sm2" id="tmsg">준비 중…</p>
+          <div class="row" style="margin-top:8px"><button class="btn sm" id="tdl" hidden>내려받기</button></div>
+        </div>
+      </div>
+      <p class="cap">작업을 화면 한 구석으로 밀어 두고 <strong>페이지 이동을 막지 않습니다</strong>. 끝나면 트레이에서 결과(내려받기)를 바로 집을 수 있어야 하고, 완료 알림은 <code>aria-live</code>로도 전달합니다. 30초 이상 걸리는 작업의 기본형입니다.</p>
+      <p class="sr-only" id="tlive" role="status" aria-live="polite"></p>
+    </div>
+
+    <h3 class="sec-lead">💻 코드 — 진행바의 접근성 최소 구성</h3>
+<pre><code>&lt;!-- 방법 A: 네이티브. value 를 빼면 자동으로 비결정형이 된다 --&gt;
+&lt;progress id="p" max="100" value="38" aria-labelledby="jobTitle"&gt;&lt;/progress&gt;
+&lt;progress max="100" aria-label="처리 중"&gt;&lt;/progress&gt;  &lt;!-- value 없음 = 비결정형 --&gt;
+
+&lt;!-- 방법 B: 직접 그릴 때. 세 값이 세트다 --&gt;
+&lt;div role="progressbar" aria-label="정산 파일 생성"
+     aria-valuemin="0" aria-valuemax="100" aria-valuenow="38"
+     aria-valuetext="1,240건 중 380건"&gt;&lt;i style="width:38%"&gt;&lt;/i&gt;&lt;/div&gt;
+
+// 비결정형으로 바꿀 땐 aria-valuenow 를 지운다 (0 으로 두면 "0%"로 읽힌다)
+bar.removeAttribute('aria-valuenow');
+
+// 진행 텍스트는 status 영역에 — 매 프레임이 아니라 '의미 있는 변화'에만 갱신
+// (1%마다 갱신하면 스크린리더가 쉴 새 없이 떠든다)
+if (step !== lastStep) live.textContent = `${step} 단계 시작`;</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><strong>1초 미만</strong>은 아무것도 띄우지 않기(깜빡임이 더 거슬립니다). <strong>1~3초</strong>는 스피너·스켈레톤, <strong>3초 이상</strong>은 진행률, <strong>30초 이상</strong>은 백그라운드 트레이 — 대략의 갈림길입니다.</li>
+      <li><strong><code>aria-valuetext</code></strong> — 백분율 대신 "1,240건 중 380건"처럼 사람 말로 읽히게 합니다.</li>
+      <li><strong>낭독 폭주 막기</strong> — <code>aria-live</code> 영역은 퍼센트마다가 아니라 단계가 바뀔 때만 갱신합니다.</li>
+      <li><strong>진행률은 절대 뒤로 가지 않게</strong> — 재계산으로 62%→41%가 되면 신뢰가 무너집니다. 최댓값을 유지하거나 비결정형으로 전환합니다.</li>
+      <li><strong>중단권</strong> — 오래 걸리는 작업엔 취소 버튼을 둡니다. 취소가 서버에서 불가능하면 "화면에서만 숨김"인지 명확히 씁니다.</li>
+      <li><code>prefers-reduced-motion</code>일 때 비결정형 막대의 왕복 애니메이션을 크게 늦춥니다.</li>
+    </ul>
+    <div class="note">📌 이 데모의 진행률은 전부 가짜 타이머입니다. 실제로는 서버가 주는 처리 건수/총 건수로 계산해야 하며, 그 값이 없으면 결정형을 흉내 내지 마세요.</div>
+  </section>
+
+  <!-- ============================================================ 3 -->
+  <section class="card" id="light-dark">
+    <h2>🌀 light-dark()와 color-scheme <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">다크 모드를 만들 때 색 변수를 두 벌 선언하고 <code>prefers-color-scheme</code> 미디어 쿼리로 갈아 끼우는 게 오랜 관행이었습니다. <code>light-dark()</code>는 그 두 벌을 <strong>한 줄 안에</strong> 넣습니다.</p>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li><code>light-dark(밝을때색, 어두울때색)</code>는 <strong>계산된 <code>color-scheme</code></strong> 값을 보고 둘 중 하나를 고릅니다. <em>미디어 쿼리를 보지 않습니다</em> — 이게 핵심 차이입니다.</li>
+      <li><code>color-scheme</code>은 <strong>상속되는</strong> CSS 속성이라, 어떤 요소에 <code>color-scheme:dark</code>를 주면 <strong>그 안쪽만</strong> 다크가 됩니다. "이 카드만 항상 어둡게" 같은 부분 테마가 쉬워집니다.</li>
+      <li>같은 속성이 <strong>네이티브 위젯</strong>(체크박스, 셀렉트, 스크롤바, 폼 자동완성 배경)의 기본 색까지 바꿔 줍니다. 그동안 다크 모드에서 가장 안 예뻤던 부분입니다.</li>
+      <li>MDN 기준으로 2024년 5월 주요 엔진에 모두 들어왔고, Baseline 표기로는 <strong>"신규 사용 가능(Newly available)"</strong> 단계입니다. 구형 브라우저 비중이 있는 서비스라면 폴백(대체값)을 함께 두는 게 안전합니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">변형 1 — 이 영역만 테마 바꾸기 (페이지 테마와 무관하게 동작)</h3>
+    <div class="demo">
+      <div class="ldbox">
+        <div class="row">
+          <span style="font-size:.85rem;color:var(--muted)">이 박스의 <code>color-scheme</code>:</span>
+          <div class="segmented" role="group" aria-label="색 체계 선택">
+            <button type="button" data-cs="light" aria-pressed="false">light</button>
+            <button type="button" data-cs="dark" aria-pressed="false">dark</button>
+            <button type="button" data-cs="auto" aria-pressed="true">light dark (OS 따름)</button>
+          </div>
+        </div>
+        <div class="ldscope" id="ldscope" data-cs="auto">
+          <div class="ldcard">
+            <div class="sub2">2026년 8월 정산 예정 금액</div>
+            <div class="amt">12,480,000원</div>
+            <div style="margin-top:6px"><span class="badge">검증 완료</span></div>
+          </div>
+          <div class="ldform">
+            <label for="ldsel">기간</label>
+            <select id="ldsel"><option>이번 달</option><option>지난 달</option></select>
+            <input type="text" aria-label="검색어" placeholder="가맹점 검색" />
+            <label><input type="checkbox" checked /> 취소 건 포함</label>
+          </div>
+          <div class="ldscroll" tabindex="0" aria-label="내역 목록">
+            김이현 54,000원<br />박서준 12,900원<br />이수민 7,000원<br />정하늘 233,000원<br />오지원 18,400원<br />최민석 92,000원
+          </div>
+          <p class="cap" style="margin-top:10px">위 <strong>셀렉트·체크박스·스크롤바</strong>를 보세요. CSS로 손대지 않았는데도 <code>color-scheme</code>만으로 브라우저 기본 위젯이 함께 어두워집니다. 페이지 상단의 라이트/다크 토글과는 <strong>따로</strong> 동작합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">변형 2 — 코드량 비교</h3>
+    <div class="lines">
+      <div>
+        <div class="linehead">지금까지 <span class="n">— 변수 두 벌 + 미디어 쿼리</span></div>
+<pre><code>:root{
+  --bg:#ffffff;
+  --text:#14181f;
+  --card:#f6f7f9;
+  --accent:#4f46e5;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#10151d;
+    --text:#e7ebf2;
+    --card:#1b2230;
+    --accent:#a5a6ff;
+  }
+}
+/* "이 카드만 항상 어둡게"를 하려면
+   변수를 또 한 벌 덮어써야 한다 */
+.card{ background:var(--card); color:var(--text) }</code></pre>
+      </div>
+      <div>
+        <div class="linehead">light-dark() <span class="n">— 한 벌로</span></div>
+<pre><code>:root{
+  /* 이 선언이 있어야 light-dark() 가 동작한다 */
+  color-scheme: light dark;
+
+  --bg:     light-dark(#ffffff, #10151d);
+  --text:   light-dark(#14181f, #e7ebf2);
+  --card:   light-dark(#f6f7f9, #1b2230);
+  --accent: light-dark(#4f46e5, #a5a6ff);
+}
+/* 부분 테마: 이 한 줄이면 안쪽 전체가 다크 */
+.invoice{ color-scheme: dark }
+
+.card{ background:var(--card); color:var(--text) }</code></pre>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">💻 코드 — 사용자 선택(라이트/다크/시스템) 붙이기</h3>
+<pre><code>/* 1) 기본은 시스템 설정을 따른다 */
+:root{ color-scheme: light dark }
+
+/* 2) 사용자가 고르면 루트의 color-scheme 만 덮어쓴다.
+      색 변수는 건드리지 않는다 — light-dark() 가 알아서 갈아 낀다 */
+:root[data-theme="light"]{ color-scheme: light }
+:root[data-theme="dark"] { color-scheme: dark  }
+
+/* 3) 구형 브라우저 폴백: 앞줄이 무시되면 뒷줄만 남는다 */
+.card{
+  background:#ffffff;                        /* 미지원 시 이 값 */
+  background:light-dark(#ffffff, #10151d);   /* 지원 시 이 값 */
+}</code></pre>
+<pre><code>// 사용자 선택 저장/복원 (localStorage 는 실제 서비스에서만 — 이 데모에선 생략)
+const setTheme = (v) =&gt; document.documentElement.dataset.theme = v; // 'light'|'dark'|''
+// '' 로 두면 :root 의 `color-scheme: light dark` 가 살아나 시스템 설정을 따른다</code></pre>
+
+    <h3 class="sec-lead">🧩 주의할 점</h3>
+    <ul class="clean">
+      <li><strong><code>color-scheme</code> 선언을 빠뜨리면 아무 일도 안 일어납니다.</strong> <code>light-dark()</code>만 쓰고 <code>color-scheme</code>이 없으면 항상 첫 번째(밝은) 색이 나옵니다. 가장 흔한 실수입니다.</li>
+      <li><code>prefers-color-scheme</code> 미디어 쿼리와 <strong>섞어 쓰면 어긋납니다</strong>. 미디어 쿼리는 OS 설정을, <code>light-dark()</code>는 요소의 <code>color-scheme</code>을 봅니다. 한쪽으로 통일하세요.</li>
+      <li>커스텀 속성(<code>--x</code>) 안에 넣으면 <strong>값이 쓰이는 요소</strong>의 <code>color-scheme</code>이 기준입니다. 그래서 부분 테마가 자연스럽게 따라옵니다.</li>
+      <li>색상 대비(명도차)는 두 벌 모두 따로 검증해야 합니다. 문법이 짧아졌다고 대비 기준(본문 4.5:1)이 사라지진 않습니다.</li>
+      <li>이미지·차트처럼 CSS 색이 아닌 자산은 <code>light-dark()</code> 밖입니다. SVG는 <code>currentColor</code>로 빼 두면 같이 따라옵니다.</li>
+    </ul>
+
+    <div class="support yes">지원 현황: MDN·web.dev 기준 2024년 5월 주요 엔진 전체에 구현(Baseline "신규 사용 가능"). "널리 사용 가능(Widely available)" 승격은 2026년 하반기로 <strong>예상</strong>됩니다 — 정확한 시점은 브라우저별 릴리스에 따라 달라질 수 있어 추정으로 둡니다.</div>
+    <div class="note">📌 paysable 같은 결제 화면에서는 <strong>영수증·명세 영역만 항상 라이트</strong>로 고정하고 싶은 경우가 생깁니다. 그때 <code>.receipt{ color-scheme: light }</code> 한 줄이면 그 안쪽 전체(네이티브 위젯 포함)가 라이트로 고정됩니다.</div>
+  </section>
+
+  <p class="footer">Design Inspiration Daily · 2026-09-01 (화) · self-contained, 외부 의존성 없음</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 1. 슬라이드오버 ================== */
+  (function(){
+    var stage1bg = document.getElementById("stage1bg");
+    var sheet = document.getElementById("sheet1");
+    var confirm1 = document.getElementById("confirm1");
+    var stackView = document.getElementById("stackView");
+    var focusBack = document.getElementById("focusBack");
+    var openers = document.querySelectorAll("[data-open-sheet]");
+    var stack = [];
+
+    function label(el){
+      if(!el) return "—";
+      var t = (el.textContent || "").trim().replace(/\s+/g," ");
+      if(t.length > 24) t = t.slice(0,24) + "…";
+      return (el.tagName.toLowerCase()) + (t ? ' "' + t + '"' : "");
+    }
+    function renderStack(){
+      stackView.textContent = stack.length ? stack.join(" › ") : "(없음)";
+    }
+    function push(n){ stack.push(n); renderStack(); }
+    function pop(n){
+      var i = stack.lastIndexOf(n);
+      if(i > -1) stack.splice(i,1);
+      renderStack();
+    }
+
+    // <dialog> 미지원(아주 구형)일 때를 위한 최소 방어
+    var canModal = typeof sheet.showModal === "function";
+
+    Array.prototype.forEach.call(openers, function(btn){
+      btn.addEventListener("click", function(){
+        if(!canModal){ sheet.setAttribute("open",""); push("드로어"); return; }
+        sheet.showModal();
+        push("드로어");
+      });
+    });
+
+    function closeSheet(){ if(sheet.open) sheet.close(); }
+    document.getElementById("sheet1close").addEventListener("click", closeSheet);
+    document.getElementById("sheet1close2").addEventListener("click", closeSheet);
+
+    sheet.addEventListener("close", function(){
+      pop("드로어");
+      // 브라우저가 되돌린 포커스를 다음 프레임에 읽는다
+      setTimeout(function(){ focusBack.textContent = label(document.activeElement); }, 0);
+    });
+
+    document.getElementById("refundBtn").addEventListener("click", function(){
+      if(typeof confirm1.showModal === "function"){ confirm1.showModal(); push("확인창"); }
+    });
+    document.getElementById("cf1no").addEventListener("click", function(){ confirm1.close("cancel"); });
+    document.getElementById("cf1ok").addEventListener("click", function(){ confirm1.close("refund"); });
+    confirm1.addEventListener("close", function(){
+      pop("확인창");
+      if(confirm1.returnValue === "refund"){
+        var body = sheet.querySelector(".sheet-body");
+        if(body && !body.querySelector(".refunded")){
+          var p = document.createElement("p");
+          p.className = "refunded";
+          p.setAttribute("role","status");
+          p.style.cssText = "margin-top:14px;font-size:.85rem;font-weight:700;color:var(--ok)";
+          p.textContent = "✓ 환불 처리되었습니다.";
+          body.appendChild(p);
+        }
+      }
+      setTimeout(function(){ focusBack.textContent = label(document.activeElement); }, 0);
+    });
+    renderStack();
+
+    /* ---- 변형 2: 비모달 패널 + 수동 inert ---- */
+    var stage2bg = document.getElementById("stage2bg");
+    var panel = document.getElementById("panel2");
+    var inertChk = document.getElementById("inertChk");
+    var focusNow = document.getElementById("focusNow");
+    var lastOpener = null;
+
+    function applyInert(on){
+      if(on) stage2bg.setAttribute("inert","");
+      else stage2bg.removeAttribute("inert");
+    }
+    document.getElementById("panelOpen").addEventListener("click", function(e){
+      lastOpener = e.currentTarget;
+      panel.setAttribute("data-open","1");
+      applyInert(inertChk.checked);
+      // 비모달은 초기 포커스도 직접 옮겨야 한다
+      var first = panel.querySelector("button, a, input, select");
+      if(first) first.focus();
+    });
+    function closePanel(){
+      panel.setAttribute("data-open","0");
+      applyInert(false);
+      if(lastOpener) lastOpener.focus(); // 포커스 복귀도 직접
+    }
+    document.getElementById("panelClose").addEventListener("click", closePanel);
+    // Esc 닫기도 직접 달아야 한다 (모달이 아니므로 브라우저가 안 해 준다)
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && panel.getAttribute("data-open") === "1"){ closePanel(); }
+    });
+    inertChk.addEventListener("change", function(){
+      if(panel.getAttribute("data-open") === "1") applyInert(inertChk.checked);
+    });
+    document.addEventListener("focusin", function(e){
+      focusNow.textContent = label(e.target);
+    });
+  })();
+
+  /* ================== 2. 장기 작업 진행률 ================== */
+  (function(){
+    /* --- 변형 1a: 비결정형 --- */
+    var p1bar = document.getElementById("p1bar");
+    var p1idle = document.getElementById("p1idle");
+    var p1s = document.getElementById("p1s");
+    var p1go = document.getElementById("p1go");
+    var p1msgs = ["서버에 요청 보냄…","거래 내역 읽는 중…","마무리 중…"];
+    var p1t = [];
+    p1go.addEventListener("click", function(){
+      p1t.forEach(clearTimeout); p1t = [];
+      p1idle.style.display = "none";
+      p1bar.style.display = "block";
+      p1bar.setAttribute("aria-busy","true");
+      // 비결정형이므로 aria-valuenow 를 두지 않는다
+      p1bar.removeAttribute("aria-valuenow");
+      p1go.disabled = true;
+      p1msgs.forEach(function(m,i){
+        p1t.push(setTimeout(function(){ p1s.textContent = m; }, i*1100 + 100));
+      });
+      p1t.push(setTimeout(function(){
+        p1bar.style.display = "none";
+        p1idle.style.display = "block";
+        p1idle.classList.add("done");
+        p1idle.querySelector("i").style.width = "100%";
+        p1s.textContent = "완료";
+        p1go.disabled = false;
+      }, 3600));
+    });
+
+    /* --- 변형 1b: 결정형 --- */
+    var p2bar = document.getElementById("p2bar");
+    var p2fill = p2bar.querySelector("i");
+    var p2s = document.getElementById("p2s");
+    var p2eta = document.getElementById("p2eta");
+    var p2go = document.getElementById("p2go");
+    var TOTAL = 1240, p2iv = null;
+    p2go.addEventListener("click", function(){
+      if(p2iv) clearInterval(p2iv);
+      var done = 0; p2go.disabled = true;
+      p2bar.classList.remove("done");
+      p2iv = setInterval(function(){
+        done = Math.min(TOTAL, done + 62);
+        var pct = Math.round(done / TOTAL * 100);
+        p2fill.style.width = pct + "%";
+        p2bar.setAttribute("aria-valuenow", String(pct));
+        // 사람 말로 읽히도록 — 스크린리더는 이 값을 우선한다
+        p2bar.setAttribute("aria-valuetext", done.toLocaleString() + "건 중 " + TOTAL.toLocaleString() + "건");
+        p2s.textContent = done.toLocaleString() + " / " + TOTAL.toLocaleString() + "건 (" + pct + "%)";
+        var left = Math.ceil((TOTAL - done) / 62 * 0.25);
+        p2eta.textContent = done >= TOTAL ? "완료" : "예상 남은 시간 약 " + left + "초";
+        if(done >= TOTAL){
+          clearInterval(p2iv); p2iv = null;
+          p2bar.classList.add("done");
+          p2go.disabled = false;
+        }
+      }, 250);
+    });
+
+    /* --- 변형 2: 다단계 --- */
+    var msteps = document.getElementById("msteps");
+    var mitems = msteps.querySelectorAll("li");
+    var mbar = document.getElementById("mbar");
+    var mfill = mbar.querySelector("i");
+    var mpct = document.getElementById("mpct");
+    var mgo = document.getElementById("mgo");
+    var mretry = document.getElementById("mretry");
+    var mfail = document.getElementById("mfail");
+    var mlive = document.getElementById("mlive");
+    var mTimer = null;
+    var NAMES = ["거래 내역 수집","금액 검증","수수료 집계","파일 만들기"];
+
+    function setStep(i, state, sub){
+      var li = mitems[i];
+      li.setAttribute("data-s", state);
+      li.querySelector(".dot").textContent = state === "done" ? "✓" : (state === "err" ? "!" : "");
+      var s = li.querySelector("[data-sub]");
+      s.textContent = sub ? " — " + sub : "";
+    }
+    function setPct(p, cls){
+      mfill.style.width = p + "%";
+      mbar.setAttribute("aria-valuenow", String(p));
+      mpct.textContent = p + "%";
+      mbar.classList.remove("err","done");
+      if(cls) mbar.classList.add(cls);
+    }
+    function reset(from){
+      for(var i = from; i < mitems.length; i++) setStep(i, "wait", "");
+    }
+    function run(from){
+      mgo.disabled = true; mretry.hidden = true;
+      reset(from);
+      var i = from;
+      (function next(){
+        if(i >= mitems.length){
+          setPct(100, "done");
+          mlive.textContent = "정산 파일 생성 완료";
+          mgo.disabled = false;
+          return;
+        }
+        setStep(i, "run", "진행 중");
+        // 단계가 바뀔 때만 낭독 — 퍼센트마다 갱신하면 스크린리더가 폭주한다
+        mlive.textContent = NAMES[i] + " 시작";
+        setPct(Math.round(i / mitems.length * 100));
+        mTimer = setTimeout(function(){
+          if(i === 1 && mfail.checked){
+            setStep(i, "err", "합계 불일치 12건");
+            setPct(Math.round(i / mitems.length * 100), "err");
+            mlive.textContent = NAMES[i] + " 실패 — 합계 불일치 12건";
+            mretry.hidden = false;
+            mretry.dataset.from = String(i);
+            mgo.disabled = false;
+            return;
+          }
+          setStep(i, "done", "완료");
+          i++;
+          next();
+        }, 900);
+      })();
+    }
+    mgo.addEventListener("click", function(){ clearTimeout(mTimer); run(0); });
+    mretry.addEventListener("click", function(){
+      // 처음부터가 아니라 '실패한 단계부터'
+      mfail.checked = false;
+      run(parseInt(mretry.dataset.from || "0", 10));
+    });
+
+    /* --- 변형 3: 백그라운드 트레이 --- */
+    var tray = document.getElementById("tray");
+    var tprog = document.getElementById("tprog");
+    var tmsg = document.getElementById("tmsg");
+    var tgo = document.getElementById("tgo");
+    var tdl = document.getElementById("tdl");
+    var tlive = document.getElementById("tlive");
+    var tiv = null;
+    tgo.addEventListener("click", function(){
+      if(tiv) clearInterval(tiv);
+      var v = 0;
+      tray.setAttribute("data-open","1");
+      tdl.hidden = true;
+      tprog.value = 0;
+      tmsg.textContent = "생성 중… 페이지를 떠나도 계속됩니다.";
+      tgo.disabled = true;
+      tiv = setInterval(function(){
+        v = Math.min(100, v + 7);
+        tprog.value = v;
+        if(v >= 100){
+          clearInterval(tiv); tiv = null;
+          tmsg.textContent = "완료 · 8월_정산.xlsx";
+          tdl.hidden = false;
+          tgo.disabled = false;
+          tlive.textContent = "8월 정산 파일 생성이 완료되었습니다.";
+        }
+      }, 260);
+    });
+    document.getElementById("tclose").addEventListener("click", function(){
+      tray.setAttribute("data-open","0");
+    });
+    tdl.addEventListener("click", function(){
+      tmsg.textContent = "내려받기를 시작했습니다(데모).";
+    });
+  })();
+
+  /* ================== 3. light-dark() ================== */
+  (function(){
+    var scope = document.getElementById("ldscope");
+    var btns = document.querySelectorAll(".segmented [data-cs]");
+    Array.prototype.forEach.call(btns, function(b){
+      b.addEventListener("click", function(){
+        Array.prototype.forEach.call(btns, function(x){ x.setAttribute("aria-pressed","false"); });
+        b.setAttribute("aria-pressed","true");
+        // 색 변수는 하나도 안 바꾼다. color-scheme 한 속성만 바꾼다.
+        scope.setAttribute("data-cs", b.getAttribute("data-cs"));
+      });
+    });
+  })();
+
+  /* ================== theme toggle ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if(qs.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
