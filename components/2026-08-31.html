@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-08-31 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;
+    border-radius:50%;animation:sp .7s linear infinite;vertical-align:-2px;margin-right:7px;opacity:.9}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.spin{animation-duration:2.4s}}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .num{font-variant-numeric:tabular-nums}
+
+  /* ================= 1. 제출 버튼 처리 중 상태 ================= */
+  .pay-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .switch input{accent-color:var(--brand);width:16px;height:16px}
+  .switch:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  /* 버튼 너비 고정: 라벨이 '결제하기'→'처리 중'으로 바뀌어도 레이아웃이 안 흔들리게 */
+  .btn-pay{min-width:190px;display:inline-flex;align-items:center;justify-content:center;gap:2px;
+    position:relative;transition:background-color .15s ease,border-color .15s ease}
+  @media(prefers-reduced-motion:reduce){.btn-pay{transition:none}}
+  .btn-pay[aria-busy="true"]{cursor:progress}
+  .btn-pay[data-state="done"]{background:var(--ok);border-color:var(--ok);color:#fff;cursor:default}
+  [data-theme="dark"] .btn-pay[data-state="done"]{color:#06170e}
+  .srv{margin-top:14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+  .srv h5{margin:0 0 8px;font-size:.8rem;color:var(--muted);font-weight:700;letter-spacing:.02em}
+  .srv ol{margin:0;padding-left:1.2rem;font-size:.82rem;max-height:132px;overflow:auto}
+  .srv ol li{margin:.18rem 0;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .srv .empty{font-size:.82rem;color:var(--muted);margin:0}
+  .charge{margin-top:10px;font-size:.88rem;font-weight:700}
+  .charge.bad{color:var(--danger)}
+  .charge.good{color:var(--ok)}
+  .inline-err{margin-top:10px;font-size:.85rem;color:var(--danger);background:var(--danger-soft);
+    border-radius:8px;padding:8px 11px;display:none}
+  .inline-err[data-show="1"]{display:block}
+  .fake-net{display:inline-flex;align-items:center;gap:7px;font-size:.8rem;color:var(--muted)}
+  .fake-net select{font-family:inherit;font-size:.8rem;padding:5px 8px;border-radius:8px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .fake-net select:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ================= 2. 기간 선택 ================= */
+  .dr{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .dr-presets{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .chip{font-family:inherit;font-size:.82rem;cursor:pointer;border:1px solid var(--border);
+    background:var(--surface-2);color:var(--text);border-radius:999px;padding:6px 13px}
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+  .chip[aria-pressed="true"]{background:var(--brand-soft);border-color:var(--brand);color:var(--brand);font-weight:700}
+  .chip:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .dr-fields{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+  .fld{display:flex;flex-direction:column;gap:5px}
+  .fld label{font-size:.78rem;color:var(--muted);font-weight:600}
+  .fld input[type="date"]{font-family:inherit;font-size:.9rem;padding:9px 11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);color-scheme:light}
+  [data-theme="dark"] .fld input[type="date"]{color-scheme:dark}
+  .fld input[type="date"]:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .fld input[aria-invalid="true"]{border-color:var(--danger);background:var(--danger-soft)}
+  .dr-nav{display:inline-flex;gap:6px}
+  .iconbtn{font-family:inherit;cursor:pointer;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);border-radius:10px;width:38px;height:38px;font-size:.95rem}
+  .iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .iconbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .dr-summary{margin-top:14px;font-size:.88rem;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .dr-summary .rng{font-weight:700;font-variant-numeric:tabular-nums}
+  .dr-msg{margin-top:10px;font-size:.85rem;border-radius:8px;padding:9px 12px;display:none;
+    align-items:center;gap:10px;flex-wrap:wrap}
+  .dr-msg[data-show="1"]{display:flex}
+  .dr-msg.err{color:var(--danger);background:var(--danger-soft)}
+  .dr-msg.warn{color:var(--warn);background:var(--warn-soft)}
+  .bar{margin-top:12px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;
+    border:1px solid var(--border)}
+  .bar > i{display:block;height:100%;background:var(--brand);width:0;transition:width .25s ease}
+  .bar > i[data-over="1"]{background:var(--danger)}
+  @media(prefers-reduced-motion:reduce){.bar > i{transition:none}}
+
+  /* ================= 3. Invoker Commands ================= */
+  .ivk-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  dialog.ivk{border:1px solid var(--border);border-radius:14px;background:var(--surface);color:var(--text);
+    padding:0;max-width:400px;width:calc(100% - 32px);box-shadow:var(--shadow)}
+  dialog.ivk::backdrop{background:rgba(10,13,18,.5)}
+  dialog.ivk .dlg-body{padding:20px}
+  dialog.ivk h4{margin:0 0 6px;font-size:1rem}
+  dialog.ivk p{margin:0 0 16px;font-size:.88rem;color:var(--muted)}
+  dialog.ivk .dlg-actions{display:flex;gap:8px;justify-content:flex-end}
+  .pop{border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);
+    padding:14px 16px;box-shadow:var(--shadow);max-width:290px;font-size:.86rem;margin:0}
+  .pop:popover-open{position:fixed;inset:auto;top:50%;left:50%;translate:-50% -50%}
+  .pop h4{margin:0 0 5px}
+  .pop p{margin:0;color:var(--muted);font-size:.83rem}
+  .copybox{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
+  .copybox output{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.84rem;
+    background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 12px}
+  .copybox .done{font-size:.82rem;color:var(--ok);opacity:0;transition:opacity .2s ease}
+  .copybox .done[data-show="1"]{opacity:1}
+  @media(prefers-reduced-motion:reduce){.copybox .done{transition:none}}
+  .acc{background:var(--surface);border:1px solid var(--border);border-radius:11px;overflow:hidden;margin-top:4px}
+  .acc > div{padding:14px 16px;font-size:.86rem;color:var(--muted);border-top:1px solid var(--border)}
+  .acc[hidden]{display:none}
+
+  /* ---- embed compact mode (?embed=[section id]) ---- */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-08-31 (월) · 오늘의 컴포넌트·패턴 3건 · 버튼·액션 / 입력·폼 / 트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#submit-button">🔘 제출 버튼 처리 중 상태</a>
+    <a href="#date-range">⌨️ 기간 선택 필터</a>
+    <a href="#invoker-commands">🌀 Invoker Commands</a>
+  </nav>
+
+  <!-- ============================================================ 1 -->
+  <section class="card" id="submit-button">
+    <h2>🔘 제출 버튼의 "처리 중" 상태 <span class="tag">버튼·액션</span></h2>
+    <p class="lead">결제 버튼을 두 번 눌러 두 번 결제되는 사고는 대부분 UI에서 시작됩니다. 잠금(락) · 라벨 유지 · 실패 복귀 · 성공 후 재잠금, 네 가지를 실제로 눌러 보며 비교합니다.</p>
+
+    <h3 class="sec-lead">변형 1 — 잠금 없는 버튼 vs 잠금 + 멱등키 버튼</h3>
+    <div class="demo">
+      <div class="pay-row">
+        <label class="switch">
+          <input type="checkbox" id="guardChk" checked />
+          <span>제출 잠금 켜기 (권장)</span>
+        </label>
+        <span class="fake-net">
+          <label for="netSel">가짜 응답 지연</label>
+          <select id="netSel">
+            <option value="1200" selected>1.2초</option>
+            <option value="2500">2.5초</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="pay-row" style="margin-top:14px">
+        <button class="btn btn-pay" id="payBtn" data-state="idle">54,000원 결제하기</button>
+        <button class="btn ghost sm" id="resetBtn" type="button">초기화</button>
+      </div>
+      <p class="cap">잠금을 <strong>끄고</strong> 결제 버튼을 빠르게 3~4번 눌러 보세요. 요청이 그대로 여러 번 나갑니다. 잠금을 켜면 첫 클릭 이후 눌러도 요청이 늘지 않습니다.</p>
+
+      <div class="srv" aria-live="polite">
+        <h5>서버가 받은 결제 요청</h5>
+        <p class="empty" id="srvEmpty">아직 요청 없음</p>
+        <ol id="srvLog"></ol>
+        <p class="charge" id="chargeMsg" hidden></p>
+      </div>
+      <p class="cap"><strong>멱등키(idempotency key)</strong> = "같은 요청을 두 번 보내도 한 번만 처리해 달라"고 서버에 알려 주는 1회용 식별자입니다. UI 잠금은 뚫릴 수 있으니(느린 네트워크, 뒤로가기, 새로고침) 키를 함께 보내 서버에서 최종 방어합니다.</p>
+    </div>
+
+    <h3 class="sec-lead">변형 2 — 처리 중 · 실패 복귀 · 성공 후 잠금</h3>
+    <div class="demo">
+      <div class="pay-row">
+        <label class="switch">
+          <input type="checkbox" id="failChk" />
+          <span>서버 실패 시나리오로 실행</span>
+        </label>
+      </div>
+      <div class="pay-row" style="margin-top:14px">
+        <button class="btn btn-pay" id="payBtn2" data-state="idle">54,000원 결제하기</button>
+        <button class="btn ghost sm" id="resetBtn2" type="button">초기화</button>
+      </div>
+      <p class="cap">처리 중에는 <strong>라벨을 지우지 않고</strong> 스피너만 앞에 붙이고, 버튼 최소 너비를 고정해 화면이 튀지 않게 합니다. 실패하면 원래 상태로 돌아가 다시 누를 수 있어야 하고, 성공하면 <strong>다시 활성화하지 않습니다</strong>(결제는 재클릭 자체가 사고).</p>
+      <p class="inline-err" id="payErr" role="alert"></p>
+      <p class="sr-only" id="payLive" role="status" aria-live="polite"></p>
+    </div>
+
+    <table class="cmp">
+      <thead><tr><th>상태</th><th>버튼이 해야 할 일</th><th>흔한 실수</th></tr></thead>
+      <tbody>
+        <tr><td>idle</td><td>금액·행동을 라벨에 명시("54,000원 결제하기")</td><td>"확인" 같은 무의미한 라벨</td></tr>
+        <tr><td>pending</td><td><code>disabled</code> + <code>aria-busy="true"</code>, 라벨 유지, 너비 고정</td><td>라벨을 "..."로 바꿔 버튼 폭이 줄어듦</td></tr>
+        <tr><td>error</td><td>버튼 원복 + 버튼 근처 인라인 에러 + <code>role="alert"</code></td><td>토스트만 띄우고 버튼은 계속 잠김</td></tr>
+        <tr><td>success</td><td>완료 표시 후 <strong>잠금 유지</strong>, 다음 화면으로 이동</td><td>성공 후 버튼을 다시 활성화 → 이중 결제</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><strong>왜 <code>disabled</code>만으로 부족한가.</strong> <code>disabled</code> 버튼은 포커스를 잃고 스크린리더가 읽지 않아, 키보드 사용자는 "내가 누른 게 처리되고 있는지" 알 수 없습니다. 그래서 별도의 <code>role="status"</code> 영역에 "결제를 처리하고 있습니다"를 함께 알리거나, <code>aria-disabled="true"</code> + 클릭 무시 방식으로 포커스를 유지하는 절충안을 씁니다.</div>
+
+    <h3 class="sec-lead">💻 코드</h3>
+<pre><code>// 제출 잠금 + 멱등키 (프레임워크 무관 최소 형태)
+let inFlight = false;
+let idemKey = null;
+
+async function pay(){
+  if (inFlight) return;                 // 1) UI 잠금
+  inFlight = true;
+  idemKey ??= crypto.randomUUID();      // 2) 재시도해도 같은 키를 유지
+  setState('pending');
+  try {
+    await api.pay({ amount: 54000 }, { 'Idempotency-Key': idemKey });
+    setState('done');                   // 3) 성공하면 다시 열지 않는다
+  } catch (e) {
+    inFlight = false;                   // 4) 실패만 복귀 — 키는 그대로 재사용
+    setState('error', e.message);
+  }
+}</code></pre>
+  </section>
+
+  <!-- ============================================================ 2 -->
+  <section class="card" id="date-range">
+    <h2>⌨️ 기간 선택 필터 <span class="tag">입력·폼</span></h2>
+    <p class="lead">정산·거래내역 화면의 기본 입력은 "기간"입니다. 캘린더 라이브러리를 붙이기 전에, 네이티브 <code>&lt;input type="date"&gt;</code> 두 개 + 프리셋 칩 + 상호 제약만으로 실무 요구의 대부분이 해결됩니다.</p>
+
+    <div class="demo">
+      <div class="dr">
+        <div class="dr-presets" role="group" aria-label="기간 프리셋">
+          <button class="chip" type="button" data-preset="today">오늘</button>
+          <button class="chip" type="button" data-preset="yesterday">어제</button>
+          <button class="chip" type="button" data-preset="7d" aria-pressed="true">최근 7일</button>
+          <button class="chip" type="button" data-preset="30d">최근 30일</button>
+          <button class="chip" type="button" data-preset="thisMonth">이번 달</button>
+          <button class="chip" type="button" data-preset="lastMonth">지난 달</button>
+        </div>
+
+        <div class="dr-fields">
+          <div class="fld">
+            <label for="drStart">시작일</label>
+            <input type="date" id="drStart" />
+          </div>
+          <div class="fld">
+            <label for="drEnd">종료일</label>
+            <input type="date" id="drEnd" />
+          </div>
+          <div class="dr-nav" role="group" aria-label="기간 이동">
+            <button class="iconbtn" type="button" id="drPrev" aria-label="이전 기간으로 이동">←</button>
+            <button class="iconbtn" type="button" id="drNext" aria-label="다음 기간으로 이동">→</button>
+          </div>
+        </div>
+
+        <div class="dr-summary">
+          <span class="rng" id="drRange">—</span>
+          <span class="pill ok" id="drDays">0일</span>
+        </div>
+        <div class="bar" aria-hidden="true"><i id="drBar"></i></div>
+        <p class="cap" style="margin-top:8px">막대는 조회 한도(92일) 대비 선택한 기간의 비율입니다.</p>
+
+        <p class="dr-msg err" id="drErr" role="alert"></p>
+        <p class="dr-msg warn" id="drWarn"></p>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">🧩 여기 들어간 규칙 5가지</h3>
+    <ul class="clean">
+      <li><strong>프리셋 먼저.</strong> 실무에서 90%는 "최근 7일 / 이번 달"입니다. 캘린더를 열기 전에 한 번의 클릭으로 끝내게 합니다. 선택된 칩은 <code>aria-pressed="true"</code>로 표시합니다.</li>
+      <li><strong>상호 제약.</strong> 시작일을 고르면 종료일 입력의 <code>min</code>이 그 날짜로, 종료일을 고르면 시작일의 <code>max</code>가 그 날짜로 바뀝니다. 브라우저가 잘못된 조합을 애초에 못 고르게 막습니다.</li>
+      <li><strong>미래 차단.</strong> 두 입력 모두 <code>max</code>를 오늘로 둡니다. 정산 데이터는 미래에 없습니다.</li>
+      <li><strong>한도 초과는 막지 말고 고쳐 주기.</strong> 92일을 넘기면 에러만 띄우는 대신 "최근 92일로 맞추기" 버튼을 함께 줍니다. 사용자가 다시 계산하지 않게 합니다.</li>
+      <li><strong>같은 기간 앞뒤 이동.</strong> ← → 버튼이 선택된 길이(예: 7일)를 유지한 채 통째로 옮깁니다. "지난주랑 비교"가 클릭 한 번이 됩니다.</li>
+    </ul>
+
+    <div class="note"><strong>네이티브 date 입력의 한계도 알아 두기.</strong> 표시 형식(<code>2026/08/31</code> vs <code>08/31/2026</code>)은 브라우저·OS 로캘이 정하며 CSS로 바꿀 수 없고, 캘린더 팝업 모양도 커스터마이즈가 거의 안 됩니다. 값은 항상 <code>YYYY-MM-DD</code> 문자열이라 서버 연동은 오히려 단순합니다. 브랜드 캘린더가 꼭 필요할 때만 라이브러리로 올라가면 됩니다. (다크 모드 대응은 <code>color-scheme</code>으로 — 이 데모도 그렇게 했습니다.)</div>
+
+    <h3 class="sec-lead">💻 코드</h3>
+<pre><code>&lt;!-- 상호 제약: 잘못된 조합을 브라우저가 먼저 막는다 --&gt;
+&lt;input type="date" id="start" max="2026-08-31"&gt;
+&lt;input type="date" id="end"   max="2026-08-31"&gt;
+
+&lt;script&gt;
+const iso = d =&gt; d.toISOString().slice(0, 10);   // 항상 YYYY-MM-DD
+start.addEventListener('change', () =&gt; { end.min   = start.value; sync(); });
+end  .addEventListener('change', () =&gt; { start.max = end.value;   sync(); });
+
+function daysBetween(a, b){                      // 양끝 포함 일수
+  return Math.round((new Date(b) - new Date(a)) / 86400000) + 1;
+}
+&lt;/script&gt;</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성 체크</h3>
+    <ul class="clean">
+      <li>프리셋은 <code>&lt;button&gt;</code> + <code>aria-pressed</code> — 스크린리더가 "눌림" 상태를 읽습니다. <code>div</code>에 클릭 핸들러를 붙이면 키보드로 못 씁니다.</li>
+      <li>화살표 버튼은 아이콘만 있으므로 <code>aria-label</code> 필수("이전 기간으로 이동").</li>
+      <li>한도 초과 메시지는 <code>role="alert"</code>로 즉시 읽히고, 문제 입력에는 <code>aria-invalid="true"</code>를 겁니다.</li>
+      <li>일수 배지는 색(초록/빨강)만으로 구분하지 않고 숫자 텍스트를 함께 둡니다.</li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ 3 -->
+  <section class="card" id="invoker-commands">
+    <h2>🌀 Invoker Commands — 버튼이 JS 없이 다이얼로그를 여는 표준 <span class="tag">트렌드·개념</span></h2>
+    <p class="lead"><code>&lt;button command="show-modal" commandfor="dlg"&gt;</code>. 이 두 속성만으로 버튼이 다이얼로그·팝오버를 열고 닫습니다. <strong>Invoker(인보커) = "다른 요소를 작동시키는 버튼"</strong>이라는 뜻입니다.</p>
+
+    <p class="support" id="ivkSupport">지원 여부 확인 중…</p>
+
+    <h3 class="sec-lead">변형 1 — 내장 커맨드 (JS 0줄)</h3>
+    <div class="demo">
+      <div class="ivk-row">
+        <button class="btn" command="show-modal" commandfor="ivkDlg">환불 확인 열기</button>
+        <button class="btn ghost" command="toggle-popover" commandfor="ivkPop">팝오버 토글</button>
+      </div>
+      <p class="cap">이 두 버튼에는 <strong>클릭 핸들러가 하나도 없습니다.</strong> 브라우저가 열기·최상단 레이어 배치·포커스 이동·<span class="kbd">Esc</span> 닫기·닫힌 뒤 원래 버튼으로 포커스 복귀까지 처리합니다. (미지원 브라우저에서는 아래 폴백 스크립트가 대신 동작합니다.)</p>
+
+      <dialog class="ivk" id="ivkDlg" aria-labelledby="ivkDlgTitle">
+        <div class="dlg-body">
+          <h4 id="ivkDlgTitle">환불을 진행할까요?</h4>
+          <p>54,000원이 원결제 수단으로 환불됩니다. 이 동작은 되돌릴 수 없습니다.</p>
+          <div class="dlg-actions">
+            <button class="btn ghost sm" command="close" commandfor="ivkDlg">취소</button>
+            <button class="btn sm" command="close" commandfor="ivkDlg">환불하기</button>
+          </div>
+        </div>
+      </dialog>
+
+      <div class="pop" id="ivkPop" popover>
+        <h4>팝오버입니다</h4>
+        <p>바깥을 클릭하거나 <span class="kbd">Esc</span>를 누르면 닫힙니다 — 이것도 브라우저 기본 동작입니다.</p>
+      </div>
+    </div>
+
+    <h3 class="sec-lead">변형 2 — 커스텀 커맨드 (<code>--</code>로 시작)</h3>
+    <div class="demo">
+      <div class="copybox">
+        <output id="ivkKey">pay_9f31c0a8</output>
+        <button class="btn ghost sm" command="--copy" commandfor="ivkKey">복사</button>
+        <button class="btn ghost sm" command="--toggle" commandfor="ivkAcc" aria-expanded="false" id="ivkAccBtn">상세 보기</button>
+        <span class="done" id="ivkDone">복사했습니다</span>
+      </div>
+      <div class="acc" id="ivkAcc" hidden>
+        <div>커스텀 커맨드는 이름이 <code>--</code>로 시작해야 합니다. 대상 요소에서 <code>command</code> 이벤트를 받아 <code>e.command</code>로 분기하면, 어떤 버튼이 눌렸는지 일일이 <code>addEventListener</code>를 붙이지 않아도 됩니다.</div>
+      </div>
+      <p class="cap">동작 로직이 <strong>버튼이 아니라 "대상 요소"에</strong> 모입니다. 목록에 버튼이 100개 있어도 리스너는 대상 쪽 하나면 됩니다.</p>
+    </div>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나</h3>
+    <ul class="clean">
+      <li><strong>2025년 하반기 Safari 지원이 붙으면서 주요 엔진(Chrome·Edge·Firefox·Safari)이 모두 지원</strong>하게 되어 Baseline(주요 브라우저 공통 사용 가능 기준)에 들어왔다고 알려져 있습니다. 실제 프로젝트 도입 전에는 caniuse·MDN에서 현재 수치를 다시 확인하시길 권합니다.</li>
+      <li>지금까지 모달 하나를 제대로 만들려면 포커스 트랩(모달 안에 <span class="kbd">Tab</span> 가두기), <span class="kbd">Esc</span> 닫기, 스크롤 잠금, 닫은 뒤 포커스 복귀를 직접 짜야 했습니다. <code>dialog</code> + Invoker 조합은 이걸 브라우저가 맡습니다.</li>
+      <li>속성이 HTML에 그대로 보이므로 <strong>서버 렌더링·부분 하이드레이션 환경에서 JS가 아직 안 붙었어도 버튼이 동작</strong>합니다. Next.js처럼 서버 컴포넌트를 많이 쓰는 스택에서 실익이 큽니다.</li>
+      <li><strong>제약</strong>: <code>command</code>/<code>commandfor</code>는 <code>&lt;button&gt;</code>에서만 동작합니다. 링크나 <code>div</code>에는 붙여도 무시됩니다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드</h3>
+<pre><code>&lt;!-- 내장 커맨드: show-modal / close / request-close / toggle-popover ... --&gt;
+&lt;button command="show-modal" commandfor="refundDlg"&gt;환불&lt;/button&gt;
+&lt;dialog id="refundDlg"&gt;
+  &lt;button command="close" commandfor="refundDlg"&gt;취소&lt;/button&gt;
+&lt;/dialog&gt;
+
+&lt;!-- 커스텀 커맨드: 이름이 반드시 -- 로 시작 --&gt;
+&lt;button command="--copy" commandfor="key"&gt;복사&lt;/button&gt;
+&lt;output id="key"&gt;pay_9f31c0a8&lt;/output&gt;
+
+&lt;script&gt;
+document.getElementById('key').addEventListener('command', (e) =&gt; {
+  if (e.command !== '--copy') return;
+  navigator.clipboard.writeText(e.target.textContent);
+  // e.source 로 어떤 버튼이 눌렀는지 알 수 있다
+});
+&lt;/script&gt;
+
+// 지원 감지 + 폴백
+if (!('command' in HTMLButtonElement.prototype)) { /* 기존 JS 방식으로 */ }</code></pre>
+
+    <div class="note"><strong>paysable 관점.</strong> 환불 확인, 결제수단 삭제 확인, 영수증 상세 모달처럼 "버튼 → 다이얼로그"가 1:1로 붙는 자리에 가장 잘 맞습니다. 다만 결제 진행 중 모달처럼 <strong>닫히면 안 되는</strong> 화면에는 <code>close</code> 대신 <code>request-close</code>를 쓰고 <code>cancel</code> 이벤트에서 조건부로 막아야 합니다. 도입은 접근성 요구가 큰 확인 다이얼로그부터, 폴백을 켜 둔 채로 점진적으로 하는 편이 안전합니다.</div>
+  </section>
+
+  <p class="footer">Design Inspiration Daily · 2026-08-31 (월) · 이 파일은 외부 의존성 없이 단독으로 동작합니다.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 1. 제출 버튼 처리 중 상태 ================== */
+  (function(){
+    var guardChk = document.getElementById("guardChk");
+    var netSel   = document.getElementById("netSel");
+    var payBtn   = document.getElementById("payBtn");
+    var resetBtn = document.getElementById("resetBtn");
+    var srvLog   = document.getElementById("srvLog");
+    var srvEmpty = document.getElementById("srvEmpty");
+    var chargeMsg= document.getElementById("chargeMsg");
+
+    var inFlight = false;
+    var idemKey  = null;
+    var reqCount = 0;
+
+    function key(){
+      // crypto.randomUUID 없는 환경 대비
+      return "idem_" + Math.random().toString(16).slice(2, 10);
+    }
+
+    function render(){
+      srvEmpty.hidden = reqCount > 0;
+      if(reqCount === 0){ chargeMsg.hidden = true; return; }
+      var uniq = new Set(Array.prototype.map.call(srvLog.children, function(li){
+        return li.getAttribute("data-key");
+      })).size;
+      chargeMsg.hidden = false;
+      if(uniq === 1){
+        chargeMsg.className = "charge good";
+        chargeMsg.textContent = "요청 " + reqCount + "건 · 서로 다른 멱등키 1개 → 실제 결제 1건 ✅";
+      } else {
+        chargeMsg.className = "charge bad";
+        chargeMsg.textContent = "요청 " + reqCount + "건 · 서로 다른 멱등키 " + uniq + "개 → 실제 결제 " + uniq + "건 ⚠️ 중복 결제";
+      }
+    }
+
+    function send(){
+      reqCount++;
+      var k = guardChk.checked ? (idemKey = idemKey || key()) : key();
+      var li = document.createElement("li");
+      li.setAttribute("data-key", k);
+      li.textContent = "POST /payments  " + k;
+      srvLog.appendChild(li);
+      srvLog.scrollTop = srvLog.scrollHeight;
+      render();
+    }
+
+    payBtn.addEventListener("click", function(){
+      if(guardChk.checked && inFlight) return;      // UI 잠금
+      if(payBtn.getAttribute("data-state") === "done") return;
+
+      send();
+
+      if(!guardChk.checked) return;                 // 잠금 없으면 상태 변화도 없이 그냥 또 나감
+      inFlight = true;
+      payBtn.disabled = true;
+      payBtn.setAttribute("aria-busy", "true");
+      payBtn.setAttribute("data-state", "pending");
+      payBtn.innerHTML = '<span class="spin" aria-hidden="true"></span>54,000원 결제하기';
+
+      setTimeout(function(){
+        inFlight = false;
+        payBtn.removeAttribute("aria-busy");
+        payBtn.setAttribute("data-state", "done");
+        payBtn.textContent = "✓ 결제 완료";
+        // 성공 후에는 일부러 disabled 를 풀지 않는다
+      }, Number(netSel.value));
+    });
+
+    resetBtn.addEventListener("click", function(){
+      inFlight = false; idemKey = null; reqCount = 0;
+      srvLog.innerHTML = "";
+      payBtn.disabled = false;
+      payBtn.removeAttribute("aria-busy");
+      payBtn.setAttribute("data-state", "idle");
+      payBtn.textContent = "54,000원 결제하기";
+      render();
+    });
+
+    guardChk.addEventListener("change", function(){ resetBtn.click(); });
+    render();
+  })();
+
+  /* ---------- 1-2. 실패 복귀 / 성공 후 잠금 ---------- */
+  (function(){
+    var btn   = document.getElementById("payBtn2");
+    var reset = document.getElementById("resetBtn2");
+    var fail  = document.getElementById("failChk");
+    var err   = document.getElementById("payErr");
+    var live  = document.getElementById("payLive");
+    var busy  = false;
+
+    function idle(){
+      busy = false;
+      btn.disabled = false;
+      btn.removeAttribute("aria-busy");
+      btn.setAttribute("data-state","idle");
+      btn.textContent = "54,000원 결제하기";
+    }
+
+    btn.addEventListener("click", function(){
+      if(busy || btn.getAttribute("data-state") === "done") return;
+      busy = true;
+      err.setAttribute("data-show","0");
+      err.textContent = "";
+      btn.disabled = true;
+      btn.setAttribute("aria-busy","true");
+      btn.setAttribute("data-state","pending");
+      btn.innerHTML = '<span class="spin" aria-hidden="true"></span>54,000원 결제하기';
+      live.textContent = "결제를 처리하고 있습니다. 잠시만 기다려 주세요.";
+
+      setTimeout(function(){
+        if(fail.checked){
+          idle();                                   // 실패는 복귀 — 다시 누를 수 있어야 한다
+          err.textContent = "카드사 응답이 지연되어 결제가 완료되지 않았습니다. 다시 시도해 주세요. (중복 청구되지 않습니다)";
+          err.setAttribute("data-show","1");
+          live.textContent = "결제에 실패했습니다.";
+          btn.focus();                              // 포커스를 버튼으로 돌려준다
+        } else {
+          busy = false;
+          btn.removeAttribute("aria-busy");
+          btn.setAttribute("data-state","done");
+          btn.textContent = "✓ 결제 완료";
+          live.textContent = "결제가 완료되었습니다.";
+        }
+      }, 1400);
+    });
+
+    reset.addEventListener("click", function(){
+      idle();
+      err.setAttribute("data-show","0");
+      live.textContent = "";
+    });
+  })();
+
+  /* ================== 2. 기간 선택 필터 ================== */
+  (function(){
+    var MAX_DAYS = 92;
+    var start = document.getElementById("drStart");
+    var end   = document.getElementById("drEnd");
+    var rangeEl = document.getElementById("drRange");
+    var daysEl  = document.getElementById("drDays");
+    var barEl   = document.getElementById("drBar");
+    var errEl   = document.getElementById("drErr");
+    var warnEl  = document.getElementById("drWarn");
+    var chips   = Array.prototype.slice.call(document.querySelectorAll(".chip[data-preset]"));
+    var prevBtn = document.getElementById("drPrev");
+    var nextBtn = document.getElementById("drNext");
+
+    var TODAY = new Date(); TODAY.setHours(0,0,0,0);
+
+    function iso(d){
+      var m = String(d.getMonth()+1).padStart(2,"0");
+      var day = String(d.getDate()).padStart(2,"0");
+      return d.getFullYear() + "-" + m + "-" + day;
+    }
+    function parse(s){ var p = s.split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+    function addDays(d, n){ var x = new Date(d); x.setDate(x.getDate()+n); return x; }
+    function diffDays(a, b){ return Math.round((parse(b) - parse(a)) / 86400000) + 1; }
+
+    // 미래 차단
+    start.max = iso(TODAY);
+    end.max   = iso(TODAY);
+
+    function presetRange(p){
+      var s, e;
+      if(p === "today"){ s = e = TODAY; }
+      else if(p === "yesterday"){ s = e = addDays(TODAY, -1); }
+      else if(p === "7d"){ e = TODAY; s = addDays(TODAY, -6); }
+      else if(p === "30d"){ e = TODAY; s = addDays(TODAY, -29); }
+      else if(p === "thisMonth"){ s = new Date(TODAY.getFullYear(), TODAY.getMonth(), 1); e = TODAY; }
+      else { // lastMonth
+        s = new Date(TODAY.getFullYear(), TODAY.getMonth()-1, 1);
+        e = new Date(TODAY.getFullYear(), TODAY.getMonth(), 0);
+      }
+      return [iso(s), iso(e)];
+    }
+
+    function setChip(p){
+      chips.forEach(function(c){
+        c.setAttribute("aria-pressed", String(c.getAttribute("data-preset") === p));
+      });
+    }
+
+    function sync(fromPreset){
+      if(!fromPreset) setChip(null);
+
+      // 상호 제약: 브라우저가 잘못된 조합을 먼저 막게 한다
+      end.min   = start.value || "";
+      start.max = end.value || iso(TODAY);
+
+      errEl.setAttribute("data-show","0");
+      warnEl.setAttribute("data-show","0");
+      start.removeAttribute("aria-invalid");
+      end.removeAttribute("aria-invalid");
+
+      if(!start.value || !end.value){
+        rangeEl.textContent = "—";
+        daysEl.textContent = "0일";
+        barEl.style.width = "0%";
+        return;
+      }
+      if(parse(start.value) > parse(end.value)){
+        start.setAttribute("aria-invalid","true");
+        end.setAttribute("aria-invalid","true");
+        errEl.textContent = "시작일이 종료일보다 뒤입니다.";
+        errEl.setAttribute("data-show","1");
+        return;
+      }
+
+      var n = diffDays(start.value, end.value);
+      rangeEl.textContent = start.value + " ~ " + end.value;
+      daysEl.textContent = n + "일";
+      var pct = Math.min(100, Math.round(n / MAX_DAYS * 100));
+      barEl.style.width = pct + "%";
+
+      if(n > MAX_DAYS){
+        daysEl.className = "pill da";
+        barEl.setAttribute("data-over","1");
+        end.setAttribute("aria-invalid","true");
+        errEl.innerHTML = '조회는 최대 ' + MAX_DAYS + '일까지 가능합니다 (현재 ' + n + '일). ';
+        var fix = document.createElement("button");
+        fix.className = "chip";
+        fix.type = "button";
+        fix.textContent = "최근 " + MAX_DAYS + "일로 맞추기";
+        fix.addEventListener("click", function(){
+          start.value = iso(addDays(parse(end.value), -(MAX_DAYS-1)));
+          sync();
+          start.focus();
+        });
+        errEl.appendChild(fix);
+        errEl.setAttribute("data-show","1");
+      } else {
+        barEl.removeAttribute("data-over");
+        daysEl.className = n > MAX_DAYS * 0.8 ? "pill wa" : "pill ok";
+        if(n > MAX_DAYS * 0.8){
+          warnEl.textContent = "기간이 길어 조회가 느릴 수 있습니다.";
+          warnEl.setAttribute("data-show","1");
+        }
+      }
+    }
+
+    chips.forEach(function(c){
+      c.addEventListener("click", function(){
+        var r = presetRange(c.getAttribute("data-preset"));
+        start.value = r[0];
+        end.value   = r[1];
+        setChip(c.getAttribute("data-preset"));
+        sync(true);
+      });
+    });
+
+    function shift(dir){
+      if(!start.value || !end.value) return;
+      var n = diffDays(start.value, end.value);
+      var s = addDays(parse(start.value), dir * n);
+      var e = addDays(parse(end.value), dir * n);
+      if(dir > 0 && e > TODAY) return;              // 미래로는 안 넘어간다
+      start.value = iso(s);
+      end.value   = iso(e);
+      sync();
+    }
+    prevBtn.addEventListener("click", function(){ shift(-1); });
+    nextBtn.addEventListener("click", function(){ shift(1); });
+
+    start.addEventListener("change", function(){ sync(); });
+    end.addEventListener("change", function(){ sync(); });
+
+    // 초기값: 최근 7일
+    var init = presetRange("7d");
+    start.value = init[0]; end.value = init[1];
+    setChip("7d");
+    sync(true);
+  })();
+
+  /* ================== 3. Invoker Commands ================== */
+  (function(){
+    var supported = typeof HTMLButtonElement !== "undefined" &&
+                    "command" in HTMLButtonElement.prototype;
+    var sup = document.getElementById("ivkSupport");
+    if(supported){
+      sup.className = "support yes";
+      sup.textContent = "✅ 이 브라우저는 Invoker Commands를 지원합니다 — 아래 '환불 확인 열기'와 '팝오버 토글'은 클릭 핸들러 없이 HTML 속성만으로 동작합니다.";
+    } else {
+      sup.className = "support no";
+      sup.textContent = "⚠️ 이 브라우저는 Invoker Commands를 지원하지 않습니다 — 아래 데모는 폴백 스크립트로 대신 동작합니다(동작은 같지만 JS가 필요합니다).";
+    }
+
+    // ---- 폴백: 미지원 브라우저에서 내장 커맨드를 흉내낸다
+    if(!supported){
+      document.addEventListener("click", function(ev){
+        var btn = ev.target.closest ? ev.target.closest("button[command][commandfor]") : null;
+        if(!btn) return;
+        var target = document.getElementById(btn.getAttribute("commandfor"));
+        if(!target) return;
+        var cmd = btn.getAttribute("command");
+        if(cmd === "show-modal" && target.showModal) target.showModal();
+        else if((cmd === "close" || cmd === "request-close") && target.close) target.close();
+        else if(cmd === "toggle-popover" && target.togglePopover) target.togglePopover();
+        else if(cmd.indexOf("--") === 0){
+          // 커스텀 커맨드도 CommandEvent 대신 CustomEvent 로 흘려 준다
+          var e = new CustomEvent("command", { bubbles:false });
+          e.command = cmd; e.source = btn;
+          target.dispatchEvent(e);
+        }
+      });
+    }
+
+    // ---- 커스텀 커맨드 수신부: 로직이 '대상 요소'에 모인다
+    var keyEl = document.getElementById("ivkKey");
+    var doneEl = document.getElementById("ivkDone");
+    keyEl.addEventListener("command", function(e){
+      if(e.command !== "--copy") return;
+      var text = keyEl.textContent.trim();
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text)["catch"](function(){});
+      }
+      doneEl.setAttribute("data-show","1");
+      setTimeout(function(){ doneEl.setAttribute("data-show","0"); }, 1600);
+    });
+
+    var acc = document.getElementById("ivkAcc");
+    var accBtn = document.getElementById("ivkAccBtn");
+    acc.addEventListener("command", function(e){
+      if(e.command !== "--toggle") return;
+      var open = acc.hidden;
+      acc.hidden = !open;
+      accBtn.setAttribute("aria-expanded", String(open));
+      accBtn.textContent = open ? "상세 접기" : "상세 보기";
+    });
+  })();
+
+  /* ================== theme toggle ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if(qs.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
