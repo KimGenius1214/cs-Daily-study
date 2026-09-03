@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-03 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .switch input{accent-color:var(--brand);width:16px;height:16px}
+  .switch:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .stat{display:inline-flex;align-items:baseline;gap:6px;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:7px 12px;font-size:.82rem;color:var(--muted)}
+  .stat b{font-size:1.02rem;color:var(--text);font-variant-numeric:tabular-nums}
+
+  /* ================= 1. 탭 오버플로우 ================= */
+  .tabsbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 10px 0}
+  .tabsbar{display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border);padding-bottom:0}
+  .tabscroll{display:flex;gap:2px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;flex:1 1 auto}
+  .tabscroll::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;font-family:inherit;font-size:.87rem;font-weight:600;border:0;background:transparent;
+    color:var(--muted);padding:9px 14px 11px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;
+    display:inline-flex;align-items:center;gap:6px}
+  .tab:hover{color:var(--text)}
+  .tab[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+  .tab:focus-visible{outline:3px solid var(--ring);outline-offset:-3px;border-radius:6px}
+  .tab .cnt{font-size:.7rem;font-weight:700;background:var(--surface-2);border-radius:999px;padding:1px 7px;color:var(--muted)}
+  .tab[aria-selected="true"] .cnt{background:var(--brand-soft);color:var(--brand)}
+  .arrow{flex:0 0 auto;width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);cursor:pointer;font-size:.9rem;line-height:1;display:grid;place-items:center;font-family:inherit}
+  .arrow:disabled{opacity:.3;cursor:default}
+  .arrow:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  /* 스크롤 그림자: 아직 더 스크롤할 게 남았다는 신호 */
+  .scrollmask{position:relative;flex:1 1 auto;min-width:0}
+  .scrollmask::before,.scrollmask::after{content:"";position:absolute;top:0;bottom:0;width:26px;pointer-events:none;
+    opacity:0;transition:opacity .18s}
+  .scrollmask::before{left:0;background:linear-gradient(90deg,var(--surface),transparent)}
+  .scrollmask::after{right:0;background:linear-gradient(270deg,var(--surface),transparent)}
+  .scrollmask[data-left="1"]::before{opacity:1}
+  .scrollmask[data-right="1"]::after{opacity:1}
+  .tabpanel{padding:14px 4px 16px;font-size:.9rem;color:var(--muted);min-height:64px}
+  .tabpanel:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:8px}
+  .tabpanel b{color:var(--text)}
+  /* 더보기 메뉴형 */
+  .fitwrap{position:relative}
+  .morewrap{position:relative;flex:0 0 auto}
+  .moremenu{position:absolute;right:0;top:calc(100% + 6px);z-index:20;min-width:170px;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;box-shadow:var(--shadow);padding:6px;margin:0;list-style:none}
+  .moremenu li{margin:0}
+  .moremenu button{width:100%;text-align:left;font-family:inherit;font-size:.85rem;border:0;background:transparent;
+    color:var(--text);padding:8px 10px;border-radius:7px;cursor:pointer;display:flex;justify-content:space-between;gap:10px}
+  .moremenu button:hover{background:var(--surface-2)}
+  .moremenu button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .moremenu button[aria-current="true"]{color:var(--brand);font-weight:700}
+  .widthctl{display:flex;align-items:center;gap:10px;font-size:.83rem;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
+  .widthctl input[type=range]{accent-color:var(--brand);flex:1 1 160px;min-width:120px}
+  .resizer{max-width:100%;transition:max-width .12s}
+  .selfallback{margin-top:10px}
+  .selfallback select{font-family:inherit;font-size:.88rem;padding:8px 10px;border-radius:9px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);width:100%}
+  .selfallback select:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ================= 2. 가상 스크롤 리스트 ================= */
+  .vlbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .vlport{height:322px;overflow:auto;border:1px solid var(--border);border-radius:11px;background:var(--surface);
+    position:relative;overscroll-behavior:contain}
+  .vlport:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .vlsizer{position:relative;width:100%}
+  .vlwin{position:absolute;left:0;right:0;top:0}
+  .vlrow{height:56px;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--border);
+    font-size:.86rem}
+  .vlrow:last-child{border-bottom:0}
+  .vlrow .idx{flex:0 0 54px;color:var(--muted);font-size:.74rem;font-variant-numeric:tabular-nums}
+  .vlrow .who{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+  .vlrow .amt{flex:0 0 auto;font-variant-numeric:tabular-nums;font-weight:700}
+  .vlrow.hit{background:var(--brand-soft)}
+  .vlhead{display:flex;align-items:center;gap:10px;padding:8px 14px;font-size:.74rem;font-weight:700;color:var(--muted);
+    background:var(--surface-2);border:1px solid var(--border);border-bottom:0;border-radius:11px 11px 0 0}
+  .vlhead .idx{flex:0 0 54px}
+  .vlhead .who{flex:1 1 auto}
+  .vlport.attached{border-radius:0 0 11px 11px}
+  /* CSS-only 방식 */
+  .cvport{height:260px;overflow:auto;border:1px solid var(--border);border-radius:11px;background:var(--surface);
+    overscroll-behavior:contain}
+  .cvrow{content-visibility:auto;contain-intrinsic-size:auto 52px;height:52px;display:flex;align-items:center;gap:10px;
+    padding:0 14px;border-bottom:1px solid var(--border);font-size:.85rem}
+  .cvrow .who{flex:1 1 auto;font-weight:600}
+  .cvrow .amt{font-variant-numeric:tabular-nums}
+
+  /* ================= 3. subgrid ================= */
+  .cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:14px}
+  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .pcard h4{font-size:.95rem;line-height:1.35}
+  .pcard p{margin:6px 0 0;font-size:.8rem;color:var(--muted)}
+  .pcard .price{display:block;margin-top:10px;font-size:1.1rem;font-weight:800;font-variant-numeric:tabular-nums}
+  .pcard .act{margin-top:12px}
+  .pcard .act .btn{width:100%}
+  /* subgrid 켰을 때: 부모가 4행을 정의하고, 카드가 그 행을 그대로 물려받는다 */
+  .cardgrid.sub{grid-template-rows:auto auto auto auto}
+  .cardgrid.sub .pcard{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:8px}
+  .cardgrid.sub .pcard h4,
+  .cardgrid.sub .pcard p,
+  .cardgrid.sub .pcard .price,
+  .cardgrid.sub .pcard .act{margin:0}
+  .cardgrid.sub .pcard .act{align-self:end}
+  /* 결제 상세: 행마다 라벨 열 폭을 맞추는 subgrid */
+  .paydl{display:grid;grid-template-columns:max-content 1fr;gap:0}
+  .paydl .prow{display:grid;grid-column:span 2;grid-template-columns:subgrid;
+    align-items:baseline;gap:0 18px;padding:9px 12px;border:1px solid var(--border);border-bottom:0;background:var(--surface)}
+  .paydl .prow:first-child{border-radius:10px 10px 0 0}
+  .paydl .prow:last-child{border-bottom:1px solid var(--border);border-radius:0 0 10px 10px}
+  .paydl dt{color:var(--muted);font-size:.8rem;white-space:nowrap;margin:0}
+  .paydl dd{margin:0;font-size:.87rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .nosub .paydl{display:block}
+  .nosub .paydl .prow{display:flex;gap:18px}
+  .badge-off{font-size:.72rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:999px;padding:2px 9px}
+  .badge-on{font-size:.72rem;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;padding:2px 9px}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .tabscroll{scroll-behavior:auto}
+    *{transition-duration:.001ms !important;animation-duration:.001ms !important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🎨 Design Inspiration Daily</h1>
+      <div class="date">2026-09-03 (목) · 오늘의 컴포넌트·패턴 3건 · 내비게이션·탭 / 카드·리스트 / 트렌드</div>
+    </div>
+    <button class="toggle" id="themeBtn" aria-pressed="false">🌙 다크 모드</button>
+  </header>
+
+  <nav class="toc" aria-label="목차">
+    <a href="#tabs-overflow">🧭 넘치는 탭 처리</a>
+    <a href="#virtual-list">🃏 가상 스크롤 리스트</a>
+    <a href="#subgrid">🌀 CSS subgrid</a>
+  </nav>
+
+  <!-- ============================================================ 1 -->
+  <section class="card" id="tabs-overflow">
+    <h2>🧭 넘치는 탭 처리 <span class="tag">내비게이션·탭</span></h2>
+    <p class="lead">
+      탭이 6개일 땐 아무 문제가 없다가, 가맹점이 늘어 12개가 되면 탭바가 화면 밖으로 삐져나간다.
+      해결책은 세 가지뿐이다 — <b>가로로 스크롤시키거나</b>, <b>안 들어가는 걸 “더보기” 메뉴로 접거나</b>,
+      <b>좁은 화면에선 아예 select로 바꾸거나</b>. 어느 쪽을 고르든 키보드 동작은 똑같이 지켜야 한다.
+    </p>
+
+    <div class="demo">
+      <div class="widthctl">
+        <label for="w1">컨테이너 폭 좁혀보기</label>
+        <input type="range" id="w1" min="240" max="880" value="880" step="10" aria-describedby="w1v" />
+        <span id="w1v" class="num">880px</span>
+      </div>
+
+      <h3 class="sec-lead">변형 A — 가로 스크롤 탭바 (화살표 + 스크롤 그림자)</h3>
+      <div class="resizer" id="rz1">
+        <div class="tabsbox">
+          <div class="tabsbar">
+            <button class="arrow" id="prev1" aria-label="탭 왼쪽으로 스크롤">‹</button>
+            <div class="scrollmask" id="mask1">
+              <div class="tabscroll" id="scroll1" role="tablist" aria-label="정산 채널"></div>
+            </div>
+            <button class="arrow" id="next1" aria-label="탭 오른쪽으로 스크롤">›</button>
+          </div>
+          <div class="tabpanel" id="panel1" role="tabpanel" tabindex="0"></div>
+        </div>
+      </div>
+      <p class="cap">
+        탭을 <span class="kbd">←</span> <span class="kbd">→</span> 로 옮기면 선택된 탭이 자동으로 화면 안으로 스크롤된다.
+        양 끝의 흐릿한 그라데이션은 “이쪽에 더 있다”는 유일한 단서 — 이게 없으면 사용자는 스크롤될 수 있다는 걸 모른다.
+      </p>
+
+      <h3 class="sec-lead">변형 B — 안 들어가는 탭을 “더보기(⋯)” 메뉴로 접기</h3>
+      <div class="resizer" id="rz2">
+        <div class="tabsbox">
+          <div class="tabsbar fitwrap">
+            <div class="tabscroll" id="scroll2" role="tablist" aria-label="정산 채널(자동 접힘)" style="overflow:hidden"></div>
+            <div class="morewrap">
+              <button class="tab" id="moreBtn" aria-haspopup="true" aria-expanded="false" hidden>⋯ 더보기 <span class="cnt" id="moreCnt">0</span></button>
+              <ul class="moremenu" id="moreMenu" role="menu" hidden></ul>
+            </div>
+          </div>
+          <div class="tabpanel" id="panel2" role="tabpanel" tabindex="0"></div>
+        </div>
+      </div>
+      <p class="cap">
+        폭 슬라이더를 줄여보면 오른쪽 탭들이 하나씩 ⋯ 메뉴로 들어간다.
+        <b>지금 선택된 탭은 절대 숨기지 않는다</b> — 숨기면 “내가 어디 있는지”가 사라진다.
+        메뉴 안의 항목을 고르면 그 탭이 앞으로 나온다.
+      </p>
+
+      <h3 class="sec-lead">변형 C — 아주 좁을 땐 select 폴백</h3>
+      <div class="selfallback resizer" id="rz3">
+        <label for="tabsel" class="sr-only">정산 채널 선택</label>
+        <select id="tabsel"></select>
+        <div class="tabpanel" id="panel3" role="region" aria-live="polite"></div>
+      </div>
+      <p class="cap">
+        탭이 12개인데 폭이 300px이면 스크롤도 메뉴도 다 불편하다. 이때는 네이티브 select가 가장 빠르다 —
+        모바일에선 OS가 알아서 큰 목록 UI를 띄워준다. 화려함을 포기하고 속도를 얻는 선택.
+      </p>
+    </div>
+
+    <div class="note">
+      <b>role 정리</b> — 탭바는 <code>role="tablist"</code>, 각 탭은 <code>role="tab"</code> +
+      <code>aria-selected</code>, 내용은 <code>role="tabpanel"</code>.
+      선택 안 된 탭은 <code>tabindex="-1"</code>로 빼서 <span class="kbd">Tab</span> 한 번에 탭바를 건너뛰게 하고,
+      탭 사이 이동은 화살표로 한다(<b>roving tabindex</b> = 포커스 가능한 항목을 한 번에 하나만 두는 기법).
+    </div>
+
+    <h3 class="sec-lead">💻 핵심 코드 — roving tabindex + 선택 탭 자동 스크롤</h3>
+<pre><code>list.addEventListener('keydown', (e) =&gt; {
+  const tabs = [...list.querySelectorAll('[role=tab]')];
+  const i = tabs.indexOf(document.activeElement);
+  const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabs.length - 1 }[e.key];
+  if (next === undefined) return;
+  e.preventDefault();
+  const t = tabs[(next + tabs.length) % tabs.length];   // 끝에서 반대편으로 순환
+  select(t);
+  t.focus();
+  // 선택된 탭이 잘려 있으면 보이는 곳까지 밀어준다
+  t.scrollIntoView({ inline: 'nearest', block: 'nearest',
+                     behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+});</code></pre>
+    <p class="cap"><code>inline:'nearest'</code>가 핵심 — 이미 보이면 안 움직이고, 잘려 있을 때만 최소한으로 민다.</p>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><b>선택 탭은 접지 않는다.</b> 더보기 메뉴에 현재 탭이 들어가면 사용자는 현 위치를 잃는다.</li>
+      <li><b>화살표 버튼은 보조 수단.</b> 터치·트랙패드 사용자는 그냥 밀면 되므로, 화살표가 없어도 스크롤은 동작해야 한다.</li>
+      <li><b>끝에 닿으면 화살표를 <code>disabled</code></b> 처리해 “더 없음”을 알린다(그냥 회색만 칠하지 말고 실제로 비활성화).</li>
+      <li><b><code>prefers-reduced-motion</code></b>(= 사용자가 OS에서 “동작 줄이기”를 켠 상태)이면 부드러운 스크롤을 끄고 즉시 점프.</li>
+      <li>탭 배지 숫자는 <code>aria-label</code>에 함께 넣어 “미정산 3건”처럼 읽히게 한다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>가맹점·PG사·정산주기처럼 <b>개수가 데이터에 따라 변하는 탭</b>은 반드시 넘침 대비가 필요하다. 디자인 시안은 늘 6개짜리다.</li>
+      <li>탭 개수가 8개를 넘어가면 탭이 아니라 <b>select나 좌측 목록</b>이 맞는 신호일 수 있다 — 탭은 “한눈에 비교되는 소수”용.</li>
+      <li>결제 상세처럼 탭 내용이 무거우면, 탭 전환 시 이전 패널을 지우지 말고 <b>이미 불러온 패널은 유지</b>해 왕복 비용을 없앤다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 참고</h3>
+    <ul class="clean">
+      <li>WAI-ARIA Authoring Practices — Tabs 패턴 (키보드 규약의 표준 출처)</li>
+      <li>MDN — <code>Element.scrollIntoView()</code>, <code>ResizeObserver</code></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ 2 -->
+  <section class="card" id="virtual-list">
+    <h2>🃏 가상 스크롤 리스트 <span class="tag">카드·리스트</span></h2>
+    <p class="lead">
+      정산 내역 1만 건을 그대로 그리면 DOM 노드가 수만 개가 되고, 스크롤이 끊기고 메모리가 튄다.
+      <b>가상 스크롤(windowing)</b> = 전체 높이만 가짜로 만들어 두고 <b>실제로는 화면에 보이는 30줄만 그리는</b> 기법.
+      오늘은 JS로 직접 만든 버전과, CSS 한 줄로 비슷한 효과를 내는 <code>content-visibility</code> 버전을 나란히 본다.
+    </p>
+
+    <div class="demo">
+      <h3 class="sec-lead">변형 A — 직접 만든 가상 스크롤 (1만 건)</h3>
+      <div class="vlbar">
+        <label class="switch"><input type="checkbox" id="vlOn" checked /> 가상 스크롤 켜기</label>
+        <span class="stat">DOM 행 수 <b id="vlNodes">0</b></span>
+        <span class="stat">마지막 렌더 <b id="vlMs">0</b>ms</span>
+        <span class="stat">전체 <b class="num">10,000</b>건</span>
+      </div>
+      <div class="vlhead" aria-hidden="true">
+        <span class="idx">#</span><span class="who">거래처</span><span class="amt">정산액</span>
+      </div>
+      <div class="vlport attached" id="vlPort" tabindex="0" role="group" aria-label="정산 내역 목록, 총 10000건">
+        <div class="vlsizer" id="vlSizer"><div class="vlwin" id="vlWin"></div></div>
+      </div>
+      <p class="cap">
+        체크를 끄면 1만 행을 전부 그린다 — DOM 행 수와 렌더 시간이 어떻게 달라지는지 위 숫자를 보라.
+        스크롤 감촉도 직접 비교해 볼 것. (기기에 따라 끄면 잠깐 멈출 수 있다)
+      </p>
+
+      <h3 class="sec-lead">변형 B — CSS만으로: <code>content-visibility: auto</code></h3>
+      <div class="cvport" id="cvPort" role="group" aria-label="가맹점 목록, CSS content-visibility 방식">
+      </div>
+      <p class="cap">
+        행은 800개 전부 DOM에 있지만, 브라우저가 <b>화면 밖 행의 레이아웃·페인트를 건너뛴다</b>.
+        <code>contain-intrinsic-size</code>로 “안 그린 행도 52px는 차지한다”고 알려줘야 스크롤바가 안 튄다.
+        JS가 필요 없고 <span class="kbd">Ctrl</span>+<span class="kbd">F</span> 페이지 검색도 살아 있는 게 장점.
+      </p>
+      <div class="support" id="cvSupport">지원 여부 확인 중…</div>
+    </div>
+
+    <div class="note">
+      <b>어느 쪽을 쓰나</b> — 행이 수백~2천 개면 <code>content-visibility</code>로 충분하다(코드가 거의 없다).
+      수만 건이거나 행마다 무거운 컴포넌트가 들어가면 직접 가상화가 필요하다.
+      직접 가상화는 <b>브라우저 페이지 검색·전체 선택·인쇄가 깨진다</b>는 비용을 반드시 같이 계산해야 한다.
+    </div>
+
+    <h3 class="sec-lead">💻 핵심 코드 — 보이는 구간만 계산해서 그리기</h3>
+<pre><code>const ROW = 56, OVERSCAN = 6;             // 행 높이 고정, 위아래 여유분
+sizer.style.height = data.length * ROW + 'px';   // 스크롤바 길이는 진짜처럼
+
+function render() {
+  const start = Math.max(0, Math.floor(port.scrollTop / ROW) - OVERSCAN);
+  const count = Math.ceil(port.clientHeight / ROW) + OVERSCAN * 2;
+  const slice = data.slice(start, start + count);
+
+  win.style.transform = `translateY(${start * ROW}px)`;  // 창을 통째로 내려 붙인다
+  win.innerHTML = slice.map((d, i) =&gt;
+    `&lt;div class="vlrow" role="row" aria-rowindex="${start + i + 1}"&gt;…&lt;/div&gt;`).join('');
+}
+port.addEventListener('scroll', () =&gt; requestAnimationFrame(render));  // 프레임당 1회로 제한</code></pre>
+    <p class="cap">
+      <code>requestAnimationFrame</code>으로 감싸는 이유: scroll 이벤트는 1초에 수백 번 오는데, 화면은 초당 60번만 갱신된다.
+      그 이상 그려봐야 낭비다.
+    </p>
+
+<pre><code>/* 변형 B — JS 한 줄도 없는 방식 */
+.row {
+  content-visibility: auto;          /* 화면 밖이면 렌더링을 건너뛴다 */
+  contain-intrinsic-size: auto 52px; /* 안 그린 동안 차지할 높이(auto=한번 잰 값을 기억) */
+}</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+    <ul class="clean">
+      <li><b>전체 개수를 미리 알린다.</b> <code>role="grid"</code> + <code>aria-rowcount="10000"</code>, 각 행에 <code>aria-rowindex</code>.
+        이게 없으면 스크린리더는 “목록 30개”라고 잘못 읽는다.</li>
+      <li><b>키보드 탈출구.</b> 가상 목록 안은 <span class="kbd">Tab</span>으로 다 훑을 수 없으므로,
+        검색·필터·“CSV 내려받기” 같은 <b>다른 경로</b>를 반드시 함께 둔다.</li>
+      <li><b>스크롤 위치 복원.</b> 상세로 갔다 돌아오면 <code>scrollTop</code>을 되살려야 한다 — 안 그러면 매번 맨 위.</li>
+      <li><b>행 높이가 다를 때</b>는 고정 높이 계산이 무너진다. 측정 후 보정하거나, 높이를 강제로 통일하는 편이 안전하다.</li>
+      <li><code>overscroll-behavior: contain</code>으로 목록 끝에서 페이지가 같이 밀리는 걸 막는다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>정산 상세·거래 원장처럼 <b>페이지네이션 없이 통째로 훑고 싶은 화면</b>이 1순위 후보.</li>
+      <li>다만 결제 도메인은 <b>합계·검증</b>이 중요하다 — 화면에 30줄만 있어도 합계는 전체 기준으로 계산해 상단에 고정 노출.</li>
+      <li>회계팀은 결국 엑셀로 받는다. 가상 스크롤을 넣더라도 <b>내려받기 버튼이 진짜 주경로</b>일 수 있음을 잊지 말 것.</li>
+      <li>먼저 <code>content-visibility</code>부터 시도해 보고, 그래도 느릴 때 가상화로 올라가는 순서를 권한다(추정: 대부분의 정산 목록은 전자로 충분).</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 참고</h3>
+    <ul class="clean">
+      <li>web.dev — <a href="https://web.dev/articles/content-visibility" target="_blank" rel="noopener">content-visibility: the new CSS property that boosts your rendering performance</a></li>
+      <li>MDN — <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/content-visibility" target="_blank" rel="noopener">content-visibility</a></li>
+    </ul>
+  </section>
+
+  <!-- ============================================================ 3 -->
+  <section class="card" id="subgrid">
+    <h2>🌀 CSS subgrid <span class="tag">트렌드·개념</span></h2>
+    <p class="lead">
+      카드 4장을 나란히 놓았는데 제목이 한 줄인 카드와 두 줄인 카드가 섞이면 <b>버튼 높이가 제각각</b>이 된다.
+      지금까지는 제목에 <code>min-height</code>를 박는 눈속임을 썼다.
+      <b>subgrid</b> = 자식 그리드가 자기 격자를 새로 만들지 않고 <b>부모의 격자선을 그대로 물려받는</b> 값.
+      카드 안쪽 요소들이 부모 행에 직접 붙으니, 카드끼리 줄이 저절로 맞는다.
+    </p>
+
+    <div class="demo">
+      <h3 class="sec-lead">변형 A — 켜고 끄며 비교하기</h3>
+      <div class="row" style="margin-bottom:12px">
+        <button class="btn sm" id="subBtn" aria-pressed="true">subgrid 끄기</button>
+        <span id="subState" class="badge-on">subgrid 적용 중 — 버튼 줄이 맞는다</span>
+      </div>
+      <div class="cardgrid sub" id="cardgrid">
+        <article class="pcard">
+          <h4>스탠다드</h4>
+          <p>소규모 가맹점용 기본 정산</p>
+          <span class="price">29,000<small>원/월</small></span>
+          <div class="act"><button class="btn ghost sm">선택</button></div>
+        </article>
+        <article class="pcard">
+          <h4>비즈니스 플러스 정산 패키지</h4>
+          <p>다중 PG 연동과 일별 자동 정산, 담당자 계정 5개 제공</p>
+          <span class="price">89,000<small>원/월</small></span>
+          <div class="act"><button class="btn sm">선택</button></div>
+        </article>
+        <article class="pcard">
+          <h4>엔터프라이즈</h4>
+          <p>전담 매니저 배정</p>
+          <span class="price">문의</span>
+          <div class="act"><button class="btn ghost sm">상담</button></div>
+        </article>
+        <article class="pcard">
+          <h4>스타트업 전용 요금제</h4>
+          <p>첫 12개월 수수료 할인</p>
+          <span class="price">0<small>원/월</small></span>
+          <div class="act"><button class="btn ghost sm">자격 확인</button></div>
+        </article>
+      </div>
+      <p class="cap">
+        버튼을 눌러 껐다 켜 보면, 끈 상태에서는 카드마다 가격·버튼 위치가 어긋나고
+        켜면 <b>제목 / 설명 / 가격 / 버튼</b> 네 줄이 카드 전체에서 같은 높이로 정렬된다.
+        <code>min-height</code> 하드코딩도, JS 높이 측정도 필요 없다.
+      </p>
+
+      <h3 class="sec-lead">변형 B — 행마다 라벨 열 폭 맞추기 (결제 상세)</h3>
+      <dl class="paydl">
+        <div class="prow"><dt>결제수단</dt><dd>신한카드 •••• 4291</dd></div>
+        <div class="prow"><dt>승인번호</dt><dd>30294118</dd></div>
+        <div class="prow"><dt>결제금액</dt><dd>1,284,000원</dd></div>
+        <div class="prow"><dt>정산예정일</dt><dd>2026-09-15</dd></div>
+        <div class="prow"><dt>수수료(2.4%)</dt><dd>30,816원</dd></div>
+      </dl>
+      <p class="cap">
+        행마다 테두리와 배경을 따로 주고 싶은데, 라벨 열 폭은 전체에서 하나로 맞추고 싶은 상황.
+        각 행을 <code>grid-template-columns: subgrid</code>로 두면 <b>가장 긴 라벨 기준으로 열이 한 번에 정해진다</b>.
+        표(table)를 쓰지 않고도 표처럼 정렬되는 게 핵심.
+      </p>
+      <div class="support" id="subSupport">지원 여부 확인 중…</div>
+    </div>
+
+    <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+    <ul class="clean">
+      <li>Firefox가 2019년(71)에 먼저 넣었지만 Chrome·Edge는 2023년 8월(117)에야 따라왔고,
+        <b>2023-09-15에 세 엔진 모두 지원(Baseline “newly available”)</b>이 됐다. 2026년 3월 “widely available”로 올라섰다.
+        “된 지 오래됐는데 아직 안 쓰는” 대표적인 기능.</li>
+      <li>지금까지 카드 줄맞춤은 <b>제목에 <code>min-height</code>, 본문에 line-clamp</b> 같은 땜질로 해결했다.
+        디자인이 바뀌면 그 숫자를 다시 찾아 고쳐야 했다. subgrid는 그 숫자를 없앤다.</li>
+      <li><b>컨테이너 쿼리와 짝</b>으로 쓰인다 — 컨테이너 쿼리가 “이 칸 폭에 맞춰 카드 모양 바꾸기”라면,
+        subgrid는 “카드들끼리 줄 맞추기”. 둘 다 부모 폭에 의존하던 계산을 CSS에 넘기는 방향이다.</li>
+    </ul>
+
+    <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* 부모가 행을 정의한다: 제목 / 설명 / 가격 / 버튼 */
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
+  grid-template-rows: auto auto auto auto;
+  gap: 14px;
+}
+/* 카드는 그 4행을 통째로 차지하면서 행 정의를 물려받는다 */
+.cardgrid &gt; .pcard {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 8px;          /* subgrid는 부모 gap을 자기 값으로 덮어쓸 수 있다 */
+}
+.cardgrid &gt; .pcard .act { align-self: end; }</code></pre>
+
+<pre><code>/* 라벨 열 폭 맞추기 */
+.paydl { display: grid; grid-template-columns: max-content 1fr; }
+.paydl .prow {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: subgrid;   /* 부모의 두 열을 그대로 사용 */
+  gap: 0 18px;
+}</code></pre>
+
+    <h3 class="sec-lead">♿ 접근성·상태 설계 / 함정</h3>
+    <ul class="clean">
+      <li><b>subgrid는 레이아웃만 바꾼다.</b> DOM 순서는 그대로이므로 스크린리더 읽기 순서에 영향이 없다 — 이게 장점이다
+        (반면 <code>order</code>나 <code>grid-row</code>로 시각 순서를 뒤집으면 읽기 순서와 어긋난다).</li>
+      <li><b>행 개수가 카드마다 다르면</b> 못 쓴다. 모든 카드가 “제목·설명·가격·버튼” 같은 <b>동일한 슬롯 구조</b>여야 한다.
+        비어 있는 슬롯은 빈 요소로라도 채워 둔다.</li>
+      <li><code>span 4</code>의 숫자와 <code>grid-template-rows</code>의 행 수가 어긋나면 조용히 깨진다 — 슬롯 개수를 바꿀 땐 두 곳을 같이 고칠 것.</li>
+      <li>미지원 브라우저에서는 <code>subgrid</code> 선언이 무시되고 <b>평범한 카드로 보인다</b>(내용은 다 읽힌다).
+        <code>@supports (grid-template-rows: subgrid)</code>로 감싸 폴백 스타일을 분리하면 더 안전하다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+    <ul class="clean">
+      <li>요금제·결제수단 카드 선택 화면 — <b>“왜 이 카드만 버튼이 아래에 있지?” 버그 리포트가 사라진다.</b></li>
+      <li>결제 상세·정산 상세의 라벨·값 목록 — <code>table</code>을 쓸 만큼 표는 아닌데 정렬은 필요한 곳.</li>
+      <li>기존 코드에서 <code>min-height</code>, <code>height: 100%</code>, flex <code>margin-top:auto</code> 같은 <b>줄맞춤 땜질을 검색해 걷어내는</b> 작업으로 시작하면 효과가 바로 보인다.</li>
+    </ul>
+
+    <h3 class="sec-lead">🔗 참고</h3>
+    <ul class="clean">
+      <li>MDN — <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Grid_layout/Subgrid" target="_blank" rel="noopener">Subgrid</a></li>
+      <li>web.dev — <a href="https://web.dev/articles/css-subgrid" target="_blank" rel="noopener">CSS subgrid</a></li>
+    </ul>
+  </section>
+
+  <p class="footer">Design Inspiration Daily · 2026-09-03 (목) · 직접 만든 라이브 예시 · self-contained</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 1. 탭 오버플로우 ================== */
+  var CHANNELS = [
+    ["전체", 128], ["카드", 64], ["계좌이체", 21], ["가상계좌", 12], ["간편결제", 44],
+    ["휴대폰", 7], ["상품권", 3], ["해외카드", 9], ["정기결제", 18], ["에스크로", 5],
+    ["포인트", 2], ["미분류", 1]
+  ];
+
+  function makeTab(label, cnt, idx, prefix){
+    var b = document.createElement("button");
+    b.className = "tab";
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.id = prefix + "-tab-" + idx;
+    b.setAttribute("aria-selected", idx === 0 ? "true" : "false");
+    b.tabIndex = idx === 0 ? 0 : -1;
+    b.setAttribute("aria-label", label + " " + cnt + "건");
+    b.innerHTML = label + ' <span class="cnt" aria-hidden="true">' + cnt + '</span>';
+    b.dataset.idx = String(idx);
+    b.dataset.label = label;
+    b.dataset.cnt = String(cnt);
+    return b;
+  }
+
+  function panelText(label, cnt){
+    return '<b>' + label + '</b> 채널의 미정산 건 <b>' + cnt + '건</b>이 여기에 표시됩니다. ' +
+           '탭 내용은 이미 불러온 것을 유지해 재요청을 막습니다.';
+  }
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* --- 변형 A: 스크롤 탭바 --- */
+  (function(){
+    var list = document.getElementById("scroll1");
+    var mask = document.getElementById("mask1");
+    var panel = document.getElementById("panel1");
+    var prev = document.getElementById("prev1");
+    var next = document.getElementById("next1");
+
+    CHANNELS.forEach(function(c, i){ list.appendChild(makeTab(c[0], c[1], i, "a")); });
+
+    function select(tab, focus){
+      list.querySelectorAll('[role=tab]').forEach(function(t){
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+      });
+      panel.innerHTML = panelText(tab.dataset.label, tab.dataset.cnt);
+      panel.setAttribute("aria-labelledby", tab.id);
+      if(focus) tab.focus();
+      tab.scrollIntoView({ inline:"nearest", block:"nearest", behavior: reduce ? "auto" : "smooth" });
+      updateEdges();
+    }
+
+    list.addEventListener("click", function(e){
+      var t = e.target.closest('[role=tab]');
+      if(t) select(t, true);
+    });
+
+    list.addEventListener("keydown", function(e){
+      var tabs = Array.prototype.slice.call(list.querySelectorAll('[role=tab]'));
+      var i = tabs.indexOf(document.activeElement);
+      if(i < 0) return;
+      var map = { ArrowRight: i+1, ArrowLeft: i-1, Home: 0, End: tabs.length-1 };
+      if(!(e.key in map)) return;
+      e.preventDefault();
+      var n = map[e.key];
+      select(tabs[(n + tabs.length) % tabs.length], true);
+    });
+
+    function updateEdges(){
+      var max = list.scrollWidth - list.clientWidth;
+      var x = list.scrollLeft;
+      mask.dataset.left = x > 2 ? "1" : "0";
+      mask.dataset.right = x < max - 2 ? "1" : "0";
+      prev.disabled = x <= 2;
+      next.disabled = x >= max - 2;
+    }
+    list.addEventListener("scroll", function(){ requestAnimationFrame(updateEdges); });
+    prev.addEventListener("click", function(){ list.scrollBy({ left: -180, behavior: reduce ? "auto" : "smooth" }); });
+    next.addEventListener("click", function(){ list.scrollBy({ left:  180, behavior: reduce ? "auto" : "smooth" }); });
+
+    select(list.querySelector('[role=tab]'), false);
+    if(window.ResizeObserver) new ResizeObserver(updateEdges).observe(list);
+    setTimeout(updateEdges, 60);
+  })();
+
+  /* --- 변형 B: 더보기 메뉴로 접기 --- */
+  (function(){
+    var list = document.getElementById("scroll2");
+    var panel = document.getElementById("panel2");
+    var moreBtn = document.getElementById("moreBtn");
+    var moreCnt = document.getElementById("moreCnt");
+    var menu = document.getElementById("moreMenu");
+    var selected = 0;
+    var widths = [];
+
+    CHANNELS.forEach(function(c, i){ list.appendChild(makeTab(c[0], c[1], i, "b")); });
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role=tab]'));
+    // 접기 전에 각 탭의 원래 폭을 한 번만 재둔다 (숨긴 뒤엔 못 잰다)
+    requestAnimationFrame(function(){
+      widths = tabs.map(function(t){ return t.getBoundingClientRect().width + 2; });
+      fit();
+    });
+
+    function select(i, focus){
+      selected = i;
+      tabs.forEach(function(t, k){
+        t.setAttribute("aria-selected", k === i ? "true" : "false");
+        t.tabIndex = k === i ? 0 : -1;
+      });
+      panel.innerHTML = panelText(CHANNELS[i][0], CHANNELS[i][1]);
+      panel.setAttribute("aria-labelledby", tabs[i].id);
+      closeMenu();
+      fit();
+      if(focus && !tabs[i].hidden) tabs[i].focus();
+    }
+
+    function fit(){
+      if(!widths.length) return;
+      var avail = list.parentElement.getBoundingClientRect().width - 6;
+      var moreW = 96;
+      // 선택된 탭은 무조건 자리를 확보한다 — 현재 위치를 잃지 않게
+      var order = tabs.map(function(_, i){ return i; });
+      var used = 0, shown = {};
+      shown[selected] = true; used += widths[selected];
+      for(var i = 0; i < order.length; i++){
+        if(i === selected) continue;
+        var need = used + widths[i];
+        var hiddenLeft = order.length - Object.keys(shown).length - 1;
+        if(need + (hiddenLeft > 0 ? moreW : 0) <= avail){ shown[i] = true; used = need; }
+        else break;
+      }
+      var overflow = [];
+      tabs.forEach(function(t, i){
+        var on = !!shown[i];
+        t.hidden = !on;
+        if(!on) overflow.push(i);
+      });
+      moreBtn.hidden = overflow.length === 0;
+      moreCnt.textContent = String(overflow.length);
+      menu.innerHTML = overflow.map(function(i){
+        return '<li role="none"><button type="button" role="menuitem" data-i="' + i + '">' +
+               CHANNELS[i][0] + ' <span class="cnt">' + CHANNELS[i][1] + '</span></button></li>';
+      }).join("");
+      if(overflow.length === 0) closeMenu();
+    }
+
+    function openMenu(){ menu.hidden = false; moreBtn.setAttribute("aria-expanded","true");
+      var f = menu.querySelector("button"); if(f) f.focus(); }
+    function closeMenu(){ menu.hidden = true; moreBtn.setAttribute("aria-expanded","false"); }
+
+    moreBtn.addEventListener("click", function(){ menu.hidden ? openMenu() : closeMenu(); });
+    menu.addEventListener("click", function(e){
+      var b = e.target.closest("button[data-i]");
+      if(b){ select(Number(b.dataset.i), true); moreBtn.focus(); }
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && !menu.hidden){ closeMenu(); moreBtn.focus(); }
+    });
+    document.addEventListener("click", function(e){
+      if(!menu.hidden && !menu.contains(e.target) && e.target !== moreBtn) closeMenu();
+    });
+
+    list.addEventListener("click", function(e){
+      var t = e.target.closest('[role=tab]');
+      if(t) select(Number(t.dataset.idx), true);
+    });
+    list.addEventListener("keydown", function(e){
+      var visible = tabs.filter(function(t){ return !t.hidden; });
+      var i = visible.indexOf(document.activeElement);
+      if(i < 0) return;
+      var map = { ArrowRight: i+1, ArrowLeft: i-1, Home: 0, End: visible.length-1 };
+      if(!(e.key in map)) return;
+      e.preventDefault();
+      var t = visible[(map[e.key] + visible.length) % visible.length];
+      select(Number(t.dataset.idx), true);
+    });
+
+    select(0, false);
+    if(window.ResizeObserver) new ResizeObserver(function(){ fit(); }).observe(list.parentElement);
+    window.__fitTabs = fit;
+  })();
+
+  /* --- 변형 C: select 폴백 --- */
+  (function(){
+    var sel = document.getElementById("tabsel");
+    var panel = document.getElementById("panel3");
+    sel.innerHTML = CHANNELS.map(function(c, i){
+      return '<option value="' + i + '">' + c[0] + ' (' + c[1] + '건)</option>';
+    }).join("");
+    function apply(){ var i = Number(sel.value); panel.innerHTML = panelText(CHANNELS[i][0], CHANNELS[i][1]); }
+    sel.addEventListener("change", apply);
+    apply();
+  })();
+
+  /* --- 폭 슬라이더 (세 변형 공통) --- */
+  (function(){
+    var r = document.getElementById("w1"), out = document.getElementById("w1v");
+    var boxes = ["rz1","rz2","rz3"].map(function(id){ return document.getElementById(id); });
+    function apply(){
+      out.textContent = r.value + "px";
+      boxes.forEach(function(b){ b.style.maxWidth = r.value + "px"; });
+      if(window.__fitTabs) requestAnimationFrame(window.__fitTabs);
+    }
+    r.addEventListener("input", apply);
+    apply();
+  })();
+
+  /* ================== 2. 가상 스크롤 리스트 ================== */
+  (function(){
+    var NAMES = ["온서프","블루밍커피","달채당","리버런","페어마켓","코드하우스","한들상회","모먼트랩",
+                 "그린박스","세움디자인","포레스트키친","알파소재","단정문구","윈드밀","하루제과"];
+    var N = 10000, ROW = 56, OVERSCAN = 6;
+    var data = new Array(N);
+    for(var i = 0; i < N; i++){
+      var amt = ((i * 7919) % 980000) + 3200;
+      data[i] = { name: NAMES[i % NAMES.length] + " " + (Math.floor(i / NAMES.length) + 1) + "호",
+                  amt: amt, ok: (i % 7) !== 0 };
+    }
+    var port = document.getElementById("vlPort");
+    var sizer = document.getElementById("vlSizer");
+    var win = document.getElementById("vlWin");
+    var chk = document.getElementById("vlOn");
+    var nodesEl = document.getElementById("vlNodes");
+    var msEl = document.getElementById("vlMs");
+    port.setAttribute("role","grid");
+    port.setAttribute("aria-rowcount", String(N));
+
+    function rowHTML(d, n){
+      return '<div class="vlrow" role="row" aria-rowindex="' + n + '">' +
+             '<span class="idx">' + n.toLocaleString("ko-KR") + '</span>' +
+             '<span class="who">' + d.name + '</span>' +
+             '<span class="pill ' + (d.ok ? "ok" : "wa") + '">' + (d.ok ? "정산완료" : "보류") + '</span>' +
+             '<span class="amt">' + d.amt.toLocaleString("ko-KR") + '원</span></div>';
+    }
+
+    var ticking = false;
+    function renderVirtual(){
+      var t0 = performance.now();
+      var start = Math.max(0, Math.floor(port.scrollTop / ROW) - OVERSCAN);
+      var count = Math.ceil(port.clientHeight / ROW) + OVERSCAN * 2;
+      var end = Math.min(N, start + count);
+      var html = "";
+      for(var i = start; i < end; i++) html += rowHTML(data[i], i + 1);
+      win.style.transform = "translateY(" + (start * ROW) + "px)";
+      win.innerHTML = html;
+      nodesEl.textContent = String(end - start);
+      msEl.textContent = (performance.now() - t0).toFixed(1);
+    }
+
+    function renderAll(){
+      var t0 = performance.now();
+      win.style.transform = "translateY(0)";
+      var html = "";
+      for(var i = 0; i < N; i++) html += rowHTML(data[i], i + 1);
+      win.innerHTML = html;
+      nodesEl.textContent = N.toLocaleString("ko-KR");
+      msEl.textContent = (performance.now() - t0).toFixed(1);
+    }
+
+    function onScroll(){
+      if(!chk.checked || ticking) return;
+      ticking = true;
+      requestAnimationFrame(function(){ ticking = false; renderVirtual(); });
+    }
+    port.addEventListener("scroll", onScroll, { passive: true });
+
+    function apply(){
+      if(chk.checked){
+        sizer.style.height = (N * ROW) + "px";
+        renderVirtual();
+      } else {
+        sizer.style.height = "auto";
+        renderAll();
+      }
+    }
+    chk.addEventListener("change", apply);
+    apply();
+  })();
+
+  /* --- content-visibility 방식 --- */
+  (function(){
+    var port = document.getElementById("cvPort");
+    var NAMES = ["온서프","블루밍커피","달채당","리버런","페어마켓","코드하우스","한들상회","모먼트랩"];
+    var html = "";
+    for(var i = 0; i < 800; i++){
+      var amt = ((i * 4409) % 640000) + 5100;
+      html += '<div class="cvrow"><span class="who">' + NAMES[i % NAMES.length] + " " + (i + 1) + '호</span>' +
+              '<span class="amt">' + amt.toLocaleString("ko-KR") + '원</span></div>';
+    }
+    port.innerHTML = html;
+
+    var box = document.getElementById("cvSupport");
+    var ok = false;
+    try { ok = CSS.supports("content-visibility", "auto"); } catch(e){ ok = false; }
+    if(ok){
+      box.className = "support yes";
+      box.textContent = "✅ 이 브라우저는 content-visibility: auto 를 지원합니다 — 위 800행 중 화면에 보이는 것만 실제로 그려집니다.";
+    } else {
+      box.className = "support no";
+      box.textContent = "⚠️ 이 브라우저는 content-visibility: auto 를 지원하지 않습니다 — 800행이 전부 그려지지만 목록 자체는 정상 동작합니다(점진적 향상).";
+    }
+  })();
+
+  /* ================== 3. subgrid ================== */
+  (function(){
+    var grid = document.getElementById("cardgrid");
+    var btn = document.getElementById("subBtn");
+    var state = document.getElementById("subState");
+    btn.addEventListener("click", function(){
+      var on = grid.classList.toggle("sub");
+      btn.textContent = on ? "subgrid 끄기" : "subgrid 켜기";
+      btn.setAttribute("aria-pressed", String(on));
+      state.className = on ? "badge-on" : "badge-off";
+      state.textContent = on ? "subgrid 적용 중 — 버튼 줄이 맞는다" : "subgrid 꺼짐 — 카드마다 가격·버튼 위치가 어긋난다";
+    });
+
+    var box = document.getElementById("subSupport");
+    var ok = false;
+    try { ok = CSS.supports("grid-template-rows", "subgrid"); } catch(e){ ok = false; }
+    if(ok){
+      box.className = "support yes";
+      box.textContent = "✅ 이 브라우저는 subgrid 를 지원합니다 — 위 두 데모의 정렬이 실제로 동작합니다.";
+    } else {
+      box.className = "support no";
+      box.textContent = "⚠️ 이 브라우저는 subgrid 를 지원하지 않습니다 — 선언이 무시되어 평범한 카드·목록으로 보입니다(내용은 그대로 읽힙니다).";
+      document.getElementById("subgrid").classList.add("nosub");
+    }
+  })();
+
+  /* ================== theme toggle ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if(qs.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
