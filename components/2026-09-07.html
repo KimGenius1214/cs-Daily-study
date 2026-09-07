@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-07 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .switch input{accent-color:var(--brand);width:16px;height:16px}
+  .switch:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .stat{display:inline-flex;align-items:baseline;gap:6px;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:7px 12px;font-size:.82rem;color:var(--muted)}
+  .stat b{font-size:1.02rem;color:var(--text);font-variant-numeric:tabular-nums}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+
+  /* ================= 1. 분할 버튼 · 액션 메뉴 ================= */
+  .splitwrap{display:inline-flex;position:relative}
+  .split{display:inline-flex;align-items:stretch;border-radius:10px;overflow:visible}
+  .split > .main{border-top-right-radius:0;border-bottom-right-radius:0;border-right-color:transparent}
+  .split > .toggle-part{border-top-left-radius:0;border-bottom-left-radius:0;padding-left:10px;padding-right:10px;
+    display:inline-flex;align-items:center;justify-content:center;min-width:40px;
+    border-left:1px solid rgba(255,255,255,.35)}
+  [data-theme="dark"] .split > .toggle-part{border-left-color:rgba(0,0,0,.3)}
+  .split .caret{width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;
+    border-top:6px solid currentColor;transition:transform .15s ease}
+  .split .toggle-part[aria-expanded="true"] .caret{transform:rotate(180deg)}
+  .menu{position:absolute;top:calc(100% + 6px);right:0;min-width:230px;z-index:30;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);
+    padding:6px;margin:0;list-style:none}
+  .menu[hidden]{display:none}
+  .menu li{margin:0}
+  .menu button{width:100%;text-align:left;display:flex;align-items:center;gap:10px;
+    background:none;border:0;border-radius:8px;padding:9px 11px;font:inherit;font-size:.88rem;
+    color:var(--text);cursor:pointer}
+  .menu button:hover,.menu button:focus{background:var(--brand-soft);color:var(--brand);outline:none}
+  .menu button:focus-visible{outline:3px solid var(--ring);outline-offset:-2px}
+  .menu button[data-danger] {color:var(--danger)}
+  .menu button[data-danger]:hover,.menu button[data-danger]:focus{background:var(--danger-soft)}
+  .menu .desc{display:block;font-size:.76rem;color:var(--muted);font-weight:400}
+  .menu hr{border:0;border-top:1px solid var(--border);margin:5px 2px}
+  .menu .ico{width:18px;text-align:center;flex:none}
+  .iconbtn{width:40px;height:40px;padding:0;display:inline-flex;align-items:center;justify-content:center;
+    border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    cursor:pointer;font-family:inherit;font-size:1rem;position:relative}
+  .iconbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .spin{width:15px;height:15px;border-radius:50%;border:2px solid currentColor;border-top-color:transparent;
+    display:inline-block;animation:spin .7s linear infinite;vertical-align:-2px;margin-right:7px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){
+    .spin{animation-duration:1.6s}
+    .split .caret{transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ================= 2. 금액 입력 ================= */
+  .field{display:block;margin:0 0 4px;font-size:.85rem;font-weight:600}
+  .hint{font-size:.78rem;color:var(--muted);margin:6px 0 0}
+  .moneybox{position:relative;display:flex;align-items:center;gap:0;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0 12px;
+    transition:border-color .12s ease, box-shadow .12s ease}
+  .moneybox:has(input:focus-visible){border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+  .moneybox[data-invalid="true"]{border-color:var(--danger)}
+  .moneybox[data-invalid="true"]:has(input:focus-visible){box-shadow:0 0 0 3px var(--danger-soft)}
+  .moneybox .cur{color:var(--muted);font-size:.95rem;flex:none;padding-right:6px}
+  .moneybox .suf{color:var(--muted);font-size:.9rem;flex:none;padding-left:6px}
+  .moneybox input{flex:1;min-width:0;border:0;background:transparent;color:var(--text);
+    font:inherit;font-size:1.05rem;font-variant-numeric:tabular-nums;padding:11px 0;text-align:right;outline:none}
+  .moneybox input::placeholder{color:var(--muted);opacity:.7}
+  .err{color:var(--danger);font-size:.79rem;margin:6px 0 0;min-height:1.1em}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}
+  .chip{cursor:pointer;font:inherit;font-size:.8rem;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);border-radius:999px;padding:6px 12px}
+  .chip:hover{border-color:var(--brand);color:var(--brand)}
+  .chip:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .readout{margin-top:12px;font-size:.82rem;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+  .readout code{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2px 7px;color:var(--text)}
+
+  /* ================= 3. CSS 캐러셀 ================= */
+  .car{
+    display:grid;grid-auto-flow:column;grid-auto-columns:min(260px,72%);
+    gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:4px 4px 14px;scrollbar-width:thin;
+    anchor-name:--car;
+  }
+  .car > .slide{scroll-snap-align:center;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:16px;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
+  .car > .slide h5{margin:0 0 6px;font-size:.95rem}
+  .car > .slide p{margin:0;font-size:.82rem;color:var(--muted)}
+  .car > .slide .amt{margin-top:12px;font-size:1.15rem;font-weight:700;font-variant-numeric:tabular-nums}
+
+  /* 네이티브: ::scroll-button() / ::scroll-marker() — 지원 브라우저에서만 켜짐 */
+  @supports selector(::scroll-button(right)){
+    .car{scroll-marker-group:after}
+    .car::scroll-button(*){
+      position:fixed;position-anchor:--car;
+      border:1px solid var(--border);background:var(--surface);color:var(--text);
+      width:36px;height:36px;border-radius:50%;font-size:1rem;cursor:pointer;
+      transition:opacity .15s ease;
+    }
+    .car::scroll-button(*):disabled{opacity:.35;cursor:not-allowed}
+    .car::scroll-button(*):focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+    .car::scroll-button(left){content:"←";position-area:top span-left;margin-right:6px}
+    .car::scroll-button(right){content:"→";position-area:top right}
+    .car::scroll-marker-group{display:flex;gap:8px;justify-content:center;padding-top:10px}
+    .car > .slide::scroll-marker{
+      content:"";width:9px;height:9px;border-radius:50%;
+      background:var(--border);border:0;cursor:pointer;
+    }
+    .car > .slide::scroll-marker:target-current{background:var(--brand);transform:scale(1.25)}
+    .car > .slide::scroll-marker:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+    .car-fallback{display:none}
+  }
+  /* 폴백: JS로 만든 이전/다음 + 점 인디케이터 */
+  .car-fallback{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:10px}
+  .dots{display:flex;gap:8px}
+  .dots button{width:9px;height:9px;padding:0;border-radius:50%;border:0;background:var(--border);cursor:pointer}
+  .dots button[aria-current="true"]{background:var(--brand);transform:scale(1.25)}
+  .dots button:focus-visible{outline:3px solid var(--ring);outline-offset:3px}
+  .carnav{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);cursor:pointer;font-family:inherit;font-size:.95rem;line-height:1}
+  .carnav:hover{border-color:var(--brand);color:var(--brand)}
+  .carnav:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ================= 임베드 컴팩트 모드 ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-07 (월) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#split">🔘 분할 버튼·액션 메뉴</a>
+  <a href="#money">⌨️ 금액 입력 필드</a>
+  <a href="#carousel">🌀 CSS 네이티브 캐러셀</a>
+</nav>
+
+<!-- ==================== 1. 분할 버튼 ==================== -->
+<section class="card" id="split">
+  <h2>🔘 분할 버튼과 액션 메뉴 <span class="tag">버튼·액션</span></h2>
+  <p class="lead">
+    가장 많이 쓰는 액션 하나는 바로 누르게 두고, 나머지 변형은 옆 화살표에 접어두는 버튼.
+    "저장 / 저장하고 계속" 같이 <b>형제 액션이 3개 이상</b>일 때 버튼을 나란히 늘어놓는 대신 쓴다.
+  </p>
+
+  <h3 class="sec-lead">변형 1 — 기본 분할 버튼 (주 액션 + 더보기)</h3>
+  <div class="demo">
+    <div class="row">
+      <div class="splitwrap" data-split>
+        <div class="split">
+          <button class="btn main" type="button" data-main>정산 실행</button>
+          <button class="btn toggle-part" type="button" data-toggle
+                  aria-expanded="false" aria-haspopup="true" aria-controls="menu1"
+                  aria-label="정산 실행 옵션 더 보기">
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+        </div>
+        <ul class="menu" id="menu1" role="menu" hidden>
+          <li><button role="menuitem" type="button" tabindex="-1"><span class="ico" aria-hidden="true">📅</span>
+            <span>예약 정산<span class="desc">내일 09:00에 자동 실행</span></span></button></li>
+          <li><button role="menuitem" type="button" tabindex="-1"><span class="ico" aria-hidden="true">🧪</span>
+            <span>모의 정산<span class="desc">돈은 움직이지 않고 결과만 계산</span></span></button></li>
+          <li><button role="menuitem" type="button" tabindex="-1"><span class="ico" aria-hidden="true">⬇️</span>
+            <span>정산 내역만 내려받기</span></button></li>
+          <li><hr /></li>
+          <li><button role="menuitem" type="button" tabindex="-1" data-danger><span class="ico" aria-hidden="true">⛔</span>
+            <span>이번 회차 건너뛰기</span></button></li>
+        </ul>
+      </div>
+      <span class="pill mu">키보드: <span class="kbd">Tab</span> 두 번이면 화살표 버튼</span>
+    </div>
+    <div class="log" id="splitLog" role="status" aria-live="polite">아직 고른 액션이 없습니다.</div>
+    <p class="cap">
+      주 액션이 <b>바로 눌리는 자리</b>에 있어야 분할 버튼이다. 화살표를 눌러야 주 액션이 나오면
+      그건 그냥 드롭다운이고, 사용자는 매번 두 번 누른다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 2 — 주 액션이 로딩 중일 때</h3>
+  <div class="demo">
+    <div class="row">
+      <div class="splitwrap" data-split>
+        <div class="split">
+          <button class="btn main" type="button" data-main data-async>송금 실행</button>
+          <button class="btn toggle-part" type="button" data-toggle
+                  aria-expanded="false" aria-haspopup="true" aria-controls="menu2"
+                  aria-label="송금 실행 옵션 더 보기">
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+        </div>
+        <ul class="menu" id="menu2" role="menu" hidden>
+          <li><button role="menuitem" type="button" tabindex="-1"><span class="ico" aria-hidden="true">🗓️</span>
+            <span>예약 송금</span></button></li>
+          <li><button role="menuitem" type="button" tabindex="-1"><span class="ico" aria-hidden="true">🔁</span>
+            <span>정기 송금으로 등록</span></button></li>
+        </ul>
+      </div>
+      <span class="pill wa">눌러보세요 — 처리 중엔 화살표까지 같이 잠깁니다</span>
+    </div>
+    <p class="cap">
+      주 액션이 진행 중이면 <b>화살표도 함께 비활성</b>이어야 한다. 메뉴 안의 "예약 송금"을
+      처리 중에 눌러 두 번 나가는 사고가 실제로 난다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 3 — 아이콘 전용 액션 줄 (툴바형)</h3>
+  <div class="demo">
+    <div class="row" role="toolbar" aria-label="거래 행 액션" id="tbar">
+      <button class="iconbtn" type="button" aria-label="영수증 보기" title="영수증 보기">🧾</button>
+      <button class="iconbtn" type="button" aria-label="메모 달기" title="메모 달기">📝</button>
+      <button class="iconbtn" type="button" aria-label="결제 취소" title="결제 취소">↩️</button>
+      <button class="iconbtn" type="button" aria-label="영구 삭제" title="영구 삭제">🗑️</button>
+    </div>
+    <div class="log" id="tbarLog" role="status" aria-live="polite">
+      툴바 안에서 <span class="kbd">←</span> <span class="kbd">→</span> 로 이동해 보세요.
+    </div>
+    <p class="cap">
+      아이콘만 있는 버튼은 <b>보이는 글자가 없으므로</b> <code>aria-label</code>이 곧 버튼 이름이다.
+      툴바는 버튼 개수만큼 <span class="kbd">Tab</span>을 먹지 않도록 로빙 탭인덱스를 쓴다 —
+      <b>로빙 탭인덱스</b>: 그룹 안에서 딱 한 개만 <code>tabindex="0"</code>이고 나머지는 <code>-1</code>,
+      화살표 키로 그 하나를 옮기는 방식.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">언제 뭘 쓰나</h3>
+  <table class="cmp">
+    <thead><tr><th>상황</th><th>고를 것</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td>액션 2개, 둘 다 자주 씀</td><td>버튼 2개 나란히</td><td>접는 순간 한쪽이 손해</td></tr>
+      <tr><td>주 액션 1개 + 변형 2~5개</td><td><b>분할 버튼</b></td><td>주 액션 1클릭 유지, 나머지는 접힘</td></tr>
+      <tr><td>동등한 액션 5개 이상</td><td>메뉴 버튼(⋯)</td><td>주 액션을 못 고르면 분할할 이유가 없음</td></tr>
+      <tr><td>행마다 반복되는 액션</td><td>아이콘 툴바 + ⋯</td><td>세로 공간 절약, 자주 쓰는 2~3개만 노출</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">코드 — 분할 버튼의 뼈대</h3>
+<pre><code>&lt;div class="split"&gt;
+  &lt;button type="button"&gt;정산 실행&lt;/button&gt;
+  &lt;button type="button" aria-haspopup="true" aria-expanded="false"
+          aria-controls="menu1" aria-label="정산 실행 옵션 더 보기"&gt;▾&lt;/button&gt;
+&lt;/div&gt;
+&lt;ul id="menu1" role="menu" hidden&gt;
+  &lt;li&gt;&lt;button role="menuitem" tabindex="-1"&gt;예약 정산&lt;/button&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+<pre><code>// 열 때 첫 항목으로 포커스, 닫을 때 화살표 버튼으로 복귀
+function open(){
+  menu.hidden = false;
+  toggle.setAttribute('aria-expanded','true');
+  menu.querySelector('[role=menuitem]').focus();
+}
+function close({restore = true} = {}){
+  menu.hidden = true;
+  toggle.setAttribute('aria-expanded','false');
+  if (restore) toggle.focus();     // Esc·바깥클릭 시 포커스가 body로 날아가지 않게
+}
+menu.addEventListener('keydown', e =&gt; {
+  const items = [...menu.querySelectorAll('[role=menuitem]')];
+  const i = items.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown'){ e.preventDefault(); items[(i+1) % items.length].focus(); }
+  if (e.key === 'ArrowUp')  { e.preventDefault(); items[(i-1+items.length) % items.length].focus(); }
+  if (e.key === 'Home')     { e.preventDefault(); items[0].focus(); }
+  if (e.key === 'End')      { e.preventDefault(); items.at(-1).focus(); }
+  if (e.key === 'Escape')   { close(); }
+});</code></pre>
+
+  <h3 class="sec-lead">접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>이름</b>: 화살표 버튼은 보이는 글자가 없다. <code>aria-label</code>에 "무엇의 옵션인지"까지 넣는다 — 그냥 "더 보기"면 화면 낭독기에서 여러 개가 전부 "더 보기"가 된다.</li>
+    <li><b>연결</b>: <code>aria-haspopup="true"</code> + <code>aria-expanded</code> + <code>aria-controls</code> 세 개가 한 세트다. 열림/닫힘을 <code>aria-expanded</code>로 매번 갱신하지 않으면 시각장애 사용자는 열린 줄 모른다.</li>
+    <li><b>포커스</b>: 열면 첫 항목, <span class="kbd">Esc</span>·바깥 클릭으로 닫으면 <b>화살표 버튼으로 되돌린다</b>. 항목을 실행해 닫을 때도 마찬가지.</li>
+    <li><b>키보드</b>: <span class="kbd">↑</span><span class="kbd">↓</span> 순환 이동, <span class="kbd">Home</span><span class="kbd">End</span> 처음·끝, <span class="kbd">Esc</span> 닫기. 메뉴 항목은 <code>tabindex="-1"</code>이라 <span class="kbd">Tab</span>으로는 안 들어간다.</li>
+    <li><b>disabled</b>: 주 액션이 처리 중이면 화살표도 같이 잠근다. 단, 잠긴 버튼은 포커스를 못 받으므로 진행 상황은 <code>role="status"</code> 영역으로 따로 알린다.</li>
+    <li><b>터치 타깃</b>: 아이콘 버튼은 40×40 이상 확보. 화살표 부분이 24px이면 모바일에서 주 액션을 오폭한다.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용 포인트</b> — 정산 상세의 "정산 실행"처럼 <i>주 액션은 명확한데 변형이 계속 늘어나는</i> 자리에 맞는다.
+    특히 "모의 정산(dry-run)"을 메뉴 첫 칸에 두면, 실행 버튼 옆에 위험한 버튼을 나란히 놓지 않아도 된다.
+    거래 목록의 행 액션은 자주 쓰는 2개만 아이콘으로 내놓고 나머지는 ⋯ 안으로.
+  </div>
+</section>
+
+<!-- ==================== 2. 금액 입력 ==================== -->
+<section class="card" id="money">
+  <h2>⌨️ 금액 입력 필드 <span class="tag">입력·폼</span></h2>
+  <p class="lead">
+    숫자를 받는 칸인데 <code>&lt;input type="number"&gt;</code>를 쓰면 안 되는 대표적인 자리.
+    천 단위 쉼표를 넣으면서도 <b>커서가 튀지 않게</b> 하는 게 이 컴포넌트의 전부다.
+  </p>
+
+  <h3 class="sec-lead">변형 1 — 원화, 타이핑하는 동안 서식 유지</h3>
+  <div class="demo">
+    <div class="grid2">
+      <div>
+        <label class="field" for="krw">송금 금액</label>
+        <div class="moneybox" id="krwBox">
+          <span class="cur" aria-hidden="true">₩</span>
+          <input id="krw" type="text" inputmode="numeric" autocomplete="off"
+                 placeholder="0" aria-describedby="krwHint krwErr" />
+          <span class="suf" aria-hidden="true">원</span>
+        </div>
+        <p class="err" id="krwErr" role="alert"></p>
+        <p class="hint" id="krwHint">1회 한도 5,000,000원 · 숫자만 입력</p>
+        <div class="chips">
+          <button class="chip" type="button" data-add="10000">+1만</button>
+          <button class="chip" type="button" data-add="50000">+5만</button>
+          <button class="chip" type="button" data-add="100000">+10만</button>
+          <button class="chip" type="button" data-set="0">지우기</button>
+        </div>
+        <div class="readout">
+          <span>서버로 보낼 값 <code id="krwRaw">null</code></span>
+          <span>커서 <code id="krwCaret">0</code></span>
+        </div>
+      </div>
+      <div>
+        <h4>직접 확인해 볼 것</h4>
+        <ul class="clean">
+          <li><b>1234567</b> 입력 → 쉼표가 붙어도 커서가 끝에 남는가</li>
+          <li>가운데를 클릭해 숫자 하나 지우기 → 커서가 맨 뒤로 튀지 않는가</li>
+          <li><b>"₩1,234,567원"</b> 통째로 붙여넣기 → 숫자만 걸러지는가</li>
+          <li>한도 초과 입력 → 막지 않고 <b>에러로 알려주는가</b></li>
+        </ul>
+        <p class="cap">
+          커서 유지는 "커서 앞에 숫자가 몇 개였나"를 세어두고, 서식을 새로 그린 뒤
+          같은 개수의 숫자 뒤로 커서를 되돌리는 방식으로 한다. 글자 수가 아니라 <b>숫자 개수</b>가 기준이다.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">변형 2 — 소수점 2자리 통화(USD)와 blur 정규화</h3>
+  <div class="demo">
+    <div class="grid2">
+      <div>
+        <label class="field" for="usd">해외 결제 금액</label>
+        <div class="moneybox" id="usdBox">
+          <span class="cur" aria-hidden="true">$</span>
+          <input id="usd" type="text" inputmode="decimal" autocomplete="off"
+                 placeholder="0.00" aria-describedby="usdHint" />
+        </div>
+        <p class="hint" id="usdHint">소수점 둘째 자리까지 · 칸을 벗어나면 자동 정리</p>
+        <div class="readout"><span>서버로 보낼 값(센트) <code id="usdRaw">null</code></span></div>
+      </div>
+      <div>
+        <h4>왜 blur에서 정리하나</h4>
+        <ul class="clean">
+          <li><code>12.</code>처럼 <b>입력 도중에는 정상인 중간 상태</b>가 있다. 타이핑 중에 강제로 <code>12.00</code>으로 고치면 소수점을 못 찍는다.</li>
+          <li>그래서 <b>타이핑 중엔 최소한만</b>(쉼표·허용 문자), <b>칸을 벗어날 때 완성형</b>으로 맞춘다.</li>
+          <li>돈은 부동소수점으로 다루지 않는다. 화면은 문자열, 서버로는 <b>최소 단위 정수</b>(센트·원)로 보낸다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">왜 type="number"를 피하나</h3>
+  <table class="cmp">
+    <thead><tr><th>항목</th><th>type="number"</th><th>type="text" + inputmode</th></tr></thead>
+    <tbody>
+      <tr><td>천 단위 쉼표</td><td><span class="pill da">불가</span> 값이 무효 처리됨</td><td><span class="pill ok">가능</span></td></tr>
+      <tr><td>모바일 키패드</td><td><span class="pill ok">숫자패드</span></td><td><span class="pill ok"><code>inputmode</code>로 동일</span></td></tr>
+      <tr><td>스크롤 휠 오조작</td><td><span class="pill da">값이 바뀜</span></td><td><span class="pill ok">없음</span></td></tr>
+      <tr><td>앞자리 0·긴 자릿수</td><td><span class="pill wa">브라우저마다 다름</span></td><td><span class="pill ok">직접 제어</span></td></tr>
+    </tbody>
+  </table>
+  <p class="cap">
+    <b>inputmode</b>: 값의 종류가 아니라 <i>어떤 키보드를 띄울지</i>만 알려주는 힌트.
+    <code>numeric</code>은 정수 키패드, <code>decimal</code>은 소수점 있는 키패드(추정 — 기기·키보드 앱마다 표시가 다를 수 있음).
+  </p>
+
+  <h3 class="sec-lead">코드 — 커서를 지키는 포맷</h3>
+<pre><code>const nf = new Intl.NumberFormat('ko-KR');
+
+function formatKeepingCaret(input){
+  const before = input.value.slice(0, input.selectionStart);
+  const digitsBeforeCaret = (before.match(/\d/g) || []).length;   // 커서 앞 '숫자 개수'
+
+  const digits = input.value.replace(/\D/g, '');
+  input.value = digits ? nf.format(Number(digits)) : '';
+
+  // 같은 개수의 숫자를 지난 지점으로 커서 복원
+  let seen = 0, pos = 0;
+  for (; pos &lt; input.value.length && seen &lt; digitsBeforeCaret; pos++){
+    if (/\d/.test(input.value[pos])) seen++;
+  }
+  input.setSelectionRange(pos, pos);
+  return digits;                     // ← 서버로 보낼 원본
+}
+
+input.addEventListener('input', () =&gt; {
+  const raw = formatKeepingCaret(input);
+  form.amount = raw ? Number(raw) : null;
+});</code></pre>
+
+  <h3 class="sec-lead">접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>붙여넣기</b>는 <code>input</code> 이벤트로 함께 잡힌다. <code>keydown</code>에서 키를 막는 방식은 붙여넣기·자동완성·한글 조합을 전부 놓친다.</li>
+    <li><b>한도 초과</b>는 입력을 막지 말고 에러로 알린다. 못 치게 막으면 사용자는 "왜 안 눌리지"만 겪는다. 에러 문구는 <code>aria-describedby</code>로 연결된 칸에 넣고, 즉시 알려야 하면 <code>role="alert"</code>.</li>
+    <li><b>포커스 링</b>은 칸 전체(<code>.moneybox</code>)에 준다. <code>input</code>에만 주면 ₩ 기호와 "원"이 링 밖으로 빠져 어색하다 — <code>:has(input:focus-visible)</code>로 부모에 건다.</li>
+    <li><b>화폐 기호</b>는 <code>aria-hidden</code>. 낭독기는 라벨("송금 금액")과 값만 읽으면 되고, 기호를 읽으면 "원화 기호 일이삼사"처럼 지저분해진다.</li>
+    <li><b>정렬</b>은 오른쪽, 숫자는 <code>font-variant-numeric: tabular-nums</code>(모든 숫자 폭을 같게)로 자릿수가 흔들리지 않게.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용 포인트</b> — 송금·부분취소·한도 설정처럼 금액을 받는 칸을 <code>&lt;MoneyInput currency /&gt;</code> 하나로 통일할 자리.
+    핵심은 <b>표시값과 전송값을 분리</b>하는 것: 화면엔 <code>1,234,567</code>, 상태엔 <code>1234567</code>(정수).
+    두 값을 하나로 쓰기 시작하면 어딘가에서 <code>Number("1,234,567") === NaN</code>이 터진다.
+  </div>
+</section>
+
+<!-- ==================== 3. CSS 캐러셀 ==================== -->
+<section class="card" id="carousel">
+  <h2>🌀 CSS 네이티브 캐러셀 — ::scroll-button()과 ::scroll-marker() <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    캐러셀(가로로 넘겨 보는 슬라이드)의 <b>이전/다음 버튼과 점 인디케이터를 브라우저가 만들어 주는</b> CSS 기능.
+    지금까지 라이브러리를 쓰던 부분이 의사 요소 몇 줄로 줄어든다.
+  </p>
+
+  <div class="demo">
+    <div class="car" id="car" tabindex="0" role="group" aria-label="이달의 정산 요약 카드 — 좌우로 스크롤">
+      <div class="slide"><div><h5>9월 1주</h5><p>승인 1,284건 · 취소 12건</p></div><div class="amt">₩ 18,240,000</div></div>
+      <div class="slide"><div><h5>9월 2주</h5><p>승인 1,502건 · 취소 9건</p></div><div class="amt">₩ 21,905,500</div></div>
+      <div class="slide"><div><h5>9월 3주</h5><p>승인 1,331건 · 취소 21건</p></div><div class="amt">₩ 19,470,200</div></div>
+      <div class="slide"><div><h5>9월 4주</h5><p>승인 1,690건 · 취소 7건</p></div><div class="amt">₩ 24,118,900</div></div>
+      <div class="slide"><div><h5>9월 5주</h5><p>승인 402건 · 취소 3건</p></div><div class="amt">₩ 5,806,400</div></div>
+    </div>
+    <div class="car-fallback" id="carFallback">
+      <button class="carnav" type="button" data-dir="-1" aria-label="이전 카드">←</button>
+      <div class="dots" id="carDots" role="tablist" aria-label="카드 위치"></div>
+      <button class="carnav" type="button" data-dir="1" aria-label="다음 카드">→</button>
+    </div>
+    <div class="support" id="carSupport">지원 여부 확인 중…</div>
+    <p class="cap">
+      지원 브라우저에서는 위 화살표·점이 <b>CSS가 만든 것</b>이고, 미지원 브라우저에서는 아래 JS 폴백이 뜬다.
+      둘 다 <span class="kbd">←</span> <span class="kbd">→</span> 키와 스크롤이 그대로 동작한다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li>캐러셀은 "가로 스크롤 + 스냅 + 버튼 + 인디케이터 + 현재 위치 동기화"가 필요해서, 별것 아닌 UI인데도 라이브러리를 부르게 되는 대표 사례였다.</li>
+    <li>CSS Overflow Level 5가 <code>::scroll-button()</code>(이전/다음 버튼)과 <code>::scroll-marker()</code>(점 인디케이터)를 표준으로 넣었다. 스크롤 컨테이너가 스스로 버튼을 만들고, <b>끝에 닿으면 알아서 <code>:disabled</code></b>가 된다.</li>
+    <li>현재 위치 하이라이트도 <code>:target-current</code>로 CSS가 처리한다. "지금 몇 번째 슬라이드인지"를 JS로 계산해 클래스를 붙이던 코드가 통째로 사라진다.</li>
+    <li>버튼·마커는 브라우저가 만들되 <b>접근성 배선(포커스·이름·순서)까지 브라우저가 붙인다</b>는 게 진짜 이득이다. 직접 만든 캐러셀이 접근성에서 깨지는 지점이 대부분 여기였다.</li>
+  </ul>
+
+  <div class="support no" style="margin-top:14px">
+    ⚠️ <b>지원 상황(2026-09 기준, 검색으로 확인)</b> — Chromium 계열(Chrome 135+)에서 동작하고,
+    Baseline(주요 브라우저 공통 지원)에는 아직 들어가지 않았다. <b>폴백 없이 프로덕션에 넣을 단계는 아니다.</b>
+    Safari·Firefox의 정확한 현재 상태는 확인하지 않았으므로 단정하지 않는다(추정).
+  </div>
+
+  <h3 class="sec-lead">코드 — 캐러셀 전체</h3>
+<pre><code>.car{
+  display:grid; grid-auto-flow:column; grid-auto-columns:min(260px,72%);
+  gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+  anchor-name:--car;                 /* 버튼을 이 컨테이너에 붙이기 위한 이름 */
+}
+.car > .slide{ scroll-snap-align:center; }
+
+/* 지원할 때만 켠다 — 미지원 브라우저에서 파싱 에러를 피한다 */
+@supports selector(::scroll-button(right)){
+  .car{ scroll-marker-group: after; }          /* 점 묶음을 컨테이너 뒤에 생성 */
+
+  .car::scroll-button(*){                       /* 두 버튼 공통 스타일 */
+    position:fixed; position-anchor:--car;
+    width:36px; height:36px; border-radius:50%;
+  }
+  .car::scroll-button(*):disabled{ opacity:.35; }   /* 끝에 닿으면 자동 */
+  .car::scroll-button(left) { content:"←"; position-area:top span-left; }
+  .car::scroll-button(right){ content:"→"; position-area:top right; }
+
+  .car::scroll-marker-group{ display:flex; gap:8px; justify-content:center; }
+  .car > .slide::scroll-marker{ content:""; width:9px; height:9px; border-radius:50%;
+                                background:var(--border); }
+  .car > .slide::scroll-marker:target-current{ background:var(--brand); }  /* 현재 위치 */
+}</code></pre>
+  <p class="cap">
+    <code>content</code>가 비어 있으면 의사 요소 자체가 생성되지 않는다. 점 인디케이터처럼
+    글자가 없어도 <code>content:""</code>는 반드시 써야 한다.
+  </p>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>진행 원리</b>: <code>::scroll-button()</code> 클릭은 스크롤 영역의 약 85%만큼 이동시킨다(검색으로 확인). 슬라이드 하나씩 정확히 넘기려면 <code>scroll-snap-type</code>과 슬라이드 폭을 맞춰야 한다.</li>
+    <li><b>폴백이 본체다</b>: <code>@supports selector(...)</code>로 감싸고, 그 밖에서는 JS 버튼을 유지한다. 미지원 브라우저에서 <i>화살표가 통째로 사라지는</i> 게 가장 흔한 사고다.</li>
+    <li><b>스크롤 컨테이너 자체</b>에 <code>tabindex="0"</code>과 이름(<code>aria-label</code>)을 준다. 브라우저는 스크롤 가능한 영역을 키보드 초점 대상으로 만들지만, 이름이 없으면 낭독기가 "그룹"이라고만 읽는다.</li>
+    <li><b>자동 재생은 넣지 않는다</b>. 굳이 넣는다면 정지 버튼을 같이 두고 <code>prefers-reduced-motion</code>(움직임 줄이기 설정)을 존중한다.</li>
+    <li><b>캐러셀 자체를 의심할 것</b>: 중요한 정보를 가로로 숨기면 뒤쪽 슬라이드는 거의 안 보인다. 항목이 5개 이하면 그냥 다 펼치는 편이 낫다.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용 포인트</b> — 대시보드의 "이번 주 정산 요약" 같은 <i>보조 카드 묶음</i>에 먼저 써볼 만하다.
+    핵심 지표는 절대 캐러셀에 넣지 않는다. 지금 단계에선 <b>기존 JS 캐러셀을 유지한 채</b>
+    <code>@supports</code> 블록으로 네이티브 버전을 얹어두면, 브라우저가 따라오는 만큼 자동으로 가벼워진다.
+  </div>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li>Chrome for Developers — Carousels with CSS: <code>https://developer.chrome.com/blog/carousels-with-css</code></li>
+    <li>CSS-Tricks — CSS Carousels: <code>https://css-tricks.com/css-carousels/</code></li>
+    <li>W3C WAI ARIA APG — Menu Button / Toolbar 패턴: <code>https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/</code></li>
+  </ul>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-09-07 (월) · 자체 제작 라이브 예시</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 테마 토글 ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+  });
+
+  /* ================== 1. 분할 버튼 ================== */
+  var splitLog = document.getElementById("splitLog");
+  var openWrap = null;
+
+  function itemsOf(menu){ return Array.prototype.slice.call(menu.querySelectorAll('[role="menuitem"]')); }
+
+  function closeMenu(wrap, restore){
+    if(!wrap) return;
+    var menu = wrap.querySelector(".menu");
+    var toggle = wrap.querySelector("[data-toggle]");
+    menu.hidden = true;
+    toggle.setAttribute("aria-expanded","false");
+    if(restore) toggle.focus();
+    if(openWrap === wrap) openWrap = null;
+  }
+
+  function openMenu(wrap){
+    if(openWrap && openWrap !== wrap) closeMenu(openWrap, false);
+    var menu = wrap.querySelector(".menu");
+    var toggle = wrap.querySelector("[data-toggle]");
+    menu.hidden = false;
+    toggle.setAttribute("aria-expanded","true");
+    openWrap = wrap;
+    var items = itemsOf(menu);
+    if(items.length) items[0].focus();
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-split]"), function(wrap){
+    var menu = wrap.querySelector(".menu");
+    var toggle = wrap.querySelector("[data-toggle]");
+    var main = wrap.querySelector("[data-main]");
+
+    toggle.addEventListener("click", function(){
+      if(menu.hidden) openMenu(wrap); else closeMenu(wrap, true);
+    });
+
+    toggle.addEventListener("keydown", function(e){
+      if(e.key === "ArrowDown" || e.key === "ArrowUp"){
+        e.preventDefault();
+        openMenu(wrap);
+        var items = itemsOf(menu);
+        if(e.key === "ArrowUp" && items.length) items[items.length-1].focus();
+      }
+    });
+
+    menu.addEventListener("keydown", function(e){
+      var items = itemsOf(menu);
+      var i = items.indexOf(document.activeElement);
+      if(e.key === "ArrowDown"){ e.preventDefault(); items[(i+1) % items.length].focus(); }
+      else if(e.key === "ArrowUp"){ e.preventDefault(); items[(i-1+items.length) % items.length].focus(); }
+      else if(e.key === "Home"){ e.preventDefault(); items[0].focus(); }
+      else if(e.key === "End"){ e.preventDefault(); items[items.length-1].focus(); }
+      else if(e.key === "Escape"){ e.preventDefault(); closeMenu(wrap, true); }
+      else if(e.key === "Tab"){ closeMenu(wrap, false); }
+    });
+
+    menu.addEventListener("click", function(e){
+      var btn = e.target.closest('[role="menuitem"]');
+      if(!btn) return;
+      var label = btn.textContent.trim().split("\n")[0];
+      splitLog.innerHTML = "선택한 액션: <b>" + label + "</b> — 메뉴가 닫히고 포커스는 화살표 버튼으로 돌아갑니다.";
+      closeMenu(wrap, true);
+    });
+
+    // 주 액션
+    main.addEventListener("click", function(){
+      if(main.hasAttribute("data-async")){
+        var original = main.textContent;
+        main.disabled = true; toggle.disabled = true;
+        main.innerHTML = '<span class="spin" aria-hidden="true"></span>처리 중…';
+        splitLog.innerHTML = "<b>송금 처리 중</b> — 주 액션과 화살표가 함께 잠깁니다(중복 실행 차단).";
+        setTimeout(function(){
+          main.disabled = false; toggle.disabled = false;
+          main.textContent = original;
+          splitLog.innerHTML = "<b>송금 완료</b> — 잠금이 풀렸습니다.";
+        }, 1800);
+      } else {
+        splitLog.innerHTML = "주 액션 <b>정산 실행</b> — 화살표를 거치지 않고 바로 실행됩니다.";
+      }
+    });
+  });
+
+  document.addEventListener("click", function(e){
+    if(openWrap && !openWrap.contains(e.target)) closeMenu(openWrap, false);
+  });
+
+  /* ---- 아이콘 툴바: 로빙 탭인덱스 ---- */
+  (function(){
+    var bar = document.getElementById("tbar");
+    var log = document.getElementById("tbarLog");
+    if(!bar) return;
+    var btns = Array.prototype.slice.call(bar.querySelectorAll(".iconbtn"));
+    btns.forEach(function(b,i){ b.tabIndex = i === 0 ? 0 : -1; });
+
+    function move(to){
+      var i = ((to % btns.length) + btns.length) % btns.length;
+      btns.forEach(function(b){ b.tabIndex = -1; });
+      btns[i].tabIndex = 0;
+      btns[i].focus();
+    }
+    bar.addEventListener("keydown", function(e){
+      var i = btns.indexOf(document.activeElement);
+      if(i < 0) return;
+      if(e.key === "ArrowRight"){ e.preventDefault(); move(i+1); }
+      else if(e.key === "ArrowLeft"){ e.preventDefault(); move(i-1); }
+      else if(e.key === "Home"){ e.preventDefault(); move(0); }
+      else if(e.key === "End"){ e.preventDefault(); move(btns.length-1); }
+    });
+    bar.addEventListener("click", function(e){
+      var b = e.target.closest(".iconbtn");
+      if(!b) return;
+      log.innerHTML = "실행: <b>" + b.getAttribute("aria-label") +
+        "</b> — 아이콘만 보이지만 낭독기에는 이 이름이 읽힙니다.";
+    });
+  })();
+
+  /* ================== 2. 금액 입력 ================== */
+  var nfKR = new Intl.NumberFormat("ko-KR");
+  var KRW_LIMIT = 5000000;
+
+  (function(){
+    var input = document.getElementById("krw");
+    var box = document.getElementById("krwBox");
+    var err = document.getElementById("krwErr");
+    var rawOut = document.getElementById("krwRaw");
+    var caretOut = document.getElementById("krwCaret");
+
+    function render(digits, caretDigits){
+      input.value = digits ? nfKR.format(Number(digits)) : "";
+      var seen = 0, pos = 0;
+      for(; pos < input.value.length && seen < caretDigits; pos++){
+        if(/\d/.test(input.value[pos])) seen++;
+      }
+      try { input.setSelectionRange(pos, pos); } catch(_) {}
+      rawOut.textContent = digits ? digits : "null";
+      caretOut.textContent = String(pos);
+
+      var n = digits ? Number(digits) : 0;
+      var over = n > KRW_LIMIT;
+      box.setAttribute("data-invalid", over ? "true" : "false");
+      err.textContent = over
+        ? "1회 한도 " + nfKR.format(KRW_LIMIT) + "원을 넘었습니다."
+        : "";
+    }
+
+    input.addEventListener("input", function(){
+      var before = input.value.slice(0, input.selectionStart || 0);
+      var caretDigits = (before.match(/\d/g) || []).length;
+      var digits = input.value.replace(/\D/g, "").replace(/^0+(?=\d)/, "");
+      render(digits, caretDigits);
+    });
+
+    document.querySelectorAll("[data-add],[data-set]").forEach(function(chip){
+      chip.addEventListener("click", function(){
+        var cur = Number(input.value.replace(/\D/g, "") || 0);
+        var next = chip.hasAttribute("data-set")
+          ? Number(chip.getAttribute("data-set"))
+          : cur + Number(chip.getAttribute("data-add"));
+        var digits = next ? String(next) : "";
+        render(digits, digits.length);
+        input.focus();
+      });
+    });
+  })();
+
+  (function(){
+    var input = document.getElementById("usd");
+    var rawOut = document.getElementById("usdRaw");
+
+    function cents(v){
+      var n = parseFloat(v.replace(/[^0-9.]/g, ""));
+      return isNaN(n) ? null : Math.round(n * 100);
+    }
+    input.addEventListener("input", function(){
+      // 타이핑 중에는 최소한만: 허용 문자와 소수점 1개, 소수 2자리
+      var v = input.value.replace(/[^0-9.]/g, "");
+      var parts = v.split(".");
+      if(parts.length > 2) v = parts[0] + "." + parts.slice(1).join("");
+      var seg = v.split(".");
+      if(seg[1] && seg[1].length > 2) v = seg[0] + "." + seg[1].slice(0,2);
+      input.value = v;
+      var c = cents(v);
+      rawOut.textContent = c === null ? "null" : String(c);
+    });
+    input.addEventListener("blur", function(){
+      // 벗어날 때 완성형으로
+      var c = cents(input.value);
+      if(c === null){ input.value = ""; rawOut.textContent = "null"; return; }
+      input.value = (c / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      rawOut.textContent = String(c);
+    });
+  })();
+
+  /* ================== 3. 캐러셀 폴백 ================== */
+  (function(){
+    var car = document.getElementById("car");
+    var fallback = document.getElementById("carFallback");
+    var dots = document.getElementById("carDots");
+    var support = document.getElementById("carSupport");
+    if(!car) return;
+
+    var native = false;
+    try { native = CSS.supports("selector(::scroll-button(right))"); } catch(_) { native = false; }
+
+    if(native){
+      support.className = "support yes";
+      support.innerHTML = "✅ 이 브라우저는 <code>::scroll-button()</code> / <code>::scroll-marker()</code>를 지원합니다 — 위 화살표와 점은 <b>CSS가 만든 것</b>입니다.";
+      fallback.style.display = "none";
+      return;
+    }
+
+    support.className = "support no";
+    support.innerHTML = "⚠️ 이 브라우저는 아직 <code>::scroll-button()</code>을 지원하지 않습니다 — 아래 <b>JS 폴백</b>이 대신 동작합니다.";
+
+    var slides = Array.prototype.slice.call(car.querySelectorAll(".slide"));
+    slides.forEach(function(_, i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", (i+1) + "번째 카드로 이동");
+      b.addEventListener("click", function(){
+        slides[i].scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+      });
+      dots.appendChild(b);
+    });
+
+    function sync(){
+      var mid = car.scrollLeft + car.clientWidth / 2;
+      var best = 0, bestD = Infinity;
+      slides.forEach(function(s, i){
+        var c = s.offsetLeft + s.offsetWidth / 2;
+        var d = Math.abs(c - mid);
+        if(d < bestD){ bestD = d; best = i; }
+      });
+      Array.prototype.forEach.call(dots.children, function(b, i){
+        b.setAttribute("aria-current", i === best ? "true" : "false");
+      });
+      Array.prototype.forEach.call(fallback.querySelectorAll("[data-dir]"), function(b){
+        var dir = Number(b.getAttribute("data-dir"));
+        b.disabled = (dir < 0 && best === 0) || (dir > 0 && best === slides.length - 1);
+      });
+      return best;
+    }
+
+    fallback.querySelectorAll("[data-dir]").forEach(function(b){
+      b.addEventListener("click", function(){
+        var i = sync() + Number(b.getAttribute("data-dir"));
+        i = Math.max(0, Math.min(slides.length - 1, i));
+        slides[i].scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+      });
+    });
+
+    car.addEventListener("scroll", function(){
+      clearTimeout(car._t);
+      car._t = setTimeout(sync, 80);
+    });
+    sync();
+  })();
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if(qs.get("theme") === "dark") document.documentElement.setAttribute("data-theme","dark");
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
