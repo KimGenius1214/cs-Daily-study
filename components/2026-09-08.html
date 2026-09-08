@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-08 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .switch{display:inline-flex;align-items:center;gap:9px;font-size:.86rem;cursor:pointer;
+    background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .switch input{accent-color:var(--brand);width:16px;height:16px}
+  .switch:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+
+  /* ================= 1. 파괴적 액션 확인 ================= */
+  .reslist{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .resitem{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+  .resitem .meta{font-size:.88rem}
+  .resitem .meta small{display:block;color:var(--muted);font-size:.78rem}
+  .resitem[data-gone="1"]{opacity:.4}
+  .resitem[data-gone="1"] .meta{text-decoration:line-through}
+  .risk{font-size:.7rem;font-weight:700;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:2px}
+  .risk.low{color:var(--ok);background:var(--ok-soft)}
+  .risk.mid{color:var(--warn);background:var(--warn-soft)}
+  .risk.high{color:var(--danger);background:var(--danger-soft)}
+
+  dialog.cfm{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);
+    padding:0;max-width:420px;width:calc(100% - 32px);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+  dialog.cfm::backdrop{background:rgba(10,13,18,.5)}
+  [data-theme="dark"] dialog.cfm::backdrop{background:rgba(0,0,0,.66)}
+  dialog.cfm .body{padding:22px 22px 4px}
+  dialog.cfm h3{margin:0 0 6px;font-size:1.05rem}
+  dialog.cfm p{margin:0;font-size:.9rem;color:var(--muted)}
+  dialog.cfm .conseq{margin-top:14px;background:var(--danger-soft);color:var(--danger);border-radius:10px;
+    padding:10px 12px;font-size:.82rem;font-weight:600}
+  dialog.cfm .typefield{margin-top:16px}
+  dialog.cfm .typefield label{display:block;font-size:.82rem;margin-bottom:5px;color:var(--muted)}
+  dialog.cfm .typefield input{width:100%;font:inherit;font-size:.9rem;padding:9px 11px;border-radius:9px;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--text)}
+  dialog.cfm .typefield input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  dialog.cfm .typefield code{background:var(--surface-2);border:1px solid var(--border);border-radius:5px;padding:1px 5px}
+  dialog.cfm footer{display:flex;gap:10px;justify-content:flex-end;padding:18px 22px 20px;flex-wrap:wrap}
+  dialog.cfm form{margin:0}
+
+  .toaster{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:90;
+    display:grid;gap:8px;width:min(420px,calc(100% - 24px))}
+  html.embed-mode .toaster{position:absolute;bottom:10px}
+  .toast{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    background:#14181f;color:#f3f5f8;border-radius:12px;padding:11px 12px 11px 15px;font-size:.86rem;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);animation:tin .2s ease}
+  [data-theme="dark"] .toast{background:#252c38;border:1px solid #333c4c}
+  @keyframes tin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.toast{animation:none}}
+  .toast button{background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:8px;
+    padding:5px 11px;font:inherit;font-size:.82rem;font-weight:700;cursor:pointer;flex:none}
+  .toast button:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+  /* ================= 2. 에러 요약 ================= */
+  .fform{display:grid;gap:14px;max-width:520px}
+  .field label{display:block;font-size:.84rem;font-weight:600;margin-bottom:5px}
+  .field .hint{display:block;font-weight:400;color:var(--muted);font-size:.78rem;margin-top:2px}
+  .field input[type=text],.field input[type=email]{width:100%;font:inherit;font-size:.92rem;padding:10px 12px;
+    border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .field input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .field input[aria-invalid="true"]{border-color:var(--danger);background:var(--danger-soft)}
+  [data-theme="dark"] .field input[aria-invalid="true"]{background:#210f10}
+  .err{display:none;margin-top:5px;font-size:.8rem;color:var(--danger);font-weight:600}
+  .err::before{content:"⚠ "}
+  .field.bad .err{display:block}
+  .field.bad > label{color:var(--danger)}
+  .checkrow{display:flex;gap:9px;align-items:flex-start;font-size:.86rem}
+  .checkrow input{margin-top:4px;accent-color:var(--brand);width:16px;height:16px;flex:none}
+  .summary{display:none;border:2px solid var(--danger);border-radius:12px;padding:14px 16px;
+    background:var(--danger-soft);margin-bottom:4px}
+  [data-theme="dark"] .summary{background:#210f10}
+  .summary:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .summary.on{display:block}
+  .summary h4{color:var(--danger);margin:0 0 8px;font-size:.95rem}
+  .summary ol{margin:0;padding-left:1.15rem;font-size:.86rem}
+  .summary li{margin:.2rem 0}
+  .summary a{color:var(--danger);font-weight:600}
+  .summary a:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:4px}
+  .okbox{display:none;border-radius:12px;padding:12px 15px;background:var(--ok-soft);color:var(--ok);
+    font-size:.88rem;font-weight:600;margin-bottom:4px}
+  .okbox.on{display:block}
+  .mode-inline .summary{display:none !important}
+  .flash{animation:fl 1s ease}
+  @keyframes fl{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 4px var(--danger-soft)}}
+  @media (prefers-reduced-motion:reduce){.flash{animation:none}}
+
+  /* ================= 3. @starting-style ================= */
+  .stdemo{display:grid;gap:14px}
+  .stage{position:relative;min-height:190px;border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);display:grid;place-items:center;padding:16px}
+  .pop{width:min(300px,100%);background:var(--surface-2);border:1px solid var(--border);border-radius:14px;
+    padding:16px 18px;box-shadow:var(--shadow);
+    display:none;opacity:0;transform:translateY(10px) scale(.96)}
+  .pop h4{margin:0 0 4px}
+  .pop p{margin:0;font-size:.84rem;color:var(--muted)}
+  .pop.open{display:block;opacity:1;transform:none}
+
+  /* ✅ 적용: @starting-style(시작값) + allow-discrete(display도 전환 대상에) */
+  .stdemo.st-on .pop{
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1),
+                display .3s allow-discrete, overlay .3s allow-discrete;
+  }
+  @starting-style{
+    .stdemo.st-on .pop.open{ opacity:0; transform:translateY(10px) scale(.96); }
+  }
+  /* ❌ 미적용: 같은 transition을 걸어도 진입/퇴장이 툭 끊긴다 */
+  .stdemo.st-off .pop{ transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1); }
+
+  .stnote{font-size:.8rem;color:var(--muted);text-align:center}
+  .stnote b{color:var(--text)}
+
+  [popover].sheet{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);
+    padding:18px 20px;max-width:340px;box-shadow:0 20px 60px rgba(0,0,0,.25);
+    opacity:0;transform:translateY(14px) scale(.97);
+    transition: opacity .28s ease, transform .28s cubic-bezier(.2,.8,.2,1),
+                display .28s allow-discrete, overlay .28s allow-discrete;}
+  [popover].sheet:popover-open{opacity:1;transform:none}
+  @starting-style{ [popover].sheet:popover-open{opacity:0;transform:translateY(14px) scale(.97)} }
+  [popover].sheet::backdrop{background:rgba(10,13,18,0);transition:background .28s ease, display .28s allow-discrete, overlay .28s allow-discrete}
+  [popover].sheet:popover-open::backdrop{background:rgba(10,13,18,.45)}
+  @starting-style{ [popover].sheet:popover-open::backdrop{background:rgba(10,13,18,0)} }
+  [popover].sheet h4{margin:0 0 4px}
+  [popover].sheet p{margin:0 0 14px;font-size:.84rem;color:var(--muted)}
+  @media (prefers-reduced-motion:reduce){
+    .stdemo.st-on .pop,[popover].sheet,[popover].sheet::backdrop{transition-duration:.01ms}
+  }
+
+  /* ================= 임베드 컴팩트 모드 ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-08 (화) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#confirm">🪟 파괴적 액션 확인</a>
+  <a href="#errsum">🔔 폼 에러 요약</a>
+  <a href="#starting">🌀 @starting-style</a>
+</nav>
+
+<!-- ==================== 1. 파괴적 액션 확인 ==================== -->
+<section class="card" id="confirm">
+  <h2>🪟 파괴적 액션 확인 — 되돌리기·확인창·타이핑 확인 <span class="tag">오버레이·모달</span></h2>
+  <p class="lead">
+    "정말 삭제하시겠습니까?" 하나로 모든 위험한 버튼을 막는 시대는 지났다.
+    요즘은 <b>되돌릴 수 있으면 안 묻고</b>, 되돌릴 수 없을 때만 묻되 <b>위험도에 따라 마찰(friction)을 달리</b> 준다.
+    마찰이란 사용자가 실수하지 못하게 일부러 넣는 한 단계의 수고를 말한다.
+  </p>
+
+  <h3 class="sec-lead">위험도 3단계를 각각 다르게 처리한 실제 데모</h3>
+  <div class="demo">
+    <ul class="reslist" id="reslist">
+      <li class="resitem" data-id="memo">
+        <span class="meta">가맹점 메모 <span class="risk low">되돌리기 가능</span>
+          <small>지우고 5초 안에 되살릴 수 있다 · 확인창 없음</small></span>
+        <button class="btn ghost sm" data-act="undoable" data-name="가맹점 메모">삭제</button>
+      </li>
+      <li class="resitem" data-id="bank">
+        <span class="meta">정산 계좌 (국민 ****3182) <span class="risk mid">확인 필요</span>
+          <small>되돌릴 수 없다 · 표준 확인 다이얼로그</small></span>
+        <button class="btn ghost sm" data-act="confirm" data-name="정산 계좌 (국민 ****3182)">삭제</button>
+      </li>
+      <li class="resitem" data-id="shop">
+        <span class="meta">가맹점 계정 «블루보틀 성수» <span class="risk high">복구 불가</span>
+          <small>거래·정산 이력까지 사라진다 · 이름을 직접 입력해야 실행</small></span>
+        <button class="btn danger sm" data-act="type" data-name="블루보틀 성수">영구 삭제</button>
+      </li>
+    </ul>
+    <div class="log" id="cfmLog" role="status" aria-live="polite">아직 아무 것도 지우지 않았습니다.</div>
+    <p class="cap">
+      셋 다 <span class="kbd">Tab</span>·<span class="kbd">Esc</span>로 조작해 보세요.
+      다이얼로그가 닫히면 포커스가 <b>눌렀던 버튼으로 되돌아갑니다</b>. 되돌리기 토스트는 5초 뒤 사라집니다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 비교 — 언제 뭘 쓰나</h3>
+  <table class="cmp">
+    <thead><tr><th style="width:22%">패턴</th><th style="width:30%">언제</th><th>설계 포인트</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>확인 없음 + 되돌리기</b> <span class="pill ok">기본값</span></td>
+        <td>서버에서 복원 가능하거나, 실수해도 손해가 적을 때 (메모·라벨·필터 삭제)</td>
+        <td>즉시 실행하고 토스트로 <b>실행취소</b> 제공. 확인창보다 클릭이 <b>한 번 적고</b>, 실수한 소수만 되돌린다.</td>
+      </tr>
+      <tr>
+        <td><b>표준 확인 다이얼로그</b> <span class="pill wa">되돌릴 수 없을 때</span></td>
+        <td>복구 불가하지만 영향 범위가 한정적일 때 (결제수단·계좌·API 키 삭제)</td>
+        <td>제목에 <b>대상 이름</b>을 박고, 버튼 라벨을 "확인"이 아니라 <b>"계좌 삭제"</b>처럼 동사로. 기본 포커스는 안전한 쪽(취소).</td>
+      </tr>
+      <tr>
+        <td><b>타이핑 확인</b> <span class="pill da">최고 위험</span></td>
+        <td>연쇄 삭제·되돌릴 수 없는 대량 데이터 (가맹점 계정, 저장소 삭제)</td>
+        <td>대상 이름을 <b>정확히 입력</b>해야 실행 버튼이 열린다. 사용자가 "무엇을" 지우는지 한 번 더 읽게 만드는 게 목적.</td>
+      </tr>
+      <tr>
+        <td><b>카운트다운 비활성</b> <span class="pill mu">비권장</span></td>
+        <td>—</td>
+        <td>"3초 뒤 활성화"는 읽게 만들지 못하고 기다리게만 한다. 인지 부하 대신 <b>대기 시간</b>만 늘어 추천하지 않는다.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">💻 핵심 코드</h3>
+<pre><code>&lt;!-- 네이티브 dialog: showModal()이 배경 비활성화·포커스 트랩·Esc를 다 해준다 --&gt;
+&lt;dialog id="cfm" aria-labelledby="cfmTitle"&gt;
+  &lt;h3 id="cfmTitle"&gt;정산 계좌를 삭제할까요?&lt;/h3&gt;
+  &lt;p&gt;국민 ****3182 · 되돌릴 수 없습니다.&lt;/p&gt;
+  &lt;form method="dialog"&gt;
+    &lt;!-- 기본 포커스는 '안전한' 취소에. autofocus를 위험 버튼에 주지 않는다 --&gt;
+    &lt;button value="cancel" autofocus&gt;취소&lt;/button&gt;
+    &lt;button value="confirm" class="danger"&gt;계좌 삭제&lt;/button&gt;  &lt;!-- 라벨은 동사 --&gt;
+  &lt;/form&gt;
+&lt;/dialog&gt;
+
+const trigger = e.currentTarget;
+cfm.showModal();
+cfm.addEventListener('close', () =&gt; {
+  if (cfm.returnValue === 'confirm') remove();
+  trigger.focus();          // 닫히면 눌렀던 버튼으로 포커스 복귀
+}, { once:true });</code></pre>
+
+  <div class="support" id="sup-closedby">지원 여부 확인 중…</div>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><code>showModal()</code>은 <code>show()</code>와 다르다. 모달로 열어야 배경이 <code>inert</code>(포커스·클릭이 통하지 않는 상태)가 되고 <span class="kbd">Esc</span>가 먹는다.</li>
+    <li><code>aria-labelledby</code>로 다이얼로그 제목을 연결한다. 스크린리더가 열리는 순간 "무엇에 대한 창인지" 읽어준다.</li>
+    <li><b>autofocus는 파괴적 버튼에 주지 않는다.</b> <span class="kbd">Enter</span> 연타로 실수 삭제가 일어난다.</li>
+    <li>닫힌 뒤 <b>포커스를 트리거로 되돌린다.</b> 안 그러면 키보드 사용자가 문서 맨 위로 튕겨나간다.</li>
+    <li>배경 클릭으로 닫는 기능(light dismiss)은 <code>closedby="any"</code>로 선언할 수 있다. 단 <b>파괴적 확인창에는 쓰지 않는다</b> — 실수로 눌러 닫히면 안 되는 창이다.</li>
+    <li>토스트의 실행취소 버튼은 <b>키보드로 도달 가능</b>해야 하고, 자동 닫힘 시간(5초 이상) 안에 닿을 수 있어야 한다. 로그는 <code>aria-live="polite"</code>로 결과를 알린다.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용:</b> 결제수단 삭제·정기결제 해지처럼 돈이 걸린 액션은 "확인" 버튼 라벨을 반드시
+    <b>"정기결제 해지"</b>처럼 결과를 말하는 동사로 바꾼다. 반대로 필터·메모·즐겨찾기 삭제는 확인창을 없애고
+    실행취소 토스트로 돌리면 클릭 수가 줄고 체감 속도가 올라간다.
+  </div>
+</section>
+
+<!-- ==================== 2. 폼 에러 요약 ==================== -->
+<section class="card" id="errsum">
+  <h2>🔔 폼 제출 에러 요약 — 여러 곳이 틀렸을 때 어디로 데려갈까 <span class="tag">피드백·상태</span></h2>
+  <p class="lead">
+    필드 5개 중 3개가 틀렸는데 화면 아래쪽 필드 옆에만 빨간 글씨가 뜨면, 사용자는 <b>스크롤해서 찾아다녀야</b> 한다.
+    요즘 접근성 가이드가 권하는 방식은 <b>폼 맨 위 에러 요약 + 각 필드 인라인 에러</b>를 함께 두고,
+    제출 실패 시 <b>요약 상자로 포커스를 옮기는</b> 것이다.
+  </p>
+
+  <h3 class="sec-lead">일부러 틀리게 제출해 보세요 (빈 칸으로 그냥 제출해도 됩니다)</h3>
+  <div class="demo">
+    <div class="row" style="margin-bottom:14px">
+      <label class="switch">
+        <input type="checkbox" id="modeInline" />
+        <span>요약 없이 <b>인라인 에러만</b> 보기 (비교용)</span>
+      </label>
+    </div>
+
+    <form class="fform" id="payForm" novalidate>
+      <div class="summary" id="errSummary" tabindex="-1" role="alert" aria-labelledby="errSummaryTitle">
+        <h4 id="errSummaryTitle">입력을 확인해 주세요</h4>
+        <ol id="errList"></ol>
+      </div>
+      <div class="okbox" id="okBox" role="status">✅ 결제 정보가 저장되었습니다.</div>
+
+      <div class="field" id="f-holder">
+        <label for="holder">카드 소유자명
+          <span class="hint">카드에 인쇄된 영문 이름</span></label>
+        <input id="holder" name="holder" type="text" autocomplete="cc-name"
+               aria-describedby="e-holder" />
+        <span class="err" id="e-holder"></span>
+      </div>
+
+      <div class="field" id="f-card">
+        <label for="card">카드 번호
+          <span class="hint">숫자만, 15~16자리</span></label>
+        <input id="card" name="card" type="text" inputmode="numeric" autocomplete="cc-number"
+               aria-describedby="e-card" />
+        <span class="err" id="e-card"></span>
+      </div>
+
+      <div class="field" id="f-exp">
+        <label for="exp">유효기간
+          <span class="hint">MM/YY 형식 (예: 09/29)</span></label>
+        <input id="exp" name="exp" type="text" inputmode="numeric" autocomplete="cc-exp"
+               placeholder="MM/YY" aria-describedby="e-exp" style="max-width:140px" />
+        <span class="err" id="e-exp"></span>
+      </div>
+
+      <div class="field" id="f-email">
+        <label for="email">영수증 받을 이메일</label>
+        <input id="email" name="email" type="email" autocomplete="email" aria-describedby="e-email" />
+        <span class="err" id="e-email"></span>
+      </div>
+
+      <div class="field" id="f-agree">
+        <label class="checkrow" for="agree">
+          <input id="agree" name="agree" type="checkbox" aria-describedby="e-agree" />
+          <span>결제 대행 약관과 개인정보 제3자 제공에 동의합니다 (필수)</span>
+        </label>
+        <span class="err" id="e-agree"></span>
+      </div>
+
+      <div class="row">
+        <button class="btn" type="submit">결제 정보 저장</button>
+        <button class="btn ghost" type="button" id="resetForm">초기화</button>
+      </div>
+    </form>
+    <p class="cap">
+      제출하면 <b>요약 상자로 포커스가 이동</b>하고, 목록의 링크를 누르면 그 필드로 바로 점프합니다.
+      한 번 틀린 뒤부터는 <b>입력하는 즉시 다시 검증</b>되어 에러가 사라집니다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">검증 타이밍 — 이게 절반이다</h3>
+  <table class="cmp">
+    <thead><tr><th style="width:26%">시점</th><th>무엇을 할까</th></tr></thead>
+    <tbody>
+      <tr><td>타이핑 중 (첫 시도)</td>
+        <td><b>아무 말도 하지 않는다.</b> 이메일 두 글자 쳤는데 "형식이 올바르지 않습니다"가 뜨면 훈계로 느껴진다.</td></tr>
+      <tr><td>포커스가 빠질 때 (blur)</td>
+        <td>그 필드만 조용히 검증. 값이 비어 있으면 아직 안 건드린 것으로 보고 넘어가도 된다.</td></tr>
+      <tr><td>제출 시</td>
+        <td>전체 검증 → 요약 상자 표시 → <b>요약으로 포커스 이동</b>. 첫 에러 필드로 바로 보내는 방식도 있지만, 요약이 "몇 개가 왜 틀렸는지"를 먼저 알려줘 더 낫다.</td></tr>
+      <tr><td>제출 실패 후 재입력</td>
+        <td><b>즉시 재검증</b>으로 바꾼다. 이미 틀린 걸 아는 상태라 실시간 피드백이 도움이 된다. (이 전환을 흔히 "정정 모드"라 부른다)</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">💻 핵심 코드</h3>
+<pre><code>&lt;!-- 요약 상자: 포커스를 받을 수 있게 tabindex="-1", 낭독을 위해 role="alert" --&gt;
+&lt;div class="summary" id="errSummary" tabindex="-1" role="alert"&gt;
+  &lt;h4&gt;입력을 확인해 주세요&lt;/h4&gt;
+  &lt;ol&gt;&lt;li&gt;&lt;a href="#card"&gt;카드 번호는 숫자 15~16자리여야 합니다&lt;/a&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;/div&gt;
+
+function showErrors(errors){
+  errors.forEach(({id, msg}) =&gt; {
+    const input = document.getElementById(id);
+    input.setAttribute('aria-invalid', 'true');        // 스크린리더에 "오류 상태"
+    document.getElementById('e-' + id).textContent = msg; // aria-describedby로 연결된 칸
+  });
+  summary.classList.add('on');
+  summary.focus();          // ← 핵심. 제출 실패 위치를 사용자에게 "데려다준다"
+  submitted = true;         // 이후부터는 input 이벤트로 실시간 재검증
+}</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><code>aria-describedby</code>로 입력칸과 에러 문구를 <b>이어 붙인다.</b> 이러면 스크린리더가 필드에 들어갈 때 에러 문구까지 읽어준다.</li>
+    <li><code>aria-invalid="true"</code>는 색으로만 전하던 "틀림"을 보조기기에도 전한다 — 빨간 테두리만으로는 색각 이상 사용자에게 전달되지 않는다. 다만 <b>에러 문구를 이미 <code>aria-describedby</code>로 읽어주고 있다면 중복 낭독이라 오히려 장황하다</b>는 반론도 있다(GOV.UK Design System에서 논의 중인 쟁점). 둘 중 하나는 반드시 있어야 한다는 점이 핵심.</li>
+    <li>에러 메시지는 <b>무엇이 틀렸는지 + 어떻게 고치는지</b>를 함께. "올바르지 않습니다"(✗) → "숫자 15~16자리로 입력해 주세요"(✓)</li>
+    <li>요약 목록의 링크는 <code>href="#필드id"</code>로 두면 마우스·키보드 모두 그 필드로 점프한다.</li>
+    <li>에러 요약을 두 번째 제출에서 다시 띄울 때는 내용을 지웠다가 다시 채워야 <code>role="alert"</code>가 재낭독된다.</li>
+    <li><code>novalidate</code>로 브라우저 기본 말풍선을 끄고 직접 그리는 이유: 기본 말풍선은 <b>한 번에 하나</b>만 뜨고 스타일을 못 바꾼다.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용:</b> 결제 폼은 실패 한 번이 곧 이탈이다. 카드 승인 거절 같은 <b>서버 에러</b>도 같은 요약 상자에
+    합류시키면(예: "카드사에서 거절했습니다 — 다른 카드로 시도해 주세요") 사용자는 한 곳만 보면 된다.
+    체크아웃처럼 필드가 긴 화면일수록 요약의 이득이 크다.
+  </div>
+</section>
+
+<!-- ==================== 3. @starting-style ==================== -->
+<section class="card" id="starting">
+  <h2>🌀 @starting-style와 allow-discrete — 사라졌다 나타나는 것도 부드럽게 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    오랫동안 CSS의 골칫거리였던 문제: <code>display:none</code>이던 요소를 보이게 하면 <b>애니메이션이 안 걸린다.</b>
+    브라우저는 방금 나타난 요소의 "이전 상태"를 모르기 때문이다. 그래서 다들 JS로 클래스를 두 번 나눠 붙이거나
+    라이브러리를 썼다. 이걸 CSS 두 조각이 해결한다 — <code>@starting-style</code>(시작값을 알려주는 규칙)과
+    <code>transition-behavior: allow-discrete</code>(<code>display</code>처럼 중간값이 없는 속성도 전환 대상에 넣기).
+  </p>
+
+  <h3 class="sec-lead">스위치를 껐다 켜며 같은 요소를 열어 보세요</h3>
+  <div class="demo">
+    <div class="stdemo st-on" id="stDemo">
+      <div class="row">
+        <label class="switch">
+          <input type="checkbox" id="stSwitch" checked />
+          <span><b>@starting-style + allow-discrete</b> 적용</span>
+        </label>
+        <button class="btn sm" id="stToggle" type="button" aria-expanded="false" aria-controls="stPop">카드 열기</button>
+      </div>
+      <div class="stage">
+        <div class="pop" id="stPop">
+          <h4>결제 완료</h4>
+          <p>블루보틀 성수 · 4,800원<br />영수증을 이메일로 보냈습니다.</p>
+        </div>
+      </div>
+      <p class="stnote" id="stNote"><b>적용 상태</b> — 열 때도 닫을 때도 0.3초에 걸쳐 부드럽게 이어집니다.</p>
+    </div>
+
+    <p class="cap">
+      스위치를 끄면 <b>똑같은 <code>transition</code> 선언이 걸려 있는데도</b> 열림이 툭 튀고, 닫힘은 즉시 사라집니다.
+      진입에는 <code>@starting-style</code>이, 퇴장에는 <code>allow-discrete</code>가 각각 필요하기 때문입니다.
+    </p>
+
+    <h3 class="sec-lead">popover와 함께 — 백드롭까지 같이 페이드</h3>
+    <div class="row">
+      <button class="btn ghost sm" popovertarget="sheetPop">팝오버 시트 열기</button>
+    </div>
+    <div popover class="sheet" id="sheetPop">
+      <h4>다른 결제수단</h4>
+      <p>등록된 카드가 3장 있습니다. 백드롭(뒤 어두운 막)도 함께 서서히 나타나고 사라집니다.</p>
+      <button class="btn sm" popovertarget="sheetPop" popovertargetaction="hide">닫기</button>
+    </div>
+    <p class="cap">
+      <code>[popover]</code>는 열릴 때 브라우저가 최상위 레이어(top layer)로 올린다.
+      그래서 사라질 때 <code>overlay</code>라는 속성도 <code>allow-discrete</code>로 같이 전환해 줘야
+      "레이어에서 먼저 빠지고 나서 페이드"되는 어색함이 없다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">💻 핵심 코드 (복붙용)</h3>
+<pre><code>.pop {
+  display: none;                     /* 닫힌 상태 */
+  opacity: 0;
+  transform: translateY(10px) scale(.96);
+  transition:
+    opacity   .3s ease,
+    transform .3s cubic-bezier(.2,.8,.2,1),
+    display   .3s allow-discrete,    /* ← 퇴장: display:none을 끝까지 미룬다 */
+    overlay   .3s allow-discrete;    /* ← top layer 요소(popover/dialog)일 때 필요 */
+}
+.pop.open { display: block; opacity: 1; transform: none; }
+
+/* ← 진입: "나타나기 직전"의 값. 이게 없으면 첫 프레임에 이미 최종값이라 전환이 안 생긴다 */
+@starting-style {
+  .pop.open { opacity: 0; transform: translateY(10px) scale(.96); }
+}
+
+/* 한 줄 요약 축약형도 가능 */
+.pop { transition: all .3s allow-discrete; }</code></pre>
+
+  <div class="support" id="sup-starting">지원 여부 확인 중…</div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li>web.dev 발표 기준 <b>2024년 8월 6일 Baseline "newly available"</b>에 올랐다 — 크롬·엣지 117+, 사파리 17.5+, 파이어폭스 129+에서 동작한다. 2026년 현재는 실무 투입에 무리 없는 수준으로 본다.</li>
+    <li>같은 시기에 <code>&lt;dialog&gt;</code>·<code>popover</code>가 널리 퍼지면서 <b>"열고 닫는 UI"를 CSS만으로 완결</b>할 수 있게 됐다. 애니메이션 때문에 남겨두던 JS 상태 플래그를 지울 수 있다.</li>
+    <li>애니메이션 라이브러리(Framer Motion 등)를 <b>모달 하나 때문에</b> 번들에 넣던 관행을 줄인다. 리스트 전환에는 여전히 View Transitions가, 진입·퇴장에는 이쪽이 맞다.</li>
+    <li>미지원 브라우저에서는 <b>전환만 사라지고 열림·닫힘 자체는 정상</b>이다. 즉 점진적 향상(progressive enhancement)으로 안전하게 얹을 수 있다.</li>
+    <li>주의: <code>@starting-style</code>은 <b>이미 화면에 있던 요소의 일반 상태 변화</b>에는 필요 없다. "없다가 생기는" 순간에만 쓴다.</li>
+  </ul>
+
+  <div class="note">
+    <b>paysable 적용:</b> 결제 확인 시트·토스트·툴팁 같은 짧게 떴다 사라지는 UI 전부가 대상이다.
+    특히 <b>닫힘 애니메이션</b>은 지금까지 "닫기 클래스 붙이고 300ms 뒤에 언마운트" 같은 <code>setTimeout</code>으로
+    처리하던 부분인데, <code>allow-discrete</code>를 쓰면 그 타이머를 지울 수 있다.
+    React라면 조건부 렌더링(<code>{open &amp;&amp; ...}</code>) 대신 <b>항상 렌더하고 클래스만 토글</b>하는 구조로 바꿔야 효과가 난다.
+  </div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-09-08 (화) · 자체 제작 라이브 예시</div>
+</div>
+
+<!-- 다이얼로그들 -->
+<dialog class="cfm" id="dlgConfirm" aria-labelledby="dcTitle" aria-describedby="dcDesc">
+  <div class="body">
+    <h3 id="dcTitle">정산 계좌를 삭제할까요?</h3>
+    <p id="dcDesc"><b id="dcName">—</b> 를 삭제합니다.</p>
+    <div class="conseq">되돌릴 수 없습니다. 다음 정산일 전까지 새 계좌를 등록해야 지급이 진행됩니다.</div>
+  </div>
+  <footer>
+    <form method="dialog">
+      <button class="btn ghost" value="cancel" autofocus type="submit">취소</button>
+    </form>
+    <form method="dialog">
+      <button class="btn danger" value="confirm" type="submit">계좌 삭제</button>
+    </form>
+  </footer>
+</dialog>
+
+<dialog class="cfm" id="dlgType" aria-labelledby="dtTitle" aria-describedby="dtDesc">
+  <div class="body">
+    <h3 id="dtTitle">가맹점 계정을 영구 삭제합니다</h3>
+    <p id="dtDesc">거래 내역·정산 이력·연동된 API 키가 <b>모두</b> 사라지며 복구할 수 없습니다.</p>
+    <div class="conseq">진행 중인 정산이 있다면 먼저 완료해야 합니다.</div>
+    <div class="typefield">
+      <label for="typeIn">확인을 위해 <code id="dtTarget">블루보틀 성수</code> 를 그대로 입력하세요</label>
+      <input id="typeIn" type="text" autocomplete="off" autocapitalize="off" spellcheck="false"
+             aria-describedby="typeHelp" />
+      <span class="err" id="typeHelp" style="display:block;color:var(--muted);font-weight:400;margin-top:5px">
+        이름이 정확히 일치해야 삭제 버튼이 활성화됩니다.</span>
+    </div>
+  </div>
+  <footer>
+    <form method="dialog">
+      <button class="btn ghost" value="cancel" autofocus type="submit">취소</button>
+    </form>
+    <form method="dialog">
+      <button class="btn danger" value="confirm" id="typeGo" type="submit" disabled>영구 삭제</button>
+    </form>
+  </footer>
+</dialog>
+
+<div class="toaster" id="toaster" aria-live="polite" aria-atomic="false"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 테마 토글 ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  /* ================== 1. 파괴적 액션 확인 ================== */
+  var cfmLog  = document.getElementById("cfmLog");
+  var toaster = document.getElementById("toaster");
+  var dlgC    = document.getElementById("dlgConfirm");
+  var dlgT    = document.getElementById("dlgType");
+  var typeIn  = document.getElementById("typeIn");
+  var typeGo  = document.getElementById("typeGo");
+  var dtTarget= document.getElementById("dtTarget");
+  var dcName  = document.getElementById("dcName");
+
+  function say(msg){ cfmLog.innerHTML = msg; }
+  function itemOf(btn){ return btn.closest(".resitem"); }
+  function markGone(item, gone){
+    item.setAttribute("data-gone", gone ? "1" : "0");
+    var b = item.querySelector("button");
+    b.disabled = !!gone;
+    b.textContent = gone ? "삭제됨" : (b.dataset.act === "type" ? "영구 삭제" : "삭제");
+  }
+
+  /* 되돌리기 토스트 */
+  function undoToast(label, onUndo){
+    var t = document.createElement("div");
+    t.className = "toast";
+    var span = document.createElement("span");
+    span.textContent = label + " 을(를) 삭제했습니다.";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "실행취소";
+    t.appendChild(span); t.appendChild(btn);
+    toaster.appendChild(t);
+    var timer = setTimeout(close, 5000);
+    function close(){ clearTimeout(timer); if(t.parentNode) t.parentNode.removeChild(t); }
+    btn.addEventListener("click", function(){ close(); onUndo(); });
+    return close;
+  }
+
+  document.getElementById("reslist").addEventListener("click", function(e){
+    var btn = e.target.closest("button[data-act]");
+    if(!btn) return;
+    var act = btn.dataset.act, name = btn.dataset.name, item = itemOf(btn);
+
+    /* (A) 확인 없이 실행 + 되돌리기 */
+    if(act === "undoable"){
+      markGone(item, true);
+      say("<b>" + name + "</b> 삭제 — 확인창 없이 바로 실행했고, 5초 안에 되돌릴 수 있습니다.");
+      undoToast(name, function(){
+        markGone(item, false);
+        say("<b>" + name + "</b> 삭제를 되돌렸습니다. 확인창을 안 띄우고도 실수를 복구했습니다.");
+        btn.focus();
+      });
+      return;
+    }
+
+    /* (B) 표준 확인 다이얼로그 */
+    if(act === "confirm"){
+      dcName.textContent = name;
+      dlgC.returnValue = "";
+      dlgC.showModal();
+      dlgC.addEventListener("close", function handler(){
+        dlgC.removeEventListener("close", handler);
+        if(dlgC.returnValue === "confirm"){
+          markGone(item, true);
+          say("<b>" + name + "</b> 삭제 완료. 되돌릴 수 없으므로 확인 단계를 뒀습니다.");
+        }else{
+          say("취소했습니다. 기본 포커스가 '취소'에 있어 <span class='kbd'>Enter</span> 연타로도 지워지지 않습니다.");
+        }
+        btn.focus();  /* 포커스 복귀 */
+      });
+      return;
+    }
+
+    /* (C) 타이핑 확인 */
+    if(act === "type"){
+      dtTarget.textContent = name;
+      typeIn.value = "";
+      typeGo.disabled = true;
+      dlgT.returnValue = "";
+      dlgT.showModal();
+      dlgT.addEventListener("close", function handler(){
+        dlgT.removeEventListener("close", handler);
+        if(dlgT.returnValue === "confirm" && typeIn.value.trim() === name){
+          markGone(item, true);
+          say("<b>" + name + "</b> 영구 삭제 완료. 이름을 직접 입력하게 해 '무엇을' 지우는지 읽게 만들었습니다.");
+        }else{
+          say("취소했습니다. 이름이 정확히 일치하기 전까지 삭제 버튼은 계속 비활성입니다.");
+        }
+        btn.focus();
+      });
+    }
+  });
+
+  typeIn.addEventListener("input", function(){
+    typeGo.disabled = typeIn.value.trim() !== dtTarget.textContent.trim();
+  });
+
+  /* dialog 미지원 아주 오래된 브라우저용 최소 폴백 */
+  if(typeof HTMLDialogElement === "undefined"){
+    say("이 브라우저는 &lt;dialog&gt;를 지원하지 않습니다. 실제 서비스라면 여기서 라이브러리 폴백을 씁니다.");
+  }
+
+  /* closedby 지원 감지 */
+  var supC = document.getElementById("sup-closedby");
+  var hasClosedBy = ("closedBy" in document.createElement("dialog"));
+  supC.className = "support " + (hasClosedBy ? "yes" : "no");
+  supC.innerHTML = hasClosedBy
+    ? "✅ 이 브라우저는 <code>&lt;dialog closedby&gt;</code>(배경 클릭으로 닫기를 HTML로 선언)를 지원합니다. 다만 2026년 중반 기준 사파리는 아직 미지원으로 알려져 있어(Interop 2026 항목) <b>점진적 향상</b>으로 쓰고 JS 폴백을 남기는 편이 안전합니다."
+    : "⚠️ 이 브라우저는 <code>&lt;dialog closedby&gt;</code>를 아직 지원하지 않습니다. 배경 클릭 닫기는 JS로 처리하세요. (2026년 중반 기준 크롬·엣지 134+, 파이어폭스 141+ 지원, 사파리 미지원으로 알려짐)";
+
+  /* ================== 2. 폼 에러 요약 ================== */
+  var form    = document.getElementById("payForm");
+  var summary = document.getElementById("errSummary");
+  var errList = document.getElementById("errList");
+  var okBox   = document.getElementById("okBox");
+  var demo2   = form.closest(".demo");
+  var submitted = false;
+
+  document.getElementById("modeInline").addEventListener("change", function(){
+    demo2.classList.toggle("mode-inline", this.checked);
+  });
+
+  var RULES = [
+    { id:"holder", label:"카드 소유자명", test:function(v){ return v.trim().length >= 2; },
+      msg:"카드에 인쇄된 이름을 2자 이상 입력해 주세요." },
+    { id:"card", label:"카드 번호", test:function(v){ return /^\d{15,16}$/.test(v.replace(/[\s-]/g,"")); },
+      msg:"숫자 15~16자리로 입력해 주세요. (공백·하이픈은 넣어도 됩니다)" },
+    { id:"exp", label:"유효기간", test:function(v){
+        var m = v.trim().match(/^(\d{2})\s*\/\s*(\d{2})$/);
+        if(!m) return false;
+        var mm = +m[1]; return mm >= 1 && mm <= 12;
+      }, msg:"MM/YY 형식으로 입력해 주세요. 월은 01~12입니다. (예: 09/29)" },
+    { id:"email", label:"영수증 이메일", test:function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+      msg:"받는 이메일 주소를 정확히 입력해 주세요. (예: name@company.com)" },
+    { id:"agree", label:"약관 동의", test:null, check:true,
+      msg:"결제를 진행하려면 약관에 동의해야 합니다." }
+  ];
+
+  function valueOf(r){
+    var el = document.getElementById(r.id);
+    return r.check ? el.checked : el.value;
+  }
+  function isValid(r){
+    return r.check ? valueOf(r) === true : r.test(valueOf(r));
+  }
+  function paintField(r, bad){
+    var wrap = document.getElementById("f-" + r.id);
+    var el   = document.getElementById(r.id);
+    var err  = document.getElementById("e-" + r.id);
+    wrap.classList.toggle("bad", bad);
+    el.setAttribute("aria-invalid", bad ? "true" : "false");
+    err.textContent = bad ? r.msg : "";
+  }
+
+  function validateAll(){
+    var bad = [];
+    RULES.forEach(function(r){
+      var ok = isValid(r);
+      paintField(r, !ok);
+      if(!ok) bad.push(r);
+    });
+    return bad;
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    okBox.classList.remove("on");
+    var bad = validateAll();
+    submitted = true;
+
+    if(bad.length === 0){
+      summary.classList.remove("on");
+      okBox.classList.add("on");
+      okBox.focus && okBox.focus();
+      return;
+    }
+
+    /* role="alert"가 다시 낭독되도록 목록을 비웠다 채운다 */
+    errList.innerHTML = "";
+    bad.forEach(function(r){
+      var li = document.createElement("li");
+      var a  = document.createElement("a");
+      a.href = "#" + r.id;
+      a.textContent = r.label + " — " + r.msg;
+      a.addEventListener("click", function(ev){
+        ev.preventDefault();
+        var el = document.getElementById(r.id);
+        el.focus();
+        var wrap = document.getElementById("f-" + r.id);
+        wrap.classList.remove("flash");
+        void wrap.offsetWidth;
+        wrap.classList.add("flash");
+      });
+      li.appendChild(a);
+      errList.appendChild(li);
+    });
+    summary.classList.add("on");
+
+    /* 인라인 전용 모드에서는 첫 에러 필드로 직접 보낸다 */
+    if(demo2.classList.contains("mode-inline")){
+      document.getElementById(bad[0].id).focus();
+    }else{
+      summary.focus();
+    }
+  });
+
+  /* blur: 값이 있을 때만 조용히 검증 / 제출 후: 입력 즉시 재검증 */
+  RULES.forEach(function(r){
+    var el = document.getElementById(r.id);
+    var evt = r.check ? "change" : "input";
+    el.addEventListener(evt, function(){
+      if(!submitted) return;
+      paintField(r, !isValid(r));
+    });
+    el.addEventListener("blur", function(){
+      if(submitted) return;
+      if(!r.check && String(valueOf(r)).trim() === "") return;
+      paintField(r, !isValid(r));
+    });
+  });
+
+  document.getElementById("resetForm").addEventListener("click", function(){
+    form.reset();
+    submitted = false;
+    summary.classList.remove("on");
+    okBox.classList.remove("on");
+    errList.innerHTML = "";
+    RULES.forEach(function(r){ paintField(r, false); });
+    document.getElementById("holder").focus();
+  });
+
+  /* ================== 3. @starting-style ================== */
+  var stDemo   = document.getElementById("stDemo");
+  var stSwitch = document.getElementById("stSwitch");
+  var stToggle = document.getElementById("stToggle");
+  var stPop    = document.getElementById("stPop");
+  var stNote   = document.getElementById("stNote");
+
+  function setMode(on){
+    stDemo.classList.toggle("st-on", on);
+    stDemo.classList.toggle("st-off", !on);
+    stNote.innerHTML = on
+      ? "<b>적용 상태</b> — 열 때도 닫을 때도 0.3초에 걸쳐 부드럽게 이어집니다."
+      : "<b>미적용 상태</b> — 같은 transition이 걸려 있어도 열림은 툭 튀고, 닫힘은 즉시 사라집니다.";
+  }
+  setMode(true);
+  stSwitch.addEventListener("change", function(){
+    if(stPop.classList.contains("open")) close();
+    setMode(this.checked);
+  });
+
+  function open(){
+    stPop.classList.add("open");
+    stToggle.setAttribute("aria-expanded", "true");
+    stToggle.textContent = "카드 닫기";
+  }
+  function close(){
+    stPop.classList.remove("open");
+    stToggle.setAttribute("aria-expanded", "false");
+    stToggle.textContent = "카드 열기";
+  }
+  stToggle.addEventListener("click", function(){
+    stPop.classList.contains("open") ? close() : open();
+  });
+
+  /* @starting-style / allow-discrete 지원 감지 */
+  var supS = document.getElementById("sup-starting");
+  var hasDiscrete = !!(window.CSS && CSS.supports && CSS.supports("transition-behavior", "allow-discrete"));
+  var hasStarting = !!(window.CSS && CSS.supports && CSS.supports("selector(:has(*))")) && (function(){
+    try { return CSS.supports("(animation-timeline: auto)") || true; } catch(e){ return true; }
+  })();
+  supS.className = "support " + (hasDiscrete ? "yes" : "no");
+  supS.innerHTML = hasDiscrete
+    ? "✅ 이 브라우저는 <code>transition-behavior: allow-discrete</code>를 지원합니다. web.dev 발표 기준 <code>@starting-style</code>과 함께 <b>2024-08-06 Baseline newly available</b>(크롬·엣지 117+, 사파리 17.5+, 파이어폭스 129+)."
+    : "⚠️ 이 브라우저는 <code>transition-behavior: allow-discrete</code>를 지원하지 않습니다. 전환만 빠지고 열고 닫기 자체는 정상 동작하므로 점진적 향상으로 안전합니다.";
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if(qs.get("theme") === "dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if(!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if(sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
