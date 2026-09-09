@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-09 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .btn.block{width:100%;display:block}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  fieldset.plain{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0}
+  fieldset.plain legend{font-size:.8rem;color:var(--muted);padding:0 6px}
+
+  /* ================= 1. 3D Secure 인증 ================= */
+  .checkout{max-width:420px;margin:0 auto;background:var(--surface);border:1px solid var(--border);
+    border-radius:14px;padding:18px 18px 20px}
+  .checkout[aria-busy="true"]{position:relative}
+  .checkout[aria-busy="true"]::after{content:"";position:absolute;inset:0;border-radius:14px;
+    background:rgba(255,255,255,.35);pointer-events:none}
+  [data-theme="dark"] .checkout[aria-busy="true"]::after{background:rgba(0,0,0,.3)}
+  .co-line{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;padding:5px 0}
+  .co-line.total{border-top:1px solid var(--border);margin-top:8px;padding-top:10px;font-weight:700;font-size:1rem}
+  .co-card{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:10px;padding:10px 12px;margin:12px 0;font-size:.86rem}
+  .co-card .brand{font-weight:700;font-size:.74rem;background:var(--brand);color:var(--brand-ink);
+    border-radius:5px;padding:2px 7px;letter-spacing:.03em}
+  .scen{display:grid;gap:6px;margin-bottom:14px}
+  .scen label{display:flex;gap:9px;align-items:flex-start;font-size:.84rem;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:8px 11px;cursor:pointer}
+  .scen label:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .scen label:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .scen input{accent-color:var(--brand);margin-top:3px}
+  .scen small{display:block;color:var(--muted);font-size:.76rem}
+  .co-status{margin-top:12px;border-radius:10px;padding:10px 12px;font-size:.85rem;display:flex;gap:9px;align-items:center}
+  .co-status.idle{background:var(--surface-2);color:var(--muted)}
+  .co-status.busy{background:var(--brand-soft);color:var(--brand);font-weight:600}
+  .co-status.ok{background:var(--ok-soft);color:var(--ok);font-weight:600}
+  .co-status.bad{background:var(--danger-soft);color:var(--danger);font-weight:600}
+  .spin{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;
+    animation:sp .8s linear infinite;flex:0 0 auto}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion: reduce){ .spin{animation-duration:2.4s} }
+  .idem{font-size:.74rem;color:var(--muted);margin-top:8px;word-break:break-all}
+
+  dialog.tds{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);
+    padding:0;max-width:400px;width:calc(100% - 28px);box-shadow:0 22px 60px rgba(0,0,0,.3)}
+  dialog.tds::backdrop{background:rgba(10,13,18,.55)}
+  [data-theme="dark"] dialog.tds::backdrop{background:rgba(0,0,0,.7)}
+  .tds-head{display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:14px 16px;border-bottom:1px solid var(--border)}
+  .tds-head .bank{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.92rem}
+  .tds-head .dot{width:22px;height:22px;border-radius:6px;background:#0a6b4f;color:#fff;display:grid;
+    place-items:center;font-size:.7rem;font-weight:800}
+  .tds-head .x{border:1px solid var(--border);background:var(--surface);color:var(--muted);border-radius:8px;
+    width:30px;height:30px;cursor:pointer;font-size:1rem;line-height:1}
+  .tds-head .x:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .tds-body{padding:16px}
+  .tds-body p{margin:0 0 12px;font-size:.86rem;color:var(--muted)}
+  .otpbox{display:flex;gap:7px;justify-content:center;margin:14px 0}
+  .otpbox input{width:40px;height:48px;text-align:center;font-size:1.1rem;font-family:inherit;
+    border:1px solid var(--border);border-radius:10px;background:var(--surface-2);color:var(--text)}
+  .otpbox input:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .tds-timer{text-align:center;font-size:.8rem;color:var(--muted)}
+  .tds-timer.low{color:var(--danger);font-weight:700}
+  .tds-foot{display:flex;gap:9px;padding:0 16px 16px}
+  .tds-foot .btn{flex:1}
+  .redir{position:relative;border:1px solid var(--border);border-radius:12px;background:#0a6b4f;color:#fff;
+    padding:26px 18px;text-align:center;margin-top:12px}
+  .redir h4{margin:0 0 6px;color:#fff}
+  .redir p{margin:0 0 14px;font-size:.83rem;opacity:.85}
+
+  /* ================= 2. 형식 있는 식별자 입력 ================= */
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:.84rem;font-weight:600;margin-bottom:5px}
+  .field .hint{font-size:.77rem;color:var(--muted);margin-top:5px}
+  .field input[type="text"], .field select{width:100%;font:inherit;font-size:.95rem;padding:10px 12px;
+    border-radius:10px;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .field input:focus-visible, .field select:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .field input[data-state="bad"]{border-color:var(--danger);background:var(--danger-soft)}
+  .field input[data-state="good"]{border-color:var(--ok)}
+  .msg{margin-top:6px;font-size:.8rem;min-height:1.2em}
+  .msg.bad{color:var(--danger);font-weight:600}
+  .msg.good{color:var(--ok);font-weight:600}
+  .msg.mu{color:var(--muted)}
+  .counter{float:right;font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .saved{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--ok-soft);
+    border:1px solid var(--ok);border-radius:10px;padding:10px 12px;font-size:.86rem;color:var(--ok);font-weight:600}
+  .bankrow{display:grid;grid-template-columns:130px 1fr;gap:10px}
+  @media (max-width:520px){ .bankrow{grid-template-columns:1fr} }
+  .holder{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  .holder .name{font-size:.86rem;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:8px;padding:6px 10px;min-width:120px}
+
+  /* ================= 3. @scope ================= */
+  .scopewrap{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .pane{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .pane > h4{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+  .box{border:1px solid var(--border);border-radius:10px;padding:12px;font-size:.87rem}
+  .box + .box{margin-top:10px}
+  .box .lbl{font-size:.72rem;font-weight:700;color:var(--muted);display:block;margin-bottom:6px}
+  .box a{font-weight:700}
+
+  /* (A) 예전 방식: 자손 선택자 — 소스 순서/명시도로 승부가 갈린다 */
+  .legacy .t-light{background:#fff;color:#14181f;border-color:#dfe3ea}
+  .legacy .t-dark{background:#161b24;color:#e7ebf2;border-color:#2b3341}
+  .legacy .t-light a{color:#2563eb}
+  .legacy .t-dark a{color:#fbbf24}
+
+  /* (B) @scope: 가장 가까운 스코프 루트가 이긴다 (근접성) */
+  @scope (.s-light){
+    :scope{background:#fff;color:#14181f;border-color:#dfe3ea}
+    a{color:#2563eb}
+  }
+  @scope (.s-dark){
+    :scope{background:#161b24;color:#e7ebf2;border-color:#2b3341}
+    a{color:#fbbf24}
+  }
+
+  /* (C) 도넛 스코프: .article 안이지만 .widget 아래로는 내려가지 않는다 */
+  @scope (.article) to (.widget){
+    p{color:var(--brand);font-weight:700}
+    p::before{content:"◆ ";}
+  }
+  .article{border:1px solid var(--border);border-radius:10px;padding:12px}
+  .article .inner{border:1px dashed var(--border);border-radius:8px;padding:10px;margin-top:10px}
+  .article .inner::before{content:attr(data-label);display:block;font-size:.72rem;color:var(--muted);margin-bottom:4px}
+  .fallback-note{display:none}
+  html.no-scope .fallback-note{display:block}
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-09 (수) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#tds">💳 3D Secure 인증 흐름</a>
+  <a href="#idnum">⌨️ 형식 있는 번호 입력</a>
+  <a href="#scope">🌀 CSS @scope</a>
+</nav>
+
+<!-- ============================================================ 1 ============ -->
+<section class="card" id="tds">
+  <h2>💳 3D Secure 인증 흐름 <span class="tag">결제·체크아웃 UX</span></h2>
+  <p class="lead">
+    카드 결제 중간에 은행이 "본인 맞아요?"를 묻는 단계를 <b>3D Secure(3DS)</b>라고 합니다.
+    화면을 통째로 은행 사이트로 넘길지, 우리 페이지 위에 창을 띄울지, 아예 안 묻고 넘어갈지에 따라
+    이탈률과 실패 복구 경험이 완전히 달라집니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>프릭션리스(frictionless)</b> — 카드사가 위험이 낮다고 판단해 사용자에게 아무것도 묻지 않고 통과시키는 경우.</li>
+    <li><b>챌린지(challenge)</b> — 카드사가 추가 확인(문자 인증번호, 앱 승인 등)을 요구하는 경우.</li>
+    <li><b>멱등키(idempotency key)</b> — 같은 요청이 두 번 가도 결제는 한 번만 되도록, 요청마다 붙이는 고유 문자열.</li>
+    <li><b><code>aria-busy</code></b> — "이 영역은 지금 처리 중"이라고 보조기기에 알리는 HTML 속성.</li>
+  </ul>
+
+  <div class="demo">
+    <fieldset class="plain scen" style="margin-bottom:14px">
+      <legend>카드사 응답 시나리오를 골라보세요</legend>
+      <label><input type="radio" name="scen" value="frictionless" checked>
+        <span><b>프릭션리스</b><small>인증 없이 바로 승인 — 그래도 "확인됨"을 잠깐 보여줘야 한다</small></span></label>
+      <label><input type="radio" name="scen" value="challenge">
+        <span><b>챌린지 (모달)</b><small>우리 페이지 위 모달에서 인증 — 장바구니가 뒤에 그대로 보인다</small></span></label>
+      <label><input type="radio" name="scen" value="redirect">
+        <span><b>챌린지 (전체 리다이렉트)</b><small>은행 페이지로 이탈 → 돌아왔을 때 상태를 되살려야 한다</small></span></label>
+      <label><input type="radio" name="scen" value="fail">
+        <span><b>인증 실패</b><small>사용자를 장바구니로 되돌리지 말고, 그 자리에서 다시 시도하게</small></span></label>
+    </fieldset>
+
+    <div class="checkout" id="coBox" aria-busy="false">
+      <div class="co-line"><span>정기구독 · Pro 플랜</span><span class="num">₩119,000</span></div>
+      <div class="co-line"><span>부가세</span><span class="num">₩11,900</span></div>
+      <div class="co-line total"><span>결제 금액</span><span class="num">₩130,900</span></div>
+      <div class="co-card">
+        <span class="brand">VISA</span>
+        <span>•••• •••• •••• 4242</span>
+        <span style="margin-left:auto;color:var(--muted)">12/29</span>
+      </div>
+      <button class="btn block" id="payBtn" type="button">₩130,900 결제하기</button>
+      <div class="co-status idle" id="coStatus" role="status" aria-live="polite">결제 전</div>
+      <div class="idem" id="idemBox" hidden></div>
+    </div>
+
+    <div id="redirStage" hidden>
+      <div class="redir">
+        <h4>🏦 우리은행 안심클릭</h4>
+        <p>지금 브라우저가 은행 페이지로 넘어간 상태입니다. 우리 앱의 자바스크립트 메모리는 여기서 전부 날아갑니다.</p>
+        <button class="btn ghost" id="backBtn" type="button" style="background:#fff;color:#0a6b4f;border-color:#fff">인증 마치고 돌아오기</button>
+      </div>
+      <p class="cap">그래서 리다이렉트 방식은 결제 세션 id와 멱등키를 <code>sessionStorage</code>(또는 서버 세션)에 미리 저장해 두고,
+        돌아온 뒤 "결제 확인 중" 화면에서 서버에 결과를 물어보는 폴링 단계가 반드시 필요합니다.</p>
+    </div>
+
+    <p class="cap">💡 모달 방식은 뒤에 주문 요약이 계속 보여 "내가 뭘 사는 중이었는지"를 잃지 않습니다.
+      리다이렉트는 그 맥락이 통째로 사라지므로, 돌아왔을 때 같은 금액·같은 카드가 그대로 보이도록 복구해 줘야 합니다.</p>
+
+    <div class="log" id="tdsLog" aria-live="polite"><b>이벤트 로그</b> — 결제하기를 눌러보세요.</div>
+  </div>
+
+  <h3 class="sec-lead">🧩 변형 셋을 뭐로 고르나</h3>
+  <table class="cmp">
+    <thead><tr><th>방식</th><th>언제</th><th>주의점</th></tr></thead>
+    <tbody>
+      <tr><td><b>인라인 모달/iframe</b></td><td>SPA·자체 체크아웃 화면. 기본값으로 권장</td>
+        <td>결과를 <code>postMessage</code>로 받는 동안 부모에 <code>aria-busy="true"</code>. 딤 처리가 은행 창의 닫기 버튼을 가리면 안 됨</td></tr>
+      <tr><td><b>전체 리다이렉트</b></td><td>모달을 못 띄우는 환경, 일부 은행이 iframe을 거부할 때 폴백</td>
+        <td>복귀 URL에 결제 세션 id. 새로고침·뒤로가기로 이중 결제되지 않게 멱등키 고정</td></tr>
+      <tr><td><b>프릭션리스</b></td><td>카드사가 추가 확인을 요구하지 않은 경우</td>
+        <td>너무 빨라서 사용자가 인증이 있었는지도 모름 → 짧은 "확인됨" 상태를 의도적으로 보여줌</td></tr>
+    </tbody>
+  </table>
+  <p class="cap">업계 문서들은 대체로 모달/iframe을 기본값으로, 리다이렉트를 폴백으로 권합니다(Stripe·Ixopay 등).
+    "리다이렉트가 모바일에서 이탈이 몇 배 더 크다"는 식의 구체적 수치는 출처마다 달라 여기서는 단정하지 않습니다(추정).</p>
+
+  <h3 class="sec-lead">💻 코드 (복붙용) — 중복 결제를 막는 제출 잠금</h3>
+<pre><code>// 결제 시작 시 멱등키를 "한 번만" 만들어 세션에 저장한다.
+// 리다이렉트로 페이지가 통째로 새로 뜨거나, 사용자가 새로고침해도 같은 키가 재사용된다.
+function getIdempotencyKey(orderId) {
+  const k = `pay:${orderId}:idem`;
+  let v = sessionStorage.getItem(k);
+  if (!v) { v = crypto.randomUUID(); sessionStorage.setItem(k, v); }
+  return v;
+}
+
+async function pay(orderId) {
+  const box = document.getElementById('coBox');
+  box.setAttribute('aria-busy', 'true');       // 보조기기: 지금 처리 중
+  payBtn.disabled = true;                       // 더블클릭 방지 (UI 레벨)
+
+  const res = await fetch('/api/payments', {
+    method: 'POST',
+    headers: { 'Idempotency-Key': getIdempotencyKey(orderId) }, // 서버 레벨 방어
+    body: JSON.stringify({ orderId }),
+  }).then(r =&gt; r.json());
+
+  if (res.status === 'requires_action') {
+    openChallengeModal(res.challengeUrl);       // 모달 우선
+  } else {
+    finish(res);
+  }
+}
+
+// 리다이렉트에서 돌아왔을 때: 결제 세션이 남아 있으면 곧장 확인 화면으로
+window.addEventListener('DOMContentLoaded', () =&gt; {
+  const pending = sessionStorage.getItem('pay:pendingId');
+  if (pending) pollPaymentResult(pending);      // "결제 확인 중…" 상태부터 시작
+});</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li>인증 대기 중에는 결제 영역에 <code>aria-busy="true"</code>. 이게 없으면 스크린리더 사용자에겐 "화면이 그냥 멈춘 것"으로 들립니다.</li>
+    <li>상태 메시지는 <code>role="status" aria-live="polite"</code> 영역에. 모달을 <code>&lt;dialog&gt;.showModal()</code>로 열면 포커스 트랩과 <span class="kbd">Esc</span>는 브라우저가 처리합니다.</li>
+    <li>모달을 닫으면 포커스는 결제 버튼으로 되돌립니다. "인증이 취소됐어요, 다시 시도할까요?"까지 같이 안내.</li>
+    <li>실패했을 때 장바구니로 되돌리지 않습니다. 같은 화면에서 재시도 또는 다른 결제수단 선택을 제안합니다.</li>
+    <li>스피너 회전은 <code>prefers-reduced-motion</code>(모션 줄이기 설정)에서 느리게 — 완전히 없애면 진행 중인지 알 수 없으므로 감속만.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>결제 상태를 <code>idle → submitting → requires_action → verifying → succeeded | failed</code>로 <b>명시적 상태 머신</b>으로 두면, "버튼이 두 번 눌렸다" 류 버그가 구조적으로 사라집니다.</li>
+    <li>멱등키는 <b>주문 단위</b>로 고정하고 재시도해도 유지. UI 잠금은 보조 수단일 뿐, 진짜 방어선은 서버 헤더입니다.</li>
+    <li>인증 창을 띄우는 순간부터 서버 결과를 받을 때까지 새로고침·뒤로가기가 언제든 일어난다고 가정하고, 복구 경로를 먼저 그린 뒤 UI를 붙이는 편이 안전합니다.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 2 ============ -->
+<section class="card" id="idnum">
+  <h2>⌨️ 형식 있는 번호 입력 <span class="tag">입력·폼</span></h2>
+  <p class="lead">
+    사업자등록번호, 계좌번호처럼 <b>자릿수와 구분자가 정해진 값</b>은 일반 텍스트 입력과 다르게 다뤄야 합니다.
+    붙여넣기로 들어오는 온갖 형태를 받아주고, 서버에 보내기 전에 로컬에서 걸러낼 수 있는 건 걸러내는 게 핵심입니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>체크섬(checksum)</b> — 번호 자체에 들어 있는 검산용 숫자. 오타를 서버에 물어보기 전에 잡아냅니다.</li>
+    <li><b>표시값 / 전송값</b> — 화면엔 <code>220-81-62517</code>, 서버엔 <code>2208162517</code>. 두 값을 분리해 둡니다.</li>
+    <li><b><code>:user-invalid</code></b> — 사용자가 실제로 그 칸을 만지고 나간 뒤에만 빨갛게 칠하는 CSS 선택자.</li>
+  </ul>
+
+  <div class="demo">
+    <div class="grid2">
+      <div>
+        <div class="field">
+          <label for="brn">사업자등록번호 <span class="counter" id="brnCount">0 / 10</span></label>
+          <input id="brn" type="text" inputmode="numeric" autocomplete="off"
+                 placeholder="220-81-62517" maxlength="12"
+                 aria-describedby="brnMsg brnHint" />
+          <div class="msg mu" id="brnMsg" aria-live="polite">숫자만 입력하면 하이픈은 자동으로 붙습니다.</div>
+          <div class="hint" id="brnHint">붙여넣기 테스트: <code>사업자번호 124.81.00998 입니다</code> 를 그대로 붙여넣어 보세요.</div>
+        </div>
+        <p class="cap">✔ 붙여넣은 문자열에서 숫자만 뽑아내고, 10자리가 차면 체크섬으로 즉시 판정합니다.
+          중간을 수정해도 커서가 끝으로 튀지 않게 하이픈 개수만큼 커서 위치를 보정합니다.</p>
+      </div>
+
+      <div>
+        <div class="field">
+          <label for="acct">정산 계좌</label>
+          <div class="bankrow">
+            <select id="acct-bank" aria-label="은행 선택">
+              <option value="kb" data-len="12" data-groups="6,2,4">국민은행</option>
+              <option value="shinhan" data-len="12" data-groups="3,3,6">신한은행</option>
+              <option value="woori" data-len="13" data-groups="4,3,6">우리은행</option>
+              <option value="toss" data-len="12" data-groups="4,2,6">토스뱅크</option>
+            </select>
+            <input id="acct" type="text" inputmode="numeric" autocomplete="off"
+                   placeholder="숫자만 입력" aria-describedby="acctMsg" />
+          </div>
+          <div class="msg mu" id="acctMsg" aria-live="polite">은행을 바꾸면 자릿수 규칙이 바뀝니다.</div>
+          <div class="holder">
+            <button class="btn sm ghost" id="holderBtn" type="button" disabled>예금주 확인</button>
+            <span class="name" id="holderName">—</span>
+          </div>
+        </div>
+        <p class="cap">✔ 자릿수 규칙이 은행마다 다르므로 "검증"보다 <b>예금주 확인</b>이 진짜 안전장치입니다.
+          (데모의 은행별 자릿수는 설명용 예시값이며 실제 규칙과 다를 수 있습니다.)</p>
+      </div>
+    </div>
+
+    <div style="margin-top:18px">
+      <h4>등록 후엔 마스킹된 요약으로</h4>
+      <div class="saved" id="savedRow" hidden>
+        <span id="savedText">✅ 국민은행 ••••••1234 · 김와이제이</span>
+        <button class="btn sm ghost" id="editBtn" type="button">변경</button>
+      </div>
+      <div class="row" id="saveRow">
+        <button class="btn sm" id="saveBtn" type="button" disabled>계좌 등록</button>
+        <span class="cap" style="margin:0">두 칸이 모두 유효해야 활성화됩니다.</span>
+      </div>
+      <p class="cap">✔ 한 번 등록한 뒤에는 전체 번호를 다시 노출하지 않습니다.
+        수정은 "변경"을 눌러 처음부터 다시 입력 — 부분 수정은 실수로 다른 계좌를 만들기 쉽습니다.</p>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">💻 코드 (복붙용) — 커서가 안 튀는 자동 하이픈</h3>
+<pre><code>const digitsOnly = (s) =&gt; s.replace(/\D/g, '');
+
+function formatBRN(raw) {              // 2208162517 -&gt; 220-81-62517
+  const d = digitsOnly(raw).slice(0, 10);
+  if (d.length &lt;= 3) return d;
+  if (d.length &lt;= 5) return `${d.slice(0,3)}-${d.slice(3)}`;
+  return `${d.slice(0,3)}-${d.slice(3,5)}-${d.slice(5)}`;
+}
+
+input.addEventListener('input', (e) =&gt; {
+  const el = e.target;
+  const before = el.selectionStart;
+  // 커서 앞쪽에 "숫자가 몇 개 있었는지"를 기준점으로 삼는다
+  const digitsBefore = digitsOnly(el.value.slice(0, before)).length;
+
+  el.value = formatBRN(el.value);
+
+  // 포맷 후, 같은 개수의 숫자를 지난 지점으로 커서를 되돌린다
+  let pos = 0, seen = 0;
+  while (pos &lt; el.value.length &amp;&amp; seen &lt; digitsBefore) {
+    if (/\d/.test(el.value[pos])) seen++;
+    pos++;
+  }
+  el.setSelectionRange(pos, pos);
+});
+
+// 체크섬 (널리 알려진 공개 알고리즘 · 최종 확인은 서버/국세청 조회로)
+function isValidBRN(v) {
+  const d = digitsOnly(v);
+  if (d.length !== 10) return false;
+  const w = [1, 3, 7, 1, 3, 7, 1, 3, 5];
+  let sum = 0;
+  for (let i = 0; i &lt; 9; i++) sum += Number(d[i]) * w[i];
+  sum += Math.floor((Number(d[8]) * 5) / 10);
+  return (10 - (sum % 10)) % 10 === Number(d[9]);
+}</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><code>inputmode="numeric"</code>으로 모바일 숫자 키패드를 띄우되, <code>type="number"</code>는 쓰지 않습니다 — 앞자리 0이 사라지고 스크롤로 값이 바뀌는 사고가 납니다.</li>
+    <li>에러는 입력하는 도중이 아니라 <b>칸을 벗어난 뒤(blur)</b> 또는 자릿수가 다 찬 뒤에 보여줍니다. 타이핑 중 빨간불은 스트레스만 줍니다.</li>
+    <li>에러 문구는 <code>aria-describedby</code>로 입력칸과 연결하고 <code>aria-live="polite"</code>로 읽어줍니다. 색만으로 알리지 않습니다.</li>
+    <li>붙여넣기는 <code>input</code> 이벤트 하나로 처리하면 <code>paste</code>·자동완성·IME까지 한 번에 커버됩니다.</li>
+    <li>숫자는 <code>font-variant-numeric: tabular-nums</code>로 자릿수를 고정해 세로로 흔들리지 않게 합니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>가맹점 온보딩의 사업자번호·정산계좌는 <b>클라이언트 체크섬 → 서버 실명확인</b> 2단으로 두면 서버 호출 횟수가 눈에 띄게 줄어듭니다.</li>
+    <li>폼 상태는 표시값이 아니라 <b>전송값(숫자만)</b>을 단일 출처로 두고, 화면 표시는 파생값으로 계산합니다. 저장 직전에 하이픈을 벗기는 코드가 여기저기 흩어지는 걸 막습니다.</li>
+    <li>등록 완료 후 마스킹 요약 카드는 "이미 등록됨"을 한눈에 알려 중복 등록 문의를 줄여줍니다.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 3 ============ -->
+<section class="card" id="scope">
+  <h2>🌀 CSS <code>@scope</code> — 스타일이 새지 않게, 이름 규칙 없이 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    <code>@scope</code>는 CSS 규칙이 먹히는 <b>구역</b>을 직접 지정하는 문법입니다.
+    BEM 같은 클래스 이름 규칙이나 CSS-in-JS 빌드 단계 없이도 "이 카드 안에서만"을 표현할 수 있고,
+    무엇보다 <b>가장 가까운 조상이 이긴다</b>는 새로운 우선순위 규칙(근접성)을 가져옵니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>스코프 루트</b> — <code>@scope (.card)</code>의 <code>.card</code>. 규칙이 시작되는 지점.</li>
+    <li><b>스코프 리밋 / 도넛 스코프</b> — <code>@scope (.article) to (.widget)</code>처럼 아래쪽 경계까지 정하는 것. 가운데가 뚫린 도넛 모양이라 이렇게 부릅니다.</li>
+    <li><b>근접성(proximity)</b> — 명시도가 같을 때, DOM에서 더 가까운 스코프 루트의 규칙이 이깁니다. 기존 CSS엔 없던 판정 기준입니다.</li>
+  </ul>
+
+  <div class="demo">
+    <p class="cap" style="margin-top:0"><b>① 근접성</b> — 라이트 테마 안에 다크 테마 카드가 중첩된 상황입니다. 두 방식의 결과를 비교해 보세요.</p>
+    <div class="scopewrap">
+      <div class="pane legacy">
+        <h4>❌ 자손 선택자 <span class="pill da">겉돈다</span></h4>
+        <div class="box t-light">
+          <span class="lbl">.t-light (바깥)</span>
+          바깥은 라이트. <a href="#scope">링크 색</a>
+          <div class="box t-dark">
+            <span class="lbl">.t-dark (안쪽)</span>
+            안쪽은 다크여야 하는데 <a href="#scope">링크 색</a>이 바깥 규칙과 싸웁니다.
+            <div class="box t-light">
+              <span class="lbl">.t-light (다시 안쪽)</span>
+              세 겹이 되면 <a href="#scope">어느 규칙이 이길지</a>를 소스 순서로 추적해야 합니다.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pane">
+        <h4>✅ <code>@scope</code> <span class="pill ok">가까운 쪽이 이긴다</span></h4>
+        <div class="box s-light">
+          <span class="lbl">.s-light (바깥)</span>
+          바깥은 라이트. <a href="#scope">링크 색</a>
+          <div class="box s-dark">
+            <span class="lbl">.s-dark (안쪽)</span>
+            안쪽은 다크. <a href="#scope">링크 색</a>도 자동으로 따라옵니다.
+            <div class="box s-light">
+              <span class="lbl">.s-light (다시 안쪽)</span>
+              몇 겹이 되든 <a href="#scope">가장 가까운 조상</a>의 규칙이 적용됩니다.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="cap"><b>② 도넛 스코프</b> — <code>@scope (.article) to (.widget)</code>.
+      아래 버튼으로 안쪽 상자에 <code>.widget</code> 클래스를 붙였다 떼 보세요. 붙이는 순간 그 안의 문단만 규칙에서 빠집니다.</p>
+    <div class="article" id="artBox">
+      <p>본문 문단입니다. <code>.article</code> 스코프의 규칙(파란 굵은 글씨 + ◆)이 적용됩니다.</p>
+      <div class="inner" id="innerBox" data-label="여기가 삽입된 위젯 영역">
+        <p>위젯 안의 문단입니다. <code>.widget</code>이 붙으면 바깥 본문 스타일이 여기까지 내려오지 않습니다.</p>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn sm" id="widgetBtn" type="button" aria-pressed="false">.widget 클래스 붙이기</button>
+      <span class="cap" style="margin:0" id="widgetState">현재: 클래스 없음 — 본문 스타일이 위젯 안까지 내려옴</span>
+    </div>
+
+    <div class="support" id="sup-scope">지원 여부 확인 중…</div>
+    <div class="note fallback-note">
+      이 브라우저는 <code>@scope</code>를 아직 지원하지 않아 위 두 데모가 스타일 없이 보입니다.
+      실제 서비스에서는 기존 자손 선택자를 먼저 두고 <code>@supports at-rule(@scope)</code> 안에서만 덮어쓰는 식으로
+      점진적 향상(progressive enhancement)을 적용합니다.
+    </div>
+  </div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li>파이어폭스 146이 지원을 추가하면서 <b>주요 브라우저 전부</b>에서 동작하게 됐고, Baseline "newly available"로 분류됐습니다(크롬·엣지 118+, 사파리 17.4+, 파이어폭스 146+).</li>
+    <li>서드파티 위젯, 리치 텍스트 에디터 미리보기, 사용자 입력 HTML처럼 <b>"우리 CSS가 들어가면 안 되는 구역"</b>이 있을 때 도넛 스코프가 정확히 그 문제를 풉니다.</li>
+    <li>다크 모드 섹션이 라이트 페이지 안에 섞이는 배너·카드에서 근접성이 특히 유용합니다.</li>
+    <li>주의: <code>@scope</code>는 명시도를 올리지 않습니다. 격리 강도는 Shadow DOM보다 약하고, 상속되는 속성(글자색 등)은 여전히 넘어옵니다. "새는 걸 줄이는 도구"지 방화벽이 아닙니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* 1) 이 구역 안에서만 */
+@scope (.pay-card) {
+  :scope { border: 1px solid var(--border); border-radius: 12px; }
+  .title { font-weight: 700; }        /* 바깥 .title 은 건드리지 않음 */
+}
+
+/* 2) 도넛: .article 안이되 .widget 아래로는 내려가지 않게 */
+@scope (.article) to (.widget) {
+  p { line-height: 1.8; color: var(--text); }
+}
+
+/* 3) 근접성: 중첩돼도 가장 가까운 조상이 이긴다 */
+@scope (.theme-light) { a { color: #2563eb; } }
+@scope (.theme-dark)  { a { color: #fbbf24; } }
+
+/* 4) 점진적 향상 — 미지원 브라우저에 기본 스타일을 남겨둔다 */
+.article p { color: inherit; }
+@supports at-rule(@scope) {
+  @scope (.article) to (.widget) { p { color: var(--brand); } }
+}</code></pre>
+  <p class="cap"><code>@supports at-rule(...)</code> 자체의 브라우저 지원 범위는 문서마다 서술이 갈립니다(추정).
+    확실히 하려면 JS에서 <code>'CSSScopeRule' in window</code>로 감지해 클래스를 붙이는 방식이 안전합니다 — 이 페이지가 그렇게 하고 있습니다.</p>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>PG사 위젯이나 외부 iframe 폴백 영역처럼 <b>우리가 통제하지 않는 마크업</b> 주변에 도넛 스코프를 쳐 두면, 전역 리셋 CSS가 그 안을 망가뜨리는 사고를 막을 수 있습니다.</li>
+    <li>영수증·명세서처럼 라이트 고정이어야 하는 블록을 다크 페이지 안에 넣을 때 근접성이 <code>!important</code> 없이 문제를 해결해 줍니다.</li>
+    <li>다만 팀 전체 도입은 신중히 — 디버깅 시 "왜 이 규칙이 안 먹지"의 원인이 하나 더 늘어납니다. 격리가 꼭 필요한 경계에만 쓰는 편이 낫습니다.</li>
+  </ul>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-09-09 (수) · self-contained 라이브 예시</div>
+</div>
+
+<!-- 3DS 챌린지 모달 -->
+<dialog class="tds" id="tdsDialog" aria-labelledby="tdsTitle">
+  <div class="tds-head">
+    <div class="bank"><span class="dot">🏦</span><span id="tdsTitle">우리은행 안심클릭</span></div>
+    <button class="x" type="button" id="tdsClose" aria-label="인증 창 닫기">✕</button>
+  </div>
+  <div class="tds-body">
+    <p>휴대폰으로 보낸 인증번호 6자리를 입력해 주세요. 데모라 아무 숫자나 6자리면 성공합니다.</p>
+    <div class="otpbox" id="otpBox">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 1번째 자리">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 2번째 자리">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 3번째 자리">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 4번째 자리">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 5번째 자리">
+      <input type="text" inputmode="numeric" maxlength="1" aria-label="인증번호 6번째 자리">
+    </div>
+    <div class="tds-timer" id="tdsTimer" aria-live="off">남은 시간 <span class="num">3:00</span></div>
+  </div>
+  <div class="tds-foot">
+    <button class="btn ghost" type="button" id="tdsCancel">취소</button>
+    <button class="btn" type="button" id="tdsOk">인증 확인</button>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- 테마 토글 ---------------- */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  /* ================================================================
+     1. 3D Secure 인증 흐름
+     ================================================================ */
+  var coBox     = document.getElementById("coBox");
+  var payBtn    = document.getElementById("payBtn");
+  var coStatus  = document.getElementById("coStatus");
+  var idemBox   = document.getElementById("idemBox");
+  var tdsLog    = document.getElementById("tdsLog");
+  var dlg       = document.getElementById("tdsDialog");
+  var tdsOk     = document.getElementById("tdsOk");
+  var tdsCancel = document.getElementById("tdsCancel");
+  var tdsClose  = document.getElementById("tdsClose");
+  var otpBox    = document.getElementById("otpBox");
+  var tdsTimer  = document.getElementById("tdsTimer");
+  var redirStage= document.getElementById("redirStage");
+  var backBtn   = document.getElementById("backBtn");
+
+  var logLines = [];
+  var timerId = null, left = 180;
+  var idemKey = null;
+
+  function log(msg){
+    logLines.unshift(msg);
+    logLines = logLines.slice(0, 6);
+    tdsLog.innerHTML = "<b>이벤트 로그</b><br>" + logLines.join("<br>");
+  }
+  function setStatus(kind, text, busy){
+    coStatus.className = "co-status " + kind;
+    coStatus.innerHTML = (busy ? '<span class="spin" aria-hidden="true"></span>' : "") + text;
+    coBox.setAttribute("aria-busy", busy ? "true" : "false");
+  }
+  function scenario(){
+    var el = document.querySelector('input[name="scen"]:checked');
+    return el ? el.value : "frictionless";
+  }
+  function newIdem(){
+    if (idemKey) return idemKey;                      // 재시도해도 같은 키
+    idemKey = (window.crypto && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : "idem-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+    return idemKey;
+  }
+  function lock(on){
+    payBtn.disabled = on;
+    document.querySelectorAll('input[name="scen"]').forEach(function(r){ r.disabled = on; });
+  }
+  function reset(){
+    lock(false);
+    payBtn.textContent = "₩130,900 결제하기";
+    redirStage.hidden = true;
+    coBox.hidden = false;
+  }
+
+  payBtn.addEventListener("click", function(){
+    var s = scenario();
+    lock(true);
+    idemBox.hidden = false;
+    idemBox.textContent = "Idempotency-Key: " + newIdem() + "  (재시도해도 같은 값 → 서버가 이중 결제를 거른다)";
+    setStatus("busy", "결제 요청을 보내는 중…", true);
+    log("① POST /api/payments · 버튼 잠금 · aria-busy=true");
+
+    setTimeout(function(){
+      if (s === "frictionless"){
+        setStatus("busy", "카드사 확인 중…", true);
+        log("② 카드사가 추가 인증을 요구하지 않음 (frictionless)");
+        setTimeout(function(){
+          setStatus("ok", "✅ 본인 확인됨 — 결제 완료", false);
+          log("③ 인증이 있었다는 사실을 짧게라도 보여준다");
+          payBtn.textContent = "다시 해보기";
+          lock(false);
+        }, 900);
+      } else if (s === "redirect"){
+        try { sessionStorage.setItem("demo:pay:pending", idemKey); } catch(e){}
+        log("② requires_action → 은행 페이지로 전체 리다이렉트 (앱 상태 소멸)");
+        coBox.hidden = true;
+        redirStage.hidden = false;
+      } else {
+        log("② requires_action → 우리 페이지 위에 모달로 챌린지 표시");
+        setStatus("busy", "은행 인증 창에서 확인해 주세요…", true);
+        openChallenge();
+      }
+    }, 800);
+  });
+
+  backBtn.addEventListener("click", function(){
+    redirStage.hidden = true;
+    coBox.hidden = false;
+    var pending = null;
+    try { pending = sessionStorage.getItem("demo:pay:pending"); } catch(e){}
+    setStatus("busy", "결제 결과를 확인하는 중…", true);
+    log("③ 복귀 · sessionStorage에 남은 결제건(" + (pending ? pending.slice(0,8) : "없음") + ") 발견 → 폴링 시작");
+    setTimeout(function(){
+      setStatus("ok", "✅ 인증 완료 — 결제 성공", false);
+      log("④ 서버 결과 succeeded · 새로고침해도 멱등키가 같아 중복 결제 없음");
+      try { sessionStorage.removeItem("demo:pay:pending"); } catch(e){}
+      payBtn.textContent = "다시 해보기";
+      lock(false);
+    }, 1400);
+  });
+
+  function openChallenge(){
+    otpBox.querySelectorAll("input").forEach(function(i){ i.value = ""; });
+    left = 180;
+    paintTimer();
+    if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open","");
+    setTimeout(function(){ var f = otpBox.querySelector("input"); if (f) f.focus(); }, 40);
+    timerId = setInterval(function(){
+      left--; paintTimer();
+      if (left <= 0){ clearInterval(timerId); closeChallenge("timeout"); }
+    }, 1000);
+  }
+  function paintTimer(){
+    var m = Math.floor(left / 60), s = String(left % 60).padStart(2, "0");
+    tdsTimer.innerHTML = "남은 시간 <span class='num'>" + m + ":" + s + "</span>";
+    tdsTimer.className = "tds-timer" + (left <= 30 ? " low" : "");
+  }
+  function closeChallenge(reason){
+    if (timerId) { clearInterval(timerId); timerId = null; }
+    if (dlg.open) dlg.close();
+    payBtn.focus();                                  // 포커스 복귀
+    if (reason === "cancel" || reason === "timeout"){
+      setStatus("bad", reason === "timeout"
+        ? "⏱ 인증 시간이 지났습니다. 다시 시도해 주세요."
+        : "인증이 취소됐습니다. 다시 시도하거나 다른 수단을 고르세요.", false);
+      log("③ 취소/만료 · 장바구니로 되돌리지 않고 같은 화면에서 재시도 유도");
+      payBtn.textContent = "다시 인증하고 결제하기";
+      lock(false);
+    }
+  }
+
+  otpBox.addEventListener("input", function(e){
+    var inputs = Array.prototype.slice.call(otpBox.querySelectorAll("input"));
+    var i = inputs.indexOf(e.target);
+    e.target.value = e.target.value.replace(/\D/g, "").slice(0, 1);
+    if (e.target.value && i < inputs.length - 1) inputs[i + 1].focus();
+  });
+  otpBox.addEventListener("keydown", function(e){
+    if (e.key !== "Backspace") return;
+    var inputs = Array.prototype.slice.call(otpBox.querySelectorAll("input"));
+    var i = inputs.indexOf(e.target);
+    if (!e.target.value && i > 0) inputs[i - 1].focus();
+  });
+
+  tdsOk.addEventListener("click", function(){
+    var code = Array.prototype.map.call(otpBox.querySelectorAll("input"), function(i){ return i.value; }).join("");
+    if (code.length < 6){
+      log("· 6자리가 아직 다 안 찼습니다");
+      var empty = Array.prototype.filter.call(otpBox.querySelectorAll("input"), function(i){ return !i.value; })[0];
+      if (empty) empty.focus();
+      return;
+    }
+    if (timerId) { clearInterval(timerId); timerId = null; }
+    dlg.close();
+    var failMode = scenario() === "fail";
+    setStatus("busy", "은행 인증 결과를 확인하는 중…", true);
+    log("③ postMessage로 결과 수신 → 서버에 최종 확인 요청");
+    setTimeout(function(){
+      if (failMode){
+        setStatus("bad", "❌ 인증에 실패했습니다 (코드 3D_AUTH_FAILED)", false);
+        log("④ 실패 · 카드 변경/재시도 버튼을 그 자리에 남긴다");
+        payBtn.textContent = "다시 시도하기";
+      } else {
+        setStatus("ok", "✅ 인증 완료 — 결제 성공", false);
+        log("④ succeeded · 영수증 화면으로 이동");
+        payBtn.textContent = "다시 해보기";
+      }
+      payBtn.focus();
+      lock(false);
+    }, 1100);
+  });
+
+  tdsCancel.addEventListener("click", function(){ closeChallenge("cancel"); });
+  tdsClose.addEventListener("click", function(){ closeChallenge("cancel"); });
+  dlg.addEventListener("cancel", function(e){ e.preventDefault(); closeChallenge("cancel"); });
+
+  document.querySelectorAll('input[name="scen"]').forEach(function(r){
+    r.addEventListener("change", function(){
+      idemKey = null; idemBox.hidden = true;
+      setStatus("idle", "결제 전", false);
+      logLines = []; tdsLog.innerHTML = "<b>이벤트 로그</b> — 결제하기를 눌러보세요.";
+      reset();
+    });
+  });
+
+  /* ================================================================
+     2. 형식 있는 번호 입력
+     ================================================================ */
+  var brn = document.getElementById("brn");
+  var brnMsg = document.getElementById("brnMsg");
+  var brnCount = document.getElementById("brnCount");
+  var acct = document.getElementById("acct");
+  var acctBank = document.getElementById("acct-bank");
+  var acctMsg = document.getElementById("acctMsg");
+  var holderBtn = document.getElementById("holderBtn");
+  var holderName = document.getElementById("holderName");
+  var saveBtn = document.getElementById("saveBtn");
+  var saveRow = document.getElementById("saveRow");
+  var savedRow = document.getElementById("savedRow");
+  var savedText = document.getElementById("savedText");
+  var editBtn = document.getElementById("editBtn");
+
+  var digits = function(s){ return (s || "").replace(/\D/g, ""); };
+
+  function formatBRN(raw){
+    var d = digits(raw).slice(0, 10);
+    if (d.length <= 3) return d;
+    if (d.length <= 5) return d.slice(0,3) + "-" + d.slice(3);
+    return d.slice(0,3) + "-" + d.slice(3,5) + "-" + d.slice(5);
+  }
+  function isValidBRN(v){
+    var d = digits(v);
+    if (d.length !== 10) return false;
+    var w = [1,3,7,1,3,7,1,3,5], sum = 0, i;
+    for (i = 0; i < 9; i++) sum += Number(d[i]) * w[i];
+    sum += Math.floor((Number(d[8]) * 5) / 10);
+    return ((10 - (sum % 10)) % 10) === Number(d[9]);
+  }
+  /* 커서 보정: "커서 앞 숫자 개수"를 기준점으로 삼는다 */
+  function reformat(el, formatter){
+    var before = el.selectionStart;
+    var digitsBefore = digits(el.value.slice(0, before)).length;
+    el.value = formatter(el.value);
+    var pos = 0, seen = 0;
+    while (pos < el.value.length && seen < digitsBefore){
+      if (/\d/.test(el.value[pos])) seen++;
+      pos++;
+    }
+    try { el.setSelectionRange(pos, pos); } catch(e){}
+  }
+
+  function paintBRN(showError){
+    var d = digits(brn.value);
+    brnCount.textContent = d.length + " / 10";
+    if (d.length === 0){
+      brn.removeAttribute("data-state");
+      brnMsg.className = "msg mu";
+      brnMsg.textContent = "숫자만 입력하면 하이픈은 자동으로 붙습니다.";
+    } else if (d.length < 10){
+      brn.removeAttribute("data-state");
+      brnMsg.className = "msg mu";
+      brnMsg.textContent = showError ? "10자리를 모두 입력해 주세요. (" + d.length + "자리)" : "입력 중…";
+    } else if (isValidBRN(d)){
+      brn.setAttribute("data-state", "good");
+      brnMsg.className = "msg good";
+      brnMsg.textContent = "✅ 형식·체크섬 통과 — 실제 등록 여부는 서버에서 한 번 더 확인합니다.";
+    } else {
+      brn.setAttribute("data-state", "bad");
+      brnMsg.className = "msg bad";
+      brnMsg.textContent = "❌ 검산이 맞지 않습니다. 숫자를 다시 확인해 주세요.";
+    }
+    syncSave();
+  }
+  brn.addEventListener("input", function(){ reformat(brn, formatBRN); paintBRN(false); });
+  brn.addEventListener("blur", function(){ paintBRN(true); });
+
+  function acctRule(){
+    var o = acctBank.selectedOptions[0];
+    return {
+      len: Number(o.dataset.len),
+      groups: o.dataset.groups.split(",").map(Number),
+      name: o.textContent
+    };
+  }
+  function formatAcct(raw){
+    var r = acctRule();
+    var d = digits(raw).slice(0, r.len);
+    var out = [], p = 0, i;
+    for (i = 0; i < r.groups.length && p < d.length; i++){
+      out.push(d.slice(p, p + r.groups[i]));
+      p += r.groups[i];
+    }
+    if (p < d.length) out.push(d.slice(p));
+    return out.filter(Boolean).join("-");
+  }
+  function paintAcct(showError){
+    var r = acctRule();
+    var d = digits(acct.value);
+    acct.placeholder = "숫자 " + r.len + "자리";
+    if (d.length === 0){
+      acct.removeAttribute("data-state");
+      acctMsg.className = "msg mu";
+      acctMsg.textContent = r.name + "은 " + r.len + "자리입니다. 은행을 바꾸면 규칙이 바뀝니다.";
+      holderBtn.disabled = true; holderName.textContent = "—";
+    } else if (d.length !== r.len){
+      acct.removeAttribute("data-state");
+      acctMsg.className = showError ? "msg bad" : "msg mu";
+      acctMsg.textContent = (showError ? "❌ " : "") + r.name + " 계좌는 " + r.len + "자리 (현재 " + d.length + "자리)";
+      holderBtn.disabled = true; holderName.textContent = "—";
+    } else {
+      acct.setAttribute("data-state", "good");
+      acctMsg.className = "msg good";
+      acctMsg.textContent = "✅ 자릿수 통과 — 이제 예금주를 확인하세요. 진짜 검증은 이쪽입니다.";
+      holderBtn.disabled = false;
+    }
+    syncSave();
+  }
+  acct.addEventListener("input", function(){ reformat(acct, formatAcct); paintAcct(false); });
+  acct.addEventListener("blur", function(){ paintAcct(true); });
+  acctBank.addEventListener("change", function(){
+    var r = acctRule();
+    acct.value = formatAcct(acct.value.slice(0, r.len * 2));
+    holderName.textContent = "—";
+    paintAcct(false);
+  });
+
+  holderBtn.addEventListener("click", function(){
+    holderBtn.disabled = true;
+    holderName.textContent = "조회 중…";
+    setTimeout(function(){
+      holderName.textContent = "김와이제이";
+      holderBtn.disabled = false;
+      syncSave();
+    }, 800);
+  });
+
+  function syncSave(){
+    var ok = isValidBRN(brn.value)
+      && digits(acct.value).length === acctRule().len
+      && holderName.textContent === "김와이제이";
+    saveBtn.disabled = !ok;
+  }
+  saveBtn.addEventListener("click", function(){
+    var d = digits(acct.value);
+    savedText.textContent = "✅ " + acctRule().name + " " + "•".repeat(Math.max(0, d.length - 4)) + d.slice(-4) + " · 김와이제이";
+    savedRow.hidden = false;
+    saveRow.hidden = true;
+    editBtn.focus();
+  });
+  editBtn.addEventListener("click", function(){
+    savedRow.hidden = true;
+    saveRow.hidden = false;
+    acct.value = ""; holderName.textContent = "—";
+    paintAcct(false);
+    acct.focus();
+  });
+
+  paintBRN(false);
+  paintAcct(false);
+
+  /* ================================================================
+     3. @scope
+     ================================================================ */
+  var supScope = document.getElementById("sup-scope");
+  var hasScope = (typeof window.CSSScopeRule !== "undefined");
+  if (!hasScope) document.documentElement.classList.add("no-scope");
+  supScope.className = "support " + (hasScope ? "yes" : "no");
+  supScope.innerHTML = hasScope
+    ? "✅ 이 브라우저는 <code>@scope</code>를 지원합니다. 파이어폭스 146이 합류하면서 <b>Baseline newly available</b>이 됐습니다(크롬·엣지 118+, 사파리 17.4+, 파이어폭스 146+)."
+    : "⚠️ 이 브라우저는 <code>@scope</code>를 지원하지 않습니다. 위 데모의 색은 적용되지 않지만 페이지 동작 자체엔 영향이 없습니다(점진적 향상).";
+
+  var widgetBtn = document.getElementById("widgetBtn");
+  var innerBox = document.getElementById("innerBox");
+  var widgetState = document.getElementById("widgetState");
+  widgetBtn.addEventListener("click", function(){
+    var on = innerBox.classList.toggle("widget");
+    widgetBtn.setAttribute("aria-pressed", String(on));
+    widgetBtn.textContent = on ? ".widget 클래스 떼기" : ".widget 클래스 붙이기";
+    widgetState.textContent = on
+      ? "현재: .widget 있음 — 도넛의 구멍이 생겨 안쪽 문단이 규칙에서 빠짐"
+      : "현재: 클래스 없음 — 본문 스타일이 위젯 안까지 내려옴";
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
