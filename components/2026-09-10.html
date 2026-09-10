@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-10 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  fieldset.plain{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0}
+  fieldset.plain legend{font-size:.8rem;color:var(--muted);padding:0 6px}
+
+  /* ================= 1. 사이드바 내비게이션 ================= */
+  .app{display:flex;gap:0;border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    background:var(--surface);min-height:392px}
+  .side{flex:0 0 232px;border-right:1px solid var(--border);background:var(--surface-2);
+    display:flex;flex-direction:column;transition:flex-basis .22s ease}
+  .app.rail .side{flex-basis:60px}
+  .side-top{display:flex;align-items:center;gap:9px;padding:12px 12px;border-bottom:1px solid var(--border);
+    min-height:52px}
+  .side-logo{width:26px;height:26px;flex:0 0 auto;border-radius:8px;background:var(--brand);color:var(--brand-ink);
+    display:grid;place-items:center;font-weight:800;font-size:.78rem}
+  .side-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden}
+  .app.rail .side-name{display:none}
+  .railBtn{margin-left:auto;border:1px solid var(--border);background:var(--surface);color:var(--muted);
+    border-radius:8px;width:28px;height:28px;cursor:pointer;font-size:.9rem;line-height:1;flex:0 0 auto}
+  .railBtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .app.rail .railBtn{margin-left:0}
+  .side nav{padding:10px 8px;overflow-y:auto;flex:1}
+  .navgroup{margin-bottom:4px}
+  .grouphead{display:flex;align-items:center;gap:8px;width:100%;border:0;background:transparent;color:var(--muted);
+    font-family:inherit;font-size:.74rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;
+    padding:7px 9px;border-radius:8px;cursor:pointer}
+  .grouphead:hover{background:var(--surface)}
+  .grouphead:focus-visible{outline:3px solid var(--ring);outline-offset:-1px}
+  .grouphead .chev{margin-left:auto;transition:transform .18s ease;font-size:.7rem}
+  .grouphead[aria-expanded="false"] .chev{transform:rotate(-90deg)}
+  .app.rail .grouphead{justify-content:center;padding:7px 0}
+  .app.rail .grouphead .lbl,.app.rail .grouphead .chev{display:none}
+  .navlist{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+  .grouphead[aria-expanded="false"] + .navlist{display:none}
+  .navlist a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);
+    font-size:.87rem;padding:8px 10px;border-radius:9px;position:relative;white-space:nowrap}
+  .navlist a .ico{width:18px;text-align:center;flex:0 0 auto;font-size:.95rem}
+  .navlist a:hover{background:var(--surface)}
+  .navlist a:focus-visible{outline:3px solid var(--ring);outline-offset:-1px}
+  .navlist a[aria-current="page"]{background:var(--brand-soft);color:var(--brand);font-weight:700}
+  .navlist a[aria-current="page"]::before{content:"";position:absolute;left:-8px;top:6px;bottom:6px;width:3px;
+    border-radius:0 3px 3px 0;background:var(--brand)}
+  .navlist a .badge{margin-left:auto;font-size:.7rem;font-weight:700;background:var(--danger);color:#fff;
+    border-radius:999px;padding:1px 7px;min-width:20px;text-align:center}
+  .app.rail .navlist a{justify-content:center;padding:9px 0}
+  .app.rail .navlist a .lbl{display:none}
+  .app.rail .navlist a .badge{position:absolute;top:2px;right:6px;margin:0;font-size:.6rem;padding:0 4px;min-width:15px}
+  /* 레일 모드 툴팁: hover + focus 둘 다에서 뜬다 */
+  .app.rail .navlist a::after{content:attr(data-label);position:absolute;left:calc(100% + 8px);top:50%;
+    transform:translateY(-50%);background:var(--text);color:var(--bg);font-size:.76rem;font-weight:600;
+    padding:4px 9px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;z-index:5}
+  .app.rail .navlist a:hover::after,.app.rail .navlist a:focus-visible::after{opacity:1}
+  .side-foot{border-top:1px solid var(--border);padding:10px 12px;font-size:.78rem;color:var(--muted);white-space:nowrap;overflow:hidden}
+  .app.rail .side-foot{text-align:center;padding:10px 0}
+  .app.rail .side-foot .lbl{display:none}
+  .main{flex:1;padding:18px 20px;min-width:0}
+  .crumbs{font-size:.78rem;color:var(--muted);margin-bottom:6px}
+  .main h4{font-size:1.05rem;margin:0 0 8px}
+  .main p{margin:0;font-size:.87rem;color:var(--muted)}
+  .skiplink{position:absolute;left:-9999px;background:var(--brand);color:var(--brand-ink);padding:8px 14px;
+    border-radius:9px;font-size:.85rem;font-weight:700;z-index:20;text-decoration:none}
+  .skiplink:focus{position:static;display:inline-block;margin-bottom:10px}
+  @media (max-width:560px){ .app{min-height:0} .side{flex-basis:60px} .side-name,.grouphead .lbl,.navlist a .lbl{display:none} }
+
+  /* ================= 2. 클릭 가능한 카드 ================= */
+  .cardgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(252px,1fr))}
+  .mcard{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:15px 15px 13px;
+    display:flex;flex-direction:column;gap:8px;transition:border-color .15s,transform .15s,box-shadow .15s}
+  .mcard:hover{border-color:var(--brand);box-shadow:0 5px 18px rgba(79,70,229,.12)}
+  .mcard .mtop{display:flex;align-items:center;gap:9px}
+  .mcard .avatar{width:34px;height:34px;border-radius:10px;background:var(--brand-soft);color:var(--brand);
+    display:grid;place-items:center;font-weight:800;font-size:.82rem;flex:0 0 auto}
+  .mcard h5{margin:0;font-size:.95rem;font-weight:700}
+  .mcard .sub{font-size:.76rem;color:var(--muted)}
+  .mcard .amt{font-size:1.12rem;font-weight:800;letter-spacing:-.01em}
+  .mcard .meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:.75rem;color:var(--muted)}
+  .mcard .acts{display:flex;gap:7px;margin-top:4px}
+  .mcard.bad{cursor:pointer}
+  /* ✅ 권장: 제목만 링크 + ::after 오버레이 */
+  .mcard.good{position:relative}
+  .mcard.good h5 a{color:inherit;text-decoration:none}
+  .mcard.good h5 a::after{content:"";position:absolute;inset:0;border-radius:13px;z-index:1}
+  .mcard.good h5 a:focus-visible{outline:none}
+  .mcard.good:has(h5 a:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .mcard.good .acts{position:relative;z-index:2}
+  .mcard.good .selectable{position:relative;z-index:2;width:fit-content}
+  .mcard.wrapall{padding:0}
+  .mcard.wrapall > a.whole{display:flex;flex-direction:column;gap:8px;padding:15px;color:inherit;text-decoration:none;border-radius:13px}
+  .mcard.wrapall > a.whole:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .verdict{margin-top:9px;font-size:.78rem;border-radius:8px;padding:7px 10px}
+  .verdict.no{background:var(--danger-soft);color:var(--danger)}
+  .verdict.meh{background:var(--warn-soft);color:var(--warn)}
+  .verdict.yes{background:var(--ok-soft);color:var(--ok)}
+  .checklist{display:grid;gap:5px;margin-top:12px}
+  .checklist label{display:flex;gap:9px;align-items:flex-start;font-size:.83rem;background:var(--surface);
+    border:1px solid var(--border);border-radius:9px;padding:7px 11px;cursor:pointer}
+  .checklist input{accent-color:var(--brand);margin-top:4px}
+
+  /* ================= 3. 스크롤 연동 애니메이션 ================= */
+  .scroller{height:300px;overflow-y:auto;border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);position:relative;scroll-behavior:auto;
+    scroll-timeline-name:--report;scroll-timeline-axis:block}
+  .sc-head{position:sticky;top:0;z-index:3;background:var(--surface);border-bottom:1px solid var(--border);
+    padding:10px 14px 0}
+  .sc-head .t{font-size:.84rem;font-weight:700;padding-bottom:8px}
+  .progbar{height:4px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+  .progbar > i{display:block;height:100%;width:100%;background:var(--brand);transform-origin:0 50%;transform:scaleX(0)}
+  @supports (animation-timeline: scroll()){
+    /* ⚠️ scroll(nearest)가 아니라 이름 있는 타임라인 — 이유는 아래 "함정" 참고 */
+    .progbar > i{animation:growX linear both;animation-timeline:--report;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .progbar > i{animation:none !important;transform:scaleX(1) !important;opacity:.35}
+  }
+  @keyframes growX{ from{transform:scaleX(0)} to{transform:scaleX(1)} }
+  .sc-body{padding:14px}
+  .rvcard{background:var(--surface-2);border:1px solid var(--border);border-radius:11px;padding:13px 14px;
+    margin-bottom:12px;font-size:.85rem}
+  .rvcard b{display:block;margin-bottom:3px}
+  .rvcard .m{color:var(--muted);font-size:.79rem}
+  @supports (animation-timeline: view()){
+    .reveal .rvcard{animation:rise linear both;animation-timeline:view();animation-range:entry 5% cover 32%;}
+  }
+  @keyframes rise{ from{opacity:0;transform:translateY(22px) scale(.97)} to{opacity:1;transform:none} }
+  @media (prefers-reduced-motion: reduce){
+    .reveal .rvcard{animation:none !important;opacity:1 !important;transform:none !important}
+  }
+  .filmstrip{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x mandatory;
+    scroll-behavior:smooth}
+  .filmstrip .shot{flex:0 0 190px;scroll-snap-align:center;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:14px;font-size:.82rem;
+    transform:scale(.9);opacity:.55}
+  @supports (animation-timeline: view()){
+    .filmstrip .shot{animation:pop linear both;animation-timeline:view(inline);animation-range:entry 20% exit 80%;}
+  }
+  @keyframes pop{
+    0%{transform:scale(.88);opacity:.45}
+    50%{transform:scale(1);opacity:1}
+    100%{transform:scale(.88);opacity:.45}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .filmstrip .shot{animation:none !important;transform:none !important;opacity:1 !important}
+  }
+  .shot .n{font-weight:800;font-size:1.35rem;color:var(--brand);line-height:1.2}
+  .fallback-note{margin-top:10px;font-size:.8rem;border-radius:8px;padding:8px 11px}
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-10 (목) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#sidenav">🧭 사이드바 내비게이션</a>
+  <a href="#cardlink">🃏 클릭 가능한 카드</a>
+  <a href="#scrolldriven">🌀 스크롤 연동 애니메이션</a>
+</nav>
+
+<!-- ============================================================ 1 ============ -->
+<section class="card" id="sidenav">
+  <h2>🧭 사이드바 내비게이션 <span class="tag">내비게이션·탭</span></h2>
+  <p class="lead">
+    관리자 화면·정산 콘솔처럼 메뉴가 20개를 넘어가면, 사이드바는 "다 펼쳐 보여주기"와 "좁게 접기" 사이에서
+    타협해야 합니다. 요즘 기준은 <b>레일(rail) 축소 모드 + 중첩 그룹 접기 + 현재 위치 명시</b> 세 가지입니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>레일(rail)</b> — 사이드바를 아이콘 폭(대략 56~64px)만 남기고 접은 상태. 메뉴를 완전히 숨기지 않고 "위치 감각"을 유지합니다.</li>
+    <li><b><code>aria-current="page"</code></b> — "지금 보고 있는 페이지가 이 링크"라고 보조기기에 알리는 속성. 색만 칠하면 스크린리더는 알 수 없습니다.</li>
+    <li><b><code>aria-expanded</code></b> — 접힘/펼침 버튼이 지금 열려 있는지를 알리는 속성. 값은 <code>"true"</code>/<code>"false"</code> 문자열입니다.</li>
+    <li><b>스킵 링크(skip link)</b> — 키보드 사용자가 긴 메뉴를 전부 <span class="kbd">Tab</span> 하지 않고 본문으로 건너뛰게 해주는 첫 링크.</li>
+  </ul>
+
+  <div class="demo">
+    <div class="row" style="margin-bottom:14px">
+      <button class="btn sm" type="button" id="railToggleTop" aria-pressed="false">↔️ 레일 모드 켜기</button>
+      <span class="pill mu">축소한 뒤 아이콘에 마우스를 올리거나 <span class="kbd">Tab</span>으로 이동해 보세요</span>
+    </div>
+
+    <div class="app" id="app">
+      <div class="side">
+        <div class="side-top">
+          <div class="side-logo" aria-hidden="true">PS</div>
+          <div class="side-name">paysable</div>
+          <button class="railBtn" type="button" id="railBtn" aria-pressed="false" aria-label="사이드바 접기">⟨</button>
+        </div>
+        <nav aria-label="주 메뉴" id="sideNav">
+          <a href="#navMain" class="skiplink">본문으로 건너뛰기</a>
+
+          <div class="navgroup">
+            <button class="grouphead" type="button" aria-expanded="true" aria-controls="g1">
+              <span class="lbl">결제</span><span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <ul class="navlist" id="g1">
+              <li><a href="#navMain" data-label="결제 내역" aria-current="page"><span class="ico" aria-hidden="true">💳</span><span class="lbl">결제 내역</span></a></li>
+              <li><a href="#navMain" data-label="승인 대기"><span class="ico" aria-hidden="true">⏳</span><span class="lbl">승인 대기</span><span class="badge">7</span></a></li>
+              <li><a href="#navMain" data-label="취소·환불"><span class="ico" aria-hidden="true">↩️</span><span class="lbl">취소·환불</span></a></li>
+            </ul>
+          </div>
+
+          <div class="navgroup">
+            <button class="grouphead" type="button" aria-expanded="true" aria-controls="g2">
+              <span class="lbl">정산</span><span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <ul class="navlist" id="g2">
+              <li><a href="#navMain" data-label="정산 예정"><span class="ico" aria-hidden="true">📅</span><span class="lbl">정산 예정</span></a></li>
+              <li><a href="#navMain" data-label="지급 완료"><span class="ico" aria-hidden="true">✅</span><span class="lbl">지급 완료</span></a></li>
+            </ul>
+          </div>
+
+          <div class="navgroup">
+            <button class="grouphead" type="button" aria-expanded="false" aria-controls="g3">
+              <span class="lbl">설정</span><span class="chev" aria-hidden="true">▾</span>
+            </button>
+            <ul class="navlist" id="g3">
+              <li><a href="#navMain" data-label="가맹점 정보"><span class="ico" aria-hidden="true">🏪</span><span class="lbl">가맹점 정보</span></a></li>
+              <li><a href="#navMain" data-label="API 키"><span class="ico" aria-hidden="true">🔑</span><span class="lbl">API 키</span></a></li>
+              <li><a href="#navMain" data-label="웹훅"><span class="ico" aria-hidden="true">🔔</span><span class="lbl">웹훅</span></a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="side-foot"><span class="lbl">v2.14.0</span><span aria-hidden="true" class="railonly" hidden>ⓘ</span></div>
+      </div>
+
+      <div class="main" id="navMain" tabindex="-1">
+        <div class="crumbs" id="crumbs">결제 &rsaquo; 결제 내역</div>
+        <h4 id="mainTitle">결제 내역</h4>
+        <p>메뉴를 클릭하면 <code>aria-current="page"</code>가 그 링크로 옮겨 갑니다. 색 표시(왼쪽 세로 막대)와 속성이 <b>항상 같이</b> 움직이는지가 핵심입니다.</p>
+        <div class="log" id="navLog" role="status" aria-live="polite">현재 위치: <b>결제 내역</b></div>
+      </div>
+    </div>
+
+    <p class="cap">
+      ① 그룹 헤더(결제/정산/설정)는 <code>&lt;button aria-expanded&gt;</code>. ② 레일 모드에선 라벨을 감추는 대신
+      <code>::after</code> 툴팁을 <b>hover와 <code>:focus-visible</code> 둘 다</b>에 붙여 키보드 사용자도 이름을 볼 수 있게 했습니다.
+      ③ 배지(7)는 레일에서도 사라지지 않고 아이콘 우상단으로 이동합니다 — "접었더니 알림이 안 보인다"가 가장 흔한 사고입니다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">언제 무엇을 쓰나</h3>
+  <table class="cmp">
+    <thead><tr><th>상황</th><th>선택</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td>메뉴 8개 이하, 데스크톱 위주</td><td>고정 사이드바(항상 펼침)</td><td>접는 기능 자체가 불필요한 복잡도</td></tr>
+      <tr><td>메뉴 15~40개, 표·차트가 넓게 필요</td><td><b>레일 축소 + 그룹 접기</b></td><td>가로 공간을 되찾으면서 위치 감각 유지</td></tr>
+      <tr><td>모바일 폭(≈560px 미만)</td><td>드로어 또는 하단 탭바</td><td>레일도 화면의 15%를 먹음. <span class="pill mu">이미 다룸: 바텀 네비게이션</span></td></tr>
+      <tr><td>메뉴 깊이 3단 이상</td><td>2단으로 접거나 검색·⌘K 병행</td><td>3단 트리는 클릭 수가 급증. <span class="pill mu">이미 다룸: 커맨드 팔레트</span></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">💻 복붙용 핵심</h3>
+  <pre><code>&lt;!-- 그룹: 버튼 + aria-expanded, 목록은 인접 형제 --&gt;
+&lt;button class="grouphead" aria-expanded="true" aria-controls="g1"&gt;결제&lt;/button&gt;
+&lt;ul class="navlist" id="g1"&gt;
+  &lt;li&gt;&lt;a href="/payments" data-label="결제 내역" aria-current="page"&gt;
+    &lt;span class="ico" aria-hidden="true"&gt;💳&lt;/span&gt;&lt;span class="lbl"&gt;결제 내역&lt;/span&gt;
+  &lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+/* JS 없이 접기: 닫힌 버튼의 "다음 형제"를 숨긴다 */
+.grouphead[aria-expanded="false"] + .navlist { display: none; }
+
+/* 레일 모드 툴팁 — hover만 걸면 키보드 사용자는 이름을 못 본다 */
+.app.rail .navlist a::after { content: attr(data-label); opacity: 0; /* ...위치... */ }
+.app.rail .navlist a:hover::after,
+.app.rail .navlist a:focus-visible::after { opacity: 1; }</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>현재 위치는 색이 아니라 속성으로.</b> <code>aria-current="page"</code>가 진실이고, 배경색·세로 막대는 그 시각적 표현일 뿐입니다. 둘이 어긋나면 스크린리더 사용자는 길을 잃습니다.</li>
+    <li><b>레일에서 라벨을 <code>display:none</code>으로 지우면 스크린리더도 못 읽습니다.</b> 이 데모는 <code>data-label</code>을 툴팁으로 다시 노출하지만, 실무에선 <code>aria-label</code>을 <code>&lt;a&gt;</code>에 직접 달아 두는 편이 안전합니다.</li>
+    <li><b>스킵 링크</b>를 메뉴 맨 앞에 두세요. 메뉴 항목이 12개면 본문에 닿기까지 <span class="kbd">Tab</span> 12번입니다. (데모에서 사이드바 안을 <span class="kbd">Tab</span>으로 진입해 보면 첫 포커스가 스킵 링크입니다.)</li>
+    <li><b>포커스 링을 안쪽으로.</b> 좁은 레일에선 <code>outline-offset:2px</code>가 잘려 보입니다. 여기선 <code>outline-offset:-1px</code>로 안쪽에 그렸습니다.</li>
+    <li><b>접힘 상태는 사용자 선택으로 기억.</b> 실무에선 <code>localStorage</code>에 저장합니다(이 데모는 새로고침하면 초기화).</li>
+  </ul>
+
+  <div class="note">
+    <b>흔한 사고</b> — 그룹을 <code>&lt;div onclick&gt;</code>으로 만들면 키보드로 열 수 없고 스크린리더가 "버튼"이라고 읽지도 않습니다.
+    접히는 헤더는 반드시 <code>&lt;button type="button"&gt;</code>입니다. (<code>type</code>을 빼면 폼 안에서 submit이 됩니다.)
+  </div>
+</section>
+
+<!-- ============================================================ 2 ============ -->
+<section class="card" id="cardlink">
+  <h2>🃏 클릭 가능한 카드 <span class="tag">카드·리스트</span></h2>
+  <p class="lead">
+    "카드 아무 데나 눌러도 상세로 가게 해주세요"는 기획에서 매번 나오는 요구입니다. 그런데 카드 안에는
+    보통 버튼(정산 상세, 영수증)이 같이 들어 있고, 사용자는 카드 안 글자를 드래그해 복사하기도 합니다.
+    이 셋을 동시에 만족시키는 방법은 사실상 하나로 굳어졌습니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>블록 링크(block link)</b> — 카드·행 전체를 하나의 링크로 만드는 패턴.</li>
+    <li><b>가상 요소(pseudo-element)</b> — <code>::before</code>/<code>::after</code>로 HTML에 없는 빈 상자를 만들어 내는 CSS 기능. 여기선 "투명한 클릭 판"으로 씁니다.</li>
+    <li><b>접근 가능한 이름(accessible name)</b> — 스크린리더가 링크를 읽을 때 부르는 이름. 링크 안 텍스트를 전부 이어 붙여 만들어집니다.</li>
+  </ul>
+
+  <div class="demo">
+    <div class="cardgrid">
+
+      <div>
+        <div class="mcard bad" id="cardBad" role="button" tabindex="0" aria-label="예시: div에 클릭만 붙인 카드">
+          <div class="mtop">
+            <div class="avatar" aria-hidden="true">스</div>
+            <div><h5>스타벅스 강남점</h5><div class="sub">2026-09-09 14:22</div></div>
+          </div>
+          <div class="amt num">₩ 42,800</div>
+          <div class="meta"><span class="pill ok">승인</span><span>신용 · 1234</span></div>
+          <div class="acts"><button class="btn sm ghost" type="button">영수증</button></div>
+        </div>
+        <div class="verdict no">❌ <b>div + onclick</b> — 새 탭 열기 불가, 링크 주소 복사 불가, 마우스 우클릭 메뉴 없음. <code>role="button"</code>을 붙여도 "이건 링크가 아니라 버튼"이라고 잘못 알립니다.</div>
+      </div>
+
+      <div>
+        <div class="mcard wrapall">
+          <a href="#cardlink" class="whole">
+            <div class="mtop">
+              <div class="avatar" aria-hidden="true">배</div>
+              <div><h5>배달의민족</h5><div class="sub">2026-09-09 12:05</div></div>
+            </div>
+            <div class="amt num">₩ 18,500</div>
+            <div class="meta"><span class="pill ok">승인</span><span>체크 · 8891</span></div>
+          </a>
+        </div>
+        <div class="verdict meh">⚠️ <b>카드 전체를 &lt;a&gt;로 감싸기</b> — 동작은 하지만 스크린리더가 "배달의민족 2026-09-09 12:05 18,500원 승인 체크 8891, 링크"를 <b>한 덩어리로</b> 읽습니다. 게다가 안에 버튼을 넣을 수 없습니다(링크 안 링크·버튼은 잘못된 HTML).</div>
+      </div>
+
+      <div>
+        <div class="mcard good">
+          <div class="mtop">
+            <div class="avatar" aria-hidden="true">쿠</div>
+            <div><h5><a href="#cardlink" id="goodLink">쿠팡</a></h5><div class="sub">2026-09-09 09:41</div></div>
+          </div>
+          <div class="amt num">₩ 132,000</div>
+          <div class="meta"><span class="pill wa">부분취소</span><span class="selectable">승인번호 30284471</span></div>
+          <div class="acts">
+            <button class="btn sm ghost" type="button" data-act="영수증">영수증</button>
+            <button class="btn sm ghost" type="button" data-act="취소 상세">취소 상세</button>
+          </div>
+        </div>
+        <div class="verdict yes">✅ <b>제목만 링크 + <code>::after</code> 오버레이</b> — 스크린리더는 "쿠팡, 링크"만 읽고, 마우스는 카드 어디나 누를 수 있으며, 버튼은 <code>z-index</code>로 판 위에 떠서 따로 눌립니다.</div>
+      </div>
+
+    </div>
+
+    <div class="log" id="cardLog" role="status" aria-live="polite">세 카드를 눌러 보세요. 무엇이 눌렸는지 여기에 표시됩니다.</div>
+
+    <h4 style="margin-top:18px">직접 확인해 볼 것</h4>
+    <div class="checklist">
+      <label><input type="checkbox"> ✅ 카드에서 <b>제목 링크만</b> <span class="kbd">Tab</span> 포커스를 받는지 (카드 전체가 포커스를 먹으면 실패)</label>
+      <label><input type="checkbox"> ✅ 세 번째 카드의 <b>승인번호 30284471</b>을 마우스로 드래그해 선택할 수 있는지</label>
+      <label><input type="checkbox"> ✅ <b>영수증</b> 버튼을 눌렀을 때 상세로 이동하지 <b>않는지</b></label>
+      <label><input type="checkbox"> ✅ 제목 링크에 포커스를 주면 <b>카드 전체</b>에 링이 그려지는지 (<code>:has()</code>로 부모에 그림)</label>
+      <label><input type="checkbox"> ✅ 제목 링크에서 <span class="kbd">Ctrl</span>/<span class="kbd">⌘</span>+클릭으로 새 탭이 열리는지</label>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용 핵심</h3>
+  <pre><code>&lt;article class="mcard"&gt;
+  &lt;h5&gt;&lt;a href="/payments/9021"&gt;쿠팡&lt;/a&gt;&lt;/h5&gt;   &lt;!-- 링크는 "이름"에만 --&gt;
+  &lt;p class="amt"&gt;₩ 132,000&lt;/p&gt;
+  &lt;p class="sel"&gt;승인번호 30284471&lt;/p&gt;
+  &lt;div class="acts"&gt;&lt;button&gt;영수증&lt;/button&gt;&lt;/div&gt;
+&lt;/article&gt;
+
+.mcard { position: relative; }
+
+/* 투명한 클릭 판을 카드 전체에 깐다 */
+.mcard h5 a::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+
+/* 판 위로 띄워야 따로 눌리는 것들 */
+.mcard .acts,
+.mcard .sel { position: relative; z-index: 2; }
+
+/* 포커스 링은 링크가 아니라 카드에 그린다 */
+.mcard h5 a:focus-visible { outline: none; }
+.mcard:has(h5 a:focus-visible) { outline: 3px solid var(--ring); outline-offset: 2px; }</code></pre>
+  <p class="cap"><code>:has()</code>는 "안에 ○○를 가진 요소"를 고르는 CSS 선택자입니다. 여기선 "포커스된 링크를 품은 카드"를 골라 링을 카드 테두리에 그립니다.</p>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>링크 이름은 짧게.</b> 스크린리더에는 "링크 목록"만 뽑아 훑는 기능이 있습니다. 카드 전체를 감싸면 그 목록이 문단으로 가득 찹니다.</li>
+    <li><b>텍스트 선택 문제.</b> 오버레이 판 위에서 드래그하면 글자가 잡히지 않습니다. 복사할 값(승인번호, 주문번호)만 <code>z-index:2</code>로 올려 주세요. 판 전체를 드래그 가능하게 만들려면 <code>mousedown</code>~<code>mouseup</code> 이동 거리가 임계값(예: 6px)을 넘으면 이동을 취소하는 JS가 필요합니다.</li>
+    <li><b>커서·호버는 카드에.</b> 링크에만 <code>:hover</code>를 걸면 카드 빈 곳에 올렸을 때 아무 반응이 없어, 눌러도 되는지 알 수 없습니다.</li>
+    <li><b>안쪽 버튼 주변에 여백.</b> 판이 버튼 바로 옆까지 살아 있으면 모바일에서 손가락이 1~2px 빗나갈 때 상세로 튕겨 나갑니다.</li>
+    <li><b>터치에서의 <code>:hover</code> 잔상</b>은 <code>@media (hover: hover)</code>로 감싸 두면 줄어듭니다.</li>
+  </ul>
+
+  <div class="note">
+    <b>Next.js에서</b> — <code>&lt;Link&gt;</code>가 <code>&lt;a&gt;</code>를 그대로 뱉으므로 위 CSS를 그대로 씁니다.
+    단 카드 안 버튼의 <code>onClick</code>에는 <code>e.stopPropagation()</code>이 아니라 <b>레이어 분리(z-index)</b>로 푸는 게 맞습니다.
+    버튼이 판 위에 있으면 애초에 링크로 이벤트가 가지 않습니다.
+  </div>
+</section>
+
+<!-- ============================================================ 3 ============ -->
+<section class="card" id="scrolldriven">
+  <h2>🌀 스크롤 연동 애니메이션 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    "스크롤하면 진행률 바가 차오르고, 카드가 아래에서 떠오른다"를 예전엔 <code>IntersectionObserver</code>나
+    GSAP·Framer Motion으로 만들었습니다. 이제는 CSS 두 줄 — <code>animation-timeline: scroll()</code>과
+    <code>view()</code> — 로 같은 걸 하고, 그 계산이 메인 스레드 밖에서 돕니다.
+  </p>
+
+  <h3 class="sec-lead">한 줄 용어</h3>
+  <ul class="clean">
+    <li><b>타임라인(timeline)</b> — 애니메이션의 "진행도 0%→100%"를 무엇으로 잴지. 기본값은 시간이고, 여기선 <b>스크롤 위치</b>로 바꿉니다.</li>
+    <li><b><code>scroll()</code></b> — 스크롤 컨테이너의 <b>스크롤바 위치</b>가 0%→100%. 진행률 바에 씁니다.</li>
+    <li><b><code>view()</code></b> — <b>그 요소가 화면(스크롤 영역)을 지나가는 동안</b>이 0%→100%. 요소별 등장 효과에 씁니다.</li>
+    <li><b><code>animation-range</code></b> — <code>view()</code>의 몇 %~몇 % 구간만 쓸지 자르는 속성. <code>entry</code>(들어오는 중) / <code>cover</code>(걸쳐 있는 전체) / <code>exit</code>(나가는 중).</li>
+    <li><b>메인 스레드</b> — JS가 도는 하나뿐인 줄. 여기서 스크롤마다 계산하면 스크롤이 끊깁니다.</li>
+  </ul>
+
+  <div class="demo">
+    <h4>① <code>scroll()</code> — 진행률 바 + ② <code>view()</code> — 카드 등장</h4>
+    <div class="scroller" id="sc1">
+      <div class="sc-head">
+        <div class="t">📄 정산 리포트 · 2026년 8월</div>
+        <div class="progbar" aria-hidden="true"><i></i></div>
+      </div>
+      <div class="sc-body reveal">
+        <div class="rvcard"><b>총 거래액</b><span class="m">₩ 1,284,300,000 · 전월 대비 +12.4%</span></div>
+        <div class="rvcard"><b>승인 건수</b><span class="m">38,204건 · 평균 결제액 ₩ 33,616</span></div>
+        <div class="rvcard"><b>취소·환불</b><span class="m">1,102건 (2.9%) · 부분취소 318건</span></div>
+        <div class="rvcard"><b>정산 예정</b><span class="m">₩ 1,231,880,000 · 2026-09-12 지급</span></div>
+        <div class="rvcard"><b>수수료</b><span class="m">₩ 34,675,000 · 평균 요율 2.70%</span></div>
+        <div class="rvcard"><b>미정산 보류</b><span class="m">₩ 17,745,000 · 심사 대기 4건</span></div>
+        <div class="rvcard"><b>카드사별 비중</b><span class="m">신한 24% · 삼성 21% · 현대 18% · 기타 37%</span></div>
+        <div class="rvcard"><b>3DS 인증률</b><span class="m">챌린지 8.1% · 프릭션리스 91.9%</span></div>
+      </div>
+    </div>
+    <p class="cap">
+      박스 안을 스크롤해 보세요. 상단 바는 <code>scroll-timeline-name: --report</code>로 <b>스크롤바 위치</b>에 묶여 있고,
+      각 카드는 <code>view()</code>로 <b>자기가 지나가는 동안</b>만 떠오릅니다. JS는 한 줄도 없습니다.
+      바를 되감으려면 위로 스크롤하면 됩니다 — 스크롤을 되돌리면 애니메이션도 그대로 되감깁니다(시간 기반 애니메이션은 못 하는 일).
+    </p>
+
+    <h4 style="margin-top:22px">③ <code>view(inline)</code> — 가로 스냅 캐러셀에서 가운데만 커지기</h4>
+    <div class="filmstrip" id="strip" tabindex="0" aria-label="가로 스크롤 예시 — 좌우 방향키로도 움직입니다">
+      <div class="shot"><div class="n">01</div>결제 위젯</div>
+      <div class="shot"><div class="n">02</div>정산 대시보드</div>
+      <div class="shot"><div class="n">03</div>영수증 뷰어</div>
+      <div class="shot"><div class="n">04</div>가맹점 온보딩</div>
+      <div class="shot"><div class="n">05</div>웹훅 로그</div>
+      <div class="shot"><div class="n">06</div>API 키 관리</div>
+    </div>
+    <p class="cap">
+      가로로 밀어 보세요(또는 클릭 후 <span class="kbd">←</span><span class="kbd">→</span>).
+      <code>view(inline)</code>은 <b>가로축</b>을 기준으로 삼습니다. 가운데를 지날 때 100% 크기, 양 끝에서 작아집니다 —
+      "지금 어느 항목을 보고 있는지"를 JS 스크롤 리스너 없이 표현합니다.
+    </p>
+
+    <div class="row" style="margin-top:16px">
+      <button class="btn sm ghost" type="button" id="rmBtn" aria-pressed="false">🚫 모션 줄이기 흉내내기</button>
+      <span class="pill mu" id="rmState">현재: 애니메이션 켜짐</span>
+    </div>
+    <p class="cap">
+      실제로는 OS 설정(Windows: 설정 &rsaquo; 접근성 &rsaquo; 시각 효과 &rsaquo; 애니메이션 효과)이 <code>prefers-reduced-motion</code>을 켭니다.
+      이 버튼은 그 상황을 흉내 내 <b>애니메이션을 끄되 콘텐츠는 그대로 보이게</b> 하는 처리를 보여줍니다.
+    </p>
+
+    <div class="fallback-note" id="supportBox">지원 여부 확인 중…</div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용 핵심</h3>
+  <pre><code>/* ① 진행률 바 — 스크롤 컨테이너에 "이름"을 붙여 묶는다 */
+.scroller {
+  overflow-y: auto;
+  scroll-timeline-name: --report;   /* 이 스크롤에 --report라는 이름을 준다 */
+  scroll-timeline-axis: block;      /* 세로 스크롤 기준 */
+}
+.progbar > i {
+  transform: scaleX(0);              /* 미지원 브라우저의 기본값 */
+}
+@supports (animation-timeline: scroll()) {
+  .progbar > i {
+    animation: growX linear both;
+    animation-timeline: --report;    /* 조상 중 그 이름을 찾아 붙는다 */
+  }
+}
+@keyframes growX { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+
+/* ② 요소 등장 — "내가 지나가는 동안"이 0%→100% */
+@supports (animation-timeline: view()) {
+  .rvcard {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 32%;  /* 들어오기 시작~조금 걸친 지점까지 */
+  }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px) scale(.97) }
+  to   { opacity: 1; transform: none }
+}
+
+/* ③ 모션 줄이기는 선택이 아니라 필수 */
+@media (prefers-reduced-motion: reduce) {
+  .rvcard { animation: none !important; opacity: 1 !important; transform: none !important }
+}</code></pre>
+
+  <div class="note">
+    <b>오늘 만들다 실제로 밟은 함정</b> — 진행률 바를 처음엔 <code>animation-timeline: scroll(nearest)</code>로 짰는데
+    <b>전혀 움직이지 않았습니다</b>. 바가 <code>position: sticky</code>인 헤더 안에 들어 있었기 때문입니다
+    (같은 스크롤 박스 안이라도 <code>nearest</code> 해석이 sticky 조상에서 어긋나는 것으로 보입니다 — 이 동작이 명세대로인지 Chrome 특성인지는 <b>확인하지 못했으니 추정</b>).
+    해결은 <b>이름 있는 타임라인</b>입니다: 스크롤 컨테이너에 <code>scroll-timeline-name: --report</code>를 붙이고
+    애니메이션 쪽에서 <code>animation-timeline: --report</code>로 지목하면 확실합니다.
+    <br>👉 실무 규칙으로 삼을 만한 것: <b><code>scroll()</code>·<code>view()</code>가 조용히 안 먹으면 먼저 이름 있는 타임라인으로 바꿔 본다.</b>
+    타임라인이 해결되지 않으면 에러도 경고도 없이 그냥 0% 상태로 멈춰 있습니다.
+    (디버깅 팁: <code>el.getAnimations()[0].effect.getComputedTiming().progress</code>가 <code>null</code>이면 타임라인이 안 붙은 것입니다.)
+  </div>
+
+  <div class="support yes" id="supportLine">
+    <b>브라우저 지원</b> — Chrome/Edge 115+, Firefox 132+, Safari 18+ 에서 <code>animation-timeline</code>·<code>scroll()</code>·<code>view()</code>가 동작합니다.
+    2026년 중반 기준 전 세계 지원율은 대략 84% 수준으로 보고됩니다(<b>수치는 출처에 따라 다를 수 있어 추정치로 봐 주세요</b>).
+    구형 브라우저에선 <code>@supports</code> 밖의 기본 스타일이 그대로 보이도록 짜는 게 안전합니다.
+  </div>
+
+  <h3 class="sec-lead">🧠 어디에 쓰고, 어디엔 쓰지 말까</h3>
+  <table class="cmp">
+    <thead><tr><th>쓸 만한 곳</th><th>쓰지 말아야 할 곳</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>긴 약관·정산 리포트의 읽기 진행률 바</td>
+        <td><b>결제 확인 화면</b> — 금액·버튼이 애니메이션으로 늦게 나타나면 오조작·불신을 부릅니다</td>
+      </tr>
+      <tr>
+        <td>랜딩/온보딩에서 섹션이 떠오르는 연출</td>
+        <td>에러·경고 메시지 — 즉시 100% 보여야 합니다</td>
+      </tr>
+      <tr>
+        <td>가로 캐러셀의 "현재 항목" 강조</td>
+        <td>스크롤할 때마다 <b>레이아웃</b>이 바뀌는 효과(글자 크기·높이) — 읽던 위치가 튑니다</td>
+      </tr>
+      <tr>
+        <td>스크롤에 반응해 축소되는 헤더</td>
+        <td>목록 항목 수백 개에 전부 <code>view()</code> — 스크롤 자체는 안 끊기지만 시선이 피로해집니다</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>왜 굳이 CSS로 옮기나</b> — <code>IntersectionObserver</code>는 "보이기 시작함/끝남"이라는 <b>불연속 신호</b>만 줍니다.
+    스크롤 양에 <b>비례</b>하는 효과(진행률, 되감기)를 만들려면 결국 스크롤 이벤트를 직접 듣게 되고, 그 계산은 메인 스레드에서 돕니다.
+    <code>animation-timeline</code>은 이 관계를 브라우저에 선언으로 넘기므로 스크롤이 빨라도 값이 밀리지 않습니다.
+    다만 <b>정확한 성능 이득은 기기·페이지마다 다르므로</b> 실제 프로젝트에선 측정해 보는 게 맞습니다.
+  </div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-09-10 (목) · self-contained 라이브 예시</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ================== 공통: 테마 토글 ================== */
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = document.documentElement.getAttribute("data-theme") === "dark";
+    document.documentElement.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  /* ================== 1. 사이드바 내비게이션 ================== */
+  var app = document.getElementById("app");
+  var railBtn = document.getElementById("railBtn");
+  var railTop = document.getElementById("railToggleTop");
+  var navLog = document.getElementById("navLog");
+  var crumbs = document.getElementById("crumbs");
+  var mainTitle = document.getElementById("mainTitle");
+
+  function setRail(on){
+    app.classList.toggle("rail", on);
+    railBtn.setAttribute("aria-pressed", String(on));
+    railBtn.setAttribute("aria-label", on ? "사이드바 펼치기" : "사이드바 접기");
+    railBtn.textContent = on ? "⟩" : "⟨";
+    railTop.setAttribute("aria-pressed", String(on));
+    railTop.textContent = on ? "↔️ 레일 모드 끄기" : "↔️ 레일 모드 켜기";
+  }
+  railBtn.addEventListener("click", function(){ setRail(!app.classList.contains("rail")); });
+  railTop.addEventListener("click", function(){ setRail(!app.classList.contains("rail")); });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".grouphead"), function(btn){
+    btn.addEventListener("click", function(){
+      var open = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!open));
+      // 레일 모드에서 그룹을 접으면 아이콘까지 사라져 길을 잃는다 → 레일에선 펼침 유지
+      if (app.classList.contains("rail") && open) {
+        btn.setAttribute("aria-expanded", "true");
+        navLog.innerHTML = '레일 모드에선 그룹을 접지 않습니다 — 접으면 아이콘까지 사라져 이동 수단이 없어집니다.';
+      }
+    });
+  });
+
+  var sideNav = document.getElementById("sideNav");
+  sideNav.addEventListener("click", function(e){
+    var a = e.target.closest ? e.target.closest(".navlist a") : null;
+    if (!a) return;
+    Array.prototype.forEach.call(sideNav.querySelectorAll(".navlist a"), function(x){
+      x.removeAttribute("aria-current");
+    });
+    a.setAttribute("aria-current", "page");
+    var label = a.getAttribute("data-label") || "";
+    var group = a.closest(".navgroup").querySelector(".grouphead .lbl").textContent;
+    crumbs.innerHTML = group + " &rsaquo; " + label;
+    mainTitle.textContent = label;
+    navLog.innerHTML = '현재 위치: <b>' + label + '</b> — 이 링크에 <code>aria-current="page"</code>가 붙었습니다.';
+  });
+
+  /* ================== 2. 클릭 가능한 카드 ================== */
+  var cardLog = document.getElementById("cardLog");
+  function say(html){ cardLog.innerHTML = html; }
+
+  document.getElementById("cardBad").addEventListener("click", function(){
+    say('❌ <b>div 카드</b>가 눌렸습니다 — 마우스로는 되지만 <span class="kbd">Ctrl</span>+클릭 새 탭, 주소 복사, 우클릭 메뉴가 전부 없습니다.');
+  });
+  document.getElementById("cardBad").addEventListener("keydown", function(e){
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      say('❌ <b>div 카드</b> — <code>role="button"</code>을 붙여 키보드는 살렸지만, 스크린리더는 "링크"가 아니라 "버튼"이라고 잘못 읽습니다.');
+    }
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll(".mcard.good .acts button"), function(b){
+    b.addEventListener("click", function(){
+      say('✅ <b>' + b.getAttribute("data-act") + '</b> 버튼만 눌렸습니다 — 카드 링크로 이동하지 않았습니다. ' +
+          '<code>stopPropagation()</code>이 아니라 <code>z-index</code>로 판 위에 떠 있기 때문입니다.');
+    });
+  });
+
+  document.getElementById("goodLink").addEventListener("click", function(e){
+    e.preventDefault();
+    say('✅ <b>카드 링크</b>가 눌렸습니다 — 스크린리더가 읽는 이름은 카드 전체가 아니라 <b>"쿠팡"</b> 한 단어뿐입니다.');
+  });
+  document.querySelector(".mcard.wrapall .whole").addEventListener("click", function(e){
+    e.preventDefault();
+    say('⚠️ <b>전체 감싼 카드</b>가 눌렸습니다 — 동작은 하지만 링크 이름이 "배달의민족 2026-09-09 12:05 18,500원 승인 체크 8891" 전부입니다.');
+  });
+
+  /* ================== 3. 스크롤 연동 애니메이션 ================== */
+  var supportBox = document.getElementById("supportBox");
+  var okScroll = CSS.supports("animation-timeline: scroll()");
+  var okView = CSS.supports("animation-timeline: view()");
+  if (okScroll && okView) {
+    supportBox.className = "fallback-note";
+    supportBox.style.background = "var(--ok-soft)";
+    supportBox.style.color = "var(--ok)";
+    supportBox.innerHTML = "✅ 이 브라우저는 <code>scroll()</code>과 <code>view()</code>를 <b>둘 다 지원</b>합니다 — 위 데모가 실제로 스크롤에 반응합니다.";
+  } else {
+    supportBox.className = "fallback-note";
+    supportBox.style.background = "var(--warn-soft)";
+    supportBox.style.color = "var(--warn)";
+    supportBox.innerHTML = "⚠️ 이 브라우저는 <code>animation-timeline</code>을 지원하지 않습니다 — 애니메이션 없이 <b>내용은 그대로</b> 보입니다. " +
+      "이것이 <code>@supports</code>로 감싼 이유입니다(지원: " + (okScroll ? "scroll ✅" : "scroll ❌") + " / " + (okView ? "view ✅" : "view ❌") + ").";
+  }
+
+  var rmBtn = document.getElementById("rmBtn");
+  var rmState = document.getElementById("rmState");
+  var rmStyle = null;
+  rmBtn.addEventListener("click", function(){
+    if (rmStyle) {
+      rmStyle.remove(); rmStyle = null;
+      rmBtn.setAttribute("aria-pressed", "false");
+      rmBtn.textContent = "🚫 모션 줄이기 흉내내기";
+      rmState.textContent = "현재: 애니메이션 켜짐";
+    } else {
+      rmStyle = document.createElement("style");
+      rmStyle.textContent =
+        "#scrolldriven .rvcard, #scrolldriven .filmstrip .shot, #scrolldriven .progbar > i" +
+        "{animation:none !important;opacity:1 !important;transform:none !important}" +
+        "#scrolldriven .progbar > i{transform:scaleX(1) !important;opacity:.35 !important}";
+      document.head.appendChild(rmStyle);
+      rmBtn.setAttribute("aria-pressed", "true");
+      rmBtn.textContent = "▶️ 애니메이션 되돌리기";
+      rmState.textContent = "현재: 모션 꺼짐 — 콘텐츠는 100% 보임(사라지지 않음)";
+    }
+  });
+
+  // 가로 스트립: 방향키 지원 (스냅 컨테이너의 기본 키보드 동작 보강)
+  var strip = document.getElementById("strip");
+  strip.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight"){ e.preventDefault(); strip.scrollBy({left: 202, behavior: "smooth"}); }
+    if (e.key === "ArrowLeft"){ e.preventDefault(); strip.scrollBy({left: -202, behavior: "smooth"}); }
+  });
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      document.documentElement.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    document.documentElement.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
