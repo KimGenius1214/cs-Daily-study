@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-15 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0284c7; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .log .line{margin:1px 0}
+  fieldset.plain{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0}
+  fieldset.plain legend{font-size:.8rem;color:var(--muted);padding:0 6px}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.83rem;font-weight:600;
+    padding:7px 13px;cursor:pointer}
+  .seg button + button{border-left:1px solid var(--border)}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+
+  /* ================= 1. 증빙 라이트박스 ================= */
+  .thumbs{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(132px,1fr))}
+  .thumb{display:block;width:100%;padding:8px;border:1px solid var(--border);border-radius:12px;
+    background:var(--surface);cursor:zoom-in;font:inherit;color:inherit;text-align:left;
+    transition:border-color .15s, transform .15s}
+  .thumb:hover{border-color:var(--brand);transform:translateY(-2px)}
+  .thumb:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .thumb svg{display:block;width:100%;height:auto;border-radius:8px;background:#fff}
+  .thumb .meta{margin-top:7px;font-size:.76rem;line-height:1.35}
+  .thumb .meta b{display:block;font-size:.8rem}
+  .thumb .meta span{color:var(--muted);font-variant-numeric:tabular-nums}
+
+  /* ✅ 올바른 예: <dialog> */
+  dialog.lightbox{border:0;padding:0;background:transparent;max-width:min(94vw,860px);width:100%;
+    max-height:92vh;color:var(--text);overflow:visible}
+  dialog.lightbox::backdrop{background:rgba(8,10,14,.72)}
+  @supports (backdrop-filter: blur(2px)){ dialog.lightbox::backdrop{backdrop-filter:blur(2px)} }
+  .lb-shell{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    display:flex;flex-direction:column;max-height:92vh}
+  .lb-head{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);
+    background:var(--surface-2)}
+  .lb-head .ttl{font-size:.9rem;font-weight:700;flex:1 1 auto;min-width:0;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .lb-head .count{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums;flex:none}
+  .iconbtn{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:9px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;
+    font-family:inherit;font-size:.95rem;line-height:1}
+  .iconbtn:hover{border-color:var(--brand);color:var(--brand)}
+  .iconbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .iconbtn:disabled{opacity:.4;cursor:not-allowed}
+  .lb-stage{position:relative;flex:1 1 auto;min-height:0;display:grid;place-items:center;
+    background:repeating-conic-gradient(var(--surface-2) 0% 25%, var(--surface) 0% 50%) 0 0/18px 18px;
+    overflow:auto;padding:16px}
+  .lb-stage svg{display:block;width:min(520px,100%);height:auto;background:#fff;border-radius:10px;
+    box-shadow:0 4px 18px rgba(0,0,0,.18);transform-origin:center center;
+    transition:transform .18s ease}
+  .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);cursor:pointer;
+    font-family:inherit;font-size:1.1rem;display:grid;place-items:center;box-shadow:var(--shadow)}
+  .lb-nav:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .lb-nav:disabled{opacity:.35;cursor:not-allowed}
+  .lb-nav.prev{left:10px}
+  .lb-nav.next{right:10px}
+  .lb-foot{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;
+    border-top:1px solid var(--border);background:var(--surface-2);font-size:.8rem;color:var(--muted)}
+  .lb-foot .zoomval{font-variant-numeric:tabular-nums;min-width:52px;text-align:center;font-weight:700;color:var(--text)}
+  .lb-foot .spacer{flex:1 1 auto}
+  .lb-info{font-size:.8rem;color:var(--muted);padding:10px 12px;border-top:1px solid var(--border);
+    background:var(--surface);display:grid;gap:3px}
+  .lb-info b{color:var(--text)}
+  @media (prefers-reduced-motion: reduce){ .lb-stage svg{transition:none} .thumb{transition:none} }
+
+  /* ❌ 나쁜 예: div 오버레이 */
+  .naive-overlay{position:fixed;inset:0;z-index:50;background:rgba(8,10,14,.72);
+    display:grid;place-items:center;padding:20px}
+  .naive-box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:14px;
+    max-width:min(94vw,600px);width:100%;max-height:88vh;overflow:auto}
+  .naive-box .bad{font-size:.78rem;color:var(--danger);background:var(--danger-soft);
+    border-radius:8px;padding:6px 10px;margin-bottom:10px}
+  .naive-box svg{display:block;width:100%;height:auto;background:#fff;border-radius:10px}
+  .focuswatch{margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.8rem}
+  .focuswatch .where{font-weight:700;border-radius:999px;padding:3px 10px;font-size:.76rem}
+  .focuswatch .where.inside{color:var(--ok);background:var(--ok-soft)}
+  .focuswatch .where.outside{color:var(--danger);background:var(--danger-soft)}
+  .decoy{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+    font-size:.8rem;color:var(--muted)}
+  .decoy a{color:var(--brand)}
+  .decoy a:focus-visible,.decoy button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* ================= 2. 서비스 상태 배너 ================= */
+  .banner{display:flex;gap:11px;align-items:flex-start;border-radius:12px;padding:11px 13px;
+    border:1px solid transparent;font-size:.86rem;line-height:1.5}
+  .banner .ic{flex:none;font-size:1rem;line-height:1.35}
+  .banner .bd{flex:1 1 auto;min-width:0}
+  .banner .bd b{display:block;font-size:.88rem}
+  .banner .bd .sub{color:inherit;opacity:.88}
+  .banner .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+  .banner .acts button, .banner .acts a{font:inherit;font-size:.78rem;font-weight:700;
+    border-radius:8px;padding:4px 9px;cursor:pointer;border:1px solid currentColor;
+    background:transparent;color:inherit;text-decoration:none}
+  .banner .acts button:focus-visible,.banner .acts a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .banner .x{flex:none;border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;
+    border-radius:8px;width:24px;height:24px;display:grid;place-items:center;opacity:.7}
+  .banner .x:hover{opacity:1}
+  .banner .x:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .banner.info{background:var(--info-soft);color:var(--info);border-color:color-mix(in srgb, var(--info) 30%, transparent)}
+  .banner.sched{background:var(--brand-soft);color:var(--brand);border-color:color-mix(in srgb, var(--brand) 30%, transparent)}
+  .banner.partial{background:var(--warn-soft);color:var(--warn);border-color:color-mix(in srgb, var(--warn) 35%, transparent)}
+  .banner.major{background:var(--danger-soft);color:var(--danger);border-color:color-mix(in srgb, var(--danger) 40%, transparent)}
+  .banner.fixed{background:var(--ok-soft);color:var(--ok);border-color:color-mix(in srgb, var(--ok) 32%, transparent)}
+  .banner + .banner{margin-top:8px}
+  .bannerlist{display:grid;gap:8px}
+
+  .mock{border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden}
+  .mock .mockbar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border);
+    background:var(--surface-2);font-size:.78rem;color:var(--muted)}
+  .mock .mockbar .dot{width:9px;height:9px;border-radius:999px;background:var(--border)}
+  .mock .mockbody{padding:14px}
+  .mock .slot{margin-bottom:12px}
+  .pm{display:grid;gap:8px;margin:10px 0 0}
+  .pmrow{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:11px;
+    padding:10px 12px;background:var(--surface);cursor:pointer;font-size:.87rem}
+  .pmrow input{accent-color:var(--brand);width:16px;height:16px;flex:none}
+  .pmrow .nm{flex:1 1 auto;min-width:0}
+  .pmrow .nm .s{display:block;font-size:.76rem;color:var(--muted)}
+  .pmrow:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .pmrow:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .pmrow[data-state="down"]{opacity:.62;cursor:not-allowed;background:var(--surface-2)}
+  .pmrow[data-state="slow"] .nm .s{color:var(--warn);font-weight:700}
+  .paybtn{width:100%;margin-top:12px;justify-content:center}
+  .scenario{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+
+  /* ================= 3. appearance: base-select ================= */
+  .selgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .selbox{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:14px}
+  .selbox .lbl{font-size:.76rem;font-weight:700;color:var(--muted);margin-bottom:9px;
+    display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  label.fieldlbl{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px}
+  select.plainsel{width:100%;font:inherit;font-size:.9rem;padding:9px 11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  select.plainsel:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+
+  /* base-select 진입: 지원 브라우저에서만 아래 규칙이 살아난다.
+     미지원 브라우저는 appearance 값을 못 읽고 그냥 네이티브 select로 남는다(= 안전한 폴백). */
+  select.rich, select.rich::picker(select){ appearance: base-select; }
+  select.rich{
+    width:100%;font:inherit;font-size:.9rem;padding:9px 11px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text);
+    display:flex;align-items:center;gap:9px;text-align:left;cursor:pointer;
+  }
+  select.rich:hover{border-color:var(--brand)}
+  select.rich:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  select.rich::picker-icon{color:var(--muted);transition:transform .15s ease;margin-left:auto}
+  select.rich:open::picker-icon{transform:rotate(180deg)}
+  select.rich::picker(select){
+    border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    box-shadow:var(--shadow);padding:6px;margin-top:6px;
+    opacity:0;transition:opacity .14s ease, overlay .14s allow-discrete, display .14s allow-discrete;
+  }
+  select.rich:open::picker(select){opacity:1}
+  @starting-style{ select.rich:open::picker(select){opacity:0} }
+  select.rich option{
+    display:flex;align-items:center;gap:9px;border-radius:9px;padding:8px 9px;font-size:.88rem;
+  }
+  select.rich option:hover{background:var(--surface-2)}
+  select.rich option:checked{background:var(--brand-soft);color:var(--brand)}
+  select.rich option::checkmark{order:99;margin-left:auto;content:"✓"}
+  .cardmark{display:inline-grid;place-items:center;width:34px;height:22px;border-radius:5px;flex:none;
+    font-size:.6rem;font-weight:800;letter-spacing:.02em;color:#fff}
+  .cardmark.visa{background:#1a1f71}
+  .cardmark.master{background:#c1121f}
+  .cardmark.amex{background:#0071c5}
+  .cardmark.bank{background:#475569}
+  .optmain{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+  .optmain .t{font-weight:600}
+  .optmain .s{font-size:.74rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  @media (prefers-reduced-motion: reduce){
+    select.rich::picker-icon{transition:none}
+    select.rich::picker(select){transition:none}
+  }
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-15 (화) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#lightbox">🪟 증빙 라이트박스</a>
+  <a href="#statusbanner">🔔 서비스 상태 배너</a>
+  <a href="#baseselect">🌀 appearance: base-select</a>
+</nav>
+
+<!-- ============================================================ 1 ============ -->
+<section class="card" id="lightbox">
+  <h2>🪟 증빙 라이트박스 — 크게 보고, 넘기고, 제자리로 <span class="tag">오버레이·모달·토스트</span></h2>
+  <p class="lead">
+    정산 증빙·영수증·계약서 스캔처럼 <b>목록에 썸네일이 깔려 있고 눌러서 크게 보는</b> 화면은 어디에나 있다.
+    그런데 대부분 <code>&lt;div&gt;</code>에 <code>position:fixed</code>만 덮어 만든다. 보기엔 똑같지만
+    <b>키보드 사용자에겐 완전히 다른 물건</b>이 된다. 아래 두 버튼으로 같은 목록을 두 가지 방식으로 열어
+    <kbd class="kbd">Tab</kbd>을 눌러 보면 차이가 바로 보인다.
+  </p>
+
+  <div class="demo">
+    <p class="demo-title">🧩 변형 A·B — 같은 썸네일, 다른 구현</p>
+
+    <div class="row" style="margin-bottom:14px">
+      <button class="btn danger sm" type="button" id="modeBad">❌ div 오버레이로 열기</button>
+      <button class="btn sm" type="button" id="modeGood">✅ &lt;dialog&gt;로 열기</button>
+      <span class="pill mu" id="modeNow">현재: dialog</span>
+    </div>
+
+    <div class="thumbs" id="thumbs" role="list"></div>
+
+    <div class="decoy">
+      배경에 있는 "샐 수 있는" 요소들 →
+      <a href="#statusbanner" id="decoyLink">다음 섹션 링크</a>
+      <button class="btn ghost sm" type="button" id="decoyBtn">배경 버튼</button>
+    </div>
+
+    <div class="focuswatch">
+      <span>지금 포커스가 있는 곳:</span>
+      <span class="where inside" id="focusWhere">— (아무것도 안 열림)</span>
+    </div>
+
+    <div class="log" id="lbLog" aria-live="polite"></div>
+    <p class="cap">
+      ❌ 쪽을 열고 <kbd class="kbd">Tab</kbd>을 몇 번 눌러 보면 포커스가 오버레이를 빠져나가 배경 링크로 간다(포커스 누수).
+      <kbd class="kbd">Esc</kbd>도 안 먹고, 닫아도 원래 썸네일로 안 돌아온다.
+      ✅ 쪽은 <kbd class="kbd">Esc</kbd>·<kbd class="kbd">←</kbd><kbd class="kbd">→</kbd>·배경 클릭·포커스 복귀가 전부 동작한다.
+    </p>
+  </div>
+
+  <!-- ✅ dialog 라이트박스 -->
+  <dialog class="lightbox" id="lbDialog" aria-labelledby="lbTitle">
+    <div class="lb-shell">
+      <div class="lb-head">
+        <span class="ttl" id="lbTitle">증빙</span>
+        <span class="count" id="lbCount">1 / 5</span>
+        <button class="iconbtn" type="button" id="lbClose" aria-label="닫기">✕</button>
+      </div>
+      <div class="lb-stage" id="lbStage">
+        <button class="lb-nav prev" type="button" id="lbPrev" aria-label="이전 증빙">‹</button>
+        <div id="lbImg"></div>
+        <button class="lb-nav next" type="button" id="lbNext" aria-label="다음 증빙">›</button>
+      </div>
+      <div class="lb-foot">
+        <button class="iconbtn" type="button" id="lbOut" aria-label="축소">−</button>
+        <span class="zoomval" id="lbZoomVal">100%</span>
+        <button class="iconbtn" type="button" id="lbIn" aria-label="확대">＋</button>
+        <button class="btn ghost sm" type="button" id="lbReset">원래 크기</button>
+        <span class="spacer"></span>
+        <span><kbd class="kbd">←</kbd><kbd class="kbd">→</kbd> 이동 · <kbd class="kbd">+</kbd><kbd class="kbd">−</kbd> 확대 · <kbd class="kbd">Esc</kbd> 닫기</span>
+      </div>
+      <div class="lb-info" id="lbInfo"></div>
+      <p class="sr-only" id="lbLive" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
+
+  <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+  <table class="cmp">
+    <thead><tr><th style="width:26%">변형</th><th>언제 쓰나 / 무엇이 다른가</th></tr></thead>
+    <tbody>
+      <tr><td><b>A. div 오버레이</b> <span class="pill da">비권장</span></td>
+        <td>직접 포커스 트랩·<code>inert</code>·<kbd class="kbd">Esc</kbd>·스크롤 잠금을 다 구현해야 한다. 하나라도 빠지면 접근성 결함. 레거시 브라우저 지원이 필요할 때만.</td></tr>
+      <tr><td><b>B. <code>&lt;dialog&gt;</code> + <code>showModal()</code></b> <span class="pill ok">기본값</span></td>
+        <td>포커스 트랩·배경 <code>inert</code>·<kbd class="kbd">Esc</kbd>·<code>::backdrop</code>·최상위 레이어를 브라우저가 준다. 오늘의 데모가 이것.</td></tr>
+      <tr><td><b>C. 갤러리형(좌우 이동)</b></td>
+        <td>증빙이 여러 장일 때. <b>모달을 닫았다 다시 열지 않고</b> 안에서 이동한다. "3 / 8" 카운터와 <code>aria-live</code> 안내가 필수.</td></tr>
+      <tr><td><b>D. 확대·팬</b></td>
+        <td>영수증 글씨가 작을 때. 버튼·키보드로도 확대되게 한다(핀치 줌만 두면 데스크톱·키보드 사용자가 못 씀).</td></tr>
+      <tr><td><b>E. 메타 패널 동반</b></td>
+        <td>이미지만 띄우지 말고 <b>금액·거래일·업로더·상태</b>를 같이. 증빙은 "보는 것"이 아니라 "대조하는 것"이라서.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- 1) 마크업: dialog 하나를 재사용하고 내용만 갈아끼운다 --&gt;
+&lt;dialog id="lb" aria-labelledby="lbTitle"&gt;…&lt;/dialog&gt;
+
+&lt;script&gt;
+let lastTrigger = null;          // 어떤 썸네일에서 열렸는지 기억 → 닫을 때 돌려준다
+
+function open(index, trigger){
+  lastTrigger = trigger;
+  render(index);
+  lb.showModal();                // ← showModal()이어야 포커스 트랩·::backdrop·Esc가 붙는다
+                                 //    show()는 비모달이라 배경이 그대로 살아 있다
+}
+
+// 닫힐 때 포커스 복귀: close 이벤트는 Esc로 닫혀도 반드시 발생한다
+lb.addEventListener('close', () =&gt; lastTrigger?.focus());
+
+// 배경(백드롭) 클릭으로 닫기 — dialog 자신이 클릭 대상이면 바깥이다
+lb.addEventListener('click', (e) =&gt; { if (e.target === lb) lb.close(); });
+
+// 좌우 이동. dialog 안에서만 듣게 하면 전역 키 핸들러와 안 싸운다
+lb.addEventListener('keydown', (e) =&gt; {
+  if (e.key === 'ArrowRight') { go(+1); e.preventDefault(); }
+  if (e.key === 'ArrowLeft')  { go(-1); e.preventDefault(); }
+});
+&lt;/script&gt;</code></pre>
+
+  <div class="note">
+    <b>용어 한 줄 정의</b> ·
+    <b>포커스 트랩</b> = 모달이 열린 동안 <kbd class="kbd">Tab</kbd>이 모달 안에서만 순환하는 것.
+    <b><code>inert</code></b> = 그 요소와 자손을 클릭·포커스·스크린리더 대상에서 통째로 빼는 HTML 속성.
+    <b>최상위 레이어(top layer)</b> = <code>z-index</code>와 무관하게 항상 맨 위에 그려지는 브라우저 전용 레이어. <code>showModal()</code>로 연 <code>&lt;dialog&gt;</code>가 여기에 올라가서, 부모의 <code>overflow:hidden</code>이나 <code>transform</code>에 잘리지 않는다.
+  </div>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>포커스 복귀</b>: 닫을 때 <b>열었던 썸네일</b>로 돌려준다. 안 그러면 포커스가 <code>&lt;body&gt;</code>로 떨어져 목록 맨 위부터 다시 Tab 해야 한다. <code>close</code> 이벤트 한 줄이면 된다.</li>
+    <li><b>이동 안내</b>: 좌우로 넘길 때 화면만 바뀌면 스크린리더 사용자는 아무것도 모른다. <code>role="status"</code>(= 조용한 <code>aria-live="polite"</code>) 영역에 "3 / 5, 카드매출전표 2026-09-03"처럼 <b>짧게</b> 쓴다.</li>
+    <li><b>확대는 키보드로도</b>: <kbd class="kbd">+</kbd>/<kbd class="kbd">−</kbd> 키와 버튼을 같이 둔다. 확대 배율은 <code>aria-label</code>이 아니라 화면 텍스트로 보여줘야 저시력 사용자에게 의미가 있다.</li>
+    <li><b>첫 포커스 위치</b>: 닫기 버튼에 두는 게 안전하다. 사용자가 실수로 열었을 때 <kbd class="kbd">Enter</kbd> 한 번으로 빠져나간다.</li>
+    <li><b>모션</b>: 확대 트랜지션은 <code>prefers-reduced-motion</code>(= OS의 "동작 줄이기" 설정)에서 끈다. 이 파일도 그렇게 했다.</li>
+    <li><b>이미지 대체 텍스트</b>: 증빙은 <code>alt="영수증"</code>으로 끝내지 말고 <b>어떤 거래의 무엇인지</b>를 적는다. 여기서는 <code>&lt;svg role="img"&gt;</code> + <code>&lt;title&gt;</code>로 넣었다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li><b>정산 증빙 뷰어</b>: 거래 상세에서 증빙 여러 장을 넘겨 보는 화면. 지금 모달을 닫았다 열어야 한다면 갤러리형(C)으로 바꿀 가치가 크다.</li>
+    <li><b>대사(對査) 작업</b>: 메타 패널(E)에 <b>전표 금액 vs 시스템 금액</b>을 나란히 두면 라이트박스가 곧 검증 도구가 된다.</li>
+    <li><b><code>&lt;dialog&gt;</code>로 갈아타기</b>: 기존 커스텀 오버레이가 있다면 껍데기만 <code>&lt;dialog&gt;</code>로 바꿔도 포커스 트랩 코드를 통째로 지울 수 있다. 다만 <code>::backdrop</code>은 기존 오버레이 배경과 겹치지 않게 정리해야 한다.</li>
+    <li><b>중첩 주의</b>: 라이트박스가 이미 모달 안(예: 상세 시트)에서 열린다면 <code>&lt;dialog&gt;</code>를 두 번 <code>showModal()</code>해도 괜찮지만, 닫는 순서가 뒤집히지 않게 반드시 <code>close</code> 이벤트로 복귀 대상을 관리한다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li>MDN — <code>&lt;dialog&gt;</code> 요소와 <code>showModal()</code>: <code>developer.mozilla.org/docs/Web/HTML/Element/dialog</code></li>
+    <li>MDN — <code>::backdrop</code> 의사요소</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 2 ============ -->
+<section class="card" id="statusbanner">
+  <h2>🔔 서비스 상태 배너 — 장애를 알리되 화면을 막지 않기 <span class="tag">피드백·상태</span></h2>
+  <p class="lead">
+    결제는 <b>남의 시스템이 자주 아프다</b>. 특정 카드사 승인이 느려지고, PG 점검이 잡히고, 가끔은 전면 장애가 난다.
+    이때 "무엇을, 어떤 세기로, 어디에" 알릴지가 설계다. 토스트로 띄우면 1초 뒤 사라져 못 보고,
+    모달로 막으면 멀쩡한 다른 결제수단까지 못 쓴다. <b>상태 배너</b>는 그 사이의 답이다.
+  </p>
+
+  <div class="demo">
+    <p class="demo-title">🧩 변형 A — 심각도 5단계 (닫기 동작함)</p>
+    <div class="bannerlist" id="sevList"></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn ghost sm" type="button" id="sevReset">닫은 배너 다시 보기</button>
+    </div>
+    <p class="cap">색만 다른 게 아니라 <b>닫을 수 있는지</b>가 다르다. 정보·복구는 닫기 허용, 진행 중 장애는 닫기 없음(끝나면 스스로 사라진다).</p>
+  </div>
+
+  <div class="demo">
+    <p class="demo-title">🧩 변형 B — 상태가 결제 화면 전체를 어떻게 바꾸는가 (시나리오 재생)</p>
+    <div class="scenario seg" role="group" aria-label="서비스 상태 시나리오">
+      <button type="button" data-sc="normal"  aria-pressed="true">정상</button>
+      <button type="button" data-sc="sched"   aria-pressed="false">점검 예고</button>
+      <button type="button" data-sc="slow"    aria-pressed="false">일부 지연</button>
+      <button type="button" data-sc="partial" aria-pressed="false">부분 장애</button>
+      <button type="button" data-sc="major"   aria-pressed="false">전면 장애</button>
+      <button type="button" data-sc="fixed"   aria-pressed="false">복구됨</button>
+    </div>
+
+    <div class="mock" style="margin-top:14px">
+      <div class="mockbar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span>paysable — 결제하기</span></div>
+      <div class="mockbody">
+        <div class="slot" id="scBannerSlot" aria-live="polite"></div>
+        <div style="font-size:.86rem;font-weight:700">결제수단 선택</div>
+        <div class="pm" id="pmList"></div>
+        <button class="btn paybtn" type="button" id="payBtn">128,000원 결제하기</button>
+        <p class="cap" id="payHint">카드 승인까지 보통 2~3초 걸립니다.</p>
+      </div>
+    </div>
+    <div class="log" id="scLog"></div>
+    <p class="cap">
+      상태가 바뀌면 배너만 바뀌는 게 아니다 — <b>해당 결제수단 행이 비활성</b>되고, 선택돼 있었다면 <b>자동 해제</b>되고,
+      제출 버튼 문구와 안내가 같이 바뀐다. 배너를 "장식"으로 두면 사용자는 장애 난 수단을 계속 고른다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">🧩 변형들 (요즘 패턴)</h3>
+  <table class="cmp">
+    <thead><tr><th style="width:22%">알림 그릇</th><th style="width:30%">언제</th><th>주의</th></tr></thead>
+    <tbody>
+      <tr><td><b>토스트</b></td><td>내가 방금 한 행동의 결과(저장됨, 취소됨)</td><td>몇 초 뒤 사라진다 → <b>지속되는 상태</b>를 담으면 안 된다.</td></tr>
+      <tr><td><b>인라인 배너</b> <span class="pill ok">오늘 주제</span></td><td>지금 이 화면에 영향을 주는 <b>지속 상태</b></td><td>화면을 막지 않되, 영향받는 영역 <b>바로 위</b>에 둔다.</td></tr>
+      <tr><td><b>전역 상단 바</b></td><td>앱 전체에 걸린 상태(점검 예고, 오프라인)</td><td>여러 개 겹치면 콘텐츠가 밀린다. 동시에 1개 원칙.</td></tr>
+      <tr><td><b>인라인 필드 에러</b></td><td>특정 입력이 틀렸을 때</td><td>서비스 장애를 필드 에러로 쓰면 사용자가 자기 잘못인 줄 안다.</td></tr>
+      <tr><td><b>모달</b></td><td>계속 진행하면 <b>돈이 잘못되는</b> 경우만</td><td>남용하면 사용자는 읽지 않고 닫는다.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>&lt;!-- 심각도에 따라 role이 달라진다. 이게 핵심이고 색은 부차적이다. --&gt;
+
+&lt;!-- 정보·예고·복구: 조용히 알림. 사용자가 읽던 흐름을 끊지 않는다 --&gt;
+&lt;div class="banner sched" role="status"&gt;…&lt;/div&gt;
+
+&lt;!-- 진행 중 장애: 즉시 읽어줘야 함 --&gt;
+&lt;div class="banner major" role="alert"&gt;…&lt;/div&gt;
+
+&lt;script&gt;
+// 닫기 정책: "닫을 수 있는가"는 심각도가 결정한다
+const DISMISSIBLE = { info:true, sched:true, slow:true, partial:false, major:false, fixed:true };
+
+// 닫은 배너를 기억하되 "그 사건"에 대해서만 기억한다.
+// incidentId를 안 쓰고 종류로만 기억하면, 다음 장애가 났을 때도 영원히 안 보인다.
+function dismiss(incidentId){
+  const seen = JSON.parse(sessionStorage.getItem('seenIncidents') || '[]');
+  sessionStorage.setItem('seenIncidents', JSON.stringify([...seen, incidentId]));
+}
+
+// 상태 변경은 배너만 갈아끼우지 말고, 영향받는 컨트롤까지 함께 바꾼다
+function applyStatus(s){
+  renderBanner(s);
+  for (const m of methods) m.disabled = s.downMethods.includes(m.id);
+  if (s.downMethods.includes(selected)) selected = null;   // 고른 수단이 죽었으면 해제
+  payBtn.disabled = (selected === null);
+}
+&lt;/script&gt;</code></pre>
+
+  <div class="note">
+    <b>용어 한 줄 정의</b> ·
+    <b><code>role="status"</code></b> = 스크린리더가 <b>지금 읽던 문장을 끊지 않고</b> 끝난 뒤 읽어주는 영역(= <code>aria-live="polite"</code>).
+    <b><code>role="alert"</code></b> = <b>즉시 끼어들어</b> 읽는 영역(= <code>aria-live="assertive"</code>). 남용하면 화면 낭독이 계속 끊긴다.
+    <b>부분 장애(partial outage)</b> = 서비스 전체가 아니라 특정 기능·특정 결제수단만 안 되는 상태.
+  </div>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b><code>role</code>을 심각도에 맞춘다</b>: 점검 예고까지 <code>alert</code>로 주면 스크린리더 사용자는 페이지에 들어올 때마다 낭독이 끊긴다. 진행 중 장애만 <code>alert</code>.</li>
+    <li><b>색만으로 구분하지 않기</b>: 주황/빨강 배경 대신 <b>아이콘 + 제목 문구</b>("일부 지연", "결제 불가")로도 구분되게. 색각 이상 사용자와 흑백 출력 화면 모두를 위해서다.</li>
+    <li><b>닫기의 기억 범위</b>: <code>sessionStorage</code>에 <b>사건 ID</b>로 기억한다. "점검 배너"라는 종류로 기억하면 다음 달 점검 때도 안 보인다.</li>
+    <li><b>배너가 바뀔 때 포커스는 옮기지 않는다</b>: 사용자가 입력 중일 수 있다. 포커스 이동은 사용자가 스스로 한 행동(제출 실패 등)에만.</li>
+    <li><b>시간은 사용자 시간대로</b>: "오늘 새벽 2시~4시"처럼 절대 시각을 쓰되 타임존을 명시한다("KST"). 서버 UTC 문자열을 그대로 뿌리는 사고가 흔하다.</li>
+    <li><b>막다른 길 금지</b>: 장애 배너에는 항상 다음 행동을 준다 — 다른 결제수단, 상태 페이지 링크, "복구되면 알림받기".</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li><b>결제수단별 헬스 상태</b>: PG·카드사 단위 상태를 API로 받아 결제수단 행에 인라인으로 표시하면, 사용자가 죽은 수단을 고르고 실패하는 경로가 사라진다. 실패 후 안내보다 <b>선택 전 안내</b>가 늘 싸다.</li>
+    <li><b>점검 예고 배너</b>: 정산·출금처럼 시간에 민감한 화면에 특히 필요하다. "오늘 02:00~04:00 KST 출금 신청 불가" 한 줄이 CS 문의를 줄인다.</li>
+    <li><b>복구 배너는 짧게 살렸다 지운다</b>: 복구(<code>fixed</code>)는 닫기 허용 + 자동 만료(예: 30분)로 두면 "언제까지 떠 있어야 하나" 논쟁이 사라진다.</li>
+    <li><b>배너 개수 상한</b>: 동시에 2개까지, 심각도 높은 순. 배너가 3개 쌓이면 사용자는 전부 무시한다(경보 피로).</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 3 ============ -->
+<section class="card" id="baseselect">
+  <h2>🌀 appearance: base-select — 네이티브 select를 드디어 CSS로 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    프론트엔드에서 가장 오래된 타협 중 하나가 <code>&lt;select&gt;</code>다. 드롭다운 목록은 OS가 그리기 때문에
+    글꼴·색·아이콘 어느 것도 CSS가 닿지 않았다. 그래서 다들 <code>div</code>로 커스텀 콤보박스를 만들고,
+    키보드·ARIA·모바일 대응을 처음부터 다시 짰다. <code>appearance: base-select</code>는 그 목록을
+    <b>브라우저가 그리되 CSS가 꾸미는</b> 요소 트리로 바꾼다. 네이티브의 접근성은 그대로 두고 모양만 가져오는 것.
+  </p>
+
+  <div class="demo">
+    <p class="demo-title">🧩 변형 A·B — 같은 결제수단 목록, 네이티브 vs base-select</p>
+    <div class="selgrid">
+      <div class="selbox">
+        <div class="lbl">A. 기본 <code>&lt;select&gt;</code> <span class="pill mu">모든 브라우저</span></div>
+        <label class="fieldlbl" for="selPlain">결제수단</label>
+        <select class="plainsel" id="selPlain">
+          <option value="visa">신한카드 Visa ···4291 · 잔여한도 1,240,000원</option>
+          <option value="master">현대카드 Master ···8830 · 잔여한도 620,000원</option>
+          <option value="amex">BC Amex ···1177 · 잔여한도 3,000,000원</option>
+          <option value="bank">국민은행 계좌이체 ···902 · 잔액 418,000원</option>
+        </select>
+        <p class="cap">텍스트 한 줄이 전부다. 카드 로고도, 두 줄 배치도, 잔액 강조도 불가능하다.</p>
+      </div>
+
+      <div class="selbox">
+        <div class="lbl">B. <code>appearance: base-select</code> <span class="pill in" id="bsBadge">지원 확인 중…</span></div>
+        <label class="fieldlbl" for="selRich">결제수단</label>
+        <select class="rich" id="selRich">
+          <button type="button">
+            <selectedcontent></selectedcontent>
+          </button>
+          <option value="visa">
+            <span class="cardmark visa">VISA</span>
+            <span class="optmain"><span class="t">신한카드</span><span class="s">···4291 · 한도 1,240,000원</span></span>
+          </option>
+          <option value="master">
+            <span class="cardmark master">MC</span>
+            <span class="optmain"><span class="t">현대카드</span><span class="s">···8830 · 한도 620,000원</span></span>
+          </option>
+          <option value="amex">
+            <span class="cardmark amex">AMEX</span>
+            <span class="optmain"><span class="t">BC Amex</span><span class="s">···1177 · 한도 3,000,000원</span></span>
+          </option>
+          <option value="bank">
+            <span class="cardmark bank">이체</span>
+            <span class="optmain"><span class="t">국민은행</span><span class="s">···902 · 잔액 418,000원</span></span>
+          </option>
+        </select>
+        <p class="cap" id="bsCap">
+          지원 브라우저에서는 로고·2줄 정보·체크 표시가 붙은 목록이 열리고, 미지원 브라우저에서는
+          <b>평범한 네이티브 select</b>로 그대로 동작한다(폴백).
+        </p>
+      </div>
+    </div>
+    <div class="support no" id="bsSupport">브라우저 지원 확인 중…</div>
+    <p class="cap">
+      두 칸 모두 <kbd class="kbd">Tab</kbd>으로 이동해 <kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd>
+      <kbd class="kbd">Enter</kbd>로 조작해 보세요. <b>키보드 동작은 양쪽이 동일</b>합니다 — 그게 이 기능의 핵심입니다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li><b>커스텀 콤보박스의 비용이 너무 컸다</b>: <code>div</code>로 만든 드롭다운은 키보드 탐색, 타이핑 점프, <code>aria-activedescendant</code>, 모바일 가상 키보드, 스크롤 락을 전부 직접 짜야 한다. 라이브러리를 써도 버전 업마다 회귀 버그가 났다.</li>
+    <li><b>브라우저가 그리되 CSS가 꾸민다</b>: <code>appearance: base-select</code>를 <code>select</code>와 <code>::picker(select)</code> 양쪽에 걸면, 목록이 OS 위젯이 아니라 <b>스타일 가능한 요소 트리</b>로 바뀐다. <code>&lt;option&gt;</code> 안에 <code>span</code>·아이콘 같은 실제 HTML을 넣을 수 있다.</li>
+    <li><b>같이 딸려오는 것들</b>: <code>::picker-icon</code>(화살표), <code>::checkmark</code>(선택 표시), <code>&lt;selectedcontent&gt;</code>(선택된 옵션의 내용을 버튼에 그대로 복제), <code>:open</code> 의사클래스. 목록 열림 애니메이션은 <code>@starting-style</code> + <code>transition-behavior: allow-discrete</code>로 붙인다.</li>
+    <li><b>지원 현황(2026-09 기준, 검색 확인)</b>: Chrome·Edge에서 안정 버전에 들어가 있고, Safari는 Technology Preview, Firefox는 플래그 뒤 프로토타입 단계다. <b>Baseline(전 엔진 안정 지원) 아님.</b> 다만 미지원 브라우저는 규칙을 무시하고 네이티브 select로 남으므로 <b>점진적 향상(progressive enhancement)</b>으로 오늘 바로 쓸 수 있다. — 세부 버전은 실제 프로젝트에서 재확인 권장(추정 포함).</li>
+    <li><b>어디에 먼저</b>: 옵션에 <b>보조 정보가 필요한 선택</b> — 결제수단(로고+마스킹번호+한도), 통화(국기+코드+이름), 정산 계좌, 국가·시간대. 반대로 옵션이 텍스트 한 줄이면 그냥 네이티브로 두는 게 낫다.</li>
+  </ul>
+
+  <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* 1) select와 picker 양쪽에 걸어야 base 모드로 들어간다 */
+select.rich,
+select.rich::picker(select) { appearance: base-select; }
+
+/* 2) 이제 평범한 CSS가 먹는다 */
+select.rich::picker(select){
+  border-radius: 12px; box-shadow: 0 6px 24px rgb(0 0 0 / .12); padding: 6px;
+
+  /* 열림/닫힘 애니메이션: display가 바뀌는 요소라 두 가지가 더 필요하다 */
+  opacity: 0;
+  transition: opacity .14s, overlay .14s allow-discrete, display .14s allow-discrete;
+}
+select.rich:open::picker(select){ opacity: 1; }
+@starting-style { select.rich:open::picker(select){ opacity: 0; } }
+
+select.rich option:checked{ background: #eef0fe; color: #4f46e5; }
+select.rich option::checkmark{ order: 99; margin-left: auto; }  /* 선택 표시를 오른쪽으로 */
+select.rich::picker-icon{ transition: transform .15s; }
+select.rich:open::picker-icon{ transform: rotate(180deg); }
+
+/* 3) 지원 여부로 분기하고 싶을 때 */
+@supports (appearance: base-select){ /* 향상된 스타일만 여기에 */ }</code></pre>
+
+<pre><code>&lt;!-- 마크업: 버튼과 selectedcontent는 base 모드에서만 의미가 있고,
+     미지원 브라우저는 이 둘을 무시하고 option 텍스트만 쓴다 --&gt;
+&lt;select class="rich"&gt;
+  &lt;button type="button"&gt;&lt;selectedcontent&gt;&lt;/selectedcontent&gt;&lt;/button&gt;
+  &lt;option value="visa"&gt;
+    &lt;span class="cardmark visa"&gt;VISA&lt;/span&gt;
+    &lt;span class="optmain"&gt;&lt;span class="t"&gt;신한카드&lt;/span&gt;&lt;span class="s"&gt;···4291&lt;/span&gt;&lt;/span&gt;
+  &lt;/option&gt;
+&lt;/select&gt;</code></pre>
+
+  <div class="note">
+    <b>용어 한 줄 정의</b> ·
+    <b><code>appearance</code></b> = 폼 요소를 OS 기본 위젯으로 그릴지 여부를 정하는 CSS 속성(기존엔 <code>none</code>으로 껍데기만 벗길 수 있었다).
+    <b><code>::picker(select)</code></b> = 열렸을 때 나타나는 <b>목록 팝업</b>을 가리키는 의사요소.
+    <b><code>&lt;selectedcontent&gt;</code></b> = 선택된 <code>option</code>의 내용을 버튼 자리에 자동 복제해 주는 요소.
+    <b>점진적 향상</b> = 최신 기능을 아는 브라우저에만 더 좋은 경험을 주고, 모르는 브라우저는 기본 동작으로 두는 전략.
+  </div>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>접근성은 공짜로 유지된다</b>: 여전히 <code>&lt;select&gt;</code>라서 라벨 연결, 키보드 탐색, 폼 제출, <code>:required</code>·유효성 검사가 그대로 동작한다. 커스텀 콤보박스에서 가장 자주 깨지던 부분이다.</li>
+    <li><b>옵션 안 HTML은 장식만</b>: 스크린리더는 대체로 옵션의 텍스트를 읽는다. <b>아이콘에만 의미를 담지 말고</b> 텍스트로도 같은 정보를 둔다(여기서는 "신한카드 ···4291").</li>
+    <li><b>대비 직접 챙기기</b>: OS 위젯일 땐 브라우저가 대비를 보장했지만, 이제 내가 칠한 색이 그대로 나간다. 선택 상태(<code>option:checked</code>) 대비를 특히 확인한다.</li>
+    <li><b>모션 끄기</b>: 열림 애니메이션은 <code>prefers-reduced-motion</code>에서 제거한다(이 파일도 적용).</li>
+    <li><b>미지원 경로를 실제로 보기</b>: 스타일을 짤 때 Firefox/Safari 안정 버전에서 한 번은 열어 본다. "지원 브라우저에서만 예쁘고 나머지에선 깨짐"이 가장 흔한 사고다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li><b>결제수단 드롭다운</b>: 라디오 카드 그룹을 쓸 공간이 없는 좁은 화면에서, 카드 로고·마스킹 번호·한도를 한 줄에 담을 수 있다. 커스텀 콤보박스를 새로 만들 이유가 하나 줄어든다.</li>
+    <li><b>통화·국가 선택</b>: 옵션이 200개인 목록에서 커스텀 구현은 가상 스크롤까지 필요했지만, 네이티브는 브라우저가 알아서 한다.</li>
+    <li><b>도입 순서</b>: ① 기존 커스텀 콤보박스 중 <b>단일 선택 + 검색 불필요</b>한 것부터 후보로 올린다(검색·다중선택이 필요하면 여전히 콤보박스 영역). ② <code>@supports</code>로 감싸 향상 스타일만 넣는다. ③ 네이티브 폴백 모양을 QA 체크리스트에 명시한다.</li>
+    <li><b>남길 것</b>: 자동완성이 필요한 칸(은행 검색 등)은 이 기능의 대상이 아니다. <code>select</code>는 여전히 "정해진 목록에서 하나 고르기"용이다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li>Chrome for Developers — "The &lt;select&gt; element can now be customized with CSS": <code>developer.chrome.com/blog/a-customizable-select</code></li>
+    <li>MDN — Customizable select elements (Learn web development / Forms)</li>
+    <li>MDN — <code>appearance</code> CSS 속성</li>
+  </ul>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-15 (화) · 모든 데모는 외부 의존성 없이 이 파일 하나로 동작합니다.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  root.setAttribute("data-theme","light");
+  themeBtn.addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  function logTo(el, msg){
+    var d = document.createElement("div");
+    d.className = "line";
+    d.innerHTML = msg;
+    el.insertBefore(d, el.firstChild);
+    while (el.children.length > 6) el.removeChild(el.lastChild);
+  }
+
+  /* ====================== 1. 증빙 라이트박스 ====================== */
+  var DOCS = [
+    { t:"카드매출전표", who:"신한카드 ···4291", amt:"128,000원", d:"2026-09-03", st:"대사 완료", hue:"#4f46e5" },
+    { t:"세금계산서",   who:"(주)에이블유니온", amt:"2,410,000원", d:"2026-09-05", st:"검토 대기", hue:"#0284c7" },
+    { t:"이체 확인증",  who:"국민은행 ···902", amt:"640,000원", d:"2026-09-08", st:"대사 완료", hue:"#16a34a" },
+    { t:"환불 영수증",  where:"", who:"현대카드 ···8830", amt:"-52,000원", d:"2026-09-11", st:"불일치", hue:"#dc2626" },
+    { t:"정산 명세서",  who:"2026년 9월 1차", amt:"8,920,400원", d:"2026-09-14", st:"검토 대기", hue:"#d97706" }
+  ];
+
+  /* 외부 이미지 없이 "증빙 스캔"처럼 보이는 SVG를 그린다(self-contained) */
+  function docSvg(i, big){
+    var d = DOCS[i];
+    var lines = "";
+    for (var k=0;k<7;k++){
+      var w = 60 + ((i*13 + k*29) % 90);
+      lines += '<rect x="26" y="'+(118+k*22)+'" width="'+w+'" height="7" rx="3.5" fill="#d7dce4"/>'+
+               '<rect x="'+(250-((i+k)%3)*18)+'" y="'+(118+k*22)+'" width="'+(34+((k*7)%22))+'" height="7" rx="3.5" fill="#c3c9d4"/>';
+    }
+    return '<svg viewBox="0 0 320 400" role="img" aria-label="'+d.t+' — '+d.who+' '+d.amt+' ('+d.d+')" '+
+      (big ? 'id="lbSvg"' : '') + '>'+
+      '<title>'+d.t+' — '+d.who+' '+d.amt+' ('+d.d+')</title>'+
+      '<rect width="320" height="400" rx="10" fill="#ffffff"/>'+
+      '<rect x="0" y="0" width="320" height="64" rx="10" fill="'+d.hue+'"/>'+
+      '<rect x="0" y="52" width="320" height="12" fill="'+d.hue+'"/>'+
+      '<text x="20" y="40" font-family="system-ui, sans-serif" font-size="19" font-weight="700" fill="#ffffff">'+d.t+'</text>'+
+      '<text x="26" y="92" font-family="system-ui, sans-serif" font-size="13" fill="#5b6472">'+d.who+'</text>'+
+      lines +
+      '<line x1="26" y1="300" x2="294" y2="300" stroke="#e2e6ec" stroke-width="2"/>'+
+      '<text x="26" y="332" font-family="system-ui, sans-serif" font-size="12" fill="#5b6472">합계</text>'+
+      '<text x="294" y="334" text-anchor="end" font-family="system-ui, sans-serif" font-size="22" font-weight="800" fill="#14181f">'+d.amt+'</text>'+
+      '<text x="26" y="364" font-family="system-ui, sans-serif" font-size="11" fill="#8a93a2">'+d.d+' · '+d.st+'</text>'+
+      '</svg>';
+  }
+
+  var thumbs   = document.getElementById("thumbs");
+  var lbLog    = document.getElementById("lbLog");
+  var lb       = document.getElementById("lbDialog");
+  var lbImg    = document.getElementById("lbImg");
+  var lbTitle  = document.getElementById("lbTitle");
+  var lbCount  = document.getElementById("lbCount");
+  var lbInfo   = document.getElementById("lbInfo");
+  var lbLive   = document.getElementById("lbLive");
+  var lbPrev   = document.getElementById("lbPrev");
+  var lbNext   = document.getElementById("lbNext");
+  var lbZoomVal= document.getElementById("lbZoomVal");
+  var focusWhere = document.getElementById("focusWhere");
+  var modeNow  = document.getElementById("modeNow");
+
+  var mode = "good";       // good = <dialog>, bad = div 오버레이
+  var cur = 0;
+  var zoom = 1;
+  var lastTrigger = null;  // 열었던 썸네일 → 닫을 때 돌려준다
+  var naiveEl = null;
+
+  DOCS.forEach(function(d, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "thumb";
+    b.setAttribute("role","listitem");
+    b.setAttribute("aria-label", d.t + " 크게 보기 — " + d.who + " " + d.amt);
+    b.innerHTML = docSvg(i,false) +
+      '<span class="meta"><b>'+d.t+'</b><span>'+d.d+' · '+d.amt+'</span></span>';
+    b.addEventListener("click", function(){ open(i, b); });
+    thumbs.appendChild(b);
+  });
+
+  function setMode(m){
+    mode = m;
+    modeNow.textContent = "현재: " + (m === "good" ? "dialog" : "div 오버레이");
+    modeNow.className = "pill " + (m === "good" ? "ok" : "da");
+    logTo(lbLog, m === "good"
+      ? "모드 전환 → <b>&lt;dialog&gt;</b>. 썸네일을 누른 뒤 Tab·Esc를 눌러 보세요."
+      : "모드 전환 → <b>div 오버레이</b>. 같은 목록이지만 키보드 동작이 다릅니다.");
+  }
+  document.getElementById("modeGood").addEventListener("click", function(){ setMode("good"); });
+  document.getElementById("modeBad").addEventListener("click", function(){ setMode("bad"); });
+
+  function open(i, trigger){
+    lastTrigger = trigger;
+    if (mode === "good") openDialog(i);
+    else openNaive(i);
+  }
+
+  /* --- ✅ dialog --- */
+  function renderDialog(i){
+    cur = i; zoom = 1;
+    var d = DOCS[i];
+    lbImg.innerHTML = docSvg(i,true);
+    applyZoom();
+    lbTitle.textContent = d.t;
+    lbCount.textContent = (i+1) + " / " + DOCS.length;
+    lbInfo.innerHTML =
+      '<div><b>'+d.who+'</b> · '+d.d+'</div>'+
+      '<div>금액 <b>'+d.amt+'</b> · 대사 상태 <b>'+d.st+'</b></div>';
+    lbPrev.disabled = (i === 0);
+    lbNext.disabled = (i === DOCS.length - 1);
+    /* 스크린리더용: 화면만 바뀌면 모르니 짧게 알려준다 */
+    lbLive.textContent = (i+1) + " / " + DOCS.length + ", " + d.t + " " + d.d;
+  }
+  function applyZoom(){
+    var svg = document.getElementById("lbSvg");
+    if (svg) svg.style.transform = "scale(" + zoom + ")";
+    lbZoomVal.textContent = Math.round(zoom*100) + "%";
+  }
+  function setZoom(z){ zoom = Math.min(3, Math.max(0.5, Math.round(z*100)/100)); applyZoom(); }
+  function go(step){
+    var n = cur + step;
+    if (n < 0 || n >= DOCS.length) return;
+    renderDialog(n);
+  }
+  function openDialog(i){
+    renderDialog(i);
+    lb.showModal();                    /* showModal()이라야 포커스 트랩·::backdrop·Esc가 붙는다 */
+    document.getElementById("lbClose").focus();
+    logTo(lbLog, "✅ <b>dialog 열림</b> — 배경은 자동으로 비활성(inert), 포커스는 닫기 버튼.");
+  }
+  lb.addEventListener("close", function(){
+    if (lastTrigger) lastTrigger.focus();   /* 포커스 복귀: Esc로 닫혀도 실행된다 */
+    logTo(lbLog, "✅ <b>닫힘</b> — 포커스가 열었던 썸네일로 돌아갔습니다.");
+  });
+  lb.addEventListener("click", function(e){
+    if (e.target === lb) lb.close();        /* 백드롭 클릭 */
+  });
+  lb.addEventListener("keydown", function(e){
+    if (e.key === "ArrowRight"){ go(+1); e.preventDefault(); }
+    else if (e.key === "ArrowLeft"){ go(-1); e.preventDefault(); }
+    else if (e.key === "+" || e.key === "="){ setZoom(zoom + .25); e.preventDefault(); }
+    else if (e.key === "-"){ setZoom(zoom - .25); e.preventDefault(); }
+    else if (e.key === "0"){ setZoom(1); e.preventDefault(); }
+  });
+  document.getElementById("lbClose").addEventListener("click", function(){ lb.close(); });
+  lbPrev.addEventListener("click", function(){ go(-1); });
+  lbNext.addEventListener("click", function(){ go(+1); });
+  document.getElementById("lbIn").addEventListener("click", function(){ setZoom(zoom + .25); });
+  document.getElementById("lbOut").addEventListener("click", function(){ setZoom(zoom - .25); });
+  document.getElementById("lbReset").addEventListener("click", function(){ setZoom(1); });
+
+  /* --- ❌ div 오버레이 (일부러 부족하게 만든 비교군) --- */
+  function openNaive(i){
+    closeNaive();
+    naiveEl = document.createElement("div");
+    naiveEl.className = "naive-overlay";
+    naiveEl.innerHTML =
+      '<div class="naive-box">'+
+        '<div class="bad">❌ 이 오버레이엔 포커스 트랩·Esc·배경 inert·포커스 복귀가 없습니다. Tab을 눌러 보세요.</div>'+
+        docSvg(i,false)+
+        '<div style="margin-top:10px"><button class="btn ghost sm" type="button" id="naiveClose">닫기</button></div>'+
+      '</div>';
+    document.body.appendChild(naiveEl);
+    document.getElementById("naiveClose").focus();
+    logTo(lbLog, "❌ <b>div 오버레이 열림</b> — 배경 요소들이 그대로 Tab 순서에 남아 있습니다.");
+  }
+  function closeNaive(){
+    if (naiveEl){ naiveEl.remove(); naiveEl = null; }
+  }
+  document.addEventListener("click", function(e){
+    if (e.target && e.target.id === "naiveClose"){
+      closeNaive();
+      logTo(lbLog, "❌ <b>닫힘</b> — 포커스가 &lt;body&gt;로 떨어져 목록 처음부터 Tab 해야 합니다.");
+    } else if (naiveEl && e.target === naiveEl){
+      /* 일부러 배경 클릭 닫기도 구현하지 않은 상태를 보여준다 */
+      logTo(lbLog, "❌ 배경을 눌렀지만 닫히지 않습니다(직접 구현하지 않으면 안 됩니다).");
+    }
+  });
+
+  /* 포커스가 지금 어디 있는지 실시간 표시 — 누수를 눈으로 보게 */
+  document.addEventListener("focusin", function(e){
+    var t = e.target;
+    var open = naiveEl || lb.open;
+    if (!open){
+      focusWhere.textContent = "— (아무것도 안 열림)";
+      focusWhere.className = "where inside";
+      return;
+    }
+    var container = naiveEl || lb;
+    var inside = container.contains(t);
+    focusWhere.textContent = inside
+      ? "오버레이 안 ✓ (" + (t.textContent || t.getAttribute("aria-label") || t.tagName).trim().slice(0,22) + ")"
+      : "배경으로 샘 ✗ (" + (t.textContent || t.getAttribute("aria-label") || t.tagName).trim().slice(0,22) + ")";
+    focusWhere.className = "where " + (inside ? "inside" : "outside");
+  });
+
+  document.getElementById("decoyBtn").addEventListener("click", function(){
+    logTo(lbLog, "배경 버튼이 눌렸습니다 — 오버레이가 열려 있는 동안 이게 가능하면 버그입니다.");
+  });
+
+  setMode("good");
+
+  /* ====================== 2. 서비스 상태 배너 ====================== */
+  var SEVS = [
+    { k:"info",    ic:"ℹ️", role:"status", dis:true,  t:"새 정산 리포트가 추가되었습니다",
+      s:"9월 1차 정산분부터 수수료 내역이 항목별로 표시됩니다.", act:"자세히 보기" },
+    { k:"sched",   ic:"🛠️", role:"status", dis:true,  t:"정기 점검 예정 — 09/17(목) 02:00~04:00 KST",
+      s:"해당 시간에는 출금 신청이 일시 중단됩니다. 결제는 정상 동작합니다.", act:"일정 추가" },
+    { k:"partial", ic:"⚠️", role:"status", dis:false, t:"일부 결제수단 지연 — 현대카드 승인 평균 12초",
+      s:"다른 카드로 결제하면 평소 속도로 처리됩니다. 09:14부터 관찰 중.", act:"상태 페이지" },
+    { k:"major",   ic:"⛔", role:"alert",  dis:false, t:"카드 결제 전면 중단 — 09:41부터",
+      s:"PG사 장애로 카드 승인이 불가합니다. 계좌이체는 정상입니다. 복구 예상 10:30 KST.", act:"복구 시 알림받기" },
+    { k:"fixed",   ic:"✅", role:"status", dis:true,  t:"복구 완료 — 카드 결제 정상화(10:22 KST)",
+      s:"장애 시간 중 실패한 결제는 재시도가 필요합니다. 중복 승인은 자동 취소됩니다.", act:"실패 건 보기" }
+  ];
+  var sevList = document.getElementById("sevList");
+  function renderSevs(){
+    sevList.innerHTML = "";
+    SEVS.forEach(function(s){
+      if (s.hidden) return;
+      var el = document.createElement("div");
+      el.className = "banner " + s.k;
+      el.setAttribute("role", s.role);
+      el.innerHTML =
+        '<span class="ic" aria-hidden="true">'+s.ic+'</span>'+
+        '<span class="bd"><b>'+s.t+'</b><span class="sub">'+s.s+'</span>'+
+          '<span class="acts"><button type="button">'+s.act+'</button></span></span>'+
+        (s.dis ? '<button class="x" type="button" aria-label="이 알림 닫기">✕</button>'
+               : '<span class="pill mu" style="flex:none">닫기 없음</span>');
+      if (s.dis){
+        el.querySelector(".x").addEventListener("click", function(){
+          s.hidden = true; renderSevs();
+        });
+      }
+      sevList.appendChild(el);
+    });
+  }
+  renderSevs();
+  document.getElementById("sevReset").addEventListener("click", function(){
+    SEVS.forEach(function(s){ s.hidden = false; });
+    renderSevs();
+  });
+
+  /* --- 시나리오: 상태가 결제 화면 전체를 바꾼다 --- */
+  var METHODS = [
+    { id:"visa",   nm:"신한카드 Visa",     s:"···4291" },
+    { id:"master", nm:"현대카드 Master",   s:"···8830" },
+    { id:"amex",   nm:"BC Amex",           s:"···1177" },
+    { id:"bank",   nm:"국민은행 계좌이체", s:"···902"  }
+  ];
+  var SCENARIOS = {
+    normal:  { banner:null, down:[], slow:[], hint:"카드 승인까지 보통 2~3초 걸립니다.", pay:"128,000원 결제하기" },
+    sched:   { banner:{k:"sched",ic:"🛠️",role:"status",t:"정기 점검 예정 — 09/17(목) 02:00~04:00 KST",s:"결제는 정상 동작합니다. 출금 신청만 일시 중단됩니다."},
+               down:[], slow:[], hint:"카드 승인까지 보통 2~3초 걸립니다.", pay:"128,000원 결제하기" },
+    slow:    { banner:{k:"partial",ic:"⚠️",role:"status",t:"현대카드 승인 지연 — 평균 12초",s:"다른 카드를 쓰면 평소 속도로 처리됩니다."},
+               down:[], slow:["master"], hint:"지연된 수단을 고르면 승인까지 10초 이상 걸릴 수 있습니다.", pay:"128,000원 결제하기" },
+    partial: { banner:{k:"partial",ic:"⚠️",role:"status",t:"일부 결제수단 사용 불가 — Amex·현대카드",s:"신한카드 또는 계좌이체로 결제할 수 있습니다. 복구 예상 10:30 KST."},
+               down:["master","amex"], slow:[], hint:"사용 가능한 수단으로 결제해 주세요.", pay:"128,000원 결제하기" },
+    major:   { banner:{k:"major",ic:"⛔",role:"alert",t:"카드 결제 전면 중단 — 09:41부터",s:"PG사 장애입니다. 계좌이체는 정상 동작합니다. 복구 예상 10:30 KST."},
+               down:["visa","master","amex"], slow:[], hint:"카드 승인이 불가합니다. 계좌이체를 이용하거나 잠시 후 다시 시도해 주세요.", pay:"계좌이체로 결제하기" },
+    fixed:   { banner:{k:"fixed",ic:"✅",role:"status",t:"복구 완료 — 카드 결제 정상화(10:22 KST)",s:"장애 중 실패한 결제는 재시도가 필요합니다. 중복 승인은 자동 취소됩니다."},
+               down:[], slow:[], hint:"카드 승인까지 보통 2~3초 걸립니다.", pay:"128,000원 결제하기" }
+  };
+  var scSlot  = document.getElementById("scBannerSlot");
+  var pmList  = document.getElementById("pmList");
+  var payBtn  = document.getElementById("payBtn");
+  var payHint = document.getElementById("payHint");
+  var scLog   = document.getElementById("scLog");
+  var selected = "visa";
+  var scNow = "normal";
+
+  function renderPM(){
+    var sc = SCENARIOS[scNow];
+    pmList.innerHTML = "";
+    METHODS.forEach(function(m){
+      var down = sc.down.indexOf(m.id) >= 0;
+      var slow = sc.slow.indexOf(m.id) >= 0;
+      var lab = document.createElement("label");
+      lab.className = "pmrow";
+      lab.setAttribute("data-state", down ? "down" : (slow ? "slow" : "ok"));
+      lab.innerHTML =
+        '<input type="radio" name="pm" value="'+m.id+'"'+
+          (selected === m.id ? ' checked' : '')+(down ? ' disabled' : '')+'>'+
+        '<span class="nm">'+m.nm+'<span class="s">'+
+          (down ? "지금 사용할 수 없습니다" : (slow ? "승인 지연 중 (평균 12초)" : m.s))+
+        '</span></span>'+
+        (down ? '<span class="pill da">중단</span>' : (slow ? '<span class="pill wa">지연</span>' : '<span class="pill ok">정상</span>'));
+      lab.querySelector("input").addEventListener("change", function(){
+        selected = m.id;
+        payBtn.disabled = false;
+        logTo(scLog, "결제수단 선택 → <b>"+m.nm+"</b>");
+      });
+      pmList.appendChild(lab);
+    });
+    payBtn.disabled = (selected === null);
+  }
+
+  function applyScenario(key){
+    scNow = key;
+    var sc = SCENARIOS[key];
+
+    /* 1) 배너 */
+    scSlot.innerHTML = "";
+    if (sc.banner){
+      var b = document.createElement("div");
+      b.className = "banner " + sc.banner.k;
+      b.setAttribute("role", sc.banner.role);
+      b.innerHTML =
+        '<span class="ic" aria-hidden="true">'+sc.banner.ic+'</span>'+
+        '<span class="bd"><b>'+sc.banner.t+'</b><span class="sub">'+sc.banner.s+'</span></span>';
+      scSlot.appendChild(b);
+    }
+    /* 2) 고른 수단이 죽었으면 선택 해제 — 배너만 바꾸고 끝내면 안 되는 이유 */
+    if (selected && sc.down.indexOf(selected) >= 0){
+      logTo(scLog, "선택했던 <b>"+(METHODS.filter(function(m){return m.id===selected;})[0]||{}).nm+"</b> 가 중단되어 자동 해제했습니다.");
+      selected = null;
+    }
+    if (!selected){
+      var alive = METHODS.filter(function(m){ return sc.down.indexOf(m.id) < 0; });
+      if (alive.length) { selected = alive[0].id; logTo(scLog, "사용 가능한 <b>"+alive[0].nm+"</b>로 대체 선택했습니다."); }
+    }
+    /* 3) 버튼·안내 문구까지 상태를 따라간다 */
+    renderPM();
+    payBtn.textContent = sc.pay;
+    payHint.textContent = sc.hint;
+    logTo(scLog, "상태 적용 → <b>"+key+"</b> · 중단 "+sc.down.length+"건, 지연 "+sc.slow.length+"건");
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".scenario button"), function(btn){
+    btn.addEventListener("click", function(){
+      Array.prototype.forEach.call(document.querySelectorAll(".scenario button"), function(b){
+        b.setAttribute("aria-pressed", String(b === btn));
+      });
+      applyScenario(btn.getAttribute("data-sc"));
+    });
+  });
+  payBtn.addEventListener("click", function(){
+    logTo(scLog, "결제 시도 — 데모이므로 실제로 승인되지는 않습니다.");
+  });
+  applyScenario("normal");
+
+  /* ====================== 3. base-select 지원 감지 ====================== */
+  (function(){
+    var badge = document.getElementById("bsBadge");
+    var box   = document.getElementById("bsSupport");
+    var ok = false;
+    try { ok = !!(window.CSS && CSS.supports && CSS.supports("appearance","base-select")); } catch(e){ ok = false; }
+    if (ok){
+      badge.textContent = "이 브라우저 지원 ✓";
+      badge.className = "pill ok";
+      box.className = "support yes";
+      box.innerHTML = "✅ <b>이 브라우저는 <code>appearance: base-select</code>를 지원합니다.</b> "+
+        "오른쪽 select를 열면 카드 로고·2줄 정보·체크 표시가 붙은 목록이 보입니다. "+
+        "왼쪽 기본 select와 키보드 동작(↑↓/Enter/타이핑 점프)이 같은지 비교해 보세요.";
+    } else {
+      badge.textContent = "이 브라우저 미지원 (폴백 중)";
+      badge.className = "pill wa";
+      box.className = "support no";
+      box.innerHTML = "⚠️ <b>이 브라우저는 <code>appearance: base-select</code>를 지원하지 않습니다.</b> "+
+        "오른쪽 select가 왼쪽과 똑같이 보이는 것이 바로 <b>의도된 폴백</b>입니다 — "+
+        "스타일만 무시되고 기능은 100% 그대로입니다. 2026-09 기준 Chrome·Edge 안정 버전에서 확인할 수 있습니다.";
+    }
+  })();
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      root.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
