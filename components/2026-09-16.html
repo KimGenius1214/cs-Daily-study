@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-16 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0284c7; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+    interpolate-size: allow-keywords; /* height:auto 로의 전환을 허용 (③에서 사용) */
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .log .line{margin:1px 0}
+  fieldset.plain{border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:0}
+  fieldset.plain legend{font-size:.8rem;color:var(--muted);padding:0 6px}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.83rem;font-weight:600;
+    padding:7px 13px;cursor:pointer}
+  .seg button + button{border-left:1px solid var(--border)}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+  label.fld{display:block;font-size:.82rem;font-weight:600;margin:0 0 4px}
+  input.txt,select.txt{width:100%;font-family:inherit;font-size:.92rem;padding:9px 11px;border-radius:9px;
+    border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  input.txt:focus-visible,select.txt:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .hint{font-size:.76rem;color:var(--muted);margin-top:4px}
+  .err{font-size:.78rem;color:var(--danger);margin-top:4px;font-weight:600}
+
+  /* ================= ① 결제 거절 복구 ================= */
+  .pay-shell{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+  @media (max-width:720px){ .pay-shell{grid-template-columns:1fr} }
+  .pay-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .card-face{border:1px solid var(--border);border-radius:10px;padding:11px 13px;background:var(--surface-2);
+    display:flex;align-items:center;gap:10px;justify-content:space-between}
+  .card-face .brand{font-weight:800;font-size:.8rem;letter-spacing:.06em}
+  .card-face .nm{font-variant-numeric:tabular-nums;font-size:.88rem}
+  .result{border-radius:12px;border:1px solid var(--border);padding:14px;background:var(--surface);min-height:190px}
+  .result.is-fail{border-color:var(--danger);background:var(--danger-soft)}
+  .result.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+  .result.is-idle{color:var(--muted)}
+  .result .rtitle{font-weight:800;font-size:1rem;margin:0 0 4px;display:flex;gap:8px;align-items:center}
+  .result .rwhy{font-size:.88rem;margin:0 0 10px}
+  .result .rcode{font-size:.72rem;color:var(--muted);font-family:ui-monospace,monospace}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .cooldown{font-size:.78rem;color:var(--warn);font-weight:700;margin-top:8px}
+  .attempts{display:flex;gap:5px;margin-top:10px;align-items:center;font-size:.76rem;color:var(--muted)}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--border);display:inline-block}
+  .dot.used{background:var(--danger)}
+  .bad-good{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));margin-top:16px}
+  .bg-box{border-radius:12px;padding:13px;border:1px solid var(--border);background:var(--surface)}
+  .bg-box.bad{border-color:var(--danger)}
+  .bg-box.good{border-color:var(--ok)}
+  .bg-box h5{margin:0 0 7px;font-size:.84rem}
+
+  /* ================= ② 조건부 필드 폼 ================= */
+  .cf-form{display:grid;gap:14px}
+  .cf-group{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  fieldset.branch{border:1px solid var(--border);border-radius:12px;padding:14px;margin:0;background:var(--surface)}
+  fieldset.branch legend{font-size:.78rem;font-weight:700;color:var(--brand);padding:0 6px}
+  fieldset.branch[disabled]{display:none}          /* 숨김 + 전송 제외를 한 속성으로 */
+  fieldset.branch[disabled] input{background:var(--surface-2)}
+  .payload{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;white-space:pre-wrap;
+    background:#0d1117;color:#e6edf3;border-radius:10px;padding:12px 14px;margin-top:10px;min-height:84px}
+  [data-theme="dark"] .payload{background:#05070a;border:1px solid var(--border)}
+  .live-msg{font-size:.82rem;font-weight:600;color:var(--info);margin-top:6px;min-height:1.3em}
+
+  /* ================= ③ ::details-content ================= */
+  .acc{display:grid;gap:10px}
+  .acc details{border:1px solid var(--border);border-radius:12px;background:var(--surface);overflow:hidden}
+  .acc summary{cursor:pointer;list-style:none;padding:12px 14px;font-weight:700;font-size:.9rem;
+    display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary:focus-visible{outline:3px solid var(--ring);outline-offset:-3px;border-radius:12px}
+  .acc summary .chev{transition:transform .25s ease;color:var(--muted);font-size:.8rem}
+  .acc details[open] summary .chev{transform:rotate(90deg)}
+  .acc .body{padding:0 14px 14px;font-size:.87rem;color:var(--muted)}
+
+  /* 핵심: ::details-content 로 '열리는 부분'을 직접 잡아 애니메이션 */
+  .acc.smooth details::details-content{
+    block-size:0;
+    overflow:clip;
+    transition: block-size .3s ease, content-visibility .3s allow-discrete;
+  }
+  .acc.smooth details[open]::details-content{ block-size:auto; }
+
+  /* 폴백: 미지원 브라우저에선 그냥 즉시 펼쳐짐(기능 손상 없음) */
+  @supports not selector(::details-content){
+    .acc.smooth details::details-content{ block-size:auto }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .acc.smooth details::details-content{transition:none}
+    .acc summary .chev{transition:none}
+  }
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-16 (수) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#decline">💳 결제 거절 복구</a>
+  <a href="#conditional">⌨️ 조건부 필드 폼</a>
+  <a href="#details">🌀 ::details-content</a>
+</nav>
+
+<!-- ============================================================ 1 -->
+<section class="card" id="decline">
+  <h2>💳 결제 거절 복구 — 사유마다 다음 행동이 달라야 한다 <span class="tag">결제·체크아웃 UX</span></h2>
+  <p class="lead">
+    "결제에 실패했습니다"는 사용자에게 아무것도 알려주지 않는다. PG/카드사가 돌려주는 <b>거절 사유 코드</b>를
+    <b>몇 개의 복구 시나리오로 묶어</b>, 각 시나리오에 <b>서로 다른 주 액션 하나</b>를 주는 게 요즘 방식이다.
+    아래 시뮬레이터에서 사유를 바꿔가며 화면이 어떻게 달라지는지 보자.
+  </p>
+
+  <h3 class="sec-lead">변형 A — 거절 사유별 복구 화면 (시뮬레이터)</h3>
+  <div class="demo">
+    <p class="demo-title">결제 시도 → 사유별 안내</p>
+    <div class="pay-shell">
+      <div class="pay-card">
+        <div class="card-face">
+          <div>
+            <div class="brand">VISA</div>
+            <div class="nm">•••• •••• •••• 4242</div>
+          </div>
+          <span class="pill mu">기본 카드</span>
+        </div>
+        <div style="margin-top:12px">
+          <label class="fld" for="declPick">테스트할 거절 사유</label>
+          <select class="txt" id="declPick">
+            <option value="ok">승인 성공</option>
+            <option value="insufficient_funds" selected>잔액/한도 부족 (insufficient_funds)</option>
+            <option value="do_not_honor">발급사 거절 (do_not_honor)</option>
+            <option value="expired_card">유효기간 만료 (expired_card)</option>
+            <option value="incorrect_cvc">CVC 불일치 (incorrect_cvc)</option>
+            <option value="lost_card">분실/도난 카드 (lost_card)</option>
+            <option value="processing_error">처리 오류 (processing_error)</option>
+          </select>
+          <div class="hint">실제로는 서버가 내려준 코드를 프런트가 매핑 테이블로 해석한다.</div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="payBtn" type="button">₩38,000 결제하기</button>
+          <button class="btn ghost sm" id="payReset" type="button">초기화</button>
+        </div>
+        <div class="attempts" id="attemptDots" aria-hidden="true"></div>
+        <p class="cooldown" id="cooldownMsg" hidden></p>
+      </div>
+
+      <div class="result is-idle" id="payResult" role="status" aria-live="polite">
+        <p class="rtitle">아직 결제하지 않았습니다</p>
+        <p class="rwhy">왼쪽에서 사유를 고르고 결제 버튼을 눌러보세요.</p>
+      </div>
+    </div>
+    <p class="cap">
+      같은 "실패"라도 <b>재시도가 의미 있는 경우</b>(일시적 거절)와 <b>재시도가 무의미한 경우</b>(만료·분실)는 주 액션이 완전히 달라야 한다.
+      주 액션은 화면당 하나만 강조하고, 나머지는 보조 버튼으로 내린다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 무한 재시도를 막는 가드</h3>
+  <div class="demo">
+    <p class="demo-title">같은 카드 3회 실패 → 재시도 잠금 + 경로 전환</p>
+    <p style="font-size:.86rem;margin:0 0 6px;color:var(--muted)">
+      위 시뮬레이터에서 <b>같은 카드로 계속 실패</b>시켜 보세요. 3회째부터 "다시 시도"가 잠기고,
+      화면이 <b>다른 결제수단 등록</b> 쪽으로 사용자를 옮깁니다. 성공하면 카운터는 0으로 돌아갑니다.
+    </p>
+    <ul class="clean" style="font-size:.85rem">
+      <li>연속 실패 카운터는 <b>카드 단위</b>로 센다(카드를 바꾸면 리셋).</li>
+      <li>잠금은 "버튼을 없애기"가 아니라 <b>쿨다운 초읽기 + 대체 경로 제시</b>로 한다.</li>
+      <li>카드사가 이미 막은 카드를 계속 두드리면 <b>사기 의심 플래그</b>가 쌓일 수 있다(카드망 정책은 사별로 다름 — 추정).</li>
+    </ul>
+  </div>
+
+  <h3 class="sec-lead">변형 C — 나쁜 예 vs 좋은 예</h3>
+  <div class="demo">
+    <div class="bad-good">
+      <div class="bg-box bad">
+        <h5>❌ 흔한 실패 화면</h5>
+        <div style="border:1px solid var(--border);border-radius:10px;padding:12px;background:var(--surface-2)">
+          <p style="margin:0 0 8px;font-weight:700">결제에 실패했습니다.</p>
+          <p style="margin:0 0 10px;font-size:.82rem;color:var(--muted)">오류 코드: 51 / TRX-9f31a</p>
+          <button class="btn sm" type="button" onclick="return false">확인</button>
+        </div>
+        <ul class="clean" style="font-size:.79rem;margin-top:9px">
+          <li>왜 실패했는지 모른다 → 사용자는 같은 카드를 또 누른다.</li>
+          <li>"확인"은 사용자를 아무 데도 데려가지 않는다(막다른 길).</li>
+          <li>내부 코드(51)를 그대로 노출 → 검색해도 안 나온다.</li>
+        </ul>
+      </div>
+      <div class="bg-box good">
+        <h5>✅ 복구 화면</h5>
+        <div style="border:1px solid var(--ok);border-radius:10px;padding:12px;background:var(--ok-soft)">
+          <p style="margin:0 0 4px;font-weight:700">카드 한도 또는 잔액이 부족합니다</p>
+          <p style="margin:0 0 10px;font-size:.82rem">결제는 이뤄지지 않았고 <b>금액이 빠져나가지 않았습니다.</b> 다른 카드로 진행하거나 잠시 후 다시 시도해 주세요.</p>
+          <div class="row">
+            <button class="btn sm" type="button" onclick="return false">다른 카드로 결제</button>
+            <button class="btn ghost sm" type="button" onclick="return false">다시 시도</button>
+          </div>
+        </div>
+        <ul class="clean" style="font-size:.79rem;margin-top:9px">
+          <li>사유를 <b>사용자 언어</b>로 번역했다.</li>
+          <li><b>돈이 빠져나갔는지</b>를 먼저 안심시킨다 — 결제 실패에서 가장 큰 불안.</li>
+          <li>주 액션(다른 카드) 하나 + 보조 액션 하나. 선택지를 3개 이상 주지 않는다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <table class="cmp">
+    <caption class="sr-only">거절 사유 그룹과 권장 주 액션</caption>
+    <tr><th>그룹</th><th>대표 사유</th><th>재시도 의미</th><th>주 액션</th></tr>
+    <tr><td>일시적 거절</td><td>잔액/한도 부족, 발급사 거절</td><td><span class="pill wa">시간 두고 가능</span></td><td>다른 카드로 결제 (보조: 다시 시도)</td></tr>
+    <tr><td>정보 오류</td><td>CVC 불일치, 유효기간 오류</td><td><span class="pill ok">고치면 즉시</span></td><td>카드 정보 수정 (틀린 칸으로 포커스)</td></tr>
+    <tr><td>카드 자체 불가</td><td>만료, 분실/도난, 정지</td><td><span class="pill da">무의미</span></td><td>다른 결제수단 등록만 노출</td></tr>
+    <tr><td>시스템 오류</td><td>처리 오류, 타임아웃</td><td><span class="pill in">즉시 1~2회</span></td><td>다시 시도 (멱등키 유지)</td></tr>
+  </table>
+
+  <div class="note">
+    <b>멱등키(idempotency key)</b> = 같은 요청을 여러 번 보내도 서버가 <i>한 번만</i> 처리하도록 붙이는 고유 식별자.
+    재시도 버튼을 누를 때 <b>같은 키를 유지</b>해야 이중 결제가 안 난다. 단, 사용자가 <b>카드를 바꿔서</b> 재시도하는 건
+    다른 결제이므로 키를 <b>새로 발급</b>해야 한다 — 이 구분을 놓치면 "카드 바꿨는데 예전 카드로 결제됨" 버그가 난다.
+  </div>
+
+  <pre><code>// 거절 코드 → 복구 시나리오 매핑 (프런트가 들고 있는 표)
+type Recovery =
+  | { kind: 'retryable';  title: string; why: string; primary: 'other_card'; secondary: 'retry' }
+  | { kind: 'fixable';    title: string; why: string; primary: 'edit_card';  focusField: 'cvc' | 'expiry' | 'number' }
+  | { kind: 'dead';       title: string; why: string; primary: 'add_method' }
+  | { kind: 'system';     title: string; why: string; primary: 'retry' };
+
+const RECOVERY: Record&lt;string, Recovery&gt; = {
+  insufficient_funds: { kind:'retryable', title:'카드 한도 또는 잔액이 부족합니다',
+    why:'결제는 이뤄지지 않았고 금액이 빠져나가지 않았습니다.', primary:'other_card', secondary:'retry' },
+  incorrect_cvc:      { kind:'fixable',  title:'CVC 번호가 맞지 않습니다',
+    why:'카드 뒷면 3자리를 다시 확인해 주세요.', primary:'edit_card', focusField:'cvc' },
+  expired_card:       { kind:'dead',     title:'유효기간이 지난 카드입니다',
+    why:'이 카드로는 결제할 수 없습니다.', primary:'add_method' },
+  // ...
+};
+
+// 알 수 없는 코드는 'system'으로 흘려보낸다 — 절대 원시 코드를 그대로 노출하지 않는다
+const view = RECOVERY[declineCode] ?? {
+  kind:'system', title:'결제를 처리하지 못했습니다',
+  why:'일시적인 문제로 보입니다. 잠시 후 다시 시도해 주세요.', primary:'retry',
+};</code></pre>
+
+  <p class="cap">핵심은 코드 개수(수십 개)가 아니라 <b>시나리오 4개</b>다. 새 코드가 늘어도 네 갈래 중 하나에 넣기만 하면 화면은 그대로 동작한다.</p>
+</section>
+
+<!-- ============================================================ 2 -->
+<section class="card" id="conditional">
+  <h2>⌨️ 조건부 필드 폼 — 갈라지는 입력에서 검증·전송값을 깨끗하게 <span class="tag">입력·폼</span></h2>
+  <p class="lead">
+    "개인 / 사업자"처럼 <b>선택에 따라 뒤의 필드가 통째로 바뀌는 폼</b>은 정산·가입 화면의 단골이다.
+    여기서 사고는 대부분 <b>숨긴 필드</b>에서 난다 — 안 보이는데 <code>required</code>가 살아 있어 제출이 막히거나,
+    안 보이는 값이 서버로 같이 날아간다. <code>&lt;fieldset disabled&gt;</code> 하나로 두 문제를 동시에 없앨 수 있다.
+  </p>
+
+  <h3 class="sec-lead">변형 A — 분기 폼 (전송 payload 실시간 확인)</h3>
+  <div class="demo">
+    <p class="demo-title">정산 계좌 등록 — 개인 ↔ 사업자</p>
+    <form class="cf-form" id="cfForm" novalidate>
+      <div>
+        <span class="fld" id="cfTypeLabel">정산 주체</span>
+        <div class="seg" role="group" aria-labelledby="cfTypeLabel">
+          <button type="button" data-branch="personal" aria-pressed="true">개인</button>
+          <button type="button" data-branch="business" aria-pressed="false">사업자</button>
+        </div>
+        <p class="live-msg" id="cfLive" role="status" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="branch" id="branch-personal">
+        <legend>개인 정보</legend>
+        <div class="cf-group">
+          <div>
+            <label class="fld" for="pName">예금주 성명</label>
+            <input class="txt" id="pName" name="holderName" required autocomplete="name" />
+            <p class="err" id="pName-err" hidden></p>
+          </div>
+          <div>
+            <label class="fld" for="pBirth">생년월일 6자리</label>
+            <input class="txt" id="pBirth" name="birth6" required inputmode="numeric" maxlength="6" placeholder="900101" />
+            <p class="err" id="pBirth-err" hidden></p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="branch" id="branch-business" disabled>
+        <legend>사업자 정보</legend>
+        <div class="cf-group">
+          <div>
+            <label class="fld" for="bNo">사업자등록번호</label>
+            <input class="txt" id="bNo" name="bizNo" required inputmode="numeric" maxlength="12" placeholder="123-45-67890" />
+            <p class="err" id="bNo-err" hidden></p>
+          </div>
+          <div>
+            <label class="fld" for="bCeo">대표자명</label>
+            <input class="txt" id="bCeo" name="ceoName" required autocomplete="off" />
+            <p class="err" id="bCeo-err" hidden></p>
+          </div>
+        </div>
+        <div style="margin-top:12px">
+          <label class="fld" for="bTax">세금계산서 수신 이메일</label>
+          <input class="txt" id="bTax" name="taxEmail" type="email" required autocomplete="email" placeholder="tax@company.com" />
+          <p class="err" id="bTax-err" hidden></p>
+        </div>
+      </fieldset>
+
+      <fieldset class="plain">
+        <legend>공통</legend>
+        <div class="cf-group">
+          <div>
+            <label class="fld" for="cBank">은행</label>
+            <select class="txt" id="cBank" name="bank">
+              <option>국민</option><option>신한</option><option>토스뱅크</option>
+            </select>
+          </div>
+          <div>
+            <label class="fld" for="cAcct">계좌번호</label>
+            <input class="txt" id="cAcct" name="account" inputmode="numeric" placeholder="숫자만" />
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="row">
+        <button class="btn" type="submit">등록하기</button>
+        <button class="btn ghost sm" type="button" id="cfBad">❌ 나쁜 구현으로 전환 (hidden만 씌우기)</button>
+      </div>
+    </form>
+    <div class="payload" id="cfPayload" aria-label="서버로 전송될 값 미리보기"></div>
+    <p class="cap">
+      위 <b>payload 미리보기</b>는 실제 <code>new FormData(form)</code> 결과다. 세그먼트를 바꿔보면
+      <b>안 보이는 쪽 필드가 payload에서 통째로 사라지는 것</b>을 볼 수 있다 — 프런트에서 따로 지워주는 코드가 없는데도.
+      <code>disabled</code>된 <code>&lt;fieldset&gt;</code> 안의 컨트롤은 <b>제출 대상에서 제외</b>되고 <b>검증도 건너뛰기</b> 때문이다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 나쁜 구현 재현</h3>
+  <div class="demo">
+    <p class="demo-title">"hidden만 씌우고 required를 남겨두면" 무슨 일이 생기나</p>
+    <p style="font-size:.86rem;margin:0;color:var(--muted)">
+      위에서 <b>❌ 나쁜 구현으로 전환</b>을 누르고 다시 제출해 보세요. 화면에 보이지도 않는 필드 때문에 제출이 막히고,
+      브라우저 기본 검증은 <b>숨은 필드에 포커스를 줄 수 없어</b> 아무 말 없이 실패합니다(콘솔에도 안 나옴).
+      payload에도 반대편 값이 딸려 들어갑니다. 실무에서 "버튼을 눌러도 아무 반응이 없어요" 문의의 단골 원인.
+    </p>
+  </div>
+
+  <table class="cmp">
+    <caption class="sr-only">분기 필드 숨김 방식 비교</caption>
+    <tr><th>방식</th><th>전송에서 제외</th><th>검증 건너뜀</th><th>포커스 누수</th><th>평가</th></tr>
+    <tr><td><code>display:none</code>만</td><td>❌ 포함됨</td><td>❌ 막힘</td><td>없음</td><td><span class="pill da">사고 원인</span></td></tr>
+    <tr><td><code>hidden</code> 속성</td><td>❌ 포함됨</td><td>❌ 막힘</td><td>없음</td><td><span class="pill da">같은 문제</span></td></tr>
+    <tr><td>JS로 필드 제거(unmount)</td><td>⭕</td><td>⭕</td><td>없음</td><td><span class="pill wa">되지만 입력값 유실</span></td></tr>
+    <tr><td><code>&lt;fieldset disabled hidden&gt;</code></td><td>⭕</td><td>⭕</td><td>없음</td><td><span class="pill ok">권장</span></td></tr>
+  </table>
+
+  <pre><code>&lt;!-- 숨기기(hidden)와 전송 제외(disabled)를 fieldset 한 곳에서 --&gt;
+&lt;fieldset id="branch-business" disabled hidden&gt;
+  &lt;legend&gt;사업자 정보&lt;/legend&gt;
+  &lt;input name="bizNo" required /&gt;   &lt;!-- required 남겨둬도 안전: disabled면 검증 제외 --&gt;
+&lt;/fieldset&gt;</code></pre>
+
+  <pre><code>// React: 분기 전환 시 (1) 에러 초기화 (2) 첫 필드로 포커스 (3) 변경을 소리로도 알림
+function switchBranch(next: 'personal' | 'business') {
+  setBranch(next);
+  setErrors({});                                  // 반대편에서 남은 에러 메시지 제거
+  queueMicrotask(() =&gt; {
+    const fs = document.getElementById(`branch-${next}`);
+    fs?.querySelector&lt;HTMLInputElement&gt;('input:not([disabled])')?.focus();
+  });
+}
+
+// 제출값은 FormData 그대로 — disabled fieldset 안쪽은 알아서 빠진다
+const onSubmit = (e: React.FormEvent&lt;HTMLFormElement&gt;) =&gt; {
+  e.preventDefault();
+  const payload = Object.fromEntries(new FormData(e.currentTarget));
+  // { holderName, birth6, bank, account }  ← 사업자 필드는 들어오지 않음
+};</code></pre>
+
+  <h3 class="sec-lead">♿ 여기서 놓치기 쉬운 것</h3>
+  <ul class="clean" style="font-size:.87rem">
+    <li><b>전환을 알리기</b>: 화면 중간이 통째로 바뀌는데 스크린리더는 침묵한다. <code>role="status"</code> 영역에 "사업자 입력으로 전환됨 — 3개 항목" 한 줄을 넣는다.</li>
+    <li><b>포커스 이동</b>: 전환 직후 새 분기의 첫 입력으로 포커스를 옮긴다. 키보드 사용자가 <span class="kbd">Tab</span>을 10번 누르지 않게.</li>
+    <li><b>입력값 보존</b>: 개인 → 사업자 → 개인으로 돌아왔을 때 아까 친 값이 살아 있어야 한다. <code>disabled</code>는 값을 지우지 않으므로 그대로 남는다(언마운트 방식의 장점).</li>
+    <li><b>세그먼트는 라디오다</b>: 시각적으로 버튼이어도 의미는 "택1". <code>role="radiogroup"</code> + 화살표 키 이동이 정석이며, 위 데모는 <code>aria-pressed</code> 토글 그룹으로 단순화했다(둘 다 실무에서 쓰인다).</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 3 -->
+<section class="card" id="details">
+  <h2>🌀 ::details-content — 펼침 애니메이션에서 드디어 래퍼 div를 뺀다 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    <code>&lt;details&gt;</code>는 접고 펴는 걸 브라우저가 공짜로 해주지만, <b>부드럽게 펼치기</b>가 오랫동안 불가능했다.
+    열리는 부분을 가리킬 선택자가 없어서, 다들 안쪽에 <code>div.wrapper</code>를 하나 더 넣고 JS로 높이를 쟀다.
+    <code>::details-content</code>는 그 "열리는 부분"을 <b>CSS가 직접 가리키게</b> 해준다.
+  </p>
+  <div class="support" id="dcSupport">지원 여부 확인 중…</div>
+
+  <h3 class="sec-lead">변형 A — 기본 details vs ::details-content 적용</h3>
+  <div class="demo">
+    <div class="grid2">
+      <div>
+        <p class="demo-title">① 그냥 details (툭 열림)</p>
+        <div class="acc">
+          <details>
+            <summary>정산은 언제 들어오나요? <span class="chev">▶</span></summary>
+            <div class="body">영업일 기준 D+2에 등록된 계좌로 입금됩니다. 공휴일이 끼면 다음 영업일로 밀립니다.</div>
+          </details>
+          <details>
+            <summary>정산 계좌를 바꾸려면? <span class="chev">▶</span></summary>
+            <div class="body">설정 → 정산 계좌에서 변경할 수 있고, 변경 당일 정산 건부터 새 계좌가 적용됩니다.</div>
+          </details>
+        </div>
+        <p class="cap">기능은 완벽하다. 다만 열림/닫힘이 <b>끊긴다</b>.</p>
+      </div>
+      <div>
+        <p class="demo-title">② ::details-content + interpolate-size</p>
+        <div class="acc smooth">
+          <details>
+            <summary>정산은 언제 들어오나요? <span class="chev">▶</span></summary>
+            <div class="body">영업일 기준 D+2에 등록된 계좌로 입금됩니다. 공휴일이 끼면 다음 영업일로 밀립니다.</div>
+          </details>
+          <details>
+            <summary>정산 계좌를 바꾸려면? <span class="chev">▶</span></summary>
+            <div class="body">설정 → 정산 계좌에서 변경할 수 있고, 변경 당일 정산 건부터 새 계좌가 적용됩니다.</div>
+          </details>
+        </div>
+        <p class="cap">래퍼 div도, 높이 계산 JS도 없다. <b>CSS 5줄</b>이 전부.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 실무 적용: 결제 내역 행 펼치기</h3>
+  <div class="demo">
+    <p class="demo-title">거래 목록 — 행을 눌러 상세 열기</p>
+    <div class="acc smooth" id="txAcc">
+      <details>
+        <summary><span>2026-09-15 · 카드결제 <span class="pill ok">승인</span></span> <span class="num">₩38,000 <span class="chev">▶</span></span></summary>
+        <div class="body">
+          <div style="display:grid;gap:4px;grid-template-columns:auto 1fr;font-size:.83rem">
+            <b>승인번호</b><span class="num">30291884</span>
+            <b>카드</b><span>VISA •••• 4242</span>
+            <b>매입사</b><span>비씨카드</span>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary><span>2026-09-14 · 카드결제 <span class="pill da">거절</span></span> <span class="num">₩12,900 <span class="chev">▶</span></span></summary>
+        <div class="body">
+          <div style="display:grid;gap:4px;grid-template-columns:auto 1fr;font-size:.83rem">
+            <b>사유</b><span>잔액/한도 부족</span>
+            <b>카드</b><span>VISA •••• 4242</span>
+            <b>재시도</b><span>가능 — 다른 카드 권장</span>
+          </div>
+        </div>
+      </details>
+      <details>
+        <summary><span>2026-09-12 · 부분취소 <span class="pill wa">처리중</span></span> <span class="num">-₩5,000 <span class="chev">▶</span></span></summary>
+        <div class="body">
+          <div style="display:grid;gap:4px;grid-template-columns:auto 1fr;font-size:.83rem">
+            <b>원거래</b><span class="num">30291201</span>
+            <b>예상 완료</b><span>영업일 2~3일</span>
+          </div>
+        </div>
+      </details>
+    </div>
+    <p class="cap">
+      목록 행 펼치기는 접근성 요구사항이 많은 컴포넌트다(확장 상태, 키보드, 포커스 순서).
+      <code>&lt;details&gt;</code>를 쓰면 <b>그 전부를 브라우저가 처리</b>하고, 우리는 색과 모션만 얹는다.
+    </p>
+  </div>
+
+  <pre><code>/* ① 높이 키워드(auto)로의 전환을 허용 */
+:root { interpolate-size: allow-keywords; }
+
+/* ② 열리는 부분 자체를 선택 — 래퍼 div 불필요 */
+details::details-content {
+  block-size: 0;
+  overflow: clip;
+  /* content-visibility는 값이 뚝 끊기는 속성 → allow-discrete로 전환 시점을 맞춤 */
+  transition: block-size .3s ease, content-visibility .3s allow-discrete;
+}
+details[open]::details-content { block-size: auto; }
+
+/* ③ 미지원 브라우저 폴백 — 애니메이션만 빠지고 기능은 그대로 */
+@supports not selector(::details-content) {
+  details::details-content { block-size: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  details::details-content { transition: none; }
+}</code></pre>
+
+  <h3 class="sec-lead">용어 한 줄 정리</h3>
+  <ul class="clean" style="font-size:.87rem">
+    <li><b><code>::details-content</code></b> — <code>&lt;details&gt;</code>에서 <code>&lt;summary&gt;</code>를 뺀 <b>펼쳐지는 영역</b>을 가리키는 가상 요소. 그동안 DOM에 없던 부분이라 CSS가 잡을 수 없었다.</li>
+    <li><b><code>interpolate-size: allow-keywords</code></b> — <code>height:auto</code>처럼 "계산해봐야 아는 값"으로의 전환을 허용하는 스위치. 이게 없으면 <code>0 → auto</code> 전환은 그냥 점프한다.</li>
+    <li><b><code>transition-behavior: allow-discrete</code></b>(위 단축 표기의 <code>allow-discrete</code>) — <code>display</code>, <code>content-visibility</code>처럼 <b>중간값이 없는 속성</b>도 전환 타이밍에 맞춰 바꿔주는 옵션.</li>
+    <li><b>폴백(fallback)</b> — 지원하지 않는 환경에서 자동으로 물러나는 대안. 여기선 "애니메이션 없이 즉시 열림"이라 <b>기능 손실이 0</b>이다. 이런 기능이 점진적 적용(progressive enhancement)에 가장 좋은 후보.</li>
+  </ul>
+
+  <div class="note">
+    <b>지원 현황(2026-09 기준, 검색 확인):</b> Chrome/Edge 131+, Firefox 143+, Safari 18.4+에서 동작하며 2025년 9월 Baseline에 편입된 것으로 보고된다.
+    다만 팀의 실제 지원 하한(예: 사내 구형 WebView, 키오스크 브라우저)은 별도로 확인해야 한다 — <b>위 폴백 블록을 반드시 함께 넣을 것.</b>
+    각 브라우저의 세부 동작 차이는 직접 검증하지 않았다(추정).
+  </div>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-16 (수) · 모든 데모는 외부 의존성 없이 이 파일 하나로 동작합니다.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  root.setAttribute("data-theme","light");
+  themeBtn.addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  /* ================== ① 결제 거절 복구 ================== */
+  (function(){
+    var RECOVERY = {
+      ok: { kind:"ok", title:"결제가 완료되었습니다", why:"승인번호 30291884 · VISA ••••4242",
+            actions:[["영수증 보기","ghost"]] },
+      insufficient_funds: { kind:"retryable", title:"카드 한도 또는 잔액이 부족합니다",
+        why:"결제는 이뤄지지 않았고 금액이 빠져나가지 않았습니다. 다른 카드로 진행하거나 잠시 후 다시 시도해 주세요.",
+        actions:[["다른 카드로 결제","primary"],["다시 시도","retry"]] },
+      do_not_honor: { kind:"retryable", title:"카드사에서 결제를 거절했습니다",
+        why:"카드사가 사유를 알려주지 않는 거절입니다. 다른 카드를 쓰시거나, 카드사에 문의 후 다시 시도해 주세요.",
+        actions:[["다른 카드로 결제","primary"],["다시 시도","retry"]] },
+      expired_card: { kind:"dead", title:"유효기간이 지난 카드입니다",
+        why:"이 카드로는 더 이상 결제할 수 없습니다. 새 결제수단을 등록해 주세요.",
+        actions:[["새 카드 등록","primary"]] },
+      incorrect_cvc: { kind:"fixable", title:"CVC 번호가 맞지 않습니다",
+        why:"카드 뒷면 서명란의 3자리 숫자를 다시 확인해 주세요. 카드 정보는 저장되지 않았습니다.",
+        actions:[["CVC 다시 입력","primary"]] },
+      lost_card: { kind:"dead", title:"사용할 수 없는 카드입니다",
+        why:"카드사에서 정지한 카드입니다. 다른 결제수단을 등록해 주세요.",
+        actions:[["다른 결제수단 등록","primary"]] },
+      processing_error: { kind:"system", title:"결제를 처리하지 못했습니다",
+        why:"일시적인 시스템 문제로 보입니다. 같은 요청으로 한 번 더 시도해도 이중 결제되지 않습니다.",
+        actions:[["다시 시도","retry"],["다른 카드로 결제","ghost"]] }
+    };
+    var KIND_PILL = { ok:["ok","승인"], retryable:["wa","일시적 거절"], fixable:["in","정보 오류"],
+                      dead:["da","카드 사용 불가"], system:["in","시스템 오류"] };
+
+    var pick = document.getElementById("declPick");
+    var payBtn = document.getElementById("payBtn");
+    var resetBtn = document.getElementById("payReset");
+    var out = document.getElementById("payResult");
+    var dots = document.getElementById("attemptDots");
+    var cool = document.getElementById("cooldownMsg");
+    var fails = 0, timer = null, left = 0;
+    var MAX = 3;
+
+    function paintDots(){
+      var html = "<span>연속 실패</span>";
+      for (var i=0;i<MAX;i++) html += '<span class="dot'+(i<fails?" used":"")+'"></span>';
+      html += '<span class="num">'+fails+"/"+MAX+"</span>";
+      dots.innerHTML = html;
+    }
+    function stopCooldown(){
+      if (timer) { clearInterval(timer); timer = null; }
+      cool.hidden = true;
+      payBtn.removeAttribute("aria-disabled");
+      payBtn.textContent = "₩38,000 결제하기";
+    }
+    function startCooldown(){
+      left = 10;
+      payBtn.setAttribute("aria-disabled","true");
+      cool.hidden = false;
+      cool.textContent = "같은 카드로 3회 실패했습니다. " + left + "초 후 재시도할 수 있어요 — 그 전에 다른 카드를 추천합니다.";
+      timer = setInterval(function(){
+        left--;
+        if (left <= 0) { stopCooldown(); fails = 0; paintDots(); return; }
+        cool.textContent = "같은 카드로 3회 실패했습니다. " + left + "초 후 재시도할 수 있어요 — 그 전에 다른 카드를 추천합니다.";
+      }, 1000);
+    }
+    function render(code){
+      var r = RECOVERY[code] || RECOVERY.processing_error;
+      var pillDef = KIND_PILL[r.kind] || KIND_PILL.system;
+      out.className = "result " + (r.kind === "ok" ? "is-ok" : "is-fail");
+      var locked = fails >= MAX && r.kind !== "ok";
+      var btns = r.actions.map(function(a){
+        var label = a[0], role = a[1];
+        if (role === "retry" && locked) {
+          return '<button class="btn ghost sm" type="button" aria-disabled="true">'+label+' (잠김)</button>';
+        }
+        var cls = role === "primary" ? "btn" : "btn ghost sm";
+        return '<button class="'+cls+'" type="button">'+label+"</button>";
+      }).join("");
+      if (locked) {
+        btns = '<button class="btn" type="button">다른 결제수단 등록</button>' + btns;
+      }
+      out.innerHTML =
+        '<p class="rtitle">'+(r.kind==="ok"?"✅":"⚠️")+" "+r.title+' <span class="pill '+pillDef[0]+'">'+pillDef[1]+"</span></p>" +
+        '<p class="rwhy">'+r.why+"</p>" +
+        '<div class="actions">'+btns+"</div>" +
+        '<p class="rcode">decline_code: '+code+" · 시도 "+(fails||0)+"회"+
+        (r.kind==="system"?" · 멱등키 유지":"")+
+        (r.kind==="retryable"&&!locked?" · 멱등키 유지":"")+"</p>";
+    }
+
+    payBtn.addEventListener("click", function(){
+      if (payBtn.getAttribute("aria-disabled") === "true") {
+        cool.textContent = "아직 재시도할 수 없습니다 (" + left + "초). 다른 카드로 진행해 보세요.";
+        return;
+      }
+      var code = pick.value;
+      if (code === "ok") { fails = 0; stopCooldown(); }
+      else { fails = Math.min(fails + 1, MAX); }
+      paintDots();
+      render(code);
+      if (fails >= MAX && code !== "ok") startCooldown();
+    });
+    resetBtn.addEventListener("click", function(){
+      fails = 0; stopCooldown(); paintDots();
+      out.className = "result is-idle";
+      out.innerHTML = '<p class="rtitle">아직 결제하지 않았습니다</p><p class="rwhy">왼쪽에서 사유를 고르고 결제 버튼을 눌러보세요.</p>';
+    });
+    paintDots();
+  })();
+
+  /* ================== ② 조건부 필드 폼 ================== */
+  (function(){
+    var form = document.getElementById("cfForm");
+    var live = document.getElementById("cfLive");
+    var payload = document.getElementById("cfPayload");
+    var badBtn = document.getElementById("cfBad");
+    var segBtns = form.querySelectorAll(".seg button[data-branch]");
+    var branches = { personal: document.getElementById("branch-personal"),
+                     business: document.getElementById("branch-business") };
+    var LABEL = { personal:"개인", business:"사업자" };
+    var badMode = false;
+    var current = "personal";
+
+    function dumpPayload(){
+      var data = new FormData(form);
+      var obj = {};
+      data.forEach(function(v,k){ obj[k] = v; });
+      var keys = Object.keys(obj);
+      payload.textContent =
+        "// new FormData(form) → 서버로 갈 값 (" + keys.length + "개 항목)\n" +
+        JSON.stringify(obj, null, 2);
+    }
+    function clearErrors(){
+      form.querySelectorAll(".err").forEach(function(p){ p.hidden = true; p.textContent = ""; });
+    }
+    function setBranch(next, silent){
+      current = next;
+      Object.keys(branches).forEach(function(k){
+        var fs = branches[k];
+        var on = (k === next);
+        if (badMode) {
+          // ❌ 나쁜 구현: 보이기만 감춘다 → required 살아있고 값도 전송됨
+          fs.disabled = false;
+          fs.style.display = on ? "" : "none";
+        } else {
+          // ✅ 권장: disabled 하나로 숨김 + 검증 제외 + 전송 제외
+          fs.style.display = "";
+          fs.disabled = !on;
+        }
+      });
+      segBtns.forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.branch === next)); });
+      clearErrors();
+      var count = branches[next].querySelectorAll("input").length;
+      if (!silent) {
+        live.textContent = LABEL[next] + " 입력으로 전환됨 — 항목 " + count + "개";
+        // 포커스를 새 분기의 첫 입력으로 (페이지 최초 로드 때는 하지 않는다)
+        var first = branches[next].querySelector("input:not([disabled])");
+        if (first) { try { first.focus({ preventScroll:true }); } catch(e){ first.focus(); } }
+      }
+      dumpPayload();
+    }
+
+    segBtns.forEach(function(b){
+      b.addEventListener("click", function(){ setBranch(b.dataset.branch); });
+    });
+    form.addEventListener("input", dumpPayload);
+    form.addEventListener("change", dumpPayload);
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      clearErrors();
+      var bad = null;
+      form.querySelectorAll("input[required]").forEach(function(el){
+        if (el.disabled) return;
+        var invalid = !el.value.trim() || (el.type === "email" && el.value.indexOf("@") < 0);
+        if (invalid) {
+          var p = document.getElementById(el.id + "-err");
+          if (p) { p.hidden = false; p.textContent = "필수 항목입니다."; }
+          if (!bad) bad = el;
+        }
+      });
+      if (badMode) {
+        // 나쁜 구현에서는 숨은 필드도 required 검사에 걸린다 → 사용자는 이유를 못 본다
+        var hiddenBad = null;
+        Object.keys(branches).forEach(function(k){
+          if (k === current) return;
+          branches[k].querySelectorAll("input[required]").forEach(function(el){
+            if (!el.value.trim() && !hiddenBad) hiddenBad = el;
+          });
+        });
+        if (hiddenBad) {
+          live.textContent = "⛔ 제출이 막혔습니다 — 화면에 보이지 않는 필드(" + hiddenBad.name + ")가 required입니다. 사용자는 이유를 볼 수 없습니다.";
+          dumpPayload();
+          return;
+        }
+      }
+      if (bad) { bad.focus(); live.textContent = "입력하지 않은 항목이 있습니다."; return; }
+      live.textContent = "✅ 제출 성공 — 아래 payload가 서버로 전송됩니다.";
+      dumpPayload();
+    });
+
+    badBtn.addEventListener("click", function(){
+      badMode = !badMode;
+      badBtn.textContent = badMode
+        ? "✅ 권장 구현으로 되돌리기 (fieldset disabled)"
+        : "❌ 나쁜 구현으로 전환 (hidden만 씌우기)";
+      badBtn.className = badMode ? "btn danger sm" : "btn ghost sm";
+      setBranch(current);
+      live.textContent = badMode
+        ? "나쁜 구현 모드: 숨긴 필드가 여전히 전송되고 검증에도 걸립니다. 제출해 보세요."
+        : "권장 구현 모드: 숨긴 분기는 payload에서 사라집니다.";
+    });
+
+    setBranch("personal", true);
+    live.textContent = "";
+  })();
+
+  /* ================== ③ ::details-content 지원 배너 ================== */
+  (function(){
+    var el = document.getElementById("dcSupport");
+    var ok = false;
+    try { ok = CSS.supports("selector(::details-content)"); } catch(e) { ok = false; }
+    var sizeOk = false;
+    try { sizeOk = CSS.supports("interpolate-size", "allow-keywords"); } catch(e) { sizeOk = false; }
+    if (ok && sizeOk) {
+      el.className = "support yes";
+      el.textContent = "✅ 이 브라우저는 ::details-content 와 interpolate-size 를 모두 지원합니다 — 아래 ②번 아코디언이 부드럽게 열립니다.";
+    } else if (ok) {
+      el.className = "support no";
+      el.textContent = "⚠️ ::details-content 는 지원하지만 interpolate-size 는 미지원 — 높이 전환이 점프할 수 있습니다(기능은 정상).";
+    } else {
+      el.className = "support no";
+      el.textContent = "⚠️ 이 브라우저는 ::details-content 미지원 — 폴백이 적용되어 애니메이션 없이 즉시 열립니다(기능 손실 없음).";
+    }
+  })();
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      root.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
