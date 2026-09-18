@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-18 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0284c7; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .log .line{margin:1px 0}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.83rem;font-weight:600;
+    padding:7px 13px;cursor:pointer}
+  .seg button + button{border-left:1px solid var(--border)}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+  .hint{font-size:.76rem;color:var(--muted);margin-top:4px}
+
+  /* ================= ① 시계열 차트 ================= */
+  .kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:13px 14px}
+  .kpi .k-label{font-size:.78rem;color:var(--muted);font-weight:600}
+  .kpi .k-row{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:2px}
+  .kpi .k-val{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+  .kpi svg.spark{display:block;width:84px;height:30px;overflow:visible}
+  .kpi .k-delta{font-size:.76rem;font-weight:700;margin-top:6px;display:inline-flex;align-items:center;gap:4px;
+    border-radius:999px;padding:2px 8px}
+  .kpi .k-delta.up{color:var(--ok);background:var(--ok-soft)}
+  .kpi .k-delta.down{color:var(--danger);background:var(--danger-soft)}
+  .kpi .k-sub{font-size:.73rem;color:var(--muted);margin-top:5px}
+
+  .ts-chart{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:10px 6px 4px;cursor:crosshair}
+  .ts-chart:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .ts-chart svg{display:block;width:100%;height:auto}
+  .ts-grid{stroke:var(--border);stroke-width:1}
+  .ts-axis-txt{fill:var(--muted);font-size:10px;font-family:inherit}
+  .ts-line{fill:none;stroke:var(--brand);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+  .ts-line.gap{stroke-dasharray:4 5;opacity:.45}
+  .ts-area{fill:var(--brand);opacity:.10}
+  .ts-dot{fill:var(--surface);stroke:var(--brand);stroke-width:2}
+  .ts-dot.missing{stroke:var(--muted);stroke-dasharray:2 2;fill:none}
+  .ts-cursor{stroke:var(--text);stroke-width:1;stroke-dasharray:3 3;opacity:.55}
+  .ts-cursor-dot{fill:var(--brand);stroke:var(--surface);stroke-width:2.5}
+  .ts-readout{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 0;font-size:.86rem;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px;min-height:42px}
+  .ts-readout .ro-date{font-weight:700}
+  .ts-readout .ro-val{font-weight:700;font-variant-numeric:tabular-nums;color:var(--brand)}
+  .ts-readout .ro-diff{font-size:.78rem;font-weight:700;border-radius:999px;padding:1px 8px}
+  .ts-readout .ro-diff.up{color:var(--ok);background:var(--ok-soft)}
+  .ts-readout .ro-diff.down{color:var(--danger);background:var(--danger-soft)}
+  .ts-readout .ro-diff.na{color:var(--muted);background:var(--surface-2)}
+  .dtable{width:100%;border-collapse:collapse;font-size:.83rem;margin-top:4px;background:var(--surface)}
+  .dtable caption{text-align:left;font-size:.78rem;color:var(--muted);padding:0 0 6px}
+  .dtable th,.dtable td{border:1px solid var(--border);padding:6px 9px;text-align:right}
+  .dtable th[scope="col"]{text-align:right;background:var(--surface-2)}
+  .dtable th[scope="row"]{text-align:left;font-weight:600;background:var(--surface-2)}
+  .dtable td.na{color:var(--muted);font-style:italic}
+  .tblbox{max-height:250px;overflow:auto;border-radius:10px}
+
+  /* ================= ② 처리 단계 상태 ================= */
+  .badge{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;
+    border-radius:999px;padding:3px 10px 3px 8px;border:1px solid transparent;white-space:nowrap}
+  .badge .bi{font-size:.85em;line-height:1}
+  .badge.b-wait{color:var(--muted);background:var(--surface-2);border-color:var(--border)}
+  .badge.b-auth{color:var(--info);background:var(--info-soft);border-color:color-mix(in srgb,var(--info) 30%,transparent)}
+  .badge.b-prog{color:var(--warn);background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 32%,transparent)}
+  .badge.b-done{color:var(--ok);background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 32%,transparent)}
+  .badge.b-fail{color:var(--danger);background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 32%,transparent)}
+  .badge .spin{width:9px;height:9px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;
+    display:inline-block;animation:bspin .8s linear infinite}
+  @keyframes bspin{to{transform:rotate(360deg)}}
+  .gray .badge{filter:grayscale(1)}
+  .gray .stp-dot{filter:grayscale(1)}
+  .badgegrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+  .badgegrid .bg-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .badgegrid .bg-why{font-size:.75rem;color:var(--muted);margin-top:6px}
+
+  .stepper{list-style:none;margin:0;padding:0}
+  .stepper li{position:relative;padding:0 0 18px 34px}
+  .stepper li:last-child{padding-bottom:0}
+  .stepper li::before{content:"";position:absolute;left:11px;top:20px;bottom:-2px;width:2px;background:var(--border)}
+  .stepper li:last-child::before{display:none}
+  .stepper li.done::before{background:var(--ok)}
+  .stp-dot{position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;
+    font-size:.72rem;font-weight:700;border:2px solid var(--border);background:var(--surface);color:var(--muted)}
+  .stepper li.done .stp-dot{border-color:var(--ok);background:var(--ok);color:#fff}
+  [data-theme="dark"] .stepper li.done .stp-dot{color:#08160f}
+  .stepper li.current .stp-dot{border-color:var(--warn);color:var(--warn);background:var(--warn-soft)}
+  .stepper li.failed .stp-dot{border-color:var(--danger);background:var(--danger);color:#fff}
+  [data-theme="dark"] .stepper li.failed .stp-dot{color:#200b0b}
+  .stp-name{font-weight:700;font-size:.9rem}
+  .stepper li.todo .stp-name{color:var(--muted);font-weight:600}
+  .stp-meta{font-size:.76rem;color:var(--muted);margin-top:1px}
+  .stp-meta .est{font-style:italic}
+  .stepper li.current .stp-name::after{content:" · 진행 중";color:var(--warn);font-size:.78rem}
+
+  .txnrow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:11px 13px}
+  .txnrow .t-id{font-size:.78rem;color:var(--muted);font-family:"SF Mono",ui-monospace,monospace}
+  .txnrow .t-amt{font-weight:700;font-variant-numeric:tabular-nums}
+
+  /* ================= ③ sibling-index() ================= */
+  .sib-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .sib-list li{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 13px;
+    display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:.88rem}
+  .sib-list li .s-idx{font-size:.72rem;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+  /* 폴백: 기능이 없으면 전원 동시 등장 (지연 0) */
+  .stagger li{opacity:0;transform:translateY(10px);
+    transition:opacity .34s ease, transform .34s ease}
+  .stagger.play li{opacity:1;transform:none}
+  @supports (transition-delay: calc(sibling-index() * 1ms)){
+    .stagger li{transition-delay:calc(sibling-index() * 55ms)}
+    .sib-sup-yes{display:block}
+    .sib-sup-no{display:none}
+  }
+  .sib-sup-yes{display:none}
+  .sib-sup-no{display:block}
+  @media (prefers-reduced-motion: reduce){
+    .stagger li{transition-duration:.001s;transition-delay:0s !important;transform:none}
+  }
+  /* sibling-count()로 색·너비를 "몇 개인지"에 맞춰 자동 분배 */
+  .ramp{list-style:none;margin:0;padding:0;display:flex;gap:6px;flex-wrap:wrap}
+  .ramp li{flex:1 1 60px;border-radius:9px;padding:9px 6px;text-align:center;font-size:.76rem;font-weight:700;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--muted)}
+  @supports (opacity: calc(sibling-index() / 2)){
+    .ramp li{
+      background:color-mix(in oklab, var(--brand) calc(sibling-index() / sibling-count() * 100%), var(--surface-2));
+      color:color-mix(in oklab, var(--brand-ink) calc(sibling-index() / sibling-count() * 100%), var(--muted));
+      border-color:transparent;
+    }
+  }
+  .barlist{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+  .barlist li{height:14px;border-radius:999px;background:var(--brand);opacity:.25;width:40%}
+  @supports (width: calc(sibling-index() * 1%)){
+    .barlist li{width:calc(sibling-index() / sibling-count() * 100%);opacity:1}
+  }
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-18 (금) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#timeseries">📊 시계열 차트 · 값 읽기</a>
+  <a href="#stages">🔔 처리 단계 상태</a>
+  <a href="#sibling">🌀 sibling-index()</a>
+</nav>
+
+<!-- ============================================================ 1 -->
+<section class="card" id="timeseries">
+  <h2>📊 시계열 차트 — 보여주는 게 아니라 <i>읽게</i> 만들기 <span class="tag">데이터·테이블·차트</span></h2>
+  <p class="lead">
+    대시보드에 선 하나 그려놓으면 "추세"는 전달되지만 <b>"9월 11일에 정확히 얼마였나"</b>는 전달되지 않는다.
+    2026년 기준 잘 만든 차트의 공통점은 셋이다 — ① 마우스뿐 아니라 <b>키보드로도</b> 값을 훑을 수 있고,
+    ② <b>데이터가 없는 구간</b>을 0으로 속이지 않고 끊어서 보여주고,
+    ③ 같은 데이터를 <b>표로도</b> 내려받거나 펼칠 수 있다.
+    (<code>aria-live</code> = 화면을 다시 안 읽어도, 그 영역의 글자가 바뀌면 스크린리더가 알아서 읽어주는 영역.)
+  </p>
+
+  <h3 class="sec-lead">변형 A — 스파크라인 KPI 카드 (읽는 차트가 아니라 "느끼는" 차트)</h3>
+  <div class="demo">
+    <p class="demo-title">축도 툴팁도 없다 · 방향과 최근 변동만</p>
+    <div class="kpis" id="kpiGrid"></div>
+    <p class="cap">
+      스파크라인(sparkline: 축·눈금 없이 숫자 옆에 붙이는 미니 추세선)은 <b>값을 읽히려는 물건이 아니다.</b>
+      그래서 툴팁·호버를 달지 않고, 대신 숫자·델타 배지가 정확한 값을 책임진다.
+      SVG에는 <code>aria-hidden="true"</code>를 주고 카드 전체를 한 문장으로 읽히게 하는 편이 스크린리더에 훨씬 낫다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 값 커서가 있는 선 차트 (마우스 + 키보드 동일 동작)</h3>
+  <div class="demo">
+    <p class="demo-title">차트를 클릭하거나 <span class="kbd">Tab</span>으로 포커스 → <span class="kbd">←</span> <span class="kbd">→</span> 이동 · <span class="kbd">Home</span> <span class="kbd">End</span> 양끝</p>
+    <div class="row" style="margin-bottom:10px">
+      <div class="seg" role="group" aria-label="기간 선택">
+        <button type="button" data-range="14" aria-pressed="true">최근 14일</button>
+        <button type="button" data-range="7" aria-pressed="false">최근 7일</button>
+      </div>
+      <button class="btn ghost sm" type="button" id="tsGapBtn" aria-pressed="true">결측 구간 표시: 켬</button>
+    </div>
+
+    <div class="ts-chart" id="tsChart" tabindex="0" role="group"
+         aria-label="일별 결제 승인액 선 차트. 좌우 화살표 키로 날짜별 값을 읽을 수 있습니다."
+         aria-describedby="tsReadout">
+      <svg id="tsSvg" viewBox="0 0 640 220" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </div>
+    <p class="ts-readout" id="tsReadout" role="status" aria-live="polite">
+      <span class="ro-date">—</span>
+    </p>
+    <p class="cap">
+      포커스 링이 차트 <b>전체</b>에 한 번만 생기고, 그 안에서 화살표로 점을 옮긴다(로빙 포커스).
+      점 14개를 전부 <code>tabindex="0"</code>으로 만들면 Tab을 14번 눌러야 하므로 실무에선 거의 항상 이 형태다.
+      읽어주는 문장은 눈에 보이는 판독창(readout)과 <b>같은 요소</b>라, 보는 사람과 듣는 사람이 같은 정보를 받는다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 C — 같은 데이터, 표로 보기 (차트의 대체 표현)</h3>
+  <div class="demo">
+    <p class="demo-title">"그림이 안 보이는 사람"이 아니라 "숫자를 정확히 원하는 사람"을 위한 것이기도 하다</p>
+    <div class="row" style="margin-bottom:10px">
+      <div class="seg" role="group" aria-label="표현 방식">
+        <button type="button" id="viewChartBtn" aria-pressed="true">📈 차트</button>
+        <button type="button" id="viewTableBtn" aria-pressed="false">🧾 표</button>
+      </div>
+      <button class="btn ghost sm" type="button" id="csvBtn">CSV로 복사</button>
+      <span class="hint" id="csvMsg" role="status" aria-live="polite"></span>
+    </div>
+    <div id="viewChartBox">
+      <svg id="tsSvg2" viewBox="0 0 640 180" preserveAspectRatio="none" role="img"
+           aria-label="9월 4일부터 17일까지 일별 결제 승인액 추세. 9월 7일과 8일에 크게 떨어졌다가 이후 회복해 9월 16일 302백만원으로 최고치. 9월 13일은 집계 지연으로 데이터 없음."
+           style="display:block;width:100%;height:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px"></svg>
+    </div>
+    <div id="viewTableBox" hidden>
+      <div class="tblbox">
+        <table class="dtable" id="dTable">
+          <caption>일별 결제 승인액 (단위: 백만원) · 결측은 0이 아니라 “—”</caption>
+          <thead><tr><th scope="col" style="text-align:left">날짜</th><th scope="col">승인액</th><th scope="col">전일 대비</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <p class="cap">
+      결측일(9/13)을 <b>0으로 채우면 "장사를 아예 못 한 날"</b>이 되어버린다. 선을 끊고 점선으로 잇고,
+      표에는 <code>—</code>와 사유를 남긴다. 결제 도메인에서 이 구분은 그냥 UX가 아니라 사고 예방이다.
+    </p>
+  </div>
+
+  <div class="note">
+    <b>구현 노트.</b> 라이브러리를 쓰든 말든 위 세 가지는 <b>라이브러리가 대신 해주지 않는다</b>.
+    차트 라이브러리를 고를 때 "예쁜가"보다 <b>키보드 탐색·대체 표 출력을 기본 제공하는가</b>를 먼저 본다(추정: 라이브러리별 지원 편차가 크다).
+    직접 SVG로 그리면 이 데모처럼 200줄 안쪽으로 끝나기도 한다.
+  </div>
+
+  <h3 class="sec-lead">💻 코드 — 키보드 커서 + 라이브 판독창</h3>
+<pre><code>&lt;div class="ts-chart" tabindex="0" role="group"
+     aria-label="일별 승인액 선 차트. 좌우 화살표로 값을 읽습니다."
+     aria-describedby="readout"&gt;
+  &lt;svg aria-hidden="true"&gt;&lt;!-- 선·점·커서 --&gt;&lt;/svg&gt;
+&lt;/div&gt;
+&lt;p id="readout" role="status" aria-live="polite"&gt;9월 17일 · 276백만원 · 전일 대비 -8.6%&lt;/p&gt;
+
+&lt;script&gt;
+chart.addEventListener('keydown', (e) =&gt; {
+  const step = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+  let next = null;
+  if (step) next = Math.min(data.length - 1, Math.max(0, cursor + step));
+  else if (e.key === 'Home') next = 0;
+  else if (e.key === 'End') next = data.length - 1;
+  if (next === null) return;
+  e.preventDefault();          // 페이지 가로 스크롤 방지
+  cursor = next;
+  render();                    // 커서선 이동 + readout 텍스트 교체 → 자동으로 읽힘
+});
+&lt;/script&gt;</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>차트 하나 = 포커스 하나.</b> 내부 점은 화살표로 이동(로빙 포커스). Tab 지옥을 만들지 않는다.</li>
+    <li><b>판독창은 <code>role="status"</code></b>(= <code>aria-live="polite"</code>). 화살표를 빠르게 연타해도 읽던 걸 끊지 않는다. 긴급 알림이 아니므로 <code>assertive</code>는 쓰지 않는다.</li>
+    <li><b>장식 SVG는 <code>aria-hidden="true"</code>, 정보 SVG는 <code>role="img"</code> + 요약 <code>aria-label</code>.</b> 둘을 섞으면 스크린리더가 좌표를 읽는다.</li>
+    <li><b>색으로만 구분하지 않기.</b> 상승·하락은 색 + 화살표 + 부호(＋/−)를 함께 쓴다(WCAG 1.4.1 감각 특성 의존 금지).</li>
+    <li><b>결측 ≠ 0.</b> 점선·빈 점·표의 “—”로 셋 다 동일하게 표기한다.</li>
+    <li>숫자는 <code>font-variant-numeric: tabular-nums</code>(숫자 폭 고정)로 커서를 옮겨도 자릿수가 덜컹거리지 않게.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>정산·매출 대시보드: 막대/선 위에 <b>키보드 커서 + 판독창</b>만 얹어도 "값을 확인하려고 표로 내려가는" 왕복이 사라진다.</li>
+    <li>집계 배치가 지연된 날은 <b>선을 끊는다</b>. 0으로 이어 그리면 CS 문의가 "결제가 안 됐나요"로 바뀐다.</li>
+    <li>가맹점에 내보내는 리포트는 <b>차트↔표 토글 + CSV 복사</b>를 기본 세트로. 회계 담당자는 결국 숫자를 복사한다.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 2 -->
+<section class="card" id="stages">
+  <h2>🔔 “아직 확정 아님”을 말해주는 상태 — 배지 어휘와 처리 타임라인 <span class="tag">피드백·상태(로딩·빈상태·에러)</span></h2>
+  <p class="lead">
+    결제는 버튼을 누른 순간 끝나지 않는다. <b>승인(authorized) → 매입(captured) → 정산(settled)</b>까지 며칠이 걸리는데,
+    화면이 "완료"만 보여주면 사용자는 <b>이미 끝난 줄 알고</b> 환불·취소 문의를 한다.
+    요즘 패턴은 <b>중간 상태를 숨기지 않고 어휘로 정리하고</b>, 각 상태마다 <b>지금 할 수 있는 일</b>을 함께 보여주는 것이다.
+  </p>
+
+  <h3 class="sec-lead">변형 A — 상태 배지 어휘 (색은 거들 뿐)</h3>
+  <div class="demo">
+    <p class="demo-title">배지 6종 · 색을 빼도 읽히는지 확인해 보세요</p>
+    <div class="row" style="margin-bottom:12px">
+      <button class="btn ghost sm" type="button" id="grayBtn" aria-pressed="false">색 빼고 보기 (흑백)</button>
+      <span class="hint">색각 이상·흑백 인쇄·저대비 모니터를 흉내 냅니다.</span>
+    </div>
+    <div class="badgegrid" id="badgeGrid">
+      <div class="bg-item">
+        <span class="badge b-wait"><span class="bi" aria-hidden="true">◌</span>결제 대기</span>
+        <div class="bg-why">고객이 아직 인증을 끝내지 않음 · <b>할 수 있는 일</b>: 링크 재전송</div>
+      </div>
+      <div class="bg-item">
+        <span class="badge b-auth"><span class="bi" aria-hidden="true">🔒</span>승인 완료(미매입)</span>
+        <div class="bg-why">한도만 잡힌 상태, 돈은 안 빠짐 · <b>할 수 있는 일</b>: 매입 / 승인 취소</div>
+      </div>
+      <div class="bg-item">
+        <span class="badge b-prog"><span class="spin" aria-hidden="true"></span>매입 처리 중</span>
+        <div class="bg-why">PG 배치 대기 · <b>할 수 있는 일</b>: 없음(취소 버튼을 열어두면 실패한다)</div>
+      </div>
+      <div class="bg-item">
+        <span class="badge b-done"><span class="bi" aria-hidden="true">✓</span>정산 완료</span>
+        <div class="bg-why">입금까지 끝 · <b>할 수 있는 일</b>: 환불(부분 가능)</div>
+      </div>
+      <div class="bg-item">
+        <span class="badge b-fail"><span class="bi" aria-hidden="true">!</span>승인 거절</span>
+        <div class="bg-why">사유별 다음 행동이 다름 · <b>할 수 있는 일</b>: 사유 보기 / 재시도</div>
+      </div>
+      <div class="bg-item">
+        <span class="badge b-wait"><span class="bi" aria-hidden="true">↩</span>부분 환불됨</span>
+        <div class="bg-why">잔액이 남은 거래 · <b>할 수 있는 일</b>: 잔액 환불</div>
+      </div>
+    </div>
+    <p class="cap">
+      좋은 배지는 <b>명사 하나</b>가 아니라 <b>상태 + 다음 행동</b>의 쌍이다.
+      "처리 중"에는 아이콘이 <i>돌고</i>, "완료"에는 체크가, "거절"에는 느낌표가 붙는다 — 흑백으로 바꿔도 여섯 개가 서로 구분된다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 처리 타임라인 (지금 어디쯤, 언제 끝나나)</h3>
+  <div class="demo">
+    <p class="demo-title">거래 1건의 생애주기 · 진행 버튼으로 실제 전이를 보세요</p>
+    <div class="txnrow" style="margin-bottom:14px">
+      <div>
+        <div class="t-id">txn_7f2a·1c9e</div>
+        <div style="font-size:.86rem">스토어 구독 · 스탠다드 플랜</div>
+      </div>
+      <div style="text-align:right">
+        <div class="t-amt num">₩49,000</div>
+        <div id="txnBadgeSlot" style="margin-top:4px"></div>
+      </div>
+    </div>
+
+    <ol class="stepper" id="stepper" aria-label="거래 처리 단계"></ol>
+
+    <div class="row" style="margin-top:16px">
+      <button class="btn sm" type="button" id="stepNext">다음 단계로 진행</button>
+      <button class="btn ghost sm" type="button" id="stepFail">이 단계에서 실패시키기</button>
+      <button class="btn ghost sm" type="button" id="stepReset">처음으로</button>
+    </div>
+    <div class="log" id="stepLog" role="status" aria-live="polite"></div>
+    <p class="cap">
+      완료 단계엔 <b>실제 시각</b>, 앞으로 남은 단계엔 <b>예상 시각</b>을 기울임으로 적는다 — 둘을 같은 서체로 적으면
+      사용자는 예상을 확정으로 읽는다. 현재 단계에는 <code>aria-current="step"</code>을 준다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 C — 목록에서의 상태 (polling 갱신을 조용히)</h3>
+  <div class="demo">
+    <p class="demo-title">"시작"을 누르면 3초마다 상태가 갱신됩니다 · 토스트 폭탄 없이</p>
+    <div class="row" style="margin-bottom:12px">
+      <button class="btn sm" type="button" id="pollBtn">자동 갱신 시작</button>
+      <span class="hint" id="pollHint">마지막 갱신: —</span>
+    </div>
+    <div id="pollList" style="display:grid;gap:8px"></div>
+    <p class="cap">
+      목록 폴링(polling: 일정 간격으로 서버에 다시 물어보기)의 함정은 <b>바뀔 때마다 토스트를 띄우는 것</b>이다.
+      행 안에서 배지만 조용히 바뀌게 하고, 스크린리더에는 <b>요약 한 줄만</b>(“2건이 매입 완료로 바뀌었습니다”) 알린다.
+    </p>
+    <p class="sr-only" id="pollLive" role="status" aria-live="polite"></p>
+  </div>
+
+  <h3 class="sec-lead">💻 코드 — 상태 어휘를 한 곳에 모으기</h3>
+<pre><code>// 상태는 색이 아니라 "표시 문구 + 아이콘 + 가능한 행동"의 묶음이다.
+export const TXN_STATUS = {
+  pending:    { label: '결제 대기',        tone: 'wait', icon: '◌', actions: ['resend'] },
+  authorized: { label: '승인 완료(미매입)', tone: 'auth', icon: '🔒', actions: ['capture', 'void'] },
+  capturing:  { label: '매입 처리 중',      tone: 'prog', icon: null, actions: [] },   // 취소 버튼을 열지 않는다
+  settled:    { label: '정산 완료',        tone: 'done', icon: '✓', actions: ['refund'] },
+  declined:   { label: '승인 거절',        tone: 'fail', icon: '!', actions: ['reason', 'retry'] },
+} as const;
+
+// 화면은 상태를 "번역"만 하고 판단은 하지 않는다 → 새 상태가 생겨도 UI는 한 곳만 고친다
+&lt;Badge tone={TXN_STATUS[s].tone} icon={TXN_STATUS[s].icon}&gt;{TXN_STATUS[s].label}&lt;/Badge&gt;</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>배지는 색 + 아이콘 + 텍스트 3중.</b> 색만으로 구분되면 색각 이상 사용자에게 6개 상태가 3개로 보인다.</li>
+    <li><b>스피너 아이콘은 <code>aria-hidden</code></b>, 상태 변화는 텍스트로 알린다. 회전만으로는 아무것도 전달되지 않는다.</li>
+    <li><b>현재 단계에 <code>aria-current="step"</code></b>, 완료 단계엔 <code>✓</code>를 텍스트 대체와 함께.</li>
+    <li><b>폴링 갱신은 <code>polite</code>로 묶어서 한 문장</b>. 행마다 live 영역을 두면 스크린리더가 끊임없이 떠든다.</li>
+    <li><b><code>prefers-reduced-motion</code></b>(= OS에서 "동작 줄이기"를 켠 사용자) 에서는 스피너 회전을 점멸 없는 정적 표시로 낮춘다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>거래 상세/목록의 상태 문자열이 컴포넌트마다 흩어져 있으면, 위처럼 <b>단일 맵(TXN_STATUS)</b>으로 모아 버튼 노출까지 파생시킨다.</li>
+    <li>"매입 처리 중"에 <b>취소 버튼을 노출하지 않는 것</b> 자체가 UX다 — 눌러도 실패할 버튼은 실패 응답보다 나쁘다.</li>
+    <li>가맹점 정산 화면: 단계별 <b>예상 입금일</b>을 기울임 표기로 붙이면 "언제 들어오나요" 문의가 줄어든다(추정).</li>
+  </ul>
+</section>
+
+<!-- ============================================================ 3 -->
+<section class="card" id="sibling">
+  <h2>🌀 sibling-index() · sibling-count() — 순번을 드디어 CSS가 안다 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    지금까지 리스트 스태거(stagger: 항목을 한 박자씩 밀어서 등장시키기)를 하려면
+    JS로 <code>style.setProperty('--i', i)</code>를 돌리거나 <code>:nth-child(1..20)</code>을 손으로 깔아야 했다.
+    <b><code>sibling-index()</code></b>는 "나는 형제 중 몇 번째인가"를, <b><code>sibling-count()</code></b>는 "형제가 총 몇 개인가"를
+    CSS 안에서 <b>숫자로</b> 돌려준다. 항목이 늘거나 줄어도 CSS가 알아서 다시 계산한다.
+  </p>
+
+  <h3 class="sec-lead">변형 A — 스태거 등장 (JS 인덱스 주입 없음)</h3>
+  <div class="demo">
+    <p class="demo-title">항목을 추가/삭제해도 지연 시간은 CSS가 다시 계산</p>
+    <div class="row" style="margin-bottom:12px">
+      <button class="btn sm" type="button" id="sibPlay">다시 재생</button>
+      <button class="btn ghost sm" type="button" id="sibAdd">항목 추가</button>
+      <button class="btn ghost sm" type="button" id="sibDel">마지막 삭제</button>
+    </div>
+    <ul class="sib-list stagger" id="sibList"></ul>
+    <p class="cap">
+      <code>transition-delay: calc(sibling-index() * 55ms)</code> 한 줄이 전부다.
+      JS는 <code>.play</code> 클래스만 토글한다 — 인덱스를 세거나 DOM을 순회하지 않는다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 B — sibling-count()로 "개수에 맞춰" 분배</h3>
+  <div class="demo">
+    <p class="demo-title">색 농도와 막대 길이를 전체 개수 대비 비율로</p>
+    <p style="font-size:.82rem;color:var(--muted);margin:0 0 6px">진행 단계 램프 — <code>sibling-index() / sibling-count()</code></p>
+    <ul class="ramp" id="rampList"></ul>
+    <p style="font-size:.82rem;color:var(--muted);margin:14px 0 6px">막대 길이도 같은 식으로</p>
+    <ul class="barlist" id="barList"></ul>
+    <div class="row" style="margin-top:12px">
+      <button class="btn ghost sm" type="button" id="rampAdd">단계 추가</button>
+      <button class="btn ghost sm" type="button" id="rampDel">단계 삭제</button>
+      <span class="hint" id="rampCount"></span>
+    </div>
+    <p class="cap">
+      개수가 바뀌면 <b>비율이 통째로 다시 잡힌다</b>. 예전엔 "5단계일 때 20%씩"을 하드코딩하거나 JS로 계산했다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 C — 폴백과 감속</h3>
+  <div class="demo">
+    <p class="demo-title">지금 이 브라우저의 지원 여부</p>
+    <p class="support yes sib-sup-yes">✅ 이 브라우저는 <code>sibling-index()</code>를 지원합니다 — 위 데모가 순차로 등장하고, 램프 색이 단계별로 진해집니다.</p>
+    <p class="support no sib-sup-no">⚠️ 이 브라우저는 <code>sibling-index()</code>를 아직 지원하지 않습니다 — 스태거 없이 전부 동시에 등장하고, 램프는 회색 균일입니다. <b>이게 바로 의도한 폴백</b>입니다.</p>
+    <p class="cap">
+      <code>@supports (transition-delay: calc(sibling-index() * 1ms))</code>로 감싸면, 미지원 브라우저는
+      "지연 0 = 전부 동시 등장"이라는 <b>멀쩡한 결과</b>를 받는다. 스태거는 없어도 되는 장식이므로 이 폴백이면 충분하다.
+    </p>
+  </div>
+
+  <div class="support no">
+    🌐 <b>지원 현황(2026-09 기준, 일부 추정).</b> Chromium 계열(Chrome/Edge) 138+에서 먼저 출시됐고 Safari 26.x 라인에서 뒤따랐다.
+    Firefox는 구현 작업 중이나 정식 출시 여부는 <b>확인 필요</b>(검색 결과가 서로 엇갈려 단정하지 않는다).
+    실제 도입 전 <a href="https://caniuse.com/wf-sibling-count" target="_blank" rel="noopener">caniuse</a>·
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/sibling-index" target="_blank" rel="noopener">MDN</a>에서 당일 기준을 확인할 것.
+  </div>
+
+  <h3 class="sec-lead">💻 코드 (복붙용)</h3>
+<pre><code>/* ① 스태거 — JS로 --i 주입하던 코드를 통째로 삭제 */
+.stagger li{
+  opacity:0; transform:translateY(10px);
+  transition:opacity .34s ease, transform .34s ease;
+}
+.stagger.play li{ opacity:1; transform:none; }
+
+@supports (transition-delay: calc(sibling-index() * 1ms)){
+  .stagger li{ transition-delay: calc(sibling-index() * 55ms); }
+}
+
+/* ② 개수 대비 비율 — 항목이 늘면 자동 재계산 */
+.ramp li{
+  background: color-mix(in oklab, var(--brand)
+              calc(sibling-index() / sibling-count() * 100%), var(--surface-2));
+}
+
+/* ③ 동작 줄이기 존중 — 지연은 즉시 0 */
+@media (prefers-reduced-motion: reduce){
+  .stagger li{ transition-duration:.001s; transition-delay:0s !important; transform:none; }
+}</code></pre>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li><b>지금까지의 방법이 전부 나빴다.</b> <code>:nth-child(n)</code> 하드코딩은 개수 제한이 있고, JS 인덱스 주입은 서버 렌더 결과와 어긋나 깜빡임을 만든다.</li>
+    <li><b>"몇 번째"가 레이아웃 값이 된다.</b> 지연뿐 아니라 <code>z-index</code>(카드 겹침), <code>rotate</code>(부채꼴 펼침), 그리드 span까지 같은 방식으로 파생된다.</li>
+    <li><b>리스트가 동적일수록 이득이 크다.</b> 필터링으로 항목이 3개 ↔ 30개를 오가는 목록에서, JS 재계산이 통째로 사라진다.</li>
+    <li>주의: 애니메이션에 쓰는 순간 <b>접근성 체크가 따라온다</b> — 항목이 많으면 마지막 항목 등장까지 1초를 넘기지 말 것(체감상 "느린 페이지"가 된다).</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>거래 목록·정산 내역이 필터 변경으로 갈아 끼워질 때, 스태거를 <b>CSS만으로</b> 붙여 "바뀌었다"는 신호를 준다(JS 코드 증가 0).</li>
+    <li>결제 단계 스테퍼의 진행 색 농도를 <code>sibling-count()</code>로 잡으면, 단계 수가 다른 결제수단(카드 3단계 / 가상계좌 5단계)에 같은 CSS를 쓸 수 있다.</li>
+    <li>단, <b>미지원 브라우저가 기능적으로 손해 보지 않는 용도</b>(순수 장식)에만 쓴다. 값 계산·정렬 로직에는 아직 쓰지 않는다.</li>
+  </ul>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-18 (금) · 모든 예시는 외부 의존성 없이 이 파일 안에서 동작합니다.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  themeBtn.addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+  function logTo(el, html){
+    var d = document.createElement("div");
+    d.className = "line"; d.innerHTML = html;
+    el.insertBefore(d, el.firstChild);
+    while (el.children.length > 5) el.removeChild(el.lastChild);
+  }
+  function won(n){ return n.toLocaleString("ko-KR"); }
+
+  /* ================== ① 시계열 차트 ================== */
+  var DATA = [
+    { d:"09-04", v:182 }, { d:"09-05", v:210 }, { d:"09-06", v:176 }, { d:"09-07", v:95 },
+    { d:"09-08", v:88 },  { d:"09-09", v:231 }, { d:"09-10", v:245 }, { d:"09-11", v:220 },
+    { d:"09-12", v:268 }, { d:"09-13", v:null, why:"집계 지연" }, { d:"09-14", v:254 },
+    { d:"09-15", v:289 }, { d:"09-16", v:302 }, { d:"09-17", v:276 }
+  ];
+  var range = 14, showGap = true, cursor = DATA.length - 1;
+  function viewData(){ return DATA.slice(DATA.length - range); }
+
+  /* --- 변형 A: 스파크라인 KPI --- */
+  var KPIS = [
+    { label:"일 승인액", unit:"백만원", series:[182,210,176,95,88,231,245,220,268,254,289,302,276], sub:"최근 13일(결측 제외)" },
+    { label:"승인 성공률", unit:"%", series:[97.1,96.8,97.4,92.2,91.5,96.9,97.2,97.6,97.9,97.4,98.1,98.3,98.0], sub:"카드 승인 기준" },
+    { label:"환불 건수", unit:"건", series:[12,9,14,31,29,13,11,10,8,12,9,7,11], sub:"부분환불 포함", invert:true }
+  ];
+  function sparkPath(series, w, h){
+    var mn = Math.min.apply(null, series), mx = Math.max.apply(null, series);
+    var span = (mx - mn) || 1;
+    return series.map(function(v,i){
+      var x = (i / (series.length - 1)) * w;
+      var y = h - ((v - mn) / span) * h;
+      return (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
+    }).join(" ");
+  }
+  (function renderKpis(){
+    var box = document.getElementById("kpiGrid");
+    box.innerHTML = KPIS.map(function(k){
+      var last = k.series[k.series.length - 1], prev = k.series[k.series.length - 2];
+      var pct = ((last - prev) / prev) * 100;
+      var rising = pct >= 0;
+      var good = k.invert ? !rising : rising;
+      var arrow = rising ? "▲" : "▼";
+      var sign = rising ? "+" : "";
+      var val = k.unit === "%" ? last.toFixed(1) : won(last);
+      return '<div class="kpi">' +
+        '<div class="k-label">' + k.label + '</div>' +
+        '<div class="k-row">' +
+          '<div class="k-val num">' + val + '<span style="font-size:.7rem;font-weight:600;color:var(--muted);margin-left:3px">' + k.unit + '</span></div>' +
+          '<svg class="spark" viewBox="0 0 84 30" aria-hidden="true">' +
+            '<path d="' + sparkPath(k.series, 84, 26) + '" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0,2)"/>' +
+          '</svg>' +
+        '</div>' +
+        '<span class="k-delta ' + (good ? "up" : "down") + '">' + arrow + ' ' + sign + pct.toFixed(1) + '%</span>' +
+        '<div class="k-sub">' + k.sub + ' · 전일 대비</div>' +
+      '</div>';
+    }).join("");
+  })();
+
+  /* --- 변형 B: 커서 있는 선 차트 --- */
+  var svg = document.getElementById("tsSvg");
+  var chart = document.getElementById("tsChart");
+  var readout = document.getElementById("tsReadout");
+  var W = 640, H = 220, PL = 46, PR = 14, PT = 16, PB = 30;
+
+  function scales(rows){
+    var vals = rows.filter(function(r){ return r.v !== null; }).map(function(r){ return r.v; });
+    var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals);
+    var pad = (mx - mn) * 0.25 || 10;
+    var lo = Math.max(0, mn - pad), hi = mx + pad;
+    return {
+      x: function(i){ return PL + (i / (rows.length - 1)) * (W - PL - PR); },
+      y: function(v){ return PT + (1 - (v - lo) / (hi - lo)) * (H - PT - PB); },
+      lo: lo, hi: hi
+    };
+  }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+  function drawChart(){
+    var rows = viewData();
+    if (cursor > rows.length - 1) cursor = rows.length - 1;
+    var s = scales(rows);
+    var out = "";
+
+    // 가로 그리드 + y축 라벨 4줄
+    for (var g = 0; g <= 3; g++){
+      var val = s.lo + (s.hi - s.lo) * (g / 3);
+      var yy = s.y(val);
+      out += '<line class="ts-grid" x1="' + PL + '" y1="' + yy.toFixed(1) + '" x2="' + (W - PR) + '" y2="' + yy.toFixed(1) + '"/>';
+      out += '<text class="ts-axis-txt" x="' + (PL - 6) + '" y="' + (yy + 3).toFixed(1) + '" text-anchor="end">' + Math.round(val) + '</text>';
+    }
+    // x축 라벨 (양끝 + 중간)
+    [0, Math.floor((rows.length - 1) / 2), rows.length - 1].forEach(function(i){
+      out += '<text class="ts-axis-txt" x="' + s.x(i).toFixed(1) + '" y="' + (H - 10) + '" text-anchor="middle">' + rows[i].d + '</text>';
+    });
+
+    // 연속 구간(선) + 결측 구간(점선)
+    var seg = [], segs = [];
+    rows.forEach(function(r, i){
+      if (r.v === null){ if (seg.length) segs.push(seg); seg = []; }
+      else seg.push({ i:i, v:r.v });
+    });
+    if (seg.length) segs.push(seg);
+
+    segs.forEach(function(sg){
+      if (sg.length < 2) return;
+      var dpath = sg.map(function(p, k){ return (k ? "L" : "M") + s.x(p.i).toFixed(1) + " " + s.y(p.v).toFixed(1); }).join(" ");
+      var areaD = dpath + " L" + s.x(sg[sg.length-1].i).toFixed(1) + " " + (H - PB) + " L" + s.x(sg[0].i).toFixed(1) + " " + (H - PB) + " Z";
+      out += '<path class="ts-area" d="' + areaD + '"/>';
+      out += '<path class="ts-line" d="' + dpath + '"/>';
+    });
+    // 결측을 잇는 점선(옵션)
+    if (showGap){
+      for (var k2 = 0; k2 < segs.length - 1; k2++){
+        var a = segs[k2][segs[k2].length - 1], b = segs[k2 + 1][0];
+        out += '<path class="ts-line gap" d="M' + s.x(a.i).toFixed(1) + ' ' + s.y(a.v).toFixed(1) +
+               ' L' + s.x(b.i).toFixed(1) + ' ' + s.y(b.v).toFixed(1) + '"/>';
+      }
+    }
+    // 점
+    rows.forEach(function(r, i){
+      if (r.v === null){
+        out += '<circle class="ts-dot missing" cx="' + s.x(i).toFixed(1) + '" cy="' + (H - PB - 6) + '" r="4"/>';
+      } else {
+        out += '<circle class="ts-dot" cx="' + s.x(i).toFixed(1) + '" cy="' + s.y(r.v).toFixed(1) + '" r="3"/>';
+      }
+    });
+    // 커서
+    var cx = s.x(cursor);
+    out += '<line class="ts-cursor" x1="' + cx.toFixed(1) + '" y1="' + PT + '" x2="' + cx.toFixed(1) + '" y2="' + (H - PB) + '"/>';
+    if (rows[cursor].v !== null){
+      out += '<circle class="ts-cursor-dot" cx="' + cx.toFixed(1) + '" cy="' + s.y(rows[cursor].v).toFixed(1) + '" r="5.5"/>';
+    }
+    svg.innerHTML = out;
+    updateReadout(rows);
+  }
+  function updateReadout(rows){
+    var r = rows[cursor];
+    var prev = cursor > 0 ? rows[cursor - 1] : null;
+    var html = '<span class="ro-date">2026-' + r.d + '</span>';
+    if (r.v === null){
+      html += '<span class="ro-val">데이터 없음</span>' +
+              '<span class="ro-diff na">사유: ' + esc(r.why || "미집계") + '</span>' +
+              '<span style="font-size:.78rem;color:var(--muted)">0으로 표시하지 않습니다</span>';
+    } else {
+      html += '<span class="ro-val">' + won(r.v) + ' 백만원</span>';
+      if (prev && prev.v !== null){
+        var diff = ((r.v - prev.v) / prev.v) * 100;
+        var up = diff >= 0;
+        html += '<span class="ro-diff ' + (up ? "up" : "down") + '">' + (up ? "▲ +" : "▼ ") + diff.toFixed(1) + '% 전일 대비</span>';
+      } else {
+        html += '<span class="ro-diff na">전일 데이터 없음</span>';
+      }
+      html += '<span style="font-size:.78rem;color:var(--muted);margin-left:auto">' + (cursor + 1) + ' / ' + rows.length + '</span>';
+    }
+    readout.innerHTML = html;
+  }
+
+  chart.addEventListener("keydown", function(e){
+    var rows = viewData(), next = null;
+    if (e.key === "ArrowRight") next = Math.min(rows.length - 1, cursor + 1);
+    else if (e.key === "ArrowLeft") next = Math.max(0, cursor - 1);
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = rows.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    cursor = next;
+    drawChart();
+  });
+  function pointerToIndex(e){
+    var rect = chart.getBoundingClientRect();
+    var rows = viewData();
+    var relX = (e.clientX - rect.left) / rect.width * W;
+    var t = (relX - PL) / (W - PL - PR);
+    return Math.max(0, Math.min(rows.length - 1, Math.round(t * (rows.length - 1))));
+  }
+  chart.addEventListener("pointermove", function(e){
+    var i = pointerToIndex(e);
+    if (i !== cursor){ cursor = i; drawChart(); }
+  });
+  chart.addEventListener("pointerdown", function(e){ cursor = pointerToIndex(e); drawChart(); chart.focus(); });
+
+  document.querySelectorAll('[data-range]').forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll('[data-range]').forEach(function(o){ o.setAttribute("aria-pressed", String(o === b)); });
+      range = parseInt(b.dataset.range, 10);
+      cursor = Math.min(cursor, range - 1);
+      drawChart(); drawStatic();
+    });
+  });
+  var gapBtn = document.getElementById("tsGapBtn");
+  gapBtn.addEventListener("click", function(){
+    showGap = !showGap;
+    gapBtn.setAttribute("aria-pressed", String(showGap));
+    gapBtn.textContent = "결측 구간 표시: " + (showGap ? "켬" : "끔");
+    drawChart();
+  });
+
+  /* --- 변형 C: 정적 차트 + 표 --- */
+  var svg2 = document.getElementById("tsSvg2");
+  function drawStatic(){
+    var rows = viewData(), H2 = 180, PB2 = 24, PT2 = 12;
+    var vals = rows.filter(function(r){ return r.v !== null; }).map(function(r){ return r.v; });
+    var mx = Math.max.apply(null, vals), mn = Math.min.apply(null, vals), pad = (mx - mn) * .25 || 10;
+    var lo = Math.max(0, mn - pad), hi = mx + pad;
+    function X(i){ return PL + (i / (rows.length - 1)) * (W - PL - PR); }
+    function Y(v){ return PT2 + (1 - (v - lo) / (hi - lo)) * (H2 - PT2 - PB2); }
+    var out = "", seg = [], segs = [];
+    rows.forEach(function(r, i){ if (r.v === null){ if (seg.length) segs.push(seg); seg = []; } else seg.push({i:i,v:r.v}); });
+    if (seg.length) segs.push(seg);
+    segs.forEach(function(sg){
+      if (sg.length < 2) return;
+      out += '<path class="ts-line" d="' + sg.map(function(p,k){ return (k?"L":"M") + X(p.i).toFixed(1) + " " + Y(p.v).toFixed(1); }).join(" ") + '"/>';
+    });
+    for (var k2 = 0; k2 < segs.length - 1; k2++){
+      var a = segs[k2][segs[k2].length-1], b = segs[k2+1][0];
+      out += '<path class="ts-line gap" d="M' + X(a.i).toFixed(1) + ' ' + Y(a.v).toFixed(1) + ' L' + X(b.i).toFixed(1) + ' ' + Y(b.v).toFixed(1) + '"/>';
+    }
+    rows.forEach(function(r,i){
+      if (r.v === null) out += '<circle class="ts-dot missing" cx="' + X(i).toFixed(1) + '" cy="' + (H2 - PB2 - 6) + '" r="4"/>';
+      else out += '<circle class="ts-dot" cx="' + X(i).toFixed(1) + '" cy="' + Y(r.v).toFixed(1) + '" r="3"/>';
+    });
+    [0, rows.length - 1].forEach(function(i){
+      out += '<text class="ts-axis-txt" x="' + X(i).toFixed(1) + '" y="' + (H2 - 6) + '" text-anchor="middle">' + rows[i].d + '</text>';
+    });
+    svg2.setAttribute("viewBox", "0 0 " + W + " " + H2);
+    svg2.innerHTML = out;
+    drawTable();
+  }
+  function drawTable(){
+    var rows = viewData();
+    var tb = document.querySelector("#dTable tbody");
+    tb.innerHTML = rows.map(function(r, i){
+      var prev = i > 0 ? rows[i-1] : null;
+      var diffCell = '<td class="na">—</td>';
+      if (r.v !== null && prev && prev.v !== null){
+        var d = ((r.v - prev.v) / prev.v) * 100;
+        diffCell = '<td class="num" style="color:' + (d >= 0 ? "var(--ok)" : "var(--danger)") + '">' +
+                   (d >= 0 ? "▲ +" : "▼ ") + d.toFixed(1) + '%</td>';
+      }
+      var valCell = r.v === null
+        ? '<td class="na">— (' + esc(r.why || "미집계") + ')</td>'
+        : '<td class="num">' + won(r.v) + '</td>';
+      return '<tr><th scope="row">2026-' + r.d + '</th>' + valCell + diffCell + '</tr>';
+    }).join("");
+  }
+  var vChart = document.getElementById("viewChartBtn"), vTable = document.getElementById("viewTableBtn");
+  var bChart = document.getElementById("viewChartBox"), bTable = document.getElementById("viewTableBox");
+  function setView(isChart){
+    vChart.setAttribute("aria-pressed", String(isChart));
+    vTable.setAttribute("aria-pressed", String(!isChart));
+    bChart.hidden = !isChart; bTable.hidden = isChart;
+  }
+  vChart.addEventListener("click", function(){ setView(true); });
+  vTable.addEventListener("click", function(){ setView(false); });
+
+  var csvMsg = document.getElementById("csvMsg");
+  document.getElementById("csvBtn").addEventListener("click", function(){
+    var csv = "date,amount_million_krw\n" + viewData().map(function(r){
+      return "2026-" + r.d + "," + (r.v === null ? "" : r.v);
+    }).join("\n");
+    function done(ok){ csvMsg.textContent = ok ? "✅ " + viewData().length + "행 복사됨" : "⚠️ 클립보드 권한이 없어 복사하지 못했습니다"; }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(csv).then(function(){ done(true); }, function(){ done(false); });
+    } else { done(false); }
+  });
+
+  drawChart(); drawStatic();
+
+  /* ================== ② 처리 단계 상태 ================== */
+  var TXN_STATUS = {
+    pending:    { label:"결제 대기",         tone:"b-wait", icon:"◌" },
+    authorized: { label:"승인 완료(미매입)", tone:"b-auth", icon:"🔒" },
+    capturing:  { label:"매입 처리 중",      tone:"b-prog", icon:null },
+    captured:   { label:"매입 완료",         tone:"b-auth", icon:"🔒" },
+    settled:    { label:"정산 완료",         tone:"b-done", icon:"✓" },
+    failed:     { label:"처리 실패",         tone:"b-fail", icon:"!" }
+  };
+  function badgeHTML(key){
+    var s = TXN_STATUS[key];
+    var ic = s.icon ? '<span class="bi" aria-hidden="true">' + s.icon + '</span>'
+                    : '<span class="spin" aria-hidden="true"></span>';
+    return '<span class="badge ' + s.tone + '">' + ic + s.label + '</span>';
+  }
+  var STEPS = [
+    { name:"결제 요청",   at:"09-18 08:02", est:"—",           st:"pending" },
+    { name:"카드사 승인", at:"09-18 08:02", est:"즉시",         st:"authorized" },
+    { name:"매입 요청",   at:"09-18 09:00", est:"당일 09:00 배치", st:"capturing" },
+    { name:"매입 완료",   at:"09-19 01:30", est:"익일 새벽",     st:"captured" },
+    { name:"정산 입금",   at:"09-21 10:00", est:"영업일 +2",     st:"settled" }
+  ];
+  var stepIdx = 1, stepFailed = false;
+  var stepper = document.getElementById("stepper");
+  var stepLog = document.getElementById("stepLog");
+  var badgeSlot = document.getElementById("txnBadgeSlot");
+  function renderSteps(){
+    stepper.innerHTML = STEPS.map(function(s, i){
+      var cls, meta, mark;
+      if (stepFailed && i === stepIdx){ cls = "failed"; meta = '<span style="color:var(--danger)">' + s.at + ' · 한도 초과로 실패</span>'; mark = "!"; }
+      else if (i < stepIdx){ cls = "done"; meta = s.at + " 완료"; mark = "✓"; }
+      else if (i === stepIdx){ cls = "current"; meta = '<span class="est">예상 ' + s.est + '</span>'; mark = String(i + 1); }
+      else { cls = "todo"; meta = '<span class="est">예상 ' + s.est + '</span>'; mark = String(i + 1); }
+      var cur = (i === stepIdx) ? ' aria-current="step"' : "";
+      var srMark = (i < stepIdx) ? '<span class="sr-only">완료: </span>' : "";
+      return '<li class="' + cls + '"' + cur + '>' +
+        '<span class="stp-dot" aria-hidden="true">' + mark + '</span>' +
+        '<div class="stp-name">' + srMark + s.name + '</div>' +
+        '<div class="stp-meta">' + meta + '</div>' +
+      '</li>';
+    }).join("");
+    badgeSlot.innerHTML = badgeHTML(stepFailed ? "failed" : STEPS[stepIdx].st);
+  }
+  document.getElementById("stepNext").addEventListener("click", function(){
+    if (stepFailed){ logTo(stepLog, "실패 상태에서는 다음으로 갈 수 없습니다 — <b>재시도</b>가 먼저입니다."); return; }
+    if (stepIdx >= STEPS.length - 1){ logTo(stepLog, "이미 <b>정산 완료</b>입니다."); return; }
+    stepIdx++; renderSteps();
+    logTo(stepLog, "상태 변경 → <b>" + TXN_STATUS[STEPS[stepIdx].st].label + "</b> (" + STEPS[stepIdx].name + ")");
+  });
+  document.getElementById("stepFail").addEventListener("click", function(){
+    stepFailed = true; renderSteps();
+    logTo(stepLog, "<b>" + STEPS[stepIdx].name + "</b> 단계에서 실패 — 다음 단계 버튼이 아니라 <b>사유·재시도</b>를 노출해야 합니다.");
+  });
+  document.getElementById("stepReset").addEventListener("click", function(){
+    stepIdx = 1; stepFailed = false; renderSteps(); logTo(stepLog, "처음 상태로 되돌렸습니다.");
+  });
+  renderSteps();
+
+  var grayBtn = document.getElementById("grayBtn");
+  grayBtn.addEventListener("click", function(){
+    var on = grayBtn.getAttribute("aria-pressed") === "true";
+    grayBtn.setAttribute("aria-pressed", String(!on));
+    document.getElementById("badgeGrid").classList.toggle("gray", !on);
+    grayBtn.textContent = !on ? "색 다시 켜기" : "색 빼고 보기 (흑백)";
+  });
+
+  /* --- 변형 C: 폴링 목록 --- */
+  var POLL = [
+    { id:"txn_9a11", amt:129000, st:"authorized" },
+    { id:"txn_9a12", amt:49000,  st:"capturing" },
+    { id:"txn_9a13", amt:320000, st:"capturing" },
+    { id:"txn_9a14", amt:15000,  st:"pending" }
+  ];
+  var ORDER = ["pending","authorized","capturing","captured","settled"];
+  var pollTimer = null;
+  var pollList = document.getElementById("pollList");
+  var pollLive = document.getElementById("pollLive");
+  var pollHint = document.getElementById("pollHint");
+  function renderPoll(){
+    pollList.innerHTML = POLL.map(function(t){
+      return '<div class="txnrow"><div><div class="t-id">' + t.id + '</div></div>' +
+             '<div style="display:flex;align-items:center;gap:12px">' +
+             '<span class="t-amt num">₩' + won(t.amt) + '</span>' + badgeHTML(t.st) + '</div></div>';
+    }).join("");
+  }
+  renderPoll();
+  document.getElementById("pollBtn").addEventListener("click", function(){
+    var btn = this;
+    if (pollTimer){ clearInterval(pollTimer); pollTimer = null; btn.textContent = "자동 갱신 시작"; return; }
+    btn.textContent = "자동 갱신 중지";
+    pollTimer = setInterval(function(){
+      var changed = 0;
+      POLL.forEach(function(t){
+        var i = ORDER.indexOf(t.st);
+        if (i < ORDER.length - 1 && Math.random() < 0.45){ t.st = ORDER[i + 1]; changed++; }
+      });
+      renderPoll();
+      var now = new Date();
+      pollHint.textContent = "마지막 갱신: " + now.toLocaleTimeString("ko-KR");
+      // 행마다 떠들지 않고, 한 문장으로만 알린다
+      pollLive.textContent = changed ? changed + "건의 상태가 변경되었습니다." : "";
+    }, 3000);
+  });
+
+  /* ================== ③ sibling-index() ================== */
+  var SIB_NAMES = ["가맹점 등록","계약 심사","정산 계좌 인증","테스트 결제","실 결제 오픈","리포트 연동"];
+  var sibList = document.getElementById("sibList");
+  var sibN = 5;
+  function renderSib(){
+    sibList.innerHTML = "";
+    for (var i = 0; i < sibN; i++){
+      var li = document.createElement("li");
+      li.innerHTML = '<span>' + (SIB_NAMES[i % SIB_NAMES.length]) + '</span><span class="s-idx">#' + (i + 1) + '</span>';
+      sibList.appendChild(li);
+    }
+    playSib();
+  }
+  function playSib(){
+    sibList.classList.remove("play");
+    // 리플로우 강제 → transition 재시작
+    void sibList.offsetWidth;
+    sibList.classList.add("play");
+  }
+  document.getElementById("sibPlay").addEventListener("click", playSib);
+  document.getElementById("sibAdd").addEventListener("click", function(){ if (sibN < 10){ sibN++; renderSib(); } });
+  document.getElementById("sibDel").addEventListener("click", function(){ if (sibN > 2){ sibN--; renderSib(); } });
+  renderSib();
+
+  var rampList = document.getElementById("rampList"), barList = document.getElementById("barList");
+  var rampCount = document.getElementById("rampCount");
+  var rampN = 5;
+  function renderRamp(){
+    rampList.innerHTML = ""; barList.innerHTML = "";
+    for (var i = 0; i < rampN; i++){
+      var li = document.createElement("li");
+      li.textContent = (i + 1) + "단계";
+      rampList.appendChild(li);
+      barList.appendChild(document.createElement("li"));
+    }
+    rampCount.textContent = "현재 " + rampN + "개 · sibling-count() = " + rampN;
+  }
+  document.getElementById("rampAdd").addEventListener("click", function(){ if (rampN < 9){ rampN++; renderRamp(); } });
+  document.getElementById("rampDel").addEventListener("click", function(){ if (rampN > 2){ rampN--; renderRamp(); } });
+  renderRamp();
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      root.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
