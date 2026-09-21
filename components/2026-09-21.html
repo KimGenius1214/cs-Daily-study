@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-21 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0284c7; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px;max-height:190px;overflow:auto}
+  .log b{color:var(--text)}
+  .log .line{margin:1px 0}
+  .log .line.hl{color:var(--brand)}
+  .log .line.bad{color:var(--danger)}
+  .log .line.good{color:var(--ok)}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.83rem;font-weight:600;
+    padding:7px 13px;cursor:pointer}
+  .seg button + button{border-left:1px solid var(--border)}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+  .hint{font-size:.76rem;color:var(--muted);margin-top:4px}
+  input[type=text],input[type=search],textarea{font-family:inherit;font-size:.92rem;color:var(--text);
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px;width:100%}
+  input:focus-visible,textarea:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  label.fl{display:block;font-size:.82rem;font-weight:600;margin:0 0 5px}
+
+  /* ================= ① 링크 vs 버튼 ================= */
+  .ctl-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .looks-like-btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:.92rem;font-weight:600;
+    border-radius:10px;padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink);
+    text-decoration:none;cursor:pointer;user-select:none}
+  .looks-like-btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .looks-like-btn .who{font-size:.7rem;font-weight:700;opacity:.8;background:rgba(255,255,255,.22);
+    border-radius:999px;padding:1px 7px}
+  [data-theme="dark"] .looks-like-btn .who{background:rgba(0,0,0,.25)}
+  .focus-track{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .focus-track .ft{font-size:.75rem;font-weight:700;border-radius:999px;padding:3px 10px;
+    background:var(--surface);border:1px solid var(--border);color:var(--muted)}
+  .focus-track .ft.hit{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+  .focus-track .ft.miss{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+  .capmat{width:100%;border-collapse:collapse;margin-top:14px;font-size:.8rem}
+  .capmat th,.capmat td{border:1px solid var(--border);padding:6px 8px;text-align:center}
+  .capmat th:first-child,.capmat td:first-child{text-align:left}
+  .capmat th{background:var(--surface-2)}
+  .yes{color:var(--ok);font-weight:700}
+  .no{color:var(--danger);font-weight:700}
+  .formbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .codechip{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:1px 6px}
+
+  /* ================= ② IME ================= */
+  .ime-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .ime-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .ime-box.bad{border-color:color-mix(in srgb,var(--danger) 45%,var(--border))}
+  .ime-box.good{border-color:color-mix(in srgb,var(--ok) 45%,var(--border))}
+  .ime-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}
+  .ime-head h4{margin:0}
+  .counter{font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+  .counter.bad{color:var(--danger)}
+  .counter.good{color:var(--ok)}
+  .evt{display:inline-block;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.72rem;
+    border-radius:5px;padding:0 5px;margin-right:5px;font-weight:700}
+  .evt.cs{color:var(--info);background:var(--info-soft)}
+  .evt.cu{color:var(--muted);background:var(--surface-2)}
+  .evt.ce{color:var(--ok);background:var(--ok-soft)}
+  .evt.kd{color:var(--warn);background:var(--warn-soft)}
+  .evt.ip{color:var(--brand);background:var(--brand-soft)}
+  .state-line{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;font-size:.78rem}
+  .state-line .s{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:4px 9px}
+  .state-line .s b{color:var(--text);font-variant-numeric:tabular-nums}
+  .state-line .s.active{background:var(--info-soft);border-color:transparent;color:var(--info)}
+  .qbar{height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden;margin-top:9px}
+  .qbar i{display:block;height:100%;background:var(--brand);width:0;transition:width .12s linear}
+  .results{margin-top:10px;font-size:.82rem;min-height:22px}
+  .results .r{display:inline-block;background:var(--brand-soft);color:var(--brand);border-radius:6px;
+    padding:2px 8px;margin:2px 4px 0 0;font-weight:600}
+
+  /* ================= ③ reading-flow ================= */
+  .rf-stage{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .rf-flex{display:flex;flex-wrap:wrap;gap:10px;flex-direction:row-reverse;justify-content:flex-end}
+  .rf-flex.rf-on{reading-flow:flex-visual}
+  .rf-item{position:relative;flex:1 1 130px;min-width:120px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:10px;padding:12px 12px 12px 14px;font-size:.85rem;font-weight:600;cursor:pointer;
+    font-family:inherit;color:var(--text);text-align:left}
+  .rf-item:focus-visible{outline:3px solid var(--ring);outline-offset:2px;background:var(--brand-soft)}
+  .rf-item .dom{display:block;font-size:.7rem;font-weight:700;color:var(--muted);margin-bottom:2px}
+  .rf-item .seq{position:absolute;top:-9px;right:-9px;width:24px;height:24px;border-radius:999px;
+    background:var(--brand);color:var(--brand-ink);font-size:.74rem;font-weight:800;
+    display:grid;place-items:center;opacity:0;transform:scale(.6);transition:opacity .18s,transform .18s}
+  .rf-item .seq.show{opacity:1;transform:scale(1)}
+  .rf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .rf-grid.rf-on{reading-flow:grid-order}
+  .rf-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin-top:12px}
+  .rf-path{margin-top:12px;font-size:.84rem;font-weight:600}
+  .rf-path .arrow{color:var(--muted);margin:0 5px}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-21 (월) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#linkbtn">🔘 링크냐 버튼이냐</a>
+  <a href="#ime">⌨️ 한글 IME 입력</a>
+  <a href="#flow">🌀 reading-flow</a>
+</nav>
+
+<!-- ======================================================================= -->
+<!-- ① 링크 vs 버튼                                                          -->
+<!-- ======================================================================= -->
+<section class="card" id="linkbtn">
+  <h2>🔘 링크냐 버튼이냐 — 똑같이 생겼는데 능력이 다르다 <span class="tag">버튼·액션</span></h2>
+  <p class="lead">
+    디자인 시스템이 성숙할수록 <b>링크도 버튼처럼 생긴다</b>. 그 순간부터 "무엇으로 만들었나"는 눈에 안 보이지만,
+    사용자 손에는 그대로 드러난다. 가운데 클릭, <span class="kbd">Ctrl</span>+클릭, 우클릭 메뉴, <span class="kbd">Space</span> 키 —
+    이게 되냐 안 되냐가 요소 선택으로 결정된다.
+  </p>
+
+  <h3 class="sec-lead">변형 1 — 같은 모양, 다른 능력</h3>
+  <div class="demo">
+    <p class="demo-title">3개 모두 CSS가 동일합니다. 눌러보고 · <span class="kbd">Tab</span>으로 지나가 보고 · 가운데 버튼으로도 눌러보세요</p>
+    <div class="ctl-row">
+      <a class="looks-like-btn" id="lbLink" href="#linkbtn">정산 내역 보기 <span class="who">&lt;a href&gt;</span></a>
+      <button class="looks-like-btn" id="lbBtn" type="button">정산 마감하기 <span class="who">&lt;button&gt;</span></button>
+      <div class="looks-like-btn" id="lbDiv" role="presentation">정산 새로고침 <span class="who">&lt;div onclick&gt;</span></div>
+    </div>
+
+    <div class="focus-track" id="lbTrack" aria-hidden="true">
+      <span class="ft" data-for="lbLink">a href</span>
+      <span class="ft" data-for="lbBtn">button</span>
+      <span class="ft" data-for="lbDiv">div onclick</span>
+    </div>
+    <p class="hint">위 칩은 <b>Tab으로 실제 포커스가 닿은 요소</b>를 초록으로 칠합니다. div는 영원히 회색입니다.</p>
+
+    <div class="row" style="margin-top:12px">
+      <button class="btn sm ghost" id="lbProbe" type="button">키보드 도달 가능성 검사</button>
+      <button class="btn sm ghost" id="lbClear" type="button">로그 지우기</button>
+    </div>
+    <div class="log" id="lbLog" role="log" aria-live="polite" aria-label="링크·버튼 이벤트 로그"></div>
+    <p class="cap">
+      같은 픽셀이라도 <code>&lt;a href&gt;</code>는 브라우저가 "주소가 있는 것"으로 알기에 새 탭·주소 복사·미리보기가 공짜로 따라온다.
+      <code>&lt;button&gt;</code>은 Space/Enter 양쪽에 반응하고 form과 연결된다. <code>&lt;div&gt;</code>는 아무것도 없다.
+    </p>
+
+    <table class="capmat">
+      <caption class="sr-only">요소별 기본 제공 기능 비교</caption>
+      <thead>
+        <tr><th>브라우저가 공짜로 주는 것</th><th>&lt;a href&gt;</th><th>&lt;button&gt;</th><th>&lt;div onclick&gt;</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Tab 포커스</td><td class="yes">O</td><td class="yes">O</td><td class="no">X</td></tr>
+        <tr><td>Enter로 실행</td><td class="yes">O</td><td class="yes">O</td><td class="no">X</td></tr>
+        <tr><td>Space로 실행</td><td class="no">X</td><td class="yes">O</td><td class="no">X</td></tr>
+        <tr><td>Ctrl/⌘+클릭 → 새 탭</td><td class="yes">O</td><td class="no">X</td><td class="no">X</td></tr>
+        <tr><td>가운데 클릭 → 새 탭</td><td class="yes">O</td><td class="no">X</td><td class="no">X</td></tr>
+        <tr><td>우클릭 → 링크 주소 복사</td><td class="yes">O</td><td class="no">X</td><td class="no">X</td></tr>
+        <tr><td>스크린리더가 읽는 역할</td><td>링크</td><td>버튼</td><td class="no">없음</td></tr>
+        <tr><td>form 제출 / reset</td><td class="no">X</td><td class="yes">O</td><td class="no">X</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="sec-lead">변형 2 — form 안의 버튼은 기본이 submit이다</h3>
+  <div class="demo">
+    <p class="demo-title">입력칸에서 <span class="kbd">Enter</span>를 쳐보고, 아래 두 버튼도 눌러보세요</p>
+    <form class="formbox" id="lbForm">
+      <label class="fl" for="lbField">가맹점명</label>
+      <input type="text" id="lbField" value="어블유니온" autocomplete="off" />
+      <div class="row" style="margin-top:12px">
+        <button class="btn sm" id="lbAmbiguous">검색</button>
+        <button class="btn sm ghost" type="button" id="lbSafe">초기화 (type="button")</button>
+      </div>
+      <p class="hint" style="margin-top:10px">
+        첫 버튼의 현재 타입: <span class="codechip" id="lbTypeNow">type 없음 → submit으로 동작</span>
+      </p>
+    </form>
+    <div class="row" style="margin-top:12px">
+      <div class="seg" role="group" aria-label="첫 버튼의 type 전환">
+        <button type="button" data-lbtype="" aria-pressed="true">type 생략</button>
+        <button type="button" data-lbtype="button" aria-pressed="false">type="button"</button>
+      </div>
+      <button class="btn sm ghost" id="lbFormClear" type="button">로그 지우기</button>
+    </div>
+    <div class="log" id="lbFormLog" role="log" aria-live="polite" aria-label="폼 동작 로그"></div>
+    <p class="cap">
+      HTML 기본값은 <code>type="submit"</code>이다. form 안에서 타입을 안 쓴 버튼은 <b>전부 제출 버튼</b>이라,
+      "검색" 버튼이 결제 폼을 제출해버리는 사고가 여기서 난다. 또한 텍스트 입력이 하나라도 있으면
+      Enter만으로 <b>암묵적 제출</b>이 일어난다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 3 — 고르는 기준 한 줄</h3>
+  <div class="demo">
+    <table class="cmp">
+      <thead><tr><th style="width:38%">하려는 일</th><th>고를 것</th><th>이유</th></tr></thead>
+      <tbody>
+        <tr><td>다른 주소로 이동한다</td><td><code>&lt;a href&gt;</code> (Next.js면 <code>&lt;Link&gt;</code>)</td><td>주소가 있다 = 공유·새 탭·뒤로가기가 성립</td></tr>
+        <tr><td>같은 화면에서 무언가를 일으킨다</td><td><code>&lt;button type="button"&gt;</code></td><td>주소가 없다 = 링크가 아니다</td></tr>
+        <tr><td>폼을 보낸다</td><td><code>&lt;button type="submit"&gt;</code></td><td>Enter 암묵적 제출까지 자동 연결</td></tr>
+        <tr><td>파일을 내려받는다</td><td><code>&lt;a href download&gt;</code></td><td>브라우저 다운로드 UI·재시도가 공짜</td></tr>
+        <tr><td>모달·팝오버를 연다</td><td><code>&lt;button commandfor&gt;</code></td><td>Invoker Commands로 JS 없이 (지원 브라우저에서)</td></tr>
+        <tr><td>지금은 못 누르게 한다</td><td>버튼이면 <code>aria-disabled</code>, 링크면 <b>렌더하지 않기</b></td><td>비활성 링크는 표준 개념이 없다</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <b>안티패턴 3종</b> — ① <code>&lt;a&gt;</code>에 href 없이 onClick만 (포커스·역할 사라짐)
+      ② <code>&lt;a href="#"&gt;</code> + <code>preventDefault</code> (주소가 거짓말)
+      ③ <code>&lt;button&gt;</code>을 <code>router.push</code>로 감싸기 (새 탭·주소 복사가 죽음).
+      React에서 카드 전체를 누르게 만들 땐 <code>&lt;a&gt;</code>를 덮고 내부 버튼을 <code>stopPropagation</code>으로 살리는 쪽이 안전하다.
+    </div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용</h3>
+  <pre><code>// ❌ 링크인데 버튼으로 만들어서 새 탭·주소 복사를 잃는다
+&lt;button onClick={() =&gt; router.push(`/settlements/${id}`)}&gt;정산 상세&lt;/button&gt;
+
+// ✅ 주소가 있으면 링크로. 새 탭·⌘클릭·우클릭이 전부 공짜로 따라온다
+&lt;Link href={`/settlements/${id}`} className="btn"&gt;정산 상세&lt;/Link&gt;
+
+// ✅ 주소가 없으면 버튼으로. form 안이면 type을 반드시 적는다
+&lt;form onSubmit={onSubmit}&gt;
+  &lt;input name="q" /&gt;
+  &lt;button type="button" onClick={reset}&gt;초기화&lt;/button&gt;   {/* 생략하면 submit! */}
+  &lt;button type="submit"&gt;검색&lt;/button&gt;
+&lt;/form&gt;
+
+// ✅ 다운로드는 링크가 맡는다 (진행률·재시도를 브라우저가 처리)
+&lt;a href={receiptUrl} download={`영수증-${id}.pdf`} className="btn"&gt;영수증 내려받기&lt;/a&gt;</code></pre>
+
+  <div class="note">
+    <b>용어 한 줄</b> — <code>암묵적 제출(implicit submission)</code>: 텍스트 입력이 있는 form에서 Enter만 눌러도 제출이 일어나는 HTML 기본 동작.
+    <code>stopPropagation</code>: 이벤트가 부모로 타고 올라가는 걸 그 지점에서 멈추는 것.
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- ② 한글 IME                                                              -->
+<!-- ======================================================================= -->
+<section class="card" id="ime">
+  <h2>⌨️ 한글 입력과 IME — 조합 중인 글자는 아직 "값"이 아니다 <span class="tag">입력·폼</span></h2>
+  <p class="lead">
+    한글·일본어·중국어는 <b>IME</b>(Input Method Editor, 조합 입력기)를 거친다. 자판을 두드리는 동안 글자는
+    "조합 중" 상태로 입력칸에 미리 보이지만 아직 확정된 값이 아니다. 영문만 놓고 만든 검색·검증·Enter 처리가
+    한국 사용자에게만 깨지는 이유가 전부 여기 있다.
+  </p>
+
+  <h3 class="sec-lead">변형 1 — 조합 중에 무슨 이벤트가 오는지 직접 보기</h3>
+  <div class="demo">
+    <p class="demo-title">한글 자판으로 "안녕"을 천천히 쳐보세요 (영문도 쳐보면 차이가 보입니다)</p>
+    <label class="fl" for="imeInput">입력칸</label>
+    <input type="text" id="imeInput" placeholder="여기에 한글을 입력…" autocomplete="off" />
+    <div class="state-line" id="imeState">
+      <span class="s" id="imeComposing">조합 중: <b>아니오</b></span>
+      <span class="s">화면 값 길이: <b id="imeLen">0</b></span>
+      <span class="s">확정된 값 길이: <b id="imeCommitted">0</b></span>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn sm ghost" id="imeClear" type="button">로그 지우기</button>
+    </div>
+    <div class="log" id="imeLog" role="log" aria-live="off" aria-label="IME 이벤트 로그"></div>
+    <p class="cap">
+      순서는 <code>compositionstart</code> → <code>compositionupdate</code>(자모마다) → <code>compositionend</code>(확정).
+      <code>keydown</code>에는 <code>isComposing: true</code>가 붙어 있고, 레거시 브라우저에선 <code>keyCode === 229</code>로 나타난다.
+      즉 <b>입력칸에 글자가 보여도 아직 확정이 아닐 수 있다.</b>
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 2 — Enter 한 번이 두 번으로 세어지는 버그</h3>
+  <div class="demo">
+    <p class="demo-title">양쪽에 한글로 "결제"를 치고 <span class="kbd">Enter</span>를 <b>한 번만</b> 누르세요</p>
+    <div class="ime-grid">
+      <div class="ime-box bad">
+        <div class="ime-head">
+          <h4>❌ 가드 없음</h4>
+          <span class="counter bad num" id="badCount">0</span>
+        </div>
+        <input type="search" id="badSearch" placeholder="한글 입력 후 Enter" autocomplete="off" />
+        <div class="log" id="badLog" style="max-height:120px" role="log" aria-live="polite" aria-label="가드 없는 검색 로그"></div>
+      </div>
+      <div class="ime-box good">
+        <div class="ime-head">
+          <h4>✅ isComposing 가드</h4>
+          <span class="counter good num" id="goodCount">0</span>
+        </div>
+        <input type="search" id="goodSearch" placeholder="한글 입력 후 Enter" autocomplete="off" />
+        <div class="log" id="goodLog" style="max-height:120px" role="log" aria-live="polite" aria-label="가드 있는 검색 로그"></div>
+      </div>
+    </div>
+    <p class="cap">
+      조합을 확정하는 Enter와 "검색 실행" Enter는 <b>같은 키 한 번</b>이다. 가드가 없으면 조합 확정용 Enter까지
+      실행으로 세어져 조회가 두 번 나간다. 결제 화면이라면 이게 <b>중복 제출</b>이 된다.
+    </p>
+    <div class="note">
+      영문 자판에서는 조합이 없어 양쪽이 똑같이 1로 보인다. <b>이 버그는 한글 자판으로만 재현된다</b> —
+      영어권 라이브러리에 이 이슈가 계속 올라오는 이유.
+    </div>
+  </div>
+
+  <h3 class="sec-lead">변형 3 — 조합 중엔 조회도 검증도 미룬다</h3>
+  <div class="demo">
+    <p class="demo-title">가맹점 검색: 조합 중에는 서버를 때리지 않고, 확정된 뒤에만 300ms 디바운스로 조회합니다</p>
+    <label class="fl" for="imeSearch">가맹점 검색</label>
+    <input type="search" id="imeSearch" placeholder="예: 어블, 페이서블…" autocomplete="off" />
+    <div class="qbar" aria-hidden="true"><i id="imeBar"></i></div>
+    <div class="state-line" style="margin-top:8px">
+      <span class="s">서버 호출 횟수: <b class="num" id="imeCalls">0</b></span>
+      <span class="s" id="imeHold">상태: <b>대기</b></span>
+    </div>
+    <div class="results" id="imeResults" role="status" aria-live="polite"></div>
+    <div class="log" id="imeSearchLog" style="max-height:130px" role="log" aria-live="off" aria-label="검색 조회 로그"></div>
+    <p class="cap">
+      <b>디바운스(debounce)</b>: 입력이 멎고 일정 시간이 지난 뒤에만 실행하는 기법.
+      여기에 <b>조합 가드</b>를 더하면 "ㄱ → 가 → 간 → 감" 같은 중간 자모로 헛조회하는 일이 사라진다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">함께 깨지는 것들 (체크리스트)</h3>
+  <ul class="clean">
+    <li><b>글자수 카운터 / maxlength</b> — 조합 중 중간 글자까지 세어 "10/10"이 됐다가 확정하면 9가 된다. 확정 기준으로 세는 게 안전하다(추정: 브라우저·IME별 편차 있음).</li>
+    <li><b>자동 포맷 입력</b> — 조합 중에 값을 가공해 <code>setState</code>하면 조합이 강제로 끊기고 글자가 깨진다. 금액·전화번호 포맷팅은 <code>compositionend</code> 뒤에.</li>
+    <li><b>controlled input</b> — React에서 조합 중 value를 덮어쓰면 "한글이 거꾸로 써지는" 증상이 난다. 조합 중엔 DOM 값을 그대로 두자.</li>
+    <li><b>즉시 검증</b> — 조합 중 "형식이 올바르지 않습니다"가 깜빡인다. 검증은 <code>blur</code> 또는 확정 후로.</li>
+  </ul>
+
+  <h3 class="sec-lead">💻 복붙용</h3>
+  <pre><code>// ✅ Enter 중복 제출 가드 (React)
+// React의 SyntheticEvent에는 isComposing이 없어 nativeEvent로 읽는다.
+// keyCode 229는 구형 Safari·일부 안드로이드 키보드용 레거시 신호.
+const onKeyDown = (e: React.KeyboardEvent&lt;HTMLInputElement&gt;) =&gt; {
+  if (e.key !== "Enter" || e.shiftKey) return;
+  if (e.nativeEvent.isComposing || e.keyCode === 229) return; // 조합 확정용 Enter → 무시
+  e.preventDefault();
+  submit();
+};
+
+// ✅ 조합 가드 + 디바운스 검색 (훅 없이도 되는 최소형)
+let composing = false, timer: ReturnType&lt;typeof setTimeout&gt;;
+input.addEventListener("compositionstart", () =&gt; { composing = true; });
+input.addEventListener("compositionend", (e) =&gt; { composing = false; schedule(e.currentTarget.value); });
+input.addEventListener("input", (e) =&gt; {
+  if (composing) return;                 // 조합 중 = 아직 확정 아님 → 조회 보류
+  schedule((e.currentTarget as HTMLInputElement).value);
+});
+function schedule(v: string) {
+  clearTimeout(timer);
+  timer = setTimeout(() =&gt; fetchMerchants(v.trim()), 300);
+}</code></pre>
+
+  <div class="support no">
+    ⚠️ <b>미검증 영역</b> — Safari는 조합 확정 Enter를 <code>compositionend</code> <i>뒤에</i> 보내서
+    그 시점엔 <code>isComposing</code>이 이미 false인 경우가 보고된다(그래서 <code>keyCode === 229</code>를 함께 본다).
+    브라우저·OS·IME 조합마다 순서 차이가 있으므로 <b>실기기에서 한 번은 직접 확인</b>할 것.
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+<!-- ③ reading-flow                                                          -->
+<!-- ======================================================================= -->
+<section class="card" id="flow">
+  <h2>🌀 reading-flow — 레이아웃이 어긋뜨린 탭 순서를 CSS가 바로잡는다 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">
+    flex·grid로 순서를 바꿔 배치하면 <b>보이는 순서</b>와 <b>DOM 순서</b>가 갈라진다. 마우스 사용자는 모르지만
+    Tab 키와 스크린리더는 지금까지 항상 DOM 순서를 따라갔다. <code>reading-flow</code>는 "보이는 대로 읽고 이동하게" 만드는
+    새 CSS 속성이다.
+  </p>
+
+  <h3 class="sec-lead">변형 1 — row-reverse가 만든 지그재그 탭 순서</h3>
+  <div class="demo">
+    <p class="demo-title">아래 버튼들은 DOM 순서가 1·2·3·4인데 <code>flex-direction: row-reverse</code>로 화면엔 거꾸로 놓입니다</p>
+    <div class="row" style="margin-bottom:12px">
+      <div class="seg" role="group" aria-label="reading-flow 모드">
+        <button type="button" data-rf="normal" aria-pressed="true">reading-flow: normal</button>
+        <button type="button" data-rf="flex-visual" aria-pressed="false">reading-flow: flex-visual</button>
+      </div>
+      <button class="btn sm ghost" id="rfPlay" type="button">탭 순서 미리보기 ▶</button>
+    </div>
+    <div class="rf-stage">
+      <div class="rf-flex" id="rfFlex">
+        <button class="rf-item" type="button"><span class="dom">DOM 1</span>금액 입력<span class="seq"></span></button>
+        <button class="rf-item" type="button"><span class="dom">DOM 2</span>결제수단<span class="seq"></span></button>
+        <button class="rf-item" type="button"><span class="dom">DOM 3</span>약관 동의<span class="seq"></span></button>
+        <button class="rf-item" type="button"><span class="dom">DOM 4</span>결제하기<span class="seq"></span></button>
+      </div>
+    </div>
+    <div class="rf-path" id="rfPath" aria-live="polite"></div>
+    <p class="hint">직접 <span class="kbd">Tab</span>으로 지나가 보세요. 모드를 바꾸면 이동 경로가 달라집니다(지원 브라우저 한정).</p>
+    <div class="support" id="rfSupport"></div>
+    <p class="cap">
+      normal일 때 Tab은 화면 오른쪽 → 왼쪽으로 튄다. <code>flex-visual</code>이면 보이는 대로 왼쪽 → 오른쪽.
+      "결제하기"가 세 번째로 읽히느냐 마지막으로 읽히느냐가 여기서 갈린다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">변형 2 — grid + order로 뒤섞은 대시보드</h3>
+  <div class="demo">
+    <p class="demo-title">CSS <code>order</code>로 재배치한 카드들. <code>reading-flow: grid-order</code>는 그 순서를 탭 순서로도 인정합니다</p>
+    <div class="row" style="margin-bottom:12px">
+      <div class="seg" role="group" aria-label="grid reading-flow 모드">
+        <button type="button" data-rfg="normal" aria-pressed="true">normal</button>
+        <button type="button" data-rfg="grid-order" aria-pressed="false">grid-order</button>
+      </div>
+      <button class="btn sm ghost" id="rfgPlay" type="button">탭 순서 미리보기 ▶</button>
+    </div>
+    <div class="rf-stage">
+      <div class="rf-grid" id="rfGrid">
+        <button class="rf-item" type="button" style="order:3"><span class="dom">DOM 1 · order 3</span>승인 건수<span class="seq"></span></button>
+        <button class="rf-item" type="button" style="order:1"><span class="dom">DOM 2 · order 1</span>오늘 거래액<span class="seq"></span></button>
+        <button class="rf-item" type="button" style="order:5"><span class="dom">DOM 3 · order 5</span>환불<span class="seq"></span></button>
+        <button class="rf-item" type="button" style="order:2"><span class="dom">DOM 4 · order 2</span>정산 예정<span class="seq"></span></button>
+        <button class="rf-item" type="button" style="order:6"><span class="dom">DOM 5 · order 6</span>미정산<span class="seq"></span></button>
+        <button class="rf-item" type="button" style="order:4"><span class="dom">DOM 6 · order 4</span>거절률<span class="seq"></span></button>
+      </div>
+    </div>
+    <div class="rf-path" id="rfgPath" aria-live="polite"></div>
+    <p class="cap">
+      지금까지 이런 화면의 해법은 "DOM을 시각 순서대로 다시 쓰고 CSS로 되돌리기"였다.
+      <code>reading-flow</code>는 그 뒤틀기를 없애준다.
+    </p>
+  </div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 무엇을 조심하나</h3>
+  <ul class="clean">
+    <li><b>값</b> — <code>normal</code>(기본) / <code>flex-visual</code> / <code>flex-flow</code> / <code>grid-rows</code> / <code>grid-columns</code> / <code>grid-order</code> / <code>source-order</code>. 형제 하나만 끼워 옮길 땐 <code>reading-order</code>(숫자)를 쓴다.</li>
+    <li><b>지원(2026-09 기준 조사)</b> — Chrome 137부터, Safari 26.4부터 지원. Firefox는 아직 플래그 뒤. <b>Baseline 아님.</b></li>
+    <li><b>안전한 이유</b> — 모르는 브라우저는 그냥 DOM 순서를 쓴다. 즉 <b>점진적 향상</b>이라 깨지지 않는다. 다만 "지원 브라우저에서만 올바른 순서"가 되므로, <b>DOM 순서 자체를 말이 되게 짜는 원칙은 그대로</b> 유효하다.</li>
+    <li><b>남용 주의</b> — 시각 순서를 마구 뒤집어도 된다는 허가증이 아니다. 반응형에서 한 곳만 어쩔 수 없이 어긋날 때 쓰는 보정 도구로 보는 게 맞다.</li>
+  </ul>
+
+  <h3 class="sec-lead">💻 복붙용</h3>
+  <pre><code>/* 모바일에선 CTA를 위로 올리되, 탭 순서는 보이는 대로 따라오게 */
+.checkout-actions {
+  display: flex;
+  flex-wrap: wrap;
+  reading-flow: flex-visual;   /* 미지원 브라우저는 DOM 순서 유지 */
+}
+@media (max-width: 640px) {
+  .checkout-actions .primary { order: -1; }
+}
+
+/* 형제 하나만 순서를 끼워 넣기 */
+.summary-card { reading-flow: grid-rows; }
+.summary-card .alert { reading-order: -1; }  /* 경고를 제일 먼저 읽게 */
+
+/* 지원 여부로 분기하고 싶다면 */
+@supports (reading-flow: flex-visual) {
+  .checkout-actions { /* 지원 브라우저 전용 미세조정 */ }
+}</code></pre>
+
+  <div class="note">
+    <b>용어 한 줄</b> — <code>점진적 향상(progressive enhancement)</code>: 지원하는 브라우저에선 더 좋아지고,
+    지원 안 하는 브라우저에서도 기본 동작은 그대로인 방식. <code>Baseline</code>: 주요 브라우저에 모두 도달했는지를
+    표시하는 웹 플랫폼 기준.
+  </div>
+</section>
+
+<div class="footer">🎨 Design Inspiration Daily · 2026-09-21 (월) · 직접 만든 라이브 예시 (self-contained)</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+
+  themeBtn.addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  function mkLog(id, cap){
+    var el = document.getElementById(id);
+    var n = 0;
+    return {
+      add: function(html, cls){
+        var d = document.createElement("div");
+        d.className = "line" + (cls ? " " + cls : "");
+        d.innerHTML = html;
+        el.appendChild(d);
+        n++;
+        while (n > (cap || 40)) { el.removeChild(el.firstChild); n--; }
+        el.scrollTop = el.scrollHeight;
+      },
+      clear: function(){ el.innerHTML = ""; n = 0; }
+    };
+  }
+  function now(){
+    var d = new Date();
+    return ("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2)+"."+("00"+d.getMilliseconds()).slice(-3);
+  }
+
+  /* ================== ① 링크 vs 버튼 ================== */
+  var lbLog = mkLog("lbLog", 24);
+  var lbLink = document.getElementById("lbLink");
+  var lbBtn  = document.getElementById("lbBtn");
+  var lbDiv  = document.getElementById("lbDiv");
+  var lbTrack = document.getElementById("lbTrack");
+
+  function markFocus(id){
+    var chip = lbTrack.querySelector('[data-for="' + id + '"]');
+    if (chip) chip.classList.add("hit");
+  }
+  function label(el){
+    if (el === lbLink) return '<b>&lt;a href&gt;</b>';
+    if (el === lbBtn)  return '<b>&lt;button&gt;</b>';
+    return '<b>&lt;div&gt;</b>';
+  }
+
+  [lbLink, lbBtn, lbDiv].forEach(function(el){
+    el.addEventListener("click", function(e){
+      var mod = e.metaKey || e.ctrlKey;
+      if (el === lbLink && !mod && !e.shiftKey) e.preventDefault(); // 페이지 점프 방지
+      if (mod) {
+        lbLog.add(now() + " " + label(el) + " ⌘/Ctrl+클릭 → " +
+          (el === lbLink ? "브라우저가 <b>새 탭</b>으로 엽니다" : "아무 일도 없음 (주소가 없으니까)"),
+          el === lbLink ? "good" : "bad");
+      } else {
+        lbLog.add(now() + " " + label(el) + " 클릭 → 핸들러 실행", "hl");
+      }
+    });
+    el.addEventListener("auxclick", function(e){
+      if (e.button !== 1) return;
+      lbLog.add(now() + " " + label(el) + " 가운데 클릭 → " +
+        (el === lbLink ? "브라우저가 <b>새 탭</b>으로 엽니다" : "아무 일도 없음"),
+        el === lbLink ? "good" : "bad");
+    });
+    el.addEventListener("contextmenu", function(){
+      lbLog.add(now() + " " + label(el) + " 우클릭 → 메뉴에 " +
+        (el === lbLink ? "<b>‘링크 주소 복사’가 있습니다</b>" : "링크 항목이 없습니다"),
+        el === lbLink ? "good" : "bad");
+    });
+    el.addEventListener("focus", function(){
+      markFocus(el.id);
+      lbLog.add(now() + " " + label(el) + " <b>포커스 받음</b>", "good");
+    });
+    el.addEventListener("keydown", function(e){
+      if (e.key !== "Enter" && e.key !== " ") return;
+      if (el === lbLink && e.key === " ") {
+        lbLog.add(now() + " " + label(el) + " Space → <b>실행되지 않음</b> (링크는 Enter만, Space는 스크롤)", "bad");
+        return;
+      }
+      if (el === lbLink && e.key === "Enter") e.preventDefault();
+      if (e.key === " ") e.preventDefault();
+      lbLog.add(now() + " " + label(el) + " " + (e.key === " " ? "Space" : "Enter") + " → 실행됨", "good");
+    });
+  });
+
+  document.getElementById("lbProbe").addEventListener("click", function(){
+    [lbLink, lbBtn, lbDiv].forEach(function(el){
+      var reachable = el.matches('a[href], button, [tabindex]:not([tabindex="-1"])');
+      var chip = lbTrack.querySelector('[data-for="' + el.id + '"]');
+      if (chip && !reachable) chip.classList.add("miss");
+      lbLog.add(now() + " " + label(el) + " 키보드 도달 " +
+        (reachable ? "<b>가능</b>" : "<b>불가</b> — Tab으로 영영 닿지 않습니다"),
+        reachable ? "good" : "bad");
+    });
+  });
+  document.getElementById("lbClear").addEventListener("click", function(){
+    lbLog.clear();
+    lbTrack.querySelectorAll(".ft").forEach(function(c){ c.classList.remove("hit","miss"); });
+  });
+
+  /* form type 데모 */
+  var lbFormLog = mkLog("lbFormLog", 20);
+  var lbForm = document.getElementById("lbForm");
+  var lbAmb = document.getElementById("lbAmbiguous");
+  var lbTypeNow = document.getElementById("lbTypeNow");
+
+  lbForm.addEventListener("submit", function(e){
+    e.preventDefault();
+    lbFormLog.add(now() + " 🚨 <b>form submit 발생</b> — 서버로 전송됐을 지점", "bad");
+  });
+  lbAmb.addEventListener("click", function(){
+    lbFormLog.add(now() + " ‘검색’ 버튼 클릭 (현재 type: <b>" + (lbAmb.getAttribute("type") || "생략 → submit") + "</b>)", "hl");
+  });
+  document.getElementById("lbSafe").addEventListener("click", function(){
+    document.getElementById("lbField").value = "";
+    lbFormLog.add(now() + " ‘초기화’ 클릭 — type=\"button\"이라 제출 없음", "good");
+  });
+  document.getElementById("lbField").addEventListener("keydown", function(e){
+    if (e.key === "Enter") lbFormLog.add(now() + " 입력칸에서 Enter → <b>암묵적 제출</b> 시도", "hl");
+  });
+  lbForm.parentNode.querySelectorAll("[data-lbtype]").forEach(function(b){
+    b.addEventListener("click", function(){
+      lbForm.parentNode.querySelectorAll("[data-lbtype]").forEach(function(o){ o.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      var t = b.getAttribute("data-lbtype");
+      if (t) { lbAmb.setAttribute("type", t); lbTypeNow.textContent = 'type="button" → 제출하지 않음'; }
+      else   { lbAmb.removeAttribute("type");  lbTypeNow.textContent = "type 없음 → submit으로 동작"; }
+      lbFormLog.add(now() + " 첫 버튼 타입을 <b>" + (t || "생략") + "</b>으로 변경", "hl");
+    });
+  });
+  document.getElementById("lbFormClear").addEventListener("click", lbFormLog.clear);
+
+  /* ================== ② 한글 IME ================== */
+  var imeLog = mkLog("imeLog", 26);
+  var imeInput = document.getElementById("imeInput");
+  var imeComposing = document.getElementById("imeComposing");
+  var imeLen = document.getElementById("imeLen");
+  var imeCommitted = document.getElementById("imeCommitted");
+  var committedLen = 0;
+
+  function setComposing(on){
+    imeComposing.innerHTML = "조합 중: <b>" + (on ? "예" : "아니오") + "</b>";
+    imeComposing.classList.toggle("active", on);
+  }
+  imeInput.addEventListener("compositionstart", function(){
+    setComposing(true);
+    imeLog.add('<span class="evt cs">compositionstart</span> 조합 시작', "hl");
+  });
+  imeInput.addEventListener("compositionupdate", function(e){
+    imeLog.add('<span class="evt cu">compositionupdate</span> 조합 중인 글자: <b>' + (e.data || "") + "</b>");
+  });
+  imeInput.addEventListener("compositionend", function(e){
+    setComposing(false);
+    committedLen = imeInput.value.length;
+    imeCommitted.textContent = String(committedLen);
+    imeLog.add('<span class="evt ce">compositionend</span> 확정: <b>' + (e.data || "") + "</b>", "good");
+  });
+  imeInput.addEventListener("keydown", function(e){
+    var c = e.isComposing || e.keyCode === 229;
+    imeLog.add('<span class="evt kd">keydown</span> key=<b>' + (e.key === " " ? "Space" : e.key) +
+      "</b> · isComposing=<b>" + e.isComposing + "</b> · keyCode=<b>" + e.keyCode + "</b>",
+      c ? "bad" : "");
+  });
+  imeInput.addEventListener("input", function(){
+    imeLen.textContent = String(imeInput.value.length);
+    if (!imeInput.value) { committedLen = 0; imeCommitted.textContent = "0"; }
+    else if (!imeComposing.classList.contains("active")) {
+      committedLen = imeInput.value.length;
+      imeCommitted.textContent = String(committedLen);
+    }
+  });
+  document.getElementById("imeClear").addEventListener("click", imeLog.clear);
+
+  /* Enter 중복 제출 비교 */
+  var badLog = mkLog("badLog", 14), goodLog = mkLog("goodLog", 14);
+  var badCount = document.getElementById("badCount"), goodCount = document.getElementById("goodCount");
+  var bad = 0, good = 0;
+
+  document.getElementById("badSearch").addEventListener("keydown", function(e){
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    bad++; badCount.textContent = String(bad);
+    badLog.add(now() + " 조회 실행 (isComposing=" + e.isComposing + ", keyCode=" + e.keyCode + ")", "bad");
+  });
+  document.getElementById("goodSearch").addEventListener("keydown", function(e){
+    if (e.key !== "Enter") return;
+    e.preventDefault();
+    if (e.isComposing || e.keyCode === 229) {
+      goodLog.add(now() + " 조합 확정용 Enter — <b>무시</b>", "hl");
+      return;
+    }
+    good++; goodCount.textContent = String(good);
+    goodLog.add(now() + " 조회 실행 1회", "good");
+  });
+
+  /* 조합 가드 + 디바운스 검색 */
+  var MERCHANTS = ["어블유니온","어블커머스","페이서블","페이서블 가맹점","가온상사","감자마켓","간편결제랩","강남플라워"];
+  var imeSearch = document.getElementById("imeSearch");
+  var imeBar = document.getElementById("imeBar");
+  var imeCalls = document.getElementById("imeCalls");
+  var imeHold = document.getElementById("imeHold");
+  var imeResults = document.getElementById("imeResults");
+  var sLog = mkLog("imeSearchLog", 16);
+  var sComposing = false, sTimer = null, sStart = 0, sRaf = null, calls = 0;
+
+  function setHold(txt, active){
+    imeHold.innerHTML = "상태: <b>" + txt + "</b>";
+    imeHold.classList.toggle("active", !!active);
+  }
+  function tick(){
+    var p = Math.min(1, (Date.now() - sStart) / 300);
+    imeBar.style.width = (p * 100) + "%";
+    if (p < 1) sRaf = requestAnimationFrame(tick);
+  }
+  function schedule(v){
+    clearTimeout(sTimer);
+    if (sRaf) cancelAnimationFrame(sRaf);
+    sStart = Date.now(); tick();
+    setHold("300ms 디바운스 대기", true);
+    sTimer = setTimeout(function(){
+      imeBar.style.width = "0%";
+      var q = v.trim();
+      if (!q) { imeResults.innerHTML = ""; setHold("대기", false); return; }
+      calls++; imeCalls.textContent = String(calls);
+      var hits = MERCHANTS.filter(function(m){ return m.indexOf(q) === 0 || m.indexOf(q) > -1; });
+      imeResults.innerHTML = hits.length
+        ? hits.map(function(m){ return '<span class="r">' + m + "</span>"; }).join("")
+        : '<span class="r" style="background:var(--warn-soft);color:var(--warn)">결과 없음</span>';
+      sLog.add(now() + ' 🌐 서버 호출 · q="<b>' + q + "</b>" + '" → ' + hits.length + "건", "good");
+      setHold("조회 완료", false);
+    }, 300);
+  }
+  imeSearch.addEventListener("compositionstart", function(){
+    sComposing = true;
+    clearTimeout(sTimer);
+    if (sRaf) cancelAnimationFrame(sRaf);
+    imeBar.style.width = "0%";
+    setHold("조합 중 — 조회 보류", true);
+  });
+  imeSearch.addEventListener("compositionend", function(){
+    sComposing = false;
+    sLog.add(now() + " 조합 확정 → 디바운스 시작", "hl");
+    schedule(imeSearch.value);
+  });
+  imeSearch.addEventListener("input", function(){
+    if (sComposing) { sLog.add(now() + " 조합 중 입력 — <b>조회 안 함</b>"); return; }
+    schedule(imeSearch.value);
+  });
+
+  /* ================== ③ reading-flow ================== */
+  var rfSupported = (window.CSS && CSS.supports && CSS.supports("reading-flow", "flex-visual"));
+  var rfSupport = document.getElementById("rfSupport");
+  rfSupport.className = "support " + (rfSupported ? "yes" : "no");
+  rfSupport.innerHTML = rfSupported
+    ? "✅ 이 브라우저는 <code>reading-flow</code>를 <b>지원합니다</b> — 모드를 바꾸고 Tab으로 직접 확인해 보세요."
+    : "⚠️ 이 브라우저는 <code>reading-flow</code>를 <b>아직 지원하지 않습니다</b> — 실제 Tab 순서는 DOM 순서 그대로입니다. 아래 ‘탭 순서 미리보기’는 지원 브라우저에서 어떻게 달라지는지를 시뮬레이션해 보여줍니다.";
+
+  function visualOrder(items){
+    return items.slice().sort(function(a, b){
+      var ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+      if (Math.abs(ra.top - rb.top) > 6) return ra.top - rb.top;
+      return ra.left - rb.left;
+    });
+  }
+  function playSeq(container, pathEl, useVisual){
+    var items = Array.prototype.slice.call(container.querySelectorAll(".rf-item"));
+    items.forEach(function(i){ var s = i.querySelector(".seq"); s.classList.remove("show"); s.textContent = ""; });
+    var seq = useVisual ? visualOrder(items) : items;
+    pathEl.innerHTML = "";
+    seq.forEach(function(el, i){
+      setTimeout(function(){
+        var s = el.querySelector(".seq");
+        s.textContent = String(i + 1);
+        s.classList.add("show");
+        var name = el.querySelector(".dom").textContent.split("·")[0].trim();
+        pathEl.innerHTML += (i ? '<span class="arrow">→</span>' : "") + name;
+      }, i * 320);
+    });
+  }
+
+  var rfFlex = document.getElementById("rfFlex");
+  var rfPath = document.getElementById("rfPath");
+  var rfMode = "normal";
+  document.querySelectorAll("[data-rf]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-rf]").forEach(function(o){ o.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      rfMode = b.getAttribute("data-rf");
+      rfFlex.classList.toggle("rf-on", rfMode !== "normal");
+      playSeq(rfFlex, rfPath, rfMode !== "normal");
+    });
+  });
+  document.getElementById("rfPlay").addEventListener("click", function(){
+    playSeq(rfFlex, rfPath, rfMode !== "normal");
+  });
+
+  var rfGrid = document.getElementById("rfGrid");
+  var rfgPath = document.getElementById("rfgPath");
+  var rfgMode = "normal";
+  document.querySelectorAll("[data-rfg]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-rfg]").forEach(function(o){ o.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      rfgMode = b.getAttribute("data-rfg");
+      rfGrid.classList.toggle("rf-on", rfgMode !== "normal");
+      playSeq(rfGrid, rfgPath, rfgMode !== "normal");
+    });
+  });
+  document.getElementById("rfgPlay").addEventListener("click", function(){
+    playSeq(rfGrid, rfgPath, rfgMode !== "normal");
+  });
+
+  playSeq(rfFlex, rfPath, false);
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      root.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
