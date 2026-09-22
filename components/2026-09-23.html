@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content" />
+<title>Design Inspiration Daily — 2026-09-23 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#16a34a; --ok-soft:#e9f7ee; --warn:#d97706; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0284c7; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#252c38; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:18px 0 2px;color:var(--brand)}
+  h4{margin:0 0 4px;font-size:.94rem}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);
+    border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:18px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;
+    line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:1px 6px;font-size:.78rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.92rem;font-weight:600;border-radius:10px;
+    padding:10px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.ghost{background:transparent;color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:7px 12px;font-size:.85rem}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  [data-theme="dark"] .btn.danger{color:#1a0c0c}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px;max-height:190px;overflow:auto}
+  .log b{color:var(--text)}
+  .log .line{margin:1px 0}
+  .log .line.hl{color:var(--brand)}
+  .log .line.bad{color:var(--danger)}
+  .log .line.good{color:var(--ok)}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface);flex-wrap:wrap}
+  .seg button{border:0;background:transparent;color:var(--muted);font-family:inherit;font-size:.83rem;font-weight:600;
+    padding:7px 13px;cursor:pointer}
+  .seg button + button{border-left:1px solid var(--border)}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 8px}
+  .hint{font-size:.76rem;color:var(--muted);margin-top:4px}
+  input[type=text],input[type=search],input[type=email],textarea{font-family:inherit;font-size:.92rem;color:var(--text);
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px;width:100%}
+  input:focus-visible,textarea:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  label.fl{display:block;font-size:.82rem;font-weight:600;margin:0 0 5px}
+
+  /* ================= ① 주문 금액 요약 ================= */
+  .sumpanel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 16px 14px}
+  .sumpanel h4{margin:0 0 10px;font-size:.92rem}
+  .lines{list-style:none;margin:0;padding:0;font-size:.88rem}
+  .lines li{display:flex;justify-content:space-between;gap:12px;padding:5px 0;color:var(--muted)}
+  .lines li .v{color:var(--text);font-variant-numeric:tabular-nums}
+  .lines li.minus .v{color:var(--ok)}
+  .lines li.plus .v{color:var(--warn)}
+  .lines li .lbl{display:flex;align-items:center;gap:6px}
+  .totrow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    border-top:1px solid var(--border);margin-top:10px;padding-top:11px}
+  .totrow .tl{font-size:.9rem;font-weight:700}
+  .totrow .tv{font-size:1.32rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .totrow .tv.bump{animation:bump .28s ease-out}
+  @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.06)}100%{transform:scale(1)}}
+  @media (prefers-reduced-motion: reduce){ .totrow .tv.bump{animation:none} }
+  .opt{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border:1px solid var(--border);
+    border-radius:10px;background:var(--surface);cursor:pointer;font-size:.86rem}
+  .opt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .opt:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .opt input{margin:3px 0 0}
+  .opt .od{display:block;color:var(--muted);font-size:.78rem}
+  details.brk{margin-top:8px}
+  details.brk > summary{cursor:pointer;font-size:.83rem;color:var(--brand);font-weight:600;
+    list-style:none;padding:4px 0}
+  details.brk > summary::-webkit-details-marker{display:none}
+  details.brk > summary:focus-visible{outline:3px solid var(--ring);outline-offset:2px;border-radius:6px}
+  details.brk > summary::before{content:"▸ ";display:inline-block;transition:transform .15s}
+  details.brk[open] > summary::before{content:"▾ "}
+  .fx{margin-top:10px;font-size:.8rem;color:var(--muted);background:var(--surface-2);border-radius:8px;padding:8px 10px}
+  .fx .approx{font-variant-numeric:tabular-nums}
+  .phone{width:250px;height:290px;border:1px solid var(--border);border-radius:16px;background:var(--surface);
+    position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .phone .scr{flex:1;overflow:auto;padding:12px 12px 90px;font-size:.8rem;color:var(--muted)}
+  .phone .skel{height:11px;border-radius:5px;background:var(--surface-2);margin:8px 0}
+  .stickybar{position:absolute;left:0;right:0;bottom:0;background:var(--surface);
+    border-top:1px solid var(--border);box-shadow:0 -6px 18px rgba(0,0,0,.06);padding:10px 12px}
+  .stickybar .sbtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .stickybar .sbtot{font-weight:800;font-size:1rem;font-variant-numeric:tabular-nums}
+  .stickybar .sbmore{background:transparent;border:0;color:var(--brand);font-family:inherit;font-weight:700;
+    font-size:.78rem;cursor:pointer;padding:3px 5px;border-radius:6px}
+  .stickybar .sbmore:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .stickybar .sblines{list-style:none;margin:0 0 8px;padding:0;font-size:.76rem;color:var(--muted)}
+  .stickybar .sblines li{display:flex;justify-content:space-between;padding:2px 0}
+  .stickybar .btn{width:100%;margin-top:8px;padding:9px}
+
+  /* ================= ② 자동 임시저장 ================= */
+  .draftform{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .draftform .fld + .fld{margin-top:12px}
+  .savebar{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+    margin-top:12px;padding-top:11px;border-top:1px solid var(--border)}
+  .status{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--muted);min-height:26px}
+  .status .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);flex:none}
+  .status[data-s="idle"] .dot{background:var(--border)}
+  .status[data-s="dirty"]{color:var(--warn)} .status[data-s="dirty"] .dot{background:var(--warn)}
+  .status[data-s="saving"]{color:var(--info)} .status[data-s="saving"] .dot{background:var(--info);animation:pulse 1s ease-in-out infinite}
+  .status[data-s="saved"]{color:var(--ok)} .status[data-s="saved"] .dot{background:var(--ok)}
+  .status[data-s="error"]{color:var(--danger)} .status[data-s="error"] .dot{background:var(--danger)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  @media (prefers-reduced-motion: reduce){ .status[data-s="saving"] .dot{animation:none} }
+  .restore{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap;justify-content:space-between;
+    border:1px solid var(--info);background:var(--info-soft);color:var(--text);
+    border-radius:10px;padding:11px 13px;margin-bottom:12px;font-size:.85rem}
+  .restore .rt{font-weight:700;display:block;margin-bottom:2px}
+  .restore .rm{color:var(--muted);font-size:.8rem}
+  .leavebox{border:1px solid var(--warn);background:var(--warn-soft);border-radius:10px;padding:11px 13px;
+    font-size:.84rem;margin-top:12px}
+  .leavebox b{color:var(--text)}
+
+  /* ================= ③ text-box-trim ================= */
+  .tbdemo{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  .tbbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px}
+  .tbbox .lbl{font-size:.75rem;font-weight:700;color:var(--muted);margin-bottom:9px}
+  .measure{position:relative;display:inline-block;background:var(--brand-soft);outline:1px dashed var(--brand)}
+  .measure .txt{display:block;font-size:2.2rem;font-weight:800;line-height:1.35;margin:0;color:var(--text)}
+  .tb-on .measure .txt{text-box:trim-both cap alphabetic}
+  .chipdemo{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+  .mchip{display:inline-flex;align-items:center;justify-content:center;background:var(--brand);color:var(--brand-ink);
+    border-radius:999px;font-weight:700;font-size:.9rem;padding:8px 14px;line-height:1.5}
+  .tb-on .mchip{text-box:trim-both cap alphabetic;padding:12px 14px}
+  .mbtn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);border-radius:10px;font-weight:700;font-size:.95rem;
+    padding:9px 16px;line-height:1.6;font-family:inherit}
+  .tb-on .mbtn{text-box:trim-both cap alphabetic;padding:14px 16px}
+  .stackdemo{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+  .stackdemo .ttl{font-size:1.5rem;font-weight:800;line-height:1.25;margin:0;background:var(--brand-soft);outline:1px dashed var(--brand)}
+  .stackdemo .sub{font-size:.9rem;color:var(--muted);line-height:1.5;margin:0;background:var(--ok-soft);outline:1px dashed var(--ok)}
+  .stackdemo .gap{margin-top:12px}
+  .tb-on .stackdemo .ttl{text-box:trim-both cap alphabetic}
+  .tb-on .stackdemo .sub{text-box:trim-both cap alphabetic}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top,
+  html.embed-mode nav.toc,
+  html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead,
+  html.embed-mode .embed-show h3.sec-lead,
+  html.embed-mode .embed-show pre,
+  html.embed-mode .embed-show .support,
+  html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp,
+  html.embed-mode .embed-show .cap,
+  html.embed-mode .embed-show ul.clean{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 12px}
+  html.embed-mode .embed-show .demo{margin-top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-23 (수) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#summary">💳 주문 금액 요약</a>
+  <a href="#autosave">⌨️ 폼 자동 임시저장</a>
+  <a href="#textbox">🌀 text-box-trim</a>
+</nav>
+
+<!-- ======================================================== ① ======================================================== -->
+<section class="card" id="summary">
+  <h2>💳 주문 금액 요약 패널 <span class="tag">결제·체크아웃 UX</span></h2>
+  <p class="lead">결제 직전 화면에서 사용자가 가장 오래 쳐다보는 건 상품 사진이 아니라 <b>“그래서 얼마 나가는데”</b> 숫자다.
+  총액은 항상 보이게 두고, 내역은 접어두고, 금액이 바뀌면 화면을 읽지 않는 사람에게도 들리게 알린다.</p>
+
+  <h3 class="sec-lead">변형 A — 총액 고정 + 내역 접기 + 변경 알림</h3>
+  <div class="demo">
+    <div class="demo-title">옵션을 켜고 꺼 보세요 — 총액과 내역, 그리고 아래 알림 로그가 함께 바뀝니다</div>
+    <div class="grid2">
+      <div>
+        <div class="row" style="flex-direction:column;align-items:stretch;gap:8px">
+          <label class="opt">
+            <input type="checkbox" id="optExpress" />
+            <span><b>빠른 배송</b> <span class="od">내일 도착 · +3,000원</span></span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" id="optPoint" />
+            <span><b>포인트 5,000P 사용</b> <span class="od">보유 12,400P</span></span>
+          </label>
+          <label class="opt">
+            <input type="checkbox" id="optForeign" />
+            <span><b>해외 발행 카드로 결제</b> <span class="od">해외카드 수수료 1% 별도</span></span>
+          </label>
+        </div>
+        <p class="hint">체크박스는 <code>&lt;label&gt;</code>으로 통째로 감싸 터치 영역을 넓혔고,
+        선택 스타일은 <code>:has(input:checked)</code>로 JS 없이 입혔습니다.</p>
+      </div>
+
+      <div class="sumpanel" id="sumPanel">
+        <h4>결제 금액</h4>
+        <ul class="lines" id="sumLines"></ul>
+        <details class="brk" id="brkDetails">
+          <summary id="brkSummary">세부 내역 보기</summary>
+          <ul class="lines" id="sumSub"></ul>
+        </details>
+        <div class="totrow">
+          <span class="tl">최종 결제 금액</span>
+          <span class="tv" id="sumTotal">0원</span>
+        </div>
+        <p class="hint" style="margin-top:6px">부가세 포함 · 결제 시점에 최종 확정됩니다</p>
+      </div>
+    </div>
+
+    <div class="log" id="sumLog" role="status" aria-live="polite" aria-atomic="true"></div>
+    <p class="cap">위 로그는 <code>role="status" aria-live="polite"</code> 영역입니다. 스크린 리더는 “금액이 바뀌었다”는 사실을
+    <b>포커스를 뺏기지 않고</b> 듣습니다. (<b>aria-live</b>: 화면 일부가 바뀌었을 때 보조기기에 그 변화를 읽어주게 하는 속성.
+    <code>polite</code>는 지금 읽던 문장이 끝난 뒤에 끼워 읽는다는 뜻)</p>
+
+    <div class="note"><b>왜 접었나</b> — 소계·할인·수수료·부가세를 전부 펼쳐 놓으면 “총액”이 다섯 개 숫자 중 하나가 되어 버립니다.
+    총액만 크게 남기고 나머지는 <code>&lt;details&gt;</code>로 접으면, <b>확인하고 싶은 사람은 열어 보고 대부분은 총액만 보고 넘어갑니다.</b>
+    단 <span class="pill da">주의</span> 수수료·배송비처럼 <b>“내가 모르고 냈다”가 될 수 있는 항목은 접지 말고 항상 노출</b>하세요.
+    접는 건 계산 과정이지 추가 부담이 아닙니다.</div>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 확정 금액 vs 추정 금액 (통화·환율)</h3>
+  <div class="demo">
+    <div class="demo-title">통화를 바꿔 보세요 — 원화 환산은 “확정”이 아니라 “추정”으로 보여야 합니다</div>
+    <div class="row" style="margin-bottom:12px">
+      <div class="seg" role="group" aria-label="결제 통화">
+        <button type="button" data-cur="KRW" aria-pressed="true">KRW 원화 결제</button>
+        <button type="button" data-cur="USD" aria-pressed="false">USD 달러 결제</button>
+      </div>
+    </div>
+    <div class="sumpanel" style="max-width:420px">
+      <h4>결제 금액</h4>
+      <ul class="lines">
+        <li><span class="lbl">상품 금액</span><span class="v" id="curBase">128,000원</span></li>
+        <li class="minus"><span class="lbl">상품 할인</span><span class="v">-8,000원</span></li>
+      </ul>
+      <div class="totrow">
+        <span class="tl" id="curTotLabel">최종 결제 금액</span>
+        <span class="tv" id="curTotal">120,000원</span>
+      </div>
+      <div class="fx" id="curFx" hidden>
+        ≈ <b class="approx" id="curApprox">약 165,600원</b> (1 USD = 1,380원 기준)<br />
+        실제 청구 금액은 카드사 승인 시점 환율·해외 수수료에 따라 달라질 수 있습니다.
+      </div>
+    </div>
+    <p class="cap">규칙 하나만 지키면 됩니다. <b>확정 금액은 굵게·크게, 추정 금액은 <code>≈ / 약</code>을 붙여 작게.</b>
+    같은 크기로 나란히 두면 사용자는 둘 다 확정으로 읽고, 나중에 청구서가 다르면 그게 CS 티켓이 됩니다.</p>
+  </div>
+
+  <h3 class="sec-lead">변형 C — 모바일: 하단 고정 요약 바</h3>
+  <div class="demo">
+    <div class="demo-title">모바일에선 요약 패널이 스크롤 밖으로 사라집니다 — 총액만 하단에 붙이고 펼치게</div>
+    <div class="row" style="align-items:flex-start;gap:18px">
+      <div class="phone">
+        <div class="scr">
+          <b style="color:var(--text)">주문서</b>
+          <div class="skel" style="width:90%"></div><div class="skel" style="width:70%"></div>
+          <div class="skel" style="width:96%"></div><div class="skel" style="width:60%"></div>
+          <div class="skel" style="width:88%"></div><div class="skel" style="width:75%"></div>
+          <div class="skel" style="width:92%"></div><div class="skel" style="width:52%"></div>
+          <div class="skel" style="width:84%"></div><div class="skel" style="width:66%"></div>
+          <div class="skel" style="width:90%"></div><div class="skel" style="width:48%"></div>
+        </div>
+        <div class="stickybar">
+          <ul class="sblines" id="sbLines" hidden>
+            <li><span>상품 금액</span><span class="num">128,000원</span></li>
+            <li><span>상품 할인</span><span class="num">-8,000원</span></li>
+            <li><span>배송비</span><span class="num">0원</span></li>
+          </ul>
+          <div class="sbtop">
+            <span class="sbtot">120,000원</span>
+            <button type="button" class="sbmore" id="sbMore" aria-expanded="false" aria-controls="sbLines">내역 보기 ▾</button>
+          </div>
+          <button type="button" class="btn">결제하기</button>
+        </div>
+      </div>
+      <div style="flex:1;min-width:230px">
+        <ul class="clean" style="font-size:.88rem">
+          <li>하단 바는 <code>position:fixed</code> + <code>padding-bottom:env(safe-area-inset-bottom)</code>로
+            아이폰 홈 인디케이터를 피합니다.</li>
+          <li>펼침 버튼은 <code>aria-expanded</code>와 <code>aria-controls</code>를 붙여야
+            스크린 리더가 “접힘/펼침”을 읽습니다.</li>
+          <li>본문 하단에 바 높이만큼 <code>padding-bottom</code>을 줘야
+            마지막 항목이 바에 가려지지 않습니다. (아주 흔한 버그)</li>
+          <li>결제 버튼은 바 안에 있어야 합니다. 총액과 버튼이 떨어져 있으면
+            <b>“내가 지금 누르는 금액”</b>이 흔들립니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용 — 금액 변경 알림</h3>
+<pre><code>&lt;!-- 총액은 시각적으로만 갱신하고, 변화 사실은 live 영역이 따로 말한다 --&gt;
+&lt;p class="total"&gt;&lt;span aria-hidden="true"&gt;최종 결제 금액&lt;/span&gt;
+  &lt;strong id="total"&gt;120,000원&lt;/strong&gt;&lt;/p&gt;
+&lt;p id="totalLive" role="status" aria-live="polite" aria-atomic="true" class="sr-only"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function setTotal(next, reason) {
+  document.getElementById('total').textContent = format(next);
+  // 금액 자체를 aria-live로 두면 타이핑 중에도 계속 읽어 시끄럽다.
+  // '무엇 때문에 얼마가 됐는지' 한 문장으로 요약해서 따로 알린다.
+  document.getElementById('totalLive').textContent =
+    reason + ' 적용. 최종 결제 금액 ' + format(next) + '.';
+}
+&lt;/script&gt;</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>금액 노드에 직접 <code>aria-live</code>를 걸지 않는다.</b> 수량 스테퍼를 연타하면 중간값이 전부 읽혀 소음이 됩니다.
+      변경 이유 + 최종 금액을 한 문장으로 만들어 별도 <code>role="status"</code>에 넣으세요.</li>
+    <li><b>숫자는 <code>font-variant-numeric: tabular-nums</code>.</b> 금액이 바뀔 때 자릿수가 들썩이지 않습니다.</li>
+    <li><b>0원 항목 처리</b> — “배송비 0원”은 남기고(무료라는 정보), “쿠폰 0원”은 숨깁니다(선택 안 한 항목).
+      기준: <b>사용자에게 이득인 0은 보여주고, 비어 있는 0은 지운다.</b></li>
+    <li><b>로딩 중 총액</b>은 <code>—</code>나 스켈레톤으로 두고, 이전 금액을 그대로 두지 마세요.
+      옛 금액이 남아 있으면 그게 최종가인 줄 알고 결제합니다.</li>
+    <li><code>prefers-reduced-motion</code>(사용자가 OS에서 “동작 줄이기”를 켠 상태)일 때 총액 강조 애니메이션은 끕니다.
+      위 데모의 살짝 커지는 효과도 그때는 실행되지 않습니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>결제 요약은 <b>서버 계산 값만 렌더</b>하는 게 안전합니다. 프론트에서 할인·수수료를 다시 계산하면
+      반올림 규칙 하나 어긋나도 “화면 금액 ≠ 승인 금액”이 되고, 그건 곧 클레임입니다.
+      프론트는 <code>{label, amount, sign}</code> 배열을 받아 그리기만.</li>
+    <li>총액 갱신은 <b>디바운스(연속 입력이 멈춘 뒤 한 번만 실행)</b> 후 재견적 API 1회 호출로 묶고,
+      응답이 늦게 도착한 오래된 요청은 버립니다(요청마다 시퀀스 번호를 달고 최신 것만 반영).</li>
+    <li>재견적 실패 시 <b>결제 버튼을 잠그세요.</b> 금액을 모른 채 결제 요청이 나가는 게 최악입니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role" target="_blank" rel="noopener">MDN — status role</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details" target="_blank" rel="noopener">MDN — &lt;details&gt;</a></li>
+  </ul>
+</section>
+
+<!-- ======================================================== ② ======================================================== -->
+<section class="card" id="autosave">
+  <h2>⌨️ 폼 자동 임시저장 <span class="tag">입력·폼</span></h2>
+  <p class="lead">긴 폼에서 사용자가 가장 화나는 순간은 검증 실패가 아니라 <b>“다 썼는데 날아갔다”</b>입니다.
+  자동 저장은 기능 하나가 아니라 <b>저장 상태 · 복구 제안 · 이탈 경고</b> 세 개가 붙어야 완성됩니다.</p>
+
+  <h3 class="sec-lead">변형 A — 저장 상태 표시 (idle → dirty → saving → saved / error)</h3>
+  <div class="demo">
+    <div class="demo-title">타이핑해 보세요 — 멈추고 0.8초 뒤 저장됩니다. “다음 저장 실패”를 켜면 실패 복구 흐름을 볼 수 있습니다</div>
+
+    <div class="restore" id="restoreBar" hidden>
+      <div>
+        <span class="rt">작성하던 내용이 남아 있습니다</span>
+        <span class="rm" id="restoreWhen">2분 전 자동 저장 · 제목 외 2개 항목</span>
+      </div>
+      <div class="row">
+        <button type="button" class="btn sm" id="btnRestore">이어서 작성</button>
+        <button type="button" class="btn sm ghost" id="btnDiscard">새로 작성</button>
+      </div>
+    </div>
+
+    <form class="draftform" id="draftForm" novalidate>
+      <div class="fld">
+        <label class="fl" for="dfTitle">정산 요청 제목</label>
+        <input type="text" id="dfTitle" name="title" autocomplete="off" placeholder="예) 9월 3주차 가맹점 정산 이의 신청" />
+      </div>
+      <div class="fld">
+        <label class="fl" for="dfEmail">회신 이메일</label>
+        <input type="email" id="dfEmail" name="email" autocomplete="email" placeholder="you@example.com" />
+      </div>
+      <div class="fld">
+        <label class="fl" for="dfBody">상세 내용</label>
+        <textarea id="dfBody" name="body" rows="4" placeholder="어떤 건이 어떻게 다른지 적어 주세요"></textarea>
+      </div>
+
+      <div class="savebar">
+        <span class="status" id="dfStatus" data-s="idle" role="status" aria-live="polite">
+          <span class="dot" aria-hidden="true"></span><span id="dfStatusText">아직 변경 사항 없음</span>
+        </span>
+        <div class="row">
+          <button type="button" class="btn sm ghost" id="btnRetry" hidden>다시 저장</button>
+          <button type="submit" class="btn sm">제출</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="row" style="margin-top:12px">
+      <label class="opt" style="max-width:none">
+        <input type="checkbox" id="failNext" />
+        <span><b>다음 저장을 실패시키기</b> <span class="od">네트워크 끊김 시나리오</span></span>
+      </label>
+      <button type="button" class="btn sm ghost" id="btnReload">🔄 새로고침 시뮬레이션</button>
+    </div>
+    <p class="cap">“새로고침 시뮬레이션”을 누르면 폼이 비워지고 <b>복구 제안 배너</b>가 뜹니다. 이게 자동 저장의 본체입니다 —
+    저장만 하고 복구 동선이 없으면 사용자는 저장된 줄도 모릅니다.</p>
+
+    <div class="log" id="dfLog"></div>
+  </div>
+
+  <h3 class="sec-lead">변형 B — 이탈 경고는 “진짜 안 저장됐을 때만”</h3>
+  <div class="demo">
+    <div class="demo-title">더티 상태(저장 안 된 변경)에서만 경고를 켭니다</div>
+    <div class="leavebox" id="leaveBox">
+      <b id="leaveState">현재: 경고 꺼짐</b> — 저장되지 않은 변경이 없으므로
+      <code>beforeunload</code> 핸들러를 등록하지 않은 상태입니다. 위 폼에 뭔가 입력하면 여기가 바뀝니다.
+    </div>
+    <p class="cap"><b>흔한 안티패턴</b>: 폼에 들어오자마자 <code>beforeunload</code>를 무조건 등록해 두는 것.
+    아무것도 안 고치고 나가려는 사람까지 “변경 사항이 저장되지 않을 수 있습니다” 창을 만나고,
+    그게 반복되면 사용자는 경고 자체를 안 읽게 됩니다. <b>더티일 때만 등록하고, 저장 성공 시 즉시 해제</b>하세요.</p>
+    <div class="note">브라우저는 <code>beforeunload</code>의 커스텀 메시지를 더 이상 보여주지 않습니다(브라우저 기본 문구로 대체).
+    즉 <b>“무엇이 사라지는지”는 그 창으로 설명할 수 없습니다.</b> 설명은 화면 안 저장 상태 표시가 맡아야 합니다.</div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용 — 디바운스 자동 저장 훅 (React/TS)</h3>
+<pre><code>// debounce: 입력이 멈춘 뒤 일정 시간이 지나야 한 번만 실행하는 기법.
+// 글자마다 저장 요청을 보내지 않기 위해 씁니다.
+type SaveState = 'idle' | 'dirty' | 'saving' | 'saved' | 'error';
+
+export function useAutosave&lt;T&gt;(value: T, save: (v: T) =&gt; Promise&lt;void&gt;, delay = 800) {
+  const [state, setState] = useState&lt;SaveState&gt;('idle');
+  const first = useRef(true);
+  const seq = useRef(0);               // 늦게 도착한 옛 응답을 버리기 위한 순번
+
+  useEffect(() =&gt; {
+    if (first.current) { first.current = false; return; }  // 마운트 직후는 저장하지 않는다
+    setState('dirty');
+    const id = setTimeout(async () =&gt; {
+      const my = ++seq.current;
+      setState('saving');
+      try {
+        await save(value);
+        if (my === seq.current) setState('saved');
+      } catch {
+        if (my === seq.current) setState('error');         // 실패해도 입력값은 그대로 둔다
+      }
+    }, delay);
+    return () =&gt; clearTimeout(id);
+  }, [value, delay, save]);
+
+  // 저장 안 된 변경이 있을 때만 이탈 경고를 건다
+  useEffect(() =&gt; {
+    if (state !== 'dirty' &amp;&amp; state !== 'error') return;
+    const h = (e: BeforeUnloadEvent) =&gt; { e.preventDefault(); };
+    window.addEventListener('beforeunload', h);
+    return () =&gt; window.removeEventListener('beforeunload', h);
+  }, [state]);
+
+  return state;
+}</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·상태 설계</h3>
+  <ul class="clean">
+    <li><b>저장 상태는 <code>role="status"</code> + <code>aria-live="polite"</code>.</b>
+      “저장 중”이 계속 읽히면 시끄러우니, 상태가 <i>바뀔 때만</i> 텍스트를 교체하세요.</li>
+    <li><b>색만으로 구분하지 않기</b> — 초록 점 하나로 “저장됨”을 표현하면 색각 이상 사용자에게 전달되지 않습니다.
+      점 + 텍스트를 함께 둡니다.</li>
+    <li><b>실패는 조용히 넘기지 않기.</b> 실패 상태에선 명시적인 “다시 저장” 버튼을 띄우고,
+      자동 재시도는 지수 백오프(재시도 간격을 1초→2초→4초로 늘리는 방식)로 1~2회만.</li>
+    <li><b>복구 배너의 두 버튼은 대등하게.</b> “이어서 작성 / 새로 작성” 중 하나를 흐리게 만들면
+      실수로 초안을 날립니다. 파괴적인 쪽(새로 작성)은 한 번 더 확인하거나 되돌리기를 제공하세요.</li>
+    <li>자동 저장 중에 포커스를 옮기거나 커서를 재배치하면 안 됩니다. 저장은 <b>백그라운드 작업</b>입니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li><b>결제 정보는 자동 저장 대상이 아닙니다.</b> 카드번호·CVC·비밀번호는 로컬 스토리지에도, 서버 초안에도 남기지 않습니다.
+      자동 저장은 정산 문의, 가맹점 등록 신청, 세금계산서 요청처럼 <b>길고 민감하지 않은 폼</b>에만.</li>
+    <li>초안 저장 API는 제출 API와 분리하고, 초안에는 <b>검증을 걸지 않습니다.</b>
+      반쯤 쓴 이메일에 “형식이 올바르지 않습니다”가 뜨면 자동 저장이 방해가 됩니다.</li>
+    <li>여러 탭에서 같은 폼을 열었을 때가 진짜 함정입니다. 초안에 <b>버전(또는 updatedAt)</b>을 실어 보내고,
+      서버가 더 최신이면 덮어쓰지 말고 “다른 곳에서 수정됨” 배너를 띄우세요.</li>
+  </ul>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event" target="_blank" rel="noopener">MDN — beforeunload event</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-live" target="_blank" rel="noopener">MDN — aria-live</a></li>
+  </ul>
+</section>
+
+<!-- ======================================================== ③ ======================================================== -->
+<section class="card" id="textbox">
+  <h2>🌀 text-box-trim — 글자 위아래 ‘보이지 않는 여백’을 CSS가 잘라낸다 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead">버튼 안 글자가 미묘하게 위로 붙어 보여서 <code>padding-top: 9px; padding-bottom: 11px</code> 같은 홀수 보정을 해본 적 있다면,
+  그건 여러분 눈이 이상한 게 아니라 <b>폰트가 글자 위아래에 들고 다니는 여백(half-leading)</b> 때문입니다.
+  <code>text-box-trim</code>은 그 여백을 CSS가 직접 잘라내게 하는 속성입니다.</p>
+
+  <div class="support" id="tbSupport">지원 여부 확인 중…</div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나</h3>
+  <ul class="clean">
+    <li><b>용어 한 줄</b> — <b>half-leading</b>: <code>line-height</code>에서 글자 높이를 뺀 나머지를 위아래로 반씩 나눠 붙인 여백.
+      화면엔 안 보이지만 자리는 차지해서, 버튼·배지·제목이 “위로 뜬” 것처럼 보이게 만듭니다.</li>
+    <li>지금까지 이걸 없애는 방법은 <b>폰트별로 실측한 마이너스 마진</b>이나 <code>::before/::after</code> 해킹이었습니다.
+      폰트를 바꾸면 그 숫자가 전부 틀어졌고요.</li>
+    <li>2025~2026년에 Chrome·Edge 133+, Safari 18.2+가 이 속성을 실어 보내면서, 디자인 시스템 쪽에서
+      <b>“버튼 높이를 패딩으로 억지로 맞추는 시대”를 끝낼 수단</b>으로 이야기되고 있습니다.
+      (Firefox 지원 여부와 Baseline 단계는 자료마다 엇갈립니다 — <span class="pill wa">추정</span> 확정하지 않고 아래 지원 배지로 실측하세요.)</li>
+    <li>미지원 브라우저는 속성을 <b>그냥 무시</b>합니다. 예전 모양(여백 있는 상태)으로 보일 뿐 깨지지 않으므로
+      <b>점진적 향상(progressive enhancement)</b>의 교과서적 사례입니다.</li>
+  </ul>
+
+  <div class="demo">
+    <div class="demo-title">토글해 보세요 — 점선 박스가 실제 글자 상자입니다</div>
+    <div class="row" style="margin-bottom:14px">
+      <div class="seg" role="group" aria-label="text-box-trim 적용">
+        <button type="button" id="tbOff" aria-pressed="true">trim 끔 (기본)</button>
+        <button type="button" id="tbOn" aria-pressed="false">trim 켬</button>
+      </div>
+      <span class="hint" id="tbNow">현재: <code>text-box: normal</code></span>
+    </div>
+
+    <div class="tbdemo" id="tbStage">
+      <div class="tbbox">
+        <div class="lbl">① 글자 상자 자체</div>
+        <span class="measure"><span class="txt">결제 완료</span></span>
+        <p class="cap">파란 점선이 요소가 차지하는 높이. trim을 켜면 대문자/한글 윗선과 베이스라인에 딱 맞게 줄어듭니다.</p>
+      </div>
+
+      <div class="tbbox">
+        <div class="lbl">② 배지·버튼 수직 정렬</div>
+        <div class="chipdemo">
+          <span class="mchip">승인</span>
+          <span class="mchip">부분취소</span>
+          <button type="button" class="mbtn">결제하기</button>
+        </div>
+        <p class="cap">trim을 켜면 padding이 “진짜 글자 기준” 여백이 됩니다. 그래서 값도 다시 잡아야 합니다(여기선 8px→12px).</p>
+      </div>
+
+      <div class="tbbox">
+        <div class="lbl">③ 제목–본문 간격</div>
+        <div class="stackdemo">
+          <p class="ttl">9월 정산 내역</p>
+          <p class="sub gap">가맹점 3,112곳 · 승인 건 128,904건</p>
+        </div>
+        <p class="cap">trim 전에는 <code>margin-top:12px</code>이 실제로 12px처럼 보이지 않습니다. 위아래 half-leading이 더해지니까요.</p>
+      </div>
+    </div>
+
+    <div class="note"><b>실무 함정</b> — trim을 켜면 기존 <code>padding</code>·<code>gap</code> 값이 전부 “너무 좁아” 보입니다.
+    이건 버그가 아니라 <b>드디어 지정한 값 그대로 렌더되는 상태</b>입니다. 컴포넌트 단위로 켜고 패딩을 재보정하세요.
+    전역 <code>*</code> 셀렉터에 한 번에 켜는 건 위험합니다.</div>
+  </div>
+
+  <h3 class="sec-lead">💻 복붙용</h3>
+<pre><code>/* 단축 속성 text-box = text-box-trim + text-box-edge */
+.btn, .badge, .stat-number {
+  text-box: trim-both cap alphabetic;
+  /* trim-both : 위아래 둘 다 자른다
+     cap       : 위쪽은 대문자 높이(cap height) 기준으로 자른다
+     alphabetic: 아래쪽은 베이스라인 기준으로 자른다 */
+  padding-block: 12px;   /* trim 후엔 이 값이 '보이는 그대로'가 된다 */
+}
+
+/* 지원 브라우저에서만 여백을 다시 잡고 싶다면 */
+@supports (text-box: trim-both cap alphabetic) {
+  .btn { padding-block: 12px; }
+}
+@supports not (text-box: trim-both cap alphabetic) {
+  .btn { padding-block: 9px; }   /* half-leading이 남아 있으니 덜 준다 */
+}</code></pre>
+
+  <h3 class="sec-lead">♿ 접근성·주의</h3>
+  <ul class="clean">
+    <li><b>터치 타깃 높이를 줄이지 마세요.</b> trim으로 시각적 여백이 줄면 버튼이 작아 보여서 패딩을 더 주게 되는데,
+      그 방향이 맞습니다. 최소 44×44px 권장치는 그대로 지켜야 합니다.</li>
+    <li><b>줄바꿈되는 본문 문단에는 쓰지 마세요.</b> trim은 <b>블록 컨테이너의 첫 줄 위 / 마지막 줄 아래</b>만 자릅니다.
+      줄 사이 간격(<code>line-height</code>)은 그대로이므로 가독성에는 영향이 없지만,
+      본문에서 얻는 이득이 거의 없고 시각적 리듬만 흔들립니다. <b>한두 줄짜리 UI 텍스트</b>에 쓰는 속성입니다.</li>
+    <li>사용자가 브라우저 기본 글꼴 크기를 키웠을 때도 trim은 비율로 따라오므로 별도 대응은 필요 없습니다.
+      다만 <code>px</code> 고정 높이 버튼과 함께 쓰면 글자가 넘칩니다 — 높이는 <code>min-height</code>로.</li>
+  </ul>
+
+  <h3 class="sec-lead">🧠 paysable 적용 포인트</h3>
+  <ul class="clean">
+    <li>결제 화면의 <b>금액 숫자 타일</b>(큰 폰트 + 작은 라벨)이 가장 효과를 봅니다.
+      지금 마이너스 마진으로 맞춰 둔 곳이 있다면 <code>@supports</code> 분기로 걷어낼 후보입니다.</li>
+    <li>디자이너가 Figma에서 준 <b>“텍스트 상단 8px”</b>은 사실 trim된 상자 기준인 경우가 많습니다.
+      Figma도 자동 높이 텍스트에서 비슷한 트리밍 개념을 씁니다(<span class="pill wa">추정</span> — 버전에 따라 다름).
+      그 간극이 “퍼블리싱이 시안이랑 미묘하게 다르다”의 정체인 경우가 있습니다.</li>
+    <li>도입은 <b>버튼 → 배지 → 금액 타일</b> 순으로, 컴포넌트 단위로. 한 번에 전역 적용하면 회귀 스냅샷이 전부 깨집니다.</li>
+  </ul>
+
+  <h3 class="sec-lead">🔗 참고</h3>
+  <ul class="clean">
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box-trim" target="_blank" rel="noopener">MDN — text-box-trim</a></li>
+    <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-box-edge" target="_blank" rel="noopener">MDN — text-box-edge</a></li>
+    <li><a href="https://caniuse.com/css-text-box-trim" target="_blank" rel="noopener">Can I use — CSS text-box-trim</a></li>
+  </ul>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-23 (수) · 직접 만든 self-contained 예시 (외부 의존성 없음)</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+
+  /* ---------- 테마 ---------- */
+  themeBtn.addEventListener("click", function(){
+    var dark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", dark ? "light" : "dark");
+    themeBtn.setAttribute("aria-pressed", String(!dark));
+    themeBtn.textContent = dark ? "🌙 다크 모드" : "☀️ 라이트 모드";
+  });
+
+  function logTo(el, msg, cls){
+    var d = document.createElement("div");
+    d.className = "line" + (cls ? " " + cls : "");
+    d.textContent = msg;
+    el.appendChild(d);
+    el.scrollTop = el.scrollHeight;
+    while (el.children.length > 40) el.removeChild(el.firstChild);
+  }
+  var won = new Intl.NumberFormat("ko-KR");
+  function w(n){ return won.format(Math.round(n)) + "원"; }
+
+  /* ================== ① 주문 금액 요약 ================== */
+  var BASE = 128000, DISC = 8000, EXPRESS = 3000, POINT = 5000;
+  var sumLines = document.getElementById("sumLines");
+  var sumSub = document.getElementById("sumSub");
+  var sumTotal = document.getElementById("sumTotal");
+  var sumLog = document.getElementById("sumLog");
+  var brkSummary = document.getElementById("brkSummary");
+  var optExpress = document.getElementById("optExpress");
+  var optPoint = document.getElementById("optPoint");
+  var optForeign = document.getElementById("optForeign");
+  var prevTotal = null;
+
+  function row(label, value, cls, badge){
+    var li = document.createElement("li");
+    if (cls) li.className = cls;
+    var l = document.createElement("span");
+    l.className = "lbl";
+    l.textContent = label;
+    if (badge){
+      var b = document.createElement("span");
+      b.className = "pill " + badge[1];
+      b.textContent = badge[0];
+      l.appendChild(b);
+    }
+    var v = document.createElement("span");
+    v.className = "v";
+    v.textContent = value;
+    li.appendChild(l); li.appendChild(v);
+    return li;
+  }
+
+  function renderSummary(reason){
+    var express = optExpress.checked ? EXPRESS : 0;
+    var point   = optPoint.checked ? POINT : 0;
+    var beforeFee = BASE - DISC + express - point;
+    var fee = optForeign.checked ? Math.round(beforeFee * 0.01) : 0;
+    var total = beforeFee + fee;
+
+    /* 항상 보이는 줄: 총액에 영향을 주는 '추가 부담'은 절대 접지 않는다 */
+    sumLines.textContent = "";
+    sumLines.appendChild(row("상품 금액", w(BASE)));
+    if (express) sumLines.appendChild(row("빠른 배송비", "+" + w(express), "plus"));
+    if (fee) sumLines.appendChild(row("해외카드 수수료 (1%)", "+" + w(fee), "plus", ["추가 부담","wa"]));
+
+    /* 접히는 줄: 계산 과정 / 사용자에게 이득인 항목 */
+    sumSub.textContent = "";
+    sumSub.appendChild(row("상품 할인", "-" + w(DISC), "minus"));
+    if (point) sumSub.appendChild(row("포인트 사용", "-" + w(point), "minus"));
+    sumSub.appendChild(row("배송비", w(0)));
+    sumSub.appendChild(row("부가세", "총액에 포함"));
+    brkSummary.textContent = "세부 내역 보기 (" + sumSub.children.length + "개 항목)";
+
+    sumTotal.textContent = w(total);
+    if (prevTotal !== null && prevTotal !== total){
+      sumTotal.classList.remove("bump");
+      void sumTotal.offsetWidth;
+      sumTotal.classList.add("bump");
+      logTo(sumLog, (reason ? reason + " → " : "") + "최종 결제 금액 " + w(total) + " (이전 " + w(prevTotal) + ")",
+        total > prevTotal ? "bad" : "good");
+    } else if (prevTotal === null){
+      logTo(sumLog, "초기 금액 " + w(total));
+    }
+    prevTotal = total;
+  }
+
+  optExpress.addEventListener("change", function(){
+    renderSummary(this.checked ? "빠른 배송 추가" : "빠른 배송 해제");
+  });
+  optPoint.addEventListener("change", function(){
+    renderSummary(this.checked ? "포인트 5,000P 사용" : "포인트 사용 취소");
+  });
+  optForeign.addEventListener("change", function(){
+    renderSummary(this.checked ? "해외카드 수수료 적용" : "해외카드 수수료 해제");
+  });
+  renderSummary();
+
+  /* 변형 B — 통화 */
+  var RATE = 1380;
+  var curTotal = document.getElementById("curTotal");
+  var curTotLabel = document.getElementById("curTotLabel");
+  var curBase = document.getElementById("curBase");
+  var curFx = document.getElementById("curFx");
+  var curApprox = document.getElementById("curApprox");
+  document.querySelectorAll("[data-cur]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-cur]").forEach(function(o){ o.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      if (b.getAttribute("data-cur") === "USD"){
+        var usd = (120000 / RATE);
+        curBase.textContent = "$" + (128000 / RATE).toFixed(2);
+        curTotal.textContent = "$" + usd.toFixed(2);
+        curTotLabel.textContent = "최종 결제 금액 (USD 청구)";
+        curApprox.textContent = "약 " + w(usd * RATE);
+        curFx.hidden = false;
+      } else {
+        curBase.textContent = "128,000원";
+        curTotal.textContent = "120,000원";
+        curTotLabel.textContent = "최종 결제 금액";
+        curFx.hidden = true;
+      }
+    });
+  });
+
+  /* 변형 C — 하단 고정 바 */
+  var sbMore = document.getElementById("sbMore");
+  var sbLines = document.getElementById("sbLines");
+  sbMore.addEventListener("click", function(){
+    var open = sbMore.getAttribute("aria-expanded") === "true";
+    sbMore.setAttribute("aria-expanded", String(!open));
+    sbLines.hidden = open;
+    sbMore.textContent = open ? "내역 보기 ▾" : "접기 ▴";
+  });
+
+  /* ================== ② 자동 임시저장 ================== */
+  var form = document.getElementById("draftForm");
+  var fTitle = document.getElementById("dfTitle");
+  var fEmail = document.getElementById("dfEmail");
+  var fBody = document.getElementById("dfBody");
+  var st = document.getElementById("dfStatus");
+  var stText = document.getElementById("dfStatusText");
+  var dfLog = document.getElementById("dfLog");
+  var btnRetry = document.getElementById("btnRetry");
+  var failNext = document.getElementById("failNext");
+  var btnReload = document.getElementById("btnReload");
+  var restoreBar = document.getElementById("restoreBar");
+  var restoreWhen = document.getElementById("restoreWhen");
+  var btnRestore = document.getElementById("btnRestore");
+  var btnDiscard = document.getElementById("btnDiscard");
+  var leaveState = document.getElementById("leaveState");
+  var leaveBox = document.getElementById("leaveBox");
+
+  var timer = null, seq = 0, savedAt = null, tickTimer = null;
+  var serverDraft = null;   /* 실제로는 서버 초안. 데모에선 메모리에만 둔다 */
+
+  function setState(s, text){
+    st.setAttribute("data-s", s);
+    stText.textContent = text;
+    btnRetry.hidden = (s !== "error");
+    var dirty = (s === "dirty" || s === "error");
+    leaveState.textContent = dirty ? "현재: 경고 켜짐" : "현재: 경고 꺼짐";
+    leaveBox.style.borderColor = dirty ? "var(--danger)" : "var(--warn)";
+  }
+  function snapshot(){
+    return { title: fTitle.value, email: fEmail.value, body: fBody.value };
+  }
+  function filledCount(d){
+    return ["title","email","body"].filter(function(k){ return d[k] && d[k].trim(); }).length;
+  }
+  function relTime(ts){
+    var s = Math.round((Date.now() - ts) / 1000);
+    if (s < 5) return "방금";
+    if (s < 60) return s + "초 전";
+    return Math.round(s / 60) + "분 전";
+  }
+  function startTick(){
+    clearInterval(tickTimer);
+    tickTimer = setInterval(function(){
+      if (st.getAttribute("data-s") === "saved" && savedAt){
+        stText.textContent = relTime(savedAt) + " 자동 저장됨";
+      }
+    }, 5000);
+  }
+
+  function doSave(){
+    var my = ++seq;
+    setState("saving", "저장 중…");
+    var willFail = failNext.checked;
+    setTimeout(function(){
+      if (my !== seq) return;                       /* 늦게 도착한 옛 응답은 버린다 */
+      if (willFail){
+        failNext.checked = false;
+        setState("error", "저장 실패 — 입력 내용은 그대로 있습니다");
+        logTo(dfLog, "✕ 저장 실패 (네트워크). 입력값은 유지, 사용자에게 재시도 제공", "bad");
+      } else {
+        serverDraft = snapshot();
+        savedAt = Date.now();
+        setState("saved", "방금 자동 저장됨");
+        logTo(dfLog, "✓ 초안 저장 완료 · 채워진 항목 " + filledCount(serverDraft) + "개", "good");
+      }
+    }, 650);
+  }
+
+  function onInput(){
+    setState("dirty", "변경됨 — 곧 저장합니다");
+    clearTimeout(timer);
+    timer = setTimeout(doSave, 800);
+  }
+  [fTitle, fEmail, fBody].forEach(function(el){ el.addEventListener("input", onInput); });
+
+  btnRetry.addEventListener("click", doSave);
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    clearTimeout(timer);
+    logTo(dfLog, "제출 — 제출 시점엔 자동 저장 타이머를 반드시 취소해야 중복 요청이 안 납니다", "hl");
+    setState("saved", "제출 완료");
+  });
+
+  btnReload.addEventListener("click", function(){
+    clearTimeout(timer);
+    fTitle.value = ""; fEmail.value = ""; fBody.value = "";
+    setState("idle", "아직 변경 사항 없음");
+    if (serverDraft && filledCount(serverDraft) > 0){
+      restoreWhen.textContent = relTime(savedAt) + " 자동 저장 · 채워진 항목 " + filledCount(serverDraft) + "개";
+      restoreBar.hidden = false;
+      logTo(dfLog, "↻ 새로고침. 서버에 초안이 남아 있어 복구 배너를 띄웠습니다", "hl");
+    } else {
+      restoreBar.hidden = true;
+      logTo(dfLog, "↻ 새로고침. 저장된 초안이 없어 배너를 띄우지 않습니다", "hl");
+    }
+  });
+
+  btnRestore.addEventListener("click", function(){
+    if (!serverDraft) return;
+    fTitle.value = serverDraft.title;
+    fEmail.value = serverDraft.email;
+    fBody.value = serverDraft.body;
+    restoreBar.hidden = true;
+    setState("saved", "초안을 불러왔습니다");
+    logTo(dfLog, "복구 완료 — 불러온 직후는 dirty가 아니므로 이탈 경고를 걸지 않습니다", "good");
+    fTitle.focus();
+  });
+  btnDiscard.addEventListener("click", function(){
+    serverDraft = null;
+    restoreBar.hidden = true;
+    setState("idle", "아직 변경 사항 없음");
+    logTo(dfLog, "초안 폐기 — 파괴적 동작이므로 실제 서비스에선 되돌리기(Undo)를 함께 제공하세요", "bad");
+  });
+
+  setState("idle", "아직 변경 사항 없음");
+  startTick();
+  logTo(dfLog, "입력 → 0.8초 멈춤 → 저장. ‘새로고침 시뮬레이션’으로 복구 흐름을 확인하세요");
+
+  /* ================== ③ text-box-trim ================== */
+  var tbStage = document.getElementById("tbStage");
+  var tbOn = document.getElementById("tbOn");
+  var tbOff = document.getElementById("tbOff");
+  var tbNow = document.getElementById("tbNow");
+  var tbSupport = document.getElementById("tbSupport");
+
+  var supported = (window.CSS && CSS.supports)
+    && (CSS.supports("text-box", "trim-both cap alphabetic") || CSS.supports("text-box-trim", "trim-both"));
+
+  tbSupport.className = "support " + (supported ? "yes" : "no");
+  tbSupport.innerHTML = supported
+    ? "✅ <b>이 브라우저는 text-box-trim을 지원합니다.</b> 아래 토글을 켜면 실제로 위아래 여백이 잘립니다."
+    : "⚠️ <b>이 브라우저는 아직 text-box-trim을 지원하지 않습니다.</b> 토글을 켜도 모양이 그대로일 수 있습니다 — "
+      + "속성을 무시할 뿐 레이아웃이 깨지지는 않는다는 점이 핵심입니다(점진적 향상). Chrome·Edge 133+ 또는 Safari 18.2+에서 확인해 보세요.";
+
+  function setTb(on){
+    tbStage.classList.toggle("tb-on", on);
+    tbOn.setAttribute("aria-pressed", String(on));
+    tbOff.setAttribute("aria-pressed", String(!on));
+    tbNow.innerHTML = on
+      ? "현재: <code>text-box: trim-both cap alphabetic</code>"
+      : "현재: <code>text-box: normal</code>";
+  }
+  tbOn.addEventListener("click", function(){ setTb(true); });
+  tbOff.addEventListener("click", function(){ setTb(false); });
+  setTb(false);
+
+  /* ================== embed compact mode: ?embed=<id> ================== */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    var id = qs.get("embed") || qs.get("demo");
+    if (qs.get("theme") === "dark"){
+      root.setAttribute("data-theme","dark");
+      themeBtn.setAttribute("aria-pressed","true");
+      themeBtn.textContent = "☀️ 라이트 모드";
+    }
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
