@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-09-28 (월)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#15803d; --ok-soft:#e9f7ee; --warn:#b45309; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0369a1; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#2b3340; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important;animation:none !important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:20px 0 2px;color:var(--brand)}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:12px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 10px}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.76rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;border-radius:10px;
+    padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:6px 11px;font-size:.83rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  label.fl{display:block;font-size:.84rem;font-weight:600;margin:0 0 5px}
+  input.tf{font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;width:100%}
+  input.tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  input.tf[aria-invalid="true"]{border-color:var(--danger)}
+
+  /* ================= ① 툴바 ================= */
+  .tb{display:flex;align-items:center;gap:4px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);
+    border-radius:12px;padding:5px}
+  .tb button{display:inline-flex;align-items:center;gap:6px;border:1px solid transparent;background:transparent;color:var(--text);
+    font-family:inherit;font-size:.84rem;font-weight:600;border-radius:8px;padding:7px 11px;cursor:pointer}
+  .tb button:hover{background:var(--surface-2)}
+  .tb button:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .tb button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand);border-color:color-mix(in srgb,var(--brand) 35%,transparent)}
+  .tb button[aria-pressed="true"] .chk::before{content:"✓"}
+  .tb button[aria-pressed="false"] .chk::before{content:"○";opacity:.5}
+  .tb button[aria-disabled="true"]{color:var(--muted);cursor:not-allowed}
+  .tb button[aria-busy="true"]{cursor:progress}
+  .tb .sep{width:1px;align-self:stretch;background:var(--border);margin:3px 4px}
+  .tb .spin{width:12px;height:12px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .txlist{margin:12px 0 0;padding:0;list-style:none;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .txlist li{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-size:.86rem;border-top:1px solid var(--border)}
+  .txlist li:first-child{border-top:0}
+  .txlist .amt{font-variant-numeric:tabular-nums;font-weight:700}
+  .txlist .neg{color:var(--danger)}
+  .reason{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.2em}
+
+  .tg-cards{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+  .tg{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .tg h4{margin:0 0 8px;font-size:.88rem}
+  .tg .bad{color:var(--danger)} .tg .good{color:var(--ok)}
+  .star{cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:.88rem;font-weight:600;
+    background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:999px;padding:7px 13px}
+  .star[aria-pressed="true"]{color:#b45309;border-color:#f0b040;background:var(--warn-soft)}
+  [data-theme="dark"] .star[aria-pressed="true"]{color:#f0b040}
+  .star:focus-visible,.sw:focus-visible,.bad-btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .sw{cursor:pointer;display:inline-flex;align-items:center;gap:10px;background:none;border:0;color:var(--text);font:inherit;font-size:.88rem;font-weight:600;padding:4px;border-radius:8px}
+  .sw .trk{width:40px;height:24px;border-radius:999px;background:var(--border);position:relative;transition:background .15s}
+  .sw .trk::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .15s}
+  .sw[aria-checked="true"] .trk{background:var(--ok)}
+  .sw[aria-checked="true"] .trk::after{transform:translateX(16px)}
+  .bad-btn{cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:600;border-radius:10px;padding:7px 13px;border:1px solid var(--border);background:var(--surface);color:var(--text)}
+  .sr-say{margin-top:10px;font-size:.78rem;background:var(--surface-2);border-radius:8px;padding:7px 9px;color:var(--muted)}
+  .sr-say b{color:var(--text)}
+
+  /* ================= ② 비밀번호/PIN ================= */
+  .pw-wrap{position:relative}
+  .pw-wrap input.tf{padding-right:74px}
+  .pw-eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);font-family:inherit;font-size:.78rem;font-weight:700;
+    border:0;background:var(--surface-2);color:var(--text);border-radius:7px;padding:5px 9px;cursor:pointer}
+  .pw-eye:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .rules{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:3px;font-size:.82rem}
+  .rules li{display:flex;gap:8px;align-items:center;color:var(--muted)}
+  .rules li .ic{width:18px;height:18px;border-radius:50%;display:inline-grid;place-items:center;font-size:.7rem;border:1.5px solid var(--border);flex:none}
+  .rules li.met{color:var(--ok)}
+  .rules li.met .ic{background:var(--ok);border-color:var(--ok);color:#fff}
+  .rules li.fail{color:var(--danger)}
+  .rules li.fail .ic{border-color:var(--danger)}
+  .meter{display:flex;gap:4px;margin-top:12px}
+  .meter span{flex:1;height:6px;border-radius:99px;background:var(--border);transition:background .2s}
+  .meter[data-lv="1"] span:nth-child(-n+1){background:var(--danger)}
+  .meter[data-lv="2"] span:nth-child(-n+2){background:var(--warn)}
+  .meter[data-lv="3"] span:nth-child(-n+3){background:var(--info)}
+  .meter[data-lv="4"] span{background:var(--ok)}
+  .meter-lbl{font-size:.78rem;color:var(--muted);margin-top:4px}
+  .fmsg{font-size:.8rem;margin-top:6px;min-height:1.2em}
+  .fmsg.err{color:var(--danger)} .fmsg.ok{color:var(--ok)}
+
+  .pin{max-width:320px;margin:0 auto;text-align:center}
+  .pin-step{font-size:.8rem;color:var(--muted)}
+  .pin-title{font-weight:700;margin:2px 0 12px}
+  .dots{display:flex;justify-content:center;gap:12px;margin:0 0 6px}
+  .dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);transition:background .12s,border-color .12s}
+  .dots i.on{background:var(--brand);border-color:var(--brand)}
+  .dots.shake{animation:shk .35s}
+  @keyframes shk{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+  .pin-msg{font-size:.8rem;min-height:1.3em;margin-bottom:10px}
+  .pin-msg.err{color:var(--danger)} .pin-msg.ok{color:var(--ok)}
+  .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .pad button{font-family:inherit;font-size:1.2rem;font-weight:700;padding:12px 0;border-radius:12px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);cursor:pointer;font-variant-numeric:tabular-nums}
+  .pad button:active{background:var(--brand-soft)}
+  .pad button:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .pad button.fn{font-size:.8rem;color:var(--muted)}
+
+  /* ================= ③ @scope ================= */
+  .sc-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .sc-box{border-radius:10px;padding:12px 14px;font-size:.86rem}
+  .sc-box .lbl{font-size:.72rem;font-weight:700;opacity:.8;display:block;margin-bottom:4px}
+  .sc-demo .t-light{background:#ffffff;color:#1f2937;border:1px solid #d1d5db}
+  .sc-demo .t-dark{background:#111827;color:#e5e7eb;border:1px solid #374151}
+  .sc-demo .t-light .sc-box, .sc-demo .t-dark .sc-box{margin-top:10px}
+  .sc-demo a{font-weight:700}
+
+  /* 모드 A: 일반 자손 선택자 — 소스 순서가 이긴다 */
+  [data-mode="plain"] .t-light a{color:#1d4ed8}
+  [data-mode="plain"] .t-dark a{color:#93c5fd}
+  /* 모드 B: @scope — 더 가까운 스코프 루트가 이긴다(proximity) */
+  @scope ([data-mode="scope"] .t-light){ a{color:#1d4ed8} }
+  @scope ([data-mode="scope"] .t-dark){ a{color:#93c5fd} }
+
+  .pcard{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .pcard-slot{margin-top:10px;border:1px dashed var(--border);border-radius:8px;padding:8px 10px}
+  .pcard-slot .slot-lbl{font-size:.7rem;font-weight:700;color:var(--muted)}
+  /* 일반: .pcard p 가 슬롯(외부 콘텐츠)까지 샌다 */
+  [data-mode="plain"] .pcard p{margin:0;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  /* 도넛 스코프: .pcard 안이지만 .pcard-slot 아래는 제외 */
+  @scope ([data-mode="scope"] .pcard) to (.pcard-slot){
+    p{margin:0;font-size:.76rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+  }
+  .pcard-slot p{margin:.2rem 0;font-size:.88rem}
+  .pcard h4{margin:4px 0 0;font-size:1.05rem}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top, html.embed-mode nav.toc, html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead, html.embed-mode .embed-show pre, html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp, html.embed-mode .embed-show .cap, html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .code-h{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-28 (월) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#toolbar">🔘 툴바와 토글 버튼</a>
+  <a href="#password">⌨️ 비밀번호·결제 PIN 설정</a>
+  <a href="#scope">🌀 CSS @scope</a>
+</nav>
+
+<!-- ============================== ① 툴바 ============================== -->
+<section class="card" id="toolbar">
+  <h2>🔘 툴바와 토글 버튼 — Tab 한 번, 화살표로 이동, 눌림은 aria-pressed <span class="tag">버튼·액션</span></h2>
+  <p class="lead">버튼이 6개 붙은 툴바를 Tab으로 6번 지나가게 하면 키보드 사용자는 표까지 가는 데 지친다.
+  <b>roving tabindex</b>(묶음 안에서 한 버튼만 <code>tabindex="0"</code>, 나머지는 <code>-1</code>로 두고 화살표로 "0"을 옮기는 기법)로
+  툴바 전체를 Tab 정지점 하나로 만들고, 켜짐/꺼짐이 있는 버튼은 <code>aria-pressed</code>로 상태를 말하게 한다.</p>
+
+  <h3 class="sec-lead">변형 A — 거래내역 툴바 (roving tabindex + 토글 + 비활성 이유)</h3>
+  <div class="demo">
+    <div class="demo-title">툴바에 Tab으로 들어온 뒤 <span class="kbd">←</span><span class="kbd">→</span> <span class="kbd">Home</span><span class="kbd">End</span> 로 이동, <span class="kbd">Space</span>/<span class="kbd">Enter</span>로 누르기</div>
+    <div class="tb" role="toolbar" aria-label="거래내역 도구" id="tb">
+      <button type="button" aria-pressed="true" data-k="ok"><span class="chk" aria-hidden="true"></span>승인</button>
+      <button type="button" aria-pressed="true" data-k="refund"><span class="chk" aria-hidden="true"></span>환불 포함</button>
+      <button type="button" aria-pressed="false" data-k="test"><span class="chk" aria-hidden="true"></span>테스트 결제</button>
+      <span class="sep" role="separator" aria-orientation="vertical"></span>
+      <button type="button" id="tbExport">⬇ CSV 내보내기</button>
+      <button type="button" id="tbRefund" aria-disabled="true" aria-describedby="tbReason">↩ 선택 건 환불</button>
+    </div>
+    <div class="reason" id="tbReason">선택된 거래가 없어 환불할 수 없습니다. 목록에서 거래를 먼저 고르세요.</div>
+    <ul class="txlist" id="txlist" aria-live="polite"></ul>
+    <div class="log" id="tbLog" aria-hidden="true">키 입력 로그가 여기 표시됩니다.</div>
+  </div>
+  <p class="cap">비활성 버튼도 툴바 안에선 <b>포커스는 받게</b> 둔다(<code>aria-disabled</code>) — 화살표로 지나가다 "왜 안 되지?"의 답(<code>aria-describedby</code>)을 들을 수 있어야 하니까.</p>
+
+  <h3 class="sec-lead">변형 B — "토글"을 무엇으로 만들까: 눌림 버튼 · 스위치 · 흔한 실수</h3>
+  <div class="demo">
+    <div class="demo-title">눌러 보고, 아래 "스크린리더가 듣는 말(모식도)"이 어떻게 바뀌는지 비교</div>
+    <div class="tg-cards">
+      <div class="tg">
+        <h4 class="good">✅ 눌림 버튼 (aria-pressed)</h4>
+        <button type="button" class="star" id="tgStar" aria-pressed="false"><span aria-hidden="true" id="tgStarIc">☆</span>관심 가맹점</button>
+        <div class="sr-say" id="tgStarSay"></div>
+      </div>
+      <div class="tg">
+        <h4 class="good">✅ 스위치 (role="switch")</h4>
+        <button type="button" class="sw" id="tgSw" role="switch" aria-checked="true"><span class="trk" aria-hidden="true"></span>결제 알림 받기</button>
+        <div class="sr-say" id="tgSwSay"></div>
+      </div>
+      <div class="tg">
+        <h4 class="bad">❌ 라벨도 바꾸고 pressed도 바꿈</h4>
+        <button type="button" class="bad-btn" id="tgBad" aria-pressed="false">자동결제 일시정지</button>
+        <div class="sr-say" id="tgBadSay"></div>
+      </div>
+    </div>
+  </div>
+  <table class="cmp">
+    <tr><th>언제</th><th>쓸 것</th><th>규칙</th></tr>
+    <tr><td>필터·보기 옵션처럼 "눌러둔 상태"</td><td><code>&lt;button aria-pressed&gt;</code></td><td>라벨은 <b>고정</b>, 상태는 aria-pressed만 바꾼다</td></tr>
+    <tr><td>설정처럼 즉시 켜짐/꺼짐 반영</td><td><code>role="switch" aria-checked</code></td><td>누르는 즉시 저장. "저장" 버튼이 따로 있으면 체크박스가 맞다</td></tr>
+    <tr><td>라벨이 행동을 바꿔 말함(일시정지↔재개)</td><td>그냥 <code>&lt;button&gt;</code></td><td>aria-pressed를 <b>빼야</b> 이중 부정("일시정지 해제, 눌림")이 안 생긴다</td></tr>
+  </table>
+
+  <h3 class="sec-lead code-h">💻 코드 — roving tabindex 최소 구현</h3>
+<pre><code>&lt;div role="toolbar" aria-label="거래내역 도구"&gt;
+  &lt;button aria-pressed="true"&gt;환불 포함&lt;/button&gt;
+  &lt;button aria-pressed="false" tabindex="-1"&gt;테스트 결제&lt;/button&gt;
+  &lt;button aria-disabled="true" aria-describedby="why" tabindex="-1"&gt;선택 건 환불&lt;/button&gt;
+&lt;/div&gt;
+
+const items = [...toolbar.querySelectorAll('button')];
+toolbar.addEventListener('keydown', (e) =&gt; {
+  const i = items.indexOf(document.activeElement);
+  const next = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: items.length - 1 }[e.key];
+  if (next === undefined) return;
+  e.preventDefault();
+  const n = (next + items.length) % items.length;      // 끝에서 처음으로 순환
+  items.forEach((b, k) =&gt; b.tabIndex = k === n ? 0 : -1); // Tab 정지점은 항상 1개
+  items[n].focus();
+});</code></pre>
+  <div class="note">🧠 <b>배울 점</b>: Tab은 "영역 사이" 이동, 화살표는 "영역 안" 이동 — 탭·라디오·메뉴·툴바가 전부 이 규칙이다. 한 번 <code>useRovingTabIndex</code> 훅으로 만들어두면 세그먼트 컨트롤·필터 칩에도 재사용된다.</div>
+</section>
+
+<!-- ============================== ② 비밀번호/PIN ============================== -->
+<section class="card" id="password">
+  <h2>⌨️ 비밀번호·결제 PIN 설정 — 규칙은 미리 보여주고, 틀림은 늦게 말하기 <span class="tag">입력·폼</span></h2>
+  <p class="lead">"8자 이상, 영문·숫자·특수문자 조합"을 <b>제출 후 에러로</b> 알려주면 사용자는 규칙을 외워서 다시 친다.
+  요즘은 규칙을 <b>체크리스트로 먼저</b> 깔아두고 입력에 따라 하나씩 초록으로 바꾼다. 결제 PIN은 한 단계 더 — 쉬운 번호(111111·123456)를 막고, 두 번 입력으로 확인한다.</p>
+
+  <h3 class="sec-lead">변형 A — 실시간 규칙 체크리스트 + 강도 미터 + 확인 일치</h3>
+  <div class="demo">
+    <div class="demo-title">입력해 보세요 — 규칙은 초록으로만 바뀌고, 빨강은 포커스를 떠나거나 제출할 때만 뜹니다</div>
+    <form id="pwForm" novalidate>
+      <div class="grid2">
+        <div>
+          <label class="fl" for="pw1">새 비밀번호</label>
+          <div class="pw-wrap">
+            <input class="tf" id="pw1" type="password" autocomplete="new-password" aria-describedby="pwRules pwMeterLbl" />
+            <button type="button" class="pw-eye" id="pwEye" aria-pressed="false" aria-controls="pw1">보기</button>
+          </div>
+          <ul class="rules" id="pwRules" aria-label="비밀번호 규칙">
+            <li data-r="len"><span class="ic" aria-hidden="true"></span><span>8자 이상</span><span class="sr-only st"> — 미충족</span></li>
+            <li data-r="alpha"><span class="ic" aria-hidden="true"></span><span>영문 포함</span><span class="sr-only st"> — 미충족</span></li>
+            <li data-r="num"><span class="ic" aria-hidden="true"></span><span>숫자 포함</span><span class="sr-only st"> — 미충족</span></li>
+            <li data-r="sym"><span class="ic" aria-hidden="true"></span><span>특수문자 포함</span><span class="sr-only st"> — 미충족</span></li>
+            <li data-r="rep"><span class="ic" aria-hidden="true"></span><span>같은 문자 3번 연속 금지</span><span class="sr-only st"> — 미충족</span></li>
+          </ul>
+          <div class="meter" id="pwMeter" data-lv="0" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="meter-lbl" id="pwMeterLbl">강도: 입력 전</div>
+        </div>
+        <div>
+          <label class="fl" for="pw2">비밀번호 확인</label>
+          <input class="tf" id="pw2" type="password" autocomplete="new-password" aria-describedby="pw2Msg" />
+          <div class="fmsg" id="pw2Msg" aria-live="polite"></div>
+          <div style="margin-top:14px"><button class="btn" type="submit">비밀번호 변경</button></div>
+          <div class="fmsg" id="pwSubmitMsg" role="status"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <p class="cap">강도 미터는 규칙 통과 개수가 아니라 <b>길이 가중</b>으로 매긴다(여기선 단순화된 휴리스틱). 실서비스는 zxcvbn 같은 추정 라이브러리나 서버 판정을 쓰는 편.</p>
+
+  <h3 class="sec-lead">변형 B — 결제 PIN 6자리 · 섞인 키패드 · 2단계 확인</h3>
+  <div class="demo">
+    <div class="demo-title">키패드를 누르거나 키보드 숫자로 입력 — 111111, 123456 같은 번호는 거절됩니다</div>
+    <div class="pin" id="pinBox">
+      <div class="pin-step" id="pinStep">1 / 2 단계</div>
+      <div class="pin-title" id="pinTitle">결제 비밀번호 6자리를 입력하세요</div>
+      <div class="dots" id="pinDots" role="img" aria-label="0자리 입력됨"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="pin-msg" id="pinMsg" aria-live="assertive"></div>
+      <div class="pad" id="pinPad" role="group" aria-label="숫자 키패드"></div>
+    </div>
+  </div>
+  <p class="cap">키패드 배열을 매번 섞는 건 어깨너머 훔쳐보기·터치 위치 추정을 어렵게 하려는 것. 단 <b>진짜 보안 키패드</b>(입력값 암호화·키로깅 방지)는 전용 솔루션 영역이라, 이 데모는 UI 패턴만 흉내 낸 것이다.</p>
+
+  <h3 class="sec-lead code-h">💻 코드 — 규칙 체크 + "만진 뒤에만 빨강"</h3>
+<pre><code>const RULES = {
+  len:   v =&gt; v.length &gt;= 8,
+  alpha: v =&gt; /[a-z]/i.test(v),
+  num:   v =&gt; /\d/.test(v),
+  sym:   v =&gt; /[^a-z0-9]/i.test(v),
+  rep:   v =&gt; v.length &gt; 0 &amp;&amp; !/(.)\1\1/.test(v),
+};
+let touched = false;
+pw.addEventListener('input', paint);
+pw.addEventListener('blur', () =&gt; { touched = true; paint(); });
+
+function paint() {
+  for (const li of rulesEl.children) {
+    const ok = RULES[li.dataset.r](pw.value);
+    li.classList.toggle('met', ok);
+    li.classList.toggle('fail', !ok &amp;&amp; touched);   // 입력 중엔 절대 빨강 금지
+    li.querySelector('.st').textContent = ok ? ' — 충족' : ' — 미충족';
+  }
+}
+
+// 결제 PIN: 쉬운 번호 거절
+const weak = p =&gt; /^(\d)\1{5}$/.test(p) ||
+  '0123456789'.includes(p) || '9876543210'.includes(p);</code></pre>
+  <div class="note">🧠 <b>배울 점</b>: 체크리스트는 <code>aria-live</code>로 매 글자마다 읽히게 하지 말 것 — 입력 중 수다가 된다. 각 항목에 숨김 텍스트("충족/미충족")를 두고 <code>aria-describedby</code>로 필드에 연결하면, 사용자가 원할 때 필드에서 다시 들을 수 있다.</div>
+</section>
+
+<!-- ============================== ③ @scope ============================== -->
+<section class="card" id="scope">
+  <h2>🌀 CSS @scope — BEM 없이 "이 컴포넌트 안에서만", 그리고 "여기부터는 빼고" <span class="tag">트렌드·개념</span></h2>
+  <p class="lead"><code>@scope (.root) to (.limit) { … }</code>는 스타일이 적용될 <b>시작점(스코프 루트)</b>과 <b>끝점(스코프 한계)</b>을 CSS가 직접 안다.
+  클래스 이름 규칙(BEM)이나 CSS Modules 해시 없이도 컴포넌트 스타일이 밖으로·안쪽 슬롯으로 새지 않는다. Chrome 118·Safari 17.4에 이어 Firefox 146이 지원하면서 주요 브라우저 모두에서 쓸 수 있게 됐다.</p>
+  <div class="support" id="scSupport"></div>
+
+  <div class="demo">
+    <div class="demo-title">모드를 바꿔 차이를 보세요</div>
+    <div class="row" style="margin-bottom:14px">
+      <div role="group" aria-label="CSS 방식" class="tb" id="scModes">
+        <button type="button" aria-pressed="true" data-m="plain">일반 자손 선택자</button>
+        <button type="button" aria-pressed="false" data-m="scope" tabindex="-1">@scope</button>
+      </div>
+    </div>
+    <div class="sc-demo" id="scDemo" data-mode="plain">
+      <div class="sc-grid">
+        <div>
+          <div class="demo-title">① 근접성(proximity) — 다크 안의 라이트 박스</div>
+          <div class="sc-box t-light"><span class="lbl">라이트 테마</span><a href="#scope">라이트 링크</a>
+            <div class="sc-box t-dark"><span class="lbl">다크 테마</span><a href="#scope">다크 링크</a>
+              <div class="sc-box t-light"><span class="lbl">다시 라이트 (안쪽)</span><a href="#scope" id="innerLink">이 링크 색을 보세요</a></div>
+            </div>
+          </div>
+          <p class="cap" id="scCap1"></p>
+        </div>
+        <div>
+          <div class="demo-title">② 도넛 스코프 — 카드 스타일이 슬롯(외부 콘텐츠)엔 안 샌다</div>
+          <div class="pcard">
+            <p>정기결제 · 매월 5일</p>
+            <h4>프리미엄 플랜 29,000원</h4>
+            <div class="pcard-slot">
+              <span class="slot-lbl">가맹점 안내 문구 (외부 HTML 슬롯)</span>
+              <p>다음 달부터 결제일이 변경됩니다. 자세한 내용은 고객센터로 문의해 주세요.</p>
+            </div>
+          </div>
+          <p class="cap" id="scCap2"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead code-h">💻 코드</h3>
+<pre><code>/* ① 근접성: 둘 다 명시도가 같아도, 더 가까운 스코프 루트가 이긴다 */
+@scope (.t-light) { a { color: #1d4ed8; } }
+@scope (.t-dark)  { a { color: #93c5fd; } }
+
+/* ② 도넛 스코프: .card 안이지만 .slot 아래는 제외 */
+@scope (.card) to (.slot) {
+  :scope { padding: 16px; }          /* :scope = 루트(.card) 자신 */
+  p { font-size: 12px; color: gray; } /* 슬롯 안 p 에는 적용 안 됨 */
+}
+
+/* ③ &lt;style&gt; 안에 루트 없이 쓰면 "부모 요소"가 루트 (인라인 컴포넌트 스타일) */
+&lt;div class="promo"&gt;
+  &lt;style&gt; @scope { h3 { color: tomato; } } &lt;/style&gt;
+  &lt;h3&gt;이 h3만 빨강&lt;/h3&gt;
+&lt;/div&gt;</code></pre>
+  <ul class="clean">
+    <li><b>근접성(scoping proximity)</b>: 명시도(specificity)가 같을 때 소스 순서보다 먼저 따지는 규칙. "DOM에서 몇 단계 위에 루트가 있나"가 가까운 쪽이 이긴다.</li>
+    <li><b>명시도 주의</b>: <code>@scope (.card)</code>의 <code>.card</code>는 안쪽 규칙 명시도에 더해지지 않는다. <code>:scope</code>나 <code>&amp;</code>를 쓰면 더해진다.</li>
+    <li><b>CSS Modules·Tailwind와 경쟁?</b> 대체라기보다 보완 — 특히 CMS/가맹점 HTML처럼 <b>통제 못 하는 콘텐츠를 품는 컴포넌트</b>에서 도넛 스코프가 빛난다.</li>
+  </ul>
+  <div class="note">🧠 <b>배울 점</b>: 우리가 CSS-in-JS·Modules를 쓴 큰 이유가 "스타일 누수"였는데, 그 절반은 이제 플랫폼이 해준다. 단 Baseline "신규(newly available)" 단계라 구형 브라우저 사용자 비중을 먼저 확인하고, 미지원 시에도 깨지지 않게(스코프 없이도 무난한 기본 스타일) 짜는 게 안전하다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-09-28 · self-contained (외부 의존성 없음)</div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  function setTheme(dark){
+    if (dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "☀️ 라이트 모드" : "🌙 다크 모드";
+  }
+  themeBtn.addEventListener("click", function(){ setTheme(root.getAttribute("data-theme") !== "dark"); });
+
+  /* ---------- 공용: roving tabindex ---------- */
+  function roving(container, onKey){
+    var items = Array.prototype.slice.call(container.querySelectorAll("button"));
+    items.forEach(function(b,k){ b.tabIndex = k === 0 ? 0 : -1; });
+    container.addEventListener("focusin", function(e){
+      var i = items.indexOf(e.target); if (i < 0) return;
+      items.forEach(function(b,k){ b.tabIndex = k === i ? 0 : -1; });
+    });
+    container.addEventListener("keydown", function(e){
+      var i = items.indexOf(document.activeElement); if (i < 0) return;
+      var map = {ArrowRight:i+1, ArrowLeft:i-1, Home:0, End:items.length-1};
+      if (!(e.key in map)) return;
+      e.preventDefault();
+      var n = (map[e.key] + items.length) % items.length;
+      items.forEach(function(b,k){ b.tabIndex = k === n ? 0 : -1; });
+      items[n].focus();
+      if (onKey) onKey(e.key, items[n]);
+    });
+    return items;
+  }
+
+  /* ---------- ① 툴바 ---------- */
+  var TX = [
+    {id:1, k:"ok", name:"카페 온더코너", amt:4800},
+    {id:2, k:"refund", name:"환불 · 온라인몰 A", amt:-32000},
+    {id:3, k:"ok", name:"편의점 역삼점", amt:12300},
+    {id:4, k:"test", name:"[TEST] 샌드박스 결제", amt:1000},
+    {id:5, k:"ok", name:"정기결제 · 클라우드", amt:29000},
+    {id:6, k:"refund", name:"부분환불 · 온라인몰 B", amt:-5500}
+  ];
+  var tb = document.getElementById("tb"), txlist = document.getElementById("txlist"), tbLog = document.getElementById("tbLog");
+  var tbReason = document.getElementById("tbReason"), tbRefund = document.getElementById("tbRefund"), tbExport = document.getElementById("tbExport");
+  var selected = {};
+  function log(s){ tbLog.innerHTML = s; }
+  roving(tb, function(key, el){ log("<b>" + key + "</b> → 포커스: " + el.textContent.trim() + " (Tab 정지점은 이 버튼 하나)"); });
+  function filters(){
+    var f = {};
+    tb.querySelectorAll("[data-k]").forEach(function(b){ f[b.dataset.k] = b.getAttribute("aria-pressed") === "true"; });
+    return f;
+  }
+  function renderTx(){
+    var f = filters();
+    var rows = TX.filter(function(t){ return f[t.k]; });
+    txlist.innerHTML = rows.length ? rows.map(function(t){
+      return '<li><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" data-id="'+t.id+'"'+(selected[t.id]?" checked":"")+'> '+t.name+'</label>'
+        + '<span class="amt'+(t.amt<0?" neg":"")+'">'+(t.amt<0?"−":"")+Math.abs(t.amt).toLocaleString("ko-KR")+'원</span></li>';
+    }).join("") : '<li><span style="color:var(--muted)">조건에 맞는 거래가 없습니다. 위 토글을 켜 보세요.</span></li>';
+    Object.keys(selected).forEach(function(id){ if (!rows.some(function(t){return String(t.id)===id;})) delete selected[id]; });
+    syncRefund();
+  }
+  function syncRefund(){
+    var n = Object.keys(selected).length;
+    tbRefund.setAttribute("aria-disabled", n ? "false" : "true");
+    tbReason.textContent = n ? n + "건 선택됨 — 환불을 진행할 수 있습니다." : "선택된 거래가 없어 환불할 수 없습니다. 목록에서 거래를 먼저 고르세요.";
+  }
+  txlist.addEventListener("change", function(e){
+    var id = e.target.dataset.id; if (!id) return;
+    if (e.target.checked) selected[id] = true; else delete selected[id];
+    syncRefund();
+  });
+  tb.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.k){
+      var on = b.getAttribute("aria-pressed") !== "true";
+      b.setAttribute("aria-pressed", String(on));
+      log("<b>" + b.textContent.trim() + "</b> " + (on ? "켜짐" : "꺼짐") + " — 라벨은 그대로, aria-pressed만 바뀜");
+      renderTx();
+    } else if (b === tbRefund){
+      if (b.getAttribute("aria-disabled") === "true"){ log("비활성 버튼 클릭 → 동작 대신 <b>이유 문구</b>로 안내"); tbReason.animate && tbReason.animate([{opacity:.3},{opacity:1}],{duration:300}); return; }
+      log("<b>" + Object.keys(selected).length + "건</b> 환불 요청 (데모)");
+    } else if (b === tbExport){
+      if (b.getAttribute("aria-busy") === "true") return;
+      b.setAttribute("aria-busy","true");
+      var orig = b.innerHTML;
+      b.innerHTML = '<span class="spin" aria-hidden="true"></span>내보내는 중…';
+      setTimeout(function(){ b.removeAttribute("aria-busy"); b.innerHTML = orig; log("CSV 준비 완료 (데모) — 처리 중엔 aria-busy로 중복 클릭 무시"); }, 1400);
+    }
+  });
+  renderTx();
+
+  /* ---------- ① 변형 B ---------- */
+  function say(el, name, role, state){ el.innerHTML = "🔊 <b>" + name + "</b>, " + role + (state ? ", " + state : ""); }
+  var star = document.getElementById("tgStar"), starSay = document.getElementById("tgStarSay"), starIc = document.getElementById("tgStarIc");
+  function paintStar(){ var on = star.getAttribute("aria-pressed")==="true"; starIc.textContent = on ? "★" : "☆"; say(starSay, "관심 가맹점", "토글 버튼", on ? "눌림" : "눌리지 않음"); }
+  star.addEventListener("click", function(){ star.setAttribute("aria-pressed", String(star.getAttribute("aria-pressed")!=="true")); paintStar(); });
+  paintStar();
+  var sw = document.getElementById("tgSw"), swSay = document.getElementById("tgSwSay");
+  function paintSw(){ say(swSay, "결제 알림 받기", "스위치", sw.getAttribute("aria-checked")==="true" ? "켬" : "끔"); }
+  sw.addEventListener("click", function(){ sw.setAttribute("aria-checked", String(sw.getAttribute("aria-checked")!=="true")); paintSw(); });
+  paintSw();
+  var bad = document.getElementById("tgBad"), badSay = document.getElementById("tgBadSay");
+  function paintBad(){ var on = bad.getAttribute("aria-pressed")==="true"; say(badSay, bad.textContent, "토글 버튼", on ? "눌림 ← 재개하라는 건지, 재개됐다는 건지?" : "눌리지 않음"); }
+  bad.addEventListener("click", function(){ var on = bad.getAttribute("aria-pressed")!=="true"; bad.setAttribute("aria-pressed", String(on)); bad.textContent = on ? "자동결제 재개" : "자동결제 일시정지"; paintBad(); });
+  paintBad();
+
+  /* ---------- ② 비밀번호 ---------- */
+  var RULES = {
+    len: function(v){ return v.length >= 8; },
+    alpha: function(v){ return /[a-z]/i.test(v); },
+    num: function(v){ return /\d/.test(v); },
+    sym: function(v){ return /[^a-z0-9\s]/i.test(v); },
+    rep: function(v){ return v.length > 0 && !/(.)\1\1/.test(v); }
+  };
+  var pw1 = document.getElementById("pw1"), pw2 = document.getElementById("pw2"), rulesEl = document.getElementById("pwRules");
+  var meter = document.getElementById("pwMeter"), meterLbl = document.getElementById("pwMeterLbl");
+  var pw2Msg = document.getElementById("pw2Msg"), pwSubmitMsg = document.getElementById("pwSubmitMsg"), pwEye = document.getElementById("pwEye");
+  var touched1 = false, touched2 = false;
+  function allOk(v){ return Object.keys(RULES).every(function(k){ return RULES[k](v); }); }
+  function strength(v){
+    if (!v) return 0;
+    var kinds = ["alpha","num","sym"].filter(function(k){ return RULES[k](v); }).length;
+    var s = 0;
+    if (v.length >= 8) s++;
+    if (v.length >= 12) s++;
+    if (kinds >= 2) s++;
+    if (kinds === 3 && v.length >= 10) s++;
+    if (!RULES.rep(v)) s = Math.min(s, 1);
+    return Math.max(1, Math.min(4, s));
+  }
+  var LV = ["입력 전","약함","보통","좋음","강함"];
+  function paintPw(){
+    var v = pw1.value;
+    Array.prototype.forEach.call(rulesEl.children, function(li){
+      var ok = RULES[li.dataset.r](v);
+      li.classList.toggle("met", ok);
+      li.classList.toggle("fail", !ok && touched1);
+      li.querySelector(".ic").textContent = ok ? "✓" : "";
+      li.querySelector(".st").textContent = ok ? " — 충족" : " — 미충족";
+    });
+    var lv = strength(v);
+    meter.dataset.lv = lv;
+    meterLbl.textContent = "강도: " + LV[lv];
+    pw1.setAttribute("aria-invalid", String(touched1 && !allOk(v)));
+    paintPw2();
+  }
+  function paintPw2(){
+    if (!pw2.value){ pw2Msg.textContent = ""; pw2Msg.className = "fmsg"; pw2.removeAttribute("aria-invalid"); return; }
+    var match = pw2.value === pw1.value;
+    if (match){ pw2Msg.textContent = "✓ 비밀번호가 일치합니다"; pw2Msg.className = "fmsg ok"; pw2.setAttribute("aria-invalid","false"); }
+    else if (touched2 || pw2.value.length >= pw1.value.length){ pw2Msg.textContent = "비밀번호가 일치하지 않습니다"; pw2Msg.className = "fmsg err"; pw2.setAttribute("aria-invalid","true"); }
+    else { pw2Msg.textContent = ""; pw2Msg.className = "fmsg"; }
+  }
+  pw1.addEventListener("input", paintPw);
+  pw1.addEventListener("blur", function(){ if (pw1.value) touched1 = true; paintPw(); });
+  pw2.addEventListener("input", paintPw2);
+  pw2.addEventListener("blur", function(){ if (pw2.value) touched2 = true; paintPw2(); });
+  pwEye.addEventListener("click", function(){
+    var show = pw1.type === "password";
+    pw1.type = show ? "text" : "password";
+    pwEye.setAttribute("aria-pressed", String(show));
+    pwEye.textContent = show ? "숨기기" : "보기";
+  });
+  document.getElementById("pwForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    touched1 = touched2 = true; paintPw();
+    if (!allOk(pw1.value)){ pwSubmitMsg.textContent = "규칙을 만족하지 않는 항목이 있습니다."; pwSubmitMsg.className = "fmsg err"; pw1.focus(); return; }
+    if (pw1.value !== pw2.value){ pwSubmitMsg.textContent = "확인 비밀번호가 다릅니다."; pwSubmitMsg.className = "fmsg err"; pw2.focus(); return; }
+    pwSubmitMsg.textContent = "✓ 변경 완료 (데모)"; pwSubmitMsg.className = "fmsg ok";
+  });
+  paintPw();
+
+  /* ---------- ② 결제 PIN ---------- */
+  var pad = document.getElementById("pinPad"), dots = document.getElementById("pinDots"), pinMsg = document.getElementById("pinMsg");
+  var pinStep = document.getElementById("pinStep"), pinTitle = document.getElementById("pinTitle"), pinBox = document.getElementById("pinBox");
+  var cur = "", first = null;
+  function shuffle(a){ for (var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  function buildPad(){
+    var d = shuffle(["0","1","2","3","4","5","6","7","8","9"]);
+    var cells = d.slice(0,9).concat(["shuffle", d[9], "del"]);
+    pad.innerHTML = cells.map(function(c){
+      if (c === "shuffle") return '<button type="button" class="fn" data-fn="shuffle">재배열</button>';
+      if (c === "del") return '<button type="button" class="fn" data-fn="del" aria-label="한 자리 지우기">⌫ 지우기</button>';
+      return '<button type="button" data-d="'+c+'">'+c+'</button>';
+    }).join("");
+  }
+  function paintDots(){
+    Array.prototype.forEach.call(dots.children, function(i,k){ i.classList.toggle("on", k < cur.length); });
+    dots.setAttribute("aria-label", cur.length + "자리 입력됨, 총 6자리");
+  }
+  function weak(p){ return /^(\d)\1{5}$/.test(p) || "0123456789".indexOf(p) >= 0 || "9876543210".indexOf(p) >= 0; }
+  function fail(msg){
+    pinMsg.textContent = msg; pinMsg.className = "pin-msg err";
+    dots.classList.remove("shake"); void dots.offsetWidth; dots.classList.add("shake");
+    cur = ""; paintDots();
+  }
+  function complete(){
+    if (first === null){
+      if (weak(cur)) return fail("같은 숫자 반복이나 연속된 숫자는 쓸 수 없어요");
+      first = cur; cur = ""; paintDots();
+      pinStep.textContent = "2 / 2 단계"; pinTitle.textContent = "확인을 위해 한 번 더 입력하세요";
+      pinMsg.textContent = ""; pinMsg.className = "pin-msg";
+      buildPad();
+    } else if (cur === first){
+      pinMsg.textContent = "✓ 결제 비밀번호가 설정되었습니다 (데모) — 잠시 후 초기화"; pinMsg.className = "pin-msg ok";
+      setTimeout(reset, 2200);
+    } else {
+      first = null; pinStep.textContent = "1 / 2 단계"; pinTitle.textContent = "결제 비밀번호 6자리를 입력하세요";
+      fail("처음 입력과 달라요. 처음부터 다시 입력해 주세요"); buildPad();
+    }
+  }
+  function reset(){ cur=""; first=null; pinStep.textContent="1 / 2 단계"; pinTitle.textContent="결제 비밀번호 6자리를 입력하세요"; pinMsg.textContent=""; pinMsg.className="pin-msg"; paintDots(); buildPad(); }
+  function press(d){
+    if (cur.length >= 6) return;
+    if (pinMsg.classList.contains("err")){ pinMsg.textContent=""; pinMsg.className="pin-msg"; }
+    cur += d; paintDots();
+    if (cur.length === 6) setTimeout(complete, 120);
+  }
+  pad.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.d) press(b.dataset.d);
+    else if (b.dataset.fn === "del"){ cur = cur.slice(0,-1); paintDots(); }
+    else if (b.dataset.fn === "shuffle") buildPad();
+  });
+  pinBox.addEventListener("keydown", function(e){
+    if (/^\d$/.test(e.key)){ e.preventDefault(); press(e.key); }
+    else if (e.key === "Backspace"){ e.preventDefault(); cur = cur.slice(0,-1); paintDots(); }
+  });
+  buildPad(); paintDots();
+
+  /* ---------- ③ @scope ---------- */
+  var supported = typeof window.CSSScopeRule !== "undefined";
+  var scSupport = document.getElementById("scSupport");
+  scSupport.className = "support " + (supported ? "yes" : "no");
+  scSupport.innerHTML = supported
+    ? "✅ <b>이 브라우저는 @scope를 지원합니다.</b> 아래 모드 전환이 실제로 동작합니다."
+    : "⚠️ <b>이 브라우저는 @scope를 지원하지 않습니다.</b> '@scope' 모드에서 스타일이 빠질 뿐 레이아웃은 깨지지 않습니다. Chrome 118+ · Safari 17.4+ · Firefox 146+에서 확인해 보세요.";
+  var scDemo = document.getElementById("scDemo"), scModes = document.getElementById("scModes");
+  var cap1 = document.getElementById("scCap1"), cap2 = document.getElementById("scCap2");
+  function setMode(m){
+    scDemo.dataset.mode = m;
+    scModes.querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.m === m)); });
+    if (m === "plain"){
+      cap1.innerHTML = "❌ 안쪽 라이트 박스의 링크가 <b>연하늘(다크용)</b> — <code>.t-light a</code>와 <code>.t-dark a</code>는 명시도가 같아 <b>뒤에 선언된 다크가 이김</b>.";
+      cap2.innerHTML = "❌ 카드의 '작은 대문자 라벨' 스타일이 <b>슬롯 안 안내 문구까지 샘</b> — <code>.pcard p</code>는 모든 자손 p에 걸린다.";
+    } else {
+      cap1.innerHTML = "✅ 안쪽 링크가 <b>진한 파랑</b> — 더 가까운 스코프 루트(.t-light)가 이긴다. 소스 순서보다 근접성이 먼저.";
+      cap2.innerHTML = "✅ <code>to (.pcard-slot)</code>가 한계선 — 카드 자체 라벨만 작아지고, 슬롯 안 문구는 원래 모양 유지.";
+    }
+  }
+  roving(scModes);
+  scModes.addEventListener("click", function(e){ var b = e.target.closest("button"); if (b) setMode(b.dataset.m); });
+  setMode("plain");
+
+  /* ---------- embed compact mode: ?embed=<id>, ?theme=dark ---------- */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("theme") === "dark") setTheme(true);
+    var id = qs.get("embed") || qs.get("demo");
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
