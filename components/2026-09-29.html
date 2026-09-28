@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-09-29 (화)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#15803d; --ok-soft:#e9f7ee; --warn:#b45309; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0369a1; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#2b3340; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important;animation:none !important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:20px 0 2px;color:var(--brand)}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:12px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 10px}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.76rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;border-radius:10px;
+    padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:6px 11px;font-size:.83rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  label.fl{display:block;font-size:.84rem;font-weight:600;margin:0 0 5px}
+  input.tf{font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;width:100%}
+  input.tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  input.tf[aria-invalid="true"]{border-color:var(--danger)}
+
+
+  /* ================= ① 세션 만료 경고 ================= */
+  .sess-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+  .sess-bar .clock{font-weight:700;font-variant-numeric:tabular-nums;min-width:4.5em}
+  .meter{flex:1;min-width:120px;height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden}
+  .meter i{display:block;height:100%;width:100%;background:var(--brand);transition:width .25s linear}
+  .meter.warn i{background:var(--warn)} .meter.dang i{background:var(--danger)}
+  .soft-banner{margin-top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-radius:10px;padding:10px 12px;
+    background:var(--warn-soft);color:var(--text);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent)}
+  .soft-banner b{color:var(--warn)}
+  .fake-form{margin-top:12px;display:grid;gap:10px;grid-template-columns:1fr 1fr}
+  @media (max-width:560px){ .fake-form{grid-template-columns:1fr} }
+  dialog.sess{border:1px solid var(--border);border-radius:16px;padding:22px;max-width:380px;width:calc(100% - 32px);
+    background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
+  dialog.sess::backdrop{background:rgba(10,12,18,.55)}
+  dialog.sess h3{margin:0 0 6px;font-size:1.05rem}
+  dialog.sess p{margin:0 0 14px;color:var(--muted);font-size:.9rem}
+  .big-count{font-size:2rem;font-weight:800;font-variant-numeric:tabular-nums;color:var(--danger);margin:4px 0 12px}
+  .dlg-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+  .speed button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand);border-color:var(--brand)}
+
+  /* ================= ② 복사 버튼 ================= */
+  .acct{display:grid;gap:10px}
+  .acct-row{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--surface);
+    border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+  .acct-row .k{font-size:.78rem;color:var(--muted)}
+  .acct-row .v{font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:.01em}
+  .acct-row .v[data-selected]{background:var(--brand-soft);outline:2px dashed var(--brand);border-radius:4px}
+  .cbtn{position:relative;display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;
+    border-radius:9px;padding:7px 11px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);min-width:5.8em;justify-content:center}
+  .cbtn:hover{border-color:var(--brand)}
+  .cbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .cbtn[data-state="done"]{color:var(--ok);border-color:var(--ok);background:var(--ok-soft)}
+  .cbtn[data-state="fail"]{color:var(--warn);border-color:var(--warn);background:var(--warn-soft)}
+  .cbtn .ic{display:inline-block;width:1em;text-align:center}
+  .cbtn.icon{min-width:0;padding:7px 9px}
+  .tip{position:absolute;bottom:calc(100% + 6px);left:50%;translate:-50% 0;white-space:nowrap;font-size:.72rem;font-weight:600;
+    background:var(--text);color:var(--bg);border-radius:6px;padding:3px 7px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .cbtn[data-state="done"] .tip{opacity:1}
+  .fallback{margin-top:10px;font-size:.84rem;border-radius:10px;padding:10px 12px;background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent)}
+  .fallback textarea{width:100%;margin-top:6px;font-family:inherit;font-size:.9rem;border-radius:8px;border:1px solid var(--border);
+    background:var(--surface);color:var(--text);padding:8px;resize:none}
+  .sim{display:flex;align-items:center;gap:8px;font-size:.84rem;margin-top:12px}
+  .sim input{width:18px;height:18px;accent-color:var(--brand)}
+
+  /* ================= ③ CSS if() ================= */
+  .if-demo{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .txn{border:1px solid var(--border);border-radius:12px;padding:14px;background:var(--surface)}
+  .txn .amt{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
+  /* 폴백 먼저, if()는 그 뒤에 — 미지원 브라우저는 if() 선언을 버리고 폴백 유지 */
+  .chip-if{display:inline-block;font-size:.75rem;font-weight:700;border-radius:999px;padding:3px 10px;
+    color:#475569; background:#f1f5f9;
+    color:if(style(--status: paid): #15803d; style(--status: failed): #b91c1c; style(--status: pending): #b45309; else: #475569);
+    background:if(style(--status: paid): #e9f7ee; style(--status: failed): #fdecec; style(--status: pending): #fdf3e3; else: #f1f5f9);
+  }
+  .chip-if::before{content:"● "}
+  .chip-js{display:inline-block;font-size:.75rem;font-weight:700;border-radius:999px;padding:3px 10px;color:#475569;background:#f1f5f9}
+  .chip-js.paid{color:#15803d;background:#e9f7ee} .chip-js.failed{color:#b91c1c;background:#fdecec} .chip-js.pending{color:#b45309;background:#fdf3e3}
+  .chip-js::before{content:"● "}
+  .pad-if{padding:16px; padding:if(media(width < 520px): 8px; else: 16px)}
+  .trap{margin-top:6px;font-size:.8rem;border-radius:8px;padding:8px 10px;background:var(--surface-2)}
+  .trap .box{display:inline-block;padding:4px 10px;border-radius:6px;border:1px dashed var(--muted);color:var(--text);background:transparent}
+  .trap .bad{background:color-mix(in srgb,var(--brand) 30%,transparent); background:if(style(--x: 1): var(--danger-soft); else: var(--ok-soft))}
+  .trap .good{background:color-mix(in srgb,var(--brand) 30%,transparent)}
+  @supports (color: if(else: red)){ .trap .good{background:if(style(--x: 1): var(--danger-soft); else: var(--ok-soft))} }
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .seg button{border:0;border-right:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:.82rem;
+    font-weight:600;padding:7px 12px;cursor:pointer}
+  .seg button:last-child{border-right:0}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top, html.embed-mode nav.toc, html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead, html.embed-mode .embed-show pre, html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp, html.embed-mode .embed-show .cap, html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .code-h{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-29 (화) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#session">🪟 세션 만료 경고</a>
+  <a href="#copy">🔔 복사 버튼 피드백</a>
+  <a href="#cssif">🌀 CSS if()</a>
+</nav>
+
+<!-- ============================== ① 세션 만료 ============================== -->
+<section class="card" id="session">
+  <h2>🪟 세션 만료 경고 — 조용한 배너에서 모달로, 연장은 한 번에, 입력은 살려두기 <span class="tag">오버레이·모달·토스트</span></h2>
+  <p class="lead">결제·금융 서비스는 보안상 유휴 세션을 끊는다. 문제는 "말없이 끊는 것". WCAG 2.2.1은 만료 전에 경고하고 <b>최소 20초</b> 안에 간단한 동작으로 연장할 수 있게 하라고 요구한다. 여기선 데모를 위해 세션을 <b>90초</b>로 줄였다(배속 조절 가능).</p>
+
+  <div class="demo">
+    <div class="demo-title">라이브 — 2단계 경고(배너 → 모달) + 만료 후 재로그인</div>
+    <div class="sess-bar">
+      <span aria-hidden="true">⏱️</span>
+      <span>남은 세션</span>
+      <span class="clock" id="sClock">1:30</span>
+      <div class="meter" id="sMeter" aria-hidden="true"><i id="sFill"></i></div>
+      <div class="seg speed" id="sSpeed" role="group" aria-label="데모 배속">
+        <button type="button" data-s="1" aria-pressed="true">1×</button>
+        <button type="button" data-s="4" aria-pressed="false">4×</button>
+        <button type="button" data-s="10" aria-pressed="false">10×</button>
+      </div>
+      <button class="btn ghost sm" type="button" id="sOtherTab">다른 탭에서 활동</button>
+    </div>
+    <div class="soft-banner" id="sBanner" hidden>
+      <span>⚠️ <b>곧 자동 로그아웃돼요.</b> 약 <span id="sBannerMin" class="num">1</span>분 남았어요.</span>
+      <button class="btn sm" type="button" id="sBannerExtend">로그인 유지</button>
+    </div>
+    <div class="fake-form">
+      <div><label class="fl" for="sMemo">송금 메모 (입력 보존 테스트)</label><input class="tf" id="sMemo" placeholder="여기에 뭔가 적어 두세요"></div>
+      <div><label class="fl" for="sAmt">금액</label><input class="tf num" id="sAmt" inputmode="numeric" placeholder="50,000"></div>
+    </div>
+    <div class="log" id="sLog" role="status" aria-live="polite">활동하지 않으면 60초 남았을 때 배너, 30초 남았을 때 모달이 뜹니다.</div>
+    <p class="cap">배너 단계는 흐름을 막지 않는다(role=status). 모달 단계에서만 포커스를 가져간다 — 경고를 두 번 나누는 이유.</p>
+
+    <dialog class="sess" id="sDlg" aria-labelledby="sDlgT" aria-describedby="sDlgD">
+      <h3 id="sDlgT">로그인을 유지할까요?</h3>
+      <p id="sDlgD">보안을 위해 활동이 없으면 자동으로 로그아웃돼요. 작성 중인 내용은 이 기기에 임시로 보관돼요.</p>
+      <div class="big-count" aria-hidden="true" id="sBig">0:30</div>
+      <div class="sr-only" role="status" id="sSr"></div>
+      <div class="dlg-actions">
+        <button class="btn ghost" type="button" id="sLogout">지금 로그아웃</button>
+        <button class="btn" type="button" id="sExtend" autofocus>로그인 유지</button>
+      </div>
+    </dialog>
+    <dialog class="sess" id="sExpired" aria-labelledby="sExT">
+      <h3 id="sExT">자동 로그아웃됐어요</h3>
+      <p>다시 로그인하면 <b>작성하던 내용을 그대로</b> 이어갈 수 있어요.</p>
+      <div class="dlg-actions"><button class="btn" type="button" id="sRelogin" autofocus>다시 로그인 (데모)</button></div>
+    </dialog>
+  </div>
+
+  <table class="cmp">
+    <tr><th>단계</th><th>UI</th><th>포커스</th><th>스크린리더</th></tr>
+    <tr><td>~60초 전</td><td>비차단 배너</td><td>그대로 둠</td><td>role=status 1회</td></tr>
+    <tr><td>~30초 전</td><td>모달 dialog</td><td>"로그인 유지"로 이동</td><td>10초 단위로만 알림</td></tr>
+    <tr><td>만료</td><td>재로그인 모달</td><td>재로그인 버튼</td><td>제목 읽힘</td></tr>
+  </table>
+
+  <h3 class="sec-lead code-h">핵심 코드 — 카운트다운은 "남은 초 빼기"가 아니라 "마감 시각과의 차이"</h3>
+<pre><code>let deadline = Date.now() + SESSION_MS;          // 기준은 절대 시각
+function tick() {
+  const left = Math.max(0, deadline - Date.now());  // 백그라운드 탭 타이머 지연에도 정확
+  if (left &lt;= 0) return expire();
+  if (left &lt;= 30_000 &amp;&amp; !dlg.open) dlg.showModal(); // 2단계
+  else if (left &lt;= 60_000) banner.hidden = false;   // 1단계
+  requestAnimationFrame / setTimeout(tick, 250);
+}
+// 여러 탭 동기화: 한 탭에서 연장하면 모두 연장
+const bc = new BroadcastChannel('session');
+bc.onmessage = e =&gt; { if (e.data.type === 'extend') deadline = e.data.deadline; };</code></pre>
+  <ul class="clean">
+    <li><b>절대 시각 기준</b>: 브라우저는 백그라운드 탭의 타이머를 늦춘다. <code>count--</code> 방식은 탭을 오래 비우면 실제보다 많이 남은 것처럼 보인다.</li>
+    <li><b>숫자 매초 낭독 금지</b>: 큰 카운트다운은 <code>aria-hidden</code>, 스크린리더엔 별도 status로 30·20·10초만.</li>
+    <li><b>autofocus는 "연장" 쪽</b>: 파괴적 액션(로그아웃)이 아니라 안전한 쪽에 기본 포커스. Esc로 닫으면 연장으로 취급.</li>
+  </ul>
+</section>
+
+<!-- ============================== ② 복사 버튼 ============================== -->
+<section class="card" id="copy">
+  <h2>🔔 복사 버튼 피드백 — "복사됨"을 보여주고, 들려주고, 실패하면 손으로라도 <span class="tag">피드백·상태</span></h2>
+  <p class="lead">가상계좌 입금 안내, 거래 ID, 초대 링크 — 결제 화면엔 "복사" 버튼이 많다. 누른 뒤 아무 변화가 없으면 사용자는 두세 번 더 누르고, 그래도 불안해서 직접 긁어 간다. 좋은 복사 버튼은 <b>상태 3개</b>(대기·완료·실패)를 가진다.</p>
+
+  <div class="demo">
+    <div class="demo-title">라이브 — 가상계좌 입금 안내</div>
+    <div class="acct">
+      <div class="acct-row">
+        <div><div class="k">은행</div><div class="v" id="vBank">에이블은행</div></div>
+      </div>
+      <div class="acct-row">
+        <div><div class="k">계좌번호 <span class="pill mu">표시: 하이픈 / 복사: 숫자만</span></div><div class="v" id="vAcct" data-copy="110123456789">110-123-456789</div></div>
+        <button class="cbtn" type="button" data-target="vAcct" data-label="계좌번호"><span class="ic" aria-hidden="true">⧉</span><span class="t">복사</span><span class="tip" aria-hidden="true">복사됨!</span></button>
+      </div>
+      <div class="acct-row">
+        <div><div class="k">입금 금액</div><div class="v num" id="vAmt" data-copy="128000">128,000원</div></div>
+        <button class="cbtn icon" type="button" data-target="vAmt" data-label="입금 금액" aria-label="입금 금액 복사"><span class="ic" aria-hidden="true">⧉</span><span class="tip" aria-hidden="true">복사됨!</span></button>
+      </div>
+      <div class="acct-row">
+        <div><div class="k">거래 ID</div><div class="v" id="vTx" style="font-family:ui-monospace,Consolas,monospace;font-size:.85rem">pay_7Hq2Xk91LmZ4</div></div>
+        <button class="cbtn icon" type="button" data-target="vTx" data-label="거래 ID" aria-label="거래 ID 복사"><span class="ic" aria-hidden="true">⧉</span><span class="tip" aria-hidden="true">복사됨!</span></button>
+      </div>
+      <div class="row">
+        <button class="btn" type="button" id="copyAll">입금 정보 한 번에 복사</button>
+        <span class="cap" style="margin:0">은행·계좌·금액을 여러 줄로 묶어 메신저에 붙여넣기 좋게</span>
+      </div>
+    </div>
+    <label class="sim"><input type="checkbox" id="simBlock"> 클립보드 권한 거부 상황 시뮬레이션</label>
+    <div class="fallback" id="fb" hidden>
+      <b>자동 복사가 막혔어요.</b> 아래 내용이 선택돼 있어요 — <span class="kbd">Ctrl</span>+<span class="kbd">C</span> (Mac은 <span class="kbd">⌘</span>+<span class="kbd">C</span>)를 눌러 주세요.
+      <textarea id="fbText" rows="3" readonly aria-label="복사할 내용"></textarea>
+    </div>
+    <div class="sr-only" role="status" aria-live="polite" id="copySr"></div>
+    <div class="log" id="copyLog">버튼을 여러 번 빠르게 눌러 보세요 — 타이머가 겹치지 않고 2초가 다시 시작됩니다.</div>
+  </div>
+
+  <h3 class="sec-lead code-h">핵심 코드</h3>
+<pre><code>const timers = new WeakMap();
+async function copy(btn, text, label) {
+  try {
+    await navigator.clipboard.writeText(text);   // HTTPS + 사용자 제스처 필요
+    setState(btn, 'done');  say(`${label}가 복사되었습니다`);
+  } catch {
+    setState(btn, 'fail');  showManualFallback(text); // 선택해 두고 Ctrl+C 안내
+  }
+  clearTimeout(timers.get(btn));                   // 연타 시 타이머 리셋
+  timers.set(btn, setTimeout(() =&gt; setState(btn, 'idle'), 2000));
+}</code></pre>
+  <ul class="clean">
+    <li><b>표시값 ≠ 복사값</b>: 화면은 <code>110-123-456789</code>, 복사는 <code>110123456789</code>. 은행 앱마다 하이픈 붙여넣기 처리가 다르므로 숫자만이 안전(추정 — 대부분 앱은 하이픈을 제거하지만 보장되지 않음).</li>
+    <li><b>라벨은 바꾸되 폭은 고정</b>: "복사" → "복사됨" 전환 시 <code>min-width</code>로 버튼 폭 흔들림 방지.</li>
+    <li><b>아이콘 버튼은 <code>aria-label</code></b>에 무엇을 복사하는지까지("거래 ID 복사"). 툴팁은 시각용이라 <code>aria-hidden</code>, 알림은 별도 status.</li>
+  </ul>
+</section>
+
+<!-- ============================== ③ CSS if() ============================== -->
+<section class="card" id="cssif">
+  <h2>🌀 CSS if() — 속성값 안에서 분기하는 인라인 조건문 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead"><code>if()</code>는 <b>값 자리에서</b> 조건을 고르는 CSS 함수다. <code>style(--status: paid)</code>(커스텀 속성 값 비교), <code>media()</code>, <code>supports()</code> 세 종류 조건을 쓸 수 있다. 상태별 클래스를 여러 개 만드는 대신, 변수 하나를 바꾸면 여러 속성이 같이 바뀐다. Chrome·Edge 137+ 지원, Safari·Firefox 미지원 → <b>점진적 향상 전용</b>.</p>
+  <div class="support" id="ifSupport"></div>
+
+  <div class="demo">
+    <div class="demo-title">라이브 — 거래 상태 칩: if() 버전 vs 클래스 버전</div>
+    <div class="row" style="margin-bottom:12px">
+      <span style="font-size:.85rem;font-weight:600">--status</span>
+      <div class="seg" id="ifSeg" role="group" aria-label="거래 상태 선택">
+        <button type="button" data-v="paid" aria-pressed="true">paid</button>
+        <button type="button" data-v="pending" aria-pressed="false">pending</button>
+        <button type="button" data-v="failed" aria-pressed="false">failed</button>
+        <button type="button" data-v="refunded" aria-pressed="false">refunded</button>
+      </div>
+    </div>
+    <div class="if-demo">
+      <div class="txn pad-if" id="ifCard" style="--status: paid">
+        <div class="k" style="font-size:.78rem;color:var(--muted)">if() — 인라인 <code>style="--status: …"</code>만 바뀜</div>
+        <div class="amt">128,000원</div>
+        <span class="chip-if" id="ifChip">paid</span>
+      </div>
+      <div class="txn" style="padding:16px">
+        <div class="k" style="font-size:.78rem;color:var(--muted)">기존 방식 — <code>class="chip-js paid"</code> 교체</div>
+        <div class="amt">128,000원</div>
+        <span class="chip-js paid" id="jsChip">paid</span>
+      </div>
+    </div>
+    <p class="cap">refunded는 어떤 분기에도 없어서 <code>else</code>(회색)로 떨어진다. 카드 안쪽 여백도 <code>if(media(width &lt; 520px): 8px; else: 16px)</code> — 창을 좁혀 보세요.</p>
+
+    <div class="trap" id="ifTrap">
+      <b>함정: if() 안에 var()를 넣으면 폴백이 안 먹을 수 있다</b><br>
+      <span class="box bad">bad: 폴백 뒤에 var() 섞인 if()</span>
+      <span class="box good">good: @supports로 감싼 if()</span>
+      <div class="cap" id="trapCap" style="margin-top:6px"></div>
+    </div>
+  </div>
+
+  <h3 class="sec-lead code-h">핵심 코드</h3>
+<pre><code>.chip {
+  /* 1) 폴백을 먼저 — 미지원 브라우저는 아래 if() 선언을 통째로 버린다 */
+  color: #475569;
+  /* 2) 지원 브라우저는 뒤의 선언이 이긴다 */
+  color: if(
+    style(--status: paid):    #15803d;
+    style(--status: failed):  #b91c1c;
+    style(--status: pending): #b45309;
+    else: #475569
+  );
+}
+/* var()가 섞이면 @supports로 감싸기 */
+@supports (color: if(else: red)) {
+  .chip { background: if(style(--status: paid): var(--ok-soft); else: var(--surface-2)); }
+}</code></pre>
+  <ul class="clean">
+    <li><b>style() 쿼리와의 차이</b>: 기존 <code>@container style(--x: y)</code>는 <b>부모</b> 컨테이너의 값을 보고, <code>if(style())</code>는 <b>자기 자신</b>의 계산된 변수를 본다. 래퍼가 필요 없다.</li>
+    <li><b>var() 함정</b>: 선언에 <code>var()</code>가 들어 있으면 브라우저는 파싱 단계에서 무효 판정을 미룬다. 미지원 브라우저는 if()를 계산 시점에야 무효로 보고 앞 폴백이 아니라 <code>unset</code>으로 떨어진다(사양상 동작, 위 데모에서 확인).</li>
+    <li><b>언제 쓰나</b>: 상태·테마·밀도 같은 "변수 하나 → 여러 속성" 매핑. 조건이 복잡하면 여전히 클래스/데이터 속성이 읽기 쉽다.</li>
+  </ul>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-29 · 외부 의존성 없는 단일 HTML</p>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  function setTheme(dark){
+    if (dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "☀️ 라이트 모드" : "🌙 다크 모드";
+  }
+  themeBtn.addEventListener("click", function(){ setTheme(root.getAttribute("data-theme") !== "dark"); });
+  var $ = function(id){ return document.getElementById(id); };
+
+  /* ================= ① 세션 만료 ================= */
+  var SESSION = 90000, BANNER_AT = 60000, MODAL_AT = 30000;
+  var speed = 1, virt = SESSION, lastReal = performance.now(), expired = false, lastSpoken = null, bannerSaid = false;
+  var dlg = $("sDlg"), exp = $("sExpired"), banner = $("sBanner"), log = $("sLog");
+  function fmt(ms){ var s = Math.ceil(ms/1000); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); }
+  function extend(src){
+    virt = SESSION; lastSpoken = null; bannerSaid = false;
+    banner.hidden = true;
+    if (dlg.open) dlg.close("extend");
+    log.innerHTML = "✅ <b>" + src + "</b> — 세션이 1:30으로 연장됐어요.";
+  }
+  function expire(){
+    expired = true; banner.hidden = true;
+    if (dlg.open) dlg.close("expired");
+    try { sessionStorage.setItem("demoDraft", JSON.stringify({memo:$("sMemo").value, amt:$("sAmt").value})); } catch(e){}
+    exp.showModal();
+    log.innerHTML = "⛔ <b>만료</b> — 입력값을 임시 보관했어요. 재로그인하면 복원됩니다.";
+  }
+  function tick(){
+    var now = performance.now(), dt = now - lastReal; lastReal = now;
+    if (!expired){
+      virt = Math.max(0, virt - dt*speed);
+      $("sClock").textContent = fmt(virt);
+      $("sFill").style.width = (virt/SESSION*100) + "%";
+      $("sMeter").className = "meter" + (virt <= MODAL_AT ? " dang" : virt <= BANNER_AT ? " warn" : "");
+      if (virt <= 0) expire();
+      else if (virt <= MODAL_AT){
+        if (!dlg.open){ banner.hidden = true; dlg.showModal(); }
+        $("sBig").textContent = fmt(virt);
+        var s = Math.ceil(virt/1000), bucket = s > 20 ? 30 : s > 10 ? 20 : 10;
+        if (lastSpoken !== bucket){ lastSpoken = bucket; $("sSr").textContent = bucket + "초 안에 자동 로그아웃됩니다."; }
+      } else if (virt <= BANNER_AT){
+        banner.hidden = false;
+        $("sBannerMin").textContent = Math.ceil(virt/60000);
+        if (!bannerSaid){ bannerSaid = true; log.textContent = "⚠️ 1분 이내로 자동 로그아웃됩니다. 배너의 '로그인 유지'로 연장할 수 있어요."; }
+      }
+    }
+    setTimeout(tick, 200);
+  }
+  ["sMemo","sAmt"].forEach(function(id){ $(id).addEventListener("input", function(){ if (!expired && virt > MODAL_AT) virt = SESSION; }); });
+  $("sBannerExtend").addEventListener("click", function(){ extend("배너에서 연장"); });
+  $("sExtend").addEventListener("click", function(){ extend("모달에서 연장"); });
+  dlg.addEventListener("cancel", function(e){ e.preventDefault(); extend("Esc = 연장으로 취급"); });
+  $("sLogout").addEventListener("click", function(){ virt = 0; });
+  $("sOtherTab").addEventListener("click", function(){ if (!expired) extend("다른 탭 활동(BroadcastChannel 가정)"); });
+  exp.addEventListener("cancel", function(e){ e.preventDefault(); });
+  $("sRelogin").addEventListener("click", function(){
+    exp.close(); expired = false;
+    try { var d = JSON.parse(sessionStorage.getItem("demoDraft") || "{}"); $("sMemo").value = d.memo || ""; $("sAmt").value = d.amt || ""; sessionStorage.removeItem("demoDraft"); } catch(e){}
+    extend("재로그인 후 입력 복원");
+    $("sMemo").focus();
+  });
+  $("sSpeed").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return;
+    speed = +b.dataset.s;
+    this.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+  });
+  tick();
+
+  /* ================= ② 복사 ================= */
+  var timers = new WeakMap(), sr = $("copySr"), clog = $("copyLog"), fb = $("fb");
+  function say(t){ sr.textContent = ""; setTimeout(function(){ sr.textContent = t; }, 30); }
+  function setState(btn, st){
+    btn.dataset.state = st;
+    var t = btn.querySelector(".t"), ic = btn.querySelector(".ic");
+    ic.textContent = st === "done" ? "✓" : st === "fail" ? "!" : "⧉";
+    if (t) t.textContent = st === "done" ? "복사됨" : st === "fail" ? "직접 복사" : "복사";
+  }
+  function josa(w){ var c = w.charCodeAt(w.length-1); return (c >= 0xAC00 && c <= 0xD7A3 && (c-0xAC00)%28) ? "이" : "가"; }
+  function write(text){
+    if ($("simBlock").checked) return Promise.reject(new Error("NotAllowedError (시뮬레이션)"));
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+    return Promise.reject(new Error("Clipboard API 없음"));
+  }
+  var clicks = 0;
+  function doCopy(btn, text, label){
+    clicks++;
+    write(text).then(function(){
+      fb.hidden = true;
+      if (btn) setState(btn, "done");
+      say(label + josa(label) + " 복사되었습니다.");
+      clog.innerHTML = "✅ <b>" + label + "</b> 복사: <code>" + text.replace(/\n/g," ⏎ ") + "</code> · 누른 횟수 " + clicks;
+    }).catch(function(err){
+      if (btn) setState(btn, "fail");
+      fb.hidden = false; var ta = $("fbText"); ta.value = text; ta.focus(); ta.select();
+      say("자동 복사에 실패했습니다. 선택된 내용을 직접 복사해 주세요.");
+      clog.innerHTML = "⚠️ 실패: " + err.message + " → 텍스트를 선택해 두고 단축키 안내";
+    });
+    if (btn){
+      clearTimeout(timers.get(btn));
+      timers.set(btn, setTimeout(function(){ setState(btn, "idle"); }, 2000));
+    }
+  }
+  document.querySelectorAll(".cbtn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var el = $(btn.dataset.target);
+      doCopy(btn, el.dataset.copy || el.textContent.trim(), btn.dataset.label);
+    });
+  });
+  $("copyAll").addEventListener("click", function(){
+    doCopy(null, "에이블은행\n110-123-456789\n128,000원", "입금 정보");
+  });
+
+  /* ================= ③ CSS if() ================= */
+  var probe = document.createElement("div");
+  probe.style.cssText = "position:absolute;visibility:hidden;--t:x";
+  probe.style.setProperty("width", "if(style(--t: x): 7px; else: 3px)");
+  document.body.appendChild(probe);
+  var ifOk = probe.offsetWidth === 7; probe.remove();
+  var sup = $("ifSupport");
+  sup.className = "support " + (ifOk ? "yes" : "no");
+  sup.innerHTML = ifOk
+    ? "✅ <b>이 브라우저는 if()를 지원합니다.</b> 왼쪽 칩이 오른쪽(클래스 방식)과 똑같이 바뀌어야 정상."
+    : "⚠️ <b>이 브라우저는 if()를 지원하지 않습니다.</b> 왼쪽 칩은 폴백(회색)으로 고정 — 그래도 깨지진 않는다. Chrome/Edge 137+에서 확인해 보세요.";
+  $("trapCap").innerHTML = ifOk
+    ? "지원 브라우저: 둘 다 연초록(else 분기). 미지원 브라우저라면 'bad'는 폴백 연보라가 아니라 <b>배경 없음(unset)</b>으로 떨어진다."
+    : "지금 이 브라우저에서 'bad' 배경이 <b>사라진 것</b>을 확인하세요 — 폴백 연보라가 아니라 unset. 'good'은 @supports 덕분에 폴백 연보라 유지.";
+  $("ifSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b) return; var v = b.dataset.v;
+    this.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+    $("ifCard").style.setProperty("--status", v);
+    $("ifChip").textContent = v;
+    var j = $("jsChip"); j.className = "chip-js " + v; j.textContent = v;
+  });
+
+  /* ---------- embed compact mode: ?embed=<id>, ?theme=dark ---------- */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("theme") === "dark") setTheme(true);
+    var id = qs.get("embed") || qs.get("demo");
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
