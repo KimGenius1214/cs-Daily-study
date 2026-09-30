@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-09-30 (수)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#15803d; --ok-soft:#e9f7ee; --warn:#b45309; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0369a1; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#2b3340; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important;animation:none !important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:20px 0 2px;color:var(--brand)}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:12px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 10px}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.76rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;border-radius:10px;
+    padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:6px 11px;font-size:.83rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  label.fl{display:block;font-size:.84rem;font-weight:600;margin:0 0 5px}
+  input.tf{font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;width:100%}
+  input.tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  input.tf[aria-invalid="true"]{border-color:var(--danger)}
+
+
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+  .seg button{border:0;border-right:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:.82rem;
+    font-weight:600;padding:7px 12px;cursor:pointer}
+  .seg button:last-child{border-right:0}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;
+    animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .err{color:var(--danger);font-size:.8rem;margin:5px 0 0}
+  .hint{color:var(--muted);font-size:.78rem;margin:5px 0 0}
+
+  /* ================= ① 부분 환불 ================= */
+  .rf-items{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+  .rf-item{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .rf-item:has(input[type=checkbox]:checked){border-color:var(--brand);background:var(--brand-soft)}
+  .rf-item.done{opacity:.6}
+  .rf-item input[type=checkbox]{width:18px;height:18px;accent-color:var(--brand)}
+  .rf-item .nm{font-weight:600;font-size:.9rem}
+  .rf-item .sub{font-size:.76rem;color:var(--muted)}
+  .stepper{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--surface)}
+  .stepper button{border:0;background:transparent;color:var(--text);width:28px;height:28px;cursor:pointer;font-size:1rem}
+  .stepper button:disabled{opacity:.35;cursor:not-allowed}
+  .stepper button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .stepper output{min-width:26px;text-align:center;font-size:.85rem;font-variant-numeric:tabular-nums}
+  .capbar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:var(--surface);border:1px solid var(--border);margin:8px 0 6px}
+  .capbar span{display:block;height:100%;transition:width .25s}
+  .capbar .b-done{background:var(--muted)}
+  .capbar .b-now{background:var(--brand)}
+  .capbar .b-over{background:var(--danger)}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:.74rem;color:var(--muted)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:0}
+  .rf-sum{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+  .rf-sum dl{display:grid;grid-template-columns:1fr auto;gap:4px 12px;margin:0;font-size:.86rem}
+  .rf-sum dt{color:var(--muted)}
+  .rf-sum dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+  .rf-sum .minus{color:var(--danger)}
+  .rf-sum .total{border-top:1px solid var(--border);padding-top:8px;margin-top:4px;font-weight:800;font-size:1.05rem;color:var(--text)}
+  .alloc{margin-top:10px;font-size:.8rem;display:grid;gap:4px}
+  .alloc div{display:flex;justify-content:space-between;background:var(--surface-2);border-radius:6px;padding:5px 9px}
+  select.tf{font-family:inherit;font-size:.92rem;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 10px;width:100%}
+  select.tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  dialog.rf-dlg{border:1px solid var(--border);border-radius:16px;padding:22px;background:var(--surface);color:var(--text);max-width:380px;width:92vw;box-shadow:var(--shadow)}
+  dialog.rf-dlg::backdrop{background:rgba(10,12,16,.55)}
+  .rf-result{margin-top:12px;border-radius:10px;padding:12px 14px;font-size:.86rem}
+  .rf-result.ok{background:var(--ok-soft);color:var(--text);border-left:4px solid var(--ok)}
+  .rf-result.fail{background:var(--danger-soft);border-left:4px solid var(--danger)}
+
+  /* ================= ② 정산 계좌 ================= */
+  .banks{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px;border:0;padding:0;margin:0}
+  .banks label{display:flex;align-items:center;justify-content:center;text-align:center;min-height:42px;border:1px solid var(--border);
+    border-radius:10px;background:var(--surface);font-size:.82rem;font-weight:600;cursor:pointer;padding:4px}
+  .banks input{position:absolute;opacity:0;pointer-events:none}
+  .banks label:has(input:checked){border-color:var(--brand);background:var(--brand-soft);color:var(--brand)}
+  .banks label:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+  .acc-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:14px}
+  .vstate{margin-top:14px;border-radius:12px;padding:12px 14px;font-size:.86rem;border:1px solid var(--border);background:var(--surface)}
+  .vstate[data-s="checking"]{border-color:var(--info);background:var(--info-soft)}
+  .vstate[data-s="matched"]{border-color:var(--ok);background:var(--ok-soft)}
+  .vstate[data-s="mismatch"],.vstate[data-s="notfound"]{border-color:var(--danger);background:var(--danger-soft)}
+  .vstate[data-s="maint"],.vstate[data-s="stale"],.vstate[data-s="limit"]{border-color:var(--warn);background:var(--warn-soft)}
+  .vstate b{display:block;margin-bottom:2px}
+  .vstate .acts{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+  .sm-flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.74rem;margin-top:12px}
+  .sm-flow span{border:1px solid var(--border);border-radius:999px;padding:2px 9px;background:var(--surface);color:var(--muted)}
+  .sm-flow span.on{border-color:var(--brand);color:var(--brand);background:var(--brand-soft);font-weight:700}
+
+  /* ================= ③ CSS @function ================= */
+  @function --space(--n <number>) returns <length> { result: calc(var(--n) * 4px); }
+  @function --tint(--c <color>, --p <percentage>: 14%) returns <color> {
+    result: color-mix(in oklab, var(--c) var(--p), var(--surface));
+  }
+  @function --fluid(--min <length>, --max <length>) returns <length> {
+    result: clamp(var(--min), 3.2cqi, var(--max));
+  }
+  .fn-probe{position:absolute;visibility:hidden;width:3px;width:--space(2)}
+  .fn-box{--pct:14%}
+  .fn-badges{display:flex;gap:8px;flex-wrap:wrap}
+  .fn-badge{--c:var(--muted);font-size:.8rem;font-weight:700;border-radius:999px;padding:4px 11px;color:var(--c);
+    background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 30%,transparent)}
+  html.fn-ok .fn-badge{background:--tint(var(--c), var(--pct));border-color:--tint(var(--c), calc(var(--pct) * 2.2))}
+  .fn-badge.paid{--c:var(--ok)} .fn-badge.pend{--c:var(--warn)} .fn-badge.fail{--c:var(--danger)} .fn-badge.ref{--c:var(--info)}
+  .fn-space{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+  .fn-space div{background:var(--brand-soft);border:1px solid var(--brand);border-radius:6px;font-size:.72rem;color:var(--brand);
+    display:flex;align-items:flex-end;justify-content:center;width:44px;height:12px}
+  .fn-space div[data-n="1"]{height:4px;height:--space(1)}  .fn-space div[data-n="2"]{height:8px;height:--space(2)}
+  .fn-space div[data-n="4"]{height:16px;height:--space(4)} .fn-space div[data-n="6"]{height:24px;height:--space(6)}
+  .fn-space div[data-n="10"]{height:40px;height:--space(10)} .fn-space div[data-n="16"]{height:64px;height:--space(16)}
+  .fn-fluid{container-type:inline-size;border:1px dashed var(--border);border-radius:10px;padding:12px;background:var(--surface);resize:horizontal;overflow:auto;
+    min-width:200px;max-width:100%;width:100%}
+  .fn-fluid .amt{font-weight:800;font-variant-numeric:tabular-nums;font-size:22px;font-size:--fluid(18px, 36px);line-height:1.2}
+  .fn-trap{display:flex;gap:10px;flex-wrap:wrap}
+  .fn-trap .box{padding:5px 11px;border-radius:8px;font-size:.8rem;border:1px dashed var(--muted)}
+  .fn-trap .bad{--bg: --tint(var(--danger), 20%); background:var(--danger-soft); background:var(--bg)}
+  .fn-trap .good{background:var(--danger-soft)}
+  html.fn-ok .fn-trap .good{background:--tint(var(--danger), 20%)}
+  .fn-trap .naive{background:var(--danger-soft); background:--tint(var(--danger), 20%)}
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top, html.embed-mode nav.toc, html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead, html.embed-mode .embed-show pre, html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp, html.embed-mode .embed-show .cap, html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .code-h{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 8px}
+  html.embed-mode .embed-show h3.sec-lead{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-09-30 (수) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#refund">💳 부분 환불 요청</a>
+  <a href="#account">⌨️ 정산 계좌·예금주 확인</a>
+  <a href="#cssfn">🌀 CSS @function</a>
+</nav>
+
+<!-- ============================== ① 부분 환불 ============================== -->
+<section class="card" id="refund">
+  <h2>💳 부분 환불 요청 — 환불 가능 잔액을 먼저 보여주고, 차감은 줄 단위로, 확정은 금액을 말하는 버튼으로 <span class="tag">결제·체크아웃 UX</span></h2>
+  <p class="lead">결제 취소는 "전액 취소" 버튼 하나면 끝나지만, 부분 환불은 <b>얼마까지 되나 · 무엇이 빠지나 · 어디로 돌아가나</b> 세 질문에 답해야 한다. 아래는 이미 한 번 부분 환불된 주문(결제 89,000원, 기환불 12,000원)이다.</p>
+
+  <div class="demo">
+    <p class="demo-title">라이브 — 품목을 고르거나 금액을 직접 넣어 보세요 (한도 초과·무료배송 조건 깨짐·사유 누락까지)</p>
+    <div class="row" style="justify-content:space-between;margin-bottom:10px">
+      <div class="seg" id="rfMode" role="group" aria-label="환불 방식">
+        <button type="button" data-m="item" aria-pressed="true">품목 선택</button>
+        <button type="button" data-m="amount" aria-pressed="false">금액 직접 입력</button>
+      </div>
+      <span class="pill mu" id="rfOrderNo">주문 #PA-240930-0172</span>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div id="rfItemPane">
+          <ul class="rf-items" id="rfItems" aria-label="환불할 품목"></ul>
+        </div>
+        <div id="rfAmtPane" hidden>
+          <label class="fl" for="rfAmt">환불 금액 (원)</label>
+          <input class="tf num" id="rfAmt" inputmode="numeric" autocomplete="off" aria-describedby="rfAmtHint rfAmtErr" placeholder="0">
+          <p class="hint" id="rfAmtHint">부분 금액 환불은 품목과 무관한 보상·가격 조정용. 배송비 정책은 적용하지 않습니다.</p>
+          <p class="err" id="rfAmtErr" hidden></p>
+          <div class="row" style="margin-top:8px">
+            <button class="btn ghost sm" type="button" data-q="5000">+5,000</button>
+            <button class="btn ghost sm" type="button" data-q="10000">+10,000</button>
+            <button class="btn ghost sm" type="button" data-q="max">최대</button>
+          </div>
+        </div>
+
+        <div style="margin-top:16px">
+          <label class="fl" for="rfReason">환불 사유 <span style="color:var(--danger)">*</span></label>
+          <select class="tf" id="rfReason" aria-describedby="rfReasonErr" required>
+            <option value="">선택하세요</option>
+            <option value="cs">고객 단순 변심</option>
+            <option value="defect">상품 불량·오배송 (판매자 귀책)</option>
+            <option value="adjust">가격 조정·보상</option>
+          </select>
+          <p class="err" id="rfReasonErr" hidden>환불 사유를 선택해 주세요.</p>
+        </div>
+      </div>
+
+      <div class="rf-sum" aria-labelledby="rfSumH">
+        <p class="demo-title" id="rfSumH" style="margin-bottom:4px">환불 가능 잔액</p>
+        <div class="capbar" aria-hidden="true"><span class="b-done" id="bDone"></span><span class="b-now" id="bNow"></span></div>
+        <div class="legend"><span><i style="background:var(--muted)"></i>기환불 12,000</span><span><i style="background:var(--brand)"></i>이번 환불</span><span><i style="background:var(--surface-2);border:1px solid var(--border)"></i>남는 잔액</span></div>
+        <p class="hint num" id="rfCapTxt" style="margin-top:6px"></p>
+        <dl style="margin-top:12px" id="rfDl"></dl>
+        <div class="alloc" id="rfAlloc" aria-label="환불 수단 배분"></div>
+        <div class="row" style="margin-top:14px">
+          <button class="btn" type="button" id="rfGo" aria-disabled="true" aria-describedby="rfWhy">환불할 항목을 고르세요</button>
+        </div>
+        <p class="hint" id="rfWhy"></p>
+      </div>
+    </div>
+    <div class="sr-only" aria-live="polite" id="rfLive"></div>
+    <div id="rfResult"></div>
+    <p class="cap">잔액 막대는 "앞으로 얼마까지 되나"를 먼저 보여준다. 합계는 줄 단위 차감(반품 배송비 등)을 거친 <b>실제 돌려받는 돈</b>이고, 버튼 문구가 그 금액을 그대로 말한다.</p>
+  </div>
+
+  <dialog class="rf-dlg" id="rfDlg" aria-labelledby="rfDlgH" aria-describedby="rfDlgD">
+    <h3 id="rfDlgH" style="margin:0 0 6px;font-size:1.05rem">환불을 확정할까요?</h3>
+    <div id="rfDlgD" style="font-size:.88rem;color:var(--muted)"></div>
+    <div class="row" style="margin-top:16px;justify-content:flex-end">
+      <button class="btn ghost" type="button" id="rfCancel" autofocus>돌아가기</button>
+      <button class="btn danger" type="button" id="rfConfirm">환불 확정</button>
+    </div>
+  </dialog>
+
+  <h3 class="sec-lead">변형 비교</h3>
+  <table class="cmp">
+    <tr><th>변형</th><th>언제</th><th>핵심</th></tr>
+    <tr><td>품목·수량 선택</td><td>반품·부분 취소</td><td>수량 스테퍼, 이미 환불된 수량은 잠금, 배송비 조건 재계산</td></tr>
+    <tr><td>금액 직접 입력</td><td>보상·가격 조정</td><td>상한 = 결제액 − 기환불액, "최대" 칩, 초과 시 즉시 인라인 에러</td></tr>
+    <tr><td>전액 취소(대조군)</td><td>미배송·당일 취소</td><td>부분 환불 UI를 거치지 말고 별도 1-스텝 경로로</td></tr>
+  </table>
+
+  <h3 class="sec-lead code-h">코드 — 상한·차감·배분 계산 (순수 함수로 분리)</h3>
+<pre><code>// 금액은 전부 원 단위 정수. 화면 서식은 표시 단계에서만.
+export function calcRefund({ paid, refunded, lines, mode, amount, reason, policy }) {
+  const cap = paid - refunded;                         // 환불 가능 잔액
+  const gross = mode === 'amount' ? amount
+    : lines.reduce((s, l) => s + l.price * l.qty, 0);
+  const deductions = [];
+  if (mode === 'item' &amp;&amp; reason === 'cs' &amp;&amp; policy.breaksFreeShipping(lines))
+    deductions.push({ label: '반품 배송비', amount: policy.returnFee });
+  const net = gross - deductions.reduce((s, d) =&gt; s + d.amount, 0);
+  const error = net &gt; cap ? 'OVER_CAP' : net &lt;= 0 ? 'EMPTY' : null;
+  // 배분: 가맹점 정책 예 — 카드 먼저, 부족분은 포인트
+  const toCard = Math.min(net, policy.cardLeft);
+  return { cap, gross, deductions, net, error,
+           alloc: [{ via: '카드', amount: toCard }, { via: '포인트', amount: net - toCard }] };
+}</code></pre>
+
+  <h3 class="sec-lead">접근성·상태</h3>
+  <ul class="clean">
+    <li>합계가 바뀔 때 <code>aria-live="polite"</code>로 "환불 예정 23,000원" 한 문장만 읽힘(표 전체를 다시 읽히지 않음).</li>
+    <li>확정 버튼은 <code>disabled</code> 대신 <code>aria-disabled</code> — 포커스는 받고, 누르면 막힌 이유(사유 미선택 등)로 이동.</li>
+    <li>확인 다이얼로그는 기본 포커스를 <b>"돌아가기"</b>에 — 되돌릴 수 없는 액션이므로 Enter 연타로 확정되지 않게.</li>
+  </ul>
+  <div class="note">배분 순서(카드 먼저/포인트 먼저)와 반품 배송비 규칙은 <b>가맹점·PG 정책마다 다른 예시값</b>이다. 규칙은 서버가 계산해 내려주고, 프론트는 같은 순수 함수로 "미리보기"만 한다는 전제.</div>
+</section>
+
+<!-- ============================== ② 정산 계좌 ============================== -->
+<section class="card" id="account">
+  <h2>⌨️ 정산 계좌 입력과 예금주 확인 — 은행 칩·번호 정규화·실명조회 상태머신 <span class="tag">입력·폼</span></h2>
+  <p class="lead">정산 계좌는 "형식이 맞다"와 "진짜 그 사람 계좌다"가 다른 문제다. 입력 → 형식 검증 → <b>예금주 조회(실명조회)</b> → 일치/불일치/점검 중 분기. 그리고 확인 후 한 글자라도 바꾸면 확인은 무효가 되어야 한다.</p>
+
+  <div class="demo">
+    <p class="demo-title">라이브 — 은행·번호를 넣고 "예금주 확인" (아래 시뮬레이터로 서버 응답을 바꿔 보세요)</p>
+    <fieldset class="banks" id="banks">
+      <legend class="fl">은행</legend>
+    </fieldset>
+    <div class="acc-grid">
+      <div>
+        <label class="fl" for="accNo">계좌번호</label>
+        <input class="tf num" id="accNo" inputmode="numeric" autocomplete="off" placeholder="- 없이 숫자만" aria-describedby="accHint accErr">
+        <p class="hint" id="accHint">붙여넣기 시 하이픈·공백은 자동 제거됩니다.</p>
+        <p class="err" id="accErr" hidden></p>
+      </div>
+      <div>
+        <label class="fl" for="accOwner">등록 대표자명 (비교 대상)</label>
+        <input class="tf" id="accOwner" value="홍길동" autocomplete="name" aria-describedby="ownerHint">
+        <p class="hint" id="ownerHint">사업자 등록 정보에서 가져온 값(데모에선 수정 가능).</p>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" type="button" id="accCheck" aria-disabled="true">예금주 확인</button>
+      <span class="hint" style="margin:0">서버 응답 시뮬레이터:</span>
+      <div class="seg" id="accSim" role="group" aria-label="서버 응답 시뮬레이터">
+        <button type="button" data-r="matched" aria-pressed="true">일치</button>
+        <button type="button" data-r="mismatch" aria-pressed="false">불일치</button>
+        <button type="button" data-r="notfound" aria-pressed="false">없는 계좌</button>
+        <button type="button" data-r="maint" aria-pressed="false">은행 점검</button>
+        <button type="button" data-r="limit" aria-pressed="false">조회 횟수 초과</button>
+      </div>
+    </div>
+    <div class="vstate" id="vstate" data-s="idle" role="status" aria-live="polite"><b>대기</b>은행과 계좌번호를 입력하면 확인할 수 있어요.</div>
+    <div class="sm-flow" aria-hidden="true" id="smFlow">
+      <span data-k="idle">idle</span>→<span data-k="ready">ready</span>→<span data-k="checking">checking</span>→<span data-k="matched">matched</span>/<span data-k="mismatch">mismatch</span>/<span data-k="notfound">notfound</span>/<span data-k="maint">maint</span>/<span data-k="limit">limit</span> · 수정 시 <span data-k="stale">stale</span>
+    </div>
+    <div class="row" style="margin-top:14px">
+      <button class="btn" type="button" id="accSave" aria-disabled="true">정산 계좌 저장</button>
+    </div>
+    <p class="cap">저장 버튼은 <b>matched</b>일 때만 활성. 확인 후 번호를 고치면 즉시 <b>stale</b>(재확인 필요)로 내려간다 — "확인된 계좌 ≠ 저장될 계좌" 사고를 막는 핵심.</p>
+  </div>
+
+  <h3 class="sec-lead">상태별 설계</h3>
+  <table class="cmp">
+    <tr><th>상태</th><th>보여줄 것</th><th>주 액션</th></tr>
+    <tr><td>mismatch</td><td>조회된 예금주 <b>마스킹</b>(김*수) — 전체 노출 금지</td><td>번호 다시 입력 / 법인·공동명의면 증빙 제출</td></tr>
+    <tr><td>notfound</td><td>은행·번호 조합을 다시 보라는 안내</td><td>번호 필드로 포커스</td></tr>
+    <tr><td>maint</td><td>은행 점검 시간대(은행별 상이) 안내</td><td>"임시 저장 후 자동 재확인" 또는 나중에</td></tr>
+    <tr><td>limit</td><td>남은 대기 시간</td><td>카운트다운 후 재시도 (무차별 조회 방지)</td></tr>
+  </table>
+
+  <h3 class="sec-lead code-h">코드 — 정규화 + 스테일 처리</h3>
+<pre><code>const normalize = (s) =&gt; s.normalize('NFKC').replace(/[^0-9]/g, '');   // 전각 숫자·하이픈·공백 제거
+
+let verifiedKey = null;                     // 확인 당시의 (은행+번호) 스냅샷
+function onInput() {
+  const key = `${bank}:${normalize(acc.value)}`;
+  if (verifiedKey &amp;&amp; key !== verifiedKey) setState('stale');   // 바꾸면 확인 무효
+}
+async function verify() {
+  const key = `${bank}:${normalize(acc.value)}`;
+  setState('checking');
+  const res = await api.verifyAccount({ bank, account: normalize(acc.value) });
+  if (`${bank}:${normalize(acc.value)}` !== key) return;        // 응답 도착 전에 바뀌었으면 버림
+  verifiedKey = res.status === 'matched' ? key : null;
+  setState(res.status, res);
+}</code></pre>
+
+  <h3 class="sec-lead">접근성·상태</h3>
+  <ul class="clean">
+    <li>은행 칩은 <code>fieldset + radio</code> — 화살표 키로 이동하는 네이티브 라디오 그룹을 그대로 씀(커스텀 div 버튼 금지).</li>
+    <li>상태 박스는 <code>role="status"</code>: "확인 중 → 일치" 전환을 스크린리더가 읽음. 실패 시 주 액션 버튼에 포커스 이동.</li>
+    <li><code>inputmode="numeric"</code>(모바일 숫자 키패드 요청 속성) + <code>type="text"</code> — 앞자리 0이 사라지는 <code>type="number"</code>는 계좌번호에 쓰지 않는다.</li>
+  </ul>
+  <div class="note">예금주 조회 API의 응답 코드·점검 시간·조회 횟수 제한은 제공사(은행·펌뱅킹·오픈뱅킹 대행사)마다 다르다. 위 상태 이름은 예시이며, 실제 매핑은 연동 문서 기준으로 맞출 것(추정).</div>
+</section>
+
+<!-- ============================== ③ CSS @function ============================== -->
+<section class="card" id="cssfn">
+  <h2>🌀 CSS @function — 토큰 계산을 CSS 안의 함수로, 그리고 var()가 끼면 폴백이 안 먹는 함정 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead"><code>@function</code>은 인자를 받아 값을 돌려주는 <b>CSS 사용자 정의 함수</b>. Sass 믹스인·함수로 빌드 타임에 하던 "간격 = n×4px", "상태색의 연한 배경" 같은 계산을 런타임 CSS가 직접 한다. Chrome 139부터 지원, Firefox·Safari는 아직(Safari는 Tech Preview 단계).</p>
+  <div class="support" id="fnSupport">지원 여부 확인 중…</div>
+
+  <div class="demo fn-box" id="fnBox">
+    <p class="demo-title">① --tint(색, 비율) — 상태 배지 배경을 한 함수로 (슬라이더로 비율 조절)</p>
+    <div class="fn-badges">
+      <span class="fn-badge paid">결제 완료</span><span class="fn-badge pend">승인 대기</span>
+      <span class="fn-badge fail">결제 실패</span><span class="fn-badge ref">부분 환불</span>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <label class="fl" for="pct" style="margin:0">배경 비율</label>
+      <input type="range" id="pct" min="6" max="30" value="14" aria-describedby="pctOut">
+      <output id="pctOut" class="num">14%</output>
+    </div>
+
+    <p class="demo-title" style="margin-top:20px">② --space(n) — 4px 그리드 간격 스케일</p>
+    <div class="fn-space">
+      <div data-n="1"></div><div data-n="2"></div><div data-n="4"></div><div data-n="6"></div><div data-n="10"></div><div data-n="16"></div>
+    </div>
+    <p class="hint">막대 높이 = --space(1·2·4·6·10·16). 미지원이면 옆에 적어 둔 px 폴백으로 동일하게 보임(인자에 var()가 없어서 파싱 폴백이 동작).</p>
+
+    <p class="demo-title" style="margin-top:20px">③ --fluid(min, max) — 담긴 칸 폭에 맞춰 크는 금액 글자 (오른쪽 아래 모서리로 폭 조절)</p>
+    <div class="fn-fluid"><div class="amt">₩1,284,000</div><div class="hint" style="margin:0">clamp(18px, 3.2cqi, 36px)</div></div>
+
+    <p class="demo-title" style="margin-top:20px">④ 폴백 함정 — 세 가지 쓰는 법, 미지원 브라우저에서 결과가 갈린다</p>
+    <div class="fn-trap">
+      <span class="box naive">naive: 폴백 줄 + --tint(var(..))</span>
+      <span class="box bad">bad: --bg: --tint(..)</span>
+      <span class="box good">good: html.fn-ok 가드</span>
+    </div>
+    <p class="cap" id="fnTrapCap"></p>
+  </div>
+
+  <h3 class="sec-lead">📈 왜 지금 뜨나 / 어디에 쓰나</h3>
+  <ul class="clean">
+    <li><b>디자인 토큰의 "계산"까지 CSS로</b>: 브랜드·상태색은 변수로, 파생(연한 배경·테두리·호버)은 함수로. 테마 전환 시 다시 빌드할 필요가 없다.</li>
+    <li><b>if()·color-mix()·컨테이너 단위와 조합</b>: 어제 본 <code>if()</code>를 함수 안에 넣으면 조건부 토큰 함수가 된다.</li>
+    <li><b>타입 선언</b>(<code>--c &lt;color&gt;</code>, <code>returns &lt;length&gt;</code>): 잘못된 타입 인자는 무효 처리 — 느슨한 var()보다 안전.</li>
+  </ul>
+
+  <h3 class="sec-lead code-h">코드</h3>
+<pre><code>@function --tint(--c &lt;color&gt;, --p &lt;percentage&gt;: 14%) returns &lt;color&gt; {
+  result: color-mix(in oklab, var(--c) var(--p), var(--surface));
+}
+@function --space(--n &lt;number&gt;) returns &lt;length&gt; { result: calc(var(--n) * 4px); }
+
+/* ✅ 인자에 var() 없음 → 미지원 브라우저는 파싱 단계에서 버리고 윗줄 유지 */
+.gap { height: 16px; height: --space(4); }
+
+/* ❌ 인자에 var() 있음 → 파싱 통과 후 계산 시점에 무효 → unset (폴백 줄 무시됨) */
+.badge { background: var(--ok-soft); background: --tint(var(--ok)); }
+
+/* ✅ 기능 감지 클래스(또는 @supports)로 가드 */
+html.fn-ok .badge { background: --tint(var(--ok)); }</code></pre>
+  <div class="note"><b>왜 naive가 깨지나</b>: 선언 값에 <code>var()</code>가 하나라도 있으면 브라우저는 그 선언을 파싱 시점에 검증하지 않고 "나중에 치환"으로 받아 둔다. 그래서 앞 줄 폴백을 덮어쓴 뒤, 계산 시점에 모르는 함수를 만나 <b>unset</b>이 된다. 어제 <code>if()</code>와 같은 계열의 함정. <code>@supports</code>로 @function을 감지하는 확실한 문법은 브라우저 지원이 엇갈려(추정) 데모는 JS 탐지 클래스를 썼다.</div>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-09-30 · 외부 의존성 없는 단일 HTML</p>
+</div>
+<div class="fn-probe" id="fnProbe" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeBtn");
+  function setTheme(dark){
+    if (dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "☀️ 라이트 모드" : "🌙 다크 모드";
+  }
+  themeBtn.addEventListener("click", function(){ setTheme(root.getAttribute("data-theme") !== "dark"); });
+  var $ = function(id){ return document.getElementById(id); };
+  var won = function(n){ return n.toLocaleString("ko-KR") + "원"; };
+  function say(el, t){ el.textContent = ""; setTimeout(function(){ el.textContent = t; }, 40); }
+  function segBind(el, fn){
+    el.addEventListener("click", function(e){
+      var b = e.target.closest("button"); if (!b) return;
+      el.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      fn(b);
+    });
+  }
+
+  /* ================= ① 부분 환불 ================= */
+  var PAID = 89000, FREE_SHIP = 50000, RETURN_FEE = 3000;
+  var st = {
+    refunded: 12000, cardLeft: 67000, pointLeft: 10000, mode: "item",
+    items: [
+      { id:"a", name:"이어폰 케이스", price:12000, qty:1, left:0 },
+      { id:"b", name:"충전 케이블 1m", price:9000, qty:3, left:3 },
+      { id:"c", name:"보조배터리 10000mAh", price:38000, qty:1, left:1 },
+      { id:"d", name:"스트랩", price:6000, qty:2, left:2 }
+    ],
+    sel: {}
+  };
+  var busy = false;
+  function renderItems(){
+    var ul = $("rfItems"); ul.innerHTML = "";
+    st.items.forEach(function(it){
+      var li = document.createElement("li");
+      var done = it.left === 0;
+      var q = st.sel[it.id] || 0;
+      li.className = "rf-item" + (done ? " done" : "");
+      li.innerHTML =
+        '<input type="checkbox" id="ck_'+it.id+'" '+(done?'disabled':'')+(q>0?' checked':'')+' aria-describedby="sub_'+it.id+'">'+
+        '<label for="ck_'+it.id+'"><div class="nm">'+it.name+'</div><div class="sub num" id="sub_'+it.id+'">'+
+          won(it.price)+' × '+it.qty+(done?' · <b>환불 완료</b>':(it.left<it.qty?' · 남은 수량 '+it.left:''))+'</div></label>'+
+        (done ? '<span class="pill mu">환불됨</span>' :
+        '<div class="stepper" role="group" aria-label="'+it.name+' 환불 수량">'+
+          '<button type="button" data-d="-1" aria-label="수량 줄이기" '+(q<=0?'disabled':'')+'>−</button>'+
+          '<output aria-live="off">'+q+'</output>'+
+          '<button type="button" data-d="1" aria-label="수량 늘리기" '+(q>=it.left?'disabled':'')+'>+</button></div>');
+      if (!done){
+        li.querySelector("input").addEventListener("change", function(e){
+          st.sel[it.id] = e.target.checked ? Math.max(1, st.sel[it.id]||0) : 0; renderItems(); calc(true);
+          $("ck_"+it.id).focus();
+        });
+        li.querySelectorAll(".stepper button").forEach(function(b){
+          b.addEventListener("click", function(){
+            var n = Math.min(it.left, Math.max(0, (st.sel[it.id]||0) + (+b.dataset.d)));
+            st.sel[it.id] = n; renderItems(); calc(true);
+            var again = document.querySelector('#rfItems li:nth-child('+(st.items.indexOf(it)+1)+') .stepper button[data-d="'+b.dataset.d+'"]');
+            if (again && !again.disabled) again.focus(); else { var o = document.querySelector('#rfItems li:nth-child('+(st.items.indexOf(it)+1)+') .stepper button:not([disabled])'); if (o) o.focus(); }
+          });
+        });
+      }
+      ul.appendChild(li);
+    });
+  }
+  function parseAmt(){ return parseInt(($("rfAmt").value||"").replace(/[^0-9]/g,""),10) || 0; }
+  function compute(){
+    var cap = PAID - st.refunded, reason = $("rfReason").value, gross = 0, ded = [];
+    if (st.mode === "amount") gross = parseAmt();
+    else st.items.forEach(function(it){ gross += it.price * (st.sel[it.id]||0); });
+    var keptAfter = 0;
+    st.items.forEach(function(it){ keptAfter += it.price * (it.left - (st.mode==="item" ? (st.sel[it.id]||0) : 0)); });
+    var breaks = st.mode === "item" && gross > 0 && keptAfter < FREE_SHIP && keptAfter > 0;
+    var fullReturn = st.mode === "item" && keptAfter === 0;
+    if (st.mode === "item" && gross > 0 && reason === "cs" && (breaks || fullReturn)) ded.push({ label: fullReturn ? "반품 배송비(전체 반품)" : "무료배송 조건 해제", amount: RETURN_FEE });
+    var net = gross - ded.reduce(function(s,d){ return s+d.amount; }, 0);
+    var err = null;
+    if (net > cap) err = "OVER";
+    else if (net <= 0) err = "EMPTY";
+    else if (!reason) err = "REASON";
+    var toCard = Math.min(Math.max(net,0), st.cardLeft), toPoint = Math.max(0, Math.min(net - toCard, st.pointLeft));
+    return { cap:cap, gross:gross, ded:ded, net:net, err:err, reason:reason, breaks:breaks||fullReturn, toCard:toCard, toPoint:toPoint };
+  }
+  var lastNet = null;
+  function calc(announce){
+    var r = compute();
+    var over = r.net > r.cap;
+    $("bDone").style.width = (st.refunded/PAID*100) + "%";
+    $("bNow").style.width = (Math.min(Math.max(r.net,0), r.cap)/PAID*100) + "%";
+    $("bNow").className = over ? "b-over" : "b-now";
+    if (over) $("bNow").style.width = (r.cap/PAID*100) + "%";
+    $("rfCapTxt").innerHTML = "결제 " + won(PAID) + " · 환불 가능 <b>" + won(r.cap) + "</b>" + (r.net>0 && !over ? " → 이후 남는 잔액 " + won(r.cap - r.net) : "");
+    var dl = "<dt>선택 금액</dt><dd>" + won(r.gross) + "</dd>";
+    r.ded.forEach(function(d){ dl += "<dt>" + d.label + "</dt><dd class='minus'>−" + won(d.amount) + "</dd>"; });
+    if (st.mode === "item" && r.breaks && r.reason !== "cs" && r.gross > 0)
+      dl += "<dt style='grid-column:1/-1;font-size:.76rem'>" + (r.reason ? "판매자 귀책·조정 사유라 배송비 차감 없음" : "※ 단순 변심이면 배송비 " + won(RETURN_FEE) + " 차감") + "</dt>";
+    dl += "<dt class='total'>환불 예정</dt><dd class='total'>" + won(Math.max(r.net,0)) + "</dd>";
+    $("rfDl").innerHTML = dl;
+    $("rfAlloc").innerHTML = r.net > 0 && !over
+      ? "<div><span>💳 카드 취소</span><b class='num'>" + won(r.toCard) + "</b></div>" + (r.toPoint ? "<div><span>🪙 포인트 복원</span><b class='num'>" + won(r.toPoint) + "</b></div>" : "")
+      : "";
+    var go = $("rfGo"), why = $("rfWhy");
+    go.setAttribute("aria-disabled", String(!!r.err || busy));
+    if (!busy) go.textContent = r.net > 0 && !over ? won(r.net) + " 환불하기" : "환불할 항목을 고르세요";
+    why.textContent = r.err === "OVER" ? "환불 가능 잔액(" + won(r.cap) + ")을 넘었어요."
+      : r.err === "REASON" ? "환불 사유를 선택하면 확정할 수 있어요." : "";
+    var ae = $("rfAmtErr");
+    if (st.mode === "amount" && over){ ae.hidden = false; ae.textContent = "최대 " + won(r.cap) + "까지 환불할 수 있어요."; $("rfAmt").setAttribute("aria-invalid","true"); }
+    else { ae.hidden = true; $("rfAmt").removeAttribute("aria-invalid"); }
+    if (r.reason) $("rfReasonErr").hidden = true, $("rfReason").removeAttribute("aria-invalid");
+    if (announce && r.net !== lastNet) say($("rfLive"), over ? "환불 가능 잔액 초과" : "환불 예정 " + won(Math.max(r.net,0)));
+    lastNet = r.net;
+    return r;
+  }
+  segBind($("rfMode"), function(b){
+    st.mode = b.dataset.m;
+    $("rfItemPane").hidden = st.mode !== "item"; $("rfAmtPane").hidden = st.mode !== "amount";
+    calc(true);
+  });
+  $("rfAmt").addEventListener("input", function(e){
+    var el = e.target, digits = el.value.replace(/[^0-9]/g,"").replace(/^0+/,"");
+    var before = el.value.slice(0, el.selectionStart).replace(/[^0-9]/g,"").length;
+    el.value = digits ? (+digits).toLocaleString("ko-KR") : "";
+    var pos = 0, seen = 0; while (pos < el.value.length && seen < before){ if (/\d/.test(el.value[pos])) seen++; pos++; }
+    el.setSelectionRange(pos, pos); calc(true);
+  });
+  document.querySelectorAll("#rfAmtPane [data-q]").forEach(function(b){
+    b.addEventListener("click", function(){
+      var cap = PAID - st.refunded, v = b.dataset.q === "max" ? cap : Math.min(cap, parseAmt() + (+b.dataset.q));
+      $("rfAmt").value = v.toLocaleString("ko-KR"); calc(true);
+    });
+  });
+  $("rfReason").addEventListener("change", function(){ calc(true); });
+  $("rfGo").addEventListener("click", function(){
+    if (busy) return;
+    var r = calc(false);
+    if (r.err === "REASON"){ $("rfReasonErr").hidden = false; $("rfReason").setAttribute("aria-invalid","true"); $("rfReason").focus(); return; }
+    if (r.err === "OVER"){ $("rfAmt").focus(); return; }
+    if (r.err){ var f = document.querySelector("#rfItems input:not([disabled])"); if (st.mode==="item" && f) f.focus(); else $("rfAmt").focus(); return; }
+    $("rfDlgD").innerHTML = "<p style='margin:0 0 8px'><b style='color:var(--text);font-size:1.1rem' class='num'>" + won(r.net) + "</b> 환불 · 확정 후에는 취소할 수 없습니다.</p>" +
+      "<p style='margin:0'>카드 " + won(r.toCard) + (r.toPoint ? " + 포인트 " + won(r.toPoint) : "") + (r.ded.length ? " (" + r.ded.map(function(d){return d.label+" −"+won(d.amount);}).join(", ") + " 반영)" : "") + "</p>";
+    $("rfConfirm").textContent = won(r.net) + " 환불 확정";
+    $("rfDlg").showModal();
+  });
+  $("rfCancel").addEventListener("click", function(){ $("rfDlg").close(); });
+  $("rfDlg").addEventListener("close", function(){ if (!busy) $("rfGo").focus(); });
+  $("rfConfirm").addEventListener("click", function(){
+    var r = compute(); busy = true; $("rfDlg").close();
+    var go = $("rfGo"); go.setAttribute("aria-disabled","true"); go.innerHTML = '<span class="spin" aria-hidden="true"></span>환불 요청 중…';
+    say($("rfLive"), "환불 요청 중");
+    setTimeout(function(){
+      st.refunded += r.net; st.cardLeft -= r.toCard; st.pointLeft -= r.toPoint;
+      if (st.mode === "item") st.items.forEach(function(it){ it.left -= (st.sel[it.id]||0); });
+      st.sel = {}; $("rfAmt").value = ""; $("rfReason").value = ""; busy = false;
+      $("rfResult").innerHTML = '<div class="rf-result ok" tabindex="-1" id="rfOk"><b>✅ ' + won(r.net) + ' 환불 요청 완료</b><br>' +
+        '카드 취소분 ' + won(r.toCard) + '은 카드사 영업일 기준 수일 내 취소 반영(카드사별 상이)' + (r.toPoint ? ', 포인트 ' + won(r.toPoint) + '는 즉시 복원' : '') +
+        '. 남은 환불 가능 잔액 <b>' + won(PAID - st.refunded) + '</b>.</div>';
+      renderItems(); calc(false); $("rfOk").focus();
+    }, 1200);
+  });
+  renderItems(); calc(false);
+
+  /* ================= ② 정산 계좌 ================= */
+  var BANKS = ["KB국민","신한","우리","하나","NH농협","IBK기업","카카오뱅크","토스뱅크"];
+  var fs = $("banks");
+  BANKS.forEach(function(b, i){
+    var l = document.createElement("label");
+    l.innerHTML = '<input type="radio" name="bank" value="'+b+'">' + b;
+    fs.appendChild(l);
+  });
+  var acc = $("accNo"), vs = $("vstate"), check = $("accCheck"), save = $("accSave");
+  var sim = "matched", aState = "idle", verifiedKey = null, reqId = 0, limitTimer = null, limitLeft = 0;
+  var norm = function(s){ return (s||"").normalize("NFKC").replace(/[^0-9]/g,""); };
+  var bank = function(){ var c = fs.querySelector("input:checked"); return c ? c.value : ""; };
+  var key = function(){ return bank() + ":" + norm(acc.value); };
+  var validFmt = function(){ var n = norm(acc.value).length; return !!bank() && n >= 10 && n <= 14; };
+  function mask(n){ n = n.trim(); if (n.length <= 1) return n; if (n.length === 2) return n[0] + "*"; return n[0] + "*".repeat(n.length-2) + n[n.length-1]; }
+  function setA(s, html){
+    aState = s; vs.dataset.s = s; vs.innerHTML = html;
+    document.querySelectorAll("#smFlow span").forEach(function(x){ x.classList.toggle("on", x.dataset.k === s); });
+    var canCheck = (s === "ready" || s === "stale" || s === "mismatch" || s === "notfound" || s === "maint") && validFmt();
+    check.setAttribute("aria-disabled", String(!canCheck));
+    if (s === "checking") check.innerHTML = '<span class="spin" aria-hidden="true"></span>확인 중…'; else check.textContent = "예금주 확인";
+    save.setAttribute("aria-disabled", String(s !== "matched"));
+  }
+  function base(){
+    if (limitLeft > 0) return;
+    if (verifiedKey && key() !== verifiedKey){ verifiedKey = null; setA("stale", "<b>⚠️ 계좌 정보가 바뀌었어요</b>확인했던 계좌와 달라져서 다시 확인해야 저장할 수 있어요."); return; }
+    if (aState === "stale" && validFmt()) { setA("stale", vs.innerHTML); return; }
+    if (validFmt()) setA("ready", "<b>확인 준비됨</b>" + bank() + " " + norm(acc.value) + " — 예금주 확인을 눌러 주세요.");
+    else setA("idle", "<b>대기</b>은행과 계좌번호(10~14자리, 예시 기준)를 입력하면 확인할 수 있어요.");
+  }
+  function showFmtErr(){
+    var e = $("accErr"), n = norm(acc.value).length;
+    var msg = !bank() ? "은행을 먼저 선택해 주세요." : (n < 10 || n > 14) ? "계좌번호는 10~14자리 숫자예요(현재 " + n + "자리)." : "";
+    e.hidden = !msg; e.textContent = msg;
+    if (msg) acc.setAttribute("aria-invalid","true"); else acc.removeAttribute("aria-invalid");
+    return !msg;
+  }
+  acc.addEventListener("paste", function(e){
+    e.preventDefault();
+    var t = norm((e.clipboardData || window.clipboardData).getData("text"));
+    acc.setRangeText(t, acc.selectionStart, acc.selectionEnd, "end");
+    acc.dispatchEvent(new Event("input"));
+  });
+  acc.addEventListener("input", function(){
+    var p = acc.selectionStart, before = acc.value.slice(0,p).replace(/[^0-9０-９]/g,"").length;
+    var v = norm(acc.value).slice(0, 16);
+    if (v !== acc.value){ acc.value = v; acc.setSelectionRange(Math.min(before, v.length), Math.min(before, v.length)); }
+    if (!$("accErr").hidden) showFmtErr();
+    base();
+  });
+  acc.addEventListener("blur", function(){ if (acc.value) showFmtErr(); });
+  fs.addEventListener("change", function(){ if (!$("accErr").hidden) showFmtErr(); base(); });
+  $("accOwner").addEventListener("input", function(){ if (aState === "matched" || aState === "mismatch"){ verifiedKey = verifiedKey ? "x" : null; base(); } });
+  segBind($("accSim"), function(b){ sim = b.dataset.r; });
+  check.addEventListener("click", function(){
+    if (aState === "checking" || limitLeft > 0) return;
+    if (!showFmtErr()){ (bank() ? acc : fs.querySelector("input")).focus(); return; }
+    var k = key(), my = ++reqId, owner = $("accOwner").value.trim() || "홍길동";
+    setA("checking", "<b>예금주 확인 중…</b>" + bank() + " 계좌 실명 조회를 요청했어요. 보통 몇 초 걸려요.");
+    setTimeout(function(){
+      if (my !== reqId || key() !== k){ base(); return; }   // 입력이 바뀌었으면 응답 폐기
+      if (sim === "matched"){
+        verifiedKey = k;
+        setA("matched", "<b>✅ 예금주 " + mask(owner) + " · 대표자명과 일치</b>" + bank() + " " + norm(acc.value).replace(/\d(?=\d{4})/g,"•") + " — 이제 저장할 수 있어요.");
+        save.focus();
+      } else if (sim === "mismatch"){
+        verifiedKey = null;
+        setA("mismatch", "<b>⚠️ 예금주가 달라요 — 조회 결과 김*수</b>등록 대표자(" + mask(owner) + ")와 다른 명의예요. 본인·사업자 명의 계좌만 등록할 수 있어요." +
+          '<div class="acts"><button class="btn sm" type="button" id="reAcc">계좌번호 다시 입력</button><button class="btn ghost sm" type="button">법인·공동명의 증빙 제출</button></div>');
+        $("reAcc").addEventListener("click", function(){ acc.select(); acc.focus(); }); $("reAcc").focus();
+      } else if (sim === "notfound"){
+        verifiedKey = null;
+        setA("notfound", "<b>❌ 해당 은행에 없는 계좌예요</b>은행 선택과 번호를 다시 확인해 주세요. (다른 은행 계좌를 고른 경우가 가장 흔해요)");
+        acc.focus();
+      } else if (sim === "maint"){
+        verifiedKey = null;
+        setA("maint", "<b>🛠 " + bank() + " 점검 시간이라 지금은 확인할 수 없어요</b>점검 시간대는 은행마다 달라요(주로 자정 전후, 예시)." +
+          '<div class="acts"><button class="btn sm" type="button" id="laterBtn">임시 저장 후 자동 재확인</button></div>');
+        $("laterBtn").addEventListener("click", function(){ vs.insertAdjacentHTML("beforeend", "<p class='hint'>임시 저장됨 · 점검 종료 후 자동 재확인하고 결과를 알림으로 보내요(데모).</p>"); this.setAttribute("aria-disabled","true"); });
+      } else {
+        verifiedKey = null; limitLeft = 15;
+        var tick = function(){
+          setA("limit", "<b>⏳ 조회 횟수를 초과했어요</b><span class='num'>" + limitLeft + "초</span> 후 다시 시도할 수 있어요.");
+          check.setAttribute("aria-disabled","true");
+          if (limitLeft-- <= 0){ clearInterval(limitTimer); limitLeft = 0; base(); }
+        };
+        tick(); limitTimer = setInterval(tick, 1000);
+      }
+    }, 1100);
+  });
+  save.addEventListener("click", function(){
+    if (aState !== "matched"){ check.focus(); return; }
+    vs.insertAdjacentHTML("beforeend", "<p class='hint'>💾 정산 계좌 저장 완료 (데모). 저장 요청에는 확인 당시 스냅샷 키를 함께 보내 서버가 재검증.</p>");
+  });
+  base();
+
+  /* ================= ③ CSS @function ================= */
+  var fnOk = $("fnProbe").offsetWidth === 8;
+  if (fnOk) root.classList.add("fn-ok");
+  var sup = $("fnSupport");
+  sup.className = "support " + (fnOk ? "yes" : "no");
+  sup.innerHTML = fnOk
+    ? "✅ <b>이 브라우저는 @function을 지원합니다.</b> 배지 슬라이더·간격·유동 글자가 전부 함수로 계산되고 있어요."
+    : "⚠️ <b>이 브라우저는 @function을 지원하지 않습니다.</b> 모든 데모는 폴백 값으로 표시돼요(슬라이더는 효과 없음). Chrome/Edge 139+에서 확인해 보세요.";
+  $("fnTrapCap").innerHTML = fnOk
+    ? "지원 브라우저: 셋 다 같은 연빨강. 미지원 브라우저라면 naive·bad는 <b>배경이 사라지고</b>(unset) good만 폴백 색을 유지한다."
+    : "지금 이 브라우저에서 naive·bad의 배경이 <b>사라진 것</b>을 확인하세요 — 폴백 줄을 써 뒀는데도. good만 폴백 연빨강 유지.";
+  var pct = $("pct");
+  pct.addEventListener("input", function(){ $("fnBox").style.setProperty("--pct", pct.value + "%"); $("pctOut").textContent = pct.value + "%"; });
+
+  /* ---------- embed compact mode: ?embed=<id>, ?theme=dark ---------- */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("theme") === "dark") setTheme(true);
+    var id = qs.get("embed") || qs.get("demo");
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
