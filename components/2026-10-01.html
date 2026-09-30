@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-01 (목)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#15803d; --ok-soft:#e9f7ee; --warn:#b45309; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0369a1; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#2b3340; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important;animation:none !important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:20px 0 2px;color:var(--brand)}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:12px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 10px}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.76rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;border-radius:10px;
+    padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:6px 11px;font-size:.83rem}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface-2)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  label.fl{display:block;font-size:.84rem;font-weight:600;margin:0 0 5px}
+  input.tf{font-family:inherit;font-size:.95rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:10px 12px;width:100%}
+  input.tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  input.tf[aria-invalid="true"]{border-color:var(--danger)}
+
+
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+  .seg button{border:0;border-right:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:.82rem;
+    font-weight:600;padding:7px 12px;cursor:pointer}
+  .seg button:last-child{border-right:0}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .btn[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+  .btn.danger{background:var(--danger);border-color:var(--danger);color:#fff}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;
+    animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ================= ① 트리 뷰 ================= */
+  .tree-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px;max-height:340px;overflow:auto}
+  ul[role="tree"], ul[role="group"]{list-style:none;margin:0;padding:0}
+  ul[role="group"]{padding-left:18px}
+  li[role="treeitem"]{outline:none}
+  li[role="treeitem"] > .trow{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:8px;cursor:pointer;
+    font-size:.9rem;user-select:none}
+  li[role="treeitem"] > .trow:hover{background:var(--surface-2)}
+  li[role="treeitem"]:focus-visible > .trow{outline:3px solid var(--ring);outline-offset:-2px}
+  li[role="treeitem"][aria-current="page"] > .trow{background:var(--brand-soft);color:var(--brand);font-weight:700}
+  li[role="treeitem"][aria-current="page"] > .trow::before{content:"";width:3px;align-self:stretch;background:var(--brand);border-radius:3px;margin-left:-6px}
+  .tw{width:18px;height:18px;display:inline-grid;place-items:center;color:var(--muted);font-size:.7rem;border-radius:4px;flex:none;transition:transform .15s}
+  li[aria-expanded="true"] > .trow .tw{transform:rotate(90deg)}
+  li:not([aria-expanded]) > .trow .tw{visibility:hidden}
+  .tmeta{margin-left:auto;font-size:.72rem;color:var(--muted)}
+  .cbx{width:16px;height:16px;border:2px solid var(--muted);border-radius:4px;flex:none;display:inline-grid;place-items:center;font-size:.7rem;line-height:1;color:var(--brand-ink)}
+  li[aria-checked="true"] > .trow .cbx{background:var(--brand);border-color:var(--brand)}
+  li[aria-checked="true"] > .trow .cbx::after{content:"✓";font-weight:900}
+  li[aria-checked="mixed"] > .trow .cbx{background:var(--brand);border-color:var(--brand)}
+  li[aria-checked="mixed"] > .trow .cbx::after{content:"–";font-weight:900}
+  .tree-wrap mark{background:#fde68a;color:#111;border-radius:3px;padding:0 1px}
+  .viewpane{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;font-size:.88rem;min-height:88px}
+  .viewpane .crumbs{font-size:.76rem;color:var(--muted)}
+  .keys{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:.8rem;margin-top:10px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{font-size:.74rem;border:1px solid var(--border);border-radius:999px;padding:2px 9px;background:var(--surface)}
+
+  /* ================= ② 날짜 그룹 리스트 ================= */
+  .feed{height:380px;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;position:relative;overscroll-behavior:contain}
+  .feed:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .dgroup h3{position:sticky;top:0;z-index:1;margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:8px;
+    font-size:.82rem;font-weight:700;padding:8px 14px;background:color-mix(in srgb, var(--surface-2) 92%, transparent);
+    backdrop-filter:blur(6px);border-bottom:1px solid var(--border)}
+  .dgroup h3 .dsub{font-weight:500;color:var(--muted);font-size:.74rem;margin-left:6px}
+  .dgroup h3 .dsum{font-size:.76rem;font-weight:700}
+  .dgroup ul{list-style:none;margin:0;padding:0}
+  .tx{display:grid;grid-template-columns:36px 1fr auto;gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border)}
+  .tx:last-child{border-bottom:0}
+  .tx .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;background:var(--surface-2);font-size:1rem}
+  .tx .nm{font-size:.9rem;font-weight:600}
+  .tx .tm{font-size:.74rem;color:var(--muted)}
+  .tx .amt{font-weight:700;font-size:.92rem;text-align:right}
+  .tx .amt.in{color:var(--ok)}
+  .tx .bal{display:block;font-size:.72rem;color:var(--muted);font-weight:500}
+  .tx.moved{background:var(--warn-soft)}
+  .radios{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .radios label{font-size:.84rem;font-weight:600;padding:6px 12px;cursor:pointer;border-right:1px solid var(--border);background:var(--surface)}
+  .radios label:last-child{border-right:0}
+  .radios input{position:absolute;opacity:0;pointer-events:none}
+  .radios label:has(input:checked){background:var(--brand-soft);color:var(--brand)}
+  .radios label:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:-3px}
+  .switch{display:inline-flex;align-items:center;gap:8px;font-size:.84rem;cursor:pointer}
+  .switch input{width:18px;height:18px;accent-color:var(--warn)}
+
+  /* ================= ③ interestfor ================= */
+  .ptable{width:100%;border-collapse:collapse;font-size:.86rem;background:var(--surface);border-radius:10px;overflow:hidden}
+  .ptable th,.ptable td{padding:9px 11px;border-bottom:1px solid var(--border);text-align:left}
+  .ptable th{font-size:.76rem;color:var(--muted);background:var(--surface-2)}
+  .linkbtn{font:inherit;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.82rem;color:var(--brand);background:none;border:0;
+    padding:2px 4px;border-radius:5px;cursor:pointer;text-decoration:underline dotted;text-underline-offset:3px}
+  .linkbtn:focus-visible,.infobtn:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  .infobtn{width:20px;height:20px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--muted);
+    font-size:.72rem;font-weight:800;cursor:help;display:inline-grid;place-items:center;vertical-align:1px;margin-left:4px;padding:0}
+  [popover].pv{position:fixed;inset:auto;margin:0;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);
+    box-shadow:var(--shadow);padding:12px 14px;font-size:.82rem;max-width:280px;opacity:1;transition:opacity .15s, translate .15s}
+  [popover].pv.tip{padding:7px 10px;font-size:.78rem;max-width:230px}
+  .pv dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:6px 0 0}
+  .pv dt{color:var(--muted)} .pv dd{margin:0;font-variant-numeric:tabular-nums}
+  :root{--idelay:.5s}
+  [interestfor]{interest-delay-start:var(--idelay);interest-delay-end:.25s}
+  .demo input[type=range]{accent-color:var(--brand);width:180px}
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top, html.embed-mode nav.toc, html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead, html.embed-mode .embed-show pre, html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp, html.embed-mode .embed-show .cap, html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .code-h{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 8px}
+  html.embed-mode .embed-show h3.sec-lead{display:none}
+</style>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-10-01 (목) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#tree">🧭 가맹점 계층 트리 뷰</a>
+  <a href="#daygroup">🃏 날짜별 그룹 거래 리스트</a>
+  <a href="#interest">🌀 interestfor 미리보기</a>
+</nav>
+
+<!-- ============ ① TREE ============ -->
+<section class="card" id="tree" aria-labelledby="tree-h">
+  <h2 id="tree-h">🧭 가맹점 계층 트리 뷰 — 포커스 이동과 선택을 가르는 키보드 규칙 <span class="tag">내비게이션·탭</span></h2>
+  <p class="lead">본사 › 지역 › 가맹점 › 단말기처럼 깊이가 있는 목록은 <b>트리 뷰</b>(role="tree", 접고 펼치는 계층 목록)로 보여준다. 핵심은 <b>화살표 = 포커스만 이동</b>, <b>Enter = 이동/선택</b>으로 두 동작을 분리하고, 트리 전체를 <b>Tab 한 번</b>으로 통과시키는 것.</p>
+
+  <div class="grid2">
+    <div class="demo">
+      <p class="demo-title">A. 내비게이션 트리 — 화살표로 둘러보고 Enter로 이동</p>
+      <div class="tree-wrap"><ul role="tree" id="navTree" aria-label="가맹점 계층"></ul></div>
+      <div class="viewpane" id="navView" aria-live="polite" style="margin-top:10px"><span class="crumbs">현재 보기</span><div>본사 전체</div></div>
+      <p class="cap">트리에 포커스 후 <span class="kbd">↑↓</span> 이동 · <span class="kbd">→</span> 펼치기/자식으로 · <span class="kbd">←</span> 접기/부모로 · <span class="kbd">Home</span>/<span class="kbd">End</span> · <span class="kbd">*</span> 형제 모두 펼치기 · 글자 입력 = 이름으로 점프(예: "해"). 화살표로는 오른쪽 화면이 안 바뀐다 — Enter/클릭에서만 바뀐다.</p>
+    </div>
+    <div class="demo">
+      <p class="demo-title">B. 선택 트리 — 하위 전체 선택·부분 선택(mixed)·검색 자동 펼침</p>
+      <label class="fl" for="treeQ">가맹점·단말 검색</label>
+      <input class="tf" id="treeQ" type="search" placeholder="예: 서면, T-10" autocomplete="off" aria-describedby="treeQStat" />
+      <p class="cap" id="treeQStat" role="status" style="margin:6px 0 8px"></p>
+      <div class="tree-wrap"><ul role="tree" id="chkTree" aria-label="정산 조회 대상 선택" aria-multiselectable="true"></ul></div>
+      <div class="chips" id="chkChips" aria-live="polite"></div>
+      <p class="cap"><span class="kbd">Space</span> 체크 토글. 부모를 체크하면 하위 전부, 일부만 체크되면 부모가 <b>mixed</b>(–). 검색하면 매칭 항목의 <b>조상 노드가 자동으로 펼쳐지고</b> 나머지는 숨는다. 칩은 "최상위로 묶어" 요약(강남점 2대 전체 → "강남점").</p>
+    </div>
+  </div>
+
+  <h3 class="sec-lead code-h">핵심 코드 — 키보드 매핑과 accessible name</h3>
+<pre><code>&lt;ul role="tree" aria-label="가맹점 계층"&gt;
+  &lt;li role="treeitem" aria-expanded="false" tabindex="0" aria-labelledby="n-seoul"&gt;
+    &lt;span class="trow"&gt;&lt;span id="n-seoul"&gt;서울 지역&lt;/span&gt;&lt;/span&gt;
+    &lt;ul role="group" hidden&gt; … &lt;/ul&gt;   &lt;!-- 자식 --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+// ⚠️ aria-labelledby 없으면 treeitem 이름 = 자식 텍스트 전체("서울 지역 강남점 T-1001 …")
+
+function onKey(e){
+  const cur = e.target.closest('[role="treeitem"]');
+  const items = visibleItems();            // 접힌 그룹 안의 항목은 제외
+  const i = items.indexOf(cur);
+  switch (e.key) {
+    case 'ArrowDown': focus(items[i+1]); break;
+    case 'ArrowUp':   focus(items[i-1]); break;
+    case 'ArrowRight': isCollapsed(cur) ? expand(cur) : focus(firstChild(cur)); break;
+    case 'ArrowLeft':  isExpanded(cur)  ? collapse(cur) : focus(parentItem(cur)); break;
+    case 'Home': focus(items[0]); break;
+    case 'End':  focus(items.at(-1)); break;
+    case '*':    siblings(cur).forEach(expand); break;
+    case 'Enter': activate(cur); break;     // 여기서만 라우팅/선택
+    default: typeahead(e.key);               // 이름 첫 글자 점프
+  }
+}
+function focus(el){ if(!el) return; prev.tabIndex = -1; el.tabIndex = 0; el.focus(); } // roving tabindex</code></pre>
+  <ul class="clean">
+    <li><b>roving tabindex</b>(묶음 안에서 tabindex=0을 한 항목에만 두고 화살표로 옮기는 기법) — 트리 전체가 Tab 정지점 1개.</li>
+    <li>펼침 상태는 <code>aria-expanded</code>, 리프 노드엔 아예 붙이지 않는다(붙이면 "접힘"으로 읽혀 자식이 있다고 오해).</li>
+    <li>선택 트리는 <code>aria-multiselectable="true"</code> + 항목별 <code>aria-checked</code>(true/false/mixed).</li>
+  </ul>
+  <div class="note">언제 트리가 아닌가: 깊이 2단 이하·항목 20개 미만이면 트리보다 <b>그룹 헤더가 있는 평범한 리스트</b>나 사이드바가 낫다. 트리 키보드 규칙은 사용자가 모르는 경우가 많아, 마우스·터치로도 전부 가능해야 한다.</div>
+</section>
+
+<!-- ============ ② DAY GROUP ============ -->
+<section class="card" id="daygroup" aria-labelledby="dg-h">
+  <h2 id="dg-h">🃏 날짜별 그룹 거래 리스트 — 스티키 날짜 헤더·일별 합계·KST 경계 <span class="tag">카드·리스트</span></h2>
+  <p class="lead">거래내역은 "날짜 헤더 + 그날 거래들" 묶음이 표준이 됐다. 스크롤하면 현재 날짜 헤더가 위에 붙어 있고(<b>position: sticky</b> — 스크롤되다 지정 위치에 닿으면 멈춰 붙는 배치), 헤더에 그날의 순합계가 있다. 결제 도메인에서 진짜 함정은 <b>어느 시간대 기준으로 날짜를 자르냐</b>다.</p>
+
+  <div class="demo">
+    <p class="demo-title">A+B. 스티키 헤더 + 일별 합계 + 필터 · KST/UTC 묶기 비교</p>
+    <div class="row" style="margin-bottom:10px">
+      <div class="radios" role="radiogroup" aria-label="거래 유형">
+        <label><input type="radio" name="txf" value="all" checked>전체</label>
+        <label><input type="radio" name="txf" value="in">입금</label>
+        <label><input type="radio" name="txf" value="out">출금</label>
+      </div>
+      <label class="switch"><input type="checkbox" id="utcBug"> UTC 기준으로 묶기 <span class="pill da">흔한 버그</span></label>
+    </div>
+    <div class="feed" id="feed" tabindex="0" role="region" aria-label="거래내역 (날짜별)"></div>
+    <p class="log" id="feedLog" role="status">KST(Asia/Seoul) 기준으로 날짜를 묶는 중.</p>
+    <p class="cap">UTC 모드를 켜면 KST 00:00~08:59 거래(노란 배경)가 <b>전날</b> 그룹으로 넘어가고, 일별 합계도 정산서와 어긋난다. 서버가 UTC ISO 문자열을 주면 <code>new Date(iso).toISOString().slice(0,10)</code>로 자르는 코드가 바로 이 버그다.</p>
+  </div>
+
+  <h3 class="sec-lead code-h">핵심 코드 — 시간대 고정 그룹핑과 상대 날짜 라벨</h3>
+<pre><code>const kstDay = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }); // → "2026-10-01"
+const groupKey = iso =&gt; kstDay.format(new Date(iso));   // ❌ iso.slice(0,10) / toISOString()
+
+function dayLabel(key, todayKey){
+  const diff = (Date.parse(todayKey) - Date.parse(key)) / 864e5;   // 둘 다 자정 UTC로 파싱 → 정수
+  if (diff === 0) return '오늘';
+  if (diff === 1) return '어제';
+  return new Intl.DateTimeFormat('ko-KR', { month:'long', day:'numeric', weekday:'short', timeZone:'UTC' })
+           .format(new Date(key));                        // "9월 28일 (월)"
+}
+
+/* CSS */
+.feed { height: 380px; overflow: auto; }          /* 스티키의 기준 = 가장 가까운 스크롤 컨테이너 */
+.dgroup h3 { position: sticky; top: 0; z-index: 1;
+  background: color-mix(in srgb, var(--surface-2) 92%, transparent); backdrop-filter: blur(6px); }</code></pre>
+  <ul class="clean">
+    <li>구조: 날짜마다 <code>&lt;section aria-labelledby&gt;</code> + <code>&lt;h3&gt;</code> — 스크린리더 사용자는 제목 단축키로 <b>날짜 단위 점프</b>가 가능.</li>
+    <li>금액은 색만으로 구분하지 않는다: <b>"+"/"−" 부호 + "입금/출금" 텍스트</b>(시각적으로 숨김)를 같이 둔다.</li>
+    <li>필터로 그날 거래가 0건이 되면 <b>헤더째 숨긴다</b>(빈 날짜 헤더는 소음). 합계도 필터 결과 기준으로 다시 계산.</li>
+    <li>스티키 헤더 뒤로 내용이 비치면 가독성이 떨어지니 <b>불투명에 가까운 배경</b>을 준다(backdrop-filter는 보너스).</li>
+  </ul>
+  <div class="note">"오늘/어제" 같은 상대 라벨은 <b>자정이 지나면 틀려진다</b>. 페이지를 오래 켜 두는 어드민이라면 자정에 라벨을 다시 계산하거나(setTimeout으로 다음 자정 예약), 날짜를 병기("오늘 · 10월 1일")하는 게 안전하다.</div>
+</section>
+
+<!-- ============ ③ INTERESTFOR ============ -->
+<section class="card" id="interest" aria-labelledby="in-h">
+  <h2 id="in-h">🌀 interestfor — 호버·포커스로 여는 미리보기 카드를 HTML 속성 하나로 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead"><code>&lt;button interestfor="id"&gt;</code>는 사용자가 요소에 <b>관심(interest)</b>을 보일 때 — 마우스를 올리거나, 키보드로 포커스하거나, 터치로 길게 누를 때 — 대상 팝오버를 연다. 지연 시간·마우스가 카드로 넘어가는 동안 유지·Esc 닫기처럼 JS로 매번 짜던 "호버카드" 규칙을 브라우저가 맡는다.</p>
+  <p class="support" id="inSupport"></p>
+
+  <div class="demo">
+    <p class="demo-title">거래 ID에 마우스 올리기 / Tab으로 포커스 → 요약 카드. ⓘ → 짧은 설명 툴팁</p>
+    <table class="ptable">
+      <thead><tr><th scope="col">거래 ID</th><th scope="col">가맹점</th><th scope="col" class="num">금액</th><th scope="col">수수료 <button class="infobtn" type="button" interestfor="tipFee" aria-label="수수료 설명">i</button></th></tr></thead>
+      <tbody>
+        <tr><td><button class="linkbtn" type="button" interestfor="pv1" data-go="TX-8F21">TX-8F21</button></td><td>강남점</td><td class="num">48,000원</td><td class="num">1,200원</td></tr>
+        <tr><td><button class="linkbtn" type="button" interestfor="pv2" data-go="TX-9A07">TX-9A07</button></td><td>서면점</td><td class="num">129,500원</td><td class="num">3,238원</td></tr>
+        <tr><td><button class="linkbtn" type="button" interestfor="pv3" data-go="TX-3C55">TX-3C55</button></td><td>자사몰</td><td class="num">−15,000원</td><td class="num">−375원</td></tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin-top:12px">
+      <label class="fl" for="delay" style="margin:0">열림 지연</label>
+      <input type="range" id="delay" min="0" max="1500" step="100" value="500" aria-describedby="delayOut" />
+      <output id="delayOut" class="num" style="font-size:.84rem">500ms</output>
+    </div>
+    <p class="log" id="inLog" role="log" aria-live="polite">이벤트 로그: 아직 없음</p>
+    <p class="cap">거래 ID를 <b>클릭</b>하면 상세 페이지로 "이동"(데모 로그) — 미리보기는 지름길일 뿐, 같은 정보는 항상 다른 경로로도 닿아야 한다. 지연 0ms로 두고 표 위를 쓸어보면 카드가 번쩍번쩍 열린다 — 지연이 왜 기본값인지 체감됨.</p>
+  </div>
+
+  <div popover="hint" class="pv" id="pv1"><b>TX-8F21 · 승인</b><dl><dt>승인번호</dt><dd>30018421</dd><dt>카드</dt><dd>신한 •••• 4821</dd><dt>일시</dt><dd>10.01 09:12</dd><dt>정산 예정</dt><dd>10.03</dd></dl></div>
+  <div popover="hint" class="pv" id="pv2"><b>TX-9A07 · 승인</b><dl><dt>승인번호</dt><dd>30019907</dd><dt>카드</dt><dd>국민 •••• 1102 (3개월)</dd><dt>일시</dt><dd>09.30 21:40</dd><dt>정산 예정</dt><dd>10.02</dd></dl></div>
+  <div popover="hint" class="pv" id="pv3"><b>TX-3C55 · 부분 환불</b><dl><dt>원거래</dt><dd>TX-2B10 (45,000원)</dd><dt>사유</dt><dd>일부 품절</dd><dt>일시</dt><dd>09.30 14:05</dd><dt>상태</dt><dd>환불 완료</dd></dl></div>
+  <div popover="hint" class="pv tip" id="tipFee">카드 결제 금액 × 2.5% (VAT 포함). 부분 환불 시 비례해 돌려받습니다.</div>
+
+  <h3 class="sec-lead code-h">핵심 코드 — 선언형 + 점진적 향상</h3>
+<pre><code>&lt;button interestfor="pv1" type="button"&gt;TX-8F21&lt;/button&gt;
+&lt;div id="pv1" popover="hint"&gt; …요약… &lt;/div&gt;   &lt;!-- hint: 다른 auto 팝오버(메뉴)를 닫지 않는 가벼운 팝오버 --&gt;
+
+/* 지연 조절 (지원 브라우저) */
+[interestfor] { interest-delay-start: .5s; interest-delay-end: .25s; }
+
+// 이벤트: 대상 요소에서 발생, e.source = 관심을 받은 invoker
+pv1.addEventListener('interest',     e =&gt; log('open by', e.source.id));
+pv1.addEventListener('loseinterest', e =&gt; log('close'));
+
+// 미지원 브라우저: 기능 감지 후 polyfill(npm 'interestfor') 또는 간이 폴백
+if (!('interestForElement' in HTMLButtonElement.prototype)) {
+  // mouseenter/focus → 지연 후 showPopover(), mouseleave/blur → 지연 후 hidePopover()
+}</code></pre>
+  <table class="cmp">
+    <thead><tr><th>방식</th><th>키보드</th><th>터치</th><th>풍부한 내용</th><th>언제</th></tr></thead>
+    <tbody>
+      <tr><td><code>title</code> 속성</td><td>✗</td><td>✗</td><td>✗ 텍스트만</td><td>쓰지 말 것(보조용도 불안정)</td></tr>
+      <tr><td>클릭 팝오버 (<code>popovertarget</code>)</td><td>✓</td><td>✓</td><td>✓</td><td>꼭 봐야 하는 정보·조작이 있는 패널</td></tr>
+      <tr><td><code>interestfor</code> + <code>popover="hint"</code></td><td>✓ 포커스</td><td>✓ 길게 누르기</td><td>✓</td><td>있으면 빠른 "미리보기"·용어 설명</td></tr>
+    </tbody>
+  </table>
+  <div class="note">지원 현황(2026-10 확인): Chrome·Edge 142+에서 기본 지원, Firefox·Safari는 미지원이라 polyfill이 필요. 스크린리더에 대상 내용이 어떻게 연결되는지(aria-details/설명 자동 연결 등)는 구현 세부가 브라우저마다 다를 수 있어 <b>추정</b> — 실제 스크린리더로 확인 권장. 이 페이지는 미지원 브라우저에서 간이 JS 폴백으로 같은 동작을 흉내 낸다.</div>
+</section>
+
+<p class="footer">Design Inspiration Daily · 2026-10-01 · 외부 의존성 없는 단일 HTML</p>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement, themeBtn = document.getElementById("themeBtn");
+  function setTheme(dark){
+    if (dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "☀️ 라이트 모드" : "🌙 다크 모드";
+  }
+  themeBtn.addEventListener("click", function(){ setTheme(root.getAttribute("data-theme") !== "dark"); });
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+
+  /* ================= ① TREE ================= */
+  var DATA = {id:"hq", name:"본사 전체", children:[
+    {id:"seoul", name:"서울 지역", children:[
+      {id:"gangnam", name:"강남점", children:[{id:"t1001",name:"T-1001 (카운터)"},{id:"t1002",name:"T-1002 (키오스크)"}]},
+      {id:"hongdae", name:"홍대점", children:[{id:"t1101",name:"T-1101 (카운터)"}]},
+      {id:"jamsil", name:"잠실점", children:[{id:"t1201",name:"T-1201 (카운터)"},{id:"t1202",name:"T-1202 (테이블오더)"}]}
+    ]},
+    {id:"busan", name:"부산 지역", children:[
+      {id:"seomyeon", name:"서면점", children:[{id:"t2001",name:"T-2001 (카운터)"},{id:"t2002",name:"T-2002 (키오스크)"}]},
+      {id:"haeundae", name:"해운대점", children:[{id:"t2101",name:"T-2101 (카운터)"}]}
+    ]},
+    {id:"online", name:"온라인", children:[{id:"mall",name:"자사몰"},{id:"market",name:"오픈마켓 연동"}]}
+  ]};
+  function countLeaves(n){ return n.children ? n.children.reduce(function(a,c){ return a + countLeaves(c); }, 0) : 1; }
+
+  function buildTree(ul, mode){
+    var uid = ul.id;
+    function node(n, level, expanded){
+      var li = document.createElement("li");
+      li.setAttribute("role","treeitem"); li.tabIndex = -1;
+      li.dataset.id = n.id; li.dataset.name = n.name;
+      li.setAttribute("aria-labelledby", uid + "-" + n.id);
+      if (mode === "check") li.setAttribute("aria-checked","false");
+      var row = document.createElement("span"); row.className = "trow";
+      row.innerHTML = '<span class="tw" aria-hidden="true">▶</span>' + (mode==="check" ? '<span class="cbx" aria-hidden="true"></span>' : "") +
+        '<span class="lbl" id="' + uid + "-" + n.id + '">' + esc(n.name) + '</span>' +
+        (n.children ? '<span class="tmeta" aria-hidden="true">' + countLeaves(n) + '</span>' : "");
+      li.appendChild(row);
+      if (n.children){
+        li.setAttribute("aria-expanded", expanded ? "true" : "false");
+        var g = document.createElement("ul"); g.setAttribute("role","group"); if (!expanded) g.hidden = true;
+        n.children.forEach(function(c){ g.appendChild(node(c, level+1, false)); });
+        li.appendChild(g);
+      }
+      return li;
+    }
+    var top = node(DATA, 1, true);
+    ul.appendChild(top); top.tabIndex = 0;
+    var seoul = ul.querySelector('[data-id="seoul"]'); expand(seoul);
+
+    function group(li){ return li.querySelector(':scope > ul[role="group"]'); }
+    function expand(li){ if (li && li.hasAttribute("aria-expanded")){ li.setAttribute("aria-expanded","true"); group(li).hidden = false; } }
+    function collapse(li){ if (li && li.hasAttribute("aria-expanded")){ li.setAttribute("aria-expanded","false"); group(li).hidden = true; } }
+    function parentItem(li){ var p = li.parentElement.closest('li[role="treeitem"]'); return ul.contains(p) ? p : null; }
+    function visible(){
+      return Array.prototype.filter.call(ul.querySelectorAll('li[role="treeitem"]'), function(li){
+        if (li.hidden) return false;
+        for (var p = li.parentElement; p && p !== ul; p = p.parentElement){ if (p.hidden) return false; }
+        return true;
+      });
+    }
+    function focusItem(li){
+      if (!li) return;
+      ul.querySelectorAll('li[tabindex="0"]').forEach(function(x){ x.tabIndex = -1; });
+      li.tabIndex = 0; li.focus();
+    }
+    var ta = "", taT;
+    ul.addEventListener("keydown", function(e){
+      var cur = e.target.closest('li[role="treeitem"]'); if (!cur) return;
+      var items = visible(), i = items.indexOf(cur), handled = true;
+      switch (e.key){
+        case "ArrowDown": focusItem(items[i+1]); break;
+        case "ArrowUp": focusItem(items[i-1]); break;
+        case "ArrowRight":
+          if (cur.getAttribute("aria-expanded") === "false") expand(cur);
+          else if (cur.getAttribute("aria-expanded") === "true") focusItem(group(cur).querySelector('li[role="treeitem"]:not([hidden])'));
+          break;
+        case "ArrowLeft":
+          if (cur.getAttribute("aria-expanded") === "true") collapse(cur); else focusItem(parentItem(cur));
+          break;
+        case "Home": focusItem(items[0]); break;
+        case "End": focusItem(items[items.length-1]); break;
+        case "*": Array.prototype.forEach.call(cur.parentElement.children, expand); break;
+        case "Enter": activate(cur); break;
+        case " ": activate(cur); break;
+        default:
+          if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+            clearTimeout(taT); ta += e.key.toLowerCase(); taT = setTimeout(function(){ ta = ""; }, 600);
+            var order = items.slice(i+1).concat(items.slice(0, i+1));
+            var hit = order.find(function(li){ return li.dataset.name.toLowerCase().indexOf(ta) === 0; });
+            if (hit) focusItem(hit);
+          } else handled = false;
+      }
+      if (handled) e.preventDefault();
+    });
+    ul.addEventListener("click", function(e){
+      var li = e.target.closest('li[role="treeitem"]'); if (!li) return;
+      focusItem(li);
+      if (e.target.closest(".tw")){ li.getAttribute("aria-expanded") === "true" ? collapse(li) : expand(li); return; }
+      activate(li);
+    });
+    // 한글 IME 조합 중 첫 글자 점프: 조합 확정 시 처리
+    ul.addEventListener("compositionend", function(e){
+      var cur = e.target.closest('li[role="treeitem"]'); if (!cur || !e.data) return;
+      var items = visible(), i = items.indexOf(cur);
+      var order = items.slice(i+1).concat(items.slice(0, i+1));
+      var hit = order.find(function(li){ return li.dataset.name.indexOf(e.data) === 0; });
+      if (hit) focusItem(hit);
+    });
+
+    function activate(li){
+      if (mode === "nav"){
+        ul.querySelectorAll('[aria-current]').forEach(function(x){ x.removeAttribute("aria-current"); });
+        li.setAttribute("aria-current","page");
+        var path = []; for (var p = parentItem(li); p; p = parentItem(p)) path.unshift(p.dataset.name);
+        $("navView").innerHTML = '<span class="crumbs">' + (path.length ? esc(path.join(" › ")) + " ›" : "현재 보기") + '</span><div><b>' + esc(li.dataset.name) +
+          '</b></div><div class="cap" style="margin-top:4px">' + (li.hasAttribute("aria-expanded") ? "하위 " + li.querySelectorAll('li:not([aria-expanded])').length + "개 단말의 거래를 합산해 보여주는 화면 (데모)" : "단말기 단위 거래 화면 (데모)") + '</div>';
+      } else {
+        var next = li.getAttribute("aria-checked") === "true" ? "false" : "true";
+        li.setAttribute("aria-checked", next);
+        li.querySelectorAll('li[role="treeitem"]').forEach(function(c){ c.setAttribute("aria-checked", next); });
+        for (var p = parentItem(li); p; p = parentItem(p)){
+          var kids = Array.prototype.map.call(group(p).children, function(c){ return c.getAttribute("aria-checked"); });
+          p.setAttribute("aria-checked", kids.every(function(k){ return k==="true"; }) ? "true" : kids.every(function(k){ return k==="false"; }) ? "false" : "mixed");
+        }
+        renderChips();
+      }
+    }
+    function renderChips(){
+      var out = [];
+      (function walk(li){
+        var s = li.getAttribute("aria-checked");
+        if (s === "true"){ out.push(li.dataset.name); return; }
+        if (s === "mixed") Array.prototype.forEach.call(group(li).children, walk);
+      })(top);
+      $("chkChips").innerHTML = out.length ? out.map(function(n){ return '<span class="chip">' + esc(n) + '</span>'; }).join("") + '<span class="cap" style="margin:0 0 0 4px">선택 요약 ' + out.length + '개</span>' : '<span class="cap" style="margin:0">선택 없음</span>';
+    }
+    if (mode === "check") renderChips();
+    if (mode === "nav") activate(top);
+
+    return {
+      filter: function(q){
+        q = q.trim().toLowerCase();
+        var all = ul.querySelectorAll('li[role="treeitem"]'), hits = 0;
+        all.forEach(function(li){ li.hidden = false; var l = li.querySelector(".lbl"); l.innerHTML = esc(li.dataset.name); });
+        if (!q){ return null; }
+        all.forEach(function(li){ li.hidden = true; });
+        all.forEach(function(li){
+          var name = li.dataset.name, at = name.toLowerCase().indexOf(q);
+          if (at < 0) return;
+          hits++;
+          li.querySelector(".lbl").innerHTML = esc(name.slice(0,at)) + "<mark>" + esc(name.slice(at, at+q.length)) + "</mark>" + esc(name.slice(at+q.length));
+          li.hidden = false; li.querySelectorAll('li[role="treeitem"]').forEach(function(c){ c.hidden = false; });
+          for (var p = parentItem(li); p; p = parentItem(p)){ p.hidden = false; expand(p); }
+        });
+        var f = ul.querySelector('li[tabindex="0"]');
+        if (f && !visible().includes(f)){ f.tabIndex = -1; var v = visible()[0]; if (v) v.tabIndex = 0; }
+        return hits;
+      }
+    };
+  }
+  buildTree($("navTree"), "nav");
+  var chk = buildTree($("chkTree"), "check");
+  var qT;
+  $("treeQ").addEventListener("input", function(){
+    var v = this.value; clearTimeout(qT);
+    qT = setTimeout(function(){
+      var n = chk.filter(v);
+      $("treeQStat").textContent = n === null ? "" : n ? n + "개 항목이 일치해요. 상위 항목을 자동으로 펼쳤어요." : "일치하는 가맹점·단말이 없어요.";
+    }, 200);
+  });
+
+  /* ================= ② DAY GROUP ================= */
+  var kstFmt = new Intl.DateTimeFormat("en-CA", {timeZone:"Asia/Seoul"});
+  var timeFmt = new Intl.DateTimeFormat("ko-KR", {timeZone:"Asia/Seoul", hour:"2-digit", minute:"2-digit", hour12:false});
+  var labelFmt = new Intl.DateTimeFormat("ko-KR", {month:"long", day:"numeric", weekday:"short", timeZone:"UTC"});
+  var todayKey = kstFmt.format(new Date());
+  var kstMidnight = Date.parse(todayKey + "T00:00:00+09:00");
+  // [일 오프셋, KST 시, 분, 이름, 금액, 아이콘]
+  var RAW = [
+    [0,8,40,"강남점 카드 매출",48000,"💳"],[0,0,35,"자사몰 새벽 주문",32900,"🛒"],[0,0,12,"서면점 카드 매출",129500,"💳"],
+    [-1,22,10,"정산 입금 (9/28분)",1284300,"🏦"],[-1,14,5,"부분 환불 TX-3C55",-15000,"↩️"],[-1,11,30,"홍대점 카드 매출",21000,"💳"],[-1,7,55,"PG 수수료 출금",-38250,"🧾"],
+    [-2,18,20,"잠실점 카드 매출",67000,"💳"],[-2,12,0,"해운대점 카드 매출",15500,"💳"],[-2,3,15,"오픈마켓 정산 입금",402000,"🏦"],
+    [-3,20,45,"단말기 임대료",-22000,"🧾"],[-3,9,10,"강남점 카드 매출",8800,"💳"],
+    [-6,16,0,"월 구독료 (정산 리포트)",-9900,"🧾"],[-6,10,20,"자사몰 주문",54000,"🛒"],[-6,1,40,"자사몰 새벽 주문",12000,"🛒"]
+  ];
+  var TX = RAW.map(function(r, i){
+    var t = kstMidnight + r[0]*864e5 + (r[1]*60 + r[2])*6e4;
+    return {id:i, iso:new Date(t).toISOString(), name:r[3], amt:r[4], icon:r[5], early:r[1] < 9};
+  });
+  var won = function(n){ return (n > 0 ? "+" : n < 0 ? "−" : "") + Math.abs(n).toLocaleString("ko-KR") + "원"; };
+  function dayLabel(key){
+    var diff = Math.round((Date.parse(todayKey) - Date.parse(key)) / 864e5);
+    var full = labelFmt.format(new Date(key + "T00:00:00Z"));
+    return diff === 0 ? ["오늘", full] : diff === 1 ? ["어제", full] : [full, ""];
+  }
+  function renderFeed(){
+    var f = document.querySelector('input[name="txf"]:checked').value, utc = $("utcBug").checked;
+    var list = TX.filter(function(t){ return f === "all" || (f === "in" ? t.amt > 0 : t.amt < 0); });
+    var groups = {}, order = [];
+    list.forEach(function(t){
+      var k = utc ? t.iso.slice(0,10) : kstFmt.format(new Date(t.iso));
+      if (!groups[k]){ groups[k] = []; order.push(k); }
+      groups[k].push(t);
+    });
+    order.sort().reverse();
+    var moved = 0;
+    $("feed").innerHTML = order.length ? order.map(function(k, gi){
+      var items = groups[k].sort(function(a,b){ return b.iso < a.iso ? -1 : 1; });
+      var sum = items.reduce(function(a,t){ return a + t.amt; }, 0), lab = dayLabel(k);
+      return '<section class="dgroup" aria-labelledby="dg-' + gi + '"><h3 id="dg-' + gi + '"><span>' + lab[0] + (lab[1] ? '<span class="dsub">' + lab[1] + '</span>' : '') +
+        '</span><span class="dsum num" style="color:' + (sum >= 0 ? 'var(--ok)' : 'var(--danger)') + '"><span class="sr-only">순합계 </span>' + won(sum) + ' · ' + items.length + '건</span></h3><ul>' +
+        items.map(function(t){
+          var isMoved = utc && t.early; if (isMoved) moved++;
+          return '<li class="tx' + (isMoved ? ' moved' : '') + '"><span class="ic" aria-hidden="true">' + t.icon + '</span><span><span class="nm">' + esc(t.name) +
+            '</span><br><span class="tm">' + timeFmt.format(new Date(t.iso)) + ' KST' + (isMoved ? ' · <b>UTC로 자르면 전날</b>' : '') + '</span></span><span class="amt num' + (t.amt > 0 ? ' in' : '') +
+            '"><span class="sr-only">' + (t.amt > 0 ? "입금 " : "출금 ") + '</span>' + won(t.amt) + '</span></li>';
+        }).join("") + '</ul></section>';
+    }).join("") : '<p style="padding:24px;text-align:center;color:var(--muted)">해당 유형의 거래가 없어요.</p>';
+    $("feedLog").innerHTML = utc
+      ? '⚠️ <b>UTC 기준</b>으로 묶는 중 — KST 새벽 거래 <b>' + moved + '건</b>이 전날 그룹으로 넘어갔고, 날짜별 합계가 정산서(KST)와 달라집니다.'
+      : '✅ <b>KST(Asia/Seoul)</b> 기준으로 ' + order.length + '개 날짜 · ' + list.length + '건을 묶었어요.';
+  }
+  document.querySelectorAll('input[name="txf"]').forEach(function(r){ r.addEventListener("change", renderFeed); });
+  $("utcBug").addEventListener("change", renderFeed);
+  renderFeed();
+
+  /* ================= ③ INTERESTFOR ================= */
+  var nativeInterest = "interestForElement" in HTMLButtonElement.prototype;
+  var hasPopover = "popover" in HTMLElement.prototype;
+  var sup = $("inSupport");
+  sup.className = "support " + (nativeInterest ? "yes" : "no");
+  sup.innerHTML = nativeInterest
+    ? "✅ <b>이 브라우저는 interestfor를 기본 지원합니다.</b> 아래 데모는 JS 없이 브라우저가 열고 닫아요(JS는 위치 계산·로그만)."
+    : "⚠️ <b>이 브라우저는 interestfor 미지원</b> — 간이 JS 폴백으로 같은 동작을 흉내 냅니다. Chrome/Edge 142+에서 네이티브 동작을 확인해 보세요.";
+  var inLog = $("inLog"), logs = [];
+  function log(t){ logs.unshift(t); logs = logs.slice(0,4); inLog.innerHTML = "이벤트 로그: " + logs.map(function(x,i){ return i ? x : "<b>" + x + "</b>"; }).join(" · "); }
+  function place(pop, src){
+    if (!src) return;
+    var r = src.getBoundingClientRect(), w = pop.offsetWidth, h = pop.offsetHeight;
+    var left = Math.min(Math.max(8, r.left), innerWidth - w - 8);
+    var top = r.bottom + 8; if (top + h > innerHeight - 8) top = Math.max(8, r.top - h - 8);
+    pop.style.left = left + "px"; pop.style.top = top + "px";
+  }
+  function show(pop){ if (hasPopover){ if (!pop.matches(":popover-open")) pop.showPopover(); } else pop.style.display = "block"; }
+  function hide(pop){ if (hasPopover){ if (pop.matches(":popover-open")) pop.hidePopover(); } else pop.style.display = "none"; }
+  var invokers = document.querySelectorAll("[interestfor]");
+  var delay = 500;
+  $("delay").addEventListener("input", function(){
+    delay = +this.value; $("delayOut").textContent = delay + "ms";
+    root.style.setProperty("--idelay", (delay/1000) + "s");
+  });
+  invokers.forEach(function(btn){
+    var pop = $(btn.getAttribute("interestfor"));
+    if (btn.dataset.go) btn.addEventListener("click", function(){ log("클릭 → " + btn.dataset.go + " 상세 페이지로 이동(데모)"); });
+    if (nativeInterest){
+      pop.addEventListener("interest", function(e){ requestAnimationFrame(function(){ place(pop, e.source || btn); }); log("interest ← " + ((e.source && e.source.textContent.trim()) || pop.id)); });
+      pop.addEventListener("loseinterest", function(){ log("loseinterest (" + pop.id + ")"); });
+      return;
+    }
+    // ---- 간이 폴백 ----
+    if (pop.id === "tipFee") btn.setAttribute("aria-describedby", "tipFee"); else btn.setAttribute("aria-details", pop.id);
+    var tOpen, tClose;
+    function want(){ clearTimeout(tClose); clearTimeout(tOpen); tOpen = setTimeout(function(){ show(pop); place(pop, btn); log("interest(폴백) ← " + (btn.textContent.trim() || "ⓘ")); }, delay); }
+    function lose(){ clearTimeout(tOpen); clearTimeout(tClose); tClose = setTimeout(function(){ if (pop.matches(":hover")) return; hide(pop); log("loseinterest(폴백)"); }, 250); }
+    btn.addEventListener("mouseenter", want); btn.addEventListener("focus", want);
+    btn.addEventListener("mouseleave", lose); btn.addEventListener("blur", lose);
+    pop.addEventListener("mouseenter", function(){ clearTimeout(tClose); });
+    pop.addEventListener("mouseleave", lose);
+    var lp;
+    btn.addEventListener("pointerdown", function(e){ if (e.pointerType === "touch"){ lp = setTimeout(function(){ show(pop); place(pop, btn); log("길게 누르기 → interest(폴백)"); }, 500); } });
+    ["pointerup","pointercancel"].forEach(function(ev){ btn.addEventListener(ev, function(){ clearTimeout(lp); }); });
+    btn.addEventListener("keydown", function(e){ if (e.key === "Escape"){ clearTimeout(tOpen); hide(pop); log("Esc → 닫힘"); } });
+  });
+
+  /* ---------- embed compact mode: ?embed=<id>, ?theme=dark ---------- */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("theme") === "dark") setTheme(true);
+    var id = qs.get("embed") || qs.get("demo");
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
