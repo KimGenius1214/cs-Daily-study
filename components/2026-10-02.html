@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-02 (금)</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#fff; --surface-2:#f0f2f5; --text:#14181f; --muted:#5b6472;
+    --border:#e2e6ec; --brand:#4f46e5; --brand-ink:#fff; --brand-soft:#eef0fe;
+    --ok:#15803d; --ok-soft:#e9f7ee; --warn:#b45309; --warn-soft:#fdf3e3; --danger:#dc2626; --danger-soft:#fdecec;
+    --info:#0369a1; --info-soft:#e6f4fb;
+    --ring:#4f46e5; --shadow:0 6px 24px rgba(20,24,31,.10); --radius:14px;
+  }
+  [data-theme="dark"]{
+    --bg:#0b0e13; --surface:#141922; --surface-2:#1b212c; --text:#e7ebf2; --muted:#9aa4b2;
+    --border:#2b3340; --brand:#8b8cf9; --brand-ink:#0b0e13; --brand-soft:#20233a;
+    --ok:#34d399; --ok-soft:#12261d; --warn:#f0b040; --warn-soft:#2a2113; --danger:#f87171; --danger-soft:#2a1516;
+    --info:#38bdf8; --info-soft:#0e2531;
+    --ring:#8b8cf9; --shadow:0 6px 24px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  [hidden]{display:none !important}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important;animation:none !important} }
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+  header.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+  header.top h1{font-size:1.4rem;margin:0 0 4px}
+  header.top .date{color:var(--muted);font-size:.92rem}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);
+    border-radius:999px;padding:8px 14px;font-size:.9rem;font-family:inherit}
+  .toggle:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+  nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);
+    border-radius:999px;padding:6px 13px;font-size:.86rem}
+  nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+  nav.toc a:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+  h2{font-size:1.16rem;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  h3.sec-lead{font-size:.9rem;font-weight:600;margin:20px 0 2px;color:var(--brand)}
+  .tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+  p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+  .demo{margin-top:12px;padding:20px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+  .demo-title{font-size:.78rem;font-weight:700;color:var(--muted);letter-spacing:.02em;margin:0 0 10px}
+  .cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+  ul.clean{margin:.4rem 0 0;padding-left:1.1rem}
+  ul.clean li{margin:.25rem 0}
+  .note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);
+    border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+  pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:.4rem 0 0}
+  [data-theme="dark"] pre{background:#05070a;border:1px solid var(--border)}
+  code{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+  .kbd{display:inline-block;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;
+    padding:0 6px;font-size:.76rem;background:var(--surface);font-family:inherit}
+  .support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px}
+  .support.yes{color:var(--ok);background:var(--ok-soft)}
+  .support.no{color:var(--warn);background:var(--warn-soft)}
+  .btn{cursor:pointer;font-family:inherit;font-size:.9rem;font-weight:600;border-radius:10px;
+    padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+  .btn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+  .btn.sm{padding:6px 11px;font-size:.83rem}
+  .btn[aria-disabled="true"],.btn:disabled{opacity:.5;cursor:not-allowed}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+  .footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+  .grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+  .cmp{width:100%;border-collapse:collapse;margin-top:14px;font-size:.82rem}
+  .cmp th,.cmp td{border:1px solid var(--border);padding:7px 9px;text-align:left;vertical-align:top}
+  .cmp th{background:var(--surface-2);font-weight:700}
+  .num{font-variant-numeric:tabular-nums}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .log{margin-top:12px;font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);
+    border-radius:8px;padding:8px 11px;min-height:38px}
+  .log b{color:var(--text)}
+  .pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px;white-space:nowrap}
+  .pill.ok{color:var(--ok);background:var(--ok-soft)}
+  .pill.da{color:var(--danger);background:var(--danger-soft)}
+  .pill.mu{color:var(--muted);background:var(--surface)}
+  .pill.in{color:var(--info);background:var(--info-soft)}
+  .pill.wa{color:var(--warn);background:var(--warn-soft)}
+  label.fl{display:block;font-size:.8rem;font-weight:600;margin:0 0 4px}
+  .tf{font-family:inherit;font-size:.9rem;color:var(--text);background:var(--surface);
+    border:1px solid var(--border);border-radius:10px;padding:8px 11px}
+  .tf:focus-visible{outline:3px solid var(--ring);outline-offset:1px;border-color:var(--brand)}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;flex-wrap:wrap}
+  .seg button{border:0;border-right:1px solid var(--border);background:var(--surface);color:var(--text);font-family:inherit;font-size:.82rem;
+    font-weight:600;padding:7px 12px;cursor:pointer}
+  .seg button:last-child{border-right:0}
+  .seg button[aria-pressed="true"]{background:var(--brand-soft);color:var(--brand)}
+  .seg button:focus-visible{outline:3px solid var(--ring);outline-offset:-3px}
+  .spin{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;
+    animation:sp .8s linear infinite;vertical-align:-2px;margin-right:6px}
+  @keyframes sp{to{transform:rotate(360deg)}}
+
+  /* ================= ① 데이터 테이블 ================= */
+  .tbar{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+  .tbl-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:auto;position:relative}
+  table.dt{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.dt caption{text-align:left;padding:10px 12px;font-size:.8rem;color:var(--muted)}
+  table.dt th,table.dt td{padding:9px 12px;text-align:left;border-top:1px solid var(--border);white-space:nowrap}
+  table.dt thead th{background:var(--surface-2);font-size:.78rem;position:sticky;top:0}
+  table.dt td.r,table.dt th.r{text-align:right}
+  table.dt th button.sort{all:unset;cursor:pointer;display:inline-flex;gap:4px;align-items:center;font-weight:700;border-radius:6px;padding:2px 4px}
+  table.dt th button.sort:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+  table.dt th button.sort .ar{font-size:.7rem;color:var(--muted);width:1em}
+  table.dt th[aria-sort="ascending"] .ar::after{content:"▲"} table.dt th[aria-sort="descending"] .ar::after{content:"▼"}
+  table.dt th[aria-sort="none"] .ar::after{content:"↕"}
+  table.dt tbody tr.dup td{background:var(--warn-soft)}
+  .tbl-wrap[aria-busy="true"] tbody{opacity:.45;transition:opacity .15s}
+  .busybar{height:3px;background:linear-gradient(90deg,transparent,var(--brand),transparent);background-size:40% 100%;background-repeat:no-repeat;
+    animation:bb 1s linear infinite;position:absolute;left:0;right:0;top:0;display:none}
+  .tbl-wrap[aria-busy="true"] .busybar{display:block}
+  @keyframes bb{from{background-position:-40% 0}to{background-position:140% 0}}
+  .pager{display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:10px;font-size:.84rem}
+  .pager .pg{display:flex;gap:4px;flex-wrap:wrap}
+  .pager .pg button{min-width:34px}
+  .pager .pg button[aria-current="page"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+  @media (max-width:640px){
+    table.dt thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+    table.dt tr{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 12px;border-top:1px solid var(--border)}
+    table.dt td{border:0;padding:0;white-space:normal}
+    table.dt td::before{content:attr(data-label)" ";color:var(--muted);font-size:.72rem}
+    table.dt td.r{text-align:left}
+  }
+
+  /* ================= ② 빈 상태 ================= */
+  .lst{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .lst ul{list-style:none;margin:0;padding:0}
+  .lst li{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--border);font-size:.88rem}
+  .lst li:first-child{border-top:0}
+  .empty{padding:26px 18px;text-align:center}
+  .empty .ico{font-size:1.9rem;line-height:1}
+  .empty h3{margin:8px 0 4px;font-size:1rem}
+  .empty p{margin:0 auto;max-width:34ch;color:var(--muted);font-size:.86rem}
+  .empty .acts{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .chipx{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--border);background:var(--surface);border-radius:999px;font-size:.78rem;padding:2px 4px 2px 10px;font-family:inherit;color:var(--text)}
+  .chipx button{all:unset;cursor:pointer;border-radius:50%;width:20px;height:20px;text-align:center;line-height:20px}
+  .chipx button:focus-visible{outline:3px solid var(--ring)}
+  .skel{height:14px;border-radius:6px;background:linear-gradient(90deg,var(--surface-2),var(--border),var(--surface-2));background-size:200% 100%;animation:sk 1.2s linear infinite}
+  @keyframes sk{to{background-position:-200% 0}}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+
+  /* ================= ③ View Transitions ================= */
+  .mgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+  .mcard{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--border);background:var(--surface);border-radius:12px}
+  .mcard:hover{border-color:var(--brand)}
+  .mcard:focus-visible,.back:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+  .av{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;background:var(--brand-soft);flex:none}
+  .mt{font-weight:700;font-size:.9rem}
+  .ms{color:var(--muted);font-size:.78rem}
+  .mdet{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .mdet .head{display:flex;gap:14px;align-items:center}
+  .mdet .av{width:64px;height:64px;font-size:2rem;border-radius:18px}
+  .mdet .mt{font-size:1.15rem}
+  .back{cursor:pointer}
+  .rowlist{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+  .rowlist li{display:flex;justify-content:space-between;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-size:.88rem}
+  ::view-transition-group(*){animation-duration:.28s}
+
+  /* ================= embed compact mode ================= */
+  html.embed-mode{scroll-behavior:auto}
+  html.embed-mode body{background:transparent}
+  html.embed-mode .wrap{max-width:none;padding:10px 12px 14px}
+  html.embed-mode header.top, html.embed-mode nav.toc, html.embed-mode .footer{display:none}
+  html.embed-mode section.card{display:none;margin:0;border:none;box-shadow:none;padding:0;background:transparent}
+  html.embed-mode section.card.embed-show{display:block}
+  html.embed-mode .embed-show p.lead, html.embed-mode .embed-show pre, html.embed-mode .embed-show .note,
+  html.embed-mode .embed-show .cmp, html.embed-mode .embed-show .cap, html.embed-mode .embed-show ul.clean,
+  html.embed-mode .embed-show .code-h{display:none}
+  html.embed-mode .embed-show h2{font-size:1rem;margin:0 0 8px}
+  html.embed-mode .embed-show h3.sec-lead{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-10-02 (금) · 오늘의 컴포넌트 2 + 트렌드 1 · 직접 만져보는 라이브 예시</div>
+  </div>
+  <button class="toggle" id="themeBtn" type="button" aria-pressed="false">🌙 다크 모드</button>
+</header>
+
+<nav class="toc" aria-label="오늘의 목차">
+  <a href="#datatable">📊 서버 페이지네이션 정산 테이블</a>
+  <a href="#empty">🔔 빈 상태 설계</a>
+  <a href="#vt">🌀 View Transitions</a>
+</nav>
+
+<!-- ============ ① DATA TABLE ============ -->
+<section class="card" id="datatable" aria-labelledby="datatable-h">
+  <h2 id="datatable-h">📊 서버 페이지네이션 정산 테이블 — 오프셋은 중복을 만들고 커서는 만들지 않는다 <span class="tag">데이터·테이블·차트</span></h2>
+  <p class="lead">정산·거래 목록은 수만 건이라 <b>서버 페이지네이션</b>(한 번에 한 페이지만 서버에서 받아오는 방식)이 기본이다. 오프셋 방식(<code>page=2&amp;size=8</code>)은 번호 이동이 쉽지만 <b>보는 도중 새 거래가 들어오면 행이 밀려 중복·누락</b>이 생긴다. 커서 방식(<code>after=마지막 행의 정렬값+id</code>)은 밀리지 않는 대신 "N페이지로 바로 이동"이 없다. 아래에서 직접 비교한다.</p>
+
+  <div class="demo">
+    <p class="demo-title">A. 필터·정렬·페이지 이동 — 오프셋/커서 전환, 응답 지연 시뮬</p>
+    <div class="tbar">
+      <div><label class="fl" for="dtStatus">상태</label>
+        <select class="tf" id="dtStatus"><option value="">전체</option><option value="ok">승인</option><option value="cancel">취소</option><option value="pend">대기</option><option value="fail">실패</option></select></div>
+      <div><label class="fl" for="dtQ">가맹점 검색</label><input class="tf" id="dtQ" type="search" placeholder="예: 카페" autocomplete="off" /></div>
+      <div><label class="fl" id="modeLbl">페이지 방식</label>
+        <div class="seg" role="group" aria-labelledby="modeLbl"><button type="button" data-mode="offset" aria-pressed="true">오프셋</button><button type="button" data-mode="cursor" aria-pressed="false">커서</button></div></div>
+      <div><label class="fl" for="dtLat">응답 지연</label>
+        <select class="tf" id="dtLat"><option value="150">빠름 150ms</option><option value="1200" selected>느림 1.2초</option></select></div>
+    </div>
+    <div class="tbl-wrap" id="dtWrap" aria-busy="false">
+      <div class="busybar" aria-hidden="true"></div>
+      <table class="dt" id="dt" role="table" aria-describedby="dtStat">
+        <caption>정산 내역 (KST 기준 · 열 제목 버튼으로 정렬)</caption>
+        <thead><tr role="row">
+          <th role="columnheader" scope="col" aria-sort="none" data-key="no"><button class="sort" type="button">승인번호<span class="ar" aria-hidden="true"></span></button></th>
+          <th role="columnheader" scope="col" aria-sort="none" data-key="m"><button class="sort" type="button">가맹점<span class="ar" aria-hidden="true"></span></button></th>
+          <th role="columnheader" scope="col" aria-sort="none" data-key="amt" class="r"><button class="sort" type="button">금액<span class="ar" aria-hidden="true"></span></button></th>
+          <th role="columnheader" scope="col" aria-sort="none" data-key="st"><button class="sort" type="button">상태<span class="ar" aria-hidden="true"></span></button></th>
+          <th role="columnheader" scope="col" aria-sort="descending" data-key="t"><button class="sort" type="button">시각<span class="ar" aria-hidden="true"></span></button></th>
+        </tr></thead>
+        <tbody id="dtBody"></tbody>
+      </table>
+    </div>
+    <div class="pager">
+      <div id="dtStat" role="status" aria-live="polite">불러오는 중…</div>
+      <div class="pg" id="dtPg"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn ghost sm" type="button" id="dtNew">＋ 새 승인 거래 도착(시뮬)</button>
+      <button class="btn ghost sm" type="button" id="dtReset">처음으로</button>
+    </div>
+    <div class="log" id="dtLog" aria-live="polite">따라 해 보기: ① 오프셋에서 1페이지 → [＋ 새 거래] → 다음 페이지 = 주황색 <b>중복 표시</b> 행 발생 ② 커서로 바꿔 같은 순서 반복 = 중복 없음.</div>
+    <p class="cap">정렬을 바꾸거나 필터를 걸면 <b>항상 1페이지로 리셋</b>. 로딩 중엔 이전 행을 지우지 않고 흐리게 + 상단 진행 바(<code>aria-busy</code>)만 보여 화면이 번쩍이지 않는다. 느림(1.2초)에서 빠르게 연속 클릭해도 늦게 온 옛 응답은 버린다(요청 번호 비교).</p>
+  </div>
+
+  <h3 class="sec-lead code-h">오프셋 vs 커서</h3>
+  <table class="cmp">
+    <thead><tr><th>구분</th><th>오프셋 (page/size)</th><th>커서 (after)</th></tr></thead>
+    <tbody>
+      <tr><td>장점</td><td>페이지 번호·총 페이지·임의 이동</td><td>데이터가 바뀌어도 안정, 깊은 페이지도 빠름(인덱스)</td></tr>
+      <tr><td>단점</td><td>삽입·삭제 시 중복/누락, 깊을수록 느림(추정: DB가 앞 행을 훑음)</td><td>임의 페이지 점프 불가, 정렬 키+id 타이브레이커 필수</td></tr>
+      <tr><td>어울리는 곳</td><td>관리자 정적 목록, 건수 적음</td><td>실시간으로 쌓이는 거래 내역·무한 스크롤</td></tr>
+    </tbody>
+  </table>
+<pre><code>// 커서: (정렬값, id) 튜플을 불투명 문자열로 — id 타이브레이커가 없으면 같은 값에서 행이 샌다
+GET /settlements?sort=-time&amp;limit=8&amp;after=eyJ2IjoxNzU...   // base64(JSON)
+// 응답: { items:[...], nextCursor: "eyJ2..." | null }
+
+th[aria-sort="descending"] // 정렬 상태는 th에, 버튼은 th 안에</code></pre>
+  <div class="note">금액·시간은 서버가 내려준 값을 <code>tabular-nums</code>로 오른쪽 정렬해야 자릿수가 맞는다. 모바일(640px 이하)에선 같은 데이터를 카드형 행으로 재배치하며, <code>display</code>를 바꾸면 표 의미가 사라질 수 있어 <code>role</code>을 명시했다.</div>
+</section>
+
+<!-- ============ ② EMPTY STATES ============ -->
+<section class="card" id="empty" aria-labelledby="empty-h">
+  <h2 id="empty-h">🔔 빈 상태 설계 — 처음·검색·필터·오류는 서로 다른 화면이다 <span class="tag">피드백·상태</span></h2>
+  <p class="lead">"데이터 없음" 한 문구로 뭉개면 사용자가 다음 행동을 모른다. <b>빈 상태</b>(목록에 보여줄 항목이 0개인 화면)는 원인별로 메시지와 주 버튼이 달라야 한다. 특히 <b>오류를 빈 상태로 위장하면</b> 결제 도메인에선 "거래가 없다"로 오해해 위험하다.</p>
+
+  <div class="demo">
+    <p class="demo-title">A. 직접 0건 만들어 보기 — 아래 버튼 또는 검색·칩으로</p>
+    <div class="row" style="margin-bottom:10px">
+      <button class="btn ghost sm" type="button" data-jump="first">처음 사용(데이터 0)</button>
+      <button class="btn ghost sm" type="button" data-jump="search">검색 'zzz'</button>
+      <button class="btn ghost sm" type="button" data-jump="filter">‘실패’ 필터</button>
+      <button class="btn ghost sm" type="button" data-jump="error">서버 오류</button>
+      <button class="btn ghost sm" type="button" data-jump="load">다시 불러오기</button>
+      <button class="btn ghost sm" type="button" data-jump="ok">정상 복귀</button>
+    </div>
+    <div class="row" style="margin-bottom:10px">
+      <div><label class="fl" for="emQ">가맹점 검색</label><input class="tf" id="emQ" type="search" autocomplete="off" placeholder="예: 카페" /></div>
+      <div><span class="fl" id="emFl">상태 필터</span>
+        <div class="seg" role="group" aria-labelledby="emFl" id="emSeg">
+          <button type="button" data-f="" aria-pressed="true">전체</button><button type="button" data-f="ok" aria-pressed="false">승인</button><button type="button" data-f="cancel" aria-pressed="false">취소</button><button type="button" data-f="fail" aria-pressed="false">실패</button>
+        </div></div>
+    </div>
+    <div class="lst" id="emBox"></div>
+    <div id="emStat" class="cap" role="status" aria-live="polite"></div>
+  </div>
+
+  <h3 class="sec-lead code-h">네 가지 빈 상태</h3>
+  <table class="cmp">
+    <thead><tr><th>상황</th><th>메시지</th><th>주 액션</th><th>하지 말 것</th></tr></thead>
+    <tbody>
+      <tr><td>처음 사용</td><td>무엇이 여기 쌓이는지 + 첫 행동</td><td>첫 결제 링크 만들기</td><td>"데이터가 없습니다"만 쓰기</td></tr>
+      <tr><td>검색 결과 없음</td><td>입력어를 그대로 보여주기</td><td>검색어 지우기</td><td>필터까지 몰래 초기화</td></tr>
+      <tr><td>필터 0건</td><td>걸린 조건을 칩으로 노출</td><td>칩 개별 해제 / 전체 해제</td><td>조건 숨기고 빈 화면만</td></tr>
+      <tr><td>불러오기 실패</td><td>실패했고 데이터는 안전하다는 말</td><td>다시 시도(+문의)</td><td>빈 상태 UI 재사용</td></tr>
+    </tbody>
+  </table>
+<pre><code>function emptyKind({ total, q, filters, error, loading }) {
+  if (loading) return "skeleton";   // 첫 로딩은 빈 상태가 아니라 스켈레톤
+  if (error) return "error";        // 오류가 항상 우선
+  if (total === 0 &amp;&amp; !q &amp;&amp; !filters.length) return "first";
+  return q ? "search" : "filter";
+}</code></pre>
+  <div class="note">처음 로딩 중에 "결과 없음"이 깜빡 보이면 안 된다 — 로딩 → 데이터/빈 상태 순으로만 전환. 목록 개수는 <code>role="status"</code>로 알려 스크린리더도 0건을 알 수 있게 한다.</div>
+</section>
+
+<!-- ============ ③ VIEW TRANSITIONS ============ -->
+<section class="card" id="vt" aria-labelledby="vt-h">
+  <h2 id="vt-h">🌀 View Transitions — 목록→상세·정렬 재배치를 JS 애니메이션 없이 <span class="tag">트렌드·개념</span></h2>
+  <p class="lead"><b>View Transitions API</b>는 DOM이 바뀌기 전·후 화면을 브라우저가 스냅샷으로 찍고 <code>view-transition-name</code>이 같은 요소끼리 위치·크기를 보간해 주는 기능이다. <code>document.startViewTransition(() =&gt; 화면 갱신)</code> 한 줄이 핵심. 같은 문서 안 전환(same-document)은 Baseline "Newly available"로 보도된 바 있다(web.dev 글 제목 기준, 세부 버전은 직접 확인 권장).</p>
+  <div class="support" id="vtSupport" role="status"></div>
+
+  <div class="grid2">
+    <div class="demo">
+      <p class="demo-title">A. 목록 → 상세: 클릭한 카드의 아이콘·이름이 이어서 커진다</p>
+      <div id="vtList" class="mgrid"></div>
+      <div id="vtDetail" class="mdet" hidden></div>
+    </div>
+    <div class="demo">
+      <p class="demo-title">B. 정렬 재배치: 행마다 고유 이름을 주면 자리를 찾아 이동</p>
+      <div class="row" style="margin-bottom:10px">
+        <div class="seg" role="group" aria-label="정렬 기준"><button type="button" data-s="amt" aria-pressed="true">금액순</button><button type="button" data-s="name" aria-pressed="false">이름순</button><button type="button" data-s="shuf" aria-pressed="false">섞기</button></div>
+        <label style="font-size:.84rem"><input type="checkbox" id="vtOff" /> 전환 끄기(비교)</label>
+      </div>
+      <ul class="rowlist" id="vtRows"></ul>
+      <p class="cap" id="vtLog" role="status" aria-live="polite">정렬을 눌러 보세요.</p>
+    </div>
+  </div>
+
+<pre><code>function go(update) {
+  if (!document.startViewTransition || matchMedia("(prefers-reduced-motion: reduce)").matches) return update();
+  card.style.viewTransitionName = "m-hero";           // 전환 '전' 요소에 이름
+  const t = document.startViewTransition(() =&gt; {
+    update();                                          // 전환 '후' 요소에도 같은 이름
+    detail.style.viewTransitionName = "m-hero";
+  });
+  t.finished.finally(() =&gt; { card.style.viewTransitionName = ""; });  // 이름은 쓰고 지운다
+}</code></pre>
+  <div class="note"><b>함정</b> ① 같은 이름이 한 화면에 둘이면 전환이 통째로 건너뛰어진다(추정: 이름 중복 시 전환 취소) → 전환 중에만 한 요소에 부여. ② 전환 중 화면은 스냅샷이라 클릭이 안 된다 → 300ms 이하로. ③ 접근성: <code>prefers-reduced-motion</code>이면 호출 자체를 생략. ④ 포커스는 DOM 갱신 콜백 안에서 직접 옮길 것.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-10-02 · self-contained demo</div>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement, themeBtn = document.getElementById("themeBtn");
+  function setTheme(dark){
+    if (dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme");
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.textContent = dark ? "☀️ 라이트 모드" : "🌙 다크 모드";
+  }
+  themeBtn.addEventListener("click", function(){ setTheme(root.getAttribute("data-theme") !== "dark"); });
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  var won = function(n){ return (n < 0 ? "−" : "") + Math.abs(n).toLocaleString("ko-KR") + "원"; };
+  var fmtT = new Intl.DateTimeFormat("ko-KR",{timeZone:"Asia/Seoul",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",hour12:false});
+
+  /* ================= ① 데이터 테이블 ================= */
+  var MER = ["강남 카페 온도","홍대 분식 나래","잠실 서점 책방","서면 꽃집 봄","해운대 베이커리","판교 샐러드랩","성수 팝업스토어","여의도 도시락"];
+  var ST = {ok:"승인",cancel:"취소",pend:"대기",fail:"실패"};
+  var STC = {ok:"ok",cancel:"mu",pend:"wa",fail:"da"};
+  var BASE = Date.UTC(2026,9,1,15,0); // 2026-10-02 00:00 KST
+  var ALL = [];
+  (function(){
+    var sts = ["ok","ok","ok","cancel","ok","pend","ok","fail","ok","ok","cancel","ok"];
+    for (var i = 0; i < 52; i++){
+      var st = sts[i % sts.length], amt = (3 + (i * 7919) % 97) * 1000 + (i % 5) * 500;
+      ALL.push({id:1001 + i, no:"A-" + (90001 + i * 3), m:MER[(i * 5) % MER.length], amt: st === "cancel" ? -amt : amt, st:st, t:BASE - i * 41 * 60000});
+    }
+  })();
+  var Q = {q:"", st:"", key:"t", dir:-1, mode:"offset", page:1, size:8, cursors:[null], shown:{}};
+  var reqSeq = 0, lastRows = [];
+  function cmpTuple(a, b){ var k = Q.key; var r = (a[k] < b[k] ? -1 : a[k] > b[k] ? 1 : 0) * Q.dir; return r || (a.id - b.id) * Q.dir; }
+  function filtered(){
+    return ALL.filter(function(r){ return (!Q.st || r.st === Q.st) && (!Q.q || r.m.indexOf(Q.q) > -1); }).sort(cmpTuple);
+  }
+  function serverQuery(){
+    var list = filtered(), total = list.length, rows, hasNext, pageIdx;
+    if (Q.mode === "offset"){
+      rows = list.slice((Q.page - 1) * Q.size, Q.page * Q.size); hasNext = Q.page * Q.size < total; pageIdx = Q.page;
+    } else {
+      var cur = Q.cursors[Q.cursors.length - 1], start = 0;
+      if (cur){ start = list.length; for (var i = 0; i < list.length; i++){ if (cmpTuple(list[i], cur) > 0){ start = i; break; } } }
+      rows = list.slice(start, start + Q.size); hasNext = start + Q.size < list.length; pageIdx = Q.cursors.length;
+    }
+    return {rows:rows, total:total, hasNext:hasNext, pageIdx:pageIdx};
+  }
+  function load(){
+    var seq = ++reqSeq, wrap = $("dtWrap");
+    wrap.setAttribute("aria-busy","true"); $("dtStat").textContent = "불러오는 중…";
+    setTimeout(function(){
+      if (seq !== reqSeq) return; // 늦게 온 옛 응답 폐기
+      var res = serverQuery(); render(res); wrap.setAttribute("aria-busy","false");
+    }, +$("dtLat").value);
+  }
+  function render(res){
+    var dupCount = 0;
+    var dupIds = {};
+    Object.keys(Q.shown).forEach(function(p){ if (+p !== res.pageIdx) Q.shown[p].forEach(function(id){ dupIds[id] = 1; }); });
+    Q.shown[res.pageIdx] = res.rows.map(function(r){ return r.id; });
+    var html = res.rows.map(function(r){
+      var dup = dupIds[r.id]; if (dup) dupCount++;
+      return '<tr role="row"' + (dup ? ' class="dup"' : '') + '><td role="cell" data-label="승인번호" class="num">' + r.no + '</td><td role="cell" data-label="가맹점">' + esc(r.m) + '</td><td role="cell" data-label="금액" class="r num">' + won(r.amt) +
+        '</td><td role="cell" data-label="상태"><span class="pill ' + STC[r.st] + '">' + ST[r.st] + '</span>' + (dup ? ' <span class="pill wa">중복 표시</span>' : '') + '</td><td role="cell" data-label="시각" class="num">' + fmtT.format(r.t) + '</td></tr>';
+    }).join("");
+    $("dtBody").innerHTML = html || '<tr role="row"><td role="cell" colspan="5" style="text-align:center;color:var(--muted)">조건에 맞는 거래가 없습니다.</td></tr>';
+    var pg = $("dtPg"), s;
+    if (Q.mode === "offset"){
+      var pages = Math.max(1, Math.ceil(res.total / Q.size)), b = "";
+      b += '<button class="btn ghost sm" type="button" data-p="' + (Q.page - 1) + '"' + (Q.page <= 1 ? ' disabled' : '') + '>이전</button>';
+      for (var p = 1; p <= pages; p++) b += '<button class="btn ghost sm" type="button" data-p="' + p + '" aria-label="' + p + '페이지"' + (p === Q.page ? ' aria-current="page"' : '') + '>' + p + '</button>';
+      b += '<button class="btn ghost sm" type="button" data-p="' + (Q.page + 1) + '"' + (Q.page >= pages ? ' disabled' : '') + '>다음</button>';
+      pg.innerHTML = b;
+      var a = res.total ? (Q.page - 1) * Q.size + 1 : 0, e = (Q.page - 1) * Q.size + res.rows.length;
+      s = "총 " + res.total + "건 중 " + a + "–" + e + "번 표시 (" + Q.page + "/" + pages + "페이지)";
+    } else {
+      pg.innerHTML = '<button class="btn ghost sm" type="button" data-c="prev"' + (Q.cursors.length <= 1 ? ' disabled' : '') + '>◂ 이전</button><button class="btn ghost sm" type="button" data-c="next"' + (!res.hasNext ? ' disabled' : '') + '>다음 ▸</button>';
+      s = "커서 " + Q.cursors.length + "번째 묶음 · " + res.rows.length + "건 표시" + (res.hasNext ? " · 다음 있음" : " · 마지막");
+    }
+    if (dupCount) s += " · ⚠ 앞 페이지와 겹치는 " + dupCount + "건";
+    $("dtStat").textContent = s;
+    lastRows = res.rows;
+  }
+  function resetQ(){ Q.page = 1; Q.cursors = [null]; Q.shown = {}; }
+  function fillSortUi(){
+    document.querySelectorAll("#dt th[data-key]").forEach(function(th){
+      th.setAttribute("aria-sort", th.dataset.key === Q.key ? (Q.dir === 1 ? "ascending" : "descending") : "none");
+    });
+  }
+  document.querySelectorAll("#dt th[data-key] button").forEach(function(b){
+    b.addEventListener("click", function(){
+      var k = b.parentNode.dataset.key;
+      if (Q.key === k) Q.dir = -Q.dir; else { Q.key = k; Q.dir = 1; }
+      resetQ(); fillSortUi(); load();
+    });
+  });
+  $("dtStatus").addEventListener("change", function(){ Q.st = this.value; resetQ(); load(); });
+  var qT, composing = false;
+  $("dtQ").addEventListener("compositionstart", function(){ composing = true; });
+  $("dtQ").addEventListener("compositionend", function(){ composing = false; this.dispatchEvent(new Event("input")); });
+  $("dtQ").addEventListener("input", function(){
+    if (composing) return; var v = this.value.trim(); clearTimeout(qT);
+    qT = setTimeout(function(){ Q.q = v; resetQ(); load(); }, 250);
+  });
+  document.querySelectorAll("[data-mode]").forEach(function(b){
+    b.addEventListener("click", function(){
+      Q.mode = b.dataset.mode;
+      document.querySelectorAll("[data-mode]").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      resetQ(); load();
+    });
+  });
+  $("dtPg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if (!b || b.disabled) return;
+    if (b.dataset.p) Q.page = +b.dataset.p;
+    if (b.dataset.c === "next"){ var last = lastRows[lastRows.length - 1]; Q.cursors.push({id:last.id, t:last.t, no:last.no, m:last.m, amt:last.amt, st:last.st}); }
+    if (b.dataset.c === "prev") Q.cursors.pop();
+    load();
+  });
+  $("dtNew").addEventListener("click", function(){
+    var top = Math.max.apply(null, ALL.map(function(r){ return r.id; })) + 1, latest = Math.max.apply(null, ALL.map(function(r){ return r.t; }));
+    ALL.push({id:top, no:"A-" + (95000 + top), m:MER[top % MER.length], amt:12000 + (top % 7) * 1500, st:"ok", t:latest + 90000});
+    $("dtLog").innerHTML = "<b>방금 새 승인 거래(" + top + ")가 서버에 쌓였습니다.</b> 화면은 그대로 — 이제 ‘다음’을 눌러 보세요.";
+  });
+  $("dtReset").addEventListener("click", function(){ resetQ(); load(); });
+  fillSortUi(); load();
+
+  /* ================= ② 빈 상태 ================= */
+  var EM = [
+    {m:"강남 카페 온도", amt:6500, st:"ok"}, {m:"홍대 분식 나래", amt:12000, st:"ok"}, {m:"잠실 서점 책방", amt:-18000, st:"cancel"},
+    {m:"서면 꽃집 봄", amt:32000, st:"ok"}, {m:"해운대 베이커리", amt:9800, st:"ok"}, {m:"성수 팝업스토어", amt:45000, st:"ok"}
+  ];
+  var E = {has:true, q:"", f:"", error:false, loading:false};
+  var eT;
+  function emRender(){
+    var box = $("emBox"), stat = $("emStat");
+    if (E.loading){
+      box.innerHTML = '<ul aria-hidden="true">' + [1,2,3].map(function(){ return '<li><span class="skel" style="width:46%"></span><span class="skel" style="width:18%"></span></li>'; }).join("") + '</ul>';
+      stat.textContent = "불러오는 중…"; return;
+    }
+    if (E.error){
+      box.innerHTML = '<div class="empty"><div class="ico" aria-hidden="true">⚠️</div><h3>거래 내역을 불러오지 못했어요</h3><p>일시적인 오류예요. 거래 데이터는 안전하게 보관되어 있습니다.</p><div class="acts"><button class="btn sm" type="button" data-act="retry">다시 시도</button><button class="btn ghost sm" type="button" data-act="help">문의하기</button></div></div>';
+      stat.textContent = "오류: 목록을 불러오지 못했습니다."; return;
+    }
+    var base = E.has ? EM : [];
+    var rows = base.filter(function(r){ return (!E.f || r.st === E.f) && (!E.q || r.m.indexOf(E.q) > -1); });
+    if (rows.length){
+      box.innerHTML = '<ul>' + rows.map(function(r){ return '<li><span>' + esc(r.m) + ' <span class="pill ' + STC[r.st] + '">' + ST[r.st] + '</span></span><span class="num">' + won(r.amt) + '</span></li>'; }).join("") + '</ul>';
+      stat.textContent = "거래 " + rows.length + "건"; return;
+    }
+    var f = E.f ? '<span class="chipx">상태: ' + ST[E.f] + '<button type="button" data-act="rmf" aria-label="상태 필터 해제">✕</button></span>' : "";
+    if (!E.has && !E.q && !E.f){
+      box.innerHTML = '<div class="empty"><div class="ico" aria-hidden="true">🧾</div><h3>아직 받은 결제가 없어요</h3><p>결제 링크를 만들어 고객에게 보내면 거래가 여기에 쌓입니다.</p><div class="acts"><button class="btn sm" type="button" data-act="mk">첫 결제 링크 만들기</button></div></div>';
+      stat.textContent = "거래 0건 — 아직 거래가 없습니다."; return;
+    }
+    if (E.q){
+      box.innerHTML = '<div class="empty"><div class="ico" aria-hidden="true">🔍</div><h3>‘' + esc(E.q) + '’ 검색 결과가 없어요</h3><p>철자를 확인하거나 가맹점 이름 일부만 입력해 보세요.</p>' + (f ? '<div class="acts">' + f + '</div>' : '') + '<div class="acts"><button class="btn sm" type="button" data-act="rmq">검색어 지우기</button></div></div>';
+      stat.textContent = "‘" + E.q + "’ 검색 결과 0건"; return;
+    }
+    box.innerHTML = '<div class="empty"><div class="ico" aria-hidden="true">🗂️</div><h3>조건에 맞는 거래가 없어요</h3><p>적용된 조건을 풀면 더 많은 거래를 볼 수 있어요.</p><div class="acts">' + f + '</div><div class="acts"><button class="btn sm" type="button" data-act="rmf">필터 모두 해제</button></div></div>';
+    stat.textContent = "필터 결과 0건";
+  }
+  function emSeg(){ document.querySelectorAll("#emSeg button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.f === E.f)); }); }
+  $("emQ").addEventListener("input", function(){ var v = this.value.trim(); clearTimeout(eT); eT = setTimeout(function(){ E.q = v; emRender(); }, 200); });
+  $("emSeg").addEventListener("click", function(e){ var b = e.target.closest("button"); if (!b) return; E.f = b.dataset.f; emSeg(); emRender(); });
+  function emLoad(){ E.loading = true; E.error = false; emRender(); setTimeout(function(){ E.loading = false; emRender(); }, 900); }
+  document.querySelector("#empty .demo").addEventListener("click", function(e){
+    var j = e.target.closest("[data-jump]"), a = e.target.closest("[data-act]");
+    if (j){
+      var k = j.dataset.jump;
+      if (k === "ok"){ E = {has:true, q:"", f:"", error:false, loading:false}; $("emQ").value = ""; }
+      if (k === "first"){ E = {has:false, q:"", f:"", error:false, loading:false}; $("emQ").value = ""; }
+      if (k === "search"){ E.has = true; E.error = false; E.q = "zzz"; $("emQ").value = "zzz"; }
+      if (k === "filter"){ E.has = true; E.error = false; E.q = ""; $("emQ").value = ""; E.f = "fail"; }
+      if (k === "error"){ E.error = true; }
+      emSeg(); if (k === "load") emLoad(); else emRender(); return;
+    }
+    if (a){
+      var x = a.dataset.act;
+      if (x === "retry"){ E.error = false; emLoad(); return; }
+      if (x === "rmq"){ E.q = ""; $("emQ").value = ""; $("emQ").focus(); }
+      if (x === "rmf"){ E.f = ""; emSeg(); }
+      if (x === "mk"){ E.has = true; emRender(); $("emStat").textContent = "(데모) 결제 링크를 만들었다고 가정 → 거래 " + EM.length + "건 표시"; return; }
+      if (x === "help"){ $("emStat").textContent = "(데모) 문의 채널 열기"; return; }
+      emRender();
+    }
+  });
+  emRender();
+
+  /* ================= ③ View Transitions ================= */
+  var hasVT = typeof document.startViewTransition === "function";
+  var sup = $("vtSupport");
+  sup.className = "support " + (hasVT ? "yes" : "no");
+  sup.textContent = hasVT ? "✅ 이 브라우저는 document.startViewTransition을 지원합니다 — 전환 애니메이션이 보입니다." : "⚠️ 이 브라우저는 startViewTransition이 없어 전환 없이 즉시 바뀝니다(기능은 동일, 점진적 향상).";
+  var reduce = function(){ return window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches; };
+  function vt(update){
+    if (!hasVT || reduce() || ($("vtOff") && $("vtOff").checked)){ update(); return {finished:Promise.resolve()}; }
+    return document.startViewTransition(update);
+  }
+  var MS = [
+    {id:"cafe", ico:"☕", name:"강남 카페 온도", sub:"오늘 매출 482,000원", n:41, ok:"98.2%"},
+    {id:"book", ico:"📚", name:"잠실 서점 책방", sub:"오늘 매출 215,500원", n:17, ok:"94.1%"},
+    {id:"flower", ico:"🌷", name:"서면 꽃집 봄", sub:"오늘 매출 331,000원", n:22, ok:"99.0%"},
+    {id:"bake", ico:"🥐", name:"해운대 베이커리", sub:"오늘 매출 128,400원", n:30, ok:"97.5%"}
+  ];
+  var vtList = $("vtList"), vtDet = $("vtDetail");
+  vtList.innerHTML = MS.map(function(m){
+    return '<button class="mcard" type="button" data-id="' + m.id + '"><span class="av" aria-hidden="true">' + m.ico + '</span><span><span class="mt" style="display:block">' + esc(m.name) + '</span><span class="ms">' + esc(m.sub) + '</span></span></button>';
+  }).join("");
+  function openM(id, btn){
+    var m = MS.filter(function(x){ return x.id === id; })[0];
+    var av = btn.querySelector(".av"), mt = btn.querySelector(".mt");
+    var reduceOrOff = !hasVT || reduce() || $("vtOff").checked;
+    if (!reduceOrOff){ av.style.viewTransitionName = "m-av"; mt.style.viewTransitionName = "m-mt"; }
+    var t = vt(function(){
+      vtList.hidden = true; vtDet.hidden = false;
+      vtDet.innerHTML = '<button class="btn ghost sm back" type="button" id="vtBack">← 목록</button><div class="head" style="margin-top:12px"><span class="av" id="dAv" aria-hidden="true">' + m.ico + '</span><div><div class="mt" id="dMt">' + esc(m.name) + '</div><div class="ms">' + esc(m.sub) + '</div></div></div><p style="margin:14px 0 0;font-size:.88rem">오늘 승인 <b class="num">' + m.n + '</b>건 · 승인율 <b class="num">' + m.ok + '</b></p>';
+      if (!reduceOrOff){ $("dAv").style.viewTransitionName = "m-av"; $("dMt").style.viewTransitionName = "m-mt"; }
+      $("vtBack").focus();
+      $("vtBack").addEventListener("click", function(){ closeM(id); });
+    });
+    t.finished.then(function(){ av.style.viewTransitionName = ""; mt.style.viewTransitionName = ""; var a = $("dAv"), b = $("dMt"); if (a) a.style.viewTransitionName = ""; if (b) b.style.viewTransitionName = ""; });
+  }
+  function closeM(id){
+    var reduceOrOff = !hasVT || reduce() || $("vtOff").checked;
+    if (!reduceOrOff){ $("dAv").style.viewTransitionName = "m-av"; $("dMt").style.viewTransitionName = "m-mt"; }
+    var btn = vtList.querySelector('[data-id="' + id + '"]');
+    var t = vt(function(){
+      vtDet.hidden = true; vtList.hidden = false;
+      if (!reduceOrOff){ btn.querySelector(".av").style.viewTransitionName = "m-av"; btn.querySelector(".mt").style.viewTransitionName = "m-mt"; }
+      btn.focus();
+    });
+    t.finished.then(function(){ btn.querySelector(".av").style.viewTransitionName = ""; btn.querySelector(".mt").style.viewTransitionName = ""; });
+  }
+  vtList.addEventListener("click", function(e){ var b = e.target.closest(".mcard"); if (b) openM(b.dataset.id, b); });
+
+  var RW = [{n:"강남 카페 온도", a:482000},{n:"잠실 서점 책방", a:215500},{n:"서면 꽃집 봄", a:331000},{n:"해운대 베이커리", a:128400},{n:"성수 팝업스토어", a:560000}];
+  var rowEls = {};
+  var vtRows = $("vtRows");
+  RW.forEach(function(r, i){ var li = document.createElement("li"); li.innerHTML = '<span>' + esc(r.n) + '</span><span class="num">' + r.a.toLocaleString("ko-KR") + '원</span>'; rowEls[r.n] = li; vtRows.appendChild(li); });
+  function applyOrder(arr){ arr.forEach(function(r){ vtRows.appendChild(rowEls[r.n]); }); }
+  function sortRows(kind){
+    var arr = RW.slice();
+    if (kind === "amt") arr.sort(function(a, b){ return b.a - a.a; });
+    if (kind === "name") arr.sort(function(a, b){ return a.n < b.n ? -1 : 1; });
+    if (kind === "shuf") arr.sort(function(){ return Math.random() - .5; });
+    var off = !hasVT || reduce() || $("vtOff").checked;
+    if (!off){ RW.forEach(function(r, i){ rowEls[r.n].style.viewTransitionName = "row-" + i; }); }
+    var t = vt(function(){ applyOrder(arr); });
+    t.finished.then(function(){ RW.forEach(function(r){ rowEls[r.n].style.viewTransitionName = ""; }); });
+    $("vtLog").textContent = "정렬: " + ({amt:"금액순",name:"이름순",shuf:"무작위"})[kind] + (off ? " (전환 없이 즉시)" : " (전환 적용)");
+  }
+  document.querySelectorAll("[data-s]").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll("[data-s]").forEach(function(x){ x.setAttribute("aria-pressed", String(x === b)); });
+      sortRows(b.dataset.s);
+    });
+  });
+  sortRows("amt");
+
+  /* ---------- embed compact mode: ?embed=<id>, ?theme=dark ---------- */
+  (function(){
+    var qs = new URLSearchParams(location.search);
+    if (qs.get("theme") === "dark") setTheme(true);
+    var id = qs.get("embed") || qs.get("demo");
+    if (!id) return;
+    root.classList.add("embed-mode");
+    var sec = document.getElementById(id);
+    if (sec) sec.classList.add("embed-show");
+  })();
+})();
+</script>
+</body>
+</html>
