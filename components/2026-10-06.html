@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-06 (화)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#e2e6ec;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#b45309;--warn-soft:#fdf3e3;--danger:#dc2626;--danger-soft:#fdecec;--ring:#4f46e5;--shadow:0 6px 24px rgba(20,24,31,.10);--radius:14px}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2b3340;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#12261d;--warn:#f0b040;--warn-soft:#2a2113;--danger:#f87171;--danger-soft:#2a1516;--ring:#8b8cf9;--shadow:0 6px 24px rgba(0,0,0,.45)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button{font-family:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-size:.9rem;font-weight:600;border-radius:10px;padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:6px 11px;font-size:.83rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+/* toast */
+.toast-region{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column-reverse;gap:10px;z-index:50;width:min(360px,calc(100vw - 32px))}
+.toast{display:flex;gap:10px;align-items:flex-start;background:var(--surface);color:var(--text);border:1px solid var(--border);border-left:4px solid var(--brand);border-radius:10px;padding:11px 12px;box-shadow:var(--shadow);animation:tin .2s ease-out;position:relative;overflow:hidden}
+.toast.ok{border-left-color:var(--ok)}.toast.err{border-left-color:var(--danger)}.toast.warn{border-left-color:var(--warn)}
+.toast .msg{flex:1;font-size:.88rem}
+.toast .x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:1.1rem;line-height:1;padding:2px 6px;border-radius:6px}
+.toast .act{border:0;background:none;color:var(--brand);font-weight:700;cursor:pointer;font-size:.85rem;padding:2px 6px;border-radius:6px}
+.toast .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--brand);opacity:.5;width:100%;transform-origin:left;animation:shrink linear forwards}
+.toast.paused .bar{animation-play-state:paused}
+@keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes shrink{to{transform:scaleX(0)}}
+/* skeleton */
+.sk{background:linear-gradient(90deg,var(--border) 25%,var(--surface-2) 50%,var(--border) 75%);background-size:200% 100%;animation:shim 1.4s infinite;border-radius:6px}
+@keyframes shim{to{background-position:-200% 0}}
+.item{display:flex;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);min-height:60px}
+.av{width:38px;height:38px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-weight:700;flex:none}
+.item .t{flex:1}.item .t b{display:block;font-size:.9rem}.item .t span{font-size:.8rem;color:var(--muted)}
+.amt{font-variant-numeric:tabular-nums;font-weight:600;font-size:.9rem}
+.spin{width:18px;height:18px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:rot .8s linear infinite;display:inline-block;vertical-align:middle}
+@keyframes rot{to{transform:rotate(360deg)}}
+.stat{font-size:.8rem;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+/* dialog */
+dialog{border:1px solid var(--border);border-radius:14px;background:var(--surface);color:var(--text);padding:20px;max-width:380px;box-shadow:var(--shadow)}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h3{margin:0 0 6px;font-size:1rem}dialog p{margin:0 0 14px;font-size:.88rem;color:var(--muted)}
+/* embed compact */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div><h1>Design Inspiration Daily</h1><div class="date">2026-10-06 (화) · 토스트 · 스켈레톤 · dialog closedby</div></div>
+<button class="toggle" id="themeBtn" type="button" aria-pressed="false">다크 모드</button></header>
+<nav class="toc" aria-label="목차"><a href="#toast">🪟 토스트 스택</a><a href="#skeleton">🔔 스켈레톤 로딩</a><a href="#closedby">🌀 dialog closedby</a></nav>
+
+<!-- 1. TOAST -->
+<section class="card" id="toast" aria-labelledby="h-toast">
+<h2 id="h-toast">🪟 토스트 알림 스택 <span class="tag">오버레이·모달·토스트</span></h2>
+<p class="lead">성공은 짧게, 실패는 오래, 되돌리기 가능한 건 액션을 달아서. 마우스를 올리거나 포커스하면 타이머가 멈춘다.</p>
+<div class="demo"><p class="demo-title">버튼을 눌러 보세요 (우측 하단에 쌓임, 최대 3개)</p>
+<div class="row">
+<button class="btn sm" data-t="ok">성공 (4초)</button>
+<button class="btn sm ghost" data-t="undo">되돌리기 액션 (8초)</button>
+<button class="btn sm ghost" data-t="err">실패 (수동 닫기)</button>
+<button class="btn sm ghost" data-t="flood">5개 연타</button></div>
+<p class="cap">성공=role="status"(공손하게 읽기), 실패=role="alert"(즉시 읽기). 진행바가 남은 시간을 보여주고 hover/focus 시 멈춤. Esc로 최신 토스트 닫기.</p></div>
+<pre><code>region: &lt;div aria-live="polite" aria-atomic="false"&gt;  // 실패만 role="alert"
+timer: pause on mouseenter/focusin, resume on leave
+duration: ok 4s · undo 8s · error: 자동 닫힘 없음</code></pre>
+<div class="note">핵심: 토스트에 중요한 정보를 단독으로 두지 말 것. 사라지면 못 읽는 사람이 있다(결제 실패는 인라인에도 남기기).</div></section>
+
+<!-- 2. SKELETON -->
+<section class="card" id="skeleton" aria-labelledby="h-sk">
+<h2 id="h-sk">🔔 스켈레톤 로딩 <span class="tag">피드백·상태</span></h2>
+<p class="lead">빠르면 아무것도 보이지 않고(200ms 임계값), 느리면 레이아웃과 같은 모양의 뼈대를, 한 번 보이면 최소 400ms는 유지해 깜빡임을 막는다.</p>
+<div class="demo"><p class="demo-title">응답 지연을 골라 보세요</p>
+<div class="row"><button class="btn sm" data-d="100">빠른 응답 100ms</button><button class="btn sm ghost" data-d="1500">느린 응답 1.5초</button><button class="btn sm ghost" data-d="fail">실패</button></div>
+<div class="grid2" style="margin-top:14px">
+<div><p class="demo-title">❌ 스피너 + 높이 점프</p><div id="boxA" aria-live="polite" style="min-height:0"></div></div>
+<div><p class="demo-title">✅ 스켈레톤 + 고정 높이</p><div id="boxB" aria-live="polite" aria-busy="false" style="min-height:190px"></div></div></div>
+<div class="stat" id="stat">대기 중</div></div>
+<pre><code>const show = setTimeout(()=>box.innerHTML=skeleton, 200)   // 임계값
+await fetch(); clearTimeout(show)
+// 이미 보였다면 최소 400ms 유지 후 교체
+box.setAttribute('aria-busy','true')  // 완료 시 false</code></pre>
+<div class="note">핵심: 스켈레톤은 실제 행과 같은 높이(min-height)로 그려야 CLS(누적 레이아웃 이동)가 안 생긴다. 왼쪽은 도착 순간 목록이 아래를 밀어낸다.</div></section>
+
+<!-- 3. CLOSEDBY -->
+<section class="card" id="closedby" aria-labelledby="h-cb">
+<h2 id="h-cb">🌀 dialog closedby — 바깥 클릭 닫기를 속성으로 <span class="tag">트렌드·개념</span></h2>
+<p class="lead"><code>closedby</code>는 dialog를 어떻게 닫을 수 있는지 선언한다: <code>any</code>(바깥 클릭·Esc), <code>closerequest</code>(Esc만), <code>none</code>(버튼만).</p>
+<div class="demo"><p class="demo-title">세 값을 비교</p>
+<div class="row"><button class="btn sm" data-dlg="any">any</button><button class="btn sm ghost" data-dlg="closerequest">closerequest</button><button class="btn sm ghost" data-dlg="none">none</button></div>
+<div class="stat" id="cbStat"></div>
+<dialog id="dlg" aria-labelledby="dlgT"><h3 id="dlgT">결제 취소 확인</h3><p id="dlgP"></p><div class="row"><button class="btn sm" id="dlgOk" type="button">닫기</button></div></dialog></div>
+<pre><code>&lt;dialog closedby="closerequest"&gt;  &lt;!-- 결제 확인처럼 실수로 닫히면 안 되는 곳 --&gt;
+if (!('closedBy' in HTMLDialogElement.prototype)) { /* 클릭 핸들러 폴백 */ }</code></pre>
+<div class="support">지원 범위: Chromium·Firefox 최신판은 지원, Safari는 미확인 — 추정. 위 데모는 미지원이면 JS 폴백으로 동작하며 결과 표시줄에 구분해 보여줌. 배포 전 caniuse·MDN 확인 필요.</div>
+<div class="note">모달 dialog 기본값은 closerequest. 결제·파괴적 확인은 none/closerequest, 가벼운 미리보기는 any.</div></section>
+
+<div class="footer">Design Inspiration Daily · self-contained</div>
+</div>
+<div class="toast-region" id="tr" role="region" aria-label="알림"><div id="live-ok" role="status" aria-live="polite"></div></div>
+<script>
+(function(){
+var qs=new URLSearchParams(location.search),root=document.documentElement;
+if(qs.get('theme')==='dark')root.setAttribute('data-theme','dark');
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+var b=document.getElementById('themeBtn');
+function sync(){var d=root.getAttribute('data-theme')==='dark';b.setAttribute('aria-pressed',d);b.textContent=d?'라이트 모드':'다크 모드'}
+b.onclick=function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');sync()};sync();
+
+// toast
+var tr=document.getElementById('tr'),n=0;
+function toast(kind,text,ms,act){
+ var t=document.createElement('div');t.className='toast '+(kind==='undo'?'':kind);
+ t.setAttribute('role',kind==='err'?'alert':'status');
+ var m=document.createElement('div');m.className='msg';m.textContent=text;t.appendChild(m);
+ if(act){var a=document.createElement('button');a.className='act';a.textContent=act;a.onclick=function(){close();toast('ok','되돌렸습니다',3000)};t.appendChild(a)}
+ var x=document.createElement('button');x.className='x';x.setAttribute('aria-label','알림 닫기');x.textContent='×';x.onclick=close;t.appendChild(x);
+ var left=ms,start,timer;
+ function run(){if(!ms)return;start=Date.now();timer=setTimeout(close,left)}
+ function pause(){if(!ms)return;clearTimeout(timer);left-=Date.now()-start;t.classList.add('paused')}
+ function resume(){if(!ms)return;t.classList.remove('paused');run()}
+ function close(){clearTimeout(timer);t.remove()}
+ if(ms){var bar=document.createElement('div');bar.className='bar';bar.style.animationDuration=ms+'ms';t.appendChild(bar)}
+ t.addEventListener('mouseenter',pause);t.addEventListener('mouseleave',resume);t.addEventListener('focusin',pause);t.addEventListener('focusout',resume);
+ t.close=close;tr.appendChild(t);
+ var all=tr.querySelectorAll('.toast');if(all.length>3)all[0].close();
+ run();
+}
+document.querySelectorAll('[data-t]').forEach(function(btn){btn.onclick=function(){
+ var k=btn.dataset.t;
+ if(k==='ok')toast('ok','저장했습니다',4000);
+ else if(k==='undo')toast('undo','거래 1건을 보관함으로 이동했습니다',8000,'실행 취소');
+ else if(k==='err')toast('err','결제 요청에 실패했습니다. 다시 시도해 주세요.',0);
+ else for(var i=1;i<=5;i++)toast('ok','알림 '+i,4000)}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){var a=tr.querySelectorAll('.toast');if(a.length)a[a.length-1].close()}});
+
+// skeleton
+var rows=[['김','정산 입금','2026-10-05','+128,000원'],['박','환불 처리','2026-10-04','-35,000원'],['이','카드 승인','2026-10-04','+54,900원']];
+function list(){return rows.map(function(r){return '<div class="item"><div class="av">'+r[0]+'</div><div class="t"><b>'+r[1]+'</b><span>'+r[2]+'</span></div><div class="amt">'+r[3]+'</div></div>'}).join('')}
+function skel(){var h='';for(var i=0;i<3;i++)h+='<div class="item"><div class="av sk"></div><div class="t"><div class="sk" style="height:12px;width:60%"></div><div class="sk" style="height:10px;width:35%;margin-top:6px"></div></div><div class="sk" style="height:12px;width:56px"></div></div>';return h}
+var A=document.getElementById('boxA'),B=document.getElementById('boxB'),st=document.getElementById('stat');
+function load(d){
+ var fail=d==='fail',ms=fail?800:+d,t0=Date.now(),shown=null,log=[];
+ A.innerHTML='<span class="spin" role="img" aria-label="불러오는 중"></span>';
+ B.setAttribute('aria-busy','true');B.innerHTML='';
+ var th=setTimeout(function(){shown=Date.now();B.innerHTML=skel();log.push('스켈레톤 표시')},200);
+ setTimeout(function(){
+  clearTimeout(th);
+  var finish=function(){
+   if(fail){A.innerHTML=B.innerHTML='<div class="item" style="color:var(--danger)">불러오지 못했습니다. <button class="btn sm ghost" type="button" style="margin-left:8px" onclick="document.querySelector(\'[data-d=\\\'1500\\\']\').click()">다시 시도</button></div>'}
+   else{A.innerHTML=list();B.innerHTML=list()}
+   B.setAttribute('aria-busy','false');
+   st.textContent=(shown?'스켈레톤이 보인 뒤 최소 400ms 유지 → ':'200ms 안에 도착해 스켈레톤 생략 → ')+'총 '+(Date.now()-t0)+'ms';
+  };
+  if(shown){var rest=400-(Date.now()-shown);rest>0?setTimeout(finish,rest):finish()}else finish();
+ },ms);
+ st.textContent='로딩 중…';
+}
+document.querySelectorAll('[data-d]').forEach(function(x){x.onclick=function(){load(x.dataset.d)}});
+
+// dialog closedby
+var dlg=document.getElementById('dlg'),cs=document.getElementById('cbStat');
+var native='closedBy' in HTMLDialogElement.prototype;
+cs.textContent='이 브라우저의 네이티브 closedby: '+(native?'지원':'미지원(JS 폴백 사용)');
+var mode='any';
+var desc={any:'바깥 클릭·Esc·버튼 모두 가능',closerequest:'Esc·버튼만 가능 (바깥 클릭 무시)',none:'버튼으로만 닫힘 (Esc도 무시)'};
+document.querySelectorAll('[data-dlg]').forEach(function(x){x.onclick=function(){
+ mode=x.dataset.dlg;dlg.setAttribute('closedby',mode);document.getElementById('dlgP').textContent='closedby="'+mode+'": '+desc[mode];dlg.showModal()}});
+document.getElementById('dlgOk').onclick=function(){dlg.close()};
+if(!native){
+ dlg.addEventListener('click',function(e){if(mode!=='any')return;var r=dlg.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dlg.close()});
+ dlg.addEventListener('cancel',function(e){if(mode==='none')e.preventDefault()});
+}
+})();
+</script>
+</body>
+</html>
