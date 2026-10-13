@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-13 (화)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#b45309;--warn-soft:#fdf3e3;--danger:#dc2626;--danger-ink:#fff;--danger-soft:#fdecec;--ring:#4f46e5;--shadow:0 6px 24px rgba(20,24,31,.10);--radius:14px}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#12261d;--warn:#f0b040;--warn-soft:#2a2113;--danger:#f87171;--danger-ink:#0b0e13;--danger-soft:#2a1516;--ring:#8b8cf9;--shadow:0 6px 24px rgba(0,0,0,.45)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h3{font-size:1rem;margin:0 0 8px}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:6px 11px;font-size:.83rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.stat{font-size:.82rem;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums}
+.bad-label{color:var(--danger);font-weight:700}.good-label{color:var(--ok);font-weight:700}
+.success{background:var(--ok-soft);color:var(--ok);border-radius:10px;padding:10px 14px;font-weight:600;font-size:.9rem;margin-top:10px}
+/* popup */
+.win{border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:var(--shadow);overflow:hidden;margin-top:12px;max-width:340px}
+.win .bar{display:flex;justify-content:space-between;align-items:center;background:var(--surface-2);padding:6px 10px;font-size:.78rem;color:var(--muted)}
+.win .body{padding:14px;font-size:.9rem}
+.state{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:.88rem;font-weight:600;background:var(--surface);border:1px solid var(--border)}
+.state.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.state.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.state.bad{background:var(--danger-soft);color:var(--danger);border-color:var(--danger)}
+.opt{display:flex;gap:6px;align-items:center;font-size:.84rem;margin:8px 0}
+/* widgets */
+.wgrid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+.w{border:1px solid var(--border);border-radius:10px;background:var(--surface);padding:12px;min-height:112px}
+.w h4{margin:0 0 6px;font-size:.78rem;color:var(--muted);font-weight:700}
+.w .v{font-size:1.25rem;font-weight:800;font-variant-numeric:tabular-nums}
+.w .sub{font-size:.74rem;color:var(--muted);margin-top:4px}
+.w.stale{border-color:var(--warn)}.w.stale .v{opacity:.6}
+.w.err{border-color:var(--danger)}
+.w .msg{font-size:.78rem;color:var(--danger);font-weight:600;margin-top:6px}
+.w .pill{display:inline-block;font-size:.7rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:999px;padding:1px 8px;margin-top:4px}
+.w.load .v{color:transparent;background:var(--surface-2);border-radius:6px;width:70%}
+.fullerr{border:1px solid var(--danger);background:var(--danger-soft);color:var(--danger);border-radius:10px;padding:18px;font-weight:700;font-size:.9rem}
+/* gutter */
+.gbox{height:150px;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow-y:auto;position:relative}
+.gbox.locked{overflow-y:hidden}
+.gbox.gut{scrollbar-gutter:stable}
+.gbox .line{margin:0;padding:6px 10px;border-bottom:1px solid var(--border);font-size:.8rem;white-space:nowrap}
+.gbox .rule{height:8px;background:var(--brand);margin:0}
+.chain{height:90px;overflow:auto;border:1px solid var(--border);border-radius:8px;background:var(--surface);font-size:.8rem}
+.chain.contain{overscroll-behavior:contain}
+.chain p{margin:0;padding:6px 10px;border-bottom:1px solid var(--border)}
+.outer{height:150px;overflow:auto;border:1px dashed var(--border);border-radius:10px;padding:10px;background:var(--surface-2)}
+/* embed compact */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <div><h1>Design Inspiration Daily</h1><div class="date">2026-10-13 (화) · 컴포넌트 2 + 트렌드 1</div></div>
+ <button class="toggle" id="themeBtn" type="button" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+ <a href="#popup">🪟 간편결제 외부 창 — 차단·닫힘·복귀</a><a href="#partial">🔔 위젯 부분 실패 — 격리·stale·개별 재시도</a><a href="#gutter">🌀 scrollbar-gutter — 모달 열 때 화면 흔들림 제거</a>
+</nav>
+
+<section class="card" id="popup">
+ <h2>🪟 간편결제 외부 창 — 차단·닫힘·복귀 <span class="tag">오버레이</span></h2>
+ <p class="lead">간편결제·본인인증이 새 창(window.open)으로 뜨는 경우, "안 떴다 / 그냥 닫았다 / 끝났다"를 구분해서 보여줘야 사용자가 갇히지 않는다. (아래 창은 실제 팝업이 아니라 동작을 흉내 낸 가상 창)</p>
+ <div class="demo">
+  <p class="demo-title">① 나쁜 예 — await 뒤에 열기 · 닫힘을 모름 &nbsp; ② 좋은 예 — 클릭 즉시 열기 + 폴백 + 닫힘 확인</p>
+  <div class="grid2">
+   <div>
+    <h3><span class="bad-label">✗</span> 나쁜 예</h3>
+    <button class="btn" id="pBad" type="button">간편결제 열기</button>
+    <div class="state" id="pBadS" role="status" aria-live="polite">대기 중</div>
+    <p class="cap">서버 호출(await) 뒤에 창을 열면 사용자 클릭에서 시간이 지나 차단되기 쉽고, 차단돼도 아무 안내가 없다.</p>
+   </div>
+   <div>
+    <h3><span class="good-label">✓</span> 좋은 예</h3>
+    <button class="btn" id="pGood" type="button">간편결제 열기</button>
+    <div class="state" id="pGoodS" role="status" aria-live="polite">대기 중</div>
+    <div class="row" id="pGoodAct" style="margin-top:8px" hidden></div>
+    <p class="cap">클릭 핸들러 안에서 동기적으로 먼저 창을 연 뒤 주소를 채운다 → 막히면 같은 탭 이동으로 폴백, 창이 닫히면 서버 상태부터 확인.</p>
+   </div>
+  </div>
+  <label class="opt"><input type="checkbox" id="pBlock"> 팝업 차단 시뮬레이션</label>
+  <div class="win" id="pWin" hidden>
+   <div class="bar"><span>가상 결제 창 (pay.example.com)</span><button class="btn ghost sm" type="button" id="pClose" aria-label="결제 창 닫기">✕ 닫기</button></div>
+   <div class="body">12,000원 결제하시겠어요?<div class="row" style="margin-top:10px"><button class="btn sm" type="button" id="pOk">승인</button></div></div>
+  </div>
+ </div>
+<pre><code>// 1) 클릭 핸들러 안에서 "즉시" 연다 (await 이전)
+const w = window.open('', 'pay', 'width=420,height=640');
+if (!w) { return redirectInSameTab(); }        // 차단됨 → 폴백
+const { url, orderId } = await createSession();  // 이후 주소를 채운다
+w.location.href = url;
+
+// 2) 결과는 postMessage로 받고 origin을 반드시 검증
+window.addEventListener('message', (e) => {
+  if (e.origin !== 'https://pay.example.com') return;
+  if (e.data?.type === 'PAID') confirmOnServer(orderId);
+});
+// 3) closed 폴링은 "신호"일 뿐 — 닫힘 후엔 서버로 최종 상태 확인
+const t = setInterval(() => { if (w.closed) { clearInterval(t); checkStatus(orderId); } }, 500);</code></pre>
+ <div class="note">핵심: <code>w.closed</code>는 "결제 취소"가 아니라 "창이 사라짐"이다. 승인 직후 창이 닫히기도 하므로, 닫힘 → 즉시 실패 처리 대신 서버 상태 조회로 확정한다. 브라우저별 차단 정책·COOP 설정에 따라 <code>w.closed</code>/<code>opener</code> 동작이 달라질 수 있어 실기기 검증 필요 — 추정.</div>
+</section>
+
+<section class="card" id="partial">
+ <h2>🔔 위젯 부분 실패 — 격리·stale·개별 재시도 <span class="tag">피드백·상태</span></h2>
+ <p class="lead">대시보드 위젯 3개 중 1개만 실패했는데 화면 전체가 에러가 되면 정상 데이터까지 못 본다. 실패는 위젯 단위로 격리하고, 마지막 성공값은 "오래된 데이터"로 표시한다.</p>
+ <div class="demo">
+  <div class="row" style="margin-bottom:10px">
+   <label class="opt"><input type="checkbox" class="pf" data-i="0"> 매출 실패</label>
+   <label class="opt"><input type="checkbox" class="pf" data-i="1"> 정산 실패</label>
+   <label class="opt"><input type="checkbox" class="pf" data-i="2"> 환불 실패</label>
+   <button class="btn sm" type="button" id="pRefresh">전체 새로고침</button>
+  </div>
+  <div class="grid2">
+   <div><h3><span class="bad-label">✗</span> 전부 아니면 전무</h3><div id="pAll"></div><p class="cap">Promise.all — 하나라도 거부되면 전체 에러.</p></div>
+   <div><h3><span class="good-label">✓</span> 위젯별 격리</h3><div class="wgrid" id="pIso"></div><p class="cap">Promise.allSettled — 실패 위젯만 에러, 이전 값은 stale 표시, 재시도는 개별.</p></div>
+  </div>
+ </div>
+<pre><code>const results = await Promise.allSettled([getSales(), getSettle(), getRefund()]);
+results.forEach((r, i) => {
+  if (r.status === 'fulfilled') set(i, { data: r.value, at: Date.now(), stale: false });
+  else set(i, { ...prev[i], error: true, stale: !!prev[i]?.data }); // 마지막 성공값 유지
+});
+// 위젯 컨테이너: role="status" + aria-busy, 에러 문구엔 "다시 시도" 버튼</code></pre>
+ <div class="note">핵심: stale 값은 <b>반드시 "N분 전 기준"과 함께</b> 보여준다. 금액 위젯에서 시각 표시 없는 옛 숫자는 오류보다 위험하다. 자동 재시도는 지수 백오프(점점 늘리는 간격)로, 사용자가 누르는 재시도와 구분한다.</div>
+</section>
+
+<section class="card" id="gutter">
+ <h2>🌀 scrollbar-gutter — 모달 열 때 화면 흔들림 제거 <span class="tag">트렌드·개념</span></h2>
+ <p class="lead">모달을 열며 배경 스크롤을 잠그면(<code>overflow:hidden</code>) 스크롤바가 사라져 본문이 스크롤바 너비만큼 옆으로 밀린다. <code>scrollbar-gutter: stable</code>은 스크롤바 자리를 항상 예약해 이 흔들림을 없앤다.</p>
+ <div class="demo">
+  <div class="grid2">
+   <div><h3><span class="bad-label">✗</span> 기본</h3><div class="gbox" id="gA"><p class="rule"></p><div id="gAc"></div></div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" data-g="gA">잠금 토글</button></div><div class="stat" id="gAs">콘텐츠 너비 —</div></div>
+   <div><h3><span class="good-label">✓</span> scrollbar-gutter: stable</h3><div class="gbox gut" id="gB"><p class="rule"></p><div id="gBc"></div></div><div class="row" style="margin-top:8px"><button class="btn sm" type="button" data-g="gB">잠금 토글</button></div><div class="stat" id="gBs">콘텐츠 너비 —</div></div>
+  </div>
+  <p class="cap">데스크톱(항상 보이는 스크롤바) 기준. 모바일·macOS 오버레이 스크롤바에서는 원래 흔들림이 없어 차이가 안 보일 수 있다.</p>
+  <h3 style="margin-top:16px">덤: overscroll-behavior — 모달 안 스크롤이 뒤 배경으로 번지는 것(스크롤 체이닝) 막기</h3>
+  <div class="outer"><p style="margin:0 0 8px;font-size:.8rem">바깥 스크롤 영역 ↓ 안쪽 목록 끝까지 휠을 내려 보세요</p>
+   <div class="grid2"><div><div class="chain" id="c1"></div><p class="cap">기본 — 끝에서 바깥이 따라 움직임</p></div><div><div class="chain contain" id="c2"></div><p class="cap">overscroll-behavior: contain</p></div></div>
+   <div style="height:200px"></div></div>
+ </div>
+<pre><code>/* 스크롤바 자리를 항상 예약 → 잠금 전후 너비 동일 */
+html { scrollbar-gutter: stable; }
+/* 모달 열림 동안 배경 잠금 (JS 클래스 토글 없이) */
+html:has(dialog[open]) { overflow: hidden; }
+dialog .scroll { overscroll-behavior: contain; }</code></pre>
+ <div class="note">핵심: scrollbar-gutter는 최신 주요 브라우저에서 지원되는 것으로 알려져 있다(web.dev가 Baseline Newly available로 소개). 정확한 버전은 배포 전 MDN/caniuse 확인 — 추정. 레이아웃 폭이 중요한 결제 화면(금액 정렬)에서 모달 열고 닫을 때 숫자가 좌우로 튀지 않게 한다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · self-contained</div>
+</div>
+<script>
+(function(){
+var qs=new URLSearchParams(location.search),root=document.documentElement;
+if(qs.get('theme')==='dark')root.setAttribute('data-theme','dark');
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+var tb=document.getElementById('themeBtn');
+function sync(){var d=root.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d);tb.textContent=d?'라이트 모드':'다크 모드'}
+tb.onclick=function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');sync()};sync();
+function $(i){return document.getElementById(i)}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+/* 1. popup */
+var win=$('pWin'),cur=null,timer=0;
+function fakeOpen(){if($('pBlock').checked)return null;cur={closed:false};win.hidden=false;return cur}
+function closeWin(){if(cur){cur.closed=true}win.hidden=true}
+function sBad(t,c){var e=$('pBadS');e.textContent=t;e.className='state '+(c||'')}
+function sGood(t,c){var e=$('pGoodS');e.textContent=t;e.className='state '+(c||'')}
+$('pBad').onclick=async function(){sBad('세션 만들는 중…');await sleep(900); /* await 뒤 → 차단 가능성↑ */
+ var w=$('pBlock').checked?null:fakeOpen(); if(!w){sBad('(아무 일도 안 일어남 — 사용자는 버튼이 고장난 줄 안다)','bad');return}
+ sBad('결제 창 열림…'); cur=w; clearInterval(timer); timer=setInterval(function(){if(w.closed){clearInterval(timer);sBad('결제 창 닫힘 (이유 모름)','warn')}},300)};
+$('pGood').onclick=async function(){var act=$('pGoodAct');act.hidden=true;act.innerHTML='';
+ var w=fakeOpen(); /* 클릭 즉시, await 이전 */
+ if(!w){sGood('새 창이 차단됐어요. 이 탭에서 이어서 결제할 수 있어요.','warn');act.hidden=false;act.innerHTML='<button class="btn sm" type="button" id="pRedir">이 탭에서 결제 이어가기</button>';$('pRedir').onclick=function(){sGood('같은 탭으로 이동 (데모) — 결제 후 return_url로 복귀','ok')};return}
+ sGood('결제 창을 여는 중…'); await sleep(500); sGood('결제 창에서 진행해 주세요. 창을 닫으면 여기서 이어서 확인해요.');
+ clearInterval(timer); timer=setInterval(async function(){if(w.closed){clearInterval(timer);sGood('창이 닫혔어요. 결제 상태를 확인하는 중…');await sleep(900);
+  sGood('결제가 완료되지 않았어요. 승인 전에 창을 닫으신 것 같아요.','warn');act.hidden=false;act.innerHTML='<button class="btn sm" type="button" id="pAgain">다시 결제하기</button><button class="btn ghost sm" type="button" id="pOther">다른 방법 선택</button>';
+  $('pAgain').onclick=function(){$('pGood').click()};$('pOther').onclick=function(){sGood('결제 수단 선택 화면으로 (데모)')}}},300)};
+$('pClose').onclick=closeWin;
+$('pOk').onclick=function(){if(cur&&!cur.closed){cur.paid=true;clearInterval(timer);closeWin();sGood('결제 완료! 서버에서 승인을 확인했어요.','ok');sBad('결제 완료 (이 예시는 나쁜 예도 성공 시 동일)','ok')}};
+
+/* 2. partial */
+var names=['오늘 매출','정산 예정','환불 건수'],vals=['₩ 4,820,000','₩ 12,300,000','7건'];
+var st=[0,1,2].map(function(){return {data:null,at:null,err:false,load:false,stale:false}});
+function fmtT(t){var d=new Date(t);return d.getHours()+':'+('0'+d.getMinutes()).slice(-2)+':'+('0'+d.getSeconds()).slice(-2)}
+function renderIso(){var h='';st.forEach(function(s,i){var c='w'+(s.load?' load':'')+(s.err?' err':'')+(s.stale?' stale':'');
+ h+='<div class="'+c+'" role="group" aria-label="'+names[i]+'" aria-busy="'+s.load+'"><h4>'+names[i]+'</h4><div class="v">'+(s.data||(s.load?'&nbsp;':'—'))+'</div>';
+ if(s.at)h+='<div class="sub">'+fmtT(s.at)+' 기준</div>';
+ if(s.stale)h+='<span class="pill">오래된 데이터</span>';
+ if(s.err)h+='<div class="msg" role="alert">불러오지 못했어요 <button class="btn ghost sm" type="button" data-r="'+i+'">다시 시도</button></div>';
+ h+='</div>'});$('pIso').innerHTML=h}
+function renderAll(any,loading){$('pAll').innerHTML=loading?'<div class="w load"><div class="v">&nbsp;</div></div>':any?'<div class="fullerr" role="alert">데이터를 불러오지 못했어요<br><button class="btn ghost sm" type="button" id="pAllR" style="margin-top:8px">다시 시도</button></div>':'<div class="wgrid">'+st.map(function(s,i){return '<div class="w"><h4>'+names[i]+'</h4><div class="v">'+vals[i]+'</div></div>'}).join('')+'</div>'}
+function fails(i){var c=document.querySelectorAll('.pf')[i];return c.checked}
+async function one(i){st[i].load=true;st[i].err=false;renderIso();await sleep(500+i*250);st[i].load=false;
+ if(fails(i)){st[i].err=true;st[i].stale=!!st[i].data}else{st[i].data=vals[i];st[i].at=Date.now();st[i].stale=false}renderIso();return !fails(i)}
+async function all(){renderAll(false,true);var r=await Promise.all([0,1,2].map(one));renderAll(r.some(function(x){return !x}),false);var b=$('pAllR');if(b)b.onclick=all}
+$('pRefresh').onclick=all;
+$('pIso').addEventListener('click',function(e){var b=e.target.closest('[data-r]');if(b)one(+b.dataset.r)});
+renderIso();all();
+
+/* 3. gutter */
+function fillG(id){var h='';for(var i=1;i<=14;i++)h+='<p class="line">거래 내역 '+i+' — 12,000원</p>';$(id).innerHTML=h}
+fillG('gAc');fillG('gBc');
+function measure(box,out){var r=box.querySelector('.rule').getBoundingClientRect().width;out.textContent='콘텐츠 너비 '+Math.round(r)+'px'+(box._prev!=null&&box._prev!==Math.round(r)?'  (이전 '+box._prev+'px → 흔들림 '+(Math.round(r)-box._prev)+'px)':'');box._prev=Math.round(r)}
+[['gA','gAs'],['gB','gBs']].forEach(function(p){measure($(p[0]),$(p[1]))});
+document.querySelectorAll('[data-g]').forEach(function(b){b.onclick=function(){var box=$(b.dataset.g);box.classList.toggle('locked');measure(box,$(b.dataset.g+'s'))}});
+function fillC(id){var h='';for(var i=1;i<=12;i++)h+='<p>항목 '+i+'</p>';$(id).innerHTML=h}fillC('c1');fillC('c2');
+})();
+</script>
+</body>
+</html>
