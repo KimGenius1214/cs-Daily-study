@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-14 (수)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#b45309;--warn-soft:#fdf3e3;--danger:#dc2626;--danger-soft:#fdecec;--ring:#4f46e5;--shadow:0 6px 24px rgba(20,24,31,.10);--radius:14px}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#12261d;--warn:#f0b040;--warn-soft:#2a2113;--danger:#f87171;--danger-soft:#2a1516;--ring:#8b8cf9;--shadow:0 6px 24px rgba(0,0,0,.45)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h3{font-size:1rem;margin:0 0 8px}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 15px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:6px 11px;font-size:.83rem}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.55;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.bad-label{color:var(--danger);font-weight:700}.good-label{color:var(--ok);font-weight:700}
+.state{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:.88rem;font-weight:600;background:var(--surface);border:1px solid var(--border)}
+.state.ok{background:var(--ok-soft);color:var(--ok);border-color:var(--ok)}
+.state.warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.state.bad{background:var(--danger-soft);color:var(--danger);border-color:var(--danger)}
+/* pay methods */
+fieldset.methods{border:0;margin:0;padding:0;display:grid;gap:8px}
+fieldset.methods legend{font-weight:700;font-size:.9rem;margin-bottom:8px;padding:0}
+.m{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:11px 12px;cursor:pointer}
+.m:hover{border-color:var(--brand)}
+.m:has(input:checked){border-color:var(--brand);background:var(--brand-soft);box-shadow:0 0 0 1px var(--brand)}
+.m:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+.m:has(input:disabled){opacity:.7;cursor:not-allowed;background:var(--surface-2)}
+.m input{margin:0;accent-color:var(--brand)}
+.m .t{font-weight:700;font-size:.9rem}.m .d{font-size:.78rem;color:var(--muted)}
+.m .d.warn{color:var(--warn);font-weight:600}.m .d.bad{color:var(--danger);font-weight:600}
+.m .badge{font-size:.7rem;font-weight:700;border-radius:999px;padding:2px 8px;background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
+.m .badge.def{background:var(--brand-soft);color:var(--brand);border-color:var(--brand)}
+.newcard{margin:-2px 0 0;padding:12px;border:1px dashed var(--border);border-radius:10px;background:var(--surface)}
+.newcard label{display:block;font-size:.8rem;font-weight:600;margin-bottom:4px}
+.newcard input{width:100%;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}
+.summary{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:12px}
+.paybar{margin-top:12px}
+.paybar .btn{width:100%;padding:12px}
+/* otp */
+.otp{display:flex;gap:8px}
+.otp input{width:44px;height:52px;text-align:center;font-size:1.4rem;font-weight:700;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-variant-numeric:tabular-nums}
+.otp input:focus{border-color:var(--brand)}
+.otp.err input{border-color:var(--danger);background:var(--danger-soft)}
+.otp.ok input{border-color:var(--ok);background:var(--ok-soft)}
+.single{width:100%;max-width:260px;padding:12px 14px;font-size:1.5rem;letter-spacing:.5em;text-align:center;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);font-variant-numeric:tabular-nums}
+.single:focus{border-color:var(--brand)}
+.single[aria-invalid="true"]{border-color:var(--danger);background:var(--danger-soft)}
+.hint{font-size:.8rem;color:var(--muted);margin:8px 0 0}
+.errmsg{font-size:.82rem;color:var(--danger);font-weight:600;margin:8px 0 0;min-height:1.2em}
+.timer{font-variant-numeric:tabular-nums;font-weight:700}
+/* text wrap */
+.wbox{border:1px dashed var(--brand);background:var(--surface);border-radius:10px;padding:12px;margin-top:8px;overflow:hidden}
+.wbox p{margin:0;font-size:.92rem}
+.wbox .h{font-weight:800;font-size:1.05rem;margin-bottom:4px}
+.tw-bal{text-wrap:balance}.tw-pre{text-wrap:pretty}.kk{word-break:keep-all}
+.lbl{font-size:.74rem;font-weight:700;color:var(--muted);margin-top:12px}
+.lbl code{background:var(--surface);border:1px solid var(--border);border-radius:5px;padding:0 5px}
+.range{display:flex;gap:10px;align-items:center;font-size:.85rem}
+.range input{flex:1;accent-color:var(--brand)}
+/* embed compact */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+ <div><h1>Design Inspiration Daily</h1><div class="date">2026-10-14 (수) · 컴포넌트 2 + 트렌드 1</div></div>
+ <button class="toggle" id="themeBtn" type="button" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+ <a href="#paymethod">💳 결제 수단 선택 — 기본값·만료·수수료</a><a href="#otp">⌨️ 인증번호 입력 — 칸 나누기 vs 한 칸</a><a href="#twrap">🌀 text-wrap — balance와 pretty</a>
+</nav>
+
+<!-- 1 -->
+<section class="card" id="paymethod">
+ <h2>💳 결제 수단 선택 — 기본값·만료·수수료 <span class="tag">결제</span></h2>
+ <p class="lead">수단 선택은 "라디오 그룹 + 각 줄에 결정에 필요한 한 줄 정보"가 핵심이다. 만료 카드는 숨기지 말고 이유와 해결 경로를 같이 보여준다.</p>
+ <div class="demo">
+  <p class="demo-title">① 목록 모드 &nbsp; ② 요약 + 변경 모드 (결제 금액 ₩52,000)</p>
+  <div class="grid2">
+   <div>
+    <h3>① 목록 모드</h3>
+    <form id="mForm" onsubmit="return false">
+    <fieldset class="methods" id="mList">
+     <legend>결제 수단</legend>
+     <label class="m"><input type="radio" name="pm" value="card1" data-name="신한 ···· 1234" data-fee="0" checked><span><span class="t">신한 ···· 1234</span><br><span class="d">일시불 · 수수료 없음</span></span><span class="badge def">기본</span></label>
+     <label class="m"><input type="radio" name="pm" value="card2" data-name="국민 ···· 8841" data-fee="0"><span><span class="t">국민 ···· 8841</span><br><span class="d warn">이번 달 말 만료 · 갱신 필요</span></span><span></span></label>
+     <label class="m"><input type="radio" name="pm" value="card3" data-name="우리 ···· 5520" data-fee="0" disabled aria-describedby="mExp"><span><span class="t">우리 ···· 5520</span><br><span class="d bad" id="mExp">만료됨 (2026.08) · 선택할 수 없어요</span></span><button type="button" class="btn ghost sm" id="mRenew">정보 갱신</button></label>
+     <label class="m"><input type="radio" name="pm" value="bank" data-name="계좌이체" data-fee="0"><span><span class="t">계좌이체</span><br><span class="d">수수료 없음 · 은행 앱 인증</span></span><span></span></label>
+     <label class="m"><input type="radio" name="pm" value="easy" data-name="간편결제" data-fee="520"><span><span class="t">간편결제</span><br><span class="d">수수료 520원 별도</span></span><span></span></label>
+     <label class="m"><input type="radio" name="pm" value="new" data-name="새 카드" data-fee="0"><span><span class="t">새 카드 추가</span><br><span class="d">카드 번호를 직접 입력</span></span><span></span></label>
+    </fieldset>
+    <div class="newcard" id="mNew" hidden><label for="mNum">카드 번호</label><input id="mNum" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000"></div>
+    <div class="paybar"><button class="btn" id="mPay" type="button">₩52,000 결제하기</button></div>
+    </form>
+    <div class="state" id="mState" role="status" aria-live="polite">신한 ···· 1234 선택됨</div>
+    <p class="cap">비활성 라디오는 포커스가 안 가므로 만료 이유를 텍스트로 붙이고, 해결 버튼은 줄 안에 둔다.</p>
+   </div>
+   <div>
+    <h3>② 요약 + 변경 모드</h3>
+    <div class="summary"><div><div class="t" style="font-weight:700" id="sName">신한 ···· 1234</div><div class="d" style="font-size:.78rem;color:var(--muted)" id="sSub">마지막으로 쓴 수단</div></div><button class="btn ghost sm" id="sChange" type="button" aria-expanded="false" aria-controls="sPick">변경</button></div>
+    <div id="sPick" hidden class="row" style="margin-top:8px">
+     <button class="btn ghost sm" type="button" data-v="신한 ···· 1234|마지막으로 쓴 수단">신한 ···· 1234</button>
+     <button class="btn ghost sm" type="button" data-v="계좌이체|수수료 없음">계좌이체</button>
+     <button class="btn ghost sm" type="button" data-v="간편결제|수수료 520원 별도">간편결제</button>
+    </div>
+    <div class="paybar"><button class="btn" id="sPay" type="button">₩52,000 결제하기</button></div>
+    <p class="cap">재방문 사용자는 "마지막 수단 + 변경"이 클릭 수가 적다. 변경 시 포커스는 선택된 항목으로 돌려준다.</p>
+   </div>
+  </div>
+ </div>
+ <pre><code>&lt;fieldset&gt;&lt;legend&gt;결제 수단&lt;/legend&gt;
+  &lt;label class="m"&gt;&lt;input type="radio" name="pm" value="card1" checked&gt; 신한 ···· 1234 &lt;/label&gt;
+&lt;/fieldset&gt;
+.m:has(input:checked){border-color:var(--brand)}</code></pre>
+ <div class="note">버튼 라벨에 선택한 수단과 금액이 같이 나오면 "무엇으로 얼마를 내는지"를 마지막에 다시 확인시켜 준다.</div>
+</section>
+
+<!-- 2 -->
+<section class="card" id="otp">
+ <h2>⌨️ 인증번호 입력 — 칸 나누기 vs 한 칸 <span class="tag">입력·폼</span></h2>
+ <p class="lead">6자리 인증번호는 붙여넣기·SMS 자동 채움·자동 이동·재전송 타이머가 한 묶음이다. (테스트용 정답 코드: 123456)</p>
+ <div class="demo">
+  <p class="demo-title">① 칸 나누기 (자동 이동·붙여넣기 분배) &nbsp; ② 한 칸 입력 (단순·견고)</p>
+  <div class="grid2">
+   <div>
+    <h3>① 칸 나누기</h3>
+    <div role="group" aria-labelledby="oLbl1"><span id="oLbl1" class="sr-only">인증번호 6자리</span>
+    <div class="otp" id="o1"></div></div>
+    <p class="errmsg" id="o1Err" role="alert"></p>
+    <p class="hint">남은 시간 <span class="timer" id="o1T">03:00</span> · <button class="btn ghost sm" id="o1Re" type="button" disabled>재전송 (<span id="o1C">30</span>초)</button></p>
+    <div class="state" id="o1S" role="status" aria-live="polite">6자리를 입력하면 자동으로 확인해요</div>
+   </div>
+   <div>
+    <h3>② 한 칸 입력</h3>
+    <label for="o2" class="sr-only">인증번호 6자리</label>
+    <input class="single" id="o2" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="······" aria-describedby="o2Err o2H">
+    <p class="errmsg" id="o2Err" role="alert"></p>
+    <p class="hint" id="o2H">문자로 온 6자리 숫자를 입력하세요. 붙여넣기·자동 채움 모두 동작해요.</p>
+    <div class="state" id="o2S" role="status" aria-live="polite">대기 중</div>
+   </div>
+  </div>
+ </div>
+ <pre><code>&lt;input inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}"&gt;</code></pre>
+ <div class="note">칸 나누기는 시각적으로 익숙하지만 자동 채움·IME·스크린리더에서 깨지기 쉽다. 한 칸 + <code>letter-spacing</code>이 더 견고하다.</div>
+</section>
+
+<!-- 3 -->
+<section class="card" id="twrap">
+ <h2>🌀 text-wrap — balance와 pretty <span class="tag">트렌드</span></h2>
+ <p class="lead">제목·토스트·에러 문구에서 마지막 줄에 한두 글자만 덜렁 남는 현상을 CSS 한 줄로 줄인다. 아래 슬라이더로 너비를 바꿔 보자.</p>
+ <div class="demo">
+  <div class="range"><label for="wRange">컨테이너 너비</label><input type="range" id="wRange" min="180" max="420" value="300"><output id="wOut" for="wRange">300px</output></div>
+  <div id="wTarget" style="max-width:100%">
+   <div class="lbl"><code>text-wrap: wrap</code> (기본)</div>
+   <div class="wbox w"><p class="h">결제 수단을 변경하면 할인이 적용되지 않을 수 있어요</p><p>선택하신 수단은 이번 주문의 쿠폰 대상이 아니라서 최종 결제 금액이 달라질 수 있습니다.</p></div>
+   <div class="lbl"><code>text-wrap: balance</code> (제목)</div>
+   <div class="wbox w"><p class="h tw-bal">결제 수단을 변경하면 할인이 적용되지 않을 수 있어요</p><p class="tw-pre">선택하신 수단은 이번 주문의 쿠폰 대상이 아니라서 최종 결제 금액이 달라질 수 있습니다.</p></div>
+   <div class="lbl"><code>word-break: keep-all</code> 추가 (한글 단어 단위)</div>
+   <div class="wbox w"><p class="h tw-bal kk">결제 수단을 변경하면 할인이 적용되지 않을 수 있어요</p><p class="tw-pre kk">선택하신 수단은 이번 주문의 쿠폰 대상이 아니라서 최종 결제 금액이 달라질 수 있습니다.</p></div>
+  </div>
+ </div>
+ <div class="support" id="twSup">브라우저 지원 확인 중…</div>
+ <pre><code>h1,h2,.toast-title{ text-wrap: balance; }   /* 제목·짧은 문구 */
+p{ text-wrap: pretty; }                      /* 본문: 마지막 줄 고아 방지(브라우저별 차이) */
+.ko{ word-break: keep-all; }                 /* 한글 단어 단위 줄바꿈 */</code></pre>
+ <div class="note">balance는 몇 줄 이하 문구용(브라우저가 줄 수 제한을 둠). pretty의 지원 범위는 브라우저마다 달라 추정/확인 필요 — 안 되어도 깨지지 않는 점진적 향상이다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 자체 제작 예시 · 외부 의존성 없음</div>
+</div>
+
+<script>
+(function(){
+var qs=new URLSearchParams(location.search),root=document.documentElement;
+if(qs.get('theme')==='dark')root.setAttribute('data-theme','dark');
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+var tb=document.getElementById('themeBtn');
+function sync(){var d=root.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d);tb.textContent=d?'라이트 모드':'다크 모드'}
+tb.onclick=function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');sync()};sync();
+function $(i){return document.getElementById(i)}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+
+/* 1. pay methods */
+var radios=[].slice.call(document.querySelectorAll('input[name=pm]'));
+function won(n){return '₩'+n.toLocaleString('ko-KR')}
+function upd(){var r=radios.filter(function(x){return x.checked})[0];if(!r)return;
+ var fee=+r.dataset.fee,tot=52000+fee;
+ $('mNew').hidden=r.value!=='new';
+ $('mPay').textContent=won(tot)+' 결제하기'+(r.value==='new'?'':' ('+r.dataset.name+')');
+ $('mState').textContent=r.dataset.name+' 선택됨'+(fee?' · 수수료 '+won(fee)+' 포함 총 '+won(tot):'');
+ $('mState').className='state'+(fee?' warn':'')}
+radios.forEach(function(r){r.addEventListener('change',upd)});upd();
+$('mRenew').onclick=function(e){e.preventDefault();$('mState').textContent='카드 정보 갱신 화면으로 이동 (데모)';$('mState').className='state warn'};
+$('mPay').onclick=function(){var r=radios.filter(function(x){return x.checked})[0];
+ if(r.value==='new'&&!$('mNum').value.trim()){$('mState').textContent='카드 번호를 입력해 주세요';$('mState').className='state bad';$('mNum').focus();return}
+ $('mState').textContent=r.dataset.name+'(으)로 결제 진행 (데모)';$('mState').className='state ok'};
+var cur='신한 ···· 1234',curSub='마지막으로 쓴 수단';
+$('sChange').onclick=function(){var p=$('sPick'),o=p.hidden;p.hidden=!o;this.setAttribute('aria-expanded',o);if(o)p.querySelector('button').focus()};
+[].forEach.call($('sPick').querySelectorAll('button'),function(b){b.onclick=function(){var v=b.dataset.v.split('|');
+ $('sName').textContent=v[0];$('sSub').textContent=v[1];$('sPick').hidden=true;$('sChange').setAttribute('aria-expanded','false');$('sChange').focus();
+ $('sPay').textContent='₩52,000 결제하기 ('+v[0]+')'}});
+$('sPay').textContent='₩52,000 결제하기 (신한 ···· 1234)';
+
+/* 2. otp */
+var N=6,box=$('o1'),cells=[];
+for(var i=0;i<N;i++){var c=document.createElement('input');c.type='text';c.inputMode='numeric';c.maxLength=1;c.setAttribute('aria-label','인증번호 '+(i+1)+'번째 숫자');
+ if(i===0)c.autocomplete='one-time-code';else c.autocomplete='off';box.appendChild(c);cells.push(c)}
+function code1(){return cells.map(function(c){return c.value}).join('')}
+var locked1=false;
+function setS(el,t,c){el.textContent=t;el.className='state '+(c||'')}
+function verify(code,from){
+ if(code!=='123456'){return false}return true}
+function check1(){var v=code1();if(v.length<N)return;
+ if(v==='123456'){box.className='otp ok';$('o1Err').textContent='';setS($('o1S'),'인증 완료','ok');cells.forEach(function(c){c.readOnly=true})}
+ else{box.className='otp err';$('o1Err').textContent='인증번호가 맞지 않아요. 다시 확인해 주세요.';setS($('o1S'),'불일치 — 다시 입력','bad');cells[N-1].select()}}
+cells.forEach(function(c,i){
+ c.addEventListener('input',function(){c.value=c.value.replace(/\D/g,'').slice(-1);box.className='otp';$('o1Err').textContent='';
+  if(c.value&&i<N-1)cells[i+1].focus();check1()});
+ c.addEventListener('keydown',function(e){
+  if(e.key==='Backspace'&&!c.value&&i>0){cells[i-1].focus();cells[i-1].value='';e.preventDefault()}
+  else if(e.key==='ArrowLeft'&&i>0){cells[i-1].focus();e.preventDefault()}
+  else if(e.key==='ArrowRight'&&i<N-1){cells[i+1].focus();e.preventDefault()}});
+ c.addEventListener('focus',function(){c.select()});
+ c.addEventListener('paste',function(e){var t=(e.clipboardData||window.clipboardData).getData('text').replace(/\D/g,'').slice(0,N);if(!t)return;e.preventDefault();
+  for(var k=0;k<N;k++)cells[k].value=t[k]||'';cells[Math.min(t.length,N-1)].focus();box.className='otp';check1()})});
+var left=180,cd=30,tm=setInterval(function(){left=Math.max(0,left-1);
+ $('o1T').textContent=('0'+Math.floor(left/60)).slice(-2)+':'+('0'+left%60).slice(-2);
+ if(cd>0){cd--;$('o1C').textContent=cd;if(cd===0){$('o1Re').disabled=false;$('o1Re').textContent='인증번호 재전송'}}
+ if(left===0){clearInterval(tm);setS($('o1S'),'시간이 지났어요. 재전송해 주세요.','warn')}},1000);
+$('o1Re').onclick=function(){cells.forEach(function(c){c.value='';c.readOnly=false});box.className='otp';$('o1Err').textContent='';left=180;cd=30;
+ this.disabled=true;this.innerHTML='재전송 (<span id="o1C">30</span>초)';setS($('o1S'),'새 인증번호를 보냈어요','ok');cells[0].focus();
+ clearInterval(tm);tm=setInterval(arguments.callee&&function(){},1e9);clearInterval(tm);
+ tm=setInterval(function(){left=Math.max(0,left-1);$('o1T').textContent=('0'+Math.floor(left/60)).slice(-2)+':'+('0'+left%60).slice(-2);
+  if(cd>0){cd--;$('o1C').textContent=cd;if(cd===0){$('o1Re').disabled=false;$('o1Re').textContent='인증번호 재전송'}}},1000)};
+var o2=$('o2');
+o2.addEventListener('input',function(){o2.value=o2.value.replace(/\D/g,'').slice(0,N);o2.removeAttribute('aria-invalid');$('o2Err').textContent='';
+ if(o2.value.length<N){setS($('o2S'),o2.value.length?o2.value.length+'/6 입력 중':'대기 중');return}
+ if(o2.value==='123456'){setS($('o2S'),'인증 완료','ok')}
+ else{o2.setAttribute('aria-invalid','true');$('o2Err').textContent='인증번호가 맞지 않아요.';setS($('o2S'),'불일치 — 다시 입력','bad')}});
+
+/* 3. text-wrap */
+var r=$('wRange');function setW(){$('wTarget').style.width=r.value+'px';$('wOut').textContent=r.value+'px'}r.oninput=setW;setW();
+var sup=window.CSS&&CSS.supports;
+var bal=sup&&CSS.supports('text-wrap','balance'),pre=sup&&CSS.supports('text-wrap','pretty');
+$('twSup').textContent='이 브라우저: balance '+(bal?'지원':'미지원')+' · pretty '+(pre?'지원':'미지원')+' (지원 범위는 브라우저·버전마다 달라 직접 확인 필요)';
+})();
+</script>
+</body>
+</html>
