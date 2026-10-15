@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-16 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#b45309;--warn-soft:#fdf3e3;--danger:#dc2626;--danger-soft:#fdecec;--ring:#4f46e5;--shadow:0 6px 24px rgba(20,24,31,.10);--radius:14px;
+--h0:#eef0fe;--h1:#c7cbfa;--h2:#9aa0f3;--h3:#5a5fd6;--h4:#2f3399;--t0:#14181f;--t1:#14181f;--t2:#14181f;--t3:#fff;--t4:#fff}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#12261d;--warn:#f0b040;--warn-soft:#2a2113;--danger:#f87171;--danger-soft:#2c1717;--ring:#8b8cf9;--shadow:0 6px 24px rgba(0,0,0,.45);
+--h0:#1b212c;--h1:#2b3163;--h2:#4b52a8;--h3:#7b82e6;--h4:#b9bdfd;--t0:#e7ebf2;--t1:#e7ebf2;--t2:#fff;--t3:#0b0e13;--t4:#0b0e13}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:8px 14px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled="true"]{opacity:.6;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{border:0;background:none;color:var(--text);padding:6px 12px;cursor:pointer;font-size:.85rem}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);font-weight:700}
+.seg button+button{border-left:1px solid var(--border)}
+/* heatmap */
+.hmwrap{overflow-x:auto}
+table.hm{border-collapse:separate;border-spacing:3px;min-width:560px;width:100%}
+table.hm th{font-size:.74rem;color:var(--muted);font-weight:600;padding:2px 4px;text-align:center}
+table.hm th.rh{text-align:right;padding-right:8px;white-space:nowrap}
+table.hm td{height:42px;text-align:center;border-radius:7px;font-size:.8rem;font-variant-numeric:tabular-nums;cursor:pointer;border:2px solid transparent;font-weight:600}
+td.l0{background:var(--h0);color:var(--t0)}td.l1{background:var(--h1);color:var(--t1)}td.l2{background:var(--h2);color:var(--t2)}td.l3{background:var(--h3);color:var(--t3)}td.l4{background:var(--h4);color:var(--t4)}
+table.hm td:hover{border-color:var(--text)}
+table.hm td[aria-selected="true"]{border-color:var(--text);box-shadow:0 0 0 2px var(--surface) inset}
+table.hm td:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+.legend{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;font-size:.76rem;color:var(--muted);align-items:center}
+.legend span.sw{display:inline-flex;align-items:center;gap:5px}
+.legend i{display:inline-block;width:16px;height:16px;border-radius:4px;border:1px solid var(--border)}
+.detail{margin-top:10px;padding:9px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--border);font-size:.86rem;min-height:40px}
+/* export */
+.job{display:grid;grid-template-columns:1fr auto;gap:4px 12px;border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:12px 14px;margin:0 0 10px}
+.job.flash{border-color:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
+.job .nm{font-weight:700;font-size:.92rem}.job .meta{color:var(--muted);font-size:.8rem;grid-column:1/-1}
+.badge{font-size:.74rem;font-weight:700;border-radius:999px;padding:2px 9px;border:1px solid var(--border);white-space:nowrap}
+.badge.q{background:var(--surface-2);color:var(--muted)}.badge.r{background:var(--brand-soft);color:var(--brand)}
+.badge.d{background:var(--ok-soft);color:var(--ok)}.badge.f{background:var(--danger-soft);color:var(--danger)}.badge.c{background:var(--surface-2);color:var(--muted)}
+.bar{grid-column:1/-1;height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;border:1px solid var(--border)}
+.bar>i{display:block;height:100%;background:var(--brand);transition:width .4s}
+.bar.ind>i{width:40%;animation:slide 1.2s ease-in-out infinite alternate;background:var(--muted)}
+@keyframes slide{from{margin-left:0}to{margin-left:60%}}
+.job .acts{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.state{margin-top:12px;padding:9px 12px;border-radius:10px;font-size:.86rem;font-weight:600;background:var(--surface);border:1px solid var(--border)}
+.field{display:flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--muted);font-weight:600}
+.field select{padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}
+/* spec */
+.lnk{display:grid;grid-template-columns:1fr auto;gap:2px 10px;border:1px solid var(--border);background:var(--surface);border-radius:10px;padding:9px 12px;margin:0 0 8px;cursor:pointer}
+.lnk:hover{border-color:var(--brand)}
+.lnk code{font-weight:700}.lnk .why{font-size:.78rem;color:var(--muted);grid-column:1/-1}
+.lnk.skip{opacity:.75}.lnk.fire{border-color:var(--ok);background:var(--ok-soft)}
+.pill{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--surface-2);border:1px solid var(--border)}
+.pill.ok{color:var(--ok)}.pill.no{color:var(--muted)}.pill.bad{color:var(--danger);background:var(--danger-soft)}
+.chk{display:flex;gap:7px;align-items:center;font-size:.85rem}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-16 (금) · 히트맵 · 내보내기 작업 상태 · Speculation Rules</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#hm">📊 시간대 히트맵</a><a href="#exp">🔔 내보내기 작업 상태</a><a href="#spec">🌀 Speculation Rules</a>
+</nav>
+
+<!-- ============ 1. HEATMAP ============ -->
+<section class="card" id="hm" aria-labelledby="hm-h">
+<h2 id="hm-h">📊 요일×시간대 히트맵 — 색은 값이 아니라 "구간"이다 <span class="tag">데이터·테이블·차트</span></h2>
+<p class="lead">결제가 언제 몰리고 언제 거절이 많은지 한눈에. 이상치 하나가 색 전체를 납작하게 만드는 함정과, 색이 아니라 숫자·키보드로도 읽히게 하는 법.</p>
+<div class="demo">
+<div class="row" style="margin-bottom:10px">
+<div class="seg" role="group" aria-label="지표"><button type="button" data-m="cnt" aria-pressed="true">승인 건수</button><button type="button" data-m="rate" aria-pressed="false">승인율(%)</button><button type="button" data-m="dec" aria-pressed="false">거절 건수</button></div>
+<div class="seg" role="group" aria-label="색 구간 방식"><button type="button" data-s="lin" aria-pressed="false">선형 구간</button><button type="button" data-s="qua" aria-pressed="true">분위수 구간</button></div>
+</div>
+<div class="hmwrap"><table class="hm" role="grid" id="hmT" aria-label="요일별 시간대별 결제 지표"></table></div>
+<div class="legend" id="hmLeg" aria-label="범례"></div>
+<div class="detail" id="hmDetail" aria-live="polite">셀을 클릭하거나 화살표 키로 이동해 보세요.</div>
+<p class="cap">금요일 18~24시의 폭증(이상치)이 있을 때 "선형 구간"은 나머지를 전부 연한 색으로 뭉갭니다. "분위수 구간"은 칸 수가 균등하게 나뉘어 평소 패턴(점심·저녁)이 보입니다. 단, 분위수는 "얼마나 큰지"를 과장/왜곡할 수 있어 범례에 구간 숫자를 반드시 표기합니다.</p>
+</div>
+<pre><code>// 구간 임계값 — 선형 vs 분위수
+const linear = (min, max) =&gt; [1,2,3,4].map(i =&gt; min + (max-min)*i/5);
+const quantile = (vals) =&gt; { const s=[...vals].sort((a,b)=&gt;a-b);
+  return [.2,.4,.6,.8].map(p =&gt; s[Math.floor(p*(s.length-1))]); };
+const level = (v, th) =&gt; th.filter(t =&gt; v &gt; t).length; // 0~4</code></pre>
+<div class="note">접근성: 셀마다 <code>aria-label</code>로 "금요일 18~21시 승인 490건" 전체 문장 제공, 색만으로 값을 전달하지 않게 숫자를 셀 안에 표기, 화살표/Home/End 키 이동(roving tabindex), 5단계 명도는 텍스트 대비 4.5:1 이상으로 짝지음.</div>
+</section>
+
+<!-- ============ 2. EXPORT JOB ============ -->
+<section class="card" id="exp" aria-labelledby="exp-h">
+<h2 id="exp-h">🔔 내보내기 작업 상태 — 대기·진행·완료·실패를 눈에 보이게, 중복 클릭은 합치기 <span class="tag">피드백·상태</span></h2>
+<p class="lead">정산 엑셀처럼 서버가 수 초~수 분 만드는 파일은 "버튼 → 스피너"로 끝나지 않습니다. 이탈해도 이어지고, 실패는 되돌릴 수 있게.</p>
+<div class="grid2">
+<div class="demo"><p class="demo-title">A. 인라인 버튼 — 버튼이 상태판이 된다</p>
+<div class="row"><button type="button" class="btn" id="xBtn">엑셀 내보내기</button><button type="button" class="btn ghost sm" id="xRe" hidden>다시 만들기</button></div>
+<div class="state" id="xState" role="status">대기 중</div>
+<p class="cap">진행 중에도 버튼은 <code>aria-disabled</code>(포커스는 유지)이고, 누르면 "이미 만드는 중"이라고 알려 줍니다.</p></div>
+<div class="demo"><p class="demo-title">B. 작업 목록 — 새로고침해도 돌아와서 받는 방식</p>
+<div class="row" style="margin-bottom:10px">
+<label class="field">기간<select id="jRange"><option>최근 7일 거래</option><option>이번 달 거래</option><option>지난달 정산</option></select></label>
+<label class="chk" style="align-self:flex-end"><input type="checkbox" id="jFail"> 실패 시뮬레이션</label>
+<button type="button" class="btn" id="jNew" style="align-self:flex-end">내보내기 요청</button></div>
+<div id="jMsg" class="cap" role="status" aria-live="polite" style="margin:0 0 8px;min-height:1.2em"></div>
+<div id="jList"></div>
+<div class="sr-only" id="jLive" aria-live="polite"></div>
+<p class="cap">진행률은 폴링(주기적 확인) 간격을 1→1.5→2→3초로 늘립니다(백오프). 같은 조건을 또 누르면 새 작업 대신 기존 작업으로 안내합니다.</p></div>
+</div>
+<pre><code>// 폴링 + 백오프 (요지)
+const delays = [1000, 1500, 2000, 3000];
+async function poll(jobId, i = 0){
+  const job = await fetch(`/api/exports/${jobId}`).then(r =&gt; r.json());
+  render(job);
+  if (['done','failed','canceled'].includes(job.status)) return;
+  setTimeout(() =&gt; poll(jobId, i + 1), delays[Math.min(i, delays.length-1)]);
+}</code></pre>
+<div class="note">설계 포인트: 상태는 서버가 가진다(<code>jobId</code>) → 새로고침·다른 탭에서도 복원. 요청은 멱등키로 중복 방지. 진행률 숫자가 불확실하면 막대를 "불확정(indeterminate)"으로. 스크린리더에는 매 퍼센트가 아니라 "완료/실패" 전환만 알립니다.</div>
+</section>
+
+<!-- ============ 3. SPECULATION RULES ============ -->
+<section class="card" id="spec" aria-labelledby="spec-h">
+<h2 id="spec-h">🌀 Speculation Rules — 링크를 누르기 전에 브라우저가 미리 받아 두기 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">JSON 규칙 하나로 prefetch(문서만 미리 받기)·prerender(숨은 탭에서 미리 렌더)를 선언합니다. 이 데모는 규칙 생성기 + 동작 시뮬레이션입니다(실제 사전 로드는 일으키지 않음).</p>
+<div class="demo">
+<div class="row" style="margin-bottom:12px;align-items:flex-end">
+<div class="seg" role="group" aria-label="동작"><button type="button" data-a="prefetch" aria-pressed="true">prefetch</button><button type="button" data-a="prerender" aria-pressed="false">prerender</button></div>
+<label class="field">eagerness<select id="sE"><option>conservative</option><option selected>moderate</option><option>eager</option><option>immediate</option></select></label>
+<label class="chk"><input type="checkbox" id="sX" checked> 결제·로그아웃(.no-spec) 제외</label>
+<label class="chk"><input type="checkbox" id="sQ"> 쿼리스트링 링크 제외</label>
+</div>
+<div class="grid2">
+<div><p class="demo-title">링크 목록 (마우스를 올려/눌러 보세요)</p><div id="sLinks"></div><button type="button" class="btn ghost sm" id="sReset">초기화</button></div>
+<div><p class="demo-title">생성된 규칙</p><pre id="sJson" style="margin-top:0"></pre><div class="state" id="sSup" role="status"></div></div>
+</div>
+<p class="cap">시뮬레이션: conservative=pointerdown, moderate=데스크톱 hover 200ms 또는 pointerdown, eager=hover 10ms, immediate=규칙 발견 즉시 (Chrome 문서 기준. 모바일 동작은 다르며 시점이 바뀌어 왔음).</p>
+</div>
+<pre><code>&lt;script type="speculationrules"&gt;
+{ "prefetch": [{
+    "where": { "and": [
+      { "href_matches": "/*" },
+      { "not": { "selector_matches": ".no-spec" } } ] },
+    "eagerness": "moderate" }] }
+&lt;/script&gt;</code></pre>
+<div class="note">결제 도메인 주의: GET만으로 상태가 바뀌는 URL(로그아웃, 결제 확정)은 절대 사전 로드 대상에 두지 않습니다. prerender된 페이지의 스크립트는 사용자가 보기 전에 실행되므로 분석 이벤트·결제 SDK 초기화는 <code>prerenderingchange</code> 이후로 미룹니다. 지원: Chrome/Edge 109+(prerender), Firefox·Safari는 제한적(변동 가능 — 출시 전 MDN 재확인).</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · self-contained · 오프라인에서도 열립니다</div>
+</div>
+<script>
+(function(){
+var root=document.documentElement,qs=new URLSearchParams(location.search);
+var btn=document.getElementById('themeBtn');
+function setTheme(t){if(t==='dark')root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');btn.setAttribute('aria-pressed',t==='dark');btn.textContent=t==='dark'?'라이트 모드':'다크 모드'}
+btn.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+setTheme(qs.get('theme')==='dark'?'dark':(qs.get('theme')==='light'?'light':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')));
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+
+/* ===== 1. heatmap ===== */
+var DAYS=['월','화','수','목','금','토','일'],BANDS=['0~3','3~6','6~9','9~12','12~15','15~18','18~21','21~24'];
+var CNT=[[12,3,18,96,142,128,171,64],[10,4,20,102,150,131,168,70],[11,3,19,99,139,140,176,66],[13,4,22,105,148,134,182,72],[15,5,24,110,161,172,490,138],[30,12,16,58,97,120,142,115],[26,10,11,40,70,88,103,60]];
+var RATE=[[91.2,89.0,95.4,97.8,98.1,97.6,97.9,96.1],[90.8,88.5,95.9,98.0,98.3,97.5,98.0,96.4],[91.5,90.1,95.2,97.9,98.2,97.8,98.1,96.0],[90.9,89.6,95.7,98.1,98.4,97.6,97.7,96.2],[92.0,87.9,95.5,97.7,98.0,96.9,97.2,93.4],[93.1,91.4,96.3,98.4,98.5,97.9,97.5,95.8],[92.6,90.7,96.8,98.6,98.7,98.2,98.0,96.5]];
+var DEC=CNT.map(function(r,i){return r.map(function(c,j){var p=RATE[i][j];return Math.round(c*(100-p)/p)})});
+var DATA={cnt:CNT,rate:RATE,dec:DEC},LAB={cnt:'승인',rate:'승인율',dec:'거절'},UNIT={cnt:'건',rate:'%',dec:'건'};
+var metric='cnt',scale='qua',pos=[4,6],sel=null;
+var T=document.getElementById('hmT'),LEG=document.getElementById('hmLeg'),DET=document.getElementById('hmDetail');
+function fmt(v){return metric==='rate'?v.toFixed(1):String(v)}
+function thresholds(){var all=[].concat.apply([],DATA[metric]);var mn=Math.min.apply(null,all),mx=Math.max.apply(null,all);
+ if(scale==='lin')return [1,2,3,4].map(function(i){return mn+(mx-mn)*i/5});
+ var s=all.slice().sort(function(a,b){return a-b});return [.2,.4,.6,.8].map(function(p){return s[Math.floor(p*(s.length-1))]})}
+function lvl(v,th){return th.filter(function(t){return v>t}).length}
+function build(){var th=thresholds(),h='<thead><tr><td style="background:none;border:0;cursor:default" aria-hidden="true"></td>';
+ BANDS.forEach(function(b){h+='<th scope="col">'+b+'시</th>'});h+='</tr></thead><tbody>';
+ DAYS.forEach(function(d,i){h+='<tr><th scope="row" class="rh">'+d+'요일</th>';
+  DATA[metric][i].forEach(function(v,j){var on=(pos[0]===i&&pos[1]===j);
+   h+='<td role="gridcell" class="l'+lvl(v,th)+'" data-r="'+i+'" data-c="'+j+'" tabindex="'+(on?0:-1)+'" aria-selected="'+(sel&&sel[0]===i&&sel[1]===j)+'" aria-label="'+d+'요일 '+BANDS[j]+'시 '+LAB[metric]+' '+fmt(v)+UNIT[metric]+'">'+fmt(v)+'</td>'});
+  h+='</tr>'});T.innerHTML=h+'</tbody>';
+ var all=th.slice(),mn=Math.min.apply(null,[].concat.apply([],DATA[metric])),mx=Math.max.apply(null,[].concat.apply([],DATA[metric]));
+ var edges=[mn].concat(all).concat([mx]),lg='<span>적음</span>';
+ for(var k=0;k<5;k++){lg+='<span class="sw"><i style="background:var(--h'+k+')"></i>'+fmt(+edges[k].toFixed(1))+'~'+fmt(+edges[k+1].toFixed(1))+'</span>'}
+ LEG.innerHTML=lg+'<span>많음</span>';}
+function show(i,j){sel=[i,j];var v=DATA[metric][i][j];DET.textContent=DAYS[i]+'요일 '+BANDS[j]+'시 · '+LAB[metric]+' '+fmt(v)+UNIT[metric]+' (승인 '+CNT[i][j]+'건 · 거절 '+DEC[i][j]+'건 · 승인율 '+RATE[i][j].toFixed(1)+'%)'}
+function focusCell(i,j){pos=[i,j];var c=T.querySelector('[data-r="'+i+'"][data-c="'+j+'"]');T.querySelectorAll('td[tabindex="0"]').forEach(function(x){x.tabIndex=-1});c.tabIndex=0;c.focus()}
+T.addEventListener('click',function(e){var c=e.target.closest('td[data-r]');if(!c)return;var i=+c.dataset.r,j=+c.dataset.c;pos=[i,j];show(i,j);build();focusCell(i,j)});
+T.addEventListener('keydown',function(e){var c=e.target.closest('td[data-r]');if(!c)return;var i=+c.dataset.r,j=+c.dataset.c,k=e.key,n=true;
+ if(k==='ArrowRight')j=Math.min(7,j+1);else if(k==='ArrowLeft')j=Math.max(0,j-1);else if(k==='ArrowDown')i=Math.min(6,i+1);else if(k==='ArrowUp')i=Math.max(0,i-1);
+ else if(k==='Home')j=0;else if(k==='End')j=7;else if(k==='Enter'||k===' '){show(i,j);build();focusCell(i,j);e.preventDefault();return}else n=false;
+ if(n){e.preventDefault();focusCell(i,j)}});
+document.querySelectorAll('[data-m]').forEach(function(b){b.addEventListener('click',function(){metric=b.dataset.m;document.querySelectorAll('[data-m]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});build();if(sel)show(sel[0],sel[1])})});
+document.querySelectorAll('[data-s]').forEach(function(b){b.addEventListener('click',function(){scale=b.dataset.s;document.querySelectorAll('[data-s]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});build()})});
+build();
+
+/* ===== 2. export job ===== */
+var xBtn=document.getElementById('xBtn'),xRe=document.getElementById('xRe'),xSt=document.getElementById('xState'),xs='idle',xt=null,xp=0;
+function xset(s,msg){xs=s;xSt.textContent=msg;xBtn.setAttribute('aria-busy',s==='busy');xBtn.setAttribute('aria-disabled',s==='busy');
+ xBtn.textContent=s==='busy'?'만드는 중… '+xp+'%':s==='done'?'⬇ settlement.xlsx 받기':s==='fail'?'다시 시도':'엑셀 내보내기';xRe.hidden=s!=='done'}
+function xstart(){xp=0;xset('busy','파일을 만들고 있어요. 이 화면을 떠나도 목록에서 받을 수 있어요.');clearInterval(xt);xt=setInterval(function(){xp+=Math.round(8+Math.random()*14);if(xp>=100){xp=100;clearInterval(xt);xset('done','준비됐어요 · 24시간 동안 받을 수 있어요(예시).')}else xset('busy',xSt.textContent)},500)}
+xBtn.addEventListener('click',function(){if(xs==='busy'){xSt.textContent='이미 만드는 중이에요. 끝나면 이 버튼이 바뀝니다.';return}
+ if(xs==='done'){xSt.textContent='다운로드 시작(데모에서는 실제 파일이 없습니다).';return}xstart()});
+xRe.addEventListener('click',xstart);
+
+var jobs=[],jid=0,jList=document.getElementById('jList'),jMsg=document.getElementById('jMsg'),jLive=document.getElementById('jLive');
+var DELAYS=[1000,1500,2000,3000],LBL={q:'대기',r:'진행 중',d:'완료',f:'실패',c:'취소됨'},ICON={q:'⏳',r:'⚙️',d:'✅',f:'⚠️',c:'⏹'};
+function jrender(){if(!jobs.length){jList.innerHTML='<p class="cap">아직 요청한 내보내기가 없어요.</p>';return}
+ jList.innerHTML=jobs.map(function(j){var a='';
+  if(j.s==='d')a='<button type="button" class="btn sm" data-act="dl" data-id="'+j.id+'">⬇ 받기</button>';
+  if(j.s==='f')a='<button type="button" class="btn sm" data-act="retry" data-id="'+j.id+'">재시도</button>';
+  if(j.s==='q'||j.s==='r')a='<button type="button" class="btn ghost sm" data-act="cancel" data-id="'+j.id+'">취소</button>';
+  var bar=j.s==='q'?'<div class="bar ind" aria-hidden="true"><i></i></div>':(j.s==='r'||j.s==='d')?'<div class="bar" role="progressbar" aria-label="'+j.name+' 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="'+j.p+'"><i style="width:'+j.p+'%"></i></div>':'';
+  var meta=j.s==='q'?'서버 대기열에서 순서를 기다리는 중':j.s==='r'?j.p+'% · 다음 확인 '+(DELAYS[Math.min(j.i,3)]/1000)+'초 뒤':j.s==='d'?'24시간 뒤 만료(예시)':j.s==='f'?'서버 시간 초과(504). 같은 요청을 다시 보내도 안전해요.':'사용자가 취소했어요';
+  return '<div class="job'+(j.flash?' flash':'')+'" id="job'+j.id+'"><span class="nm">'+j.name+'</span><span class="badge '+j.s+'">'+ICON[j.s]+' '+LBL[j.s]+'</span>'+bar+'<span class="meta">'+meta+'</span><div class="acts">'+a+'</div></div>'}).join('')}
+function jtick(j){clearTimeout(j.t);if(j.s==='d'||j.s==='f'||j.s==='c')return;
+ j.t=setTimeout(function(){if(j.s==='c')return;j.i++;
+  if(j.s==='q'&&j.i>=2)j.s='r';
+  else if(j.s==='r'){j.p=Math.min(100,j.p+Math.round(18+Math.random()*14));
+   if(j.fail&&j.p>55){j.s='f';jLive.textContent=j.name+' 내보내기에 실패했어요. 재시도할 수 있어요.'}
+   else if(j.p>=100){j.s='d';j.p=100;jLive.textContent=j.name+' 내보내기가 완료됐어요.'}}
+  jrender();jtick(j)},DELAYS[Math.min(j.i,3)])}
+document.getElementById('jNew').addEventListener('click',function(){var name=document.getElementById('jRange').value;
+ var ex=jobs.filter(function(j){return j.name===name&&(j.s==='q'||j.s==='r')})[0];
+ jobs.forEach(function(j){j.flash=false});
+ if(ex){ex.flash=true;jMsg.textContent='“'+name+'” 내보내기가 이미 진행 중이에요. 새로 만들지 않고 기존 작업을 보여드려요.';jrender();var el=document.getElementById('job'+ex.id);if(el)el.scrollIntoView({block:'nearest'});return}
+ jMsg.textContent='“'+name+'” 내보내기를 요청했어요.';
+ var j={id:++jid,name:name,s:'q',p:0,i:0,fail:document.getElementById('jFail').checked,t:null};jobs.unshift(j);jrender();jtick(j)});
+jList.addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;var j=jobs.filter(function(x){return x.id==b.dataset.id})[0];if(!j)return;
+ if(b.dataset.act==='cancel'){j.s='c';clearTimeout(j.t);jLive.textContent=j.name+' 내보내기를 취소했어요.'}
+ else if(b.dataset.act==='retry'){j.s='q';j.p=0;j.i=0;j.fail=false;jtick(j)}
+ else jMsg.textContent='다운로드 시작(데모에서는 실제 파일이 없습니다).';
+ jrender()});
+jrender();
+
+/* ===== 3. speculation rules ===== */
+var LINKS=[{h:'/settlements',t:'정산 내역',cls:''},{h:'/settlements/2026-10',t:'2026년 10월 상세',cls:''},{h:'/pay/confirm?order=1042',t:'결제 확정 (GET으로 상태 변경)',cls:'no-spec'},{h:'/logout',t:'로그아웃',cls:'no-spec'},{h:'https://help.example.com/faq',t:'도움말 (다른 origin)',cls:''}];
+var act='prefetch',sL=document.getElementById('sLinks'),sJ=document.getElementById('sJson'),sSup=document.getElementById('sSup'),fired={},timers={};
+var sE=document.getElementById('sE'),sX=document.getElementById('sX'),sQ=document.getElementById('sQ');
+var TRIG={conservative:'pointerdown 시',moderate:'hover 200ms 또는 pointerdown',eager:'hover 10ms',immediate:'규칙을 발견하자마자'};
+function evalLink(l){var cross=/^https?:/.test(l.h);
+ if(cross)return {ok:false,why:'규칙의 href_matches "/*"는 같은 origin만 매칭'};
+ if(sX.checked&&l.cls==='no-spec')return {ok:false,why:'.no-spec 으로 제외됨'};
+ if(sQ.checked&&l.h.indexOf('?')>-1)return {ok:false,why:'쿼리스트링 규칙으로 제외됨'};
+ var bad=l.cls==='no-spec';return {ok:true,bad:bad,why:(bad?'⚠ 상태가 바뀌는 URL이 대상! ':'')+sE.value+' → '+TRIG[sE.value]}}
+function srender(){var and=[{href_matches:'/*'}];if(sX.checked)and.push({not:{selector_matches:'.no-spec'}});if(sQ.checked)and.push({not:{href_matches:'/*\\?*'}});
+ var rule={where:{and:and},eagerness:sE.value},o={};o[act]=[rule];sJ.textContent='<script type="speculationrules">\n'+JSON.stringify(o,null,2)+'\n<\/script>';
+ sL.innerHTML=LINKS.map(function(l,i){var e=evalLink(l),f=fired[i];
+  return '<div class="lnk'+(e.ok?'':' skip')+(f?' fire':'')+'" data-i="'+i+'" tabindex="0" role="button" aria-label="'+l.t+'"><code>'+l.h+'</code><span class="pill '+(f?'ok':e.ok?(e.bad?'bad':'ok'):'no')+'">'+(f?'🟢 '+act+' 시작':e.ok?(e.bad?'위험':'대상'):'제외')+'</span><span class="why">'+l.t+' · '+e.why+'</span></div>'}).join('');
+ if(sE.value==='immediate'){LINKS.forEach(function(l,i){if(evalLink(l).ok)fired[i]=true});sL.querySelectorAll('.lnk').forEach(function(d){var i=+d.dataset.i;if(fired[i]){d.classList.add('fire');d.querySelector('.pill').textContent='🟢 '+act+' 시작';d.querySelector('.pill').className='pill ok'}})}
+ var sup=window.HTMLScriptElement&&HTMLScriptElement.supports&&HTMLScriptElement.supports('speculationrules');
+ sSup.textContent=sup?'이 브라우저: speculationrules 지원 감지됨':'이 브라우저: speculationrules 미감지 (지원 안 하면 규칙은 무시되고 일반 이동 — 점진적 향상)'}
+function fire(i){if(evalLink(LINKS[i]).ok){fired[i]=true;srender()}}
+sL.addEventListener('mouseover',function(e){var d=e.target.closest('.lnk');if(!d)return;var i=+d.dataset.i,v=sE.value;if(fired[i]||timers[i])return;
+ if(v==='eager')timers[i]=setTimeout(function(){fire(i)},10);else if(v==='moderate')timers[i]=setTimeout(function(){fire(i)},200)});
+sL.addEventListener('mouseout',function(e){var d=e.target.closest('.lnk');if(!d)return;var i=+d.dataset.i;clearTimeout(timers[i]);delete timers[i]});
+sL.addEventListener('pointerdown',function(e){var d=e.target.closest('.lnk');if(!d)return;var v=sE.value;if(v==='conservative'||v==='moderate')fire(+d.dataset.i)});
+sL.addEventListener('keydown',function(e){var d=e.target.closest('.lnk');if(d&&(e.key==='Enter'||e.key===' ')){e.preventDefault();fire(+d.dataset.i)}});
+document.querySelectorAll('[data-a]').forEach(function(b){b.addEventListener('click',function(){act=b.dataset.a;fired={};document.querySelectorAll('[data-a]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});srender()})});
+[sE,sX,sQ].forEach(function(c){c.addEventListener('change',function(){fired={};srender()})});
+document.getElementById('sReset').addEventListener('click',function(){fired={};srender()});
+srender();
+})();
+</script>
+</body>
+</html>
