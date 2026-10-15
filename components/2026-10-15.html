@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-15 (목)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#b45309;--warn-soft:#fdf3e3;--danger:#dc2626;--ring:#4f46e5;--shadow:0 6px 24px rgba(20,24,31,.10);--radius:14px}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#12261d;--warn:#f0b040;--warn-soft:#2a2113;--danger:#f87171;--ring:#8b8cf9;--shadow:0 6px 24px rgba(0,0,0,.45)}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h3{font-size:1rem;margin:0 0 8px}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:8px 14px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.state{margin-top:12px;padding:9px 12px;border-radius:10px;font-size:.86rem;font-weight:600;background:var(--surface);border:1px solid var(--border)}
+/* tabs */
+.tabs{position:relative}
+.tablist{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--border);position:relative}
+.tablist::-webkit-scrollbar{display:none}
+.tab{flex:none;cursor:pointer;background:none;border:0;color:var(--muted);padding:10px 14px;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab:hover{color:var(--text)}
+.tab[aria-selected="true"]{color:var(--brand);border-bottom-color:var(--brand)}
+.tab .n{font-size:.72rem;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:0 7px;margin-left:6px;font-variant-numeric:tabular-nums}
+.tabpanel{padding:14px 4px 4px;min-height:84px;font-size:.92rem}
+.fadewrap{position:relative}
+.fadewrap::after,.fadewrap::before{content:"";position:absolute;top:0;bottom:1px;width:28px;pointer-events:none;opacity:0;transition:opacity .15s;z-index:1}
+.fadewrap::after{right:0;background:linear-gradient(90deg,transparent,var(--surface-2))}
+.fadewrap::before{left:0;background:linear-gradient(270deg,transparent,var(--surface-2))}
+.fadewrap.more-r::after{opacity:1}.fadewrap.more-l::before{opacity:1}
+.narrow{max-width:340px}
+/* clickable card */
+.tx{position:relative;display:grid;grid-template-columns:1fr auto;gap:4px 12px;border:1px solid var(--border);background:var(--surface);border-radius:12px;padding:14px;margin:0 0 10px;transition:border-color .15s,box-shadow .15s}
+.tx:hover{border-color:var(--brand);box-shadow:var(--shadow)}
+.tx:has(a.stretch:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+.tx a.stretch{color:var(--text);text-decoration:none;font-weight:700}
+.tx a.stretch:focus-visible{outline:0}
+.tx a.stretch::after{content:"";position:absolute;inset:0;border-radius:12px}
+.tx .meta{color:var(--muted);font-size:.82rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700;text-align:right}
+.tx .acts{grid-column:1/-1;display:flex;gap:8px;position:relative;z-index:1;margin-top:6px}
+.tx.bad{cursor:pointer}
+.tx.bad:hover{border-color:var(--warn)}
+.tx.bad .acts{z-index:auto}
+.tx .sel{user-select:text;position:relative;z-index:1}
+.lbl{font-size:.75rem;font-weight:700;margin:0 0 6px}
+.lbl.g{color:var(--ok)}.lbl.r{color:var(--danger)}
+/* scroll-state */
+.sbox{height:150px;overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface);container-type:scroll-state;position:relative}
+.sbox .sh{position:sticky;top:0;background:var(--surface);padding:8px 12px;font-weight:700;border-bottom:1px solid var(--border);font-size:.85rem;transition:box-shadow .15s}
+.sbox p{margin:0;padding:8px 12px;font-size:.85rem;border-bottom:1px solid var(--border)}
+@supports (container-type: scroll-state){
+ .sbox .sh{container-type:scroll-state}
+ @container scroll-state(stuck: top){ .sbox .sh > span{box-shadow:0 6px 12px -8px rgba(0,0,0,.5)} }
+}
+.sbox .sh>span{display:block}
+.sbox .sh.is-stuck{box-shadow:0 6px 12px -8px rgba(0,0,0,.5);background:var(--brand-soft)}
+@supports (container-type: scroll-state){
+ .sbox .sh{transition:background .15s}
+ @container scroll-state(stuck: top){ .sbox .sh > span{color:var(--brand)} }
+}
+.hint{position:sticky;bottom:0;text-align:center;font-size:.75rem;padding:5px;background:var(--brand-soft);color:var(--brand);display:none}
+.hint.on{display:block}
+/* embed compact */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-15 (목) · 탭 · 클릭 카드 · scroll-state</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#tabs">🧭 탭 URL 동기화</a><a href="#tcard">🃏 전체 클릭 카드</a><a href="#sstate">🌀 scroll-state</a>
+</nav>
+
+<section class="card" id="tabs">
+<h2>🧭 탭 — URL 동기화·수동 활성화·넘칠 때의 힌트 <span class="tag">내비게이션·탭</span></h2>
+<p class="lead">새로고침·공유·뒤로가기에서도 같은 탭이 열려야 하고, 무거운 패널은 화살표 이동만으로 로드하면 안 됩니다.</p>
+<div class="grid2">
+<div class="demo"><p class="demo-title">A. 자동 활성화 + 해시 동기화 (가벼운 패널)</p>
+<div class="tabs" id="tA">
+<div class="tablist" role="tablist" aria-label="정산 보기">
+<button class="tab" role="tab" id="tA-1" aria-controls="tA-p1" data-key="summary">요약</button>
+<button class="tab" role="tab" id="tA-2" aria-controls="tA-p2" data-key="tx">거래<span class="n">128</span></button>
+<button class="tab" role="tab" id="tA-3" aria-controls="tA-p3" data-key="refund">환불<span class="n">3</span></button>
+</div>
+<div class="tabpanel" role="tabpanel" id="tA-p1" aria-labelledby="tA-1" tabindex="0">이번 달 정산 예정 ₩12,480,000</div>
+<div class="tabpanel" role="tabpanel" id="tA-p2" aria-labelledby="tA-2" tabindex="0" hidden>거래 128건 (승인 120 · 취소 8)</div>
+<div class="tabpanel" role="tabpanel" id="tA-p3" aria-labelledby="tA-3" tabindex="0" hidden>환불 대기 3건</div>
+</div>
+<div class="state" id="tAs" role="status" aria-live="polite"></div>
+<p class="cap">←→로 이동하면 즉시 전환, 주소 해시(#tab=…)도 바뀜. 뒤로가기로 복원.</p></div>
+<div class="demo"><p class="demo-title">B. 수동 활성화 (무거운 패널) + 오버플로 페이드</p>
+<div class="tabs narrow" id="tB">
+<div class="fadewrap" id="fB"><div class="tablist" role="tablist" aria-label="리포트">
+<button class="tab" role="tab" id="tB-1" aria-controls="tB-p1">일별 매출</button>
+<button class="tab" role="tab" id="tB-2" aria-controls="tB-p2">수수료 내역</button>
+<button class="tab" role="tab" id="tB-3" aria-controls="tB-p3">정산 대사</button>
+<button class="tab" role="tab" id="tB-4" aria-controls="tB-p4">차지백</button>
+<button class="tab" role="tab" id="tB-5" aria-controls="tB-p5">가맹점별</button>
+</div></div>
+<div class="tabpanel" role="tabpanel" id="tB-p1" aria-labelledby="tB-1" tabindex="0">일별 매출 차트 (로드 완료)</div>
+<div class="tabpanel" role="tabpanel" id="tB-p2" aria-labelledby="tB-2" tabindex="0" hidden></div>
+<div class="tabpanel" role="tabpanel" id="tB-p3" aria-labelledby="tB-3" tabindex="0" hidden></div>
+<div class="tabpanel" role="tabpanel" id="tB-p4" aria-labelledby="tB-4" tabindex="0" hidden></div>
+<div class="tabpanel" role="tabpanel" id="tB-p5" aria-labelledby="tB-5" tabindex="0" hidden></div>
+</div>
+<div class="state" id="tBs" role="status" aria-live="polite">←→는 포커스만, Enter/Space로 열기</div>
+<p class="cap">화살표는 포커스만 이동 → Enter/Space에서 로드(0.6초 가짜 지연). 좁으면 가장자리 페이드.</p></div>
+</div>
+<div class="note">핵심: <code>aria-selected</code>+roving tabindex, 선택은 URL이 단일 출처, 무거운 패널은 manual activation.</div>
+<pre><code>const tabs=[...list.querySelectorAll('[role=tab]')];
+function select(t,{focus=true,push=true}={}){
+  tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+    document.getElementById(x.getAttribute('aria-controls')).hidden=!on});
+  if(push)history.replaceState(null,'','#tab='+t.dataset.key); if(focus)t.focus();}
+list.addEventListener('keydown',e=>{const i=tabs.indexOf(document.activeElement);
+  const k={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key]; if(k==null)return;
+  e.preventDefault(); const t=tabs[(k+tabs.length)%tabs.length]; auto?select(t):t.focus();});</code></pre>
+</section>
+
+<section class="card" id="tcard">
+<h2>🃏 전체가 클릭되는 카드 — stretched link와 안쪽 버튼 공존 <span class="tag">카드·리스트</span></h2>
+<p class="lead">카드 전체 클릭은 <code>&lt;a&gt;</code> 하나의 <code>::after</code>로 넓히고, 안쪽 버튼은 위로 올립니다. 카드 전체를 &lt;a&gt;로 감싸지 않습니다.</p>
+<div class="grid2">
+<div class="demo"><p class="lbl g">좋음: stretched link</p>
+<article class="tx" id="x1"><a class="stretch" href="#tx-1" data-id="TX-2410-001">스타벅스 강남R점 · 승인</a><span class="amt">₩5,800</span><span class="meta">10.15 09:12 · 신한 ···· 1234</span><span></span>
+<div class="acts"><button class="btn ghost sm" data-act="receipt">영수증</button><button class="btn ghost sm" data-act="refund">환불</button></div></article>
+<article class="tx" id="x2"><a class="stretch" href="#tx-2" data-id="TX-2410-002">쿠팡 · 승인</a><span class="amt">₩32,900</span><span class="meta">10.15 08:40 · 국민 ···· 8841</span><span></span>
+<div class="acts"><button class="btn ghost sm" data-act="receipt">영수증</button><button class="btn ghost sm" data-act="refund">환불</button></div></article>
+<div class="state" id="xs" role="status" aria-live="polite">카드를 누르거나 Tab으로 링크 포커스</div></div>
+<div class="demo"><p class="lbl r">나쁨: div onClick 전체</p>
+<div class="tx bad" id="b1" onclick="document.getElementById('bs').textContent='div 클릭 → 이동 (키보드·새 탭 불가)'"><b>스타벅스 강남R점 · 승인</b><span class="amt">₩5,800</span><span class="meta">10.15 09:12</span><span></span>
+<div class="acts"><button class="btn ghost sm" onclick="event.stopPropagation();document.getElementById('bs').textContent='영수증 (stopPropagation 필요)'">영수증</button></div></div>
+<div class="state" id="bs" role="status">Tab으로 카드에 포커스가 안 가고, 가운데 클릭·새 탭 열기도 안 됨</div></div>
+</div>
+<p class="cap">좋은 쪽: 우클릭 “새 탭에서 열기”·Ctrl+클릭·키보드 Enter 전부 동작. 텍스트 드래그 선택은 링크 영역 밖에서만(스트레치 한계).</p>
+<div class="note">핵심: 링크 1개 + <code>::after{inset:0}</code>, 보조 버튼은 <code>position:relative; z-index:1</code>, 포커스 링은 <code>:has(a:focus-visible)</code>로 카드에.</div>
+<pre><code>.card{position:relative}
+.card a.stretch::after{content:"";position:absolute;inset:0}
+.card .acts{position:relative;z-index:1}
+.card:has(a.stretch:focus-visible){outline:3px solid var(--ring)}</code></pre>
+</section>
+
+<section class="card" id="sstate">
+<h2>🌀 scroll-state 컨테이너 쿼리 — 스크롤 상태를 CSS가 안다 <span class="tag">트렌드·개념</span></h2>
+<p class="lead"><code>container-type: scroll-state</code> 후 <code>@container scroll-state(stuck: top | scrollable: …)</code>로 “붙었나/더 스크롤되나”를 JS 없이 스타일링.</p>
+<div class="support" id="ssSup"></div>
+<div class="demo"><p class="demo-title">스티키 헤더가 붙으면 색이 바뀜 (스크롤해 보세요)</p>
+<div class="sbox" id="sb" tabindex="0" aria-label="거래 스크롤 영역">
+<div class="sh" id="h1"><span>10월 15일 (목)</span></div>
+<p>스타벅스 · ₩5,800</p><p>쿠팡 · ₩32,900</p><p>배달의민족 · ₩21,400</p><p>GS25 · ₩3,200</p>
+<div class="sh" id="h2"><span>10월 14일 (수)</span></div>
+<p>올리브영 · ₩18,700</p><p>카카오T · ₩9,800</p><p>CU · ₩2,500</p><p>교보문고 · ₩15,000</p><p>메가커피 · ₩2,000</p>
+</div><p class="cap" id="ssCap"></p></div>
+<div class="note">지원은 Chrome 계열 위주(Chrome 133+로 알려짐, 그 외는 추정). 미지원이면 IntersectionObserver 폴백 — 이 데모도 기능 감지 후 폴백으로 동작.</div>
+<pre><code>.header{container-type:scroll-state;position:sticky;top:0}
+@container scroll-state(stuck: top){.header &gt; .inner{box-shadow:0 6px 12px -8px #0008}}
+/* 폴백 */
+if(!CSS.supports('container-type: scroll-state')){/* IntersectionObserver로 .is-stuck 토글 */}</code></pre>
+</section>
+<div class="footer">Design Inspiration Daily · 2026-10-15</div>
+</div>
+<script>
+(function(){
+var root=document.documentElement,qs=new URLSearchParams(location.search);
+if(qs.get('theme')==='dark')root.setAttribute('data-theme','dark');
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+var tb=document.getElementById('themeBtn');
+function sync(){var d=root.getAttribute('data-theme')==='dark';tb.setAttribute('aria-pressed',d);tb.textContent=d?'라이트 모드':'다크 모드'}
+tb.onclick=function(){root.setAttribute('data-theme',root.getAttribute('data-theme')==='dark'?'light':'dark');sync()};sync();
+function $(i){return document.getElementById(i)}
+
+/* Tabs generic */
+function initTabs(root,opts){
+ var tabs=[].slice.call(root.querySelectorAll('[role=tab]'));
+ function select(t,o){o=o||{};tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;
+  var p=$(x.getAttribute('aria-controls'));if(p)p.hidden=!on});
+  if(o.focus!==false)t.focus();t.scrollIntoView&&t.scrollIntoView({block:'nearest',inline:'nearest'});
+  if(opts.onSelect)opts.onSelect(t,o)}
+ tabs.forEach(function(t){t.addEventListener('click',function(){select(t)})});
+ root.querySelector('[role=tablist]').addEventListener('keydown',function(e){
+  var i=tabs.indexOf(document.activeElement);if(i<0)return;
+  var k={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key];
+  if(k==null)return;e.preventDefault();var t=tabs[(k+tabs.length)%tabs.length];
+  if(opts.manual){tabs.forEach(function(x){x.tabIndex=x===t?0:-1});t.focus();t.scrollIntoView({block:'nearest',inline:'nearest'});opts.onFocusOnly&&opts.onFocusOnly(t)}else select(t)});
+ return {tabs:tabs,select:select}}
+var A=initTabs($('tA'),{onSelect:function(t,o){
+ if(!o.noPush){try{history.replaceState(null,'','#tab='+t.dataset.key)}catch(e){}}
+ $('tAs').textContent='선택: '+t.firstChild.textContent+' · 주소 #tab='+t.dataset.key}});
+function fromHash(){var m=/tab=(\w+)/.exec(location.hash),k=m&&m[1];
+ var t=A.tabs.filter(function(x){return x.dataset.key===k})[0]||A.tabs[0];A.select(t,{focus:false,noPush:!m})}
+window.addEventListener('hashchange',fromHash);fromHash();
+var loaded={'tB-1':1};
+var B=initTabs($('tB'),{manual:true,onFocusOnly:function(t){$('tBs').textContent='포커스: '+t.textContent+' — Enter/Space로 열기'},
+ onSelect:function(t){var p=$(t.getAttribute('aria-controls'));
+  if(!loaded[t.id]){p.textContent='불러오는 중…';p.setAttribute('aria-busy','true');
+   setTimeout(function(){loaded[t.id]=1;p.removeAttribute('aria-busy');p.textContent=t.textContent+' 데이터 로드 완료';$('tBs').textContent=t.textContent+' 로드됨'},600)}
+  else $('tBs').textContent=t.textContent+' 표시'}});
+B.tabs[0].setAttribute('aria-selected','true');B.tabs.forEach(function(x,i){x.tabIndex=i?-1:0});
+var fb=$('fB'),tl=fb.firstElementChild;
+function fade(){fb.classList.toggle('more-r',tl.scrollLeft+tl.clientWidth<tl.scrollWidth-2);fb.classList.toggle('more-l',tl.scrollLeft>2)}
+tl.addEventListener('scroll',fade,{passive:true});window.addEventListener('resize',fade);fade();
+
+/* Card */
+[].forEach.call(document.querySelectorAll('#tcard .stretch'),function(a){a.addEventListener('click',function(e){e.preventDefault();$('xs').textContent=a.dataset.id+' 상세로 이동 (링크: Ctrl+클릭으로 새 탭도 가능)'})});
+[].forEach.call(document.querySelectorAll('#tcard [data-act]'),function(b){b.addEventListener('click',function(){var n=b.closest('.tx').querySelector('.stretch').dataset.id;$('xs').textContent=n+' '+(b.dataset.act==='refund'?'환불 요청 열기':'영수증 열기')+' (카드 이동은 일어나지 않음)'})});
+
+/* scroll-state */
+var native_=window.CSS&&CSS.supports&&CSS.supports('container-type: scroll-state');
+$('ssSup').textContent=native_?'이 브라우저: scroll-state 지원 — CSS만으로 동작 중':'이 브라우저: 미지원 — IntersectionObserver 폴백으로 동작 중';
+$('ssCap').textContent=native_?'@container scroll-state(stuck: top)이 헤더 글자색을 바꿉니다.':'폴백: 헤더에 .is-stuck 클래스를 JS로 토글합니다.';
+if(!native_&&'IntersectionObserver' in window){
+ var sb=$('sb');[].forEach.call(sb.querySelectorAll('.sh'),function(h){
+  var sen=document.createElement('div');sen.style.cssText='height:1px;margin-bottom:-1px';sb.insertBefore(sen,h);
+  new IntersectionObserver(function(es){es.forEach(function(e){h.classList.toggle('is-stuck',!e.isIntersecting&&e.boundingClientRect.top<e.rootBounds.top+2)})},{root:sb}).observe(sen)})}
+})();
+</script>
+</body>
+</html>
