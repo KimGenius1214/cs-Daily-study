@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-19 (월)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled="true"]{opacity:.65;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.state{margin-top:10px;font-size:.86rem;min-height:1.4em}
+.log{margin:10px 0 0;padding:8px 10px;background:var(--surface);border:1px solid var(--border);border-radius:8px;font-size:.78rem;font-family:ui-monospace,Menlo,Consolas,monospace;max-height:150px;overflow:auto;list-style:none}
+.log li{padding:1px 0}.log .bad{color:var(--bad)}.log .ok{color:var(--ok)}
+.stat{display:flex;gap:14px;font-size:.84rem;margin-top:8px}
+.stat b{font-variant-numeric:tabular-nums}
+.chk{display:inline-flex;gap:6px;align-items:center;font-size:.86rem}
+.field{display:flex;flex-direction:column;gap:3px;font-size:.8rem;color:var(--muted)}
+.field input[type=text],.field input[type=search]{padding:9px 11px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);min-width:220px}
+.res{list-style:none;margin:10px 0 0;padding:0;font-size:.88rem}
+.res li{padding:6px 10px;border-bottom:1px solid var(--border)}
+.tagq{font-size:.74rem;color:var(--muted)}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.sw div{border-radius:10px;padding:14px 10px;font-weight:700;text-align:center;font-size:.86rem;border:1px solid var(--border)}
+.sw small{display:block;font-weight:500;font-size:.72rem;margin-top:3px}
+.ccauto{color:var(--cc-fallback,#fff)}
+@supports (color:contrast-color(red)){.ccauto{color:contrast-color(var(--bgc))}}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-19 (월) · 중복 결제 방지 버튼 · 검색 입력 경합 · contrast-color()</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#dup">🔘 중복 제출 방지 버튼</a><a href="#srch">⌨️ 검색 입력 경합 처리</a><a href="#cc">🌀 contrast-color()</a>
+</nav>
+
+<!-- ===== 1. DUP SUBMIT ===== -->
+<section class="card" id="dup" aria-labelledby="dup-h">
+<h2 id="dup-h">🔘 결제 버튼 중복 제출 방지 — 잠그기만으론 부족하고, 멱등키가 마지막 방어선 <span class="tag">버튼·액션</span></h2>
+<p class="lead">결제 버튼은 두 번 눌리면 돈이 두 번 나갑니다. 더블클릭, 느린 응답에 초조한 재클릭, 타임아웃 후 재시도 — 세 경우를 직접 눌러 보세요.</p>
+<div class="grid2">
+<div class="demo"><p class="demo-title">A. 방어 없음 (나쁜 예)</p>
+<button type="button" class="btn" id="aBtn">12,900원 결제</button>
+<div class="stat"><span>서버가 받은 요청 <b id="aReq">0</b></span><span>실제 승인 <b id="aOk">0</b></span></div>
+<ul class="log" id="aLog" aria-label="A 로그"></ul>
+<p class="cap">빠르게 두 번 눌러 보세요. 승인이 2건이 됩니다.</p></div>
+<div class="demo"><p class="demo-title">B. 진행 중 잠금 + 멱등키</p>
+<div class="row"><button type="button" class="btn" id="bBtn" aria-disabled="false">12,900원 결제</button>
+<label class="chk"><input type="checkbox" id="bTimeout"> 첫 응답을 유실(타임아웃)</label></div>
+<div class="state" id="bState" role="status">대기 중</div>
+<div class="stat"><span>서버가 받은 요청 <b id="bReq">0</b></span><span>실제 승인 <b id="bOk">0</b></span><span>중복 차단 <b id="bDup">0</b></span></div>
+<ul class="log" id="bLog" aria-label="B 로그"></ul>
+<p class="cap">체크 후 결제하면 서버는 승인했지만 응답이 사라집니다. 버튼은 "결과 확인 중"이 되고, 재시도는 같은 키를 쓰므로 서버가 새 승인 없이 기존 결과를 돌려줍니다.</p></div>
+</div>
+<pre><code>// 주문 단위로 키를 한 번만 만들고, 재시도에 재사용
+const keyRef = useRef(crypto.randomUUID());   // 새 주문일 때만 갱신
+async function pay() {
+  if (pending.current) return;                // 1차: 클라이언트 잠금
+  pending.current = true;
+  try {
+    return await fetch('/api/pay', {
+      method: 'POST',
+      headers: { 'Idempotency-Key': keyRef.current },  // 2차: 서버 중복 제거
+      body: JSON.stringify(order),
+    });
+  } finally { pending.current = false; }
+}</code></pre>
+<div class="note">접근성: 잠글 때 <code>disabled</code> 대신 <code>aria-disabled</code>를 써서 포커스를 유지하고, 클릭은 핸들러에서 무시. 상태 문구는 <code>role="status"</code>로 안내. 클라이언트 잠금은 새로고침·다른 탭·네트워크 재시도를 못 막으므로 서버 멱등키가 본체입니다.</div>
+</section>
+
+<!-- ===== 2. SEARCH RACE ===== -->
+<section class="card" id="srch" aria-labelledby="srch-h">
+<h2 id="srch-h">⌨️ 검색 입력 경합 처리 — 늦게 도착한 옛 응답이 새 결과를 덮어쓰는 문제 <span class="tag">입력·폼</span></h2>
+<p class="lead">거래 검색창에 타이핑하면 요청이 여러 개 날아갑니다. 응답 순서는 요청 순서와 같지 않습니다 — 방어를 껐다 켜며 비교하세요.</p>
+<div class="demo">
+<div class="row" style="align-items:flex-end;margin-bottom:6px">
+<label class="field" for="sIn">거래 검색 (예: kim, kang, kakao)<input type="search" id="sIn" autocomplete="off" placeholder="가맹점 영문명 입력"></label>
+<label class="chk"><input type="checkbox" id="sGuard"> 경합 방어 켜기 (debounce 250ms + 이전 요청 취소)</label>
+</div>
+<div class="state" id="sStatus" role="status" aria-live="polite">입력을 시작하세요.</div>
+<ul class="res" id="sRes" aria-label="검색 결과"></ul>
+<div class="stat"><span>보낸 요청 <b id="sSent">0</b></span><span>취소 <b id="sAb">0</b></span><span>옛 응답이 화면을 덮은 횟수 <b id="sBad" style="color:var(--bad)">0</b></span></div>
+<ul class="log" id="sLog" aria-label="요청 로그"></ul>
+<p class="cap">가짜 서버는 글자가 짧을수록 느리게(최대 900ms) 응답합니다. 방어를 끄고 "kakao"를 빠르게 치면 "k" 응답이 가장 늦게 도착해 결과를 덮습니다.</p>
+</div>
+<pre><code>let timer, ctrl;
+input.addEventListener('input', e =&gt; {
+  if (e.isComposing) return;            // 한글 조합 중에는 보내지 않기
+  clearTimeout(timer);                  // debounce: 멈춘 뒤에만 요청
+  timer = setTimeout(async () =&gt; {
+    ctrl?.abort();                      // 이전 요청 취소
+    ctrl = new AbortController();
+    try {
+      const r = await fetch(`/api/search?q=${encodeURIComponent(q)}`, { signal: ctrl.signal });
+      render(await r.json());
+    } catch (err) { if (err.name !== 'AbortError') showError(); }
+  }, 250);
+});</code></pre>
+<div class="note">설계 포인트: debounce(입력이 멈출 때까지 기다렸다 한 번만 실행)는 요청 수를 줄이고, AbortController(진행 중 요청 취소 신호)는 순서 역전을 막습니다. 서버에 이미 도달한 요청은 취소돼도 처리되므로 조회(GET)에만 안전합니다. 결과 영역에는 <code>aria-live="polite"</code> 요약("3건")을 둡니다.</div>
+</section>
+
+<!-- ===== 3. CONTRAST-COLOR ===== -->
+<section class="card" id="cc" aria-labelledby="cc-h">
+<h2 id="cc-h">🌀 contrast-color() — 배경색에 맞춰 글자색을 CSS가 고르게 하기 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">가맹점이 직접 고른 브랜드 색 위에 올릴 글자를 흰색/검정 중 CSS가 선택합니다. 슬라이더로 배경을 바꿔 보세요.</p>
+<div class="demo">
+<div class="row" style="margin-bottom:6px">
+<label class="field">색상(Hue)<input type="range" id="ccH" min="0" max="360" value="45" aria-label="색상"></label>
+<label class="field">명도(Lightness)<input type="range" id="ccL" min="10" max="90" value="58" aria-label="명도"></label>
+</div>
+<div class="sw" id="ccSw"></div>
+<div class="state" id="ccSup" role="status"></div>
+<p class="cap">위 칸의 글자색은 <code>@supports</code>가 되면 contrast-color(), 아니면 JS가 계산한 폴백입니다. 아래 수치는 JS로 계산한 WCAG 대비율입니다.</p>
+</div>
+<pre><code>.badge {
+  --bgc: var(--merchant-color);
+  background: var(--bgc);
+  color: #fff;                               /* 폴백 */
+}
+@supports (color: contrast-color(red)) {
+  .badge { color: contrast-color(var(--bgc)); }
+}</code></pre>
+<div class="note">주의: 결과는 흰색 또는 검정 둘 중 하나일 뿐, WCAG AA(일반 텍스트 4.5:1) 통과를 보장하지 않습니다. 중간 명도 배경에서는 둘 다 낮을 수 있어 슬라이더 중간값에서 대비율을 직접 확인하세요. 브라우저 지원은 최근 Safari/Chrome 계열에서 보고되나 정확한 버전은 미검증(추정)이므로 폴백이 필수입니다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · self-contained · 오프라인에서도 열립니다</div>
+</div>
+<script>
+(function(){
+var root=document.documentElement,qs=new URLSearchParams(location.search);
+var btn=document.getElementById('themeBtn');
+function setTheme(t){if(t==='dark')root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');btn.setAttribute('aria-pressed',t==='dark');btn.textContent=t==='dark'?'라이트 모드':'다크 모드'}
+btn.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+setTheme(qs.get('theme')==='dark'?'dark':(qs.get('theme')==='light'?'light':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')));
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+function $(i){return document.getElementById(i)}
+function log(ul,txt,cls){var li=document.createElement('li');li.textContent=txt;if(cls)li.className=cls;ul.insertBefore(li,ul.firstChild);while(ul.children.length>30)ul.removeChild(ul.lastChild)}
+var sleep=function(ms){return new Promise(function(r){setTimeout(r,ms)})};
+
+/* ===== 1. dup submit ===== */
+var A={req:0,ok:0};
+$('aBtn').addEventListener('click',function(){
+  A.req++;$('aReq').textContent=A.req;var n=A.req;log($('aLog'),'→ 요청 #'+n+' 전송');
+  sleep(700).then(function(){A.ok++;$('aOk').textContent=A.ok;log($('aLog'),'← #'+n+' 승인 (누적 '+A.ok+'건)',A.ok>1?'bad':'ok')});
+});
+var server={}, B={req:0,ok:0,dup:0}, key=null, pend=false, bb=$('bBtn');
+function bsrv(k,lose){B.req++;$('bReq').textContent=B.req;
+  return sleep(600).then(function(){
+    var dupHit=!!server[k];
+    if(dupHit){B.dup++;$('bDup').textContent=B.dup;log($('bLog'),'서버: 키 '+k.slice(0,6)+' 이미 처리됨 → 기존 결과 반환','ok')}
+    else{server[k]='approved';B.ok++;$('bOk').textContent=B.ok;log($('bLog'),'서버: 키 '+k.slice(0,6)+' 승인 처리','ok')}
+    if(lose&&!dupHit)return sleep(900).then(function(){throw new Error('timeout')});
+    return 'approved';
+  });
+}
+bb.addEventListener('click',function(){
+  if(pend){log($('bLog'),'클릭 무시: 이미 진행 중','bad');return}
+  pend=true;bb.setAttribute('aria-disabled','true');
+  if(!key)key=Math.random().toString(16).slice(2,10)+'-key';
+  var retry=B.req>0&&key&&server[key];
+  $('bState').textContent=retry?'결과 확인 중… (같은 키로 재시도)':'결제 처리 중…';
+  log($('bLog'),'→ 요청 (Idempotency-Key '+key.slice(0,6)+')');
+  var lose=$('bTimeout').checked&&!server[key];
+  bsrv(key,lose).then(function(){
+    $('bState').textContent='결제 완료 ✓ (승인 1건)';$('bState').style.color='var(--ok)';key=null;server={};
+    bb.textContent='새 주문으로 다시 해보기';
+  }).catch(function(){
+    $('bState').textContent='응답이 오지 않았습니다. 다시 누르면 같은 키로 결과를 확인합니다 (이중 결제 없음).';
+    $('bState').style.color='var(--warn)';$('bTimeout').checked=false;bb.textContent='결과 다시 확인';
+  }).finally(function(){pend=false;bb.setAttribute('aria-disabled','false')});
+});
+bb.addEventListener('click',function(ev){if(bb.textContent==='새 주문으로 다시 해보기'){ev.stopImmediatePropagation();B={req:0,ok:0,dup:0};['bReq','bOk','bDup'].forEach(function(i){$(i).textContent=0});bb.textContent='12,900원 결제';$('bState').textContent='대기 중';$('bState').style.color=''}},true);
+
+/* ===== 2. search race ===== */
+var DB=['kakao pay','kakao bank','kim store','kim coffee','kang mart','kang cafe','korea tour','kt shop','naver store','toss shop','coupang eats'];
+var sIn=$('sIn'),sGuard=$('sGuard'),timer,ctrl,seq=0,latest='',sent=0,ab=0,bad=0;
+function fakeApi(q,signal){
+  return new Promise(function(res,rej){
+    var delay=Math.max(120,900-q.length*170)+Math.random()*80;
+    var t=setTimeout(function(){res(DB.filter(function(x){return x.indexOf(q)===0||x.indexOf(' '+q)>-1}))},delay);
+    if(signal)signal.addEventListener('abort',function(){clearTimeout(t);var e=new Error('abort');e.name='AbortError';rej(e)});
+  });
+}
+function renderRes(q,list,stale){
+  var ul=$('sRes');ul.innerHTML='';
+  list.forEach(function(x){var li=document.createElement('li');li.textContent=x;ul.appendChild(li)});
+  if(!list.length){var li=document.createElement('li');li.textContent='결과 없음';ul.appendChild(li)}
+  var t=document.createElement('li');t.className='tagq';t.textContent='화면에 보이는 결과의 검색어: "'+q+'"';ul.appendChild(t);
+  $('sStatus').textContent=list.length+'건 — 검색어 "'+q+'"';
+}
+function run(q){
+  if(!q){$('sRes').innerHTML='';$('sStatus').textContent='입력을 시작하세요.';return}
+  sent++;$('sSent').textContent=sent;var my=++seq;
+  if(sGuard.checked){if(ctrl){ctrl.abort();ab++;$('sAb').textContent=ab}ctrl=new AbortController()}
+  log($('sLog'),'→ "'+q+'" 요청');
+  $('sStatus').textContent='검색 중… "'+q+'"';
+  fakeApi(q,sGuard.checked?ctrl.signal:null).then(function(list){
+    var stale=q!==sIn.value.trim().toLowerCase();
+    if(stale){bad++;$('sBad').textContent=bad;log($('sLog'),'← "'+q+'" 도착 — 이미 낡은 응답이 화면을 덮음!','bad')}
+    else log($('sLog'),'← "'+q+'" 도착','ok');
+    renderRes(q,list);
+  }).catch(function(e){if(e.name==='AbortError')log($('sLog'),'✕ "'+q+'" 취소됨','ok')});
+}
+sIn.addEventListener('input',function(e){
+  if(e.isComposing)return;
+  var q=sIn.value.trim().toLowerCase();
+  if(sGuard.checked){clearTimeout(timer);timer=setTimeout(function(){run(q)},250)}else run(q);
+});
+sIn.addEventListener('compositionend',function(){sIn.dispatchEvent(new Event('input'))});
+
+/* ===== 3. contrast-color ===== */
+function hsl2rgb(h,s,l){s/=100;l/=100;var k=function(n){return(n+h/30)%12},a=s*Math.min(l,1-l),f=function(n){return l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)))};return[f(0),f(8),f(4)].map(function(v){return Math.round(v*255)})}
+function lum(c){var a=c.map(function(v){v/=255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4)});return .2126*a[0]+.7152*a[1]+.0722*a[2]}
+function ratio(l1,l2){var a=Math.max(l1,l2),b=Math.min(l1,l2);return(a+.05)/(b+.05)}
+var supported=window.CSS&&CSS.supports&&CSS.supports('color','contrast-color(red)');
+$('ccSup').innerHTML=supported?'이 브라우저: <b>contrast-color() 지원</b> — 네이티브 결과를 보고 있습니다.':'이 브라우저: <b>contrast-color() 미지원</b> — JS 폴백(밝기 기준 흰/검정 선택)을 보고 있습니다.';
+$('ccSup').className='state support';
+var presets=[['결제 파랑',0,0],['가맹점 노랑',0,0],['가맹점 초록',0,0],['슬라이더 색',0,0]];
+function drawCC(){
+  var h=+$('ccH').value,l=+$('ccL').value,box=$('ccSw');box.innerHTML='';
+  var list=[['슬라이더 색',h,l],['더 어둡게',h,Math.max(10,l-25)],['더 밝게',h,Math.min(92,l+25)],['중간 채도 낮춤',h,l,35]];
+  list.forEach(function(p){
+    var rgb=hsl2rgb(p[1],p[3]||75,p[2]),bg='rgb('+rgb.join(',')+')',L=lum(rgb);
+    var fb=ratio(L,1)>=ratio(L,0)?'#fff':'#000';
+    var d=document.createElement('div');d.className='ccauto';d.style.setProperty('--bgc',bg);d.style.setProperty('--cc-fallback',fb);d.style.background=bg;
+    var w=ratio(L,1),k=ratio(L,0),best=Math.max(w,k);
+    d.innerHTML=p[0]+'<small>흰 '+w.toFixed(1)+':1 · 검정 '+k.toFixed(1)+':1</small><small>'+(best>=4.5?'AA 통과 가능':'AA 미달 — 색 조정 필요')+'</small>';
+    box.appendChild(d);
+  });
+}
+$('ccH').addEventListener('input',drawCC);$('ccL').addEventListener('input',drawCC);drawCC();
+})();
+</script>
+</body>
+</html>
