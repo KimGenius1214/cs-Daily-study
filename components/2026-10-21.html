@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-21 (수)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.state{margin-top:10px;font-size:.86rem;min-height:1.4em}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.8rem;color:var(--muted);flex:1;min-width:110px}
+.field input{padding:10px 12px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text);font-size:1rem;font-variant-numeric:tabular-nums;width:100%}
+.field input[aria-invalid="true"]{border-color:var(--bad);background:var(--bad-soft)}
+.err{color:var(--bad);font-size:.78rem;min-height:1.1em}
+.inwrap{position:relative}
+.brand{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:.72rem;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:6px;padding:2px 7px;pointer-events:none}
+.brand:empty{display:none}
+.mask{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.84rem;margin-top:8px;color:var(--muted)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.ko{font-size:.86rem;color:var(--brand);min-height:1.4em;margin-top:2px}
+.hint{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.amt input{text-align:right;font-size:1.25rem;font-weight:700}
+/* @starting-style demos */
+.menuwrap{position:relative;display:inline-block}
+.menu{position:absolute;top:calc(100% + 6px);left:0;min-width:190px;margin:0;padding:6px;list-style:none;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);z-index:5;
+ display:none;opacity:0;transform:translateY(-8px) scale(.98);
+ transition:opacity .22s ease,transform .22s ease,display .22s allow-discrete}
+.menu.open{display:block;opacity:1;transform:none}
+@starting-style{.menu.open{opacity:0;transform:translateY(-8px) scale(.98)}}
+.menu button{display:block;width:100%;text-align:left;background:none;border:0;color:var(--text);padding:8px 10px;border-radius:8px;cursor:pointer}
+.menu button:hover,.menu button:focus-visible{background:var(--brand-soft)}
+.noanim .menu{transition:none}
+.toasts{margin:0;border:0;padding:0;background:none;position:fixed;inset:auto 16px 16px auto;overflow:visible}
+.tst{margin:0;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:12px;padding:12px 14px;font-size:.88rem;box-shadow:0 8px 24px rgba(0,0,0,.2);width:260px;
+ position:fixed;inset:auto 16px 16px auto;opacity:0;transform:translateY(16px);
+ transition:opacity .3s,transform .3s,overlay .3s allow-discrete,display .3s allow-discrete}
+.tst:popover-open{opacity:1;transform:none}
+@starting-style{.tst:popover-open{opacity:0;transform:translateY(16px)}}
+.leglist{list-style:none;margin:10px 0 0;padding:0}
+.leglist li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;
+ transition:opacity .25s,transform .25s,display .25s allow-discrete}
+.leglist li.gone{display:none;opacity:0;transform:translateX(24px)}
+@starting-style{.leglist li{opacity:0;transform:translateY(-10px)}}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-21 (수) · 카드 입력 · 금액 입력 · @starting-style 등장 애니메이션</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#card">💳 카드 입력</a><a href="#amount">⌨️ 금액 입력</a><a href="#startstyle">🌀 @starting-style</a>
+</nav>
+
+<!-- ============ 1. CARD ============ -->
+<section class="card" id="card" aria-labelledby="card-h">
+<h2 id="card-h">💳 카드 정보 입력 — 자동 띄어쓰기·브랜드 감지·Luhn 검사를 "입력 도중엔 조용히" 하기 <span class="tag">결제·체크아웃 UX</span></h2>
+<p class="lead">카드번호를 4자리씩 끊어 보여주고(Amex는 4-6-5), 앞자리로 브랜드를 알아채고, Luhn 검사(카드번호 끝자리가 맞는지 확인하는 간단한 체크섬 알고리즘)로 오타를 잡습니다. 에러는 입력을 마치고 칸을 벗어날 때(blur)만 보여주고, 한 번 에러가 뜬 칸은 고치는 즉시 에러가 사라집니다.</p>
+<div class="grid2">
+<div class="demo"><p class="demo-title">A. 번호 · 유효기간 · CVC</p>
+<form id="cardForm" novalidate autocomplete="on">
+<div class="field"><label for="ccn">카드번호</label><div class="inwrap"><input id="ccn" name="cardnumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" aria-describedby="ccnE" /><span class="brand" id="ccBrand" aria-hidden="true"></span></div><div class="err" id="ccnE"></div></div>
+<div class="row" style="align-items:flex-start;margin-top:6px">
+<div class="field"><label for="cce">유효기간 (MM/YY)</label><input id="cce" name="cc-exp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" maxlength="5" aria-describedby="cceE" /><div class="err" id="cceE"></div></div>
+<div class="field"><label for="ccc">CVC</label><input id="ccc" name="cvc" inputmode="numeric" autocomplete="cc-csc" placeholder="123" maxlength="4" aria-describedby="cccE" /><div class="err" id="cccE"></div></div>
+</div>
+<div class="row" style="margin-top:10px"><button type="submit" class="btn" id="ccPay">결제하기</button></div>
+<div class="state" id="ccState" role="status"></div>
+</form>
+<p class="cap">숫자가 아닌 문자는 입력 즉시 걸러지고, 중간을 고쳐도 커서가 튀지 않습니다. 비워 둔 채 칸을 벗어나면 안내가 뜹니다.</p></div>
+<div class="demo"><p class="demo-title">B. 붙여넣기·자동완성 시험대</p>
+<div class="row"><button type="button" class="btn ghost sm" data-fill="4242424242424242|12/29|123">유효 Visa 테스트번호</button>
+<button type="button" class="btn ghost sm" data-fill="378282246310005|01/30|1234">유효 Amex 테스트번호</button>
+<button type="button" class="btn ghost sm" data-fill="4242424242424241|12/29|123">Luhn 실패 번호</button>
+<button type="button" class="btn ghost sm" data-fill="5555555555554444|01/20|123">만료된 카드</button></div>
+<div class="mask" id="ccMask" aria-live="polite">서버/로그에 남길 값: (없음)</div>
+<p class="cap">버튼으로 자동완성/붙여넣기를 흉내 냅니다. 로그·분석 도구에는 전체 번호 대신 마지막 4자리만 남기세요 — 아래 마스킹 값처럼요.</p></div>
+</div>
+<pre><code>// 숫자만 남기고 → 포맷 → 커서를 "앞쪽 숫자 개수" 기준으로 복원
+function reformat(input, format, max){
+  const pos = input.selectionStart;
+  const before = input.value.slice(0, pos).replace(/\D/g, '').length;
+  const out = format(input.value.replace(/\D/g, '').slice(0, max));
+  input.value = out;
+  let n = 0, i = 0;
+  for (; i &lt; out.length &amp;&amp; n &lt; before; i++) if (/\d/.test(out[i])) n++;
+  input.setSelectionRange(i, i);
+}
+const luhn = d =&gt; [...d].reverse().reduce((s, c, i) =&gt;
+  s + (i % 2 ? ((c * 2) &gt; 9 ? c * 2 - 9 : c * 2) : +c), 0) % 10 === 0;</code></pre>
+<div class="note">입력 속성이 절반입니다: <code>inputmode="numeric"</code>(숫자 키패드), <code>autocomplete="cc-number|cc-exp|cc-csc"</code>(브라우저·패스워드 매니저 자동완성). <code>type="number"</code>는 쓰지 마세요 — 앞자리 0·스피너·휠 오입력 문제가 있습니다. 실제 서비스에선 카드번호가 우리 서버를 거치지 않게 PG사의 호스팅 필드/SDK를 쓰는 것이 일반적입니다(정책은 PG사 문서 확인).</div>
+</section>
+
+<!-- ============ 2. AMOUNT ============ -->
+<section class="card" id="amount" aria-labelledby="amount-h">
+<h2 id="amount-h">⌨️ 금액 입력 — 콤마·한도·한글 읽기로 "0 하나 더" 실수 막기 <span class="tag">입력·폼</span></h2>
+<p class="lead">충전·송금·결제 금액은 0 하나 차이가 사고입니다. 입력하는 동안 천 단위 콤마를 붙이고, 한도를 넘으면 조용히 한도로 맞추고 이유를 알려주며, "백이십삼만 사천오백 원"처럼 한글로 다시 읽어 줍니다.</p>
+<div class="grid2">
+<div class="demo amt"><p class="demo-title">A. 기본 — 콤마 + 한도(500만 원)</p>
+<div class="field"><label for="a1">충전 금액 (원)</label><input id="a1" inputmode="numeric" autocomplete="off" placeholder="0" aria-describedby="a1h" /></div>
+<div class="hint" id="a1h">1회 최대 5,000,000원</div>
+<p class="cap">0으로 시작하는 입력("007")은 7로 정리되고, 붙여넣은 "₩1,200원"도 숫자만 남깁니다.</p></div>
+<div class="demo amt"><p class="demo-title">B. 칩 + 한글 읽기 + 잔액 대비</p>
+<div class="field"><label for="a2">송금 금액 (원)</label><input id="a2" inputmode="numeric" autocomplete="off" placeholder="0" aria-describedby="a2k a2h" /></div>
+<div class="ko" id="a2k" aria-live="polite"></div>
+<div class="chips" role="group" aria-label="금액 더하기"><button type="button" class="chip" data-add="10000">+1만</button><button type="button" class="chip" data-add="50000">+5만</button><button type="button" class="chip" data-add="100000">+10만</button><button type="button" class="chip" data-all="1">전액</button><button type="button" class="chip" data-clear="1">지우기</button></div>
+<div class="hint" id="a2h">잔액 2,340,000원</div>
+<div class="row" style="margin-top:8px"><button type="button" class="btn" id="a2Go" aria-disabled="true">송금할 금액을 입력하세요</button></div>
+<div class="state" id="a2St" role="status"></div></div>
+</div>
+<pre><code>const fmt = n =&gt; n ? n.toLocaleString('ko-KR') : '';
+input.addEventListener('input', () =&gt; {
+  let n = Number(input.value.replace(/\D/g, '')) || 0;
+  if (n &gt; MAX) { n = MAX; hint.textContent = '1회 최대 ' + fmt(MAX) + '원으로 맞췄어요'; }
+  input.value = fmt(n);            // + 위 reformat처럼 커서 복원
+});
+// 버튼은 disabled 대신 aria-disabled + 이유를 라벨에 (포커스를 잃지 않게)</code></pre>
+<div class="note">금액은 화면에선 문자열로 다루되 서버로는 정수(원 단위)로 보냅니다. 부동소수점(0.1+0.2 문제)이 낄 틈을 없애려면 "정수 + 통화 단위" 계약이 안전합니다. 한글 읽기는 확인용 보조 텍스트이므로 스크린리더가 매 글자마다 읽지 않도록 aria-live="polite"로만 둡니다.</div>
+</section>
+
+<!-- ============ 3. STARTING STYLE ============ -->
+<section class="card" id="startstyle" aria-labelledby="ss-h">
+<h2 id="ss-h">🌀 @starting-style + allow-discrete — display:none에서 나타나는 요소를 CSS만으로 부드럽게 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">예전엔 <code>display:none → block</code>이 되는 순간 transition(속성 변화를 시간에 걸쳐 보간하는 CSS 기능)이 먹지 않아 JS로 클래스를 두 번 나눠 붙이곤 했습니다. <code>@starting-style</code>은 "처음 렌더될 때의 시작값"을 정해 주고, <code>transition-behavior: allow-discrete</code>는 display 같은 이산 속성도 전환에 참여시켜 사라질 때까지 기다려 줍니다.</p>
+<div class="support" id="ssSup"></div>
+<div class="grid2">
+<div class="demo" id="ssDemoA"><p class="demo-title">A. 드롭다운 메뉴 (클래스 토글)</p>
+<div class="menuwrap"><button type="button" class="btn" id="mBtn" aria-expanded="false" aria-controls="mList">더보기 ▾</button>
+<ul class="menu" id="mList" aria-label="거래 작업"><li><button type="button">영수증 보기</button></li><li><button type="button">환불 요청</button></li><li><button type="button">CS 문의</button></li></ul></div>
+<p class="cap" style="margin-top:130px">열 때 위에서 살짝 내려오고, 닫을 때도 사라지는 동안 애니메이션이 재생됩니다. Esc로 닫기.</p></div>
+<div class="demo"><p class="demo-title">B. 토스트 (popover) · C. 리스트 추가/삭제</p>
+<div class="row"><button type="button" class="btn" id="tBtn">토스트 띄우기</button><button type="button" class="btn ghost" id="lAdd">항목 추가</button></div>
+<div id="tHost"></div>
+<ul class="leglist" id="lList" aria-label="최근 알림"><li><span>정산 완료 알림</span><button type="button" class="btn ghost sm" data-del>삭제</button></li><li><span>환불 승인 알림</span><button type="button" class="btn ghost sm" data-del>삭제</button></li></ul>
+<p class="cap">토스트는 popover의 top-layer 진입·퇴장을 overlay 전환으로 보이게 하고, 리스트 항목은 추가 시 위에서 내려오고 삭제 시 옆으로 빠집니다.</p></div>
+</div>
+<pre><code>.menu{ display:none; opacity:0; transform:translateY(-8px);
+  transition: opacity .2s, transform .2s, display .2s allow-discrete; }
+.menu.open{ display:block; opacity:1; transform:none; }
+@starting-style{ .menu.open{ opacity:0; transform:translateY(-8px); } }
+/* 팝오버(top layer)는 overlay도 allow-discrete로 */
+.toast{ transition: opacity .3s, overlay .3s allow-discrete, display .3s allow-discrete; }</code></pre>
+<div class="note">미지원 브라우저에서는 전환 없이 그냥 즉시 나타나고 사라집니다(기능 손실 없음 = 점진적 향상). 브라우저 지원은 web.dev "Now in Baseline: animating entry effects" 글을 기준으로 확인하되, 배포 전 대상 브라우저 버전은 직접 재확인하세요(이 갤러리의 지원 문구는 런타임 감지값입니다). 모션을 줄이려는 사용자를 위해 <code>prefers-reduced-motion</code>에서는 transition을 꺼 둡니다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-10-21 · 직접 만든 동작 예시</div>
+</div>
+
+<script>
+(function(){
+var root=document.documentElement,qs=new URLSearchParams(location.search);
+var btn=document.getElementById('themeBtn');
+function setTheme(t){if(t==='dark')root.setAttribute('data-theme','dark');else root.removeAttribute('data-theme');btn.setAttribute('aria-pressed',t==='dark');btn.textContent=t==='dark'?'라이트 모드':'다크 모드'}
+btn.addEventListener('click',function(){setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+setTheme(qs.get('theme')==='dark'?'dark':(qs.get('theme')==='light'?'light':(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')));
+var em=qs.get('embed')||qs.get('demo');
+if(em){root.classList.add('embed-mode');var s=document.getElementById(em);if(s)s.classList.add('embed-show')}
+function $(i){return document.getElementById(i)}
+
+/* ---------- shared: digits reformat with caret restore ---------- */
+function reformat(input,format,max){
+  var pos=input.selectionStart==null?input.value.length:input.selectionStart;
+  var before=input.value.slice(0,pos).replace(/\D/g,'').length;
+  var out=format(input.value.replace(/\D/g,'').slice(0,max));
+  input.value=out;
+  var n=0,i=0;for(;i<out.length&&n<before;i++)if(/\d/.test(out[i]))n++;
+  try{input.setSelectionRange(i,i)}catch(e){}
+}
+
+/* ---------- 1. card ---------- */
+var ccn=$('ccn'),cce=$('cce'),ccc=$('ccc');
+function brandOf(d){
+  if(/^4/.test(d))return'Visa';
+  if(/^3[47]/.test(d))return'Amex';
+  if(/^(5[1-5]|2(2[2-9]|[3-6]\d|7[01]|720))/.test(d))return'Mastercard';
+  if(/^35/.test(d))return'JCB';
+  if(/^62/.test(d))return'UnionPay';
+  return'';
+}
+function cardFmt(d){
+  if(/^3[47]/.test(d))return[d.slice(0,4),d.slice(4,10),d.slice(10,15)].filter(Boolean).join(' ');
+  return d.replace(/(\d{4})(?=\d)/g,'$1 ');
+}
+function luhn(d){var s=0;for(var i=0;i<d.length;i++){var c=+d[d.length-1-i];if(i%2){c*=2;if(c>9)c-=9}s+=c}return d.length>0&&s%10===0}
+function isAmex(){return /^3[47]/.test(ccn.value.replace(/\D/g,''))}
+var touched={};
+function setErr(el,msgEl,msg){
+  if(msg){el.setAttribute('aria-invalid','true');msgEl.textContent=msg}
+  else{el.removeAttribute('aria-invalid');msgEl.textContent=''}
+}
+function chkNum(){var d=ccn.value.replace(/\D/g,''),need=isAmex()?15:16;
+  if(!d)return'카드번호를 입력해 주세요.';
+  if(d.length<need)return'숫자 '+need+'자리를 모두 입력해 주세요. (현재 '+d.length+'자리)';
+  if(!luhn(d))return'카드번호를 다시 확인해 주세요. 끝자리가 맞지 않아요.';return''}
+function chkExp(){var d=cce.value.replace(/\D/g,'');
+  if(!d)return'유효기간을 입력해 주세요.';
+  if(d.length<4)return'MM/YY 4자리로 입력해 주세요.';
+  var m=+d.slice(0,2),y=2000+ +d.slice(2);
+  if(m<1||m>12)return'월은 01~12 사이여야 해요.';
+  var now=new Date();if(new Date(y,m,1)<=new Date(now.getFullYear(),now.getMonth(),1))return'유효기간이 지난 카드예요.';return''}
+function chkCvc(){var d=ccc.value.replace(/\D/g,''),need=isAmex()?4:3;
+  if(!d)return'CVC를 입력해 주세요.';
+  if(d.length<need)return'CVC '+need+'자리를 입력해 주세요.';return''}
+var fields=[[ccn,$('ccnE'),chkNum],[cce,$('cceE'),chkExp],[ccc,$('cccE'),chkCvc]];
+fields.forEach(function(f){
+  f[0].addEventListener('blur',function(){touched[f[0].id]=true;setErr(f[0],f[1],f[2]())});
+  f[0].addEventListener('input',function(){if(touched[f[0].id]&&f[0].getAttribute('aria-invalid')==='true'){setErr(f[0],f[1],f[2]())}});
+});
+ccn.addEventListener('input',function(){
+  var d=ccn.value.replace(/\D/g,''),max=/^3[47]/.test(d)?15:16;
+  reformat(ccn,cardFmt,max);
+  $('ccBrand').textContent=brandOf(ccn.value.replace(/\D/g,''));
+  ccc.maxLength=isAmex()?4:3;
+  mask();
+});
+cce.addEventListener('input',function(e){
+  var d=cce.value.replace(/\D/g,'').slice(0,4);
+  if(d.length===1&&+d>1)d='0'+d;
+  var back=e.inputType&&e.inputType.indexOf('delete')===0;
+  cce.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):(d.length===2&&!back?d+'/':d);
+});
+ccc.addEventListener('input',function(){ccc.value=ccc.value.replace(/\D/g,'').slice(0,isAmex()?4:3)});
+function mask(){var d=ccn.value.replace(/\D/g,'');
+  $('ccMask').textContent='서버/로그에 남길 값: '+(d.length>=4?(brandOf(d)||'카드')+' •••• '+d.slice(-4):'(없음)')}
+document.querySelectorAll('[data-fill]').forEach(function(b){b.addEventListener('click',function(){
+  var p=b.getAttribute('data-fill').split('|');
+  ccn.value=cardFmt(p[0]);cce.value=p[1];ccc.value=p[2];
+  ccn.dispatchEvent(new Event('input'));ccc.value=p[2];
+  fields.forEach(function(f){touched[f[0].id]=true;setErr(f[0],f[1],f[2]())});
+  mask();$('ccState').textContent='';
+})});
+$('cardForm').addEventListener('submit',function(e){
+  e.preventDefault();var firstBad=null;
+  fields.forEach(function(f){touched[f[0].id]=true;var m=f[2]();setErr(f[0],f[1],m);if(m&&!firstBad)firstBad=f[0]});
+  if(firstBad){firstBad.focus();$('ccState').textContent='입력을 확인해 주세요.';return}
+  $('ccState').textContent='검증 통과 (데모: 실제 결제는 하지 않아요)';
+});
+
+/* ---------- 2. amount ---------- */
+function fmtWon(n){return n?n.toLocaleString('ko-KR'):''}
+function toKo(n){
+  if(!n)return'';
+  var dg=['','일','이','삼','사','오','육','칠','팔','구'],sm=['','십','백','천'],big=['','만','억','조'],out=[],g=0;
+  while(n>0){
+    var part=n%10000;n=Math.floor(n/10000);
+    if(part){var s='';for(var i=3;i>=0;i--){var d=Math.floor(part/Math.pow(10,i))%10;if(d)s+=((d===1&&i>0)?'':dg[d])+sm[i]}
+      out.unshift(s+big[g])}
+    g++;
+  }
+  return out.join(' ')+' 원';
+}
+function amountField(input,max,onChange){
+  function get(){return Number(input.value.replace(/\D/g,''))||0}
+  input.addEventListener('input',function(){
+    var n=get(),clamped=false;if(n>max){n=max;clamped=true}
+    var pos=input.selectionStart,before=input.value.slice(0,pos).replace(/\D/g,'').length;
+    var out=fmtWon(n);input.value=out;
+    var c=0,i=0;for(;i<out.length&&c<before;i++)if(/\d/.test(out[i]))c++;
+    try{input.setSelectionRange(i,i)}catch(e){}
+    onChange(n,clamped);
+  });
+  return{get:get,set:function(n){input.value=fmtWon(n);onChange(n,false)}};
+}
+var h1=$('a1h');
+amountField($('a1'),5000000,function(n,c){h1.textContent=c?'1회 최대 5,000,000원으로 맞췄어요':'1회 최대 5,000,000원'});
+var BAL=2340000,go=$('a2Go');
+var a2=amountField($('a2'),BAL*10,function(n){
+  $('a2k').textContent=toKo(n);
+  var over=n>BAL;
+  $('a2h').textContent=over?'잔액 '+fmtWon(BAL)+'원보다 '+fmtWon(n-BAL)+'원 많아요':'잔액 '+fmtWon(BAL)+'원';
+  $('a2h').style.color=over?'var(--bad)':'';
+  if(!n){go.textContent='송금할 금액을 입력하세요';go.setAttribute('aria-disabled','true')}
+  else if(over){go.textContent='잔액이 부족해요';go.setAttribute('aria-disabled','true')}
+  else{go.textContent=fmtWon(n)+'원 보내기';go.removeAttribute('aria-disabled')}
+});
+document.querySelectorAll('#amount .chip').forEach(function(c){c.addEventListener('click',function(){
+  var cur=a2.get();
+  if(c.dataset.clear)a2.set(0);else if(c.dataset.all)a2.set(BAL);else a2.set(cur+Number(c.dataset.add));
+  $('a2').focus();
+})});
+go.addEventListener('click',function(){
+  if(go.getAttribute('aria-disabled')==='true'){$('a2St').textContent=go.textContent;return}
+  $('a2St').textContent=fmtWon(a2.get())+'원 송금 요청 (데모)';
+});
+
+/* ---------- 3. starting-style ---------- */
+var sup=window.CSS&&CSS.supports&&CSS.supports('transition-behavior','allow-discrete');
+var startOk=window.CSS&&CSS.supports&&(function(){try{return CSS.supports('selector(:popover-open)')}catch(e){return false}})();
+$('ssSup').textContent=sup?'이 브라우저는 transition-behavior: allow-discrete를 지원합니다 (애니메이션 동작).':'이 브라우저는 allow-discrete 미지원 → 전환 없이 즉시 나타나고 사라집니다(기능은 정상).';
+var mb=$('mBtn'),ml=$('mList');
+function mset(o){ml.classList.toggle('open',o);mb.setAttribute('aria-expanded',String(o))}
+mb.addEventListener('click',function(){mset(!ml.classList.contains('open'))});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ml.classList.contains('open')){mset(false);mb.focus()}});
+document.addEventListener('click',function(e){if(!e.target.closest('.menuwrap'))mset(false)});
+ml.addEventListener('click',function(e){if(e.target.closest('button'))mset(false)});
+var tn=0;
+$('tBtn').addEventListener('click',function(){
+  var t=document.createElement('div');t.className='tst';t.id='tst'+(++tn);t.setAttribute('popover','manual');t.setAttribute('role','status');
+  t.textContent='정산 요청이 접수되었어요 #'+tn;$('tHost').appendChild(t);
+  if(t.showPopover){t.showPopover();setTimeout(function(){t.hidePopover();setTimeout(function(){t.remove()},400)},2500)}
+  else{t.style.cssText='position:fixed;right:16px;bottom:16px;opacity:1';setTimeout(function(){t.remove()},2500)}
+});
+var ln=2;
+$('lAdd').addEventListener('click',function(){
+  var li=document.createElement('li');li.innerHTML='<span>새 알림 #'+(++ln)+'</span><button type="button" class="btn ghost sm" data-del>삭제</button>';
+  $('lList').insertBefore(li,$('lList').firstChild);
+});
+$('lList').addEventListener('click',function(e){
+  var b=e.target.closest('[data-del]');if(!b)return;var li=b.closest('li');li.classList.add('gone');
+  setTimeout(function(){li.remove()},sup?300:0);
+});
+})();
+</script>
+</body>
+</html>
