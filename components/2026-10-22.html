@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-22 (목)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-22 (목) · 목록 상태를 주소에 담기 · 거래 상세 키-값 목록 · corner-shape 스퀴클</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#urlstate">🧭 목록 상태 URL</a><a href="#detail">🃏 거래 상세 키-값</a><a href="#squircle">🌀 corner-shape</a>
+</nav>
+
+<!-- ============ 1. URL STATE ============ -->
+<section class="card" id="urlstate" aria-labelledby="urlstate-h">
+<h2 id="urlstate-h">🧭 목록 상태를 주소에 담기 — 필터·정렬·페이지, 그리고 push와 replace 고르기 <span class="tag">내비게이션·탭</span></h2>
+<p class="lead">필터·정렬·페이지를 URL 쿼리(<code>?status=fail&amp;page=2</code>)에 두면 새로고침·링크 공유·뒤로가기가 공짜로 동작합니다. 핵심은 "어떤 변경이 히스토리 한 칸(push)이고, 어떤 변경이 제자리 덮어쓰기(replace)인가"입니다. 아래 주소창은 시뮬레이션이라 실제 이동은 없습니다.</p>
+<div class="demo"><p class="demo-title">거래 내역 (24건 · 5건씩) — 실제로 만져 보세요</p>
+<div class="addr"><button class="btn ghost sm" id="uBack" aria-label="뒤로 가기">←</button><button class="btn ghost sm" id="uFwd" aria-label="앞으로 가기">→</button><code id="uUrl" aria-live="polite"></code><span class="hist" id="uHist"></span></div>
+<div class="row" role="group" aria-label="상태 필터" id="uStatus"></div>
+<div class="row" style="margin-top:8px"><label>정렬 <select id="uSort"><option value="date_desc">최신순</option><option value="amount_desc">금액 큰 순</option><option value="amount_asc">금액 작은 순</option></select></label>
+<label>검색 <input type="search" id="uQ" placeholder="가맹점명" autocomplete="off" /></label></div>
+<ul class="tx" id="uList" aria-live="polite"></ul>
+<div class="pager" id="uPager"></div>
+<div class="log" id="uLog" role="status"></div>
+<p class="cap">필터·정렬 변경 = push(+ page 초기화), 페이지 이동 = push, 검색어 타이핑 = 0.4초 뒤 replace(글자마다 히스토리가 쌓이지 않게). 기본값(전체·최신순·1페이지)은 URL에서 생략합니다. 아래 버튼으로 이상한 주소도 넣어 보세요.</p>
+<div class="row"><button class="btn ghost sm" id="uBad1">?page=999&amp;sort=hack 넣기</button><button class="btn ghost sm" id="uBad2">?status=fail&amp;page=-3 넣기</button></div>
+</div>
+<pre><code>// 읽기: 항상 "허용 목록"으로 정제 (잘못된 값은 기본값)
+const STATUS = ['done','fail','wait'] as const;
+function parse(sp: URLSearchParams) {
+  const status = STATUS.find(s => s === sp.get('status')) ?? 'all';
+  const page = Math.max(1, Number(sp.get('page')) || 1);
+  return { status, page, sort: sp.get('sort') ?? 'date_desc', q: sp.get('q') ?? '' };
+}
+// 쓰기: 기본값은 지우고, 필터가 바뀌면 page 리셋
+function update(next, mode: 'push' | 'replace') {
+  const sp = new URLSearchParams();
+  if (next.status !== 'all') sp.set('status', next.status);
+  if (next.page &gt; 1) sp.set('page', String(next.page));
+  router[mode](`${pathname}?${sp}`, { scroll: false }); // Next.js
+}</code></pre>
+<div class="note">Next.js App Router에선 서버 컴포넌트가 <code>searchParams</code> prop으로 같은 값을 바로 읽으니, URL이 곧 "단일 상태 출처"가 됩니다. 타이핑 중 replace는 입력창 자체는 로컬 state로 두고 debounce(입력이 멈출 때까지 기다렸다 실행) 뒤에만 URL에 반영하세요.</div>
+</section>
+
+<!-- ============ 2. DETAIL KV ============ -->
+<section class="card" id="detail" aria-labelledby="detail-h">
+<h2 id="detail-h">🃏 거래 상세 키-값 목록 — dl로 의미 붙이고, 마스킹·긴 값·복사를 다루기 <span class="tag">카드·리스트</span></h2>
+<p class="lead">영수증·거래 상세처럼 "라벨: 값" 쌍은 표나 div 더미 대신 <code>&lt;dl&gt;/&lt;dt&gt;/&lt;dd&gt;</code>(설명 목록: 용어와 설명을 짝지어 주는 HTML 요소)로 쓰면 스크린리더가 "승인번호, 값"으로 짝을 읽어 줍니다.</p>
+<div class="grid2">
+<div class="demo"><p class="demo-title">A. 기본 — 금액은 우측 정렬·숫자 폭 고정</p>
+<dl class="kv"><dt>가맹점</dt><dd>카페 온도</dd><dt>결제수단</dt><dd>신한 1234 (일시불)</dd><dt>공급가액</dt><dd><span class="num">4,090원</span></dd><dt>부가세</dt><dd><span class="num">410원</span></dd><dt>결제금액</dt><dd class="total"><span class="num">4,500원</span></dd></dl>
+<p class="cap">라벨은 흐리게, 값은 굵게. 좁은 화면(420px 이하)에서는 라벨 위·값 아래로 쌓입니다.</p></div>
+<div class="demo"><p class="demo-title">B. 민감 값 마스킹 + 보기 토글</p>
+<dl class="kv"><dt>카드번호</dt><dd><span class="mono" id="mCard">4242 **** **** 4242</span><button class="btn ghost sm" id="mBtn" aria-pressed="false" aria-controls="mCard">원본 보기</button></dd>
+<dt>승인번호</dt><dd><span class="mono">30115928</span></dd></dl>
+<div class="cstate" id="mState" role="status"></div>
+<p class="cap">기본은 마스킹, 보기는 사용자가 명시적으로 누를 때만. 5초 뒤 자동으로 다시 가립니다(어깨너머·화면공유 대비).</p></div>
+</div>
+<div class="demo"><p class="demo-title">C. 긴 값 — 말줄임 + 펼치기 + 복사</p>
+<dl class="kv"><dt>거래 ID</dt><dd><span class="ell mono" id="lId" style="max-width:260px">TXN_20261022_8f3a91c2d7e44b5aa0c1e92b7d3f6a10</span><button class="btn ghost sm" id="lExp" aria-expanded="false" aria-controls="lId">펼치기</button><button class="btn ghost sm" id="lCopy">복사</button></dd></dl>
+<div class="cstate" id="lState" role="status"></div>
+<p class="cap">말줄임 처리한 값은 펼치기 수단을 같이 둡니다(title 툴팁만으론 터치·키보드에서 못 봄). 복사는 항상 전체 값을 대상으로, 결과는 role="status"로 알립니다.</p></div>
+<pre><code>&lt;dl class="kv"&gt;
+  &lt;dt&gt;결제금액&lt;/dt&gt;
+  &lt;dd class="total"&gt;&lt;span class="num"&gt;4,500원&lt;/span&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+dl.kv { display:grid; grid-template-columns:max-content 1fr; gap:0 18px }
+dl.kv dd { margin:0; min-width:0; /* 말줄임을 위해 필수 */ display:flex; justify-content:flex-end }
+.num { font-variant-numeric: tabular-nums }</code></pre>
+<div class="note">flex/grid 자식은 <code>min-width:0</code>이 없으면 긴 문자열이 줄어들지 않아 말줄임(<code>text-overflow</code>)이 안 먹습니다. 흔한 함정입니다.</div>
+</section>
+
+<!-- ============ 3. CORNER-SHAPE ============ -->
+<section class="card" id="squircle" aria-labelledby="squircle-h">
+<h2 id="squircle-h">🌀 corner-shape — border-radius에 "곡선의 모양"을 더하는 CSS (스퀴클) <span class="tag">트렌드·개념</span></h2>
+<p class="lead"><code>border-radius</code>는 모서리 "크기"만 정합니다. <code>corner-shape</code>는 그 모서리가 원호인지(round), iOS 아이콘 같은 스퀴클(squircle: 사각형과 원 사이의 부드러운 곡선)인지, 깎인 면(bevel)인지 "모양"을 정합니다. 반드시 0이 아닌 <code>border-radius</code>와 함께 써야 보입니다.</p>
+<div class="support" id="sqSupport" role="status"></div>
+<div class="demo"><p class="demo-title">A. 모양 비교 (모두 border-radius: 32px)</p>
+<div class="shapes"><div class="sq s1">round<br>(기본)</div><div class="sq s2">squircle</div><div class="sq s4">bevel</div><div class="sq s5">scoop</div></div>
+<p class="cap">지원 브라우저가 아니면 네 개 모두 같은 둥근 모서리로 보입니다 — 그게 정상적인 폴백입니다.</p></div>
+<div class="grid2">
+<div class="demo"><p class="demo-title">B. superellipse(k) 슬라이더</p>
+<div class="shapes"><div class="sq s3" id="sqLive" style="border-radius:44px">k = 2</div></div>
+<label class="cap" style="display:block">k 값 <input type="range" id="sqK" min="-2" max="4" step="0.1" value="2" aria-describedby="sqKv" /> <output id="sqKv">2.0</output></label>
+<p class="cap">1 = 원호, 2 = 스퀴클, 0 = 직선 컷, 음수 = 안쪽으로 파인 모서리.</p></div>
+<div class="demo"><p class="demo-title">C. 실제 UI — 점진적 향상 토글</p>
+<div class="sqcard" id="sqCard"><div class="ic" aria-hidden="true">💳</div><div><strong>결제 카드 관리</strong><div class="cap" style="margin:0">대표 카드 · 신한 1234</div></div></div>
+<div class="row" style="margin-top:12px"><button class="chip" id="sqToggle" aria-pressed="false">스퀴클 적용</button></div>
+<p class="cap">카드·아이콘 칩에만 선택적으로 켭니다. 켜도 레이아웃은 그대로, 모서리 곡선만 달라집니다.</p></div>
+</div>
+<pre><code>.card { border-radius: 24px; }          /* 폴백: 모든 브라우저 */
+@supports (corner-shape: squircle) {
+  .card { corner-shape: squircle; }     /* 지원 시에만 모양 변경 */
+}
+/* 모서리마다: corner-top-left-shape: bevel; */</code></pre>
+<div class="note">확인한 사실: Chrome/Edge 139부터 지원, Safari·Firefox는 아직(2026-06 기준 외부 글 근거). 아직 Baseline이 아니므로 "없어도 멀쩡한 장식"에만 쓰세요. <code>box-shadow</code>·<code>border</code>와의 상호작용은 직접 확인하지 못해 <b>추정/미검증</b>입니다.</div>
+</section>
+<div class="footer">Design Inspiration Daily · 2026-10-22 · self-contained (외부 의존성 없음)</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// theme + embed
+const qs=new URLSearchParams(location.search);
+const root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+
+// ===== 1. URL state (simulated history) =====
+const DATA=[];const M=['카페 온도','마트 하나','택시 모아','서점 결','편의점 이든','병원 가온','주유소 한길','구독 스트림'];
+for(let i=0;i<24;i++){DATA.push({id:i,m:M[i%8],amt:(((i*7919)%97)+3)*1000,st:['done','fail','wait'][i%3==0?1:(i%2?0:2)],d:24-i})}
+const SL={done:'성공',fail:'실패',wait:'대기'},STS=['done','fail','wait'],SORTS=['date_desc','amount_desc','amount_asc'],PER=5;
+let stack=[''],idx=0;
+const cur=()=>new URLSearchParams(stack[idx]);
+function parse(sp){return{status:STS.includes(sp.get('status'))?sp.get('status'):'all',sort:SORTS.includes(sp.get('sort'))?sp.get('sort'):'date_desc',page:Math.max(1,parseInt(sp.get('page'))||1),q:sp.get('q')||''}}
+function build(s){const p=new URLSearchParams();if(s.status!=='all')p.set('status',s.status);if(s.sort!=='date_desc')p.set('sort',s.sort);if(s.q)p.set('q',s.q);if(s.page>1)p.set('page',s.page);return p.toString()}
+function go(next,mode,why){const str=build(next);if(str===stack[idx]&&mode!=='raw')return;
+ if(mode==='push'){stack=stack.slice(0,idx+1);stack.push(str);idx++}else if(mode==='replace'){stack[idx]=str}
+ $('#uLog').textContent=why+' → '+mode.toUpperCase(); render()}
+function render(){
+ const raw=stack[idx];const s=parse(cur());const clean=build(s);
+ let list=DATA.filter(r=>(s.status==='all'||r.st===s.status)&&r.m.includes(s.q));
+ list.sort((a,b)=>s.sort==='amount_desc'?b.amt-a.amt:s.sort==='amount_asc'?a.amt-b.amt:b.d-a.d);
+ const pages=Math.max(1,Math.ceil(list.length/PER));let page=Math.min(s.page,pages);
+ $('#uUrl').textContent='/transactions'+(raw?'?'+raw:'')+(raw!==clean||page!==s.page?'  → 정제: '+(build({...s,page})||'(기본)'):'');
+ $('#uHist').textContent=(idx+1)+'/'+stack.length;
+ $('#uBack').disabled=idx===0;$('#uFwd').disabled=idx===stack.length-1;
+ $('#uStatus').innerHTML='';
+ [['all','전체'],...STS.map(k=>[k,SL[k]])].forEach(([k,l])=>{const b=document.createElement('button');b.className='chip';b.textContent=l;b.setAttribute('aria-pressed',s.status===k);b.onclick=()=>go({...s,status:k,page:1},'push','필터 변경(page 리셋)');$('#uStatus').appendChild(b)});
+ $('#uSort').value=s.sort;if(document.activeElement!==$('#uQ'))$('#uQ').value=s.q;
+ const ul=$('#uList');ul.innerHTML='';
+ if(!list.length){ul.innerHTML='<li>조건에 맞는 거래가 없어요. 필터를 줄여 보세요.</li>'}
+ list.slice((page-1)*PER,page*PER).forEach(r=>{const li=document.createElement('li');li.innerHTML='<span>'+r.m+' <span class="st '+r.st+'">'+SL[r.st]+'</span></span><span class="amt">'+r.amt.toLocaleString('ko-KR')+'원</span>';ul.appendChild(li)});
+ const pg=$('#uPager');pg.innerHTML='<span class="cap" style="margin:0">'+list.length+'건 · '+page+'/'+pages+'쪽</span>';
+ for(let p=1;p<=pages;p++){const b=document.createElement('button');b.className='chip';b.textContent=p;b.setAttribute('aria-pressed',p===page);if(p===page)b.setAttribute('aria-current','page');b.onclick=()=>go({...s,page:p},'push','페이지 이동');pg.appendChild(b)}
+}
+$('#uSort').onchange=e=>{const s=parse(cur());go({...s,sort:e.target.value,page:1},'push','정렬 변경(page 리셋)')};
+let t;$('#uQ').oninput=e=>{clearTimeout(t);const v=e.target.value;$('#uLog').textContent='입력 중… (0.4초 기다림)';t=setTimeout(()=>{const s=parse(cur());go({...s,q:v,page:1},'replace','검색어 반영')},400)};
+$('#uBack').onclick=()=>{if(idx>0){idx--;$('#uLog').textContent='뒤로 가기 → 이전 목록 상태 복원';render()}};
+$('#uFwd').onclick=()=>{if(idx<stack.length-1){idx++;$('#uLog').textContent='앞으로 가기';render()}};
+function raw(str,msg){stack=stack.slice(0,idx+1);stack.push(str);idx++;$('#uLog').textContent=msg;render()}
+$('#uBad1').onclick=()=>raw('page=999&sort=hack','잘못된 값 → 허용 목록/범위로 정제');
+$('#uBad2').onclick=()=>raw('status=fail&page=-3','음수 page → 1로 정제');
+render();
+
+// ===== 2. KV =====
+let mT;const card=$('#mCard');
+function mask(on){card.textContent=on?'4242 4242 4242 4242':'4242 **** **** 4242';$('#mBtn').setAttribute('aria-pressed',on);$('#mBtn').textContent=on?'가리기':'원본 보기';$('#mState').textContent=on?'원본이 표시 중입니다. 5초 뒤 자동으로 가립니다.':'카드번호를 가렸습니다.'}
+$('#mBtn').onclick=()=>{clearTimeout(mT);const on=$('#mBtn').getAttribute('aria-pressed')!=='true';mask(on);if(on)mT=setTimeout(()=>mask(false),5000)};
+$('#lExp').onclick=()=>{const o=$('#lId').classList.toggle('open');$('#lId').style.maxWidth=o?'none':'260px';$('#lExp').setAttribute('aria-expanded',o);$('#lExp').textContent=o?'접기':'펼치기'};
+$('#lCopy').onclick=async()=>{const v=$('#lId').textContent;let ok=false;try{await navigator.clipboard.writeText(v);ok=true}catch(e){}
+ $('#lState').textContent=ok?'거래 ID를 복사했어요.':'복사 권한이 없어요. 펼친 값을 직접 선택해 복사해 주세요.';if(!ok){$('#lExp').click()}};
+
+// ===== 3. corner-shape =====
+const sup=CSS.supports('corner-shape','squircle');
+$('#sqSupport').textContent=sup?'✅ 이 브라우저는 corner-shape를 지원합니다.':'⚠️ 이 브라우저는 corner-shape 미지원 — 아래 도형이 모두 둥근 모서리로 보이는 게 정상 폴백입니다.';
+$('#sqSupport').style.color=sup?'var(--ok)':'';$('#sqSupport').style.background=sup?'var(--ok-soft)':'';
+$('#sqK').oninput=e=>{const k=(+e.target.value).toFixed(1);$('#sqLive').style.setProperty('--k',k);$('#sqLive').textContent='k = '+k;$('#sqKv').textContent=k};
+$('#sqToggle').onclick=()=>{const on=$('#sqCard').classList.toggle('on');$('#sqToggle').setAttribute('aria-pressed',on)};
+})();
+</script>
+</body>
+</html>
