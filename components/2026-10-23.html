@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-10-23 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+/* ===== 2026-10-23 ===== */
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.seg button{cursor:pointer;border:0;background:var(--surface);color:var(--text);padding:6px 12px;font-size:.84rem}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink)}
+.wf{width:100%;height:auto;display:block}
+.wf text{fill:var(--text);font-size:11px;font-variant-numeric:tabular-nums}
+.wf .lbl{fill:var(--muted)}
+.wf .axis{stroke:var(--border)}.wf .conn{stroke:var(--muted);stroke-dasharray:3 3}
+.wf .bar{cursor:pointer;outline:none}
+.wf .bar rect{stroke:var(--text);stroke-width:0;transition:stroke-width .12s}
+.wf .bar:hover rect,.wf .bar:focus-visible rect{stroke-width:2}
+.wf .tot rect{fill:var(--brand)}.wf .neg rect{fill:url(#hatch);stroke:var(--bad);stroke-width:1.5}
+.wf .net rect{fill:var(--ok)}
+.read{margin-top:10px;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem;min-height:3.2em}
+table.t{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--surface);border-radius:10px;overflow:hidden}
+table.t th,table.t td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left}
+table.t .n{text-align:right;font-variant-numeric:tabular-nums}
+table.t th button{all:unset;cursor:pointer;font-weight:700;display:inline-flex;gap:4px;align-items:center}
+table.t th button:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+.dbar{position:relative;min-width:120px;height:20px;background:var(--surface-2);border-radius:5px}
+.dbar i{position:absolute;inset:0 auto 0 0;background:var(--brand);border-radius:5px;opacity:.85;transition:width .3s}
+.dbar b{position:absolute;left:6px;top:0;line-height:20px;font-size:.74rem;color:var(--text);mix-blend-mode:normal;text-shadow:0 0 3px var(--surface)}
+/* pay unknown */
+.ps{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px;max-width:440px}
+.ps h3{margin:0 0 4px;font-size:1.02rem}.ps p{margin:0 0 10px;color:var(--muted);font-size:.9rem}
+.ps .ico{font-size:1.6rem;line-height:1}
+.ps.ok{border-color:var(--ok)}.ps.bad{border-color:var(--bad)}.ps.unk{border-color:var(--warn)}
+.dots{display:flex;gap:6px;margin:8px 0}.dots span{width:10px;height:10px;border-radius:50%;background:var(--border)}
+.dots span.on{background:var(--brand)}
+.spin{display:inline-block;width:18px;height:18px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-3px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.evlog{margin:12px 0 0;padding:0;list-style:none;font-size:.78rem;color:var(--muted);font-family:ui-monospace,Menlo,Consolas,monospace;max-height:150px;overflow:auto}
+.evlog li{padding:2px 0}
+.cmp{display:grid;gap:8px}
+.cmp .r{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:.88rem}
+.cmp .r code{font-size:.78rem;color:var(--muted);display:block;overflow-wrap:anywhere}
+.cmp .v{font-weight:700;font-variant-numeric:tabular-nums}
+.b{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;margin-left:6px}
+.b.ok{color:var(--ok);background:var(--ok-soft)}.b.no{color:var(--bad);background:var(--bad-soft)}.b.na{color:var(--warn);background:var(--warn-soft)}
+input[type=datetime-local],input[type=date]{padding:7px 9px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+html.embed-mode .embed-show .meta{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-10-23 (금) · 정산 워터폴 차트 · 결과를 모르는 결제 상태 · Temporal과 KST 날짜 경계</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#waterfall">📊 정산 워터폴</a><a href="#unknown">🔔 결과 모름 상태</a><a href="#temporal">🌀 Temporal</a>
+</nav>
+
+<!-- 1. WATERFALL -->
+<section class="card" id="waterfall" aria-labelledby="waterfall-h">
+<h2 id="waterfall-h">📊 정산 워터폴 — 총결제에서 환불·수수료를 빼고 "내 통장에 들어오는 돈"까지 한 줄로 <span class="tag">데이터·테이블·차트</span></h2>
+<p class="lead">워터폴 차트는 시작값에서 증감이 하나씩 쌓여 최종값이 되는 과정을 보여줍니다. 합계만 보여주는 표보다 "어디서 줄었나"가 먼저 읽힙니다.</p>
+<div class="demo">
+<p class="demo-title">A. 워터폴 (막대에 포커스·호버하면 아래에 값이 읽힙니다)</p>
+<div class="row" style="margin-bottom:10px">
+<div class="seg" role="group" aria-label="기간">
+<button type="button" data-p="week" aria-pressed="true">이번 주</button><button type="button" data-p="last" aria-pressed="false">지난 주</button><button type="button" data-p="month" aria-pressed="false">이번 달</button>
+</div>
+<button type="button" class="btn ghost sm" id="wfTable" aria-pressed="false">표로 보기</button>
+</div>
+<div id="wfChartBox"><svg class="wf" id="wf" viewBox="0 0 560 250" role="group" aria-label="정산 워터폴 차트"></svg></div>
+<div id="wfTableBox" hidden><table class="t" aria-label="정산 내역 표"><thead><tr><th scope="col">항목</th><th scope="col" class="n">금액(원)</th><th scope="col" class="n">누계(원)</th></tr></thead><tbody id="wfRows"></tbody></table></div>
+<div class="read" id="wfRead" role="status" aria-live="polite">막대를 선택하면 항목·금액·누계가 여기에 표시됩니다.</div>
+<p class="cap">줄어드는 항목은 색만이 아니라 빗금 무늬와 "−" 부호로도 구분합니다. 차트와 같은 숫자를 표로 바꿔 볼 수 있게 해 두는 것이 접근성의 기본입니다.</p>
+</div>
+<div class="demo">
+<p class="demo-title">B. 표 안의 데이터 바 (헤더 버튼으로 정렬)</p>
+<table class="t" aria-label="가맹점별 거래액">
+<thead><tr><th scope="col">가맹점</th>
+<th scope="col" class="n" id="thCnt" aria-sort="none"><button type="button" data-k="cnt">건수 <span aria-hidden="true">↕</span></button></th>
+<th scope="col" id="thAmt" aria-sort="descending"><button type="button" data-k="amt">거래액 <span aria-hidden="true">▼</span></button></th></tr></thead>
+<tbody id="dbRows"></tbody></table>
+<p class="cap">바는 장식이고 숫자가 본문입니다. 바 길이는 최댓값 기준 비율, 정렬 상태는 aria-sort로 알립니다.</p>
+</div>
+</section>
+
+<!-- 2. UNKNOWN -->
+<section class="card" id="unknown" aria-labelledby="unknown-h">
+<h2 id="unknown-h">🔔 결과를 모르는 상태 — 응답이 끊겨도 "실패"로 단정하지 않고 조회로 확정하기 <span class="tag">피드백·상태</span></h2>
+<p class="lead">결제 승인 요청이 타임아웃 나면 서버에서는 이미 승인됐을 수 있습니다. 이때 "실패, 다시 결제"를 누르게 하면 이중 결제가 됩니다. 화면에는 성공·실패 말고 세 번째 상태, "확인 중/결과 불명"이 필요합니다.</p>
+<div class="demo">
+<p class="demo-title">시나리오를 고르고 결제를 시작해 보세요 (시간은 데모용으로 빠르게 돌립니다)</p>
+<div class="row" style="margin-bottom:12px">
+<label for="scn">시나리오</label>
+<select id="scn"><option value="ok">정상 승인</option><option value="late" selected>응답은 끊겼지만 실제로는 승인</option><option value="decline">카드사 거절</option><option value="unknown">끝까지 확인 불가</option></select>
+<button type="button" class="btn" id="payGo">12,400원 결제</button>
+<button type="button" class="btn ghost" id="payReset">처음으로</button>
+</div>
+<div class="ps" id="ps"><div class="ico" aria-hidden="true">💳</div><h3 id="psT">결제 대기</h3><p id="psD">버튼을 누르면 승인 요청을 보냅니다.</p><div id="psX"></div></div>
+<div class="sr-only" id="psLive" role="status" aria-live="polite"></div>
+<ul class="evlog" id="evlog" aria-label="처리 로그"></ul>
+<p class="cap">"끝까지 확인 불가"에서는 재결제 버튼을 아예 잠그고, 거래번호 복사·내역 확인·고객센터로 길을 줍니다. 요청에는 항상 같은 멱등키를 실어 서버가 중복을 걸러냅니다(멱등키 = 같은 요청을 몇 번 보내도 한 번만 처리하게 하는 고유 키).</p>
+</div>
+</section>
+
+<!-- 3. TEMPORAL -->
+<section class="card" id="temporal" aria-labelledby="temporal-h">
+<h2 id="temporal-h">🌀 Temporal과 KST 날짜 경계 — toISOString().slice(0,10)이 하루 틀리는 순간 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">서버는 UTC 시각을 줍니다. 한국 날짜로는 오전 9시 전까지 "전날"이 되죠. Date로 날짜만 자르면 매일 새벽 9시간 동안 틀립니다. Temporal은 시간대를 값 안에 넣은 새 JS 날짜·시간 API입니다.</p>
+<div class="demo">
+<p class="demo-title">A. 같은 UTC 시각, 네 가지 날짜 계산</p>
+<div class="row" style="margin-bottom:10px"><label for="utcIn">서버가 준 UTC 시각</label><input type="datetime-local" id="utcIn" value="2026-10-22T16:30" /></div>
+<div class="cmp" id="cmpA"></div>
+<p class="cap" id="tpSupport"></p>
+</div>
+<div class="demo">
+<p class="demo-title">B. "KST 하루"를 서버 조회 범위(UTC)로 바꾸기</p>
+<div class="row" style="margin-bottom:10px"><label for="dayIn">조회할 날짜(KST)</label><input type="date" id="dayIn" value="2026-10-23" /></div>
+<div class="cmp" id="cmpB"></div>
+</div>
+</section>
+<div class="footer">Design Inspiration Daily · 2026-10-23 · 모든 데이터는 데모용 가짜 값입니다.</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR');
+const sg=n=>(n<0?'−':'+')+won(Math.abs(n));
+
+/* ===== 1. waterfall ===== */
+const PERIODS={week:{g:12400000,r:620000},last:{g:9800000,r:1450000},month:{g:52300000,r:2100000}};
+let period='week', activeBar=-1;
+function items(p){const {g,r}=PERIODS[p];const fee=Math.round(g*0.03), vat=Math.round(fee*0.1);
+ const net=g-r-fee-vat;
+ return [{l:'총 결제',v:g,t:'tot'},{l:'환불',v:-r,t:'neg'},{l:'수수료',v:-fee,t:'neg'},{l:'수수료 VAT',v:-vat,t:'neg'},{l:'정산액',v:net,t:'net'}];}
+function drawWF(){
+ const it=items(period), W=560,H=250,L=14,T=30,B=34,bw=64;
+ const max=it[0].v, y=v=>T+(H-T-B)*(1-v/max);
+ const gap=(W-L*2-bw*it.length)/(it.length-1);
+ let run=0,svg='<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="var(--bad-soft)"/><line x1="0" y1="0" x2="0" y2="6" stroke="var(--bad)" stroke-width="2"/></pattern></defs>';
+ svg+=`<line class="axis" x1="${L}" x2="${W-L}" y1="${y(0)}" y2="${y(0)}"/>`;
+ let prevEnd=null;
+ it.forEach((o,i)=>{
+  let top,bot;
+  if(o.t==='tot'){run=o.v;top=y(o.v);bot=y(0)}
+  else if(o.t==='neg'){const s=run;run+=o.v;top=y(s);bot=y(run)}
+  else {top=y(o.v);bot=y(0)}
+  o.cum=run; if(o.t==='net')o.cum=o.v;
+  const x=L+i*(bw+gap), h=Math.max(bot-top,2);
+  if(prevEnd!==null)svg+=`<line class="conn" x1="${x-gap}" x2="${x}" y1="${prevEnd}" y2="${prevEnd}"/>`;
+  prevEnd=o.t==='neg'?bot:top;
+  const lab=o.t==='neg'?sg(o.v):won(o.v);
+  svg+=`<g class="bar ${o.t}" tabindex="0" role="listitem" data-i="${i}" aria-label="${o.l} ${o.t==='neg'?'−':''}${won(Math.abs(o.v))}원, 누계 ${won(o.cum)}원"><rect x="${x}" y="${top}" width="${bw}" height="${h}" rx="4"/><text x="${x+bw/2}" y="${top-6}" text-anchor="middle">${lab}</text><text class="lbl" x="${x+bw/2}" y="${H-12}" text-anchor="middle">${o.l}</text></g>`;
+ });
+ $('#wf').innerHTML=svg; $('#wf').setAttribute('role','list');
+ $$('#wf .bar').forEach(g=>{const f=()=>readBar(+g.dataset.i);g.addEventListener('focus',f);g.addEventListener('mouseenter',f);g.addEventListener('click',f);
+  g.addEventListener('keydown',e=>{const n=$$('#wf .bar');let i=+g.dataset.i;if(e.key==='ArrowRight')i=Math.min(i+1,n.length-1);else if(e.key==='ArrowLeft')i=Math.max(i-1,0);else return;e.preventDefault();n[i].focus()})});
+ $('#wfRows').innerHTML=it.map(o=>`<tr><th scope="row">${o.l}</th><td class="n">${o.t==='neg'?sg(o.v):won(o.v)}</td><td class="n">${won(o.cum)}</td></tr>`).join('');
+ window._wf=it;
+}
+function readBar(i){const o=window._wf[i];const pct=(Math.abs(o.v)/window._wf[0].v*100).toFixed(1);
+ $('#wfRead').innerHTML=`<b>${o.l}</b> ${o.t==='neg'?'−':''}${won(Math.abs(o.v))}원 · 총결제 대비 ${pct}% · 누계 ${won(o.cum)}원`+(o.t==='net'?' <span class="b ok">통장 입금 예정</span>':'')}
+$$('.seg button').forEach(b=>b.addEventListener('click',()=>{period=b.dataset.p;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));drawWF();$('#wfRead').textContent='기간이 바뀌었습니다. 막대를 선택해 값을 확인하세요.'}));
+$('#wfTable').addEventListener('click',()=>{const on=$('#wfTable').getAttribute('aria-pressed')!=='true';$('#wfTable').setAttribute('aria-pressed',on);$('#wfTable').textContent=on?'차트로 보기':'표로 보기';$('#wfChartBox').hidden=on;$('#wfTableBox').hidden=!on});
+drawWF();
+
+const M=[{n:'카페 온도',cnt:412,amt:3180000},{n:'마트 하나',cnt:158,amt:5420000},{n:'택시 모아',cnt:633,amt:2210000},{n:'서점 결',cnt:97,amt:1340000},{n:'병원 가온',cnt:71,amt:4860000},{n:'구독 스트림',cnt:1204,amt:3790000}];
+let sortK='amt',sortD=-1;
+function drawDB(){const rows=[...M].sort((a,b)=>(a[sortK]-b[sortK])*sortD);const mx=Math.max(...M.map(m=>m.amt));
+ $('#dbRows').innerHTML=rows.map(m=>`<tr><th scope="row">${m.n}</th><td class="n">${won(m.cnt)}</td><td><div class="dbar"><i style="width:${m.amt/mx*100}%"></i><b>${won(m.amt)}</b></div></td></tr>`).join('');
+ [['cnt','#thCnt'],['amt','#thAmt']].forEach(([k,id])=>{const th=$(id);th.setAttribute('aria-sort',k===sortK?(sortD<0?'descending':'ascending'):'none');th.querySelector('span').textContent=k===sortK?(sortD<0?'▼':'▲'):'↕'})}
+$$('table [data-k]').forEach(b=>b.addEventListener('click',()=>{const k=b.dataset.k;if(sortK===k)sortD*=-1;else{sortK=k;sortD=-1}drawDB()}));
+drawDB();
+
+/* ===== 2. unknown payment state ===== */
+let timers=[], t0=0;
+const K='idem-9f2c1a';
+function clr(){timers.forEach(clearTimeout);timers.forEach(clearInterval);timers=[]}
+function log(m){const li=document.createElement('li');li.textContent=`+${((Date.now()-t0)/1000).toFixed(1)}s ${m}`;$('#evlog').appendChild(li);$('#evlog').scrollTop=1e5}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function view(cls,ico,t,d,x,live){const p=$('#ps');p.className='ps '+cls;p.querySelector('.ico').innerHTML=ico;$('#psT').textContent=t;$('#psD').textContent=d;$('#psX').innerHTML=x||'';$('#psLive').textContent=live||t}
+function dots(n,max){return `<div class="dots" aria-hidden="true">${Array.from({length:max},(_,i)=>`<span class="${i<n?'on':''}"></span>`).join('')}</div>`}
+const spin=reduce?'⏳':'<span class="spin"></span>';
+function reset(){clr();$('#evlog').innerHTML='';view('','💳','결제 대기','버튼을 누르면 승인 요청을 보냅니다.');$('#payGo').disabled=false}
+function start(){
+ reset();$('#payGo').disabled=true;t0=Date.now();const sc=$('#scn').value;
+ view('',spin,'결제 처리 중','카드사에 승인을 요청하고 있어요. 화면을 닫지 마세요.','',  '결제 처리 중');
+ log(`POST /pay  Idempotency-Key: ${K}`);
+ const respond=sc==='ok'?1200:sc==='decline'?1200:null; // 응답 자체가 끊기는 시나리오는 null
+ if(respond!==null){timers.push(setTimeout(()=>{ if(sc==='ok'){log('응답 200 approved');done('ok')} else {log('응답 200 declined (한도 초과)');done('decline')}},respond));return}
+ timers.push(setTimeout(()=>{log('응답 없음(타임아웃) — 실패로 단정하지 않음');poll()},1800));
+}
+function poll(){
+ const MAX=5;let n=0;
+ const tick=()=>{n++;
+  view('',spin,'결과 확인 중','응답이 늦어지고 있어요. 승인 여부를 조회하는 중이라 다시 결제하지 않으셔도 됩니다.',dots(n,MAX)+`<small>조회 ${n}/${MAX}</small>`,`결과 확인 중, 조회 ${n}회`);
+  const sc=$('#scn').value;
+  const found=(sc==='late'&&n===3);
+  log(`GET /pay/status ${n}/${MAX} → ${found?'approved':'processing'}`);
+  if(found){clr();done('ok');return}
+  if(n>=MAX){clr();done('unknown')}
+ };
+ tick();timers.push(setInterval(tick,900));
+}
+function done(r){
+ clr();$('#payGo').disabled=false;
+ if(r==='ok')view('ok','✅','결제가 완료됐어요','12,400원 승인. 영수증은 결제 내역에서 볼 수 있어요.','<small>승인번호 30291847</small>','결제가 완료됐습니다');
+ else if(r==='decline')view('bad','⛔','결제가 거절됐어요','카드 한도를 초과했어요. 다른 카드로 결제할 수 있어요.','<button type="button" class="btn sm">다른 카드로 결제</button>','결제가 거절됐습니다');
+ else{view('unk','⚠️','결제 결과를 확인하지 못했어요','돈이 빠져나갔을 수 있어서 지금은 다시 결제할 수 없어요. 결과는 문자로 안내드리고, 결제 내역에서 확인할 수 있어요.',
+  `<div class="row"><button type="button" class="btn sm" id="uHist">결제 내역 확인</button><button type="button" class="btn ghost sm" id="uCopy">거래번호 복사</button><button type="button" class="btn ghost sm" disabled aria-describedby="why">다시 결제</button></div><small id="why">확정 전에는 재결제가 잠겨 있어요.</small>`,'결제 결과를 확인하지 못했습니다. 다시 결제하지 마세요.');
+  $('#uCopy').onclick=()=>{try{navigator.clipboard.writeText('TX-20261023-0042')}catch(e){}$('#uCopy').textContent='복사됨';log('거래번호 TX-20261023-0042 복사')};
+  $('#uHist').onclick=()=>log('결제 내역 화면으로 이동(데모)');}
+ log('최종 상태: '+r);
+}
+$('#payGo').addEventListener('click',start);$('#payReset').addEventListener('click',reset);
+
+/* ===== 3. Temporal ===== */
+const HAS=typeof Temporal!=='undefined';
+$('#tpSupport').textContent=HAS?'이 브라우저는 Temporal을 지원합니다. 네 번째 줄이 실제 Temporal 계산 결과입니다.':'이 브라우저는 Temporal을 아직 지원하지 않습니다(그래서 네 번째 줄은 비어 있습니다). 지원 여부는 브라우저 버전에 따라 다르므로 사용 전에 확인이 필요합니다.';
+function badge(ok){return ok===null?'<span class="b na">미지원</span>':ok?'<span class="b ok">✓ KST와 일치</span>':'<span class="b no">✗ KST와 다름</span>'}
+function drawA(){
+ const v=$('#utcIn').value; if(!v)return; const iso=v+':00Z', d=new Date(iso);
+ const kst=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul'}).format(d);
+ const naive=d.toISOString().slice(0,10);
+ const dev=d.toLocaleDateString('en-CA');
+ let tp=null; if(HAS){try{tp=Temporal.Instant.from(iso).toZonedDateTimeISO('Asia/Seoul').toPlainDate().toString()}catch(e){tp=null}}
+ const rows=[['toISOString().slice(0,10)','UTC 날짜를 그대로 자름',naive,naive===kst],
+ ['toLocaleDateString("en-CA")','보는 사람 기기 시간대에 따라 달라짐 (이 기기 기준)',dev,dev===kst],
+ ['Intl.DateTimeFormat({ timeZone: "Asia/Seoul" })','시간대를 명시 — 지금도 안전한 방법',kst,true],
+ ['Temporal.Instant → toZonedDateTimeISO("Asia/Seoul")','시간대가 값 안에 들어 있어 실수할 틈이 적음',tp||'—',tp===null?null:tp===kst]];
+ $('#cmpA').innerHTML=rows.map(r=>`<div class="r"><div><b>${r[1]}</b><code>${r[0]}</code></div><div class="v">${r[2]}${badge(r[3])}</div></div>`).join('');
+}
+function drawB(){
+ const d=$('#dayIn').value; if(!d)return;
+ const from=new Date(d+'T00:00:00+09:00'), to=new Date(from.getTime()+864e5-1);
+ let tf='—',tt='—';
+ if(HAS){try{const z=Temporal.PlainDate.from(d).toZonedDateTime('Asia/Seoul');tf=z.toInstant().toString();tt=z.add({days:1}).toInstant().subtract({milliseconds:1}).toString()}catch(e){}}
+ const rows=[['Date + "+09:00" 문자열 (한국은 현재 서머타임이 없어 고정 오프셋으로 충분 — 추정)',from.toISOString()+' ~ '+to.toISOString()],
+ ['Temporal.PlainDate → toZonedDateTime("Asia/Seoul")',HAS?tf+' ~ '+tt:'미지원']];
+ $('#cmpB').innerHTML=rows.map(r=>`<div class="r"><div><code>${r[0]}</code></div><div class="v" style="font-size:.78rem;text-align:right;overflow-wrap:anywhere">${r[1]}</div></div>`).join('');
+}
+$('#utcIn').addEventListener('input',drawA);$('#dayIn').addEventListener('input',drawB);drawA();drawB();
+})();
+
+</script>
+</body>
+</html>
