@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-05 (목)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+html.embed-mode .embed-show .meta{display:none}
+/* ===== 2026-11-05 ===== */
+kbd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--surface)}
+dialog.pal{border:1px solid var(--border);border-radius:14px;padding:0;width:min(560px,92vw);background:var(--surface);color:var(--text);box-shadow:0 20px 60px rgba(0,0,0,.35);margin:10vh auto auto}
+dialog.pal::backdrop{background:rgba(10,12,18,.55)}
+.pal-in{display:flex;gap:8px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--border)}
+.pal-in input{flex:1;border:0;background:transparent;color:var(--text);font-size:1rem;outline:none}
+.pal-in:focus-within{box-shadow:inset 0 -2px 0 var(--ring)}
+.pal ul{list-style:none;margin:0;padding:6px;max-height:300px;overflow:auto}
+.pal li.grp{font-size:.72rem;font-weight:700;color:var(--muted);padding:8px 10px 4px}
+.pal li[role=option]{display:flex;justify-content:space-between;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer}
+.pal li[role=option][aria-selected=true]{background:var(--brand);color:var(--brand-ink)}
+.pal li mark{background:transparent;color:inherit;font-weight:800;text-decoration:underline}
+.pal .hint{font-size:.78rem;opacity:.75}
+.pal-foot{display:flex;gap:12px;padding:8px 14px;border-top:1px solid var(--border);font-size:.76rem;color:var(--muted);flex-wrap:wrap}
+.pal-empty{padding:18px;text-align:center;color:var(--muted);font-size:.9rem}
+.rl{list-style:none;margin:0;padding:0;display:grid;gap:8px;max-width:520px}
+.rl li{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.rl li.lift{border-color:var(--brand);box-shadow:0 6px 18px rgba(79,70,229,.25)}
+.rl li.drag{opacity:.7;border-style:dashed}
+.rl .nm{flex:1;min-width:0}.rl .nm small{display:block;color:var(--muted)}
+.rl .no{font-variant-numeric:tabular-nums;color:var(--muted);width:1.4em;text-align:center}
+.rl .hd{cursor:grab;touch-action:none;border:1px solid var(--border);background:var(--surface-2);color:var(--text);border-radius:8px;width:34px;height:34px;font-size:1rem}
+.rl .mv{border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer}
+.rl .mv:disabled{opacity:.35;cursor:not-allowed}
+.def{font-size:.7rem;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;padding:2px 8px;margin-left:6px}
+.dirty{font-size:.82rem;color:var(--warn);min-height:1.3em}
+.vtg{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:12px}
+.vtg .c{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px}
+.vtg .c b{display:block}.vtg .c span{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.86rem}
+::view-transition-group(*){animation-duration:.3s}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-05 (목) · 커맨드 팔레트 · 순서 바꾸기 리스트 · View Transitions</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#palette">🧭 커맨드 팔레트</a><a href="#reorder">🃏 순서 바꾸기 리스트</a><a href="#vt">🌀 View Transitions</a>
+</nav>
+
+<section class="card" id="palette" aria-labelledby="palette-h">
+<h2 id="palette-h">🧭 커맨드 팔레트 — 메뉴를 찾아 다니지 말고 <kbd>Ctrl</kbd>+<kbd>K</kbd>로 이동·실행 <span class="tag">내비게이션·탭</span></h2>
+<p class="lead">커맨드 팔레트는 검색창 하나로 "화면 이동"과 "작업 실행"을 모두 하는 오버레이입니다. 메뉴가 깊은 관리자 화면(거래·정산·가맹점·설정)에서 파워유저의 이동 비용을 크게 줄입니다.</p>
+<div class="demo">
+<p class="demo-title">A. 열어서 "정산", "환불", "ㅈㅅ" 등을 입력해 보세요 (↑↓ 선택, Enter 실행, Esc 닫기)</p>
+<div class="row"><button type="button" class="btn" id="palOpen" aria-haspopup="dialog">빠른 이동 열기 <kbd>Ctrl</kbd> <kbd>K</kbd></button>
+<label class="row"><input type="checkbox" id="palRecent" checked /> 최근 사용 항목을 위로</label></div>
+<div class="log" id="palLog" role="status" aria-live="polite">실행한 항목이 여기에 기록됩니다.</div>
+<p class="cap">입력창은 combobox, 결과는 listbox입니다. 포커스는 입력창에 그대로 두고 aria-activedescendant로 "지금 선택된 항목"만 가리켜서, 타이핑을 멈추지 않고도 화살표로 고를 수 있습니다.</p>
+</div>
+<dialog class="pal" id="pal" aria-label="빠른 이동">
+<div class="pal-in"><span aria-hidden="true">🔎</span>
+<input id="palIn" type="text" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list" aria-activedescendant="" placeholder="이동하거나 실행할 항목 검색" autocomplete="off" /></div>
+<ul id="palList" role="listbox" aria-label="검색 결과"></ul>
+<div class="pal-foot"><span><kbd>↑</kbd><kbd>↓</kbd> 선택</span><span><kbd>Enter</kbd> 실행</span><span><kbd>Esc</kbd> 닫기</span><span id="palCount" role="status" aria-live="polite"></span></div>
+</dialog>
+<pre><code>// 핵심: 포커스는 input, 선택 표시는 aria-activedescendant
+input.setAttribute('aria-activedescendant', items[i].id);
+// 한글 조합 중(isComposing)엔 Enter/화살표를 가로채지 않는다
+if (e.isComposing) return;</code></pre>
+<div class="note">초성 검색(ㅈㅅ → 정산)은 데모용으로 단순 구현했습니다. 실서비스에선 검증된 한글 검색 라이브러리나 서버 검색을 권합니다.</div>
+</section>
+
+<section class="card" id="reorder" aria-labelledby="reorder-h">
+<h2 id="reorder-h">🃏 순서 바꾸기 리스트 — 드래그만 믿지 말고 버튼·키보드로도, 맨 위가 "기본"이 되는 규칙 안내 <span class="tag">카드·리스트</span></h2>
+<p class="lead">결제수단 우선순위처럼 순서가 의미를 갖는 목록은 드래그앤드롭만 있으면 키보드·스크린리더 사용자가 못 씁니다. 같은 동작을 세 가지 경로(드래그, 위/아래 버튼, 키보드)로 모두 제공합니다.</p>
+<div class="demo">
+<p class="demo-title">결제수단 우선순위 (핸들: 마우스 드래그 / 핸들에 포커스 후 <kbd>Space</kbd>로 집기 → <kbd>↑</kbd><kbd>↓</kbd> → <kbd>Space</kbd> 놓기, <kbd>Esc</kbd> 취소)</p>
+<ul class="rl" id="rl" aria-label="결제수단 우선순위"></ul>
+<div class="dirty" id="rlDirty"></div>
+<div class="row" style="margin-top:8px"><button type="button" class="btn" id="rlSave" disabled>순서 저장</button><button type="button" class="btn ghost" id="rlReset" disabled>되돌리기</button></div>
+<div class="sr-only" id="rlLive" role="status" aria-live="assertive"></div>
+<p class="cap">이동할 때마다 "토스페이, 3개 중 2번째로 이동했습니다"를 읽어 줍니다. 1번이 결제 시 기본 선택이므로 순서가 바뀌면 "기본 결제수단이 바뀝니다"를 눈에 보이게 알립니다.</p>
+</div>
+<pre><code>function move(from, to){
+  const [it] = items.splice(from,1); items.splice(to,0,it);
+  render(); live(`${it.name}, ${items.length}개 중 ${to+1}번째`);
+}</code></pre>
+</section>
+
+<section class="card" id="vt" aria-labelledby="vt-h">
+<h2 id="vt-h">🌀 View Transitions — 정렬·필터로 DOM이 바뀔 때 요소가 "이동"하는 것처럼 보이게 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">View Transitions API는 화면 상태가 바뀌기 전후를 브라우저가 스냅샷으로 찍어 자동으로 애니메이션해 주는 기능입니다. 같은 문서 안의 전환(document.startViewTransition)은 2025년 10월 Firefox 144 출시로 주요 브라우저 모두에서 쓸 수 있게 됐다고 web.dev가 발표했습니다(Baseline Newly available). 그래도 기능 감지 후 폴백은 필수입니다.</p>
+<div class="demo">
+<p class="demo-title">정렬 기준을 바꿔 보세요. 카드가 제자리로 "날아가는지" 확인합니다.</p>
+<div class="row"><div class="seg" role="group" aria-label="정렬">
+<button type="button" data-s="amt" aria-pressed="true">금액순</button><button type="button" data-s="name" aria-pressed="false">이름순</button><button type="button" data-s="cnt" aria-pressed="false">건수순</button></div>
+<label class="row"><input type="checkbox" id="vtOn" checked /> 전환 효과 사용</label></div>
+<div class="vtg" id="vtg"></div>
+<div class="support" id="vtSup"></div>
+<p class="cap">view-transition-name을 카드마다 고유하게 주면 브라우저가 "같은 카드"로 연결해 위치 이동을 애니메이션합니다. prefers-reduced-motion에서는 CSS로 애니메이션을 끕니다.</p>
+</div>
+</section>
+<div class="footer">Design Inspiration Daily · 2026-11-05 · 모든 데이터는 데모용 가짜 값입니다.</div>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR');
+const reduce=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---- palette ---- */
+const CMDS=[
+ {id:'c1',g:'이동',t:'거래 내역',h:'/transactions',k:'ㄱㄹㄴㅇ'},
+ {id:'c2',g:'이동',t:'정산 내역',h:'/settlements',k:'ㅈㅅㄴㅇ'},
+ {id:'c3',g:'이동',t:'환불 관리',h:'/refunds',k:'ㅎㅂㄱㄹ'},
+ {id:'c4',g:'이동',t:'가맹점 설정',h:'/merchants/settings',k:'ㄱㅁㅈㅅㅈ'},
+ {id:'c5',g:'작업',t:'새 결제 링크 만들기',h:'동작',k:'ㅅㄱㅈㅁㄱ'},
+ {id:'c6',g:'작업',t:'거래번호로 조회',h:'동작',k:'ㄱㄹㅂㅎ'},
+ {id:'c7',g:'작업',t:'정산 내역 CSV 내보내기',h:'동작',k:'ㅈㅅㄴㅇ'},
+ {id:'c8',g:'설정',t:'다크 모드 전환',h:'동작',k:'ㄷㅋㅁㄷ'}];
+const recent=[];
+const pal=$('#pal'),pin=$('#palIn'),pl=$('#palList');
+let shown=[],sel=0;
+const CHO='ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ';
+const cho=s=>[...s].map(ch=>{const c=ch.charCodeAt(0)-0xAC00;return c>=0&&c<11172?CHO[Math.floor(c/588)]:ch}).join('');
+function match(c,q){if(!q)return {ok:true};const t=c.t.toLowerCase(),qq=q.toLowerCase();const i=t.indexOf(qq);if(i>=0)return {ok:true,i,l:qq.length};if(cho(c.t).includes(q))return {ok:true};return {ok:false}}
+function hl(c,m){if(m.i==null)return c.t;return c.t.slice(0,m.i)+'<mark>'+c.t.slice(m.i,m.i+m.l)+'</mark>'+c.t.slice(m.i+m.l)}
+function renderPal(){
+ const q=pin.value.trim();
+ let list=CMDS.map(c=>({c,m:match(c,q)})).filter(x=>x.m.ok);
+ if($('#palRecent').checked&&!q)list.sort((a,b)=>(recent.indexOf(a.c.id)<0?99:recent.indexOf(a.c.id))-(recent.indexOf(b.c.id)<0?99:recent.indexOf(b.c.id)));
+ shown=list;sel=Math.min(sel,Math.max(list.length-1,0));
+ if(!list.length){pl.innerHTML='<li role="presentation" class="pal-empty">“'+q.replace(/</g,'&lt;')+'”에 맞는 항목이 없어요. 거래번호라면 “거래번호로 조회”를 써 보세요.</li>';pin.setAttribute('aria-activedescendant','');$('#palCount').textContent='결과 없음';return}
+ let h='',last='';
+ list.forEach((x,i)=>{const showG=(!q&&$('#palRecent').checked&&recent.length)?'':x.c.g;const g=(!q&&$('#palRecent').checked&&recent.indexOf(x.c.id)>=0)?'최근':x.c.g;
+  if(g!==last){h+='<li role="presentation" class="grp">'+g+'</li>';last=g}
+  h+='<li role="option" id="po'+i+'" data-i="'+i+'" aria-selected="'+(i===sel)+'"><span>'+hl(x.c,x.m)+'</span><span class="hint">'+x.c.h+'</span></li>'});
+ pl.innerHTML=h;pin.setAttribute('aria-activedescendant','po'+sel);$('#palCount').textContent=list.length+'개 결과';
+ const o=$('#po'+sel);o&&o.scrollIntoView({block:'nearest'});
+}
+function run(i){const x=shown[i];if(!x)return;const id=x.c.id;const k=recent.indexOf(id);if(k>=0)recent.splice(k,1);recent.unshift(id);pal.close();
+ $('#palLog').textContent='실행: '+x.c.g+' › '+x.c.t+' ('+x.c.h+')';$('#palOpen').focus();
+ if(id==='c8')setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark')}
+function openPal(){pin.value='';sel=0;renderPal();pal.showModal();pin.focus()}
+$('#palOpen').addEventListener('click',openPal);
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();pal.open?pal.close():openPal()}});
+pin.addEventListener('input',()=>{sel=0;renderPal()});
+pin.addEventListener('keydown',e=>{if(e.isComposing)return;
+ if(e.key==='ArrowDown'){e.preventDefault();sel=(sel+1)%Math.max(shown.length,1);renderPal()}
+ else if(e.key==='ArrowUp'){e.preventDefault();sel=(sel-1+shown.length)%Math.max(shown.length,1);renderPal()}
+ else if(e.key==='Enter'){e.preventDefault();run(sel)}});
+pl.addEventListener('click',e=>{const li=e.target.closest('[role=option]');if(li)run(+li.dataset.i)});
+pl.addEventListener('mousemove',e=>{const li=e.target.closest('[role=option]');if(li&&+li.dataset.i!==sel){sel=+li.dataset.i;$$('#palList [role=option]').forEach((o,i)=>o.setAttribute('aria-selected',i===sel));pin.setAttribute('aria-activedescendant','po'+sel)}});
+pal.addEventListener('click',e=>{if(e.target===pal)pal.close()});
+$('#palRecent').addEventListener('change',()=>{sel=0});
+
+/* ---- reorder ---- */
+const ORIG=[{id:'a',n:'신한카드 ····1234',s:'만료 2028/04'},{id:'b',n:'토스페이',s:'계좌 연결'},{id:'c',n:'카카오페이',s:'포인트 사용 가능'},{id:'d',n:'계좌이체',s:'수수료 0원'}];
+let items=ORIG.slice(),snap=null,lifted=null,dragId=null;
+const rl=$('#rl');
+function live(t){$('#rlLive').textContent='';setTimeout(()=>$('#rlLive').textContent=t,30)}
+function dirtyState(){const d=items.map(x=>x.id).join()!==ORIG.map(x=>x.id).join();$('#rlSave').disabled=!d;$('#rlReset').disabled=!d;
+ $('#rlDirty').textContent=d?(items[0].id!==ORIG[0].id?'⚠ 저장하면 기본 결제수단이 “'+items[0].n+'”(으)로 바뀝니다.':'저장하지 않은 변경이 있어요.'):''}
+function renderRl(focusId,focusCls){
+ rl.innerHTML=items.map((x,i)=>'<li data-id="'+x.id+'" class="'+(lifted===x.id?'lift':'')+(dragId===x.id?' drag':'')+'" style="view-transition-name:rl-'+x.id+'"><span class="no" aria-hidden="true">'+(i+1)+'</span><span class="nm"><b>'+x.n+'</b>'+(i===0?'<span class="def">기본</span>':'')+'<small>'+x.s+'</small></span>'
+ +'<button type="button" class="mv" data-a="up" aria-label="'+x.n+' 위로 이동"'+(i===0?' disabled':'')+'>↑</button><button type="button" class="mv" data-a="down" aria-label="'+x.n+' 아래로 이동"'+(i===items.length-1?' disabled':'')+'>↓</button>'
+ +'<button type="button" class="hd" data-a="hd" aria-label="'+x.n+' 순서 핸들, 스페이스로 집기" aria-pressed="'+(lifted===x.id)+'">⠿</button></li>').join('');
+ dirtyState();
+ if(focusId){const el=rl.querySelector('li[data-id="'+focusId+'"] [data-a="'+(focusCls||'hd')+'"]');el&&!el.disabled&&el.focus()}
+}
+function mv(id,to,fc){const from=items.findIndex(x=>x.id===id);if(to<0||to>=items.length||from===to)return;
+ const apply=()=>{const [it]=items.splice(from,1);items.splice(to,0,it);renderRl(id,fc)};
+ if(document.startViewTransition&&!reduce())document.startViewTransition(apply);else apply();
+ live(items[from].n+', '+items.length+'개 중 '+(to+1)+'번째로 이동했습니다');}
+rl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const id=b.closest('li').dataset.id,i=items.findIndex(x=>x.id===id);
+ if(b.dataset.a==='up')mv(id,i-1,'up');else if(b.dataset.a==='down')mv(id,i+1,'down');
+ else if(b.dataset.a==='hd'&&e.detail===0){/* keyboard click handled in keydown */}});
+rl.addEventListener('keydown',e=>{const b=e.target.closest('[data-a=hd]');if(!b)return;const id=b.closest('li').dataset.id,i=items.findIndex(x=>x.id===id);
+ if(e.key===' '||e.key==='Enter'){e.preventDefault();
+  if(lifted===id){lifted=null;snap=null;renderRl(id);live(items[i].n+'을(를) '+(i+1)+'번째에 놓았습니다')}
+  else{lifted=id;snap=items.map(x=>x.id);renderRl(id);live(items[i].n+'을(를) 집었습니다. 위아래 화살표로 이동, 스페이스로 놓기, Esc로 취소')}}
+ else if(lifted===id&&(e.key==='ArrowUp'||e.key==='ArrowDown')){e.preventDefault();mv(id,i+(e.key==='ArrowUp'?-1:1),'hd')}
+ else if(lifted===id&&e.key==='Escape'){e.preventDefault();items=snap.map(k=>ORIG.find(o=>o.id===k));lifted=null;renderRl(id);live('이동을 취소했습니다')}});
+rl.addEventListener('pointerdown',e=>{const b=e.target.closest('[data-a=hd]');if(!b||e.button!==0)return;dragId=b.closest('li').dataset.id;b.setPointerCapture(e.pointerId);b.closest('li').classList.add('drag')});
+rl.addEventListener('pointermove',e=>{if(!dragId)return;const el=document.elementFromPoint(e.clientX,e.clientY),li=el&&el.closest&&el.closest('#rl li');if(!li||li.dataset.id===dragId)return;
+ const to=items.findIndex(x=>x.id===li.dataset.id),from=items.findIndex(x=>x.id===dragId);
+ const [it]=items.splice(from,1);items.splice(to,0,it);const keep=dragId;renderRl();rl.querySelector('li[data-id="'+keep+'"]').classList.add('drag');live(it.n+', '+items.length+'개 중 '+(to+1)+'번째')});
+const endDrag=()=>{if(!dragId)return;dragId=null;renderRl()};
+rl.addEventListener('pointerup',endDrag);rl.addEventListener('pointercancel',endDrag);
+$('#rlSave').addEventListener('click',()=>{ORIG.splice(0,ORIG.length,...items);renderRl();live('순서를 저장했습니다')});
+$('#rlReset').addEventListener('click',()=>{items=ORIG.slice();renderRl();live('원래 순서로 되돌렸습니다')});
+renderRl();
+
+/* ---- view transitions ---- */
+const DATA=[{n:'편의점',a:182400,c:41},{n:'카페',a:96800,c:23},{n:'배달앱',a:254100,c:37},{n:'온라인몰',a:431000,c:12},{n:'주유소',a:318500,c:9},{n:'정기구독',a:64900,c:64}];
+let sortK='amt';
+function renderVt(){const arr=DATA.slice().sort((x,y)=>sortK==='name'?x.n.localeCompare(y.n,'ko'):y[sortK]-x[sortK]);
+ $('#vtg').innerHTML=arr.map(d=>'<div class="c" style="view-transition-name:vt-'+DATA.indexOf(d)+'"><b>'+d.n+'</b><span>'+won(d.a)+'원 · '+d.c+'건</span></div>').join('')}
+$$('#vt .seg button').forEach(b=>b.addEventListener('click',()=>{$$('#vt .seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));sortK=b.dataset.s;
+ if(document.startViewTransition&&$('#vtOn').checked&&!reduce())document.startViewTransition(renderVt);else renderVt()}));
+renderVt();
+const sup=!!document.startViewTransition;
+$('#vtSup').textContent=sup?'이 브라우저는 document.startViewTransition을 지원합니다. (reduced-motion 설정이면 애니메이션 없이 즉시 바뀝니다)':'이 브라우저는 startViewTransition 미지원 → 전환 없이 즉시 정렬됩니다(폴백). 기능은 동일하게 동작합니다.';
+})();
+</script>
+</body>
+</html>
