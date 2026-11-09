@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-09 (월)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+html.embed-mode .embed-show .meta{display:none}
+/* ===== 2026-11-09 ===== */
+.split{display:inline-flex;position:relative}
+.split .main{border-radius:10px 0 0 10px;border-right:1px solid color-mix(in srgb,var(--brand-ink) 35%,transparent)}
+.split .caret{border-radius:0 10px 10px 0;padding:9px 11px}
+.menu{position:absolute;top:calc(100% + 6px);left:0;min-width:210px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);padding:6px;z-index:5;list-style:none;margin:0}
+.menu [role=menuitem]{display:flex;justify-content:space-between;gap:12px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:.9rem}
+.menu [role=menuitem]:hover,.menu [role=menuitem]:focus{background:var(--brand-soft);outline:none}
+.menu [role=menuitem]:focus-visible{outline:2px solid var(--ring)}
+.menu .sep{height:1px;background:var(--border);margin:5px 4px}
+.menu .hint{color:var(--muted);font-size:.78rem}
+.demoh{min-height:170px}
+.promo{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.pf{display:flex;gap:8px}
+.pf input{flex:1;min-width:0;padding:9px 11px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);text-transform:uppercase;letter-spacing:.04em}
+.pf input[aria-invalid=true]{border-color:var(--bad)}
+.perr{color:var(--bad);font-size:.84rem;margin:6px 0 0;min-height:1.3em}
+.applied{display:inline-flex;gap:8px;align-items:center;background:var(--ok-soft);color:var(--ok);border-radius:999px;padding:5px 6px 5px 12px;font-weight:700;font-size:.86rem}
+.applied button{border:0;background:transparent;color:inherit;cursor:pointer;border-radius:50%;width:24px;height:24px;font-size:1rem;line-height:1}
+.sum{margin-top:12px;font-size:.9rem;display:grid;gap:4px}
+.sum div{display:flex;justify-content:space-between;font-variant-numeric:tabular-nums}
+.sum .t{font-weight:800;border-top:1px solid var(--border);padding-top:6px;margin-top:4px}
+dialog.dl{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);padding:20px;max-width:360px}
+dialog.dl::backdrop{background:rgba(0,0,0,.45)}
+.pop{border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);padding:12px 14px;max-width:260px;font-size:.88rem}
+.logbox{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-top:10px;min-height:2.6em;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-09 (월) · 스플릿 버튼 · 쿠폰 코드 입력 · Invoker Commands</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#splitbtn">🔘 스플릿 버튼</a><a href="#promo">⌨️ 쿠폰 코드 입력</a><a href="#invoker">🌀 Invoker Commands</a>
+</nav>
+
+<section class="card" id="splitbtn">
+<h2>🔘 스플릿 버튼 <span class="tag">버튼·액션</span></h2>
+<p class="lead">큰 버튼은 "가장 흔한 동작", 옆 화살표는 "다른 방법". 결제처럼 되돌리기 어려운 동작에선 기본 동작을 무엇으로 두느냐가 핵심입니다.</p>
+<div class="grid2">
+<div class="demo demoh"><p class="demo-title">A. 기본 동작 고정 (결제에 권장)</p>
+<div class="split" id="spA"><button class="btn main" type="button">지금 결제</button><button class="btn caret" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="다른 결제 방법"><span aria-hidden="true">▾</span></button>
+<ul class="menu" role="menu" hidden><li role="menuitem" tabindex="-1" data-act="지금 결제">지금 결제 <span class="hint">즉시</span></li><li role="menuitem" tabindex="-1" data-act="예약 결제">예약 결제 <span class="hint">날짜 선택</span></li><li class="sep" role="separator"></li><li role="menuitem" tabindex="-1" data-act="견적서 저장">견적서로 저장</li></ul></div>
+<p class="cap">메인 라벨은 절대 바뀌지 않습니다. 메뉴에서 "예약 결제"를 골라도 즉시 결제가 나가지 않고 해당 흐름이 열릴 뿐입니다.</p><div class="log" id="logA" role="status" aria-live="polite"></div></div>
+<div class="demo demoh"><p class="demo-title">B. 마지막 선택 기억 (결제엔 비권장)</p>
+<div class="split" id="spB"><button class="btn main ghost" type="button">내보내기: CSV</button><button class="btn caret ghost" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="다른 형식"><span aria-hidden="true">▾</span></button>
+<ul class="menu" role="menu" hidden><li role="menuitem" tabindex="-1" data-act="CSV">CSV</li><li role="menuitem" tabindex="-1" data-act="Excel">Excel</li><li role="menuitem" tabindex="-1" data-act="PDF">PDF</li></ul></div>
+<p class="cap">되돌릴 수 있는 동작(내보내기)엔 편리하지만, 라벨이 바뀌는 순간 스크린리더에도 알려야 합니다(아래 로그 영역).</p><div class="log" id="logB" role="status" aria-live="polite"></div></div>
+</div>
+<div class="note">키보드: 화살표 버튼에서 Enter/Space/↓로 열기 → ↑↓ 이동 → Enter 선택 → Esc 닫고 화살표 버튼으로 포커스 복귀.</div>
+<pre><code>&lt;button aria-haspopup="menu" aria-expanded="false" aria-label="다른 결제 방법"&gt;▾&lt;/button&gt;
+&lt;ul role="menu" hidden&gt;&lt;li role="menuitem" tabindex="-1"&gt;…&lt;/li&gt;&lt;/ul&gt;</code></pre>
+</section>
+
+<section class="card" id="promo">
+<h2>⌨️ 쿠폰 코드 입력 <span class="tag">입력·폼</span></h2>
+<p class="lead">입력은 관대하게 받고(공백·소문자·전각 문자 보정), 결과는 분명하게 말합니다. 시도해 보세요: <code>welcome10</code>, <code>FIRST5000</code>, <code>EXPIRED1</code>, <code>USED1</code>, 아무 값.</p>
+<div class="promo">
+<div class="demo"><p class="demo-title">입력 → 확인 중 → 적용됨 / 사유별 오류</p>
+<form class="pf" id="pf" novalidate><label class="sr-only" for="pc">쿠폰 코드</label><input id="pc" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="perr" placeholder="쿠폰 코드"><button class="btn" id="pbtn" type="submit">적용</button></form>
+<p class="perr" id="perr" role="alert"></p>
+<div id="pap" hidden></div>
+<div class="sum" aria-live="polite"><div><span>상품 금액</span><span>49,000원</span></div><div><span>할인</span><span id="sd">0원</span></div><div class="t"><span>결제 금액</span><span id="st">49,000원</span></div></div>
+<p class="cap">적용 중 다른 코드를 연달아 넣으면 마지막 요청 결과만 반영합니다(옛 응답이 덮어쓰기 방지).</p></div>
+</div>
+<div class="note">에러 문구는 "유효하지 않음" 하나로 뭉치지 않고 만료·이미 사용·없는 코드로 나눕니다. 이 데모의 코드와 응답은 모두 가짜 데이터입니다.</div>
+<pre><code>const norm = s =&gt; s.normalize('NFKC').replace(/[\s​-‍]/g,'').toUpperCase();</code></pre>
+</section>
+
+<section class="card" id="invoker">
+<h2>🌀 Invoker Commands <span class="tag">트렌드·개념</span></h2>
+<p class="lead">버튼에 <code>command</code>·<code>commandfor</code> 속성만 달면 JS 없이 dialog·popover를 열고 닫습니다. 직접 만든 명령은 <code>--</code>로 시작하는 이름과 <code>command</code> 이벤트로 처리합니다.</p>
+<div class="demo"><p class="demo-title">속성만으로 동작</p>
+<div class="row">
+<button class="btn" type="button" command="show-modal" commandfor="dlg">다이얼로그 열기</button>
+<button class="btn ghost" type="button" command="toggle-popover" commandfor="pop1">도움말 토글</button>
+<button class="btn ghost" type="button" command="--copy" commandfor="cpTarget">거래 ID 복사(커스텀)</button>
+</div>
+<div id="pop1" class="pop" popover style="margin:8px 0 0">환불은 영업일 기준 3~5일 걸릴 수 있어요. (예시 문구)</div>
+<p class="mono" id="cpTarget" style="margin:12px 0 0">TX-20261109-0042</p>
+<div class="logbox" id="ivLog" role="status" aria-live="polite">커스텀 명령 결과가 여기에 표시됩니다.</div>
+<p class="support" id="ivSup"></p></div>
+<dialog class="dl" id="dlg" aria-labelledby="dlgT"><h3 id="dlgT" style="margin:0 0 8px">정말 취소할까요?</h3><p style="margin:0 0 16px;font-size:.9rem">닫기 버튼도 속성만으로 동작합니다.</p><div class="row"><button class="btn ghost" type="button" command="close" commandfor="dlg">돌아가기</button><button class="btn" type="button" command="request-close" commandfor="dlg">취소하기</button></div></dialog>
+<pre><code>&lt;button command="show-modal" commandfor="dlg"&gt;열기&lt;/button&gt;
+&lt;button command="--copy" commandfor="tx"&gt;복사&lt;/button&gt;
+el.addEventListener('command', e =&gt; { if (e.command === '--copy') … })</code></pre>
+</section>
+<p class="footer">self-contained · 외부 의존성 없음</p>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR')+'원';
+
+/* 1. split button */
+function split(id,onPick){
+ const w=$(id),main=w.querySelector('.main'),car=w.querySelector('.caret'),menu=w.querySelector('.menu'),items=[...menu.querySelectorAll('[role=menuitem]')];
+ const open=(i)=>{menu.hidden=false;car.setAttribute('aria-expanded','true');(items[i||0]).focus()};
+ const close=(back)=>{menu.hidden=true;car.setAttribute('aria-expanded','false');if(back)car.focus()};
+ car.addEventListener('click',()=>menu.hidden?open(0):close(true));
+ car.addEventListener('keydown',e=>{if(e.key==='ArrowDown'){e.preventDefault();open(0)}if(e.key==='ArrowUp'){e.preventDefault();open(items.length-1)}});
+ items.forEach((it,i)=>{
+  it.addEventListener('click',()=>{close(true);onPick(it.dataset.act,main)});
+  it.addEventListener('keydown',e=>{
+   if(e.key==='ArrowDown'){e.preventDefault();items[(i+1)%items.length].focus()}
+   else if(e.key==='ArrowUp'){e.preventDefault();items[(i-1+items.length)%items.length].focus()}
+   else if(e.key==='Home'){e.preventDefault();items[0].focus()}
+   else if(e.key==='End'){e.preventDefault();items[items.length-1].focus()}
+   else if(e.key==='Enter'||e.key===' '){e.preventDefault();it.click()}
+   else if(e.key==='Escape'){e.preventDefault();close(true)}
+   else if(e.key==='Tab'){close(false)}
+  });
+ });
+ document.addEventListener('pointerdown',e=>{if(!w.contains(e.target)&&!menu.hidden)close(false)});
+ return main;
+}
+const mA=split('#spA',(act)=>{$('#logA').textContent=act==='지금 결제'?'결제를 진행합니다 (실제 결제 아님).':`"${act}" 흐름을 엽니다. 아직 결제되지 않았습니다.`});
+mA.addEventListener('click',()=>{$('#logA').textContent='결제를 진행합니다 (실제 결제 아님).'});
+let lastB='CSV';
+const mB=split('#spB',(act,main)=>{lastB=act;main.textContent='내보내기: '+act;$('#logB').textContent=`기본 형식이 ${act}(으)로 바뀌었습니다. ${act} 내보내기를 시작합니다.`});
+mB.addEventListener('click',()=>{$('#logB').textContent=`${lastB} 내보내기를 시작합니다.`});
+
+/* 2. promo */
+const CODES={WELCOME10:{pct:10,label:'WELCOME10 · 10% 할인'},FIRST5000:{amt:5000,label:'FIRST5000 · 5,000원 할인'}};
+const BAD={EXPIRED1:'기간이 지난 쿠폰이에요. (유효기간 종료)',USED1:'이미 사용한 쿠폰이에요. 한 번만 쓸 수 있어요.'};
+const PRICE=49000;let rid=0,cur=null;
+const norm=s=>s.normalize('NFKC').replace(/[\s​-‍]/g,'').toUpperCase();
+const inp=$('#pc'),btn=$('#pbtn'),err=$('#perr');
+function setErr(m){err.textContent=m;inp.setAttribute('aria-invalid',m?'true':'false')}
+function sum(){const d=cur?(cur.pct?Math.floor(PRICE*cur.pct/100):cur.amt):0;$('#sd').textContent=d?'-'+won(d):'0원';$('#st').textContent=won(PRICE-d)}
+function showApplied(){
+ const box=$('#pap');
+ if(!cur){box.hidden=true;box.innerHTML='';return}
+ box.hidden=false;box.innerHTML=`<span class="applied">${cur.label}<button type="button" aria-label="쿠폰 제거">×</button></span>`;
+ box.querySelector('button').onclick=()=>{cur=null;showApplied();sum();inp.focus();setErr('')};
+}
+$('#pf').addEventListener('submit',e=>{
+ e.preventDefault();
+ const code=norm(inp.value);inp.value=code;
+ if(!code){setErr('쿠폰 코드를 입력해 주세요.');return}
+ const my=++rid;setErr('');btn.disabled=true;btn.innerHTML='<span class="spin" aria-hidden="true"></span> 확인 중';btn.setAttribute('aria-busy','true');
+ setTimeout(()=>{
+  if(my!==rid)return;
+  btn.disabled=false;btn.textContent='적용';btn.removeAttribute('aria-busy');
+  if(CODES[code]){cur=CODES[code];inp.value='';showApplied();sum();setErr('')}
+  else if(BAD[code])setErr(BAD[code]);
+  else setErr('존재하지 않는 코드예요. 오타가 없는지 확인해 주세요.');
+ },700);
+});
+inp.addEventListener('input',()=>{if(err.textContent)setErr('')});
+sum();
+
+/* 3. invoker */
+const supported='command' in HTMLButtonElement.prototype;
+$('#ivSup').textContent=supported?'이 브라우저는 command/commandfor를 지원합니다.':'이 브라우저는 미지원 → 아래 폴리필(클릭 시 같은 동작을 JS로 연결)로 동작 중입니다.';
+const dlg=$('#dlg'),logb=$('#ivLog');
+if(!supported){
+ document.addEventListener('click',e=>{
+  const b=e.target.closest('button[command]');if(!b)return;
+  const t=document.getElementById(b.getAttribute('commandfor'));if(!t)return;
+  const c=b.getAttribute('command');
+  if(c==='show-modal')t.showModal();else if(c==='close'||c==='request-close')t.close();
+  else if(c==='toggle-popover')t.togglePopover();
+  else if(c.startsWith('--'))t.dispatchEvent(new CustomEvent('command',{detail:{command:c,source:b}}));
+ });
+}
+$('#cpTarget').addEventListener('command',e=>{
+ const cmd=e.command||(e.detail&&e.detail.command);
+ if(cmd==='--copy'){
+  const txt=e.target.textContent;
+  const done=ok=>{logb.textContent=ok?`복사됨: ${txt}`:'복사에 실패했어요. 직접 선택해 복사해 주세요.'};
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(()=>done(true),()=>done(false));else done(false);
+ }
+});
+})();
+</script>
+</body>
+</html>
