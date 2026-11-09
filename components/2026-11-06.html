@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-06 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+html.embed-mode .embed-show .meta{display:none}
+/* ===== 2026-11-06 ===== */
+.chartbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px}
+svg.ch{width:100%;height:auto;display:block;overflow:visible}
+svg.ch text{fill:var(--muted);font-size:11px;font-family:inherit}
+svg.ch .grid{stroke:var(--border);stroke-width:1}
+svg.ch .ln{fill:none;stroke-width:2.4;stroke-linejoin:round;stroke-linecap:round;transition:opacity .15s,stroke-width .15s}
+svg.ch .ser{cursor:pointer}
+svg.ch .ser.dim .ln,svg.ch .ser.dim .mk,svg.ch .ser.dim text{opacity:.18}
+svg.ch .ser.hi .ln{stroke-width:4}
+svg.ch .ser text.lab{font-weight:700;font-size:12px}
+svg.ch .ser:focus-visible{outline:none}
+svg.ch .ser:focus-visible .focus-ring{stroke:var(--ring);stroke-width:2;fill:none;display:block}
+svg.ch .focus-ring{display:none}
+.legend{display:flex;gap:8px 14px;flex-wrap:wrap;margin-top:8px;font-size:.82rem;color:var(--muted)}
+.legend span{display:inline-flex;gap:6px;align-items:center}
+.sw{width:12px;height:12px;border-radius:3px;display:inline-block}
+.bad{border-left:3px solid var(--bad)}
+.good{border-left:3px solid var(--ok)}
+.vlabel{font-size:.76rem;font-weight:700;margin:0 0 6px}
+.readout{min-height:1.4em;font-size:.85rem;margin-top:8px}
+table.dt{border-collapse:collapse;width:100%;font-size:.82rem;margin-top:8px}
+table.dt th,table.dt td{padding:5px 8px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}
+table.dt th:first-child,table.dt td:first-child{text-align:left}
+/* autorefresh */
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.panel .hd{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.big{font-size:1.9rem;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.flash{animation:fl 1s ease-out}
+@keyframes fl{from{background:var(--brand-soft)}to{background:transparent}}
+.upd{font-size:.82rem;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block}
+.dot.stale{background:var(--warn)}.dot.err{background:var(--bad)}.dot.pause{background:var(--muted)}
+.stalebar{margin-top:10px;padding:8px 12px;border-radius:8px;background:var(--warn-soft);color:var(--warn);font-size:.85rem}
+.spin{width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;display:inline-block;vertical-align:-2px;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:12px;font-size:.85rem}
+.ctl label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+/* duration */
+.out{font-size:1.15rem;font-weight:700;padding:10px 12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-top:8px;font-variant-numeric:tabular-nums}
+.fld{display:inline-flex;flex-direction:column;gap:3px;font-size:.78rem;color:var(--muted)}
+.fld input{width:76px;padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text)}
+.cmp{display:grid;grid-template-columns:max-content 1fr;gap:6px 14px;font-size:.88rem;margin-top:10px}
+.cmp dt{color:var(--muted)}.cmp dd{margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-06 (금) · 직접 라벨 차트 · 자동 갱신 패널 · Intl.DurationFormat</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#chartlabel">📊 직접 라벨 차트</a><a href="#autorefresh">🔔 자동 갱신 패널</a><a href="#duration">🌀 Intl.DurationFormat</a>
+</nav>
+
+<section class="card" id="chartlabel">
+<h2>📊 직접 라벨 차트 <span class="tag">범례 대신 선 끝 이름 · 색 외 구분</span></h2>
+<p class="lead">결제수단별 일 거래액(만 원, 가짜 데이터). 범례를 오가며 색을 맞춰 보게 하지 말고, 선 끝에 이름을 직접 붙이고 색 외에 마커·점선으로도 구분한다.</p>
+<div class="grid2">
+<div><p class="vlabel">A. 범례 방식 (색에만 의존)</p><div class="chartbox bad" id="chA"></div><p class="cap">색 4개를 범례와 대조해야 한다. 색각 이상·흑백 인쇄에서 선이 서로 섞인다.</p></div>
+<div><p class="vlabel">B. 직접 라벨 + 마커/점선 (권장)</p><div class="chartbox good" id="chB"></div><p class="cap">선에 마우스를 올리거나 Tab으로 이동하면 해당 선만 강조된다. 아래 칩으로도 고를 수 있다.</p></div>
+</div>
+<div class="row" style="margin-top:12px" role="group" aria-label="강조할 결제수단"><button class="chip" data-s="all" aria-pressed="true">전체</button></div>
+<div class="readout" id="chRead" aria-live="polite"></div>
+<details style="margin-top:8px"><summary>데이터 표로 보기 (스크린리더·정확한 값)</summary><div id="chTable"></div></details>
+<pre><code>/* Okabe-Ito 팔레트: 색각 이상에서도 구분되도록 고안된 8색 중 일부 */
+--c1:#0072B2; --c2:#E69F00; --c3:#009E73; --c4:#CC79A7;
+/* 색 + 마커 모양 + 선 모양을 함께 */
+&lt;g class="ser" tabindex="0" role="img" aria-label="간편결제: 7일 평균 412만 원"&gt;</code></pre>
+<div class="note">핵심: 이름은 선 끝에 직접, 구분은 색 한 가지에 의존하지 않기, 정확한 값은 표로 제공.</div>
+</section>
+
+<section class="card" id="autorefresh">
+<h2>🔔 자동 갱신 패널 <span class="tag">마지막 갱신 · 탭 숨김 시 중지 · 실패 시 오래됨 표시</span></h2>
+<p class="lead">대시보드 숫자가 스스로 갱신될 때 "지금 값이 얼마나 신선한지"를 보여 주는 패턴. 데모의 폴링 주기는 6초(실제 서비스에선 30~60초 등).</p>
+<div class="demo">
+<p class="demo-title">라이브 데모</p>
+<div class="panel" id="arPanel">
+<div class="hd"><div><div class="cap" style="margin:0">오늘 승인 건수</div><div class="big" id="arVal">1,284</div></div>
+<button class="btn ghost" id="arBtn" type="button">지금 새로고침</button></div>
+<div class="upd"><span class="dot" id="arDot" aria-hidden="true"></span><span id="arTxt">마지막 갱신: 방금 전</span><span id="arState" class="sr-only"></span></div>
+<div class="stalebar" id="arStale" hidden role="status"></div>
+<div class="ctl">
+<label><input type="checkbox" id="arAuto" checked> 자동 갱신</label>
+<label><input type="checkbox" id="arFail"> 다음 갱신 실패시키기</label>
+<button class="btn ghost sm" id="arFF" type="button">시간 3분 빨리 감기</button>
+</div>
+<div class="log" id="arLog"></div>
+</div>
+<p class="cap" id="arVis">탭을 다른 곳으로 전환하면 폴링이 멈추고, 돌아오면 즉시 한 번 갱신한다.</p>
+</div>
+<div class="grid2" style="margin-top:14px">
+<div class="note" style="margin:0"><b>스크린리더</b>: 폴링마다 읽어 주면 소음이다. 수동 새로고침 결과와 "오래됨" 전환만 role=status로 알린다.</div>
+<div class="note" style="margin:0"><b>실패 처리</b>: 값을 지우지 않고 마지막 값 + "N분 전 기준"을 유지한다. 흰 화면보다 낫다.</div>
+</div>
+<pre><code>document.addEventListener('visibilitychange', () =&gt; {
+  if (document.hidden) stopPolling(); else { refresh(); startPolling(); }
+});</code></pre>
+</section>
+
+<section class="card" id="duration">
+<h2>🌀 Intl.DurationFormat <span class="tag">기간을 로케일에 맞게 포맷</span></h2>
+<p class="lead">"2시간 30분"처럼 기간(duration)을 문자열로 만드는 내장 API. 직접 만든 시·분·초 조합 함수를 대체한다. 지원 여부를 감지해 폴백을 둔다.</p>
+<div class="demo">
+<p class="demo-title">라이브 데모</p>
+<div class="row">
+<label class="fld">시간<input type="number" id="dH" min="0" max="99" value="2"></label>
+<label class="fld">분<input type="number" id="dM" min="0" max="59" value="30"></label>
+<label class="fld">초<input type="number" id="dS" min="0" max="59" value="5"></label>
+<label class="fld">style<select id="dStyle"><option>long</option><option>short</option><option>narrow</option><option>digital</option></select></label>
+</div>
+<div class="out" id="dOut" aria-live="polite"></div>
+<dl class="cmp" id="dCmp"></dl>
+<div class="support" id="dSup"></div>
+<p class="demo-title" style="margin-top:16px">정산 입금까지 남은 시간 (digital, 1초마다 갱신)</p>
+<div class="out" id="dEta">--:--:--</div>
+<p class="cap">초 단위로 바뀌는 숫자는 aria-live를 달지 않는다(매초 읽힘). 대신 라벨에 목표 시각을 텍스트로 병기한다.</p>
+</div>
+<pre><code>const df = new Intl.DurationFormat('ko', { style: 'long' });
+df.format({ hours: 2, minutes: 30 });   // "2시간 30분"
+new Intl.DurationFormat('ko', { style: 'digital' }).format({ hours: 2, minutes: 5, seconds: 9 });
+// 지원 감지: typeof Intl.DurationFormat === 'function'</code></pre>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-06 · 모든 데이터는 데모용 가짜 값입니다.</div>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR');
+
+/* ---------- 1. chart ---------- */
+const DAYS=['10/31','11/1','11/2','11/3','11/4','11/5','11/6'];
+const SER=[
+ {k:'card',n:'카드',c:'#0072B2',d:'',m:'circle',v:[520,540,498,560,585,570,602]},
+ {k:'easy',n:'간편결제',c:'#E69F00',d:'7 4',m:'square',v:[310,342,380,395,410,430,470]},
+ {k:'bank',n:'계좌이체',c:'#009E73',d:'2 3',m:'tri',v:[180,175,190,170,165,172,160]},
+ {k:'vbank',n:'가상계좌',c:'#CC79A7',d:'10 3 2 3',m:'diamond',v:[90,95,82,88,70,74,66]}
+];
+const W=420,H=240,L=34,R=84,T=12,B=26,MAX=650;
+const X=i=>L+(W-L-R)*i/(DAYS.length-1), Y=v=>T+(H-T-B)*(1-v/MAX);
+function mark(s,x,y,sz=4.5){
+ const f=`fill="${s.c}"`;
+ if(s.m==='circle')return `<circle class="mk" cx="${x}" cy="${y}" r="${sz}" ${f}/>`;
+ if(s.m==='square')return `<rect class="mk" x="${x-sz}" y="${y-sz}" width="${sz*2}" height="${sz*2}" ${f}/>`;
+ if(s.m==='tri')return `<path class="mk" d="M${x} ${y-sz-1}L${x+sz+1} ${y+sz}L${x-sz-1} ${y+sz}Z" ${f}/>`;
+ return `<path class="mk" d="M${x} ${y-sz-1}L${x+sz+1} ${y}L${x} ${y+sz+1}L${x-sz-1} ${y}Z" ${f}/>`;
+}
+function build(el,direct){
+ let g='';
+ [0,200,400,600].forEach(v=>{g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end">${v}</text>`});
+ DAYS.forEach((d,i)=>{if(i%2===0||i===DAYS.length-1)g+=`<text x="${X(i)}" y="${H-8}" text-anchor="middle">${d}</text>`});
+ let body='';
+ SER.forEach(s=>{
+  const pts=s.v.map((v,i)=>`${X(i)},${Y(v)}`).join(' ');
+  const last=s.v.at(-1), avg=Math.round(s.v.reduce((a,b)=>a+b)/s.v.length);
+  const dash=direct?`stroke-dasharray="${s.d}"`:'';
+  const mk=direct?s.v.map((v,i)=>(i%2===0||i===s.v.length-1)?mark(s,X(i),Y(v),3.6):'').join(''):'';
+  const lab=direct?`<text class="lab" x="${X(DAYS.length-1)+8}" y="${Y(last)+4}" style="fill:${s.c}">${s.n}</text>`:'';
+  body+=`<g class="ser" data-s="${s.k}" ${direct?`tabindex="0" role="img" aria-label="${s.n}: 7일 평균 ${avg}만 원, 오늘 ${last}만 원"`:''}><polyline points="${pts}" fill="none" stroke="transparent" stroke-width="14" pointer-events="stroke"/><polyline class="ln" points="${pts}" stroke="${s.c}" ${dash}/>${mk}${lab}<rect class="focus-ring" x="${L-4}" y="${Y(Math.max(...s.v))-10}" width="${W-L-R+8}" height="${Y(Math.min(...s.v))-Y(Math.max(...s.v))+20}" rx="6"/></g>`;
+ });
+ el.innerHTML=`<svg class="ch" viewBox="0 0 ${W} ${H}" ${direct?'':'role="img" aria-label="결제수단별 일 거래액 선 차트. 정확한 값은 아래 표를 참고"'}>${g}${body}</svg>`;
+ if(!direct)el.insertAdjacentHTML('beforeend',`<div class="legend">${SER.map(s=>`<span><i class="sw" style="background:${s.c}"></i>${s.n}</span>`).join('')}</div>`);
+}
+build($('#chA'),false);build($('#chB'),true);
+$('#chTable').innerHTML=`<table class="dt"><thead><tr><th>날짜</th>${SER.map(s=>`<th>${s.n}</th>`).join('')}</tr></thead><tbody>${DAYS.map((d,i)=>`<tr><td>${d}</td>${SER.map(s=>`<td>${won(s.v[i])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+const chipRow=$('#chartlabel .row');
+SER.forEach(s=>chipRow.insertAdjacentHTML('beforeend',`<button class="chip" data-s="${s.k}" aria-pressed="false">${s.n}</button>`));
+function focusSeries(k,announce){
+ $$('#chB .ser').forEach(g=>{g.classList.toggle('dim',k!=='all'&&g.dataset.s!==k);g.classList.toggle('hi',g.dataset.s===k)});
+ $$('#chartlabel .chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.s===k));
+ const s=SER.find(x=>x.k===k);
+ if(announce)$('#chRead').textContent=s?`${s.n}: 오늘 ${won(s.v.at(-1))}만 원, 7일 평균 ${won(Math.round(s.v.reduce((a,b)=>a+b)/s.v.length))}만 원`:'';
+}
+$$('#chartlabel .chip').forEach(c=>c.addEventListener('click',()=>focusSeries(c.dataset.s,true)));
+$$('#chB .ser').forEach(g=>{
+ g.addEventListener('mouseenter',()=>focusSeries(g.dataset.s,true));
+ g.addEventListener('focus',()=>focusSeries(g.dataset.s,true));
+ g.addEventListener('click',()=>focusSeries(g.dataset.s,true));
+});
+$('#chB').addEventListener('mouseleave',()=>focusSeries('all',false));
+$('#chB').addEventListener('focusout',e=>{if(!$('#chB').contains(e.relatedTarget))focusSeries('all',false)});
+
+/* ---------- 2. auto refresh ---------- */
+const POLL=6000, STALE_MULT=3;
+let val=1284, lastOk=Date.now(), timer=null, busy=false, failed=0, stale=false;
+const rtf=new Intl.RelativeTimeFormat('ko',{numeric:'auto'});
+function rel(ms){
+ const s=Math.round((Date.now()-ms)/1000);
+ if(s<10)return '방금 전';
+ if(s<60)return rtf.format(-s,'second');
+ const m=Math.round(s/60); if(m<60)return rtf.format(-m,'minute');
+ return rtf.format(-Math.round(m/60),'hour');
+}
+function render(){
+ const age=Date.now()-lastOk, isStale=age>POLL*STALE_MULT||failed>0;
+ $('#arTxt').textContent=(isStale?'마지막 성공 갱신: ':'마지막 갱신: ')+rel(lastOk);
+ const dot=$('#arDot'); dot.className='dot'+(failed?' err':isStale?' stale':(!$('#arAuto').checked||document.hidden)?' pause':'');
+ const bar=$('#arStale');
+ if(isStale!==stale){stale=isStale; if(stale){bar.hidden=false;bar.textContent=`최신 값을 불러오지 못했어요. ${rel(lastOk)} 기준 숫자입니다. 자동으로 다시 시도합니다.`}else{bar.hidden=true;bar.textContent=''}}
+ else if(stale)bar.textContent=`최신 값을 불러오지 못했어요. ${rel(lastOk)} 기준 숫자입니다. 자동으로 다시 시도합니다.`;
+}
+function log(t){$('#arLog').textContent=t}
+function refresh(manual){
+ if(busy)return; busy=true;
+ const btn=$('#arBtn'); btn.disabled=true; btn.setAttribute('aria-busy','true'); btn.innerHTML='<span class="spin" aria-hidden="true"></span> 불러오는 중';
+ setTimeout(()=>{
+  busy=false; btn.disabled=false; btn.removeAttribute('aria-busy'); btn.textContent='지금 새로고침';
+  if($('#arFail').checked){failed++; log(`갱신 실패 (${failed}회 연속) — 마지막 값 유지`); if(manual)$('#arState').textContent='새로고침에 실패했습니다. 이전 값을 유지합니다.'; }
+  else{
+   const prev=val; val+=Math.floor(Math.random()*9)+1; failed=0; lastOk=Date.now();
+   const el=$('#arVal'); el.textContent=won(val); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+   log(`갱신 성공 +${val-prev}`); if(manual)$('#arState').textContent=`새로고침 완료. 승인 건수 ${won(val)}건.`;
+  }
+  render();
+ },700);
+}
+function start(){stop(); if($('#arAuto').checked&&!document.hidden)timer=setInterval(()=>refresh(false),POLL)}
+function stop(){clearInterval(timer);timer=null}
+$('#arBtn').addEventListener('click',()=>refresh(true));
+$('#arAuto').addEventListener('change',()=>{start();render()});
+$('#arFF').addEventListener('click',()=>{lastOk-=3*60*1000;render()});
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){stop()}else{refresh(false);start()} render(); });
+setInterval(render,1000); start(); render();
+
+/* ---------- 3. duration ---------- */
+const hasDF=typeof Intl!=='undefined'&&typeof Intl.DurationFormat==='function';
+function fallback(d,style){
+ const p=n=>String(n).padStart(2,'0');
+ if(style==='digital')return `${d.hours||0}:${p(d.minutes||0)}:${p(d.seconds||0)}`;
+ const u=style==='long'?['시간','분','초']:['시간','분','초'];
+ return [[d.hours,u[0]],[d.minutes,u[1]],[d.seconds,u[2]]].filter(x=>x[0]).map(x=>x[0]+x[1]).join(' ')||'0초';
+}
+function fmt(d,style){
+ if(hasDF)return new Intl.DurationFormat('ko',{style}).format(d);
+ return fallback(d,style);
+}
+function drawDur(){
+ const d={hours:+$('#dH').value||0,minutes:+$('#dM').value||0,seconds:+$('#dS').value||0}, st=$('#dStyle').value;
+ $('#dOut').textContent=fmt(d,st);
+ $('#dCmp').innerHTML=['long','short','narrow','digital'].map(s=>`<dt>${s}</dt><dd>${fmt(d,s)}</dd>`).join('');
+}
+['#dH','#dM','#dS','#dStyle'].forEach(s=>$(s).addEventListener('input',drawDur));
+$('#dSup').textContent=hasDF?'이 브라우저는 Intl.DurationFormat을 지원합니다. (web.dev가 Baseline Newly available로 소개한 API이며, 구형 브라우저용 폴백은 코드에 포함)':'이 브라우저는 Intl.DurationFormat 미지원 → 직접 만든 폴백 함수로 표시 중입니다.';
+drawDur();
+const target=Date.now()+2*3600e3+30*60e3+5e3;
+function eta(){
+ let s=Math.max(0,Math.round((target-Date.now())/1000));
+ $('#dEta').textContent=fmt({hours:Math.floor(s/3600),minutes:Math.floor(s%3600/60),seconds:s%60},'digital');
+}
+eta(); setInterval(eta,1000);
+})();
+</script>
+</body>
+</html>
