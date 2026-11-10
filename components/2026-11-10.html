@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-10 (화)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+input[type=search],select{padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--text)}
+/* URL state */
+.addr{display:flex;gap:6px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:6px 8px;margin-bottom:12px}
+.addr code{flex:1;overflow-wrap:anywhere;font-size:.84rem}
+.addr .hist{font-size:.72rem;color:var(--muted)}
+.tx{list-style:none;margin:12px 0 0;padding:0}
+.tx li{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-bottom:6px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:.9rem}
+.tx .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.st{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px}
+.st.done{color:var(--ok);background:var(--ok-soft)}.st.fail{color:var(--bad);background:var(--bad-soft)}.st.wait{color:var(--warn);background:var(--warn-soft)}
+.pager{display:flex;gap:6px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.log{font-size:.78rem;color:var(--muted);margin-top:8px;min-height:1.3em}
+/* dl */
+dl.kv{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:0 18px}
+dl.kv dt{color:var(--muted);font-size:.86rem;padding:9px 0;border-bottom:1px solid var(--border)}
+dl.kv dd{margin:0;padding:9px 0;border-bottom:1px solid var(--border);font-weight:600;min-width:0;display:flex;gap:8px;align-items:center;justify-content:flex-end;text-align:right}
+dl.kv dd .num{font-variant-numeric:tabular-nums}
+dl.kv dd.total{font-size:1.1rem}
+.ell{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.ell.open{white-space:normal;overflow-wrap:anywhere}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:500}
+.cstate{font-size:.78rem;color:var(--ok);min-height:1.2em;margin-top:6px}
+@media (max-width:420px){dl.kv{grid-template-columns:1fr}dl.kv dt{border:0;padding-bottom:0}dl.kv dd{justify-content:flex-start;text-align:left}}
+/* squircle */
+.shapes{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.sq{width:112px;height:112px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font-weight:700;font-size:.82rem;border-radius:32px;text-align:center}
+.sq.s1{corner-shape:round}.sq.s2{corner-shape:squircle}.sq.s3{corner-shape:superellipse(var(--k,2))}
+.sq.s4{corner-shape:bevel}.sq.s5{corner-shape:scoop}
+.sqcard{display:flex;gap:12px;align-items:center;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:24px}
+.sqcard.on{corner-shape:squircle}
+.sqcard .ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;font-size:1.3rem}
+.sqcard.on .ic{corner-shape:squircle}
+.sqstat{font-weight:700}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+html.embed-mode .embed-show .meta{display:none}
+/* ===== 2026-11-10 ===== */
+.cf{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.rows{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.rows li{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px;font-size:.9rem}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.undo{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#1f2937;color:#fff;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.88rem;position:relative;overflow:hidden}
+.undo button{background:transparent;border:0;color:#93c5fd;font-weight:700;cursor:pointer;border-radius:6px;padding:4px 8px}
+.undo .bar{position:absolute;left:0;bottom:0;height:3px;background:#60a5fa;width:100%;transform-origin:left;animation:shrink 5s linear forwards}
+@keyframes shrink{to{transform:scaleX(0)}}
+.tier{font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;margin-left:6px}
+.tier.l{color:var(--ok);background:var(--ok-soft)}.tier.m{color:var(--warn);background:var(--warn-soft)}.tier.h{color:var(--bad);background:var(--bad-soft)}
+dialog.cd{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);padding:20px;max-width:380px}
+dialog.cd::backdrop{background:rgba(0,0,0,.45)}
+dialog.cd h3{margin:0 0 8px;font-size:1.05rem}dialog.cd p{margin:0 0 12px;font-size:.9rem}
+dialog.cd input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text);margin-bottom:12px}
+.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+.errsel{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.errbox{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--bad);border-radius:12px;padding:14px 16px}
+.errbox.ok{border-left-color:var(--ok)}
+.errbox h3{margin:0 0 4px;font-size:1rem}.errbox p{margin:0 0 10px;font-size:.9rem}
+.rid{font-size:.78rem;color:var(--muted);display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.ld{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.lbox{border-radius:12px;padding:14px;font-size:.85rem;border:1px solid light-dark(#c9d1dc,#3a4556);background:light-dark(#ffffff,#161c26);color:light-dark(#14181f,#e7ebf2)}
+.lbox b{display:block;margin-bottom:4px}
+.lbox .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:6px;background:light-dark(#4f46e5,#a5a6fb)}
+.cs-normal{color-scheme:normal}.cs-light{color-scheme:light}.cs-dark{color-scheme:dark}.cs-inh{color-scheme:inherit}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-10 (화) · 확인 대화상자 3단계 · 에러 상태 설계 · light-dark()</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#confirm">🪟 확인 대화상자</a><a href="#errbox">🔔 에러 상태</a><a href="#lightdark">🌀 light-dark()</a>
+</nav>
+
+<section class="card" id="confirm">
+<h2>🪟 위험도별 확인 3단계 <span class="tag">오버레이·모달·토스트</span></h2>
+<p class="lead">모든 삭제에 똑같이 "정말 삭제할까요?" 모달을 띄우면 사용자는 읽지 않고 확인을 누릅니다. 되돌릴 수 있으면 실행 후 되돌리기, 어려우면 확인, 치명적이면 이름 입력으로 마찰을 나눕니다.</p>
+<div class="cf">
+<div class="demo"><p class="demo-title">A. 되돌리기 <span class="tier l">낮음</span></p>
+<ul class="rows" id="uList"><li>결제 알림 (이메일)<button class="btn ghost sm" data-u="결제 알림 (이메일)">해제</button></li><li>정산 알림 (이메일)<button class="btn ghost sm" data-u="정산 알림 (이메일)">해제</button></li></ul>
+<div id="uBox" role="status" aria-live="polite"></div>
+<p class="cap">즉시 반영하고 5초 동안 되돌리기를 줍니다. 시간이 지나야 서버에 확정합니다.</p></div>
+<div class="demo"><p class="demo-title">B. 단순 확인 <span class="tier m">중간</span></p>
+<ul class="rows"><li>Visa ···· 4242<button class="btn ghost sm" id="bOpen">삭제</button></li></ul>
+<div class="log" id="bLog" role="status" aria-live="polite"></div>
+<p class="cap">제목에 대상을 쓰고, 기본 포커스는 안전한 "취소"에 둡니다. 버튼 라벨은 "예"가 아니라 "카드 삭제".</p></div>
+<div class="demo"><p class="demo-title">C. 이름 입력 확인 <span class="tier h">높음</span></p>
+<ul class="rows"><li>가맹점 API 키 (live)<button class="btn ghost sm" id="cOpen">폐기</button></li></ul>
+<div class="log" id="cLog" role="status" aria-live="polite"></div>
+<p class="cap">복구 불가 + 영향 범위가 큰 동작만. 가맹점명 <code>paysable-shop</code>을 쳐야 버튼이 활성화됩니다.</p></div>
+</div>
+<dialog class="cd" id="bDlg" aria-labelledby="bT"><h3 id="bT">Visa ···· 4242 카드를 삭제할까요?</h3><p>예약된 정기결제 1건이 이 카드를 사용 중이에요. 삭제하면 해당 결제가 실패할 수 있어요.</p><div class="row"><button class="btn ghost" id="bCancel" type="button" autofocus>취소</button><button class="btn danger" id="bOk" type="button">카드 삭제</button></div></dialog>
+<dialog class="cd" id="cDlg" aria-labelledby="cT"><h3 id="cT">API 키를 폐기할까요?</h3><p>이 키를 쓰는 서버의 결제 요청이 즉시 모두 실패합니다. 계속하려면 가맹점명 <code>paysable-shop</code>을 입력하세요.</p><label class="sr-only" for="cIn">가맹점명 입력</label><input id="cIn" autocomplete="off" spellcheck="false" aria-describedby="cH"><div class="row"><button class="btn ghost" id="cCancel" type="button">취소</button><button class="btn danger" id="cOk" type="button" aria-disabled="true">API 키 폐기</button></div><p class="log" id="cH">가맹점명이 일치하면 버튼이 활성화됩니다.</p></dialog>
+<div class="note">입력 확인은 복사·붙여넣기를 막지 않습니다(막으면 접근성만 해칩니다). 데모 데이터는 모두 가짜입니다.</div>
+<pre><code>dlg.showModal();            // 배경 inert + Esc 닫기 내장
+cancelBtn.autofocus = true; // 파괴적 동작이 기본 포커스가 되지 않게
+okBtn.setAttribute('aria-disabled', input.value !== name);</code></pre>
+</section>
+
+<section class="card" id="errbox">
+<h2>🔔 에러 상태 설계 <span class="tag">피드백·상태</span></h2>
+<p class="lead">"오류가 발생했습니다"는 정보가 없습니다. 무슨 일인지, 사용자가 할 수 있는 일, 다시 시도 가능 여부, 문의용 요청 ID를 같이 줍니다. 유형을 눌러 보세요.</p>
+<div class="demo"><p class="demo-title">유형 선택 → 재시도</p>
+<div class="errsel" role="group" aria-label="에러 유형"><button class="chip" aria-pressed="true" data-e="net">네트워크 끊김</button><button class="chip" aria-pressed="false" data-e="s500">서버 오류 500</button><button class="chip" aria-pressed="false" data-e="r429">요청 많음 429</button><button class="chip" aria-pressed="false" data-e="p403">권한 없음 403</button></div>
+<div id="eOut"></div>
+<p class="cap">429는 Retry-After 초만큼 기다린 뒤 버튼이 열립니다. 403은 재시도해도 같으니 재시도 버튼 대신 권한 요청을 줍니다. 모든 값은 가짜입니다.</p></div>
+<pre><code>// 재시도 가능 여부는 상태코드로 판단
+const retryable = s =&gt; s === 429 || s &gt;= 500 || s === 0; // 0 = 네트워크
+// 429: Retry-After 헤더 초만큼 대기 후 활성화</code></pre>
+</section>
+
+<section class="card" id="lightdark">
+<h2>🌀 light-dark() <span class="tag">트렌드·개념</span></h2>
+<p class="lead"><code>light-dark(밝은값, 어두운값)</code>은 요소의 <code>color-scheme</code>에 따라 색을 고릅니다. 다크 모드용 미디어쿼리를 따로 쓰지 않아도 됩니다. 단, color-scheme이 <code>normal</code>이면 항상 밝은 값입니다. 위의 테마 버튼을 눌러 보세요.</p>
+<div class="demo"><p class="demo-title">같은 CSS, 요소별 color-scheme만 다름</p>
+<div class="ld">
+<div class="lbox cs-normal"><b>normal (선언 없음)</b><span class="sw"></span>항상 밝은 값</div>
+<div class="lbox cs-light"><b>light</b><span class="sw"></span>항상 밝은 값</div>
+<div class="lbox cs-dark"><b>dark</b><span class="sw"></span>항상 어두운 값</div>
+<div class="lbox cs-inh"><b>inherit (페이지 따라감)</b><span class="sw"></span>테마 토글을 따름</div>
+</div>
+<p class="support" id="ldSup"></p></div>
+<div class="note">지원: Baseline 2024에 신규 지원된 것으로 알고 있습니다(정확한 날짜·브라우저 버전은 MDN에서 확인 필요, 추정). 구형 브라우저용으로 앞줄에 단색 폴백을 둡니다.</div>
+<pre><code>:root { color-scheme: light dark; }
+.card { background: #fff; background: light-dark(#fff, #161c26); }</code></pre>
+</section>
+<p class="footer">self-contained · 외부 의존성 없음</p>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+
+/* confirm A: undo */
+const uBox=$('#uBox');let ut=null;
+$$('#uList [data-u]').forEach(b=>b.addEventListener('click',()=>{
+ const li=b.closest('li');if(ut){clearTimeout(ut);ut=null}
+ li.hidden=true;const name=b.dataset.u;
+ uBox.innerHTML='<div class="undo"><span></span><button type="button">되돌리기</button><i class="bar"></i></div>';
+ uBox.querySelector('span').textContent=name+' 해제됨';
+ uBox.querySelector('button').addEventListener('click',()=>{clearTimeout(ut);ut=null;li.hidden=false;uBox.innerHTML='';uBox.setAttribute('aria-label','');b.focus()});
+ ut=setTimeout(()=>{uBox.innerHTML='<p class="log">서버에 확정했어요.</p>';ut=null},5000);
+}));
+/* B */
+const bD=$('#bDlg');$('#bOpen').addEventListener('click',()=>bD.showModal());
+$('#bCancel').addEventListener('click',()=>bD.close());
+$('#bOk').addEventListener('click',()=>{bD.close();$('#bLog').textContent='카드를 삭제했어요. (데모)'});
+bD.addEventListener('close',()=>$('#bOpen').focus());
+/* C */
+const cD=$('#cDlg'),cIn=$('#cIn'),cOk=$('#cOk');
+const norm=s=>s.normalize('NFKC').trim();
+$('#cOpen').addEventListener('click',()=>{cIn.value='';cOk.setAttribute('aria-disabled','true');cD.showModal()});
+cIn.addEventListener('input',()=>{const ok=norm(cIn.value)==='paysable-shop';cOk.setAttribute('aria-disabled',String(!ok));$('#cH').textContent=ok?'일치합니다. 폐기할 수 있어요.':'가맹점명이 일치하면 버튼이 활성화됩니다.'});
+cOk.addEventListener('click',()=>{if(cOk.getAttribute('aria-disabled')==='true')return;cD.close();$('#cLog').textContent='API 키를 폐기했어요. (데모)'});
+$('#cCancel').addEventListener('click',()=>cD.close());
+cD.addEventListener('close',()=>$('#cOpen').focus());
+
+/* error states */
+const E={
+ net:{t:'인터넷 연결이 끊겼어요',d:'연결을 확인한 뒤 다시 시도해 주세요. 입력한 내용은 그대로 남아 있어요.',code:0,retry:true},
+ s500:{t:'일시적인 서버 문제가 있어요',d:'우리 쪽 문제예요. 잠시 후 다시 시도해 주세요. 계속되면 아래 요청 ID로 문의해 주세요.',code:500,retry:true},
+ r429:{t:'요청이 너무 많아요',d:'잠시 쉬었다가 다시 시도할 수 있어요.',code:429,retry:true,wait:8},
+ p403:{t:'이 작업을 할 권한이 없어요',d:'정산 내보내기는 관리자 권한이 필요해요. 재시도해도 결과는 같아요.',code:403,retry:false}
+};
+let cur='net',tries=0,timer=null;
+const rid=()=>'req_'+Math.random().toString(36).slice(2,10);
+function render(){
+ clearInterval(timer);const e=E[cur];const out=$('#eOut');const id=rid();tries=0;
+ out.innerHTML='<div class="errbox" role="alert"><h3></h3><p></p><div class="row"></div><div class="rid"><span>요청 ID <code></code></span><button class="btn ghost sm" type="button">복사</button><span class="log" role="status" aria-live="polite"></span></div></div>';
+ const box=out.firstChild;box.querySelector('h3').textContent=e.t;box.querySelector('p').textContent=e.d;box.querySelector('code').textContent=id;
+ const row=box.querySelector('.row');
+ const cp=box.querySelector('.rid button'),cl=box.querySelector('.rid .log');
+ cp.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(id);cl.textContent='복사됨'}catch(_){cl.textContent='직접 복사해 주세요'}});
+ if(!e.retry){row.innerHTML='<button class="btn" type="button">관리자에게 권한 요청</button>';row.firstChild.addEventListener('click',()=>{box.classList.add('ok');box.querySelector('h3').textContent='권한 요청을 보냈어요 (데모)'});return}
+ const b=document.createElement('button');b.className='btn';b.type='button';row.appendChild(b);
+ let left=e.wait||0;
+ const label=()=>{b.textContent=left>0?left+'초 후 다시 시도':'다시 시도';b.setAttribute('aria-disabled',String(left>0))};
+ label();
+ if(left>0)timer=setInterval(()=>{left--;label();if(left<=0)clearInterval(timer)},1000);
+ b.addEventListener('click',()=>{
+  if(b.getAttribute('aria-disabled')==='true')return;
+  b.setAttribute('aria-disabled','true');b.textContent='다시 시도하는 중…';tries++;
+  setTimeout(()=>{
+   if(tries>=2||cur==='r429'){box.classList.add('ok');box.querySelector('h3').textContent='이제 처리됐어요';box.querySelector('p').textContent='요청이 정상적으로 완료됐어요.';row.innerHTML=''}
+   else{b.textContent='다시 시도';b.setAttribute('aria-disabled','false');box.querySelector('p').textContent='아직 안 돼요. 한 번 더 시도해 보세요.'}
+  },900);
+ });
+}
+$$('.errsel .chip').forEach(c=>c.addEventListener('click',()=>{$$('.errsel .chip').forEach(x=>x.setAttribute('aria-pressed','false'));c.setAttribute('aria-pressed','true');cur=c.dataset.e;render()}));
+render();
+
+/* light-dark support */
+const ok=CSS.supports('color','light-dark(red,blue)');
+$('#ldSup').textContent=ok?'이 브라우저: light-dark() 지원됨':'이 브라우저: light-dark() 미지원 — 폴백 색이 보입니다';
+})();
+</script>
+</body>
+</html>
