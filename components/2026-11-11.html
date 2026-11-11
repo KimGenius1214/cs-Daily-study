@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-11 (수)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e9f7ee;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#10261d;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled=true]{opacity:.5;cursor:not-allowed}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.chip{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chip:hover{border-color:var(--brand)}
+.field{display:grid;gap:4px;margin-top:12px}
+.field label{font-size:.86rem;font-weight:600}
+.field .hint{font-size:.78rem;color:var(--muted)}
+.inp{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--text)}
+.inp[aria-invalid=true]{border-color:var(--bad)}
+.err{font-size:.8rem;color:var(--bad);min-height:1.2em}
+.okmsg{font-size:.8rem;color:var(--ok);min-height:1.2em}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+/* ===== 2026-11-11 ===== */
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg label{padding:7px 14px;font-size:.86rem;cursor:pointer;border-right:1px solid var(--border)}
+.seg label:last-child{border-right:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--brand);color:var(--brand-ink);font-weight:700}
+.seg label:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:-3px}
+.opt{display:grid;gap:8px;margin:10px 0 0}
+.opt label.r{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px;cursor:pointer}
+.opt label.r:has(input:checked){border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+.opt label.r input{margin-top:4px;accent-color:var(--brand)}
+.opt small{display:block;color:var(--muted);font-size:.78rem}
+.pay{margin-top:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.pay .sum{font-size:.84rem;color:var(--muted);margin:0 0 8px}
+.pay .sum b{color:var(--text)}
+.btn.wide{width:100%;padding:12px}
+.saved{display:flex;justify-content:space-between;gap:8px;align-items:center;background:var(--brand-soft);border-radius:10px;padding:8px 12px;font-size:.86rem;margin-top:10px}
+.sug{margin-top:6px;background:var(--warn-soft);color:var(--text);border-radius:10px;padding:8px 12px;font-size:.86rem;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.sug b{color:var(--warn)}
+.dchips{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.check{list-style:none;margin:8px 0 0;padding:0;font-size:.8rem;display:grid;gap:2px}
+.check li::before{content:"○ ";color:var(--muted)}
+.check li.on::before{content:"● ";color:var(--ok)}
+.cnt{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.cnt div{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;font-size:.78rem;color:var(--muted)}
+.cnt div b{display:block;font-size:1.25rem;color:var(--text);font-variant-numeric:tabular-nums}
+.cnt div.pick{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand)}
+textarea.inp{resize:vertical;min-height:64px}
+.meter{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-top:4px}
+.meter .over{color:var(--bad);font-weight:700}
+.cut{display:grid;gap:6px;margin-top:10px;font-size:.86rem}
+.cut div{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 12px}
+.cut span.k{display:inline-block;min-width:150px;color:var(--muted);font-size:.78rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-11 (수) · 현금영수증 신청 · 이메일 오타 제안 · Intl.Segmenter</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#cashrcpt">💳 현금영수증 신청</a><a href="#emailtypo">⌨️ 이메일 오타 제안</a><a href="#segmenter">🌀 Intl.Segmenter</a>
+</nav>
+
+<!-- 1. 현금영수증 -->
+<section class="card" id="cashrcpt">
+<h2>💳 현금영수증 신청 — 결제수단에 따라 보이고, 용도에 따라 입력이 바뀐다 <span class="tag">결제·체크아웃 UX</span></h2>
+<p class="lead">계좌이체·가상계좌처럼 현금성 결제일 때만 나타나고, 소득공제(개인)·지출증빙(사업자)에 따라 식별번호 입력이 바뀝니다. 결제 버튼 바로 위에 "무엇으로 신청되는지"를 한 줄 요약합니다.</p>
+<div class="demo">
+<p class="demo-title">라이브 — 결제수단을 바꿔 보고, 용도·번호를 입력해 보세요</p>
+<div class="row"><span style="font-size:.86rem;font-weight:600" id="pmLbl">결제수단</span>
+<div class="seg" role="radiogroup" aria-labelledby="pmLbl">
+<label><input type="radio" name="pm" value="card">카드</label>
+<label><input type="radio" name="pm" value="bank" checked>계좌이체</label>
+<label><input type="radio" name="pm" value="vbank">가상계좌</label>
+</div></div>
+<p class="cap" id="cardNote" hidden>카드 결제는 카드 매출전표가 증빙이라 현금영수증 영역을 숨깁니다(빈 영역 대신 이유 한 줄).</p>
+
+<fieldset id="crBox" style="border:0;padding:0;margin:12px 0 0">
+<legend style="font-weight:700;font-size:.95rem">현금영수증</legend>
+<div class="opt">
+<label class="r"><input type="radio" name="cr" value="personal" checked><span>소득공제용 <small>개인 · 연말정산에 반영</small></span></label>
+<label class="r"><input type="radio" name="cr" value="biz"><span>지출증빙용 <small>사업자 · 비용 처리</small></span></label>
+<label class="r"><input type="radio" name="cr" value="none"><span>신청 안 함 <small>필요하면 나중에 직접 등록</small></span></label>
+</div>
+
+<div id="pPanel">
+<div class="row" style="margin-top:12px"><span style="font-size:.84rem" id="idLbl">식별수단</span>
+<div class="seg" role="radiogroup" aria-labelledby="idLbl">
+<label><input type="radio" name="idt" value="phone" checked>휴대폰번호</label>
+<label><input type="radio" name="idt" value="cardno">현금영수증카드</label>
+</div></div>
+<div class="field"><label for="crNum" id="crNumLbl">휴대폰번호</label>
+<input class="inp" id="crNum" inputmode="numeric" autocomplete="tel-national" aria-describedby="crHint crErr" placeholder="010-1234-5678">
+<span class="hint" id="crHint">숫자만 입력해도 하이픈은 자동으로 들어가요.</span>
+<span class="err" id="crErr" aria-live="polite"></span></div>
+</div>
+
+<div id="bPanel" hidden>
+<div class="field"><label for="brn">사업자등록번호</label>
+<input class="inp" id="brn" inputmode="numeric" autocomplete="off" aria-describedby="brnHint brnErr" placeholder="000-00-00000">
+<span class="hint" id="brnHint">10자리. 검증번호(마지막 자리)를 즉시 계산해 오타를 잡아요. 예: 220-81-62517</span>
+<span class="err" id="brnErr" aria-live="polite"></span></div>
+</div>
+
+<div id="nPanel" hidden><p class="cap" style="margin-top:10px">신청하지 않아도 가맹점이 국세청 자진발급 번호로 발급하는 경우가 있고, 이후 홈택스에서 본인 번호로 등록할 수 있어요(업종별로 다름).</p></div>
+
+<label class="row" style="margin-top:12px;font-size:.86rem;gap:8px" id="remWrap"><input type="checkbox" id="rem" checked style="accent-color:var(--brand)"> 다음 결제에도 이 정보 사용</label>
+<div class="saved" id="savedRow" hidden><span id="savedTxt"></span><button class="btn ghost sm" type="button" id="savedEdit">변경</button></div>
+</fieldset>
+
+<div class="pay">
+<p class="sum" id="crSum" aria-live="polite"></p>
+<button class="btn wide" type="button" id="payBtn">39,000원 결제하기</button>
+<p class="okmsg" id="payMsg" aria-live="polite"></p>
+</div>
+</div>
+<p class="cap">요약 줄은 aria-live="polite"로 바뀔 때만 읽힙니다. 번호 오류는 입력 중이 아니라 blur·결제 시에 보여줍니다.</p>
+<pre><code>// 사업자등록번호 검증번호 (가중치 1,3,7,1,3,7,1,3,5)
+function isValidBRN(v){
+  const d = v.replace(/\D/g,'').split('').map(Number);
+  if (d.length !== 10) return false;
+  const w = [1,3,7,1,3,7,1,3,5];
+  let s = w.reduce((a, wi, i) =&gt; a + d[i]*wi, 0);
+  s += Math.floor(d[8]*5/10);
+  return (10 - s % 10) % 10 === d[9];
+}</code></pre>
+<p class="note">검증번호 통과 ≠ 실제 존재하는 사업자. 휴·폐업 여부는 서버에서 국세청 조회 API 등으로 따로 확인해야 합니다(클라이언트 검사는 오타 방지용).</p>
+</section>
+
+<!-- 2. 이메일 오타 -->
+<section class="card" id="emailtypo">
+<h2>⌨️ 이메일 입력 — 고치지 말고 제안하고, 붙여넣기 쓰레기는 조용히 치우기 <span class="tag">입력·폼</span></h2>
+<p class="lead">영수증·정산 메일이 엉뚱한 곳으로 가는 원인 1순위는 도메인 오타(gmial.com, naver.con). 자동으로 바꾸지 않고 "혹시 ~인가요?"를 제안하고, 전각 ＠·앞뒤 공백 같은 붙여넣기 잡음은 정리한 뒤 알려줍니다.</p>
+<div class="demo">
+<p class="demo-title">라이브 — 아래 예시를 눌러 넣거나 직접 입력 후 바깥을 클릭(blur)</p>
+<div class="dchips"><button class="chip" type="button" data-ex="hong@gmial.com">hong@gmial.com</button><button class="chip" type="button" data-ex="hong@naver.con">hong@naver.con</button><button class="chip" type="button" data-ex="  hong＠hanmial.net ">  hong＠hanmial.net (전각·공백)</button><button class="chip" type="button" data-ex="hong@company">hong@company</button></div>
+<div class="field"><label for="em">영수증 받을 이메일</label>
+<input class="inp" id="em" type="email" autocomplete="email" spellcheck="false" autocapitalize="off" aria-describedby="emSug emErr" placeholder="name@example.com">
+<div id="emDom" class="dchips" hidden aria-label="도메인 빠른 입력"></div>
+<div id="emSug" aria-live="polite"></div>
+<span class="err" id="emErr" aria-live="polite"></span>
+<ul class="check" aria-label="형식 체크"><li id="ck1">@ 앞뒤에 글자가 있음</li><li id="ck2">도메인에 점(.)이 있음 — type=email은 a@b도 통과시킴</li><li id="ck3">자주 쓰는 도메인 오타 아님</li></ul>
+</div>
+<div class="row" style="margin-top:10px"><button class="btn" type="button" id="emSend">영수증 받기</button><span class="okmsg" id="emOk" aria-live="polite"></span></div>
+</div>
+<p class="cap">제안은 편집 거리(Damerau-Levenshtein) 2 이하일 때만. "아니요, 그대로"를 누르면 같은 값에 다시 묻지 않습니다. 회사 도메인은 오타 사전에 없으니 막지 않습니다.</p>
+<pre><code>const DOMAINS = ['gmail.com','naver.com','daum.net','hanmail.net','kakao.com','nate.com','icloud.com','outlook.com','hotmail.com'];
+function suggest(email){
+  const [local, domain] = email.split('@');
+  if (!domain || DOMAINS.includes(domain)) return null;
+  let best = null, bestD = 3;
+  for (const d of DOMAINS){ const dist = osa(domain, d); if (dist &lt; bestD){ best = d; bestD = dist; } }
+  return best ? `${local}@${best}` : null;   // 고치지 말고 "혹시 이거?"로 제안만
+}
+const normalize = s =&gt; s.normalize('NFKC').replace(/\s+/g,'');  // ＠→@, 전각 영문→반각, 공백 제거</code></pre>
+<p class="note">NFKC 정규화: 호환 문자를 표준형으로 접는 유니코드 변환. 전각 ＠·Ａ 같은 문자를 반각으로 바꿔 줘서 한글 IME 상태에서 붙여넣은 이메일을 살려냅니다.</p>
+</section>
+
+<!-- 3. Intl.Segmenter -->
+<section class="card" id="segmenter">
+<h2>🌀 Intl.Segmenter — "20자 제한"이 이모지·한글에서 틀리는 이유 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">사람이 보는 "한 글자"(grapheme, 자소 묶음)와 JS의 length(UTF-16 코드 유닛)는 다릅니다. 👨‍👩‍👧는 length 8, 🇰🇷는 4, 맥에서 온 NFD 한글 "한"은 3. Intl.Segmenter로 사람 기준 글자 수를 세고, 자를 때도 글자 경계에서 자릅니다.</p>
+<div class="demo">
+<p class="demo-title">라이브 — 가맹점 메모(최대 10자) 입력. 예시를 눌러 보세요</p>
+<div class="dchips"><button class="chip" type="button" data-sx="👨‍👩‍👧 가족여행">👨‍👩‍👧 가족여행</button><button class="chip" type="button" data-sx="🇰🇷 서울본점">🇰🇷 서울본점</button><button class="chip" type="button" data-sx="nfd">NFD 한글 "한글결제"</button><button class="chip" type="button" data-sx="👍🏽 좋아요 감사합니다">👍🏽 좋아요 감사합니다</button></div>
+<div class="field"><label for="memo">가맹점 메모</label>
+<textarea class="inp" id="memo" aria-describedby="memoMeter">👨‍👩‍👧 가족여행</textarea>
+<div class="meter" id="memoMeter"><span>글자 수는 사람이 보는 기준으로 셉니다</span><span id="memoCnt" aria-live="polite"></span></div>
+</div>
+<div class="cnt" aria-label="세는 방법별 결과">
+<div class="pick">Segmenter 글자<b id="cG">0</b></div>
+<div>.length (UTF-16)<b id="cL">0</b></div>
+<div>[...s] (코드포인트)<b id="cP">0</b></div>
+<div>UTF-8 바이트<b id="cB">0</b></div>
+</div>
+<div class="cut">
+<div><span class="k">s.slice(0, 5)</span><span id="cut1"></span></div>
+<div><span class="k">글자 경계로 5자 자르기</span><span id="cut2"></span></div>
+</div>
+</div>
+<p class="cap">slice는 이모지 중간을 잘라 깨진 문자(�)나 엉뚱한 사람 이모지를 남깁니다. 미리보기·말줄임에서 자주 터지는 버그.</p>
+<pre><code>const seg = new Intl.Segmenter('ko', { granularity: 'grapheme' });
+const graphemes = s =&gt; Array.from(seg.segment(s), x =&gt; x.segment);
+const countChars = s =&gt; graphemes(s).length;
+const truncate = (s, n) =&gt; { const g = graphemes(s); return g.length &gt; n ? g.slice(0, n).join('') + '…' : s; };
+// 서버와 맞추기 전에 먼저 NFC로 정규화 (맥 NFD 한글 대비)
+const clean = s =&gt; s.normalize('NFC');</code></pre>
+<p class="support">지원: Intl.Segmenter는 2024년 4월 Firefox 125 출시로 Baseline(주요 브라우저 공통 지원)이 됐습니다. 오래된 환경 대비 폴백은 Array.from(s)(코드포인트 기준, 이모지 조합은 틀림).</p>
+<p class="note">HTML maxlength는 사양상 UTF-16 코드 유닛 기준이라 화면 글자 수와 어긋날 수 있습니다(브라우저별 차이 있음 — 추정). 서버 DB 한도가 바이트/코드포인트 기준이면 "보이는 카운터"와 "서버 검증 규칙"을 따로 두세요.</p>
+</section>
+
+<p class="footer">self-contained · 외부 의존성 없음</p>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드'}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+
+/* ===== 1. 현금영수증 ===== */
+const val=n=>{const e=$(`input[name="${n}"]:checked`);return e?e.value:null};
+const fmtPhone=d=>{d=d.slice(0,11);if(d.length<4)return d;if(d.length<8)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,d.length-4)+'-'+d.slice(-4)};
+const fmtCard=d=>d.slice(0,19).replace(/(\d{4})(?=\d)/g,'$1-');
+const fmtBRN=d=>{d=d.slice(0,10);if(d.length<4)return d;if(d.length<6)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,5)+'-'+d.slice(5)};
+function isValidBRN(v){const d=v.replace(/\D/g,'').split('').map(Number);if(d.length!==10)return false;const w=[1,3,7,1,3,7,1,3,5];let s=w.reduce((a,wi,i)=>a+d[i]*wi,0);s+=Math.floor(d[8]*5/10);return (10-s%10)%10===d[9]}
+const mask=(t,v)=>{const d=v.replace(/\D/g,'');if(t==='phone')return d.slice(0,3)+'-****-'+d.slice(-4);if(t==='cardno')return '****-'+d.slice(-4);return fmtBRN(d).slice(0,7)+'***'};
+let saved=null;
+function crValid(show){
+ const cr=val('cr');
+ if(cr==='none')return true;
+ if(cr==='personal'){const t=val('idt'),d=$('#crNum').value.replace(/\D/g,'');let msg='';
+  if(t==='phone'&&!/^01[016789]\d{7,8}$/.test(d))msg='휴대폰번호 10~11자리를 확인해 주세요.';
+  if(t==='cardno'&&(d.length<13||d.length>19))msg='현금영수증카드 번호 13~19자리를 확인해 주세요.';
+  if(show){$('#crErr').textContent=msg;$('#crNum').setAttribute('aria-invalid',!!msg)}return !msg}
+ const ok=isValidBRN($('#brn').value);const msg=ok?'':($('#brn').value.replace(/\D/g,'').length<10?'사업자등록번호 10자리를 입력해 주세요.':'번호가 맞지 않아요. 한 자리씩 다시 확인해 주세요.');
+ if(show){$('#brnErr').textContent=msg;$('#brn').setAttribute('aria-invalid',!ok)}return ok}
+function crSummary(){
+ const pm=val('pm');
+ if(pm==='card'){$('#crSum').innerHTML='증빙: <b>카드 매출전표</b>';return}
+ const cr=val('cr');
+ if(saved){$('#crSum').innerHTML='현금영수증: <b></b>';$('#crSum b').textContent=saved;return}
+ if(cr==='none'){$('#crSum').innerHTML='현금영수증: <b>신청 안 함</b>';return}
+ const ok=crValid(false);
+ const what=cr==='personal'?'소득공제':'지출증빙';
+ const raw=cr==='personal'?$('#crNum').value:$('#brn').value;
+ $('#crSum').innerHTML='현금영수증: <b></b>';$('#crSum b').textContent=ok?`${what} · ${mask(cr==='personal'?val('idt'):'brn',raw)}`:`${what} · 번호 입력 필요`;
+}
+function syncCR(){
+ const pm=val('pm'),cr=val('cr');
+ $('#crBox').hidden=pm==='card';$('#cardNote').hidden=pm!=='card';
+ $('#pPanel').hidden=cr!=='personal'||!!saved;$('#bPanel').hidden=cr!=='biz'||!!saved;$('#nPanel').hidden=cr!=='none';
+ $('#remWrap').hidden=cr==='none'||!!saved;
+ $$('input[name=cr]').forEach(r=>r.disabled=!!saved);
+ const t=val('idt');$('#crNumLbl').textContent=t==='phone'?'휴대폰번호':'현금영수증카드 번호';
+ $('#crNum').placeholder=t==='phone'?'010-1234-5678':'0000-0000-0000-0000';
+ $('#crNum').autocomplete=t==='phone'?'tel-national':'off';
+ crSummary();
+}
+$$('input[name=pm],input[name=cr],input[name=idt]').forEach(r=>r.addEventListener('change',e=>{if(e.target.name==='idt'){$('#crNum').value='';$('#crErr').textContent='';$('#crNum').removeAttribute('aria-invalid')}syncCR()}));
+function liveFmt(el,fmt){el.addEventListener('input',()=>{const before=el.value.slice(0,el.selectionStart).replace(/\D/g,'').length;const d=el.value.replace(/\D/g,'');el.value=fmt(d);let pos=0,c=0;while(pos<el.value.length&&c<before){if(/\d/.test(el.value[pos]))c++;pos++}el.setSelectionRange(pos,pos);if(el.getAttribute('aria-invalid')==='true')crValid(true);crSummary()})}
+liveFmt($('#crNum'),d=>val('idt')==='phone'?fmtPhone(d):fmtCard(d));liveFmt($('#brn'),fmtBRN);
+$('#crNum').addEventListener('blur',()=>{if($('#crNum').value)crValid(true)});
+$('#brn').addEventListener('blur',()=>{if($('#brn').value)crValid(true)});
+$('#savedEdit').addEventListener('click',()=>{saved=null;$('#savedRow').hidden=true;syncCR();($('#pPanel').hidden?$('#brn'):$('#crNum')).focus()});
+$('#payBtn').addEventListener('click',()=>{
+ if(val('pm')!=='card'&&!saved&&!crValid(true)){$('#payMsg').textContent='';($('#pPanel').hidden?$('#brn'):$('#crNum')).focus();return}
+ $('#payMsg').textContent='결제 요청 완료(데모). '+$('#crSum').textContent;
+ if(val('pm')!=='card'&&val('cr')!=='none'&&$('#rem').checked&&!saved){saved=$('#crSum b').textContent;$('#savedTxt').textContent='저장됨: '+saved;$('#savedRow').hidden=false;syncCR()}
+});
+syncCR();
+
+/* ===== 2. 이메일 ===== */
+const DOMAINS=['gmail.com','naver.com','daum.net','hanmail.net','kakao.com','nate.com','icloud.com','outlook.com','hotmail.com'];
+function osa(a,b){const m=a.length,n=b.length,d=[...Array(m+1)].map(()=>Array(n+1).fill(0));for(let i=0;i<=m;i++)d[i][0]=i;for(let j=0;j<=n;j++)d[0][j]=j;for(let i=1;i<=m;i++)for(let j=1;j<=n;j++){const c=a[i-1]===b[j-1]?0:1;d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+c);if(i>1&&j>1&&a[i-1]===b[j-2]&&a[i-2]===b[j-1])d[i][j]=Math.min(d[i][j],d[i-2][j-2]+1)}return d[m][n]}
+function suggest(email){const at=email.lastIndexOf('@');if(at<1)return null;const local=email.slice(0,at),domain=email.slice(at+1).toLowerCase();if(!domain||DOMAINS.includes(domain))return null;let best=null,bd=3;for(const d of DOMAINS){const x=osa(domain,d);if(x<bd){best=d;bd=x}}return best?local+'@'+best:null}
+const normalize=s=>s.normalize('NFKC').replace(/\s+/g,'');
+const em=$('#em');let dismissed=new Set();
+function checks(){const v=em.value,at=v.lastIndexOf('@'),dom=at>=0?v.slice(at+1):'';
+ const c1=at>0&&at<v.length-1,c2=c1&&/\.[^.]+$/.test(dom)&&!dom.startsWith('.'),c3=c2&&!suggest(v);
+ $('#ck1').classList.toggle('on',c1);$('#ck2').classList.toggle('on',c2);$('#ck3').classList.toggle('on',c3||(c2&&dismissed.has(v)));return {c1,c2}}
+function showSug(){const v=em.value;const s=suggest(v);const box=$('#emSug');box.innerHTML='';
+ if(!s||dismissed.has(v))return;
+ box.innerHTML='<div class="sug"><span>혹시 <b></b> 인가요?</span><button class="btn sm" type="button" data-a="fix">수정</button><button class="btn ghost sm" type="button" data-a="keep">아니요, 그대로</button></div>';
+ box.querySelector('b').textContent=s;
+ box.querySelector('[data-a=fix]').onclick=()=>{em.value=s;box.innerHTML='';$('#emErr').textContent='';em.removeAttribute('aria-invalid');checks();em.focus()};
+ box.querySelector('[data-a=keep]').onclick=()=>{dismissed.add(v);box.innerHTML='';checks();em.focus()};}
+function domChips(){const v=em.value,at=v.indexOf('@');const box=$('#emDom');
+ if(at<1||document.activeElement!==em){box.hidden=true;return}
+ const typed=v.slice(at+1).toLowerCase();const list=DOMAINS.filter(d=>d.startsWith(typed)&&d!==typed).slice(0,4);
+ box.hidden=!list.length;box.innerHTML='';list.forEach(d=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent='@'+d;b.addEventListener('mousedown',e=>e.preventDefault());b.onclick=()=>{em.value=v.slice(0,at+1)+d;box.hidden=true;checks();em.focus()};box.appendChild(b)})}
+em.addEventListener('input',()=>{$('#emSug').innerHTML='';$('#emOk').textContent='';if(em.getAttribute('aria-invalid')==='true'){$('#emErr').textContent='';em.removeAttribute('aria-invalid')}checks();domChips()});
+em.addEventListener('focus',domChips);
+function tidy(){const n=normalize(em.value);if(n!==em.value){em.value=n;$('#emOk').textContent='공백·전각 문자를 정리했어요.'}}
+em.addEventListener('paste',()=>setTimeout(()=>{tidy();checks()},0));
+em.addEventListener('blur',()=>{setTimeout(()=>{$('#emDom').hidden=true},0);tidy();checks();showSug()});
+$$('[data-ex]').forEach(b=>b.addEventListener('click',()=>{em.value=b.dataset.ex;$('#emOk').textContent='';tidy();checks();showSug()}));
+$('#emSend').addEventListener('click',()=>{tidy();const {c1,c2}=checks();$('#emOk').textContent='';
+ if(!c1||!c2){$('#emErr').textContent=!c1?'이메일 주소를 확인해 주세요. 예: name@example.com':'도메인이 끝까지 입력됐는지 확인해 주세요. 예: @company.co.kr';em.setAttribute('aria-invalid','true');em.focus();return}
+ if(suggest(em.value)&&!dismissed.has(em.value)){showSug();$('#emSug button')?.focus();return}
+ $('#emErr').textContent='';$('#emOk').textContent=em.value+' 로 보낼게요(데모).'});
+checks();
+
+/* ===== 3. Segmenter ===== */
+const hasSeg=typeof Intl!=='undefined'&&'Segmenter' in Intl;
+const sg=hasSeg?new Intl.Segmenter('ko',{granularity:'grapheme'}):null;
+const graphemes=s=>sg?Array.from(sg.segment(s),x=>x.segment):Array.from(s);
+const MAX=10,memo=$('#memo');
+function updMemo(){const s=memo.value,g=graphemes(s);
+ $('#cG').textContent=g.length;$('#cL').textContent=s.length;$('#cP').textContent=[...s].length;$('#cB').textContent=new TextEncoder().encode(s).length;
+ const c=$('#memoCnt');c.textContent=`${g.length}/${MAX}자`;c.className=g.length>MAX?'over':'';
+ memo.setAttribute('aria-invalid',g.length>MAX);
+ $('#cut1').textContent=JSON.stringify(s.slice(0,5));$('#cut2').textContent=JSON.stringify(g.slice(0,5).join(''));}
+memo.addEventListener('input',updMemo);
+$$('[data-sx]').forEach(b=>b.addEventListener('click',()=>{memo.value=b.dataset.sx==='nfd'?'한글결제'.normalize('NFD'):b.dataset.sx;updMemo()}));
+updMemo();
+})();
+</script>
+</body>
+</html>
