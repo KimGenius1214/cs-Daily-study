@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-13 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06);--prev:#8a94a6}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none;--prev:#6b7588}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.support{margin-top:14px;font-size:.83rem;border-radius:8px;padding:8px 12px;color:var(--warn);background:var(--warn-soft)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.grid2{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sw{display:inline-flex;gap:8px;align-items:center;font-size:.86rem;cursor:pointer}
+.sw input{accent-color:var(--brand);width:16px;height:16px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg label{position:relative;padding:7px 14px;font-size:.86rem;cursor:pointer;border-right:1px solid var(--border)}
+.seg label:last-child{border-right:0}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label:has(input:checked){background:var(--brand);color:var(--brand-ink);font-weight:700}
+.seg label:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:-3px}
+.lbl-bad{font-size:.72rem;font-weight:700;color:var(--bad);background:var(--bad-soft);border-radius:999px;padding:2px 8px}
+.lbl-good{font-size:.72rem;font-weight:700;color:var(--ok);background:var(--ok-soft);border-radius:999px;padding:2px 8px}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;height:96px;overflow:auto;color:var(--muted)}
+.log b{color:var(--text);font-weight:600}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap,html.embed-mode .embed-show .support{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+/* ===== 2026-11-13 ===== */
+/* 1. period compare */
+.cmpcards{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin-bottom:12px}
+.cmp{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.cmp.wrong{border-style:dashed}
+.cmp h3{margin:0 0 2px;font-size:.8rem;color:var(--muted);font-weight:600;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.cmp .v{font-size:1.3rem;font-weight:750;font-variant-numeric:tabular-nums}
+.cmp .v.up{color:var(--ok)}.cmp .v.down{color:var(--bad)}
+.cmp .sub{font-size:.78rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.chartbox{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 4px;position:relative}
+.chartbox:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+.chartbox svg{display:block;width:100%;height:auto}
+.chartbox .axis{stroke:var(--border);stroke-width:1}
+.chartbox .tick{fill:var(--muted);font-size:10px;font-variant-numeric:tabular-nums}
+.chartbox .band{fill:var(--brand-soft)}
+.chartbox .prev{fill:none;stroke:var(--prev);stroke-width:2;stroke-dasharray:5 4}
+.chartbox .curr{fill:none;stroke:var(--brand);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.chartbox .partial{fill:none;stroke:var(--brand);stroke-width:3;stroke-dasharray:2 5;stroke-linecap:round}
+.chartbox .hollow{fill:var(--surface);stroke:var(--brand);stroke-width:2.5}
+.chartbox .lab{font-size:11.5px;font-weight:700}
+.chartbox .lab.c{fill:var(--brand)}.chartbox .lab.p{fill:var(--muted)}
+.chartbox .xh{stroke:var(--text);stroke-width:1;opacity:.35}
+.chartbox .dotc{fill:var(--brand)}.chartbox .dotp{fill:var(--prev)}
+.readout{font-size:.84rem;margin-top:8px;min-height:2.6em;font-variant-numeric:tabular-nums}
+.readout b{font-weight:700}
+details.alt{margin-top:10px;font-size:.84rem}
+details.alt summary{cursor:pointer;color:var(--brand);font-weight:600}
+details.alt table{border-collapse:collapse;margin-top:8px;font-variant-numeric:tabular-nums;width:100%;max-width:520px}
+details.alt th,details.alt td{border-bottom:1px solid var(--border);padding:4px 8px;text-align:right}
+details.alt th:first-child,details.alt td:first-child{text-align:left}
+/* 2. change highlight */
+.live-tbl{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:.86rem;font-variant-numeric:tabular-nums}
+.live-tbl th,.live-tbl td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:right}
+.live-tbl th:first-child,.live-tbl td:first-child,.live-tbl th:nth-child(2),.live-tbl td:nth-child(2){text-align:left}
+.live-tbl thead th{font-size:.76rem;color:var(--muted);font-weight:700;background:var(--surface-2)}
+.live-tbl tr:last-child td{border-bottom:0}
+.live-tbl td{position:relative}
+.live-tbl .dl{display:block;font-size:.72rem;font-weight:700;min-height:1.1em;opacity:0}
+.live-tbl.mode-on td[data-chg] .dl{opacity:1;transition:opacity .4s 1.6s}
+.live-tbl.mode-on td[data-chg=up] .dl{color:var(--ok)}
+.live-tbl.mode-on td[data-chg=down] .dl{color:var(--bad)}
+.live-tbl.mode-on td[data-chg]{animation:flash 2.2s ease-out}
+.live-tbl.mode-on td[data-chg].fading .dl{opacity:0}
+@keyframes flash{0%{background:var(--warn-soft);box-shadow:inset 3px 0 0 var(--warn)}100%{background:transparent;box-shadow:inset 3px 0 0 transparent}}
+.live-tbl.mode-on.rm td[data-chg]{animation:none;background:var(--warn-soft);box-shadow:inset 3px 0 0 var(--warn)}
+.live-tbl.mode-on.rm td[data-chg] .dl{transition:none}
+@media (prefers-reduced-motion:reduce){.live-tbl.mode-on td[data-chg]{background:var(--warn-soft);box-shadow:inset 3px 0 0 var(--warn)}}
+.st{display:inline-flex;gap:4px;align-items:center;font-size:.76rem;font-weight:700;border-radius:999px;padding:1px 8px}
+.st.ok{color:var(--ok);background:var(--ok-soft)}.st.slow{color:var(--warn);background:var(--warn-soft)}.st.down{color:var(--bad);background:var(--bad-soft)}
+.paused-badge{font-size:.76rem;font-weight:700;color:var(--warn);background:var(--warn-soft);border-radius:999px;padding:2px 9px}
+.feed{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;max-height:250px;overflow:auto;font-size:.84rem;font-variant-numeric:tabular-nums}
+.feed li{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--border)}
+.feed li:last-child{border-bottom:0}
+.feed li small{color:var(--muted)}
+.feed li.new{animation:flash 2.2s ease-out}
+.newbar{display:flex;justify-content:center;margin:0 0 8px;min-height:34px}
+.newbar .btn{border-radius:999px}
+/* 3. typed attr */
+.bars{display:grid;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px}
+.bar-row{display:grid;grid-template-columns:72px 1fr 54px;gap:10px;align-items:center;font-size:.84rem;font-variant-numeric:tabular-nums}
+.bar-row .track{height:14px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.bar-row .fill{height:100%;border-radius:999px;background:var(--brand);width:calc(var(--v, 0) * 1%);transition:width .35s}
+@supports (x: attr(x type(*))){
+  .bar-row .fill{--v: attr(data-v type(<number>), 0);background:attr(data-color type(<color>), var(--brand))}
+}
+.bar-row .val{text-align:right;font-weight:700}
+.ctrls{display:grid;gap:8px;margin-top:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.ctrls label{font-size:.82rem;display:grid;gap:2px}
+.ctrls input[type=range]{accent-color:var(--brand)}
+.badge-sup{font-size:.74rem;font-weight:700;border-radius:999px;padding:3px 10px}
+.badge-sup.yes{color:var(--ok);background:var(--ok-soft)}.badge-sup.no{color:var(--warn);background:var(--warn-soft)}
+.attrdump{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;color:var(--muted);white-space:pre-wrap;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-13 (금) · 기간 비교 누적 차트 · 실시간 값 변경 강조 · typed attr()</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#periodcmp">📊 기간 비교 누적 차트</a><a href="#changeflash">🔔 실시간 값 변경 강조</a><a href="#typedattr">🌀 typed attr()</a>
+</nav>
+
+<!-- 1. period compare -->
+<section class="card" id="periodcmp">
+<h2>📊 기간 비교 누적 차트 — "이번 달 vs 지난달"은 같은 일자까지만, 진행 중인 오늘은 따로 <span class="tag">데이터·테이블·차트</span></h2>
+<p class="lead">월 중순에 "지난달 대비 −58%"가 뜨는 대시보드는 틀린 게 아니라 <b>비교 대상이 틀린</b> 겁니다. 12일치와 31일치를 비교했으니까요. 같은 일자까지 누적으로 겹쳐 그리고, 아직 끝나지 않은 오늘은 점선·빈 점으로 "진행 중"임을 보이게 합니다.</p>
+<div class="demo">
+<p class="demo-title">DEMO — 오늘 = 11월 13일 08시(KST) 가정 · 좌우 화살표로 일자 이동</p>
+<div class="cmpcards">
+ <div class="cmp wrong"><h3>❌ 흔한 계산 <span class="lbl-bad">비교 대상 불일치</span></h3><div class="v down" id="naiveV">—</div><div class="sub" id="naiveS"></div></div>
+ <div class="cmp"><h3>✅ 같은 기간 비교 <span class="lbl-good">권장</span></h3><div class="v" id="fairV">—</div><div class="sub" id="fairS"></div></div>
+</div>
+<div class="row" style="margin-bottom:10px">
+ <label class="sw"><input type="checkbox" id="incToday"> 진행 중인 오늘(13일)도 비교에 포함</label>
+</div>
+<div class="chartbox" id="chartbox" tabindex="0" role="group" aria-label="11월과 10월 일별 누적 결제액 비교 차트. 좌우 화살표로 일자를 옮기면 아래에 값이 읽힙니다. Home·End로 처음과 끝." aria-describedby="readout">
+ <svg id="cmpSvg" viewBox="0 0 640 260" aria-hidden="true"></svg>
+</div>
+<div class="readout" id="readout" aria-live="polite"></div>
+<details class="alt"><summary>표로 보기 (차트 대체)</summary><div id="altTbl"></div></details>
+<p class="cap">지난달은 회색 점선(배경), 이번 달은 진한 실선(주인공). 1~12일 음영 = 공정 비교 구간. 13일 구간은 점선 + 빈 원 = 집계 중. 색에 기대지 않도록 선 모양(실선/점선)과 직접 라벨로 구분.</p>
+</div>
+<pre><code>// 같은 기간 비교: "완료된 마지막 날"까지만 양쪽을 자른다
+const lastFullDay = isTodayIncluded ? today : today - 1;          // 13일 08시 → 12
+const prevDays = daysInMonth(prevMonth);                          // 10월 31, 9월 30 …
+const cut = Math.min(lastFullDay, prevDays);                      // 3/31 vs 2월(28) 대비
+const curr = cumsum(thisMonth).at(cut - 1);
+const prev = cumsum(lastMonth).at(cut - 1);
+const pct  = prev ? (curr - prev) / prev : null;                  // prev=0이면 % 대신 '신규'
+label = `1~${cut}일 기준 · 지난달 같은 기간 대비 ${fmtPct(pct)}`;</code></pre>
+<p class="note">요일 효과가 큰 업종(주말 매출 0인 B2B 등)은 "일자 맞춤"보다 "요일 맞춤(지난달 같은 주차·같은 요일)"이 더 공정합니다. 11월 1일은 일요일, 10월 1일은 목요일이라 1~12일 안의 주말 수가 다를 수 있어요 — 카드 아래 보조 문구로 기준을 항상 써 두세요.</p>
+</section>
+
+<!-- 2. change flash -->
+<section class="card" id="changeflash">
+<h2>🔔 실시간 값 변경 강조 — 바뀐 칸만 잠깐 표시하고, 움직임은 멈출 수 있게 <span class="tag">피드백·상태</span></h2>
+<p class="lead">폴링·웹소켓으로 숫자가 계속 바뀌는 화면에서 아무 표시가 없으면 "뭐가 바뀌었는지" 모르고, 매번 전체를 깜빡이면 피곤합니다. <b>바뀐 셀만</b> 2초쯤 배경 + 증감 텍스트(▲ +12,000)를 보이고 사라지게, 포인터가 올라가 있거나 사용자가 멈추면 갱신을 보류합니다.</p>
+<div class="grid2">
+<div class="demo">
+<p class="demo-title">DEMO A — 가맹점 승인 현황 (1.8초마다 시뮬레이션 갱신)</p>
+<div class="row" style="margin-bottom:10px">
+ <div class="seg" role="radiogroup" aria-label="변경 표시 방식">
+  <label><input type="radio" name="flmode" value="off"> 표시 없음</label>
+  <label><input type="radio" name="flmode" value="on" checked> 바뀐 칸 강조</label>
+ </div>
+ <button class="btn sm ghost" id="pauseBtn" aria-pressed="false">⏸ 일시정지</button>
+ <span class="paused-badge" id="pausedBadge" hidden>갱신 보류 중</span>
+</div>
+<label class="sw" style="margin-bottom:8px"><input type="checkbox" id="rmSim"> 동작 줄이기 흉내 (애니메이션 대신 정적 표시)</label>
+<table class="live-tbl mode-on" id="liveTbl">
+ <caption class="sr-only">가맹점별 오늘 승인 현황. 금액 변화는 소리로 알리지 않고, 상태 변화만 알립니다.</caption>
+ <thead><tr><th scope="col">가맹점</th><th scope="col">PG 상태</th><th scope="col">승인액</th><th scope="col">건수</th></tr></thead>
+ <tbody id="liveBody"></tbody>
+</table>
+<div class="sr-only" id="liveAnn" aria-live="polite"></div>
+<p class="cap">스크린리더 공지는 금액이 아니라 <b>상태 변화(정상→지연)</b>만. 아래 로그는 실제로 읽힐 문장입니다.</p>
+<div class="log" id="annLog" aria-label="스크린리더 공지 로그"></div>
+</div>
+<div class="demo">
+<p class="demo-title">DEMO B — 새 거래 피드: 자동 끼워 넣기 vs 모아 두고 보여주기</p>
+<div class="row" style="margin-bottom:10px">
+ <div class="seg" role="radiogroup" aria-label="새 항목 처리 방식">
+  <label><input type="radio" name="fdmode" value="auto"> 바로 삽입</label>
+  <label><input type="radio" name="fdmode" value="buffer" checked> 모아서 "n건 보기"</label>
+ </div>
+</div>
+<div class="newbar"><button class="btn sm" id="showNew" hidden></button></div>
+<ul class="feed" id="feed" aria-label="최근 거래"></ul>
+<p class="cap">"바로 삽입"은 읽던 줄·누르려던 행이 아래로 밀립니다(레이아웃 이동). 목록 위쪽 버튼으로 모아 두면 사용자가 원할 때 반영 — 트위터/X식 "새 게시물 n개" 패턴.</p>
+</div>
+</div>
+<pre><code>function applyUpdate(td, next, prev) {
+  if (next === prev) return;
+  td.querySelector('.num').textContent = fmt(next);
+  td.querySelector('.dl').textContent =
+    (next > prev ? '▲ +' : '▼ −') + fmt(Math.abs(next - prev));   // 색 말고 기호·숫자로도
+  td.dataset.chg = next > prev ? 'up' : 'down';
+  td.getAnimations().forEach(a => a.cancel());                     // 연속 변경 시 재시작
+  clearTimeout(td._t);
+  td._t = setTimeout(() => delete td.dataset.chg, 2400);
+}
+// 갱신 보류: 사용자가 멈췄거나, 표 위에 포인터/포커스가 있거나, 탭이 숨었을 때
+const shouldHold = () => paused || tbl.matches(':hover, :focus-within') || document.hidden;</code></pre>
+<p class="note">WCAG 2.2.2(일시정지·정지·숨기기): 자동으로 5초 넘게 움직이거나 갱신되는 정보는 멈출 수단이 있어야 합니다. 갱신 주기가 사용자에게 중요한 정보라면 "일시정지" 버튼은 장식이 아니라 요건이에요.</p>
+</section>
+
+<!-- 3. typed attr -->
+<section class="card" id="typedattr">
+<h2>🌀 typed attr() — data-* 값을 CSS가 숫자·색으로 바로 읽기 <span class="tag">트렌드·개념</span></h2>
+<p class="lead">예전 <code>attr()</code>는 <code>content</code>에서 문자열로만 쓸 수 있었습니다. 새 문법 <code>attr(data-v type(&lt;number&gt;), 0)</code>은 속성값을 <b>타입이 있는 값</b>으로 파싱해서 <code>width</code>·<code>color</code> 같은 아무 속성에나 넣을 수 있어요. 막대 차트 폭을 <code>style="--v:72"</code> 대신 <code>data-v="72"</code> 하나로.</p>
+<div class="demo">
+<p class="demo-title">DEMO — 슬라이더는 setAttribute('data-v')만 바꿉니다. 지원 브라우저면 CSS가 직접 읽고, 아니면 JS 폴백이 --v를 채웁니다</p>
+<p style="margin:0 0 10px"><span id="supBadge" class="badge-sup">감지 중…</span></p>
+<div class="bars" id="bars">
+ <div class="bar-row"><span>카드</span><div class="track"><div class="fill" data-v="72"></div></div><span class="val">72%</span></div>
+ <div class="bar-row"><span>간편결제</span><div class="track"><div class="fill" data-v="41" data-color="#0ea5e9"></div></div><span class="val">41%</span></div>
+ <div class="bar-row"><span>계좌이체</span><div class="track"><div class="fill" data-v="18" data-color="#f59e0b"></div></div><span class="val">18%</span></div>
+ <div class="bar-row"><span>잘못된 값</span><div class="track"><div class="fill" data-v="abc" data-color="not-a-color"></div></div><span class="val">abc</span></div>
+</div>
+<div class="ctrls">
+ <label>카드 data-v <input type="range" min="0" max="100" value="72" data-target="0"></label>
+ <label>간편결제 data-v <input type="range" min="0" max="100" value="41" data-target="1"></label>
+ <label>계좌이체 data-v <input type="range" min="0" max="100" value="18" data-target="2"></label>
+</div>
+<div class="attrdump" id="attrDump"></div>
+<p class="cap">"잘못된 값" 행: 파싱 실패 시 두 번째 인자(폴백 0, var(--brand))로 떨어지는 게 핵심 — 레이아웃이 깨지지 않습니다.</p>
+</div>
+<pre><code>.fill {
+  width: calc(var(--v, 0) * 1%);                 /* 미지원 브라우저: JS가 --v를 채움 */
+}
+@supports (x: attr(x type(*))) {
+  .fill {
+    --v: attr(data-v type(&lt;number&gt;), 0);          /* "72" → 72, "abc" → 0 */
+    background: attr(data-color type(&lt;color&gt;), var(--brand));
+  }
+}
+/* 단위가 붙은 값은 단위 키워드로: attr(data-gap px, 8px) → "12" → 12px */</code></pre>
+<div class="support" id="supNote">지원 현황: Chromium 133+에서 타입 지정 attr()가 출시된 것은 확인됨. Firefox·Safari는 이 글 작성 시점 미지원 또는 진행 중으로 <b>추정</b> — 실제 적용 전 caniuse에서 재확인하고, 위처럼 @supports + 폴백 필수.</div>
+<p class="note">보안상 attr()로 읽은 값은 <code>url()</code> 안에 쓸 수 없도록 막혀 있습니다(속성값으로 외부 요청을 만드는 공격 방지, 스펙의 "attr-taint" 개념). 차트 폭·색·간격 같은 표현값에만 쓰세요.</p>
+</section>
+
+<p class="footer">self-contained · 외부 의존성 없음</p>
+</div>
+<script>
+(function(){
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const qs=new URLSearchParams(location.search), root=document.documentElement;
+function setTheme(t){root.setAttribute('data-theme',t);$('#themeBtn').setAttribute('aria-pressed',t==='dark');$('#themeBtn').textContent=t==='dark'?'라이트 모드':'다크 모드';if(window.__redraw)window.__redraw()}
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const nf=new Intl.NumberFormat('ko-KR');
+const won=n=>'₩'+nf.format(Math.round(n));
+const man=n=>{const v=n/1e8;return v>=1?(Math.round(v*100)/100)+'억':nf.format(Math.round(n/1e4))+'만'};
+const pctf=p=>p==null?'비교 불가':(p>0?'▲ +':p<0?'▼ −':'')+Math.abs(p*100).toFixed(1)+'%';
+function logTo(el,msg){const t=new Date().toTimeString().slice(0,8);const d=document.createElement('div');d.innerHTML=`<span>${t}</span> ${msg}`;el.prepend(d);while(el.children.length>30)el.lastChild.remove()}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* ===== 1. period compare ===== */
+(function(){
+ const r=rng(20261113);
+ const daily=(y,m,days,boost)=>Array.from({length:days},(_,i)=>{const dow=new Date(y,m,i+1).getDay();const base=(dow===0||dow===6)?2600000:4300000;return Math.round(base*boost*(0.85+r()*0.3))});
+ const prev=daily(2026,9,31,1);            // 10월
+ const currFull=daily(2026,10,13,1.07);     // 11월 1~13
+ const TODAY=13, PARTIAL=0.31;              // 13일 08시: 하루치의 일부만 집계됨
+ currFull[TODAY-1]=Math.round(currFull[TODAY-1]*PARTIAL);
+ const cum=a=>a.reduce((acc,v)=>(acc.push((acc.at(-1)||0)+v),acc),[]);
+ const P=cum(prev), C=cum(currFull);
+ const svg=$('#cmpSvg');
+ const X0=52,X1=560,Y0=222,Y1=18, ymax=Math.ceil(P.at(-1)*1.12/1e7)*1e7;
+ const x=d=>X0+(d-1)*(X1-X0)/30, y=v=>Y0-(v/ymax)*(Y0-Y1);
+ let cur=TODAY-1;
+ const inc=$('#incToday');
+ function cards(){
+  const prevTotal=P.at(-1), currNow=C.at(-1);
+  const naive=(currNow-prevTotal)/prevTotal;
+  $('#naiveV').textContent=pctf(naive);
+  $('#naiveS').textContent=`11월 1~13일(08시) ${man(currNow)} ÷ 10월 전체 31일 ${man(prevTotal)}`;
+  const cut=inc.checked?TODAY:TODAY-1;
+  const c=C[cut-1], p=P[cut-1], pct=(c-p)/p;
+  const v=$('#fairV');v.textContent=pctf(pct);v.className='v '+(pct>=0?'up':'down');
+  $('#fairS').textContent=inc.checked?`1~13일 · 단, 13일은 08시까지만 집계 → 지난달 13일 하루 전체와 비교돼 낮게 나옴`:`1~${cut}일 기준 · 11월 ${man(c)} vs 10월 같은 기간 ${man(p)} · 오늘(13일)은 집계 중이라 제외`;
+ }
+ function draw(){
+  let s='';
+  const cut=inc.checked?TODAY:TODAY-1;
+  s+=`<rect class="band" x="${x(1)-6}" y="${Y1}" width="${x(cut)-x(1)+12}" height="${Y0-Y1}" rx="6"/>`;
+  for(let i=0;i<=4;i++){const v=ymax*i/4;s+=`<line class="axis" x1="${X0}" x2="${X1}" y1="${y(v)}" y2="${y(v)}" opacity="${i?0.6:1}"/><text class="tick" x="${X0-6}" y="${y(v)+3}" text-anchor="end">${i?man(v):'0'}</text>`}
+  [1,5,10,15,20,25,31].forEach(d=>s+=`<text class="tick" x="${x(d)}" y="${Y0+15}" text-anchor="middle">${d}일</text>`);
+  s+=`<text class="tick" x="${(x(1)+x(cut))/2}" y="${Y1+12}" text-anchor="middle" style="font-weight:700">비교 구간 1~${cut}일</text>`;
+  s+=`<polyline class="prev" points="${P.map((v,i)=>x(i+1)+','+y(v)).join(' ')}"/>`;
+  s+=`<polyline class="curr" points="${C.slice(0,TODAY-1).map((v,i)=>x(i+1)+','+y(v)).join(' ')}"/>`;
+  s+=`<line class="partial" x1="${x(TODAY-1)}" y1="${y(C[TODAY-2])}" x2="${x(TODAY)}" y2="${y(C[TODAY-1])}"/>`;
+  s+=`<circle class="hollow" cx="${x(TODAY)}" cy="${y(C[TODAY-1])}" r="5"/>`;
+  s+=`<text class="lab p" x="${x(31)+6}" y="${y(P.at(-1))+4}">10월 ${man(P.at(-1))}</text>`;
+  s+=`<text class="lab c" x="${x(TODAY)+9}" y="${y(C[TODAY-1])-8}">11월 (집계 중)</text>`;
+  // crosshair
+  const d=cur+1;
+  s+=`<line class="xh" x1="${x(d)}" x2="${x(d)}" y1="${Y1}" y2="${Y0}"/>`;
+  s+=`<circle class="dotp" cx="${x(d)}" cy="${y(P[cur])}" r="4"/>`;
+  if(cur<TODAY) s+=`<circle class="dotc" cx="${x(d)}" cy="${y(C[cur])}" r="4.5"/>`;
+  svg.innerHTML=s;
+  const p=P[cur];let msg=`<b>${d}일</b> — 10월 누적 ${won(p)}`;
+  if(cur<TODAY){const c=C[cur];msg+=` · 11월 누적 ${won(c)} (${pctf((c-p)/p)})`;if(d===TODAY)msg+=' · <b>13일은 08시까지 집계 중</b>'}
+  else msg+=' · 11월은 아직 도래하지 않은 날';
+  $('#readout').innerHTML=msg;
+ }
+ function alt(){
+  let t='<table><thead><tr><th>일자</th><th>10월 누적</th><th>11월 누적</th><th>증감</th></tr></thead><tbody>';
+  for(let i=0;i<TODAY;i++)t+=`<tr><td>${i+1}일${i===TODAY-1?' (집계 중)':''}</td><td>${won(P[i])}</td><td>${won(C[i])}</td><td>${pctf((C[i]-P[i])/P[i])}</td></tr>`;
+  $('#altTbl').innerHTML=t+'</tbody></table>';
+ }
+ $('#chartbox').addEventListener('keydown',e=>{const k=e.key;if(k==='ArrowRight')cur=Math.min(30,cur+1);else if(k==='ArrowLeft')cur=Math.max(0,cur-1);else if(k==='Home')cur=0;else if(k==='End')cur=30;else return;e.preventDefault();draw()});
+ $('#chartbox').addEventListener('pointermove',e=>{const b=svg.getBoundingClientRect();const vx=(e.clientX-b.left)/b.width*640;cur=Math.max(0,Math.min(30,Math.round((vx-X0)/((X1-X0)/30))));draw()});
+ inc.addEventListener('change',()=>{cards();draw()});
+ window.__redraw=draw;
+ cards();draw();alt();
+})();
+
+/* ===== 2. change flash ===== */
+(function(){
+ const r=rng(77);
+ const rows=[['한빛상회','ok',1840000,42],['오렌지마켓','ok',3260000,88],['달빛카페','ok',412000,31],['스카이몰','ok',7210000,154],['초록약국','ok',265000,12],['문구천국','ok',530000,27]];
+ const ST={ok:['정상','ok','●'],slow:['지연','slow','◐'],down:['장애','down','✕']};
+ const body=$('#liveBody'), tbl=$('#liveTbl'), ann=$('#liveAnn'), log=$('#annLog');
+ body.innerHTML=rows.map((rw,i)=>`<tr data-i="${i}"><td>${rw[0]}</td><td class="stc"></td><td class="amt"><span class="num"></span><span class="dl" aria-hidden="true"></span></td><td class="cnt"><span class="num"></span><span class="dl" aria-hidden="true"></span></td></tr>`).join('');
+ const stHTML=s=>`<span class="st ${ST[s][1]}"><span aria-hidden="true">${ST[s][2]}</span>${ST[s][0]}</span>`;
+ rows.forEach((rw,i)=>{const tr=body.children[i];tr.querySelector('.stc').innerHTML=stHTML(rw[1]);tr.querySelector('.amt .num').textContent=nf.format(rw[2]);tr.querySelector('.cnt .num').textContent=nf.format(rw[3])});
+ let paused=false;
+ function mark(td,next,prevV,unit){
+  td.querySelector('.num').textContent=nf.format(next);
+  td.querySelector('.dl').textContent=(next>prevV?'▲ +':'▼ −')+nf.format(Math.abs(next-prevV))+unit;
+  td.dataset.chg=next>prevV?'up':'down';td.classList.remove('fading');
+  td.getAnimations&&td.getAnimations().forEach(a=>a.cancel());
+  void td.offsetWidth;
+  clearTimeout(td._t);clearTimeout(td._f);
+  td._f=setTimeout(()=>td.classList.add('fading'),1800);
+  td._t=setTimeout(()=>{delete td.dataset.chg;td.classList.remove('fading')},2400);
+ }
+ const hold=()=>paused||tbl.matches(':hover, :focus-within')||document.hidden;
+ function tick(){
+  const h=hold();$('#pausedBadge').hidden=!h;
+  if(h)return;
+  const n=1+(r()<0.4?1:0);
+  for(let k=0;k<n;k++){
+   const i=Math.floor(r()*rows.length), rw=rows[i], tr=body.children[i];
+   const isRefund=r()<0.15, d=Math.round((20000+r()*180000)/1000)*1000;
+   const na=isRefund?rw[2]-d:rw[2]+d, nc=isRefund?rw[3]:rw[3]+1+Math.floor(r()*2);
+   mark(tr.querySelector('.amt'),na,rw[2],'');
+   if(nc!==rw[3])mark(tr.querySelector('.cnt'),nc,rw[3],'');
+   rw[2]=na;rw[3]=nc;
+  }
+  if(r()<0.18){
+   const i=Math.floor(r()*rows.length), rw=rows[i];
+   const next=rw[1]==='ok'?(r()<0.75?'slow':'down'):'ok';
+   rw[1]=next;body.children[i].querySelector('.stc').innerHTML=stHTML(next);
+   const msg=`${rw[0]} PG 상태 ${ST[next][0]}${next==='ok'?'으로 복구':'으로 변경'}`;
+   ann.textContent=msg;logTo(log,'<b>공지</b> '+msg);
+  }
+ }
+ setInterval(tick,1800);
+ $$('input[name=flmode]').forEach(i=>i.addEventListener('change',()=>tbl.classList.toggle('mode-on',i.value==='on'&&i.checked)));
+ $('#rmSim').addEventListener('change',e=>tbl.classList.toggle('rm',e.target.checked));
+ $('#pauseBtn').addEventListener('click',e=>{paused=!paused;e.currentTarget.setAttribute('aria-pressed',paused);e.currentTarget.textContent=paused?'▶ 다시 시작':'⏸ 일시정지';$('#pausedBadge').hidden=!paused;logTo(log,paused?'<b>사용자</b> 갱신 일시정지':'<b>사용자</b> 갱신 재개')});
+ logTo(log,'금액 변화는 공지하지 않음 (너무 잦음 → 스크린리더 소음)');
+
+ // feed
+ const feed=$('#feed'), btn=$('#showNew'); let buf=[], seq=1000;
+ const names=['한빛상회','오렌지마켓','달빛카페','스카이몰','초록약국','문구천국'];
+ const item=()=>{seq++;const amt=Math.round((5000+r()*120000)/100)*100;const t=new Date();return{id:seq,html:`<span>${names[Math.floor(r()*names.length)]} <small>#${seq}</small></span><span>${won(amt)} <small>${t.toTimeString().slice(0,8)}</small></span>`}};
+ const li=(it,isNew)=>{const l=document.createElement('li');l.innerHTML=it.html;if(isNew)l.className='new';return l};
+ for(let i=0;i<6;i++)feed.append(li(item(),false));
+ const mode=()=>$('input[name=fdmode]:checked').value;
+ function flush(){buf.slice().reverse().forEach(it=>feed.prepend(li(it,true)));buf=[];btn.hidden=true;while(feed.children.length>40)feed.lastChild.remove()}
+ setInterval(()=>{
+  if(document.hidden)return;
+  const it=item();
+  if(mode()==='auto'){feed.prepend(li(it,true));while(feed.children.length>40)feed.lastChild.remove()}
+  else{buf.unshift(it);btn.hidden=false;btn.textContent=`↑ 새 거래 ${buf.length}건 보기`}
+ },2600);
+ btn.addEventListener('click',()=>{flush();feed.scrollTop=0;feed.focus()});
+ feed.tabIndex=-1;
+ $$('input[name=fdmode]').forEach(i=>i.addEventListener('change',()=>{if(mode()==='auto')flush()}));
+})();
+
+/* ===== 3. typed attr ===== */
+(function(){
+ const sup=CSS.supports('x: attr(x type(*))');
+ const b=$('#supBadge');b.className='badge-sup '+(sup?'yes':'no');
+ b.textContent=sup?'✓ 이 브라우저는 typed attr() 지원 — CSS가 data-v를 직접 읽는 중':'△ 미지원 — JS 폴백이 data-v를 --v로 복사하는 중';
+ const fills=$$('#bars .fill');
+ function fallback(el){if(sup)return;const n=parseFloat(el.dataset.v);el.style.setProperty('--v',isFinite(n)?n:0);const c=el.dataset.color;if(c&&CSS.supports('color',c))el.style.background=c}
+ function dump(){$('#attrDump').textContent=fills.map(f=>`<div class="fill" data-v="${f.dataset.v}"${f.dataset.color?` data-color="${f.dataset.color}"`:''}${f.getAttribute('style')?` style="${f.getAttribute('style')}"`:''}>`).join('\n')+(sup?'\n// style 속성 없음 — 폭은 CSS attr()가 계산':'\n// 폴백: JS가 style --v를 씀')}
+ fills.forEach(fallback);
+ $$('.ctrls input').forEach(inp=>inp.addEventListener('input',()=>{const f=fills[+inp.dataset.target];f.setAttribute('data-v',inp.value);f.closest('.bar-row').querySelector('.val').textContent=inp.value+'%';fallback(f);dump()}));
+ dump();
+})();
+})();
+</script>
+</body>
+</html>
