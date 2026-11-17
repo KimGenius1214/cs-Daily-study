@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-17 (화)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h3{font-size:.86rem;margin:0 0 8px;color:var(--muted)}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+.grid2{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.sw{display:inline-flex;gap:8px;align-items:center;font-size:.86rem;cursor:pointer}
+.sw input{accent-color:var(--brand);width:16px;height:16px}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.badge-sup{display:inline-block;font-size:.8rem;border-radius:8px;padding:6px 10px;margin-bottom:10px}
+.badge-sup.yes{color:var(--ok);background:var(--ok-soft)}.badge-sup.no{color:var(--warn);background:var(--warn-soft)}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface-2);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. drawer ===== */
+.split{display:grid;gap:12px;grid-template-columns:1fr}
+.split.on{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}
+@media (max-width:640px){.split.on{grid-template-columns:1fr}}
+table.tx{width:100%;border-collapse:collapse;font-size:.86rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+table.tx th,table.tx td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+table.tx th{font-size:.76rem;color:var(--muted);font-weight:600;background:var(--surface-2)}
+table.tx td.num{text-align:right;font-variant-numeric:tabular-nums}
+table.tx tr[aria-current=true] td{background:var(--brand-soft)}
+.rowbtn{all:unset;cursor:pointer;color:var(--brand);font-weight:600;border-radius:4px}
+.rowbtn:hover{text-decoration:underline}
+.rowbtn:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+dialog.drawer{margin:0 0 0 auto;height:100dvh;max-height:100dvh;width:min(420px,100vw);max-width:100vw;border:0;border-left:1px solid var(--border);padding:0;background:var(--surface);color:var(--text);box-shadow:-8px 0 30px rgba(0,0,0,.18)}
+dialog.drawer[open]{animation:slideIn .22s ease-out}
+dialog.drawer::backdrop{background:rgba(10,14,20,.42)}
+@keyframes slideIn{from{transform:translateX(40px);opacity:.4}to{transform:none;opacity:1}}
+.dpanel{display:flex;flex-direction:column;height:100%}
+.dhead{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.dhead h3{margin:0;font-size:1rem;color:var(--text)}
+.dbody{padding:14px 16px;overflow:auto;flex:1}
+.dfoot{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap}
+.dbody dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:0 0 12px;font-size:.88rem}
+.dbody dt{color:var(--muted)}.dbody dd{margin:0;font-variant-numeric:tabular-nums}
+.dbody textarea{width:100%;min-height:70px;border:1px solid var(--border);border-radius:8px;padding:8px;background:var(--surface-2)}
+.guard{background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:10px;font-size:.84rem;margin-top:10px}
+aside.inline-panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;min-height:280px}
+.iconx{cursor:pointer;width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--surface);display:grid;place-items:center;font-size:1rem}
+
+/* ===== 2. upload ===== */
+.drop{position:relative;border:2px dashed var(--border);border-radius:12px;padding:22px;text-align:center;background:var(--surface);transition:border-color .15s,background .15s}
+.drop.over{border-color:var(--brand);background:var(--brand-soft)}
+.drop:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+.drop label{color:var(--brand);font-weight:700;cursor:pointer;text-decoration:underline}
+.drop small{display:block;color:var(--muted);margin-top:4px}
+ul.files{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px}
+ul.files li{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center}
+ul.files li.rej{border-color:var(--bad);background:var(--bad-soft)}
+.fname{font-weight:600;font-size:.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fmeta{font-size:.76rem;color:var(--muted);grid-column:1/-1}
+.fact{display:flex;gap:6px;align-items:center}
+progress{grid-column:1/-1;width:100%;height:8px;accent-color:var(--brand)}
+.sum{margin-top:12px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;font-size:.86rem}
+
+/* ===== 3. inert ===== */
+.fake{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.fake [inert]{opacity:.5}
+.fake .lockcover{position:absolute;inset:0;display:grid;place-items:center;background:color-mix(in srgb,var(--surface) 55%,transparent);border-radius:12px;font-weight:700}
+.fake input{border:1px solid var(--border);border-radius:8px;padding:7px 9px;background:var(--surface-2);width:100%}
+.fake .fl{display:grid;gap:8px}
+.spin{width:22px;height:22px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:sp 1s linear infinite;display:inline-block;vertical-align:middle;margin-right:8px}
+@keyframes sp{to{transform:rotate(360deg)}}
+.vp{overflow:hidden;border-radius:10px;border:1px solid var(--border)}
+.track{display:flex;transition:transform .3s ease}
+.slide{flex:0 0 100%;padding:16px;background:var(--surface)}
+.slide a{color:var(--brand)}
+.focusnow{font-size:.8rem;margin-top:8px;color:var(--muted)}
+.focusnow b{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-17 (화) · 상세 사이드 드로어 · 파일 업로드 상태 · inert</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#drawer">🪟 상세 사이드 드로어</a><a href="#upload">🔔 파일 업로드 상태</a><a href="#inert">🌀 inert</a>
+</nav>
+
+<!-- 1. drawer -->
+<section class="card" id="drawer">
+<h2>🪟 상세 사이드 드로어 — 목록을 떠나지 않고 보고, 주소에 남기고, 닫으면 누른 줄로 돌아오기 <span class="tag">오버레이·모달·토스트</span></h2>
+<p class="lead">거래 목록에서 한 건을 열 때 페이지 이동 대신 오른쪽 패널로 보여주면 필터·스크롤 위치가 그대로 남습니다. 핵심은 네 가지: <b>모달로 할지 비모달로 할지</b> 고르기, <b>?txn=ID로 주소에 남겨</b> 새로고침·공유·뒤로가기가 되게, <b>닫으면 포커스를 누른 줄로 복귀</b>, 메모를 쓰다 닫으면 <b>한 번 확인</b>.</p>
+<div class="demo">
+<p class="demo-title">거래 목록 — "거래 ID"를 눌러 보세요 (Esc·바깥 클릭·✕로 닫기, 드로어 안 ↑↓ 버튼으로 이웃 거래 이동)</p>
+<div class="row" style="margin-bottom:10px">
+<span class="sw" role="radiogroup" aria-label="열기 방식">
+<label class="sw"><input type="radio" name="dmode" value="modal" checked> 모달 드로어 (뒤는 잠김)</label>
+<label class="sw"><input type="radio" name="dmode" value="split"> 분할 패널 (목록 계속 조작)</label>
+</span>
+<label class="sw"><input type="checkbox" id="urlSync" checked> 주소(?txn=)와 동기화</label>
+</div>
+<div class="split" id="split">
+<table class="tx" aria-label="거래 목록">
+<thead><tr><th scope="col">거래 ID</th><th scope="col">가맹점</th><th scope="col" style="text-align:right">금액</th><th scope="col">상태</th></tr></thead>
+<tbody id="txBody"></tbody>
+</table>
+<aside class="inline-panel" id="inlinePanel" aria-labelledby="ipTitle" hidden></aside>
+</div>
+<div class="log" id="dLog" aria-label="동작 기록"></div>
+<p class="cap">모달 드로어는 <code>&lt;dialog&gt;.showModal()</code>로 열어 배경 잠금·Esc·포커스 가두기를 브라우저에 맡깁니다. 분할 패널은 <code>&lt;aside&gt;</code> 영역이라 목록 클릭이 계속 되고, 내용이 바뀌면 제목으로 포커스를 옮기지 않고 조용히 갱신만 알립니다.</p>
+</div>
+<dialog class="drawer" id="drawerDlg" aria-labelledby="dTitle"><div class="dpanel" id="drawerInner"></div></dialog>
+<pre><code>&lt;dialog id="drawer" class="drawer" aria-labelledby="dTitle"&gt;…&lt;/dialog&gt;
+
+let opener = null;
+function openTx(id, btn) {
+  opener = btn;                                  // 닫힐 때 돌아갈 곳
+  render(id);
+  if (!drawer.open) drawer.showModal();          // 배경 inert·Esc·포커스 가두기 자동
+  const url = new URL(location);
+  url.searchParams.set('txn', id);
+  history.pushState({ txn: id }, '', url);       // 뒤로가기 = 닫기
+}
+drawer.addEventListener('cancel', e =&gt; {         // Esc
+  if (memoDirty) { e.preventDefault(); showGuard(); }
+});
+drawer.addEventListener('click', e =&gt; {          // ::backdrop 클릭
+  if (e.target === drawer) requestClose();
+});
+drawer.addEventListener('close', () =&gt; {
+  opener?.focus();                               // 누른 줄로 복귀
+  if (new URL(location).searchParams.has('txn')) history.back();
+});
+addEventListener('popstate', () =&gt; {
+  const id = new URL(location).searchParams.get('txn');
+  id ? render(id) : drawer.close();
+});</code></pre>
+<p class="note">언제 무엇을: 상세를 <b>보면서 목록을 비교</b>해야 하면 분할 패널(넓은 화면), <b>하나만 집중 처리</b>(환불·메모)면 모달 드로어. 640px 이하에선 분할 패널도 전체 폭으로 내려옵니다. 주소 동기화를 하면 새로고침 시 <code>?txn=</code>을 읽어 드로어를 다시 여는 것까지 해야 완성입니다(이 데모도 로드 시 확인). 바깥 클릭 닫기는 실수 닫힘이 잦으니 입력이 있는 드로어에선 확인을 끼우세요.</p>
+</section>
+
+<!-- 2. upload -->
+<section class="card" id="upload">
+<h2>🔔 파일 업로드 상태 — 고르는 순간 거르고, 진행률은 보이되 말은 아끼고, 취소·재시도는 파일마다 <span class="tag">피드백·상태</span></h2>
+<p class="lead">사업자등록증·통장 사본·정산 증빙 업로드는 "올리는 중 / 완료 / 실패"만으론 부족합니다. <b>형식·크기는 서버로 보내기 전에</b> 거르고, 파일마다 <b>진행률·취소·재시도</b>를 두고, 화면 낭독기에는 <b>시작·완료·실패만</b> 알리며, 업로드가 끝나기 전 제출 버튼은 <b>왜 못 누르는지</b> 말해 줍니다.</p>
+<div class="demo">
+<p class="demo-title">증빙 서류 업로드 (PDF·JPG·PNG, 파일당 5MB) — 직접 파일을 끌어 놓거나 아래 샘플 버튼으로</p>
+<div class="drop" id="drop">
+<input type="file" id="fileIn" class="sr-only" multiple accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" aria-describedby="dropHint">
+<div>여기로 끌어 놓거나 <label for="fileIn">파일 선택</label></div>
+<small id="dropHint">PDF·JPG·PNG · 파일당 최대 5MB · 최대 5개</small>
+</div>
+<div class="row" style="margin-top:10px">
+<span style="font-size:.8rem;color:var(--muted)">샘플:</span>
+<button class="btn ghost sm" data-sample="ok">정상 PDF 2.1MB</button>
+<button class="btn ghost sm" data-sample="big">큰 이미지 12MB</button>
+<button class="btn ghost sm" data-sample="type">한글 문서 .hwp</button>
+<button class="btn ghost sm" data-sample="fail">중간에 끊기는 파일</button>
+</div>
+<ul class="files" id="files" aria-label="업로드 파일 목록"></ul>
+<div class="sum">
+<span id="sumText">아직 올린 파일이 없어요.</span>
+<span><button class="btn" id="submitDocs" aria-disabled="true" aria-describedby="submitWhy">서류 제출</button></span>
+</div>
+<p id="submitWhy" style="font-size:.8rem;color:var(--muted);margin:6px 0 0;text-align:right">파일을 1개 이상 올리면 제출할 수 있어요.</p>
+<div class="sr-only" aria-live="polite" id="upLive"></div>
+</div>
+<p class="cap">진행률은 <code>&lt;progress&gt;</code>에 맡기고(낭독기가 필요할 때 읽음), 라이브 영역(aria-live)은 상태가 바뀔 때만 씁니다. 1%마다 알리면 낭독기가 숫자만 읽다 끝납니다.</p>
+<pre><code>// fetch()는 업로드 진행률 이벤트가 없다 → XHR의 upload.onprogress
+function upload(file, { onProgress, signal }) {
+  return new Promise((resolve, reject) =&gt; {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/documents');
+    xhr.upload.onprogress = e =&gt; e.lengthComputable &amp;&amp; onProgress(e.loaded / e.total);
+    xhr.onload  = () =&gt; (xhr.status &lt; 300 ? resolve(JSON.parse(xhr.response)) : reject(new Error(xhr.status)));
+    xhr.onerror = () =&gt; reject(new Error('network'));
+    signal.addEventListener('abort', () =&gt; { xhr.abort(); reject(new DOMException('취소', 'AbortError')); });
+    const fd = new FormData(); fd.append('file', file);
+    xhr.send(fd);
+  });
+}
+
+// 보내기 전 검증 — accept 속성은 '선택 창 필터'일 뿐, 끌어 놓기는 그대로 통과한다
+const OK = ['application/pdf', 'image/jpeg', 'image/png'];
+const reason = f =&gt; !OK.includes(f.type) ? '지원하지 않는 형식'
+                 : f.size &gt; 5 * 1024 * 1024 ? `5MB 초과 (${(f.size/1048576).toFixed(1)}MB)` : null;</code></pre>
+<p class="note">상태 어휘를 고정하세요: <b>대기 → 올리는 중 n% → 완료</b>, 갈래로 <b>거절</b>(보내지도 않음, 이유 표시·재시도 없음)과 <b>실패</b>(보냈다 끊김, 재시도 있음). 거절과 실패를 같은 빨간 "오류"로 뭉치면 사용자는 같은 파일을 계속 다시 올립니다. 업로드 중 페이지를 떠나면 <code>beforeunload</code>로 한 번 묻고, 클라이언트 검증은 편의일 뿐 서버도 다시 검사해야 합니다(파일 확장자·MIME은 바꿀 수 있음).</p>
+</section>
+
+<!-- 3. inert -->
+<section class="card" id="inert">
+<h2>🌀 inert — 보이지만 지금은 못 만지는 영역을 포커스·클릭·낭독기에서 한 번에 빼기 <span class="tag">트렌드·개념</span></h2>
+<p class="lead"><code>inert</code>는 HTML 전역 속성입니다. 붙이면 그 요소와 모든 자손이 <b>Tab 포커스·클릭·텍스트 선택·접근성 트리</b>에서 빠집니다. 예전엔 같은 효과를 위해 tabindex=-1을 하나하나 달고, aria-hidden을 붙이고, 포인터 이벤트를 막았습니다. 2023년부터 주요 브라우저가 모두 지원합니다(Baseline).</p>
+<div class="demo">
+<span class="badge-sup" id="inertSup"></span>
+<div class="grid2">
+<div>
+<h3>A. 결제 처리 중 폼 잠그기</h3>
+<label class="sw" style="margin-bottom:8px"><input type="checkbox" id="useInert" checked> inert 사용 (끄면 덮개만 씌움)</label>
+<div class="fake" id="payFake">
+<div id="payForm" class="fl">
+<label>카드 소유자 <input value="김결제"></label>
+<label>메모 <input placeholder="선택"></label>
+<div class="row"><button class="btn ghost sm" type="button">쿠폰 적용</button><button class="btn sm" type="button" id="payGo">49,000원 결제</button></div>
+</div>
+<div class="lockcover" id="lockCover" hidden><span><span class="spin" aria-hidden="true"></span>승인 요청 중…</span></div>
+</div>
+<p class="focusnow">지금 포커스: <b id="focusA">—</b></p>
+<p class="cap">결제를 누른 뒤 Tab을 눌러 보세요. inert를 끄면 반투명 덮개 아래 입력칸으로 포커스가 들어가고 글자도 쳐집니다.</p>
+</div>
+<div>
+<h3>B. 화면 밖 슬라이드 빼기</h3>
+<label class="sw" style="margin-bottom:8px"><input type="checkbox" id="useInertB" checked> 안 보이는 슬라이드에 inert</label>
+<div class="vp"><div class="track" id="track">
+<div class="slide" role="group" aria-roledescription="슬라이드" aria-label="1 / 3"><b>이번 달 정산 예정</b><br>12,480,000원 · <a href="#inert">상세 보기</a></div>
+<div class="slide" role="group" aria-roledescription="슬라이드" aria-label="2 / 3"><b>미확인 환불 요청</b><br>3건 · <a href="#inert">처리하기</a></div>
+<div class="slide" role="group" aria-roledescription="슬라이드" aria-label="3 / 3"><b>수수료 안내</b><br>11월 변경 · <a href="#inert">공지 열기</a></div>
+</div></div>
+<div class="row" style="margin-top:8px"><button class="btn ghost sm" id="prevS" aria-label="이전 슬라이드">◀</button><span id="sIdx" style="font-size:.84rem">1 / 3</span><button class="btn ghost sm" id="nextS" aria-label="다음 슬라이드">▶</button></div>
+<p class="focusnow">지금 포커스: <b id="focusB">—</b></p>
+<p class="cap">◀▶ 뒤에서 Tab을 거꾸로(Shift+Tab) 눌러 보세요. inert가 없으면 화면 밖 슬라이드의 링크로 포커스가 숨어 들어갑니다.</p>
+</div>
+</div>
+<div class="log" id="iLog" aria-label="동작 기록"></div>
+</div>
+<pre><code>// 처리 중 잠금: 포커스를 먼저 옮기고 잠근다 (포커스가 inert 안에 있으면 body로 튐)
+status.focus();                      // tabindex="-1" 상태 문구
+form.inert = true;
+form.setAttribute('aria-busy', 'true');
+try { await approve(); } finally { form.inert = false; form.removeAttribute('aria-busy'); }
+
+// 슬라이드: 보이는 것만 살리기
+slides.forEach((s, i) =&gt; (s.inert = i !== current));
+
+/* inert는 스타일을 안 바꾼다 → 시각 단서는 직접 */
+[inert] { opacity: .5; }</code></pre>
+<p class="note">주의 네 가지. ① <code>dialog.showModal()</code>은 바깥을 이미 inert로 만드니 모달에 또 달 필요가 없습니다 — inert는 <b>dialog가 아닌 자작 오버레이·드로어·잠금 화면</b>에 씁니다. ② 조상이 inert면 자손이 <code>inert=false</code>여도 못 빠져나옵니다. ③ 보기엔 그대로라 반투명·커서 등 <b>시각 단서를 따로</b> 줘야 합니다. ④ aria-hidden과 달리 클릭·포커스까지 막으니, "읽기만 숨기기"가 목적이면 inert가 아니라 aria-hidden입니다.</p>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-17 (화) · self-contained, 외부 의존성 없음</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const logTo=(el,msg)=>{const d=document.createElement('div');d.textContent=msg;el.append(d);el.scrollTop=el.scrollHeight};
+const won=n=>n.toLocaleString('ko-KR')+'원';
+
+/* ===== 1. drawer ===== */
+const TX=[
+{id:'T-24117-001',m:'카페 오늘',a:5800,s:'승인',t:'2026-11-17 08:42',card:'신한 •••• 4021',fee:93},
+{id:'T-24117-002',m:'한빛서점',a:32000,s:'승인',t:'2026-11-17 09:05',card:'국민 •••• 1180',fee:512},
+{id:'T-24117-003',m:'모아마트',a:128400,s:'부분환불',t:'2026-11-17 09:31',card:'현대 •••• 7733',fee:2054},
+{id:'T-24117-004',m:'주차장 B2',a:3000,s:'실패',t:'2026-11-17 09:47',card:'삼성 •••• 9002',fee:0},
+{id:'T-24117-005',m:'바른약국',a:15600,s:'승인',t:'2026-11-17 10:02',card:'롯데 •••• 3345',fee:250}];
+const pillOf=s=>s==='승인'?'ok':s==='실패'?'bad':'warn';
+const tb=$('#txBody'),dlg=$('#drawerDlg'),inner=$('#drawerInner'),ip=$('#inlinePanel'),split=$('#split'),dLog=$('#dLog');
+tb.innerHTML=TX.map(t=>`<tr data-id="${t.id}"><td><button class="rowbtn" data-open="${t.id}">${t.id}</button></td><td>${t.m}</td><td class="num">${won(t.a)}</td><td><span class="pill ${pillOf(t.s)}">${t.s}</span></td></tr>`).join('');
+let mode='modal',cur=null,opener=null,dirty=false,pushed=false;
+const urlSync=$('#urlSync');
+function panelHTML(t,idp){const i=TX.indexOf(t);return `
+<div class="dhead"><h3 id="${idp}Title" tabindex="-1">${t.id}</h3><button class="iconx" data-close aria-label="상세 닫기">✕</button></div>
+<div class="dbody"><dl><dt>가맹점</dt><dd>${t.m}</dd><dt>금액</dt><dd>${won(t.a)}</dd><dt>상태</dt><dd><span class="pill ${pillOf(t.s)}">${t.s}</span></dd><dt>승인 시각</dt><dd>${t.t} KST</dd><dt>결제 수단</dt><dd>${t.card}</dd><dt>수수료</dt><dd>${won(t.fee)}</dd></dl>
+<label for="${idp}Memo" style="font-size:.84rem;font-weight:600">내부 메모</label><textarea id="${idp}Memo" data-memo placeholder="메모를 쓰고 닫아 보세요"></textarea>
+<div class="guard" data-guard hidden role="alert">저장하지 않은 메모가 있어요. <div class="row" style="margin-top:8px"><button class="btn danger sm" data-discard>버리고 닫기</button><button class="btn ghost sm" data-keep>계속 쓰기</button></div></div></div>
+<div class="dfoot"><span class="row"><button class="btn ghost sm" data-nav="-1" aria-label="이전 거래" ${i===0?'aria-disabled="true"':''}>↑ 이전</button><button class="btn ghost sm" data-nav="1" aria-label="다음 거래" ${i===TX.length-1?'aria-disabled="true"':''}>↓ 다음</button></span><button class="btn sm" data-save>메모 저장</button></div>`}
+function markRow(id){$$('#txBody tr').forEach(r=>r.setAttribute('aria-current',r.dataset.id===id?'true':'false'))}
+function setURL(id,push){if(!urlSync.checked)return;const u=new URL(location);id?u.searchParams.set('txn',id):u.searchParams.delete('txn');if(push){history.pushState({txn:id},'',u);pushed=true}else history.replaceState({txn:id},'',u)}
+function container(){return mode==='modal'?inner:ip}
+function render(id,{focusTitle}={}){const t=TX.find(x=>x.id===id);if(!t)return;cur=id;dirty=false;const c=container();c.innerHTML=panelHTML(t,mode==='modal'?'d':'ip');markRow(id);if(focusTitle)c.querySelector('h3').focus()}
+function openTx(id,btn){
+  if(cur&&dirty&&cur!==id){showGuard(()=>openTx(id,btn));return}
+  opener=btn||opener;
+  if(mode==='modal'){render(id);if(!dlg.open){dlg.showModal();inner.querySelector('h3').focus()}else inner.querySelector('h3').focus()}
+  else{const wasOpen=!ip.hidden;ip.hidden=false;split.classList.add('on');render(id,{focusTitle:!wasOpen});}
+  const already=new URL(location).searchParams.get('txn');
+  setURL(id,!already); logTo(dLog,`열기 ${id} (${mode==='modal'?'모달':'분할'})${urlSync.checked?` · 주소 ?txn=${id}`:''}`);
+}
+function reallyClose(){
+  dirty=false;
+  if(mode==='modal'){if(dlg.open)dlg.close()}else{ip.hidden=true;split.classList.remove('on');ip.innerHTML='';afterClose()}
+}
+function afterClose(){
+  markRow(null);const was=cur;cur=null;
+  if(urlSync.checked&&new URL(location).searchParams.has('txn')){ if(pushed){pushed=false;history.back()} else setURL(null,false)}
+  if(opener&&document.contains(opener)){opener.focus();logTo(dLog,`닫기 ${was} → 포커스를 "${opener.textContent}" 줄로 복귀`)}
+}
+function showGuard(onDiscard){const c=container();const g=c.querySelector('[data-guard]');g.hidden=false;g._discard=onDiscard;g.querySelector('[data-keep]').focus();logTo(dLog,'메모 변경 있음 → 닫기 전에 확인')}
+function requestClose(){if(dirty)showGuard(null);else reallyClose()}
+dlg.addEventListener('close',afterClose);
+dlg.addEventListener('cancel',e=>{if(dirty){e.preventDefault();showGuard(null)}});
+dlg.addEventListener('click',e=>{if(e.target===dlg)requestClose()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mode==='split'&&!ip.hidden&&ip.contains(document.activeElement)){e.preventDefault();requestClose()}});
+function wire(c){
+  c.addEventListener('input',e=>{if(e.target.matches('[data-memo]'))dirty=e.target.value.trim()!==''});
+  c.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+    if(b.matches('[data-close]'))requestClose();
+    else if(b.matches('[data-keep]')){b.closest('[data-guard]').hidden=true;c.querySelector('[data-memo]').focus()}
+    else if(b.matches('[data-discard]')){const g=b.closest('[data-guard]');const fn=g._discard;dirty=false;if(fn)fn();else reallyClose()}
+    else if(b.matches('[data-save]')){dirty=false;logTo(dLog,`메모 저장 (${cur})`);b.textContent='저장됨 ✓';setTimeout(()=>b.textContent='메모 저장',1200)}
+    else if(b.matches('[data-nav]')){if(b.getAttribute('aria-disabled')==='true')return;const i=TX.findIndex(t=>t.id===cur)+Number(b.dataset.nav);const n=TX[i];if(!n)return;
+      const go=()=>{opener=tb.querySelector(`[data-open="${n.id}"]`);render(n.id);setURL(n.id,false);container().querySelector(`[data-nav="${b.dataset.nav}"]`)?.focus();logTo(dLog,`이웃 거래로 ${n.id} (주소는 replace — 뒤로가기 한 번에 닫힘)`)};
+      if(dirty)showGuard(go);else go()}
+  });
+}
+wire(inner);wire(ip);
+tb.addEventListener('click',e=>{const b=e.target.closest('[data-open]');if(b)openTx(b.dataset.open,b)});
+$$('input[name=dmode]').forEach(r=>r.addEventListener('change',()=>{if(cur){dirty=false;if(mode==='modal'&&dlg.open)dlg.close();else{ip.hidden=true;split.classList.remove('on');afterClose()}}mode=r.value;logTo(dLog,`방식 변경 → ${mode==='modal'?'모달 드로어':'분할 패널'}`)}));
+addEventListener('popstate',()=>{const id=new URL(location).searchParams.get('txn');pushed=false;if(id&&TX.some(t=>t.id===id)){if(!cur){opener=tb.querySelector(`[data-open="${id}"]`);openTx(id,opener)}else render(id)}else if(cur){dirty=false;logTo(dLog,'뒤로가기 → 닫기');if(mode==='modal')dlg.close();else reallyClose()}});
+const initial=qs.get('txn');if(initial&&TX.some(t=>t.id===initial)){opener=tb.querySelector(`[data-open="${initial}"]`);setTimeout(()=>{openTx(initial,opener);logTo(dLog,'로드 시 ?txn= 발견 → 드로어 복원')},50)}
+
+/* ===== 2. upload ===== */
+const OK=['application/pdf','image/jpeg','image/png'],MAX=5*1024*1024,LIMIT=5;
+const fl=$('#files'),live=$('#upLive'),sumText=$('#sumText'),sub=$('#submitDocs'),why=$('#submitWhy');
+let items=[],seq=0;
+const mb=n=>(n/1048576).toFixed(1)+'MB';
+const say=m=>{live.textContent='';setTimeout(()=>live.textContent=m,30)};
+function reason(f){if(!OK.includes(f.type))return '지원하지 않는 형식이에요 (PDF·JPG·PNG만)';if(f.size>MAX)return `5MB를 넘어요 (${mb(f.size)}) — 압축하거나 나눠 주세요`;return null}
+function add(files){
+  for(const f of files){
+    if(items.filter(i=>i.state!=='rejected').length>=LIMIT){say(`최대 ${LIMIT}개까지 올릴 수 있어요. ${f.name}은 추가하지 않았어요.`);continue}
+    const it={id:++seq,name:f.name,size:f.size,failAt:f._failAt||null,state:'queued',p:0,why:reason(f)};
+    if(it.why){it.state='rejected';say(`${f.name} 거절: ${it.why}`)}
+    items.push(it);if(it.state==='queued')start(it);
+  }
+  draw();
+}
+function start(it){
+  it.state='uploading';it.p=0;say(`${it.name} 올리는 중`);
+  const speed=0.6+Math.random()*0.5;
+  it.timer=setInterval(()=>{
+    it.p=Math.min(1,it.p+0.04*speed);
+    if(it.failAt&&it.p>=it.failAt&&!it.retried){clearInterval(it.timer);it.state='failed';say(`${it.name} 업로드 실패. 다시 시도할 수 있어요.`);draw();return}
+    if(it.p>=1){clearInterval(it.timer);it.state='done';say(`${it.name} 업로드 완료`)}
+    draw();
+  },120);
+}
+function draw(){
+  fl.innerHTML=items.map(it=>{
+    const pct=Math.round(it.p*100);
+    const badge={queued:'<span class="pill mut">대기</span>',uploading:`<span class="pill info">올리는 중 ${pct}%</span>`,done:'<span class="pill ok">완료</span>',failed:'<span class="pill bad">실패 · 연결 끊김</span>',rejected:'<span class="pill bad">거절</span>',canceled:'<span class="pill mut">취소됨</span>'}[it.state];
+    const acts=it.state==='uploading'?`<button class="btn ghost sm" data-cancel="${it.id}" aria-label="${it.name} 업로드 취소">취소</button>`
+      :it.state==='failed'||it.state==='canceled'?`<button class="btn sm" data-retry="${it.id}" aria-label="${it.name} 다시 올리기">다시 시도</button><button class="btn ghost sm" data-rm="${it.id}" aria-label="${it.name} 목록에서 빼기">빼기</button>`
+      :`<button class="btn ghost sm" data-rm="${it.id}" aria-label="${it.name} ${it.state==='done'?'삭제':'목록에서 빼기'}">${it.state==='done'?'삭제':'빼기'}</button>`;
+    const meta=it.state==='rejected'?it.why:it.state==='failed'?`${mb(it.size)} · ${pct}%에서 끊겼어요. 파일은 그대로니 다시 시도만 누르세요.`:`${mb(it.size)}`;
+    const prog=it.state==='uploading'?`<progress max="100" value="${pct}" aria-label="${it.name} 진행률"></progress>`:'';
+    return `<li class="${it.state==='rejected'?'rej':''}"><span class="fname" title="${it.name}">${it.name}</span><span class="fact">${badge}${acts}</span>${prog}<span class="fmeta">${meta}</span></li>`}).join('');
+  const live2=items.filter(i=>i.state!=='rejected'&&i.state!=='canceled');
+  const done=live2.filter(i=>i.state==='done').length,up=live2.filter(i=>i.state==='uploading').length,fail=live2.filter(i=>i.state==='failed').length;
+  sumText.textContent=items.length?`${live2.length}개 중 ${done}개 완료${up?` · ${up}개 올리는 중`:''}${fail?` · ${fail}개 실패`:''}`:'아직 올린 파일이 없어요.';
+  let w='';if(!done)w='파일을 1개 이상 올리면 제출할 수 있어요.';else if(up)w='올리는 중인 파일이 끝나면 제출할 수 있어요.';else if(fail)w='실패한 파일을 다시 시도하거나 빼 주세요.';
+  sub.setAttribute('aria-disabled',w?'true':'false');why.textContent=w||'제출할 준비가 됐어요.';
+}
+fl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const id=Number(b.dataset.cancel||b.dataset.retry||b.dataset.rm);const it=items.find(i=>i.id===id);if(!it)return;
+  if(b.dataset.cancel){clearInterval(it.timer);it.state='canceled';say(`${it.name} 업로드를 취소했어요`)}
+  else if(b.dataset.retry){it.retried=true;start(it)}
+  else{clearInterval(it.timer);items=items.filter(i=>i!==it);say(`${it.name}을 목록에서 뺐어요`)}
+  draw();
+  // 버튼이 다시 그려지니 같은 파일의 다음 버튼으로 포커스 이어주기
+  const li=[...fl.children][items.indexOf(it)];(li?.querySelector('button')||$('#fileIn')).focus();
+});
+sub.addEventListener('click',()=>{if(sub.getAttribute('aria-disabled')==='true'){why.style.color='var(--bad)';setTimeout(()=>why.style.color='',900);say(why.textContent);return}say('서류를 제출했어요');why.textContent='제출 완료 ✓ (데모)'});
+$('#fileIn').addEventListener('change',e=>{add([...e.target.files]);e.target.value=''});
+const drop=$('#drop');
+['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',e=>add([...e.dataTransfer.files]));
+const SAMPLES={ok:{name:'사업자등록증.pdf',type:'application/pdf',size:2.1*1048576},big:{name:'통장사본_스캔.png',type:'image/png',size:12*1048576},type:{name:'정산확인서.hwp',type:'application/x-hwp',size:.4*1048576},fail:{name:'임대차계약서.jpg',type:'image/jpeg',size:3.4*1048576,_failAt:.55}};
+$$('[data-sample]').forEach(b=>b.addEventListener('click',()=>{const s=SAMPLES[b.dataset.sample];add([{...s,name:s.name.replace(/(\.\w+)$/,`_${seq+1}$1`)}])}));
+addEventListener('beforeunload',e=>{if(items.some(i=>i.state==='uploading')){e.preventDefault();e.returnValue=''}});
+draw();
+
+/* ===== 3. inert ===== */
+const sup='inert' in HTMLElement.prototype;
+const sb=$('#inertSup');sb.className='badge-sup '+(sup?'yes':'no');sb.textContent=sup?'✓ 이 브라우저는 inert를 지원합니다':'⚠ 이 브라우저는 inert 미지원 — 데모 A·B의 차이가 안 보일 수 있어요';
+const iLog=$('#iLog');
+const describe=el=>{if(!el||el===document.body)return 'body (아무것도 아님)';const t=el.tagName.toLowerCase();const lbl=el.closest('label')?.childNodes[0]?.textContent.trim();return `${t}${lbl?` "${lbl}"`:el.textContent.trim()?` "${el.textContent.trim().slice(0,14)}"`:''}`};
+const payFake=$('#payFake'),payForm=$('#payForm'),cover=$('#lockCover');
+document.addEventListener('focusin',e=>{
+  if(payFake.contains(e.target)||e.target.id==='useInert')$('#focusA').textContent=describe(e.target);
+  if(e.target.closest('#inert .vp')||e.target.id==='prevS'||e.target.id==='nextS'||e.target.id==='useInertB'){$('#focusB').textContent=describe(e.target);if(e.target.closest('.slide')&&e.target.closest('.slide')!==slides[idx])logTo(iLog,`❌ 화면 밖 슬라이드(${e.target.closest('.slide').getAttribute('aria-label')})로 포커스가 숨어 들어감`)}
+  if(payForm.contains(e.target)&&!cover.hidden)logTo(iLog,`❌ 잠금 중인데 ${describe(e.target)}에 포커스 들어감`);
+});
+let locking=false;
+$('#payGo').addEventListener('click',()=>{if(locking)return;locking=true;
+  const useI=$('#useInert').checked;cover.hidden=false;cover.setAttribute('tabindex','-1');cover.setAttribute('role','status');cover.focus();
+  if(useI){payForm.inert=true}payForm.setAttribute('aria-busy','true');
+  logTo(iLog,useI?'잠금: 상태 문구로 포커스 이동 → 폼 inert':'잠금: 덮개만 씌움 (inert 없음) — Tab 해 보세요');
+  setTimeout(()=>{payForm.inert=false;payForm.removeAttribute('aria-busy');cover.hidden=true;locking=false;$('#payGo').focus();logTo(iLog,'승인 완료 → 잠금 해제, 결제 버튼으로 포커스 복귀')},4000);
+});
+const slides=$$('#track .slide');let idx=0;
+function go(n){idx=(n+slides.length)%slides.length;$('#track').style.transform=`translateX(-${idx*100}%)`;$('#sIdx').textContent=`${idx+1} / ${slides.length}`;applyB()}
+function applyB(){const on=$('#useInertB').checked;slides.forEach((s,i)=>s.inert=on&&i!==idx)}
+$('#prevS').addEventListener('click',()=>go(idx-1));$('#nextS').addEventListener('click',()=>go(idx+1));$('#useInertB').addEventListener('change',()=>{applyB();logTo(iLog,$('#useInertB').checked?'슬라이드: 보이는 것만 활성':'슬라이드: inert 해제 — 숨은 링크도 Tab에 걸림')});
+applyB();
+})();
+</script>
+</body>
+</html>
