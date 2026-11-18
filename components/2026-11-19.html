@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Design Inspiration Daily — 2026-11-19 (목)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:.86rem;padding:3px 0;cursor:pointer}
+.chk input{margin-top:5px}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap.long{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. tab bar ===== */
+.tb-wrap{display:grid;gap:18px;grid-template-columns:auto minmax(0,1fr);align-items:start}
+@media (max-width:720px){.tb-wrap{grid-template-columns:1fr}.phone{margin:0 auto}}
+.phone{--sim-safe:0px;position:relative;width:320px;height:540px;border:10px solid #1f2430;border-radius:34px;overflow:hidden;background:var(--bg);display:flex;flex-direction:column}
+.phone.safe{--sim-safe:28px}
+.ph-head{flex:none;padding:12px 16px 10px;background:var(--surface);border-bottom:1px solid var(--border);font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.ph-head small{font-weight:500;color:var(--muted);font-size:.74rem}
+.ph-body{flex:1;overflow:auto;padding:10px 12px calc(76px + var(--sim-safe));overscroll-behavior:contain}
+.ph-body h3{font-size:.8rem;color:var(--muted);margin:8px 2px 6px}
+.ph-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;font-size:.86rem;gap:8px}
+.ph-item b{font-variant-numeric:tabular-nums}
+.tabbar{position:absolute;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--border);padding:6px 4px calc(6px + var(--sim-safe));transition:transform .22s ease}
+.tabbar.hide{transform:translateY(100%)}
+.tabbar ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
+.tabbar a{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;min-height:48px;justify-content:center;text-decoration:none;color:var(--muted);font-size:.68rem;border-radius:10px}
+.tabbar a svg{width:22px;height:22px}
+.tabbar a[aria-current=page]{color:var(--brand);font-weight:800}
+.tabbar a[aria-current=page]::before{content:"";position:absolute;top:-7px;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--brand)}
+.tabbar a:focus-visible{outline-offset:-3px}
+.badge{position:absolute;top:3px;left:calc(50% + 4px);min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--bad);color:#fff;font-size:.62rem;font-weight:800;display:grid;place-items:center;border:2px solid var(--surface)}
+.home-ind{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:110px;height:5px;border-radius:9px;background:var(--text);opacity:.55;display:none;pointer-events:none}
+.phone.safe .home-ind{display:block}
+.variants{display:grid;gap:10px;margin-top:14px}
+.vbar{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px 4px}
+.vbar ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr)}
+.vbar li{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:.66rem;color:var(--muted);min-height:40px;justify-content:center}
+.vbar li.on{color:var(--brand);font-weight:800}
+.vbar svg{width:20px;height:20px}
+.vlabel{font-size:.78rem;font-weight:700;display:flex;gap:6px;align-items:center;margin-bottom:4px}
+
+/* ===== 2. amount rows ===== */
+.am-wrap{display:grid;gap:16px;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+@media (max-width:760px){.am-wrap{grid-template-columns:1fr}}
+ul.tx{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+ul.tx li+li{border-top:1px solid var(--border)}
+ul.tx a{display:flex;gap:10px;align-items:center;padding:10px 14px;text-decoration:none;color:inherit}
+ul.tx a:hover{background:var(--surface-2)}
+ul.tx a:focus-visible{outline-offset:-3px}
+.tx-main{flex:1;min-width:0}
+.tx-name{font-weight:600;font-size:.9rem;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tx-sub{font-size:.76rem;color:var(--muted)}
+.amt{font-weight:700;white-space:nowrap}
+.amt.plus{color:var(--ok)}
+.am-wrap.f-num .amt,.am-wrap.f-num .tot b{font-variant-numeric:tabular-nums}
+.am-wrap.f-right .amt{text-align:right;min-width:9.5em}
+.am-wrap:not(.f-right) .amt{min-width:0}
+.amt del{color:var(--muted);font-weight:500}
+.am-wrap:not(.f-cancel) .amt.cancel{text-decoration:line-through;color:var(--muted);font-weight:500}
+.tot{display:flex;justify-content:space-between;padding:10px 14px;font-size:.88rem;background:var(--surface-2);border-top:1px solid var(--border)}
+.tot b{font-weight:800}
+.am-wrap.f-right .tot b{min-width:9.5em;text-align:right}
+.read{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;font-size:.86rem}
+.read q{display:block;font-weight:700;margin-top:6px;quotes:"“" "”"}
+.read .bad{color:var(--bad)}
+
+/* ===== 3. scroll spy ===== */
+.spy{display:grid;grid-template-columns:170px minmax(0,1fr);gap:14px}
+@media (max-width:620px){.spy{grid-template-columns:1fr}.spy-nav ol{display:flex;flex-wrap:wrap;gap:6px}}
+.spy-nav ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.spy-nav a{display:block;text-decoration:none;color:var(--muted);font-size:.86rem;padding:6px 10px;border-radius:8px;border-left:3px solid transparent}
+.spy-nav a:hover{background:var(--surface)}
+.spy-nav a.is-current{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand);font-weight:700}
+@supports (scroll-target-group:auto){
+  .spy.css-mode .spy-nav{scroll-target-group:auto}
+  .spy.css-mode .spy-nav a:target-current{color:var(--brand);background:var(--brand-soft);border-left-color:var(--brand);font-weight:700}
+}
+.spy-body{position:relative;height:320px;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:4px 18px 0;scroll-behavior:smooth}
+.spy-body section{padding:12px 0 6px}
+.spy-body h3{font-size:1rem;margin:0 0 6px;scroll-margin-top:8px}
+.spy-body h3:focus{outline:none}
+.spy-body h3:focus-visible{outline:3px solid var(--ring)}
+.spy-body p{font-size:.86rem;color:var(--muted);margin:0 0 8px}
+.spy-body .end-pad{height:calc(100% - 60px)}
+.spy-body.no-pad .end-pad{height:8px}
+.st{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:.82rem;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-19 (목) · 하단 탭 바 · 거래 금액 행 · scroll-target-group</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#tabbar">🧭 하단 탭 바</a><a href="#amount">🃏 거래 금액 행</a><a href="#spy">🌀 scroll-target-group</a>
+</nav>
+
+<!-- 1. tab bar -->
+<section class="card" id="tabbar">
+<h2>하단 탭 바 — 라벨은 늘 보이게, 탭마다 스크롤을 기억하고, 지금 탭을 또 누르면 맨 위로 <span class="tag">🧭 내비게이션·탭</span></h2>
+<p class="lead">모바일 앱의 최상위 이동은 하단 탭 바가 표준이 됐습니다. 차이는 디테일에서 납니다: 아이콘만 두지 않기, 탭을 오갈 때 보던 위치를 지키기, 이미 있는 탭을 다시 누르면 맨 위로 올리기, 홈 인디케이터(아이폰 하단 막대) 영역을 피하기.</p>
+<div class="demo">
+<p class="demo-title">휴대폰 안에서 직접 눌러 보세요 — 거래 탭에서 스크롤 → 정산 탭 → 다시 거래 탭(위치 유지) → 거래 탭 한 번 더(맨 위로)</p>
+<div class="tb-wrap">
+<div class="phone safe" id="phone">
+<div class="ph-head"><span id="phTitle">홈</span><small id="phPos">맨 위</small></div>
+<div class="ph-body" id="phBody" tabindex="0" aria-label="화면 내용"></div>
+<nav class="tabbar" id="tabbarNav" aria-label="주요 메뉴">
+<ul>
+<li><a href="#t-home" data-tab="home" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>홈</span></a></li>
+<li><a href="#t-tx" data-tab="tx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span>거래</span></a></li>
+<li><a href="#t-settle" data-tab="settle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M16 12.5h2M3 10h18"/></svg><span>정산</span></a></li>
+<li><a href="#t-noti" data-tab="noti" id="notiTab" aria-label="알림, 새 알림 3개"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span>알림</span><span class="badge" id="notiBadge" aria-hidden="true">3</span></a></li>
+<li><a href="#t-more" data-tab="more"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg><span>더보기</span></a></li>
+</ul>
+</nav>
+<div class="home-ind" aria-hidden="true"></div>
+</div>
+<div>
+<label class="chk"><input type="checkbox" id="optSafe" checked> <span><b>홈 인디케이터 영역 피하기</b> — 끄면 탭 라벨이 하단 막대에 깔립니다 (실기기에선 <code>env(safe-area-inset-bottom)</code>)</span></label>
+<label class="chk"><input type="checkbox" id="optMem" checked> <span><b>탭별 스크롤 위치 기억</b> — 끄면 탭을 오갈 때마다 맨 위에서 다시 시작</span></label>
+<label class="chk"><input type="checkbox" id="optTop" checked> <span><b>지금 탭 다시 누르면 맨 위로</b> — iOS·Android 앱에서 사용자가 이미 기대하는 동작</span></label>
+<label class="chk"><input type="checkbox" id="optHide"> <span><b>아래로 스크롤하면 탭 바 숨기기</b> — 화면은 넓어지지만 이동 수단이 사라짐(비권장 기본값)</span></label>
+<div class="log" id="tbLog" aria-live="polite"></div>
+<div class="variants" aria-label="변형 비교">
+<div><div class="vlabel"><span class="pill ok">권장</span> 아이콘 + 라벨 항상</div><div class="vbar" data-v="all"></div></div>
+<div><div class="vlabel"><span class="pill warn">조건부</span> 선택된 탭만 라벨</div><div class="vbar" data-v="sel"></div></div>
+<div><div class="vlabel"><span class="pill bad">피하기</span> 아이콘만</div><div class="vbar" data-v="none"></div></div>
+</div>
+<p class="cap">아이콘만 쓰면 "지갑 모양이 정산인지 결제수단인지" 사용자가 추측해야 합니다. 라벨은 공간이 부족해도 짧게(2~3자) 줄여서라도 남기는 편이 낫습니다.</p>
+</div>
+</div>
+</div>
+<pre><code>&lt;nav class="tabbar" aria-label="주요 메뉴"&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/home" aria-current="page"&gt;&lt;svg aria-hidden="true"…/&gt;&lt;span&gt;홈&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/noti" aria-label="알림, 새 알림 3개"&gt;…&lt;span class="badge" aria-hidden="true"&gt;3&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+
+/* viewport-fit=cover 메타가 있어야 env()가 0이 아님 */
+.tabbar { position: fixed; inset: auto 0 0 0;
+  padding-bottom: calc(6px + env(safe-area-inset-bottom)); }
+.tabbar a { min-height: 48px; }                 /* 누르는 영역 */
+.tabbar a[aria-current="page"] { color: var(--brand); font-weight: 800; }
+main { padding-bottom: calc(64px + env(safe-area-inset-bottom)); } /* 마지막 줄이 바에 안 가리게 */</code></pre>
+<div class="note">탭 바는 <b>role="tablist"가 아닙니다</b>. 화면 자체가 바뀌는 페이지 이동이라 <code>&lt;nav&gt;</code> 안의 링크 + <code>aria-current="page"</code>(지금 페이지라고 알려 주는 속성)가 맞습니다. tablist로 만들면 낭독기가 "탭 1/5"라고 읽고 화살표 키 이동을 기대하게 만듭니다.</div>
+</section>
+
+<!-- 2. amount rows -->
+<section class="card" id="amount">
+<h2>거래 내역 금액 행 — 자릿수는 줄 맞추고, 마이너스는 기호와 말로, 취소는 줄긋기만으로 끝내지 않기 <span class="tag">🃏 카드·리스트</span></h2>
+<p class="lead">금액 리스트는 "훑어 내려가며 비교하는" UI입니다. 숫자 폭이 들쭉날쭉하면 자릿수가 어긋나 1만 원과 10만 원이 비슷해 보이고, 하이픈 "-"은 낭독기가 건너뛰거나 "하이픈"으로 읽고, 취소선은 화면에서만 보입니다. 아래 체크를 하나씩 켜며 차이를 보세요.</p>
+<div class="demo">
+<div class="row" style="margin-bottom:10px">
+<label class="chk"><input type="checkbox" class="amOpt" value="f-num"> ① 숫자 폭 고정 (tabular-nums)</label>
+<label class="chk"><input type="checkbox" class="amOpt" value="f-right"> ② 금액 오른쪽 정렬 + 고정 칸</label>
+<label class="chk"><input type="checkbox" class="amOpt" value="f-sign"> ③ 마이너스는 − 기호 + 낭독용 말</label>
+<label class="chk"><input type="checkbox" class="amOpt" value="f-cancel"> ④ 취소는 라벨 + 낭독용 말</label>
+<button class="btn ghost sm" id="amAll" type="button" aria-pressed="false">전부 켜기</button>
+</div>
+<div class="am-wrap" id="amWrap">
+<div>
+<ul class="tx" id="txList" aria-label="11월 19일 거래"></ul>
+<div class="tot" aria-live="polite"><span>오늘 순합계 (취소 제외)</span><b id="txTot"></b></div>
+</div>
+<div class="read" aria-live="polite">
+<div style="color:var(--muted);font-size:.78rem">행에 마우스를 올리거나 Tab으로 이동하면, 그 행의 마크업이 낭독기에 넘기는 텍스트(근사)를 보여 줍니다.</div>
+<q id="readOut">—</q>
+<div id="readWarn" style="margin-top:8px;font-size:.8rem"></div>
+</div>
+</div>
+<p class="cap long">③ 끄면 "-5,600원" — 하이픈(U+002D)은 숫자 앞에서 낭독기마다 "마이너스", "하이픈", 무음으로 갈립니다(추정, 낭독기·음성 설정마다 다름). 그래서 보이는 기호는 aria-hidden으로 숨기고 "출금 5,600원"처럼 <b>말로</b> 전달합니다. ④ 끄면 취소 건이 순합계에 섞여 보이는지 눈으로만 판단해야 합니다.</p>
+</div>
+<pre><code>&lt;!-- 보이는 건 "−5,600원", 읽히는 건 "출금 5,600원" --&gt;
+&lt;span class="amt"&gt;
+  &lt;span aria-hidden="true"&gt;−5,600원&lt;/span&gt;   &lt;!-- U+2212 MINUS SIGN --&gt;
+  &lt;span class="sr-only"&gt;출금 5,600원&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;!-- 취소: 라벨로 상태를 말하고, 줄 그은 금액은 '원래 금액'이라고 읽힌다 --&gt;
+&lt;span class="pill"&gt;결제 취소&lt;/span&gt;
+&lt;span class="amt"&gt;&lt;del&gt;&lt;span class="sr-only"&gt;취소된 금액 &lt;/span&gt;18,900원&lt;/del&gt;&lt;/span&gt;
+
+.amt { font-variant-numeric: tabular-nums; text-align: right; min-width: 9.5em; white-space: nowrap; }
+
+// 포맷터: 부호는 따로, 숫자는 절대값으로
+const nf = new Intl.NumberFormat('ko-KR');
+const view = (n) =&gt; ({ visual: (n &lt; 0 ? '−' : '+') + nf.format(Math.abs(n)) + '원',
+                       spoken: (n &lt; 0 ? '출금 ' : '입금 ') + nf.format(Math.abs(n)) + '원' });</code></pre>
+<div class="note"><code>font-variant-numeric: tabular-nums</code>는 숫자 글리프를 같은 폭으로 바꾸는 OpenType 기능입니다. 폰트가 이 기능을 갖고 있어야 효과가 있고, 일부 시스템 폰트는 원래 숫자 폭이 같아 차이가 작게 보일 수 있습니다(Pretendard·SF 계열은 기본이 비례폭이라 효과가 큽니다 — 추정). <code>&lt;del&gt;</code>은 많은 낭독기가 기본 설정에서 "삭제됨"을 읽지 않기 때문에(추정) sr-only 문구를 함께 둡니다.</div>
+</section>
+
+<!-- 3. scroll-target-group -->
+<section class="card" id="spy">
+<h2>scroll-target-group과 :target-current — 목차 하이라이트(스크롤 스파이)를 CSS가 계산하게 <span class="tag">🌀 트렌드·개념</span></h2>
+<p class="lead">"지금 읽는 섹션을 목차에서 강조"하려면 지금까진 IntersectionObserver(요소가 화면에 들어왔는지 알려 주는 브라우저 API)로 JS를 짰습니다. 링크 목록 부모에 <code>scroll-target-group: auto</code>를 주면, 브라우저가 스크롤 위치에 맞는 링크 하나에 <code>:target-current</code>를 붙여 줍니다. 단, 화면 강조뿐이라 <code>aria-current</code>는 따로 챙겨야 합니다.</p>
+<div class="demo">
+<div class="st">
+<span id="supPill" class="pill mut">감지 중…</span>
+<span>동작 방식:</span>
+<label class="chk"><input type="radio" name="spyMode" value="auto" checked> 지원되면 CSS</label>
+<label class="chk"><input type="radio" name="spyMode" value="js"> JS 폴백 강제</label>
+<label class="chk"><input type="checkbox" id="spyAria" checked> aria-current 동기화</label>
+<label class="chk"><input type="checkbox" id="spyPad" checked> 끝 여백 두기</label>
+</div>
+<div class="spy css-mode" id="spyRoot">
+<nav class="spy-nav" aria-label="정산 안내 목차">
+<ol>
+<li><a href="#s-1">개요</a></li>
+<li><a href="#s-2">수수료</a></li>
+<li><a href="#s-3">정산 주기</a></li>
+<li><a href="#s-4">환불과 차감</a></li>
+<li><a href="#s-5">문의</a></li>
+</ol>
+</nav>
+<div class="spy-body" id="spyBody" tabindex="0" aria-label="정산 안내 본문">
+<section><h3 id="s-1" tabindex="-1">개요</h3><p>정산은 결제 승인 금액에서 수수료와 환불을 뺀 금액을 가맹점 계좌로 보내는 과정입니다.</p><p>이 문서는 정산 금액이 어떻게 정해지고 언제 들어오는지 설명합니다.</p><p>정산 내역은 매일 오전에 갱신됩니다.</p></section>
+<section><h3 id="s-2" tabindex="-1">수수료</h3><p>카드 결제는 업종·매출 구간에 따라 다른 수수료율이 적용됩니다.</p><p>간편결제는 결제사별 수수료가 별도로 붙을 수 있습니다.</p><p>수수료에는 부가세가 포함되어 표시됩니다.</p><p>수수료율 변경은 다음 정산 주기부터 반영됩니다.</p></section>
+<section><h3 id="s-3" tabindex="-1">정산 주기</h3><p>기본 주기는 영업일 기준 D+2입니다.</p><p>공휴일이 끼면 다음 영업일로 밀립니다.</p><p>주기 변경은 고객센터 요청으로 진행합니다.</p></section>
+<section><h3 id="s-4" tabindex="-1">환불과 차감</h3><p>정산 후 환불이 발생하면 다음 정산 금액에서 차감됩니다.</p><p>차감할 금액이 정산 금액보다 크면 차액이 이월됩니다.</p></section>
+<section><h3 id="s-5" tabindex="-1">문의</h3><p>정산 관련 문의는 가맹점 관리자 &gt; 고객센터에서 남겨 주세요.</p></section>
+<div class="end-pad" aria-hidden="true"></div>
+</div>
+</div>
+<div class="log" id="spyLog" aria-live="off"></div>
+<p class="cap long">"끝 여백 두기"를 끄고 맨 아래까지 내려 보세요. 마지막 섹션(문의)이 짧으면 위쪽까지 올라오지 못해 목차에서 영영 강조되지 않습니다 — CSS 방식이든 JS 방식이든 같은 함정입니다.</p>
+</div>
+<pre><code>/* 1) 링크 목록의 부모를 '스크롤 대상 그룹'으로 */
+.toc { scroll-target-group: auto; }
+
+/* 2) 지금 스크롤 위치에 해당하는 링크 하나만 매칭 */
+.toc a:target-current { color: var(--brand); border-left-color: var(--brand); font-weight: 700; }
+
+/* 3) 미지원 브라우저용 폴백 — 같은 모양을 클래스로 */
+@supports not (scroll-target-group: auto) {
+  .toc a.is-current { color: var(--brand); border-left-color: var(--brand); font-weight: 700; }
+}
+
+// 폴백 JS + aria-current 동기화 (CSS 의사클래스는 접근성 트리에 안 올라감)
+const io = new IntersectionObserver((entries) =&gt; {
+  for (const e of entries) if (e.isIntersecting) setCurrent(e.target.id);
+}, { root: scroller, rootMargin: '0px 0px -70% 0px' });
+headings.forEach((h) =&gt; io.observe(h));</code></pre>
+<div class="note">지원 현황: Chrome 140 전후로 Chromium 계열에 들어온 것으로 알려져 있고(<a href="https://developer.chrome.com/docs/modern-web-guidance/guides/ui-components/scrollspy">Chrome 가이드</a>), Safari·Firefox는 이 글 작성 시점 기준 미지원으로 추정합니다. 그래서 실무에선 <code>@supports</code>로 감싸 <b>진행적 향상</b>(지원 브라우저에서만 더 좋아지고, 나머지는 기존 JS로 동작)으로 씁니다. 감지는 <code>CSS.supports('scroll-target-group: auto')</code>.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-19 (목) · self-contained · ?embed=tabbar|amount|spy · ?theme=dark</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const logTo=(el,msg)=>{const d=document.createElement('div');d.textContent=msg;el.append(d);el.scrollTop=el.scrollHeight;while(el.children.length>40)el.firstChild.remove()};
+const nf=new Intl.NumberFormat('ko-KR');
+
+/* ===== 1. tab bar ===== */
+const TABS={
+  home:{t:'홈',h:()=>sec('오늘 요약',[['오늘 결제','1,284,500원'],['취소','18,900원'],['예상 정산','1,201,330원']])+sec('최근 거래',rows('거래',12))},
+  tx:{t:'거래',h:()=>sec('11월 19일',rows('결제',14))+sec('11월 18일',rows('결제',14))},
+  settle:{t:'정산',h:()=>sec('예정',rows('정산 예정',8))+sec('완료',rows('정산 완료',10))},
+  noti:{t:'알림',h:()=>sec('새 알림',[['정산 완료','11/19'],['수수료율 변경 안내','11/18'],['로그인 알림','11/18']])+sec('지난 알림',rows('알림',8))},
+  more:{t:'더보기',h:()=>sec('설정',[['가맹점 정보','›'],['정산 계좌','›'],['알림 설정','›'],['고객센터','›']])}
+};
+function sec(t,items){return `<h3>${t}</h3>`+items.map(([a,b])=>`<div class="ph-item"><span>${a}</span><b>${b}</b></div>`).join('')}
+function rows(p,n){return Array.from({length:n},(_,i)=>[`${p} #${String(i+1).padStart(2,'0')}`,nf.format(((i*7919)%90+5)*100)+'원'])}
+const body=$('#phBody'),title=$('#phTitle'),pos=$('#phPos'),tbLog=$('#tbLog'),phone=$('#phone'),bar=$('#tabbarNav');
+const scrollMem={};let cur='home';
+function render(tab){body.innerHTML=TABS[tab].h();title.textContent=TABS[tab].t}
+function updPos(){pos.textContent=body.scrollTop<4?'맨 위':`${Math.round(body.scrollTop)}px`}
+render('home');
+$$('#tabbarNav a').forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();const tab=a.dataset.tab;
+  if(tab===cur){
+    if(!$('#optTop').checked){logTo(tbLog,`[${TABS[tab].t}] 같은 탭 다시 누름 → 아무 일 없음 (옵션 꺼짐)`);return}
+    if(body.scrollTop<4){logTo(tbLog,`[${TABS[tab].t}] 이미 맨 위 → 그대로`);return}
+    body.scrollTo({top:0,behavior:reduce?'auto':'smooth'});logTo(tbLog,`[${TABS[tab].t}] 같은 탭 다시 누름 → 맨 위로`);return;
+  }
+  scrollMem[cur]=body.scrollTop;
+  $$('#tabbarNav a').forEach(x=>x.removeAttribute('aria-current'));a.setAttribute('aria-current','page');
+  cur=tab;render(tab);
+  const y=$('#optMem').checked?(scrollMem[tab]||0):0;body.scrollTop=y;updPos();
+  bar.classList.remove('hide');
+  logTo(tbLog,`→ ${TABS[tab].t} 탭 (${y?`${Math.round(y)}px 위치 복원`:'맨 위에서 시작'})`);
+  if(tab==='noti'&&$('#notiBadge')){$('#notiBadge').remove();$('#notiTab').setAttribute('aria-label','알림');logTo(tbLog,'  알림 확인 → 배지 제거, 이름도 "알림"으로')}
+}));
+let lastY=0;
+body.addEventListener('scroll',()=>{updPos();const y=body.scrollTop;
+  if($('#optHide').checked){if(y>lastY+6&&y>40)bar.classList.add('hide');else if(y<lastY-6)bar.classList.remove('hide')}
+  lastY=y},{passive:true});
+$('#optHide').addEventListener('change',e=>{if(!e.target.checked)bar.classList.remove('hide')});
+$('#optSafe').addEventListener('change',e=>{phone.classList.toggle('safe',true);phone.style.setProperty('--sim-safe',e.target.checked?'28px':'0px');logTo(tbLog,e.target.checked?'safe-area 패딩 적용':'safe-area 패딩 없음 → 라벨이 홈 인디케이터와 겹침')});
+bar.addEventListener('focusin',()=>bar.classList.remove('hide'));
+/* variants */
+const ICONS=$$('#tabbarNav a svg').map(s=>s.outerHTML),LBL=['홈','거래','정산','알림','더보기'];
+$$('.vbar').forEach(v=>{const m=v.dataset.v;v.innerHTML='<ul>'+LBL.map((l,i)=>`<li class="${i===1?'on':''}">${ICONS[i]}${m==='all'||(m==='sel'&&i===1)?`<span>${l}</span>`:''}</li>`).join('')+'</ul>';v.setAttribute('aria-hidden','true')});
+
+/* ===== 2. amount rows ===== */
+const TX=[
+  {n:'스타벅스 강남점',s:'14:02 · 카드 결제',a:-5600},
+  {n:'쿠팡',s:'13:40 · 환불',a:32000},
+  {n:'정산 입금',s:'10:00 · 11/17 매출분',a:1250000},
+  {n:'배달의민족',s:'12:15 · 카드 결제',a:-18900,c:true},
+  {n:'PG 수수료',s:'10:00 · 자동 차감',a:-1870},
+  {n:'편의점',s:'09:12 · 간편결제',a:-1200},
+];
+const amWrap=$('#amWrap'),list=$('#txList');
+const has=f=>amWrap.classList.contains(f);
+function amtHTML(t){
+  const abs=nf.format(Math.abs(t.a))+'원';
+  if(has('f-sign')){
+    const vis=(t.a<0?'−':'+')+abs, spoken=(t.a<0?'출금 ':'입금 ')+abs;
+    if(t.c&&has('f-cancel'))return `<del><span class="sr-only">취소된 금액 </span>${vis.replace(/[+−]/,'')}</del>`;
+    return `<span aria-hidden="true">${vis}</span><span class="sr-only">${spoken}</span>`;
+  }
+  const vis=(t.a<0?'-':'+')+abs;
+  if(t.c&&has('f-cancel'))return `<del><span class="sr-only">취소된 금액 </span>${abs}</del>`;
+  return vis;
+}
+function spoken(t){ // 근사: 마크업에서 낭독기로 갈 텍스트
+  const abs=nf.format(Math.abs(t.a))+'원';let amt;
+  if(t.c&&has('f-cancel'))amt='취소된 금액 '+abs;
+  else if(has('f-sign'))amt=(t.a<0?'출금 ':'입금 ')+abs;
+  else amt=(t.a<0?'-':'+')+abs;
+  return [t.n,(t.c&&has('f-cancel'))?'결제 취소':'',t.s.replace(' · ',', '),amt].filter(Boolean).join(', ');
+}
+function warn(t){
+  const w=[];
+  if(!has('f-sign'))w.push(t.a<0?'"-" 하이픈: 낭독기·설정에 따라 무음이거나 "하이픈"으로 읽힘':'"+"는 "더하기"로 읽힐 수 있음');
+  if(t.c&&!has('f-cancel'))w.push('취소선은 CSS라 낭독기는 일반 결제로 읽음 — 취소 사실이 사라짐');
+  return w;
+}
+function renderTx(){
+  list.innerHTML=TX.map((t,i)=>`<li><a href="#" data-i="${i}"><span class="tx-main"><span class="tx-name">${t.n}${t.c&&has('f-cancel')?' <span class="pill mut">결제 취소</span>':''}</span><span class="tx-sub">${t.s}</span></span><span class="amt ${t.a>0?'plus':''} ${t.c?'cancel':''}">${amtHTML(t)}</span></a></li>`).join('');
+  const sum=TX.filter(t=>!t.c).reduce((s,t)=>s+t.a,0);
+  $('#txTot').textContent=(sum<0?(has('f-sign')?'−':'-'):'+')+nf.format(Math.abs(sum))+'원';
+}
+function showRead(i){const t=TX[i];$('#readOut').textContent=spoken(t);const w=warn(t);$('#readWarn').innerHTML=w.length?w.map(x=>`<div class="bad">⚠ ${x}</div>`).join(''):'<span class="pill ok">말로 전달됨</span>'}
+list.addEventListener('mouseover',e=>{const a=e.target.closest('a[data-i]');if(a)showRead(+a.dataset.i)});
+list.addEventListener('focusin',e=>{const a=e.target.closest('a[data-i]');if(a)showRead(+a.dataset.i)});
+list.addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault()});
+$$('.amOpt').forEach(c=>c.addEventListener('change',()=>{amWrap.classList.toggle(c.value,c.checked);renderTx();syncAll()}));
+function syncAll(){const all=$$('.amOpt').every(c=>c.checked);$('#amAll').textContent=all?'전부 끄기':'전부 켜기';$('#amAll').setAttribute('aria-pressed',all)}
+$('#amAll').addEventListener('click',()=>{const on=!$$('.amOpt').every(c=>c.checked);$$('.amOpt').forEach(c=>{c.checked=on;amWrap.classList.toggle(c.value,on)});renderTx();syncAll()});
+renderTx();showRead(3);
+
+/* ===== 3. scroll spy ===== */
+const spyRoot=$('#spyRoot'),spyBody=$('#spyBody'),spyLog=$('#spyLog'),links=$$('.spy-nav a'),heads=$$('#spyBody h3');
+const SUP=!!(window.CSS&&CSS.supports&&CSS.supports('scroll-target-group: auto'));
+const sp=$('#supPill');sp.className='pill '+(SUP?'ok':'warn');sp.textContent=SUP?'이 브라우저: scroll-target-group 지원':'이 브라우저: 미지원 → JS 폴백';
+let mode='auto',io=null,lastId='';
+function useCss(){return SUP&&mode==='auto'}
+function setCurrent(id){
+  if(id===lastId)return;lastId=id;
+  links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;
+    if(!useCss())a.classList.toggle('is-current',on);else a.classList.remove('is-current');
+    if($('#spyAria').checked&&on)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  logTo(spyLog,`${useCss()?'CSS가 강조':'JS가 강조'} · 현재: ${id}${$('#spyAria').checked?' · aria-current 동기화':' · aria-current 없음(화면에만 보임)'}`);
+}
+function setupIO(){
+  if(io)io.disconnect();
+  io=new IntersectionObserver(es=>{
+    const vis=es.filter(e=>e.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+    if(vis[0])setCurrent(vis[0].target.id);
+  },{root:spyBody,rootMargin:'0px 0px -70% 0px'});
+  heads.forEach(h=>io.observe(h));
+}
+function applyMode(){
+  spyRoot.classList.toggle('css-mode',useCss());lastId='';
+  links.forEach(a=>a.classList.remove('is-current'));
+  setupIO(); // aria-current 동기화와 폴백 강조 둘 다 IO가 담당 (CSS 모드에선 aria만)
+  logTo(spyLog,useCss()?'모드: CSS(:target-current) — 강조는 브라우저가 계산':'모드: JS 폴백(IntersectionObserver)');
+}
+$$('input[name=spyMode]').forEach(r=>r.addEventListener('change',()=>{mode=r.value;applyMode()}));
+$('#spyAria').addEventListener('change',()=>{lastId='';setupIO()});
+$('#spyPad').addEventListener('change',e=>{spyBody.classList.toggle('no-pad',!e.target.checked);logTo(spyLog,e.target.checked?'끝 여백 있음 — 마지막 섹션도 맨 위까지 올라옴':'끝 여백 없음 — 맨 아래까지 내려도 "문의"가 강조되지 않을 수 있음')});
+links.forEach(a=>a.addEventListener('click',e=>{
+  e.preventDefault();const h=$(a.getAttribute('href'));
+  spyBody.scrollTo({top:h.parentElement.offsetTop-4,behavior:reduce?'auto':'smooth'});
+  h.focus({preventScroll:true});
+}));
+applyMode();
+})();
+</script>
+</body>
+</html>
