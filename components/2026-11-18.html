@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Design Inspiration Daily — 2026-11-18 (수)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+h3{font-size:.86rem;margin:0 0 8px;color:var(--muted)}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(1.08)}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.btn[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+.grid2{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.panel{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface-2);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+.field label.lbl{display:block;font-weight:600;font-size:.88rem;margin-bottom:4px}
+.inp{width:100%;border:1px solid var(--border);border-radius:10px;padding:9px 12px;background:var(--surface);font-variant-numeric:tabular-nums}
+.inp:focus-visible{outline:3px solid var(--ring);outline-offset:1px}
+.inp[aria-invalid=true]{border-color:var(--bad)}
+.hint{font-size:.8rem;color:var(--muted);margin-top:4px}
+.msg{font-size:.82rem;margin-top:6px;border-radius:8px;padding:6px 10px}
+.msg.info{color:var(--brand);background:var(--brand-soft)}.msg.warn{color:var(--warn);background:var(--warn-soft)}.msg.bad{color:var(--bad);background:var(--bad-soft)}.msg.ok{color:var(--ok);background:var(--ok-soft)}
+select.inp{width:auto}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. points ===== */
+.pt-wrap{display:grid;gap:16px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+@media (max-width:700px){.pt-wrap{grid-template-columns:1fr}}
+.pt-row{display:flex;gap:8px;align-items:stretch}
+.pt-row .inp{flex:1;text-align:right}
+.pt-unit{align-self:center;font-weight:600;color:var(--muted)}
+.bal{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);margin-top:6px;gap:8px;flex-wrap:wrap}
+.bal b{color:var(--text);font-variant-numeric:tabular-nums}
+dl.sum{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin:0;font-size:.9rem}
+dl.sum dt{color:var(--muted)}dl.sum dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+dl.sum .minus{color:var(--bad)}
+dl.sum .total{font-weight:800;font-size:1.06rem;border-top:1px solid var(--border);padding-top:8px}
+dl.sum dt.total{color:var(--text)}
+fieldset.pm{border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:12px 0 0}
+fieldset.pm legend{font-size:.82rem;font-weight:700;padding:0 4px}
+fieldset.pm label{display:flex;gap:8px;align-items:center;font-size:.88rem;padding:3px 0}
+fieldset.pm[disabled]{opacity:.5}
+.zero{font-size:.84rem;margin-top:12px}
+.paybtn{width:100%;margin-top:12px;padding:12px}
+.scen{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.scen button[aria-pressed=true]{border-color:var(--brand);color:var(--brand);background:var(--brand-soft)}
+
+/* ===== 2. webhook ===== */
+.wh-row{display:flex;gap:8px;flex-wrap:wrap}
+.wh-row .inp{flex:1;min-width:220px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem}
+ul.checks{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:4px;font-size:.84rem}
+ul.checks li{display:flex;gap:8px;align-items:flex-start}
+ul.checks li .ic{width:18px;flex:none;text-align:center;font-weight:700}
+ul.checks li.ok .ic{color:var(--ok)}ul.checks li.bad .ic{color:var(--bad)}ul.checks li.warn .ic{color:var(--warn)}ul.checks li.mut{color:var(--muted)}
+.norm{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 10px;margin-top:8px;word-break:break-all}
+.samples{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.samples button{font:11px ui-monospace,Menlo,Consolas,monospace}
+.test{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+
+/* ===== 3. rounding ===== */
+.rd-ctl{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.rd-ctl .field{min-width:130px}
+.rd-out{font-size:1.6rem;font-weight:800;font-variant-numeric:tabular-nums;margin-top:12px}
+table.cmp{width:100%;border-collapse:collapse;font-size:.82rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:12px}
+table.cmp th,table.cmp td{padding:6px 8px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}
+table.cmp th{background:var(--surface-2);color:var(--muted);font-weight:600}
+table.cmp th:first-child,table.cmp td:first-child{text-align:left}
+table.cmp td.diff{background:var(--warn-soft);color:var(--warn);font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.sup{display:inline-block;font-size:.8rem;border-radius:8px;padding:6px 10px;margin-bottom:10px}
+.sup.yes{color:var(--ok);background:var(--ok-soft)}.sup.no{color:var(--warn);background:var(--warn-soft)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<div><h1>Design Inspiration Daily</h1><div class="date">2026-11-18 (수) · 적립금 부분 사용 · 웹훅 URL 입력 · Intl 반올림 모드</div></div>
+<button class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+<a href="#points">💳 적립금 부분 사용</a><a href="#webhook">⌨️ 웹훅 URL 입력</a><a href="#rounding">🌀 Intl 반올림 모드</a>
+</nav>
+
+<!-- 1. points -->
+<section class="card" id="points">
+<h2>적립금 부분 사용 — 쓸 수 있는 한도를 먼저 말하고, 단위·한도는 고친 뒤 알리고, 0원이면 결제 수단을 접기 <span class="tag">💳 결제·체크아웃 UX</span></h2>
+<p class="lead">"보유 12,345P"만 보여주면 사용자는 다 쓸 수 있다고 생각합니다. 실제 한도(최소 보유·사용 단위·최소 결제금액)를 입력칸 바로 아래 숫자로 보여주고, 넘치게 입력하면 칸을 떠날 때 맞춘 뒤 맞춘 이유를 문장으로 남깁니다.</p>
+
+<div class="demo">
+<p class="demo-title">시나리오 바꿔 보기 (보유 적립금 · 정책)</p>
+<div class="scen" role="group" aria-label="보유 적립금 시나리오">
+<button class="btn ghost sm" data-bal="12345" aria-pressed="true">보유 12,345P</button>
+<button class="btn ghost sm" data-bal="800" aria-pressed="false">보유 800P (사용 불가)</button>
+<button class="btn ghost sm" data-bal="50000" aria-pressed="false">보유 50,000P (주문보다 많음)</button>
+</div>
+<label class="row" style="font-size:.84rem;margin-bottom:12px"><input type="checkbox" id="minPayPol"> 정책: 최소 결제금액 1,000원은 카드로 (적립금 전액 결제 금지)</label>
+
+<div class="pt-wrap">
+<div class="panel">
+<div class="field">
+<label class="lbl" for="ptInput">적립금 사용</label>
+<div class="pt-row">
+<input id="ptInput" class="inp" type="text" inputmode="numeric" autocomplete="off" placeholder="0" aria-describedby="ptLimit ptMsg">
+<span class="pt-unit" aria-hidden="true">P</span>
+<button class="btn ghost" id="ptAll" type="button">전액 사용</button>
+</div>
+<div class="bal" id="ptLimit"><span>보유 <b id="ptBal">12,345P</b></span><span>이번 주문 최대 <b id="ptMax">12,340P</b> · 10P 단위</span></div>
+<div id="ptMsg" class="msg" role="status" aria-live="polite" hidden></div>
+</div>
+<p class="cap">입력 중엔 콤마만 붙이고 막지 않음 → blur 때 한도·단위로 맞추고 "왜 바뀌었는지"를 말함. 몰래 고치면 사용자는 오타인 줄 압니다.</p>
+</div>
+
+<div class="panel">
+<dl class="sum">
+<dt>주문 금액</dt><dd id="sOrder">32,500원</dd>
+<dt>적립금 사용</dt><dd class="minus" id="sPt">−0원</dd>
+<dt class="total">최종 결제 금액</dt><dd class="total" id="sTotal">32,500원</dd>
+</dl>
+<div class="hint" id="sEarn">적립 예정 325P (최종 결제 금액의 1%, 예시 정책)</div>
+<fieldset class="pm" id="pmSet">
+<legend>결제 수단</legend>
+<label><input type="radio" name="pm" checked> 신한카드 •••• 4021</label>
+<label><input type="radio" name="pm"> 계좌이체</label>
+</fieldset>
+<div class="zero msg ok" id="zeroMsg" hidden>적립금으로 전액 결제돼서 결제 수단이 필요 없어요.</div>
+<button class="btn paybtn" id="payBtn" type="button">32,500원 결제하기</button>
+<div class="sr-only" id="sumLive" aria-live="polite"></div>
+</div>
+</div>
+<div class="log" id="ptLog" aria-label="이벤트 로그"></div>
+</div>
+<pre><code>// 한도 계산은 한 곳에서 (정수 원 단위만 다룸)
+function pointLimit({ balance, order, minHold = 1000, unit = 10, minPay = 0 }) {
+  if (balance &lt; minHold) return { usable: false, max: 0, reason: `${minHold.toLocaleString()}P부터 사용 가능` };
+  const cap = Math.min(balance, Math.max(0, order - minPay));
+  return { usable: true, max: Math.floor(cap / unit) * unit };
+}
+// blur 시: 맞추고, 맞춘 이유를 말한다
+function settle(raw, lim) {
+  const n = Number(String(raw).replace(/[^\d]/g, '')) || 0;
+  if (n &gt; lim.max) return { value: lim.max, msg: `최대 ${lim.max.toLocaleString()}P까지 쓸 수 있어 맞췄어요` };
+  const v = Math.floor(n / 10) * 10;
+  if (v !== n) return { value: v, msg: `10P 단위로 써요 — ${n - v}P는 남겨 둘게요` };
+  return { value: v, msg: '' };
+}</code></pre>
+<div class="note">핵심: ① 한도는 "보유"가 아니라 "이번 주문 최대"로 보여준다 ② 사용 불가면 칸을 숨기지 말고 이유와 함께 비활성 ③ 최종 금액이 0원이면 결제 수단 영역을 비활성·안내로 바꾸고 버튼 문구도 바꾼다 ④ 서버가 같은 공식으로 다시 검증한다(클라이언트 값은 제안일 뿐).</div>
+</section>
+
+<!-- 2. webhook -->
+<section class="card" id="webhook">
+<h2>웹훅 URL 입력 — URL 파서로 정규화하고, 못 받는 주소는 저장 전에 막고, 테스트 전송이 성공해야 저장 <span class="tag">⌨️ 입력·폼</span></h2>
+<p class="lead">정규식으로 URL을 검사하면 반드시 구멍이 납니다. 브라우저 내장 <code>URL</code> 파서로 쪼갠 뒤 항목별로 판정하고(https인가, 외부에서 닿는 호스트인가, 계정정보가 박혀 있나), 붙여넣기 잡음(앞뒤 공백·꺾쇠·따옴표)은 조용히 걷어냅니다.</p>
+<div class="demo">
+<div class="field">
+<label class="lbl" for="whInput">결제 결과 알림(웹훅) URL</label>
+<div class="wh-row">
+<input id="whInput" class="inp" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://api.example.com/webhooks/paysable" aria-describedby="whHint whChecks">
+</div>
+<div class="hint" id="whHint">결제가 승인·취소되면 이 주소로 POST를 보냅니다. https만, 외부에서 접근 가능한 주소만.</div>
+<div class="samples" aria-label="예시 값 넣어 보기">
+<button class="btn ghost sm" data-s="  &lt;https://api.shop.kr/hook&gt; ">붙여넣기 잡음</button>
+<button class="btn ghost sm" data-s="api.shop.kr/hook">스킴 빠짐</button>
+<button class="btn ghost sm" data-s="http://api.shop.kr/hook">http</button>
+<button class="btn ghost sm" data-s="https://localhost:3000/hook">localhost</button>
+<button class="btn ghost sm" data-s="https://192.168.0.12/hook">사설 IP</button>
+<button class="btn ghost sm" data-s="https://admin:pw@api.shop.kr/hook">계정 포함</button>
+<button class="btn ghost sm" data-s="https://API.Shop.KR:443/hook#top">대문자·포트·#</button>
+<button class="btn ghost sm" data-s="https://fail.shop.kr/hook">500 응답</button>
+<button class="btn ghost sm" data-s="https://slow.shop.kr/hook">타임아웃</button>
+</div>
+<ul class="checks" id="whChecks" aria-label="검사 결과"></ul>
+<div class="norm" id="whNorm" hidden></div>
+<div id="whFix" class="row" style="margin-top:8px" hidden></div>
+</div>
+<div class="test">
+<button class="btn ghost" id="whTest" type="button" aria-disabled="true">테스트 전송</button>
+<button class="btn" id="whSave" type="button" aria-disabled="true" aria-describedby="whSaveWhy">저장</button>
+<span id="whSaveWhy" class="hint" style="margin:0">주소를 입력하세요</span>
+</div>
+<div id="whStatus" class="msg" role="status" aria-live="polite" hidden></div>
+<div class="log" id="whLog" aria-label="이벤트 로그"></div>
+</div>
+<pre><code>const PRIVATE = [/^localhost$/, /\.local$/, /^127\./, /^10\./, /^192\.168\./, /^172\.(1[6-9]|2\d|3[01])\./, /^\[?::1\]?$/];
+function checkWebhook(raw) {
+  const clean = raw.trim().replace(/^[&lt;"']+|[&gt;"']+$/g, '');           // 붙여넣기 잡음
+  const url = URL.parse?.(clean) ?? (() =&gt; { try { return new URL(clean) } catch { return null } })();
+  if (!url) return { ok: false, issues: ['URL 형식이 아니에요'], suggest: /^[\w.-]+\.\w+/.test(clean) ? 'https://' + clean : null };
+  const issues = [];
+  if (url.protocol !== 'https:') issues.push('https만 받을 수 있어요');
+  if (url.username || url.password) issues.push('주소에 아이디·비밀번호를 넣지 마세요');
+  if (PRIVATE.some(r =&gt; r.test(url.hostname))) issues.push('외부에서 접근할 수 없는 주소예요');
+  url.hash = '';                                                          // 서버로 안 가는 부분은 버림
+  return { ok: issues.length === 0, issues, normalized: url.href };       // href: 호스트 소문자·기본 포트 제거
+}</code></pre>
+<div class="note">입력값이 바뀌면 이전 테스트 결과는 무효 — "테스트 통과 = 지금 칸에 있는 이 주소"를 보장하려고 저장 버튼 조건을 <em>정규화된 값</em>에 묶습니다. 사설 IP 차단은 UX용 조기 경고이고, SSRF(서버가 내부망으로 요청을 보내게 만드는 공격) 방어는 반드시 서버에서 DNS 해석 후 다시 합니다.</div>
+</section>
+
+<!-- 3. rounding -->
+<section class="card" id="rounding">
+<h2>Intl.NumberFormat roundingMode·roundingIncrement — 10원 절사 표시를 toFixed 없이, 단 계산은 따로 <span class="tag">🌀 트렌드·개념</span></h2>
+<p class="lead">ES2023 NumberFormat v3로 들어온 옵션입니다. <code>roundingMode</code>는 반올림 방향 9종, <code>roundingIncrement</code>는 "몇 단위로 맞출지"(1·2·5·10·20·25·50·100…)를 정합니다. 숫자 → 문자열 <b>표시</b>에만 쓰고, 금액 계산 자체는 정수 연산으로 따로 합니다.</p>
+<div class="demo">
+<div id="rdSup" class="sup"></div>
+<div class="rd-ctl">
+<div class="field"><label class="lbl" for="rdVal">값</label><input id="rdVal" class="inp" type="text" inputmode="decimal" value="-12345.5"></div>
+<div class="field"><label class="lbl" for="rdMode">roundingMode</label>
+<select id="rdMode" class="inp">
+<option>halfExpand</option><option>trunc</option><option>floor</option><option>ceil</option><option>expand</option><option>halfTrunc</option><option>halfFloor</option><option>halfCeil</option><option>halfEven</option>
+</select></div>
+<div class="field"><label class="lbl" for="rdInc">roundingIncrement (원 단위)</label>
+<select id="rdInc" class="inp"><option value="1">1</option><option value="10" selected>10</option><option value="100">100</option><option value="1000">1000</option></select></div>
+</div>
+<div class="rd-out" id="rdOut" aria-live="polite">—</div>
+<div class="hint" id="rdCode"></div>
+<div class="tbl-scroll">
+<table class="cmp" id="rdTbl" aria-describedby="rdTblCap"><caption class="sr-only" id="rdTblCap">값별 반올림 모드 비교</caption></table>
+</div>
+<p class="cap">노란 칸 = <code>Math.round</code>와 결과가 다른 곳. <code>Math.round(-2.5)</code>는 −2, Intl 기본 halfExpand는 −3(0에서 먼 쪽). 환불 같은 음수에서 floor와 trunc도 갈립니다.</p>
+<div class="row" style="margin-top:10px"><button class="btn ghost sm" id="rdErr" type="button">함정 실행: increment만 주기</button></div>
+<div class="log" id="rdLog" aria-label="실행 결과"></div>
+</div>
+<pre><code>// 표시: 10원 미만 절사 (KRW 통화 스타일은 소수 자릿수가 0이라 바로 동작)
+const krw10 = new Intl.NumberFormat('ko-KR', {
+  style: 'currency', currency: 'KRW', roundingIncrement: 10, roundingMode: 'trunc',
+});
+krw10.format(12345);  // "₩12,340"
+
+// 함정: decimal 스타일은 기본 maximumFractionDigits가 3 → increment와 같이 쓰면 RangeError
+new Intl.NumberFormat('ko-KR', { roundingIncrement: 10 });            // ❌ RangeError
+new Intl.NumberFormat('ko-KR', { maximumFractionDigits: 0, roundingIncrement: 10 }); // ✅
+
+// 계산은 정수로, 규칙을 이름 붙여서 — 표시용 포맷터 결과를 다시 Number로 파싱하지 않는다
+const truncTo = (won, unit) =&gt; Math.trunc(won / unit) * unit;</code></pre>
+<div class="note">지원 여부는 <code>'roundingMode' in new Intl.NumberFormat().resolvedOptions()</code>로 감지합니다. 미지원 환경은 옵션을 조용히 무시하고 기본 반올림으로 찍기 때문에(추정 — 알 수 없는 옵션은 무시되는 게 Intl 관례), 금액이 1원이라도 달라지면 안 되는 화면은 감지 후 폴백 함수를 쓰세요.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-18 (수) · self-contained · ?embed=points|webhook|rounding · ?theme=dark</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const logTo=(el,msg)=>{const d=document.createElement('div');d.textContent=msg;el.append(d);el.scrollTop=el.scrollHeight};
+const won=n=>n.toLocaleString('ko-KR')+'원';
+const P=n=>n.toLocaleString('ko-KR')+'P';
+
+/* ===== 1. points ===== */
+const ORDER=32500,UNIT=10,MINHOLD=1000;
+let bal=12345,used=0;
+const inp=$('#ptInput'),msg=$('#ptMsg'),ptLog=$('#ptLog');
+const minPay=()=>$('#minPayPol').checked?1000:0;
+function limit(){
+  if(bal<MINHOLD)return{usable:false,max:0,reason:`${P(MINHOLD)}부터 쓸 수 있어요 (보유 ${P(bal)})`};
+  const cap=Math.min(bal,Math.max(0,ORDER-minPay()));
+  return{usable:true,max:Math.floor(cap/UNIT)*UNIT};
+}
+function showMsg(t,kind='info'){if(!t){msg.hidden=true;msg.textContent='';return}msg.hidden=false;msg.className='msg '+kind;msg.textContent=t}
+function renderLimit(){
+  const l=limit();$('#ptBal').textContent=P(bal);
+  if(!l.usable){
+    inp.disabled=true;inp.value='';used=0;$('#ptAll').setAttribute('aria-disabled','true');
+    $('#ptMax').textContent='사용 불가';showMsg(l.reason,'warn');
+  }else{
+    inp.disabled=false;$('#ptAll').removeAttribute('aria-disabled');
+    $('#ptMax').textContent=P(l.max);
+    if(used>l.max){used=l.max;inp.value=used?used.toLocaleString('ko-KR'):'';showMsg(`정책이 바뀌어 최대 ${P(l.max)}로 맞췄어요`,'info')}
+    else if(msg.classList.contains('warn'))showMsg('');
+  }
+  renderSum();
+}
+let sumT;
+function renderSum(){
+  const total=ORDER-used;
+  $('#sPt').textContent='−'+won(used);$('#sTotal').textContent=won(total);
+  $('#sEarn').textContent=`적립 예정 ${P(Math.floor(total*0.01))} (최종 결제 금액의 1%, 예시 정책)`;
+  const zero=total===0;
+  $('#pmSet').disabled=zero;$('#zeroMsg').hidden=!zero;
+  $('#payBtn').textContent=zero?`적립금 ${P(used)}로 결제하기`:`${won(total)} 결제하기`;
+  clearTimeout(sumT);sumT=setTimeout(()=>{$('#sumLive').textContent=`최종 결제 금액 ${won(total)}`},500);
+}
+inp.addEventListener('input',()=>{
+  const digits=inp.value.replace(/[^\d]/g,'').replace(/^0+(?=\d)/,'');
+  inp.value=digits?Number(digits).toLocaleString('ko-KR'):'';
+  showMsg('');
+});
+function settle(src){
+  const l=limit();if(!l.usable)return;
+  const n=Number(inp.value.replace(/[^\d]/g,''))||0;let v=n,m='';
+  if(n>l.max){v=l.max;m=`입력한 ${P(n)} 대신 최대 ${P(l.max)}로 맞췄어요`+(n>bal?' (보유보다 많아요)':minPay()?' (최소 1,000원은 카드 결제)':' (주문 금액까지만)')}
+  else if(n%UNIT){v=Math.floor(n/UNIT)*UNIT;m=`10P 단위로 써요 — ${P(n-v)}는 남겨 둘게요`}
+  used=v;inp.value=v?v.toLocaleString('ko-KR'):'';
+  inp.removeAttribute('aria-invalid');showMsg(m,'info');
+  logTo(ptLog,`${src}: 입력 ${P(n)} → 사용 ${P(v)}${m?' · 안내 표시':''}`);
+  renderSum();
+}
+inp.addEventListener('blur',()=>settle('blur'));
+inp.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();settle('Enter')}});
+$('#ptAll').addEventListener('click',()=>{
+  const l=limit();if(!l.usable){logTo(ptLog,'전액 사용: 비활성 — '+l.reason);inp.focus();return}
+  const on=used===l.max&&used>0;
+  used=on?0:l.max;inp.value=used?used.toLocaleString('ko-KR'):'';
+  $('#ptAll').textContent=on?'전액 사용':'사용 취소';
+  showMsg(on?'':`이번 주문 최대 ${P(l.max)}를 적용했어요`,'info');
+  logTo(ptLog,on?'전액 사용 취소 → 0P':`전액 사용 → ${P(l.max)} (보유 ${P(bal)} 중)`);renderSum();
+});
+inp.addEventListener('input',()=>{$('#ptAll').textContent='전액 사용'});
+$$('#points .scen button').forEach(b=>b.addEventListener('click',()=>{
+  $$('#points .scen button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  bal=+b.dataset.bal;used=0;inp.value='';$('#ptAll').textContent='전액 사용';showMsg('');
+  logTo(ptLog,`시나리오: 보유 ${P(bal)}`);renderLimit();
+}));
+$('#minPayPol').addEventListener('change',()=>{logTo(ptLog,'정책: 최소 결제금액 '+(minPay()?'1,000원':'없음'));renderLimit()});
+$('#payBtn').addEventListener('click',()=>logTo(ptLog,`결제 요청: 적립금 ${P(used)} + ${won(ORDER-used)} — 서버가 같은 한도 공식으로 재검증`));
+renderLimit();
+
+/* ===== 2. webhook ===== */
+const PRIVATE=[/^localhost$/i,/\.local$/i,/^127\./,/^10\./,/^192\.168\./,/^172\.(1[6-9]|2\d|3[01])\./,/^\[?::1\]?$/,/^0\.0\.0\.0$/];
+const parseURL=s=>{if(URL.parse)return URL.parse(s);try{return new URL(s)}catch{return null}};
+const wh=$('#whInput'),whLog=$('#whLog');
+let state={normalized:null,ok:false},tested=null,testing=false;
+function check(raw){
+  const clean=raw.trim().replace(/^[<"'\s]+|[>"'\s]+$/g,'');
+  const res={clean,items:[],ok:false,normalized:null,suggest:null};
+  if(!clean)return res;
+  const url=/^[a-z][a-z\d+.-]*:\/\//i.test(clean)?parseURL(clean):null;
+  if(!url){
+    res.items.push(['bad','URL 형식이 아니에요 — https://로 시작해야 해요']);
+    if(/^[\w-]+(\.[\w-]+)+(:\d+)?(\/.*)?$/.test(clean))res.suggest='https://'+clean;
+    return res;
+  }
+  const https=url.protocol==='https:';
+  res.items.push(https?['ok','https 사용']:['bad',`${url.protocol.replace(':','')}는 받을 수 없어요 — https만`]);
+  if(!https&&url.protocol==='http:'){const u=new URL(url.href);u.protocol='https:';res.suggest=u.href}
+  if(url.username||url.password)res.items.push(['bad','주소에 아이디·비밀번호가 들어 있어요 — 인증은 서명 헤더로 합니다']);
+  const priv=PRIVATE.some(r=>r.test(url.hostname));
+  res.items.push(priv?['bad',`${url.hostname}은(는) 외부 서버에서 접근할 수 없는 주소예요`]:['ok','외부 접근 가능한 호스트로 보임 (최종 판정은 서버)']);
+  if(url.hash)res.items.push(['warn','# 뒷부분은 서버로 전송되지 않아 지웠어요']);
+  url.hash='';
+  res.normalized=url.href;
+  res.ok=res.items.every(i=>i[0]!=='bad');
+  return res;
+}
+function render(fromPaste){
+  const r=check(wh.value);
+  if(fromPaste&&r.clean!==wh.value){logTo(whLog,`붙여넣기 정리: "${wh.value}" → "${r.clean}"`);wh.value=r.clean}
+  const ul=$('#whChecks');ul.innerHTML='';
+  r.items.forEach(([k,t])=>{const li=document.createElement('li');li.className=k;li.innerHTML=`<span class="ic" aria-hidden="true">${k==='ok'?'✓':k==='warn'?'!':'✕'}</span><span></span>`;li.lastChild.textContent=(k==='bad'?'문제: ':k==='warn'?'참고: ':'')+t;ul.append(li)});
+  wh.setAttribute('aria-invalid',r.items.some(i=>i[0]==='bad')?'true':'false');
+  const nm=$('#whNorm');
+  if(r.normalized&&r.normalized!==r.clean){nm.hidden=false;nm.textContent='저장될 값: '+r.normalized}else nm.hidden=true;
+  const fx=$('#whFix');fx.innerHTML='';fx.hidden=!r.suggest;
+  if(r.suggest){const b=document.createElement('button');b.className='btn ghost sm';b.type='button';b.textContent=`${r.suggest} 로 바꿀까요?`;b.addEventListener('click',()=>{wh.value=r.suggest;logTo(whLog,'제안 적용: '+r.suggest);render();wh.focus()});fx.append(b)}
+  if(state.normalized!==r.normalized&&tested){tested=null;showStatus('');logTo(whLog,'주소가 바뀌어 이전 테스트 결과를 무효로 했어요')}
+  state=r;updateBtns();
+}
+function updateBtns(){
+  const canTest=state.ok&&!testing,canSave=canTest&&tested===state.normalized;
+  $('#whTest').setAttribute('aria-disabled',String(!canTest));
+  $('#whSave').setAttribute('aria-disabled',String(!canSave));
+  $('#whSaveWhy').textContent=!wh.value.trim()?'주소를 입력하세요':!state.ok?'문제를 먼저 고쳐 주세요':testing?'테스트 중…':canSave?'테스트 통과 — 저장할 수 있어요':'테스트 전송이 성공해야 저장돼요';
+}
+function showStatus(t,k){const s=$('#whStatus');if(!t){s.hidden=true;return}s.hidden=false;s.className='msg '+k;s.textContent=t}
+let pasting=false;
+wh.addEventListener('paste',()=>{pasting=true});
+wh.addEventListener('input',()=>{render(pasting);pasting=false});
+$$('#webhook .samples button').forEach(b=>b.addEventListener('click',()=>{wh.value=b.dataset.s;logTo(whLog,`예시 붙여넣기: "${b.dataset.s}"`);render(true);wh.focus()}));
+$('#whTest').addEventListener('click',()=>{
+  if($('#whTest').getAttribute('aria-disabled')==='true'){showStatus(state.ok?'테스트 중이에요':'주소 문제를 먼저 고쳐 주세요','warn');return}
+  testing=true;updateBtns();const target=state.normalized,host=new URL(target).hostname,t0=performance.now();
+  showStatus('테스트 이벤트(payment.test) 보내는 중…','info');logTo(whLog,'POST '+target);
+  const slow=host.startsWith('slow'),fail=host.startsWith('fail');
+  setTimeout(()=>{
+    testing=false;
+    if(target!==state.normalized){logTo(whLog,'응답 도착했지만 그사이 주소가 바뀌어 버림');updateBtns();return}
+    const ms=Math.round(performance.now()-t0);
+    if(slow){showStatus('10초 안에 응답이 없어요 — 서버가 먼저 200을 돌려주고 처리는 나중에 하도록 바꿔 주세요','bad');logTo(whLog,'⏱ timeout')}
+    else if(fail){showStatus(`서버가 500을 돌려줬어요 (${ms}ms) — 응답 본문 앞부분: "Internal Server Error"`,'bad');logTo(whLog,'✕ 500')}
+    else{tested=target;showStatus(`200 OK · ${ms}ms — 이 주소로 저장할 수 있어요`,'ok');logTo(whLog,'✓ 200')}
+    updateBtns();
+  },slow?2500:900);
+});
+$('#whSave').addEventListener('click',()=>{
+  if($('#whSave').getAttribute('aria-disabled')==='true'){showStatus($('#whSaveWhy').textContent,'warn');return}
+  showStatus('저장했어요: '+state.normalized,'ok');logTo(whLog,'저장 → '+state.normalized);
+});
+render();
+
+/* ===== 3. rounding ===== */
+const sup='roundingMode' in new Intl.NumberFormat().resolvedOptions();
+const sp=$('#rdSup');sp.className='sup '+(sup?'yes':'no');sp.textContent=sup?'✓ 이 브라우저는 roundingMode/roundingIncrement를 지원합니다':'⚠ 이 브라우저는 roundingMode 미지원 — 아래 결과가 모두 기본 반올림으로 나올 수 있어요';
+const MODES=['halfExpand','halfEven','trunc','floor','ceil'];
+const BASE=[2.5,-2.5,1.5,-1.5];
+const fmt=(v,mode,inc)=>new Intl.NumberFormat('ko-KR',{maximumFractionDigits:0,roundingIncrement:inc,roundingMode:mode}).format(v);
+function rd(){
+  const v=Number($('#rdVal').value.replace(/,/g,'')),mode=$('#rdMode').value,inc=+$('#rdInc').value;
+  if(!isFinite(v)){$('#rdOut').textContent='숫자를 입력하세요';return}
+  $('#rdOut').textContent=fmt(v,mode,inc);
+  $('#rdCode').innerHTML='';$('#rdCode').append(Object.assign(document.createElement('code'),{textContent:`new Intl.NumberFormat('ko-KR',{maximumFractionDigits:0, roundingIncrement:${inc}, roundingMode:'${mode}'}).format(${v})`}));
+  const t=$('#rdTbl');t.querySelectorAll('tr').forEach(r=>r.remove());
+  const head=document.createElement('tr');head.innerHTML=`<th scope="col">값 (increment ${inc})</th><th scope="col">Math.round</th>`+MODES.map(m=>`<th scope="col">${m}</th>`).join('');t.append(head);
+  [...BASE.map(b=>b*inc),12345,-12345].forEach(x=>{
+    const tr=document.createElement('tr');const mr=Math.round(x/inc)*inc;
+    tr.innerHTML=`<th scope="row">${x.toLocaleString('ko-KR')}</th><td>${mr.toLocaleString('ko-KR')}</td>`+MODES.map(m=>{const f=fmt(x,m,inc);const d=Number(f.replace(/,/g,'').replace('−','-'))!==mr;return `<td class="${d?'diff':''}">${f}</td>`}).join('');
+    t.append(tr);
+  });
+}
+['#rdVal','#rdMode','#rdInc'].forEach(s=>$(s).addEventListener('input',rd));
+$('#rdErr').addEventListener('click',()=>{
+  try{new Intl.NumberFormat('ko-KR',{roundingIncrement:10}).format(12345);logTo($('#rdLog'),'에러 없이 실행됨 (이 브라우저는 검사를 하지 않거나 옵션 미지원)')}
+  catch(e){logTo($('#rdLog'),`${e.name}: ${e.message}\n→ decimal 기본 maximumFractionDigits(3)와 minimumFractionDigits(0)가 달라서. 둘을 같게(보통 0) 맞추세요.`)}
+});
+rd();
+})();
+</script>
+</body>
+</html>
