@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Design Inspiration Daily — 2026-11-20 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06);--bar:#6366f1;--bar-neg:#dc2626}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none;--bar:#818cf8;--bar-neg:#f87171}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.note a{color:var(--brand)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+.chk{display:flex;gap:8px;align-items:flex-start;font-size:.86rem;padding:3px 0;cursor:pointer}
+.chk input{margin-top:5px}
+.opts{display:flex;flex-wrap:wrap;gap:4px 18px;margin-bottom:10px}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap.long{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. data bar table ===== */
+.tbl-scroll{overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+table.db{border-collapse:collapse;width:100%;min-width:620px;font-size:.88rem}
+table.db caption{text-align:left;padding:10px 12px 0;font-weight:700;font-size:.86rem}
+table.db th,table.db td{padding:8px 12px;border-bottom:1px solid var(--border);text-align:left;white-space:nowrap}
+table.db thead th{font-size:.78rem;color:var(--muted);font-weight:700}
+table.db tbody tr:last-child td{border-bottom:0}
+table.db .r{text-align:right}
+.sortbtn{all:unset;cursor:pointer;display:inline-flex;gap:4px;align-items:center;border-radius:6px;padding:2px 4px}
+.sortbtn:focus-visible{outline:3px solid var(--ring)}
+.sortbtn .ar{font-size:.7rem;opacity:.5}
+th[aria-sort] .sortbtn .ar{opacity:1;color:var(--brand)}
+.num{font-variant-numeric:tabular-nums;display:inline-block;min-width:96px;text-align:right}
+.bcell{display:flex;align-items:center;gap:10px}
+.track{position:relative;flex:1;min-width:120px;height:12px;border-radius:3px;background:linear-gradient(var(--border),var(--border)) no-repeat}
+.track.pos{background-size:100% 1px;background-position:0 50%}
+.track i{position:absolute;top:0;bottom:0;left:0;width:calc(var(--w,0)*1%);background:var(--bar);border-radius:2px;transition:width .35s ease}
+/* diverging */
+.track.div{background:none;flex:none;width:220px}
+.track.div::before{content:"";position:absolute;left:50%;top:-4px;bottom:-4px;width:2px;background:var(--muted);opacity:.6}
+.track.div i{left:auto;right:auto}
+.track.div i.p{left:50%;width:calc(var(--w,0)*.5%)}
+.track.div i.n{right:50%;width:calc(var(--w,0)*.5%);background:var(--bar-neg);background-image:repeating-linear-gradient(135deg,transparent 0 3px,rgba(255,255,255,.35) 3px 5px)}
+/* bad: overlay text on bar */
+.bad-cell{position:relative;height:22px;min-width:180px;border-radius:3px;overflow:hidden}
+.bad-cell i{position:absolute;inset:0 auto 0 0;width:calc(var(--w,0)*1%);background:var(--bar)}
+.bad-cell span{position:relative;padding:0 6px;line-height:22px;color:#fff;font-weight:600}
+.neg-txt{color:var(--bad);font-weight:700}
+.axisnote{font-size:.76rem;color:var(--muted);margin-top:6px}
+
+/* ===== 2. payment done ===== */
+.pd-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;align-items:start}
+@media (max-width:760px){.pd-grid{grid-template-columns:1fr}}
+.screen{background:var(--surface);border:1px solid var(--border);border-radius:14px;min-height:430px;display:flex;flex-direction:column;overflow:hidden}
+.urlbar{display:flex;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--border);background:var(--surface-2);font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--muted)}
+.urlbar .u{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:3px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.urlbar button{cursor:pointer;border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:2px 8px;font-size:12px}
+.pg{padding:22px 20px;flex:1}
+.pg h3{margin:0 0 4px;font-size:1.25rem}
+.pg h3:focus{outline:none}
+.pg h3:focus-visible{outline:3px solid var(--ring)}
+.big{font-size:1.9rem;font-weight:800;font-variant-numeric:tabular-nums;margin:6px 0 14px}
+.icon-ok,.icon-wait{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.3rem;margin-bottom:10px}
+.icon-ok{background:var(--ok-soft);color:var(--ok)}.icon-wait{background:var(--warn-soft);color:var(--warn)}
+dl.kv{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0 0 16px;font-size:.9rem}
+dl.kv dt{color:var(--muted)}dl.kv dd{margin:0;font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.warnbox{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:.86rem;margin:0 0 14px}
+.badbox{background:var(--bad-soft);color:var(--bad);border-radius:10px;padding:10px 12px;font-size:.86rem;margin:0 0 14px}
+.stack{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:.82rem}
+.stack ol{margin:6px 0 0;padding-left:20px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem}
+.stack li.cur{color:var(--brand);font-weight:700}
+.spinner{width:28px;height:28px;border-radius:50%;border:3px solid var(--border);border-top-color:var(--brand);animation:spin .8s linear infinite;margin:30px auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ===== 3. relative time ===== */
+.rt-ctrl{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:12px}
+.rt-ctrl label{font-size:.82rem;color:var(--muted);display:grid;gap:4px}
+.rt-ctrl select,.rt-ctrl input[type=range]{width:100%}
+.rt-ctrl select{padding:6px 8px;border-radius:8px;border:1px solid var(--border);background:var(--surface)}
+.nowbox{font-size:.86rem;margin-bottom:10px}
+.nowbox b{font-variant-numeric:tabular-nums}
+.rt-list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--border);border-radius:12px}
+.rt-list li{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:9px 12px;border-bottom:1px solid var(--border);font-size:.88rem}
+.rt-list li:last-child{border-bottom:0}
+.rt-list time{font-variant-numeric:tabular-nums;font-weight:600;text-decoration:underline dotted;text-underline-offset:3px;cursor:help}
+.rt-list .naive{color:var(--muted);font-size:.78rem;font-variant-numeric:tabular-nums;min-width:110px;text-align:right}
+.rt-list .naive.diff{color:var(--bad);font-weight:700}
+.rt-head{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;padding:0 12px 4px;font-size:.74rem;color:var(--muted);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Design Inspiration Daily</h1>
+    <div class="date">2026-11-20 (금) · 데이터·테이블 / 피드백·상태 / 트렌드</div>
+  </div>
+  <button id="themeBtn" class="toggle" type="button" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+  <a href="#databar">📊 표 안 막대</a>
+  <a href="#done">🔔 결제 완료 화면</a>
+  <a href="#reltime">🌀 Intl.RelativeTimeFormat</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<section class="card" id="databar" aria-labelledby="h-databar">
+<h2 id="h-databar">표 안 막대 — 숫자는 막대 밖에 두고, 축은 필터해도 고정, 음수는 0에서 반대로 <span class="tag">📊 데이터·테이블·차트</span></h2>
+<p class="lead">가맹점별 매출 표에 셀 안 막대(데이터 바)를 넣으면 "누가 큰지"가 한눈에 보입니다. 다만 막대 위에 숫자를 겹치면 읽기 어렵고, 필터할 때마다 막대 길이 기준이 바뀌면 같은 금액이 다르게 보이며, 환불이 더 큰 가맹점(음수)을 길이로만 그리면 오해를 부릅니다.</p>
+
+<div class="demo">
+  <p class="demo-title">라이브 — 정렬·필터·옵션을 바꿔 보세요</p>
+  <div class="opts" role="group" aria-label="표시 옵션">
+    <label class="chk"><input type="checkbox" id="dbFix" checked> 축을 전체 데이터 기준으로 고정</label>
+    <label class="chk"><input type="checkbox" id="dbFilter"> 매출 1천만 원 미만만 보기</label>
+    <label class="chk"><input type="checkbox" id="dbBad"> 나쁜 예: 숫자를 막대 위에 겹치고 음수를 길이로만</label>
+  </div>
+  <div class="tbl-scroll">
+  <table class="db" id="dbTable">
+    <caption>11월 가맹점별 매출 (단위: 원)</caption>
+    <thead><tr>
+      <th scope="col" data-k="name"><button class="sortbtn" type="button">가맹점 <span class="ar" aria-hidden="true">↕</span></button></th>
+      <th scope="col" class="r" data-k="gross"><button class="sortbtn" type="button">총매출 <span class="ar" aria-hidden="true">↕</span></button></th>
+      <th scope="col" data-k="share"><button class="sortbtn" type="button">비중 <span class="ar" aria-hidden="true">↕</span></button></th>
+      <th scope="col" data-k="net"><button class="sortbtn" type="button">순매출(환불 차감) <span class="ar" aria-hidden="true">↕</span></button></th>
+    </tr></thead>
+    <tbody id="dbBody"></tbody>
+  </table>
+  </div>
+  <p class="axisnote" id="dbAxis"></p>
+  <p class="sr-only" aria-live="polite" id="dbLive"></p>
+  <p class="cap">✔ 숫자는 고정폭 숫자(tabular-nums)로 오른쪽 정렬, 막대는 그 옆 별도 칸 — 막대는 <code>aria-hidden</code>이라 낭독기는 숫자만 읽습니다.</p>
+  <p class="cap">✔ "축 고정"을 끄고 필터를 켜 보세요. 가장 큰 행이 다시 100%가 되어 작은 가맹점이 갑자기 커 보입니다.</p>
+  <p class="cap">✔ 순매출은 가운데 0선에서 좌우로 갈라지는 발산형(diverging) 막대 — 음수는 빨강 + 빗금 + 숫자 앞 −기호까지, 색 하나에 기대지 않습니다.</p>
+</div>
+<pre><code>&lt;td class="r"&gt;&lt;span class="num"&gt;12,840,000&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;
+  &lt;div class="bcell"&gt;
+    &lt;span class="num"&gt;24.1%&lt;/span&gt;
+    &lt;span class="track" aria-hidden="true"&gt;&lt;i style="--w:24.1"&gt;&lt;/i&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/td&gt;
+
+/* 축: 화면에 보이는 행이 아니라 '전체' 최대값 기준 */
+const max = Math.max(...ALL.map(r =&gt; Math.abs(r.net)));   // 필터 전 데이터
+const w = Math.abs(r.net) / max * 100;                    // 0~100
+cell.innerHTML = r.net &lt; 0
+  ? `&lt;i class="n" style="--w:${w}"&gt;&lt;/i&gt;`   // 0선 왼쪽으로
+  : `&lt;i class="p" style="--w:${w}"&gt;&lt;/i&gt;`;  // 0선 오른쪽으로
+
+.num   { font-variant-numeric: tabular-nums; text-align: right; }
+.track.div::before { /* 0 기준선 */ left: 50%; width: 2px; }
+.track.div i.p { left: 50%;  width: calc(var(--w) * .5%); }
+.track.div i.n { right: 50%; width: calc(var(--w) * .5%); }</code></pre>
+<div class="note">막대 기준(최대값)을 "전체"로 둘지 "보이는 행"으로 둘지는 질문에 달렸습니다. "전체 중 어디쯤인가"가 궁금하면 고정, "이 중에서 누가 큰가"만 보면 재계산이 맞습니다. 어느 쪽이든 <b>표 아래에 기준을 글로 적어 두는 것</b>이 핵심입니다(위의 회색 문구).</div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="card" id="done" aria-labelledby="h-done">
+<h2 id="h-done">결제 완료 화면 — 무엇이 끝났는지 먼저, 뒤로가기·새로고침이 다시 결제를 부르지 않게 <span class="tag">🔔 피드백·상태</span></h2>
+<p class="lead">완료 화면은 "축하 애니메이션"보다 <b>금액·수단·승인번호</b>와 <b>다음 행동</b>이 먼저입니다. 그리고 이 화면에서 뒤로가기를 누르면 결제 페이지가 다시 열리고, 새로고침하면 결과가 날아가거나 요청이 다시 가는 문제가 흔합니다.</p>
+
+<div class="demo">
+  <p class="demo-title">라이브 — 결제 → 완료 후 ◀ 뒤로 / ⟳ 새로고침을 눌러 보세요</p>
+  <div class="opts" role="group" aria-label="구현 방식">
+    <label class="chk"><input type="checkbox" id="pdReplace" checked> 완료 페이지로 갈 때 history <code>replace</code></label>
+    <label class="chk"><input type="checkbox" id="pdGet" checked> 완료 페이지는 주문번호로 다시 조회(GET)</label>
+    <label class="chk">결과 유형
+      <select id="pdType" style="margin-left:6px;padding:2px 6px;border-radius:6px;border:1px solid var(--border);background:var(--surface)">
+        <option value="card">카드 승인 완료</option>
+        <option value="vbank">가상계좌 발급(입금 대기)</option>
+      </select></label>
+  </div>
+  <div class="pd-grid">
+    <div class="screen">
+      <div class="urlbar">
+        <button type="button" id="pdBack" aria-label="뒤로 가기">◀</button>
+        <button type="button" id="pdReload" aria-label="새로고침">⟳</button>
+        <span class="u" id="pdUrl">/order/A20261120-0042</span>
+      </div>
+      <div class="pg" id="pdPage" tabindex="-1"></div>
+    </div>
+    <div>
+      <div class="stack"><b>방문 기록(history)</b><ol id="pdStack"></ol></div>
+      <div class="log" id="pdLog" aria-live="off"></div>
+      <button class="btn ghost sm" type="button" id="pdReset" style="margin-top:8px">처음부터</button>
+    </div>
+  </div>
+  <p class="cap">✔ 도착하면 제목(h3)으로 포커스 이동 + 문서 제목 변경 — 낭독기 사용자에게 "결제가 완료되었습니다"가 들립니다. 색·체크 아이콘 없이도 글로 결과가 보입니다.</p>
+  <p class="cap">✔ 가상계좌는 "완료"가 아닙니다. 입금 기한과 계좌를 먼저, 제목도 "입금하면 결제가 끝나요".</p>
+  <p class="cap">✔ 몇 초 뒤 홈으로 자동 이동하지 않습니다 — 승인번호를 적거나 캡처할 시간을 빼앗지 않기 위해서.</p>
+</div>
+<pre><code>// 결제 승인 성공 후 (Next.js App Router)
+const router = useRouter();
+router.replace(`/orders/${orderId}/complete`);   // push ❌ — 뒤로가기가 결제 화면으로 가지 않게
+
+// app/orders/[orderId]/complete/page.tsx — 결과를 '조회'로 그린다
+export default async function Complete({ params }: { params: { orderId: string } }) {
+  const order = await getOrder(params.orderId);      // GET, 몇 번 새로고침해도 안전
+  if (order.status === 'WAITING_FOR_DEPOSIT') return &lt;DepositWaiting order={order} /&gt;;
+  if (order.status !== 'PAID') redirect(`/orders/${params.orderId}`);
+  return &lt;PaidSummary order={order} /&gt;;
+}
+
+// 결제 화면 진입 시: 이미 결제된 주문이면 버튼 대신 안내
+if (order.status === 'PAID') return &lt;AlreadyPaid orderId={order.id} /&gt;;
+
+// 완료 화면 도착 시
+useEffect(() =&gt; { document.title = '결제 완료 — paysable'; headingRef.current?.focus(); }, []);</code></pre>
+<div class="note">핵심은 "결과는 URL로 다시 조회할 수 있어야 한다"입니다. POST 응답을 화면 상태(state)에만 담아 두면 새로고침 한 번에 사라지고, 브라우저가 "양식 다시 제출"을 묻는 구조라면 같은 요청이 다시 갈 수 있습니다(서버 멱등키가 마지막 방어선 — 10/19 항목 참고). 이 패턴은 흔히 PRG(Post/Redirect/Get: 처리 후 결과 페이지로 보내고 그 페이지는 GET으로 그린다)라고 부릅니다.</div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="card" id="reltime" aria-labelledby="h-reltime">
+<h2 id="h-reltime">Intl.RelativeTimeFormat — "3분 전·어제"를 직접 문자열로 만들지 않고, 기준은 달력 날짜로 <span class="tag">🌀 트렌드·개념</span></h2>
+<p class="lead"><code>Intl.RelativeTimeFormat</code>은 "3분 전", "2시간 후", "어제" 같은 상대 시각 문구를 언어에 맞게 만들어 주는 내장 API입니다. 다만 <b>어떤 단위로 보여줄지</b>는 직접 정해야 하고, "어제"를 24시간 차이로 계산하면 자정 근처에서 틀립니다.</p>
+
+<div class="demo">
+  <p class="demo-title">라이브 — 지금 시각을 움직이고 옵션을 바꿔 보세요</p>
+  <div class="rt-ctrl">
+    <label>numeric
+      <select id="rtNumeric"><option value="auto">auto (어제·오늘·지금)</option><option value="always">always (1일 전·0초 후)</option></select></label>
+    <label>style
+      <select id="rtStyle"><option value="long">long</option><option value="short">short</option><option value="narrow">narrow</option></select></label>
+    <label>며칠부터 날짜로 바꿀까
+      <select id="rtCut"><option value="7">7일 이상 → 날짜</option><option value="2">2일 이상 → 날짜</option><option value="9999">항상 상대 시각</option></select></label>
+    <label>지금 시각 앞당기기: <span id="rtShiftTxt">+0분</span>
+      <input type="range" id="rtShift" min="0" max="1440" step="10" value="0" aria-describedby="rtShiftTxt"></label>
+  </div>
+  <p class="nowbox">기준 "지금"(KST): <b id="rtNow"></b></p>
+  <div class="rt-head"><span>이벤트</span><span>상대 표시 (달력 기준)</span><span>24시간 나눗셈</span></div>
+  <ul class="rt-list" id="rtList"></ul>
+  <p class="cap">✔ 상대 표시에 마우스를 올리면 정확한 시각(KST)이 보입니다 — <code>&lt;time datetime&gt;</code>에 원본 ISO 시각을 같이 담았습니다.</p>
+  <p class="cap">✔ 빨간 오른쪽 칸: 경과 시간을 24시간으로 나눠 "1일 전/어제"를 고르면 생기는 오차. 오늘 00:20에 그제 22:20 이벤트를 보면 26시간 차이라 나눗셈으로는 "어제"(1일)지만, 달력으로는 이틀 전(그저께)입니다. 6시간 미만은 두 방식 모두 "n시간 전".</p>
+  <p class="cap long">✔ 목록 문구는 30초마다 다시 계산되지만 aria-live가 아닙니다 — 낭독기가 몇십 초마다 "4분 전"을 떠들지 않게.</p>
+</div>
+<pre><code>const rtf = new Intl.RelativeTimeFormat('ko', { numeric: 'auto' });
+rtf.format(-3, 'minute');  // "3분 전"
+rtf.format(-1, 'day');     // "어제"   (numeric:'always'면 "1일 전")
+rtf.format(0, 'second');   // "지금"
+
+const KST = 9 * 3600_000, DAY = 86_400_000;
+const dayKey = (t: number) =&gt; Math.floor((t + KST) / DAY);   // KST 달력 날짜 번호
+
+export function relTime(t: number, now = Date.now(), cutDays = 7) {
+  const s = Math.round((t - now) / 1000);                  // 음수 = 과거
+  if (Math.abs(s) &lt; 45)    return rtf.format(0, 'second');
+  if (Math.abs(s) &lt; 3600)  return rtf.format(Math.round(s / 60), 'minute');
+  const dDays = dayKey(t) - dayKey(now);                   // ← 24h 나눗셈이 아니라 달력 차이
+  if (dDays === 0 || Math.abs(s) &lt; 6 * 3600) return rtf.format(Math.round(s / 3600), 'hour');
+  if (Math.abs(dDays) &lt; cutDays) return rtf.format(dDays, 'day');
+  return new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', dateStyle: 'medium' }).format(t);
+}
+
+// 마크업: 상대 문구 + 기계가 읽는 원본 + 정확한 시각 툴팁
+// &lt;time datetime="2026-11-19T14:50:00Z" title="2026. 11. 19. 오후 11:50"&gt;어제&lt;/time&gt;</code></pre>
+<div class="note">지원: <code>Intl.RelativeTimeFormat</code>은 2020년 무렵부터 주요 브라우저 모두 지원(Baseline 널리 사용 가능)으로 알려져 있습니다(<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat">MDN</a>). 위 출력 문자열은 Node 22(ICU) 기준으로 직접 확인했고, 브라우저 ICU 버전에 따라 short/narrow 문구가 조금 다를 수 있습니다. SSR(서버 렌더링)에서 "3분 전"을 그리면 하이드레이션 시점과 어긋나 경고가 날 수 있어, 처음엔 절대 시각을 그리고 클라이언트에서 상대 시각으로 바꾸는 방법이 안전합니다.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-20 (금) · self-contained · ?embed=databar|done|reltime · ?theme=dark</div>
+</div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const logTo=(el,msg)=>{const d=document.createElement('div');d.textContent=msg;el.append(d);el.scrollTop=el.scrollHeight;while(el.children.length>40)el.firstChild.remove()};
+const nf=new Intl.NumberFormat('ko-KR');
+const signed=n=>(n<0?'−':'')+nf.format(Math.abs(n));
+
+/* ===== 1. data bar ===== */
+const ALL=[
+  {name:'한빛카페 본점',gross:30960000,ref:1240000},
+  {name:'모아마트 역삼',gross:12840000,ref:410000},
+  {name:'하루필라테스',gross:8120000,ref:9350000},
+  {name:'초록꽃집',gross:3410000,ref:120000},
+  {name:'스테이 판교',gross:21500000,ref:2600000},
+  {name:'달빛서점',gross:1980000,ref:2310000},
+  {name:'오늘세탁',gross:5240000,ref:0}
+].map(r=>({...r,net:r.gross-r.ref}));
+const TOTAL=ALL.reduce((a,r)=>a+r.gross,0);
+ALL.forEach(r=>r.share=r.gross/TOTAL*100);
+let sortK='gross',sortDir=-1;
+const dbBody=$('#dbBody');
+function renderDB(){
+  const fix=$('#dbFix').checked,filt=$('#dbFilter').checked,bad=$('#dbBad').checked;
+  let rows=ALL.filter(r=>!filt||r.gross<10000000);
+  rows.sort((a,b)=>sortK==='name'?a.name.localeCompare(b.name,'ko')*sortDir:(a[sortK]-b[sortK])*sortDir);
+  const base=fix?ALL:rows;
+  const maxShare=Math.max(...base.map(r=>r.share));
+  const maxNet=Math.max(...base.map(r=>Math.abs(r.net)));
+  dbBody.innerHTML=rows.map(r=>{
+    const ws=(r.share/maxShare*100).toFixed(1),wn=(Math.abs(r.net)/maxNet*100).toFixed(1);
+    const share=r.share.toFixed(1)+'%';
+    let shareCell,netCell;
+    if(bad){
+      shareCell=`<div class="bad-cell"><i style="--w:${ws}"></i><span>${share}</span></div>`;
+      netCell=`<div class="bad-cell"><i style="--w:${wn}"></i><span>${nf.format(Math.abs(r.net))}</span></div>`;
+    }else{
+      shareCell=`<div class="bcell"><span class="num" style="min-width:52px">${share}</span><span class="track pos" aria-hidden="true"><i style="--w:${ws}"></i></span></div>`;
+      netCell=`<div class="bcell"><span class="num ${r.net<0?'neg-txt':''}">${signed(r.net)}${r.net<0?' <span class="sr-only">(환불 초과)</span>':''}</span><span class="track div" aria-hidden="true"><i class="${r.net<0?'n':'p'}" style="--w:${wn}"></i></span></div>`;
+    }
+    return `<tr><th scope="row" style="font-weight:600">${r.name}</th><td class="r"><span class="num">${nf.format(r.gross)}</span></td><td>${shareCell}</td><td>${netCell}</td></tr>`;
+  }).join('');
+  $('#dbAxis').textContent=`막대 기준: ${fix?'전체 가맹점':'지금 보이는 행'} 중 최대값 = 100% · 비중은 전체 총매출 ${nf.format(TOTAL)}원 대비 · 순매출 막대는 가운데가 0원`;
+  $$('#dbTable thead th').forEach(th=>{
+    if(th.dataset.k===sortK){th.setAttribute('aria-sort',sortDir<0?'descending':'ascending');th.querySelector('.ar').textContent=sortDir<0?'▼':'▲'}
+    else{th.removeAttribute('aria-sort');th.querySelector('.ar').textContent='↕'}
+  });
+}
+$$('#dbTable thead th').forEach(th=>th.querySelector('button').addEventListener('click',()=>{
+  const k=th.dataset.k;
+  if(k===sortK)sortDir*=-1;else{sortK=k;sortDir=k==='name'?1:-1}
+  renderDB();
+  $('#dbLive').textContent=`${th.textContent.replace(/[↕▲▼]/g,'').trim()} 기준 ${sortDir<0?'내림차순':'오름차순'} 정렬됨`;
+}));
+['#dbFix','#dbFilter','#dbBad'].forEach(id=>$(id).addEventListener('change',()=>{renderDB();if(id==='#dbFilter')$('#dbLive').textContent=$('#dbFilter').checked?'1천만 원 미만 가맹점만 표시':'전체 가맹점 표시'}));
+renderDB();
+
+/* ===== 2. payment done ===== */
+const ORDER={id:'A20261120-0042',amount:48900,approval:'30718842',card:'신한카드 (1234)',at:'2026. 11. 20. 오전 08:42'};
+let stack,idx,paid,lastResult;
+const page=$('#pdPage'),pdLog=$('#pdLog');
+const URLS={cart:'/cart',checkout:`/order/${ORDER.id}/checkout`,done:`/order/${ORDER.id}/complete`};
+function pdReset(){stack=['cart','checkout'];idx=1;paid=false;lastResult=null;pdLog.innerHTML='';show(false);logTo(pdLog,'결제 화면 진입')}
+function renderStack(){$('#pdStack').innerHTML=stack.map((s,i)=>`<li class="${i===idx?'cur':''}">${URLS[s]}${i===idx?'  ← 현재':''}</li>`).join('')}
+function show(focus){
+  const s=stack[idx];$('#pdUrl').textContent=URLS[s];renderStack();
+  if(s==='cart'){page.innerHTML=`<h3 tabindex="-1">장바구니</h3><p>상품 2개 · ${nf.format(ORDER.amount)}원</p><button class="btn" type="button" id="toCheckout">주문하기</button>`;
+    $('#toCheckout').onclick=()=>{stack=stack.slice(0,idx+1);stack.push('checkout');idx++;show(true);logTo(pdLog,'push → 결제 화면')};}
+  else if(s==='checkout'){
+    if(paid&&$('#pdGet').checked){page.innerHTML=`<h3 tabindex="-1">이미 결제된 주문이에요</h3><p style="color:var(--muted)">주문 ${ORDER.id}은 결제가 끝났습니다. 다시 결제하지 않아도 됩니다.</p><button class="btn" type="button" id="toDone">결제 내역 보기</button>`;
+      $('#toDone').onclick=()=>{stack[idx]='done';show(true);logTo(pdLog,'replace → 완료 화면')};}
+    else{
+      page.innerHTML=`${paid?'<div class="badbox" role="alert">⚠ 이미 결제한 주문인데 결제 버튼이 다시 살아 있습니다 — 누르면 중복 결제 위험</div>':''}<h3 tabindex="-1">결제하기</h3><dl class="kv"><dt>주문번호</dt><dd>${ORDER.id}</dd><dt>결제 금액</dt><dd><b>${nf.format(ORDER.amount)}원</b></dd><dt>결제 수단</dt><dd>${$('#pdType').value==='card'?ORDER.card:'가상계좌(국민은행)'}</dd></dl><button class="btn" type="button" id="payBtn">${nf.format(ORDER.amount)}원 결제하기</button>`;
+      $('#payBtn').onclick=pay;}
+  }else if(s==='done'){renderDone()}
+  if(focus){const h=page.querySelector('h3');h&&h.focus()}
+}
+function pay(){
+  const b=$('#payBtn');b.disabled=true;b.textContent='결제 처리 중…';b.setAttribute('aria-busy','true');
+  logTo(pdLog,'POST /payments (멱등키 포함)');
+  setTimeout(()=>{
+    if(paid)logTo(pdLog,'⚠ 같은 주문 두 번째 결제 요청 — 서버 멱등키가 막아야 함');
+    paid=true;lastResult={...ORDER,type:$('#pdType').value};
+    if($('#pdReplace').checked){stack[idx]='done';logTo(pdLog,'replace → 완료 화면 (결제 화면이 기록에서 빠짐)')}
+    else{stack=stack.slice(0,idx+1);stack.push('done');idx++;logTo(pdLog,'push → 완료 화면 (결제 화면이 기록에 남음)')}
+    show(true);
+  },900);
+}
+function renderDone(){
+  if(!lastResult){page.innerHTML=`<h3 tabindex="-1">표시할 결제 정보가 없어요</h3><div class="badbox">새로고침으로 화면 상태가 사라졌습니다. 사용자는 결제가 됐는지 알 수 없어 다시 결제를 시도하기 쉽습니다.</div><button class="btn ghost" type="button" disabled>?</button>`;document.title='결제 정보 없음';return}
+  const r=lastResult;
+  if(r.type==='vbank'){
+    page.innerHTML=`<div class="icon-wait" aria-hidden="true">!</div><h3 tabindex="-1">입금하면 결제가 끝나요</h3><p style="margin:0;color:var(--muted)">아직 결제가 완료되지 않았습니다.</p><div class="big">${nf.format(r.amount)}원</div><div class="warnbox"><b>입금 기한: 2026. 11. 21. 오후 11:59까지</b><br>기한이 지나면 주문이 자동 취소됩니다.</div><dl class="kv"><dt>입금 계좌</dt><dd>국민은행 123401-04-567890 <button class="btn ghost sm" type="button" data-copy="12340104567890">계좌번호 복사</button></dd><dt>예금주</dt><dd>(주)에이블유니온</dd><dt>주문번호</dt><dd>${r.id}</dd></dl><div class="actions"><button class="btn" type="button">주문 상세 보기</button><button class="btn ghost" type="button">쇼핑 계속하기</button></div>`;
+    document.title='입금 대기 — 주문 '+r.id;
+  }else{
+    page.innerHTML=`<div class="icon-ok" aria-hidden="true">✓</div><h3 tabindex="-1">결제가 완료되었습니다</h3><div class="big">${nf.format(r.amount)}원</div><dl class="kv"><dt>결제 수단</dt><dd>${r.card} · 일시불</dd><dt>승인번호</dt><dd>${r.approval} <button class="btn ghost sm" type="button" data-copy="${r.approval}">복사</button></dd><dt>결제 일시</dt><dd>${r.at}</dd><dt>주문번호</dt><dd>${r.id}</dd></dl><div class="actions"><button class="btn" type="button">영수증 보기</button><button class="btn ghost" type="button">주문 상세</button><button class="btn ghost" type="button">홈으로</button></div>`;
+    document.title='결제 완료 — 주문 '+r.id;
+  }
+  page.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>{const t=b.textContent;navigator.clipboard?.writeText(b.dataset.copy).catch(()=>{});b.textContent='복사됨';logTo(pdLog,'복사: '+b.dataset.copy);setTimeout(()=>b.textContent=t,1500)});
+}
+$('#pdBack').onclick=()=>{if(idx===0){logTo(pdLog,'더 뒤로 갈 기록 없음');return}idx--;logTo(pdLog,'◀ 뒤로 → '+URLS[stack[idx]]);show(true)};
+$('#pdReload').onclick=()=>{
+  const s=stack[idx];
+  if(s==='done'&&!$('#pdGet').checked){lastResult=null;logTo(pdLog,'⟳ 새로고침 — 화면 state만 있던 결제 결과 소실')}
+  else if(s==='done')logTo(pdLog,'⟳ 새로고침 — GET /orders/'+ORDER.id+' 로 다시 조회 (안전)');
+  else logTo(pdLog,'⟳ 새로고침 → '+URLS[s]);
+  show(true);
+};
+$('#pdReset').onclick=pdReset;
+['#pdReplace','#pdGet','#pdType'].forEach(id=>$(id).addEventListener('change',pdReset));
+pdReset();
+
+/* ===== 3. relative time ===== */
+const KST=9*3600e3,DAY=864e5,MIN=6e4;
+const BASE=Date.UTC(2026,10,19,15,20); // KST 2026-11-20 00:20
+const EVENTS=[
+  {t:BASE-20*1000,name:'결제 승인 · 12,000원'},
+  {t:BASE-4*MIN,name:'환불 요청 접수'},
+  {t:BASE-30*MIN,name:'결제 승인 · 48,900원 (어제 23:50)'},
+  {t:BASE-14*3600e3,name:'정산 완료 (어제 10:20)'},
+  {t:BASE-3*3600e3,name:'정산 계좌 변경'},
+  {t:BASE-26*3600e3,name:'수수료율 변경 안내'},
+  {t:BASE-3*DAY-5*3600e3,name:'월간 리포트 생성'},
+  {t:BASE-12*DAY,name:'가맹점 가입'},
+  {t:BASE+2*DAY+6*3600e3,name:'다음 정산 예정'}
+];
+const dayKey=t=>Math.floor((t+KST)/DAY);
+const absF=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',dateStyle:'medium',timeStyle:'short'});
+const dateF=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',dateStyle:'medium'});
+function relTime(rtf,t,now,cut){
+  const s=Math.round((t-now)/1000);
+  if(Math.abs(s)<45)return rtf.format(0,'second');
+  if(Math.abs(s)<3600)return rtf.format(Math.round(s/60),'minute');
+  const d=dayKey(t)-dayKey(now);
+  if(d===0||Math.abs(s)<6*3600)return rtf.format(Math.round(s/3600),'hour');
+  if(Math.abs(d)<cut)return rtf.format(d,'day');
+  return dateF.format(t);
+}
+function naive(rtf,t,now){ // 24h 나눗셈 방식 (비교용)
+  const s=Math.round((t-now)/1000);
+  if(Math.abs(s)<45)return rtf.format(0,'second');
+  if(Math.abs(s)<3600)return rtf.format(Math.round(s/60),'minute');
+  const d=Math.trunc(s/86400);
+  if(d===0||Math.abs(s)<6*3600)return rtf.format(Math.round(s/3600),'hour');
+  return rtf.format(d,'day');
+}
+function renderRT(){
+  const rtf=new Intl.RelativeTimeFormat('ko',{numeric:$('#rtNumeric').value,style:$('#rtStyle').value});
+  const shift=+$('#rtShift').value,now=BASE+shift*MIN,cut=+$('#rtCut').value;
+  $('#rtShiftTxt').textContent=shift<60?`+${shift}분`:`+${Math.floor(shift/60)}시간 ${shift%60}분`;
+  $('#rtNow').textContent=absF.format(now);
+  $('#rtList').innerHTML=EVENTS.map(e=>{
+    const a=relTime(rtf,e.t,now,cut),n=naive(rtf,e.t,now);
+    const cmp=relTime(rtf,e.t,now,9999);
+    const diff=cmp!==n;
+    return `<li><span>${e.name}</span><time datetime="${new Date(e.t).toISOString()}" title="${absF.format(e.t)} (KST)">${a}</time><span class="naive ${diff?'diff':''}">${n}${diff?' ✗':''}</span></li>`;
+  }).join('');
+}
+['#rtNumeric','#rtStyle','#rtCut','#rtShift'].forEach(id=>$(id).addEventListener('input',renderRT));
+renderRT();
+let rtTimer=setInterval(renderRT,30000);
+document.addEventListener('visibilitychange',()=>{clearInterval(rtTimer);if(!document.hidden){renderRT();rtTimer=setInterval(renderRT,30000)}});
+})();
+</script>
+</body>
+</html>
