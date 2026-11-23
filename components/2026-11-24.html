@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Design Inspiration Daily — 2026-11-24 (화)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06);--scrim:rgba(15,18,25,.45)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none;--scrim:rgba(0,0,0,.6)}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.note a{color:var(--brand)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:disabled,.btn[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.col h4{margin:0 0 6px;font-size:.9rem}
+.field{display:grid;gap:4px;margin:0 0 12px}
+.field label,.field legend{font-size:.84rem;font-weight:600}
+.field input,.field select,.field textarea{padding:9px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface);width:100%}
+.field textarea{min-height:70px;resize:vertical}
+.hint{font-size:.78rem;color:var(--muted);min-height:1.2em}
+.hint.bad{color:var(--bad);font-weight:600}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap.long{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. stepped dialog ===== */
+dialog{border:1px solid var(--border);border-radius:16px;background:var(--surface);color:var(--text);padding:0;width:min(440px,calc(100vw - 32px));box-shadow:0 20px 50px rgba(0,0,0,.25)}
+dialog::backdrop{background:var(--scrim)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)}
+.dlg-head .ttl{font-weight:700}
+.x{all:unset;cursor:pointer;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;font-size:1.1rem;color:var(--muted)}
+.x:hover{background:var(--surface-2)}.x:focus-visible{outline:3px solid var(--ring)}
+.dlg-body{padding:16px 18px}
+.dlg-foot{display:flex;justify-content:space-between;gap:8px;padding:12px 18px 16px;border-top:1px solid var(--border)}
+.dlg-foot .r{display:flex;gap:8px;margin-left:auto}
+.stepper{display:flex;gap:6px;list-style:none;margin:0 0 14px;padding:0;font-size:.76rem;color:var(--muted)}
+.stepper li{flex:1;border-top:4px solid var(--border);padding-top:4px}
+.stepper li.done{border-color:var(--ok)}.stepper li[aria-current=step]{border-color:var(--brand);color:var(--text);font-weight:700}
+.step h3{margin:0 0 10px;font-size:1rem}
+.step h3:focus{outline:none}.step h3:focus-visible{outline:3px solid var(--ring)}
+.step{animation:stepIn .22s ease}
+.step.back{animation-name:stepBack}
+@keyframes stepIn{from{opacity:0;transform:translateX(14px)}}
+@keyframes stepBack{from{opacity:0;transform:translateX(-14px)}}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:9px 10px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;cursor:pointer;font-size:.88rem}
+.opt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.opt input{margin-top:4px}
+.sumbox{background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:.88rem}
+.sumbox div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+.sumbox b{font-variant-numeric:tabular-nums}
+.guard{background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:10px 12px;font-size:.84rem;margin:0 18px 12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.guard b{color:inherit}
+.bad-dlg{width:min(360px,calc(100vw - 48px))}
+.bad-dlg.top{width:min(320px,calc(100vw - 64px))}
+
+/* ===== 2. notice banner ===== */
+.app{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.app-nav{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--border);font-weight:700;font-size:.9rem}
+.app-main{padding:14px;font-size:.88rem;display:grid;gap:10px}
+.banner{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-bottom:1px solid var(--border);font-size:.86rem}
+.banner .ico{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:.8rem}
+.banner .msg{flex:1;min-width:0}
+.banner .msg b{display:block}
+.banner .meta{color:inherit;opacity:.85;font-size:.8rem}
+.banner .acts{display:flex;gap:6px;align-items:center;flex:none}
+.banner a{color:inherit;font-weight:600}
+.banner.info{background:var(--brand-soft);color:var(--text)}.banner.info .ico{background:var(--brand);color:var(--brand-ink)}
+.banner.warn{background:var(--warn-soft);color:var(--warn)}.banner.warn .ico{background:var(--warn);color:var(--surface)}
+.banner.crit{background:var(--bad-soft);color:var(--bad)}.banner.crit .ico{background:var(--bad);color:#fff}
+.banner.ok{background:var(--ok-soft);color:var(--ok)}.banner.ok .ico{background:var(--ok);color:var(--surface)}
+.banner .x{width:28px;height:28px;color:inherit}
+.more{all:unset;cursor:pointer;font-size:.78rem;text-decoration:underline;font-weight:600}
+.more:focus-visible{outline:3px solid var(--ring)}
+.paybox{border:1px solid var(--border);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.paybox .why{font-size:.78rem;color:var(--bad);font-weight:600;flex-basis:100%}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.clock{font:12px ui-monospace,Menlo,Consolas,monospace;color:var(--muted)}
+.bad-stack .banner{border-radius:0}
+
+/* ===== 3. scroll-driven ===== */
+.sd-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.sc{height:300px;overflow:auto;border:1px solid var(--border);border-radius:12px;background:var(--surface);position:relative}
+.sc .inner{padding:12px 14px 40px;font-size:.84rem;color:var(--muted)}
+.sc .inner p{margin:0 0 10px}
+.sc .hd{position:sticky;top:0;z-index:2;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 14px;font-weight:700;font-size:.84rem;color:var(--text)}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:var(--brand);transform-origin:0 50%;transform:scaleX(0)}
+.js-prog{transition:transform .05s linear}
+.rv{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;margin:0 0 10px;color:var(--text)}
+.rv small{color:var(--muted)}
+@supports (animation-timeline: scroll()){
+  .css-prog{animation:grow linear both;animation-timeline:--article}
+  .sc.css{scroll-timeline:--article block}
+  .sc.css .rv{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% entry 80%}
+}
+@keyframes grow{to{transform:scaleX(1)}}
+@keyframes reveal{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .35s,transform .35s}
+.js .rv.in{opacity:1;transform:none}
+.js.nomotion .rv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.css-prog,.sc.css .rv{animation:none!important}.css-prog{transform:scaleX(0)}.js .rv{opacity:1;transform:none}}
+.sup{display:grid;gap:6px;font-size:.84rem}
+.sup div{display:flex;justify-content:space-between;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Design Inspiration Daily</h1>
+    <div class="date">2026-11-24 (화) · 오버레이·모달 / 피드백·상태 / 트렌드</div>
+  </div>
+  <button id="themeBtn" class="toggle" type="button" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+  <a href="#steps">🪟 단계형 모달</a>
+  <a href="#notice">🔔 서비스 공지 배너</a>
+  <a href="#sda">🌀 스크롤 기반 애니메이션</a>
+</nav>
+
+<!-- ========== 1 ========== -->
+<section class="card" id="steps" aria-labelledby="h-steps">
+<h2 id="h-steps">단계형 모달 — 모달 위에 모달을 쌓지 말고 한 창 안에서 단계를 바꾸고, 포커스는 새 단계 제목으로 <span class="tag">🪟 오버레이·모달·토스트</span></h2>
+<p class="lead">환불처럼 “금액 고르기 → 사유 → 최종 확인”이 이어지는 일을 모달 여러 개로 쌓으면, Esc 한 번에 어디가 닫히는지·뒤 창의 입력이 살아 있는지 사용자도 낭독기도 헷갈립니다. 하나의 <code>&lt;dialog&gt;</code> 안에서 내용만 바꾸고, 단계 표시·이전 버튼·닫기 확인을 그 안에 둡니다.</p>
+<div class="demo">
+  <p class="demo-title">같은 환불 흐름, 두 가지 구조 (모의 데이터 · 결제 38,000원)</p>
+  <div class="two">
+    <div class="col">
+      <h4>❌ 모달을 쌓는 방식</h4>
+      <p class="cap" style="margin:0 0 10px">“다음”마다 새 dialog를 위에 띄웁니다. 열어서 Esc를 눌러 보세요.</p>
+      <button class="btn ghost" id="badOpen" type="button">환불하기 (쌓기)</button>
+    </div>
+    <div class="col">
+      <h4>✅ 한 창 안에서 단계 전환</h4>
+      <p class="cap" style="margin:0 0 10px">단계가 바뀌면 포커스가 새 단계 제목으로, 이전으로 돌아가도 입력은 유지. 입력 후 닫으면 창 <em>안에서</em> 한 번 확인합니다.</p>
+      <button class="btn" id="goodOpen" type="button">환불하기 (단계형)</button>
+    </div>
+  </div>
+  <div class="log" id="stLog" aria-live="polite" aria-label="동작 기록"></div>
+  <p class="cap">기록은 일부러 화면에 남깁니다. 실제 서비스라면 최종 결과만 알림(토스트·상태 문구)으로 알립니다.</p>
+</div>
+
+<!-- bad dialogs -->
+<dialog id="bad1" class="bad-dlg" aria-labelledby="bad1t">
+  <div class="dlg-head"><span class="ttl" id="bad1t">환불 금액</span><button class="x" type="button" data-close aria-label="닫기">✕</button></div>
+  <div class="dlg-body">
+    <div class="field"><label for="badAmt">환불 금액</label><input id="badAmt" inputmode="numeric" value="38,000"></div>
+  </div>
+  <div class="dlg-foot"><div class="r"><button class="btn" type="button" id="bad1n">다음</button></div></div>
+</dialog>
+<dialog id="bad2" class="bad-dlg" aria-labelledby="bad2t" style="margin-top:22vh">
+  <div class="dlg-head"><span class="ttl" id="bad2t">환불 사유</span><button class="x" type="button" data-close aria-label="닫기">✕</button></div>
+  <div class="dlg-body"><div class="field"><label for="badWhy">사유</label><input id="badWhy" placeholder="예: 고객 단순 변심"></div></div>
+  <div class="dlg-foot"><div class="r"><button class="btn" type="button" id="bad2n">다음</button></div></div>
+</dialog>
+<dialog id="bad3" class="bad-dlg top" aria-labelledby="bad3t" style="margin-top:30vh">
+  <div class="dlg-head"><span class="ttl" id="bad3t">정말 환불할까요?</span></div>
+  <div class="dlg-foot"><div class="r"><button class="btn ghost" type="button" data-close>취소</button><button class="btn danger" type="button" id="bad3n">확인</button></div></div>
+</dialog>
+
+<!-- good dialog -->
+<dialog id="good" aria-labelledby="goodT" aria-describedby="goodDesc">
+  <div class="dlg-head">
+    <span class="ttl" id="goodT">결제 환불</span>
+    <button class="x" type="button" id="goodX" aria-label="환불 창 닫기">✕</button>
+  </div>
+  <p id="goodDesc" class="sr-only">3단계로 진행합니다. 마지막 단계에서 환불하기를 눌러야 실제로 환불됩니다.</p>
+  <div class="guard" id="guard" role="alert" hidden>
+    <span><b>입력한 내용이 사라져요.</b> 환불 창을 닫을까요?</span>
+    <span class="row"><button class="btn ghost sm" type="button" id="gKeep">계속 입력</button><button class="btn sm danger" type="button" id="gDrop">닫기</button></span>
+  </div>
+  <div class="dlg-body">
+    <ol class="stepper" aria-label="진행 단계">
+      <li data-s="0">1. 금액</li><li data-s="1">2. 사유</li><li data-s="2">3. 확인</li>
+    </ol>
+    <div id="stepHost"></div>
+  </div>
+  <div class="dlg-foot">
+    <button class="btn ghost" type="button" id="gPrev">이전</button>
+    <div class="r"><button class="btn" type="button" id="gNext">다음</button></div>
+  </div>
+</dialog>
+
+<pre><code>&lt;dialog id="refund" aria-labelledby="t"&gt;   &lt;!-- 창은 하나 --&gt;
+  &lt;h2 id="t"&gt;결제 환불&lt;/h2&gt;
+  &lt;ol aria-label="진행 단계"&gt;&lt;li aria-current="step"&gt;1. 금액&lt;/li&gt;…&lt;/ol&gt;
+  &lt;section data-step&gt;&lt;h3 tabindex="-1"&gt;환불할 금액을 고르세요&lt;/h3&gt;…&lt;/section&gt;
+&lt;/dialog&gt;
+
+function go(next){
+  state.step = next;                 // 입력값은 state에 — 단계 DOM을 지워도 유지
+  render(state);
+  host.querySelector('h3').focus();  // 새 단계 제목으로 포커스 이동 → 낭독기가 단계를 읽음
+}
+dialog.addEventListener('cancel', e =&gt; {   // Esc
+  if (isDirty(state) &amp;&amp; !confirming) { e.preventDefault(); showInlineGuard(); }
+});</code></pre>
+<div class="note">참고: <a href="https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/">WAI-ARIA APG — Dialog (Modal) 패턴</a> · <a href="https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/dialog">MDN &lt;dialog&gt;</a> · <a href="https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-current">MDN aria-current</a></div>
+</section>
+
+<!-- ========== 2 ========== -->
+<section class="card" id="notice" aria-labelledby="h-notice">
+<h2 id="h-notice">서비스 공지 배너 — 점검 시각은 KST로 못박고, 닫으면 공지 ID로 기억하고, 심각도가 오르면 다시 띄우기 <span class="tag">🔔 피드백·상태(로딩·빈상태·에러)</span></h2>
+<p class="lead">PG 점검·카드사 장애 공지는 “닫기 한 번에 영영 사라짐”과 “닫아도 매번 다시 뜸” 사이에서 균형이 필요합니다. 닫은 기록을 <b>공지 ID + 단계</b>로 남겨 같은 공지는 다시 안 띄우되, 예고→임박→진행 중처럼 상황이 바뀌면 다시 보여줍니다. 결제를 막는 공지면 결제 버튼에도 이유를 붙입니다.</p>
+<div class="demo">
+  <p class="demo-title">시뮬레이션 — 버튼으로 공지 상태를 바꿔 보세요</p>
+  <div class="ctrl" role="group" aria-label="공지 상태 바꾸기">
+    <button class="btn ghost sm" type="button" data-phase="scheduled">① 점검 예고 (내일 새벽)</button>
+    <button class="btn ghost sm" type="button" data-phase="soon">② 점검 30분 전</button>
+    <button class="btn ghost sm" type="button" data-phase="live">③ 점검 진행 중</button>
+    <button class="btn ghost sm" type="button" data-phase="done">④ 점검 종료</button>
+    <button class="btn ghost sm" type="button" id="addCard">+ 카드사 장애 공지 추가</button>
+    <button class="btn ghost sm" type="button" id="resetDis">닫은 기록 지우기</button>
+  </div>
+  <div class="two">
+    <div class="col">
+      <h4>❌ 닫기 = boolean 하나, 공지는 전부 쌓기</h4>
+      <div class="app bad-stack" id="badApp">
+        <div id="badBanners"></div>
+        <div class="app-nav"><span>paysable 관리자</span><span class="clock">—</span></div>
+        <div class="app-main"><div class="paybox"><span>정기결제 수동 청구 · 52,000원</span><button class="btn sm" type="button" id="badPay">청구하기</button></div></div>
+      </div>
+      <p class="cap">“닫음” 한 번 하면 이후 임박·진행 중 공지도 안 보이고, 시각은 “02:00”만 적혀 시간대가 모호합니다.</p>
+    </div>
+    <div class="col">
+      <h4>✅ ID+단계로 기억, 가장 심각한 것 하나만 크게</h4>
+      <div class="app" id="goodApp">
+        <div id="goodBanners" role="region" aria-label="서비스 공지"></div>
+        <div class="app-nav"><span>paysable 관리자</span><span class="clock" id="clock">—</span></div>
+        <div class="app-main">
+          <div class="paybox"><span>정기결제 수동 청구 · 52,000원</span><button class="btn sm" type="button" id="goodPay" aria-describedby="payWhy">청구하기</button><span class="why" id="payWhy"></span></div>
+        </div>
+      </div>
+      <div id="noticeLive" class="sr-only" aria-live="polite"></div>
+      <div id="noticeAlert" class="sr-only" role="alert"></div>
+      <p class="cap">진행 중(결제 차단)은 닫을 수 없고 <code>role="alert"</code>로 한 번 낭독, 예고는 조용히. 종료 공지는 8초 뒤 스스로 접힙니다.</p>
+    </div>
+  </div>
+  <div class="log" id="ntLog" aria-label="동작 기록"></div>
+</div>
+<pre><code>// 닫은 기록: "공지 ID@단계" — 단계가 오르면 키가 달라져 다시 보인다
+const key = n =&gt; `${n.id}@${n.phase}`;
+const dismissed = new Set(JSON.parse(localStorage.getItem('notice:dismissed') ?? '[]'));
+const visible = notices
+  .filter(n =&gt; n.phase !== 'live' ? !dismissed.has(key(n)) : true)   // 결제 차단 중엔 못 닫음
+  .sort((a, b) =&gt; SEVERITY[b.phase] - SEVERITY[a.phase]);          // 가장 심각한 것 먼저
+// 시각은 서버가 준 ISO(UTC) → 표시만 KST로, 시간대 라벨을 붙여서
+new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', month: 'long', day: 'numeric',
+  weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(new Date(n.startsAt));</code></pre>
+<div class="note">참고: <a href="https://www.w3.org/WAI/ARIA/apg/patterns/alert/">WAI-ARIA APG — Alert</a> · <a href="https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Roles/status_role">MDN role=status</a> · <a href="https://www.w3.org/WAI/WCAG22/Understanding/status-messages.html">WCAG 2.2 — 4.1.3 Status Messages</a></div>
+</section>
+
+<!-- ========== 3 ========== -->
+<section class="card" id="sda" aria-labelledby="h-sda">
+<h2 id="h-sda">스크롤 기반 애니메이션 — animation-timeline의 scroll()·view()로 읽기 진행 막대와 등장 효과를 스크롤 리스너 없이 <span class="tag">🌀 트렌드·개념</span></h2>
+<p class="lead">기존엔 <code>scroll</code> 이벤트나 IntersectionObserver로 진행률을 계산해 스타일을 바꿨습니다. 이제 CSS 애니메이션의 “시간축”을 스크롤 위치로 바꿀 수 있습니다. <code>scroll()</code>은 스크롤 컨테이너가 얼마나 내려갔는지, <code>view()</code>는 요소가 화면 안에 얼마나 들어왔는지를 진행도로 씁니다.</p>
+<div class="demo">
+  <p class="demo-title">각 상자를 스크롤해 보세요</p>
+  <div class="sup" id="sdSup" style="margin-bottom:12px"></div>
+  <div class="sd-grid">
+    <div>
+      <div class="sc css" id="scCss" tabindex="0" aria-label="CSS 스크롤 타임라인 예시 글">
+        <div class="hd">정산 안내 (CSS 타임라인)<span class="prog css-prog" aria-hidden="true"></span></div>
+        <div class="inner" id="cssInner"></div>
+      </div>
+      <p class="cap">JS 0줄. 진행 막대 = <code>scroll-timeline</code>, 카드 등장 = <code>view()</code>. 미지원 브라우저에선 막대가 안 보이고 카드는 그냥 보입니다(내용을 숨기지 않음).</p>
+    </div>
+    <div>
+      <div class="sc js" id="scJs" tabindex="0" aria-label="JS 대체 구현 예시 글">
+        <div class="hd">정산 안내 (JS 대체 구현)<span class="prog js-prog" id="jsProg" aria-hidden="true"></span></div>
+        <div class="inner" id="jsInner"></div>
+      </div>
+      <p class="cap">같은 결과를 scroll 리스너 + IntersectionObserver로. 미지원 브라우저용 폴백이 필요하면 이쪽을 <code>@supports not</code> 일 때만 켭니다.</p>
+    </div>
+  </div>
+  <p class="cap long">⚠️ 함정: <code>animation</code> 단축 속성은 <code>animation-timeline</code>을 기본값(auto)으로 되돌립니다. 반드시 <code>animation:</code> 다음 줄에 <code>animation-timeline:</code>을 쓰세요.</p>
+</div>
+<pre><code>@supports (animation-timeline: scroll()) {
+  .article   { scroll-timeline: --article block; }          /* 이 컨테이너의 세로 스크롤을 타임라인으로 */
+  .progress  { animation: grow linear both;                 /* ① 단축 속성 먼저 */
+               animation-timeline: --article; }             /* ② 타임라인은 그 다음 줄 */
+  .card      { animation: reveal linear both;
+               animation-timeline: view();                  /* 요소가 화면에 들어오는 정도 */
+               animation-range: entry 0% entry 80%; }       /* 들어오기 시작~80%까지만 재생 */
+}
+@keyframes grow   { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+@keyframes reveal { from { opacity: 0; translate: 0 16px } }
+@media (prefers-reduced-motion: reduce) { .progress, .card { animation: none } }</code></pre>
+<div class="note">참고: <a href="https://developer.mozilla.org/docs/Web/CSS/Guides/Scroll-driven_animations">MDN — Scroll-driven animations</a> · <a href="https://www.webkit.org/blog/17101/a-guide-to-scroll-driven-animations-with-just-css/">WebKit — A guide to Scroll-driven Animations with just CSS</a> · <a href="https://web-platform-dx.github.io/web-features-explorer/features/scroll-driven-animations">web-features: scroll-driven-animations</a></div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-24 (화) · self-contained · ?embed=steps|notice|sda · ?theme=dark</div>
+</div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR')+'원';
+const mkLog=sel=>m=>{const l=$(sel);l.textContent=(new Date().toLocaleTimeString('ko-KR')+'  '+m+'\n'+l.textContent).slice(0,1800)};
+
+/* ---------- 1. stepped dialog ---------- */
+const slog=mkLog('#stLog');
+// bad: stacked
+const b1=$('#bad1'),b2=$('#bad2'),b3=$('#bad3');
+$('#badOpen').addEventListener('click',()=>{b1.showModal();slog('[쌓기] 창 1 열림')});
+$('#bad1n').addEventListener('click',()=>{b2.showModal();slog('[쌓기] 창 1 위에 창 2 — 뒤 창이 그대로 비쳐 보임')});
+$('#bad2n').addEventListener('click',()=>{b3.showModal();slog('[쌓기] 창 3까지 — 지금 Esc를 누르면 맨 위 하나만 닫혀요')});
+$('#bad3n').addEventListener('click',()=>{[b3,b2,b1].forEach(d=>d.close());slog('[쌓기] 확인 → 세 창을 순서대로 다 닫아야 함. 포커스 복귀 지점이 꼬이기 쉬움')});
+[b1,b2,b3].forEach((d,i)=>{
+  d.querySelectorAll('[data-close]').forEach(x=>x.addEventListener('click',()=>d.close()));
+  d.addEventListener('close',()=>{const open=[b1,b2,b3].filter(x=>x.open).length;if(open)slog('[쌓기] 창 '+(i+1)+'만 닫힘 — 아직 '+open+'개 열려 있음. 이전 단계로 간 건지 취소된 건지 모호')});
+});
+// good: one dialog
+const g=$('#good'),host=$('#stepHost'),prev=$('#gPrev'),next=$('#gNext'),guard=$('#guard');
+const PAID=38000;
+const init=()=>({step:0,mode:'full',part:'',reason:'',memo:'',busy:false});
+let S=init(),opener=null,guarding=false;
+const amount=()=>S.mode==='full'?PAID:Number(String(S.part).replace(/\D/g,''))||0;
+const dirty=()=>S.step>0||S.mode!=='full'||S.part||S.reason||S.memo;
+const REASONS=['고객 단순 변심','상품 불량·오배송','중복 결제','기타'];
+function render(dir){
+  $$('#good .stepper li').forEach((li,i)=>{li.classList.toggle('done',i<S.step);if(i===S.step)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current')});
+  let h='';
+  if(S.step===0){
+    h=`<div class="step${dir<0?' back':''}"><h3 tabindex="-1">1/3 · 환불할 금액을 고르세요</h3>
+      <label class="opt"><input type="radio" name="md" value="full" ${S.mode==='full'?'checked':''}><span><b>전액 환불</b><br><small>${won(PAID)}</small></span></label>
+      <label class="opt"><input type="radio" name="md" value="part" ${S.mode==='part'?'checked':''}><span><b>부분 환불</b><br><small>최대 ${won(PAID)}</small></span></label>
+      <div class="field" ${S.mode==='part'?'':'hidden'}><label for="gPart">부분 환불 금액</label><input id="gPart" inputmode="numeric" autocomplete="off" value="${S.part}" aria-describedby="gPartHint"><span class="hint" id="gPartHint">1원 ~ ${won(PAID)}</span></div></div>`;
+  }else if(S.step===1){
+    h=`<div class="step${dir<0?' back':''}"><h3 tabindex="-1">2/3 · 환불 사유를 고르세요</h3>
+      <fieldset class="field" style="border:0;padding:0;margin:0 0 8px"><legend class="sr-only">환불 사유</legend>
+      ${REASONS.map(r=>`<label class="opt"><input type="radio" name="rs" value="${r}" ${S.reason===r?'checked':''}><span>${r}</span></label>`).join('')}</fieldset>
+      <div class="field"><label for="gMemo">메모 (선택 · 고객에게 보이지 않음)</label><textarea id="gMemo">${S.memo.replace(/</g,'&lt;')}</textarea></div>
+      <span class="hint" id="gRsHint"></span></div>`;
+  }else{
+    h=`<div class="step${dir<0?' back':''}"><h3 tabindex="-1">3/3 · 이대로 환불할까요?</h3>
+      <div class="sumbox"><div><span>결제 금액</span><b>${won(PAID)}</b></div><div><span>환불 금액</span><b>${won(amount())}</b></div><div><span>사유</span><span>${S.reason}</span></div></div>
+      <p class="cap">환불 후에는 되돌릴 수 없어요. 카드사 반영까지 영업일 기준 3~5일 걸릴 수 있어요(모의 문구).</p></div>`;
+  }
+  host.innerHTML=h;
+  prev.hidden=S.step===0;
+  next.textContent=S.step===2?won(amount())+' 환불하기':'다음';
+  next.classList.toggle('danger',S.step===2);
+  bindStep();
+}
+function bindStep(){
+  host.querySelectorAll('input[name=md]').forEach(r=>r.addEventListener('change',e=>{S.mode=e.target.value;const f=host.querySelector('#gPart').closest('.field');f.hidden=S.mode!=='part';if(S.mode==='part')host.querySelector('#gPart').focus()}));
+  const p=host.querySelector('#gPart');if(p)p.addEventListener('input',()=>{const d=p.value.replace(/\D/g,'');p.value=d?Number(d).toLocaleString('ko-KR'):'';S.part=p.value;p.removeAttribute('aria-invalid');$('#gPartHint').className='hint';$('#gPartHint').textContent='1원 ~ '+won(PAID)});
+  host.querySelectorAll('input[name=rs]').forEach(r=>r.addEventListener('change',e=>{S.reason=e.target.value;$('#gRsHint').textContent='';$('#gRsHint').className='hint'}));
+  const m=host.querySelector('#gMemo');if(m)m.addEventListener('input',()=>S.memo=m.value);
+}
+function go(n){const dir=n>S.step?1:-1;S.step=n;render(dir);host.querySelector('h3').focus();slog('[단계형] '+(n+1)+'단계로 — 포커스는 새 단계 제목, 낭독기는 "'+host.querySelector('h3').textContent+'"')}
+next.addEventListener('click',()=>{
+  if(S.busy)return;
+  if(S.step===0){
+    if(S.mode==='part'){const a=amount(),p=host.querySelector('#gPart'),h=$('#gPartHint');
+      if(a<1||a>PAID){p.setAttribute('aria-invalid','true');h.className='hint bad';h.textContent=a>PAID?'결제 금액('+won(PAID)+')보다 많이 환불할 수 없어요':'환불 금액을 입력하세요';p.focus();slog('[단계형] 검증 실패 — 다음 단계로 가지 않고 그 칸으로 포커스');return}}
+    go(1);
+  }else if(S.step===1){
+    if(!S.reason){const h=$('#gRsHint');h.className='hint bad';h.textContent='사유를 하나 골라 주세요';host.querySelector('input[name=rs]').focus();slog('[단계형] 사유 미선택 — 첫 선택지로 포커스');return}
+    go(2);
+  }else{
+    S.busy=true;next.setAttribute('aria-disabled','true');next.textContent='환불 처리 중…';prev.disabled=true;
+    slog('[단계형] 환불 요청 '+won(amount())+' (멱등키 포함, 중복 클릭 잠금)');
+    setTimeout(()=>{const a=amount();guarding=true;g.close('done');slog('[단계형] 완료 → 창 닫고 연 버튼으로 포커스 복귀, 결과는 한 번만 알림: "'+won(a)+' 환불을 요청했어요"')},1100);
+  }
+});
+prev.addEventListener('click',()=>{if(S.step>0)go(S.step-1)});
+function showGuard(){guard.hidden=false;$('#gKeep').focus();slog('[단계형] 입력이 있어 바로 닫지 않음 — 창 위에 새 모달 대신, 창 안 경고 띠로 확인')}
+function tryClose(){if(dirty()&&!S.busy){showGuard();return}guarding=true;g.close('cancel')}
+$('#goodX').addEventListener('click',tryClose);
+g.addEventListener('cancel',e=>{if(S.busy){e.preventDefault();return}if(dirty()&&guard.hidden){e.preventDefault();showGuard()}else if(!guard.hidden){e.preventDefault();hideGuard()}});
+const hideGuard=()=>{guard.hidden=true;host.querySelector('h3').focus();slog('[단계형] 계속 입력 — 입력값 그대로, 제목으로 포커스')};
+$('#gKeep').addEventListener('click',hideGuard);
+$('#gDrop').addEventListener('click',()=>{guarding=true;g.close('cancel');slog('[단계형] 사용자가 확인 후 닫음 — 입력 폐기')});
+g.addEventListener('click',e=>{if(e.target===g)tryClose()});
+g.addEventListener('close',()=>{if(opener)opener.focus();S=init();guard.hidden=true;prev.disabled=false;next.removeAttribute('aria-disabled')});
+$('#goodOpen').addEventListener('click',e=>{opener=e.currentTarget;S=init();guard.hidden=true;render(1);g.showModal();host.querySelector('h3').focus();slog('[단계형] 창 열림 — 1/3단계')});
+
+/* ---------- 2. notice banner ---------- */
+const nlog=mkLog('#ntLog');
+// 모의 "지금": 2026-11-24 13:00 KST 기준, 점검은 다음날 02:00~04:00 KST
+const MAINT={id:'pg-maint-1125',startsAt:'2026-11-24T17:00:00Z',endsAt:'2026-11-24T19:00:00Z'};
+const NOWS={scheduled:'2026-11-24T04:00:00Z',soon:'2026-11-24T16:30:00Z',live:'2026-11-24T17:20:00Z',done:'2026-11-24T19:05:00Z'};
+const SEV={done:1,scheduled:2,soon:3,live:4};
+const fmt=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'long',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+const tfmt=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+const rtf=new Intl.RelativeTimeFormat('ko',{numeric:'auto'});
+let now=new Date(NOWS.scheduled),phase='scheduled',cardIssue=false;
+const dismissed=new Set();let badDismissed=false;
+let doneTimer=null,lastAlertKey='';
+function rel(to){const m=Math.round((new Date(to)-now)/60000);return Math.abs(m)>=60?rtf.format(Math.round(m/60),'hour'):rtf.format(m,'minute')}
+function notices(){
+  const list=[];const when=fmt.format(new Date(MAINT.startsAt))+' ~ '+tfmt.format(new Date(MAINT.endsAt))+' (KST)';
+  if(phase==='scheduled')list.push({id:MAINT.id,phase,cls:'info',ico:'i',t:'PG 정기 점검 예정',m:when+' · '+rel(MAINT.startsAt)+' 시작 · 이 시간엔 카드 결제·환불이 멈춰요',close:true});
+  if(phase==='soon')list.push({id:MAINT.id,phase,cls:'warn',ico:'!',t:'PG 점검이 곧 시작돼요',m:when+' · '+rel(MAINT.startsAt)+' · 진행 중인 청구는 미리 끝내 주세요',close:true});
+  if(phase==='live')list.push({id:MAINT.id,phase,cls:'crit',ico:'!',t:'PG 점검 중 — 카드 결제·환불을 할 수 없어요',m:tfmt.format(new Date(MAINT.endsAt))+' (KST) 종료 예정 · '+rel(MAINT.endsAt),close:false,blocks:true});
+  if(phase==='done')list.push({id:MAINT.id,phase,cls:'ok',ico:'✓',t:'PG 점검이 끝났어요',m:'카드 결제·환불을 다시 쓸 수 있어요',close:true,auto:true});
+  if(cardIssue)list.push({id:'card-x-delay',phase:'soon',cls:'warn',ico:'!',t:'일부 카드사 승인 지연',m:'A카드 승인이 평소보다 늦어요 · '+tfmt.format(now)+' (KST) 기준',close:true});
+  return list;
+}
+function renderGood(){
+  const vis=notices().filter(n=>!n.close||!dismissed.has(n.id+'@'+n.phase)).sort((a,b)=>SEV[b.phase]-SEV[a.phase]||(b.cls==='crit')-(a.cls==='crit'));
+  const host=$('#goodBanners');const expanded=host.dataset.expanded==='1';
+  const shown=expanded?vis:vis.slice(0,1);
+  host.innerHTML=shown.map(n=>`<div class="banner ${n.cls}" data-key="${n.id}@${n.phase}"><span class="ico" aria-hidden="true">${n.ico}</span><div class="msg"><b>${n.t}</b><span class="meta">${n.m}</span>${n.blocks?' <a href="#notice">상태 페이지</a>':''}</div><div class="acts">${n.close?`<button class="x" type="button" aria-label="${n.t} 공지 닫기">✕</button>`:''}</div></div>`).join('')+
+    (vis.length>1?`<div class="banner info" style="padding:6px 14px"><button class="more" type="button" aria-expanded="${expanded}">${expanded?'접기':'공지 '+(vis.length-1)+'개 더 보기'}</button></div>`:'');
+  host.querySelectorAll('.banner .x').forEach(x=>x.addEventListener('click',e=>{const k=e.currentTarget.closest('.banner').dataset.key;dismissed.add(k);nlog('[좋음] 닫음 기록 "'+k+'" 저장 — 같은 단계는 다시 안 뜸');renderGood();$('#goodPay').focus()}));
+  const mb=host.querySelector('.more');if(mb)mb.addEventListener('click',()=>{host.dataset.expanded=expanded?'0':'1';renderGood();host.querySelector('.more').focus()});
+  const blocking=vis.some(n=>n.blocks);const pay=$('#goodPay');
+  pay.setAttribute('aria-disabled',blocking?'true':'false');$('#payWhy').textContent=blocking?'PG 점검 중이라 청구할 수 없어요 · '+tfmt.format(new Date(MAINT.endsAt))+' (KST) 이후 다시 시도':'';
+  const top=vis[0];
+  if(top&&top.blocks&&lastAlertKey!==top.id+'@'+top.phase){lastAlertKey=top.id+'@'+top.phase;$('#noticeAlert').textContent='';setTimeout(()=>$('#noticeAlert').textContent=top.t,50)}
+  clearTimeout(doneTimer);
+  if(top&&top.auto){$('#noticeLive').textContent=top.t;doneTimer=setTimeout(()=>{dismissed.add(top.id+'@'+top.phase);nlog('[좋음] 종료 공지 8초 후 자동으로 접힘');renderGood()},8000)}
+}
+function renderBad(){
+  const host=$('#badBanners');
+  if(badDismissed){host.innerHTML='';}
+  else{
+    const items=[];
+    if(phase==='scheduled')items.push(['info','점검 안내','02:00~04:00 점검 예정']);
+    if(phase==='soon'){items.push(['info','점검 안내','02:00~04:00 점검 예정']);items.push(['warn','점검 임박','곧 점검이 시작됩니다'])}
+    if(phase==='live'){items.push(['info','점검 안내','02:00~04:00 점검 예정']);items.push(['warn','점검 임박','곧 점검이 시작됩니다']);items.push(['crit','점검 중','결제 불가'])}
+    if(phase==='done')items.push(['ok','점검 종료','정상화되었습니다']);
+    if(cardIssue)items.push(['warn','카드사 지연','A카드 승인 지연']);
+    host.innerHTML=items.map(([c,t,m])=>`<div class="banner ${c}"><span class="ico" aria-hidden="true">!</span><div class="msg"><b>${t}</b><span class="meta">${m}</span></div><div class="acts"><button class="x" type="button" aria-label="닫기">✕</button></div></div>`).join('');
+    host.querySelectorAll('.x').forEach(x=>x.addEventListener('click',()=>{badDismissed=true;nlog('[나쁨] closed=true 하나 저장 → 이후 모든 공지가 영영 숨음');renderBad()}));
+  }
+  $('#badApp .clock').textContent=$('#clock').textContent;
+}
+function setPhase(p){phase=p;now=new Date(NOWS[p]);$('#clock').textContent='지금 '+fmt.format(now)+' KST';nlog('상태 → '+({scheduled:'점검 예고',soon:'30분 전',live:'진행 중',done:'종료'})[p]);renderGood();renderBad()}
+$$('[data-phase]').forEach(b=>b.addEventListener('click',()=>setPhase(b.dataset.phase)));
+$('#addCard').addEventListener('click',()=>{cardIssue=!cardIssue;$('#addCard').textContent=cardIssue?'− 카드사 장애 공지 제거':'+ 카드사 장애 공지 추가';nlog(cardIssue?'카드사 공지 추가 — 왼쪽은 띠가 하나 더 쌓이고, 오른쪽은 "1개 더 보기"로 접힘':'카드사 공지 제거');renderGood();renderBad()});
+$('#resetDis').addEventListener('click',()=>{dismissed.clear();badDismissed=false;lastAlertKey='';nlog('닫은 기록 초기화');renderGood();renderBad()});
+$('#goodPay').addEventListener('click',e=>{if(e.currentTarget.getAttribute('aria-disabled')==='true'){nlog('[좋음] 차단 상태에서 클릭 → 버튼 옆 이유 문구로 안내 (버튼은 포커스 가능하게 유지)');return}nlog('[좋음] 청구 요청 '+won(52000))});
+$('#badPay').addEventListener('click',()=>nlog(phase==='live'?'[나쁨] 점검 중인데 버튼이 살아 있음 → 서버 에러로 처음 알게 됨':'[나쁨] 청구 요청'));
+setPhase('scheduled');
+
+/* ---------- 3. scroll-driven ---------- */
+const supported=window.CSS&&CSS.supports('animation-timeline: scroll()');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+$('#sdSup').innerHTML=`<div><span>이 브라우저의 <code>animation-timeline: scroll()</code></span><span class="pill ${supported?'ok':'warn'}">${supported?'지원':'미지원 → 왼쪽 막대 없음'}</span></div><div><span><code>prefers-reduced-motion</code></span><span class="pill ${reduce?'warn':'mut'}">${reduce?'줄이기 켜짐 → 효과 끔':'기본'}</span></div>`;
+const items=[['입금 예정일','카드 결제는 영업일 기준 D+2에 입금돼요(모의).'],['수수료','결제 수단별 수수료는 정산 상세에서 확인해요.'],['보류','분쟁·차지백이 걸린 건은 정산이 보류될 수 있어요.'],['환불 차감','환불은 다음 정산금에서 차감돼요.'],['세금계산서','매월 10일까지 발행돼요(모의).'],['계좌 변경','정산 계좌 변경은 예금주 확인 후 반영돼요.'],['문의','정산 문의는 거래 ID와 함께 보내 주세요.']];
+const filler='<p>스크롤 기반 애니메이션은 “시간이 흐르면 재생”이 아니라 “스크롤한 만큼 재생”입니다. 위로 올리면 거꾸로 감깁니다.</p>';
+const body=filler+items.map(([t,d])=>`<div class="rv"><b>${t}</b><br><small>${d}</small></div>`).join('')+filler;
+$('#cssInner').innerHTML=body;$('#jsInner').innerHTML=body;
+const sj=$('#scJs'),jp=$('#jsProg');
+if(reduce)sj.classList.add('nomotion');
+let raf=0;sj.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const p=sj.scrollTop/(sj.scrollHeight-sj.clientHeight||1);jp.style.transform='scaleX('+p.toFixed(3)+')'})},{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{root:sj,threshold:.3});
+sj.querySelectorAll('.rv').forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
