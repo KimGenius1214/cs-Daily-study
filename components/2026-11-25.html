@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Design Inspiration Daily — 2026-11-25 (수)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06);--scrim:rgba(15,18,25,.45)}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none;--scrim:rgba(0,0,0,.6)}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.note a{color:var(--brand)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:disabled,.btn[aria-disabled=true]{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.danger{background:var(--bad);border-color:var(--bad);color:#fff}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:130px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface);border:1px solid var(--border)}.pill.info{color:var(--brand);background:var(--brand-soft)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px}
+.col h4{margin:0 0 6px;font-size:.9rem}
+.field{display:grid;gap:4px;margin:0 0 12px}
+.field label,.field legend{font-size:.84rem;font-weight:600}
+.field input,.field select,.field textarea{padding:9px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface);width:100%}
+.field textarea{min-height:70px;resize:vertical}
+.hint{font-size:.78rem;color:var(--muted);min-height:1.2em}
+.hint.bad{color:var(--bad);font-weight:600}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap.long{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. DCC ===== */
+.scen{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
+.scen button[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.pay{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px}
+.pay .what{font-size:.82rem;color:var(--muted)}
+.amt-big{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums;margin:2px 0 10px}
+fieldset.opts{border:0;margin:0;padding:0}
+fieldset.opts legend{font-size:.86rem;font-weight:700;margin-bottom:4px;padding:0}
+.opt{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:start;border:1.5px solid var(--border);border-radius:12px;padding:11px 12px;margin:8px 0;cursor:pointer;background:var(--surface)}
+.opt:has(input:checked){border-color:var(--brand);background:var(--brand-soft)}
+.opt:has(input:focus-visible){outline:3px solid var(--ring);outline-offset:2px}
+.opt input{margin:5px 0 0;accent-color:var(--brand);width:18px;height:18px}
+.opt .nm{font-weight:700}
+.opt .v{font-weight:800;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.opt small{display:block;color:var(--muted);font-size:.78rem;line-height:1.45}
+.kv{display:grid;grid-template-columns:1fr auto;gap:3px 12px;font-size:.82rem;margin:10px 0 0;padding:10px 0 0;border-top:1px dashed var(--border)}
+.kv dt{color:var(--muted)}.kv dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.warnline{font-size:.8rem;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:7px 10px;margin-top:8px}
+.paybtn{width:100%;margin-top:12px;padding:12px 16px;font-size:1rem}
+.bigcta{width:100%;padding:13px;font-size:1.02rem;margin:4px 0 6px}
+.tiny{font-size:.72rem;color:var(--muted)}
+.tiny a,.tiny button{color:var(--muted);font-size:.72rem;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+
+/* ===== 2. keyboard ===== */
+.kgrid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,.8fr);gap:16px}
+@media (max-width:720px){.kgrid{grid-template-columns:1fr}}
+.kf .field input{font-variant-numeric:tabular-nums}
+.kf .field .meta{font:11px/1.4 ui-monospace,Menlo,Consolas,monospace;color:var(--muted)}
+.phone{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:12px;position:sticky;top:12px;align-self:start}
+.phone .info{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface-2);border-radius:10px;padding:8px 10px;margin-bottom:10px;min-height:74px}
+.phone .info b{font-family:system-ui,sans-serif}
+.kb{display:grid;gap:5px;background:var(--surface-2);border-radius:12px;padding:8px}
+.kb .r{display:flex;gap:5px;justify-content:center}
+.kb button{flex:1;min-width:0;min-height:38px;border-radius:7px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-weight:600;padding:0 2px;font-size:.9rem}
+.kb button.ent{flex:2;background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.kb button.fn{background:var(--surface-2)}
+.kb .empty{color:var(--muted);text-align:center;font-size:.85rem;padding:26px 6px}
+.badnum{display:grid;gap:6px}
+.readout{white-space:pre-wrap;font:12px/1.55 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.ktable{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:12px}
+.ktable th,.ktable td{border-bottom:1px solid var(--border);padding:6px 8px;text-align:left;vertical-align:top}
+.ktable th{color:var(--muted);font-weight:600}
+.ktable code{font-size:.76rem}
+
+/* ===== 3. cross-document view transitions ===== */
+@media (prefers-reduced-motion:no-preference){
+  @view-transition{navigation:auto}
+}
+::view-transition-group(*){animation-duration:.38s;animation-timing-function:cubic-bezier(.2,.8,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.25s}
+.mlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.mcard{display:block;text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.mcard:hover{border-color:var(--brand)}
+.mcard .thumb{height:84px}
+.mcard .t{padding:9px 12px 11px}
+.mcard .t b{display:block}.mcard .t small{color:var(--muted)}
+.g-a{background:linear-gradient(135deg,#f59e0b,#ef4444)}.g-b{background:linear-gradient(135deg,#10b981,#0ea5e9)}.g-c{background:linear-gradient(135deg,#a855f7,#ec4899)}
+.mdetail{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.mdetail .hero{height:150px;display:flex;align-items:flex-end;padding:14px 16px}
+.mdetail .hero h3{margin:0;color:#fff;font-size:1.35rem;text-shadow:0 1px 6px rgba(0,0,0,.3)}
+.mdetail .bd{padding:14px 16px}
+.mdetail .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 12px}
+.mdetail .stats div{background:var(--surface-2);border-radius:10px;padding:8px 10px;font-size:.8rem;color:var(--muted)}
+.mdetail .stats b{display:block;color:var(--text);font-size:1rem;font-variant-numeric:tabular-nums}
+.backlink{display:inline-flex;gap:6px;align-items:center;color:var(--brand);font-weight:600;text-decoration:none;margin-bottom:10px}
+.sup{display:grid;gap:6px;font-size:.82rem;margin-top:12px}
+.sup div{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>Design Inspiration Daily</h1>
+    <div class="date">2026-11-25 (수) · 결제·체크아웃 / 입력·폼 / 트렌드</div>
+  </div>
+  <button id="themeBtn" class="toggle" type="button" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘 항목">
+  <a href="#dcc">💳 해외 결제 통화 선택(DCC)</a>
+  <a href="#kbd">⌨️ 모바일 키보드 고르기</a>
+  <a href="#mpa">🌀 페이지 간 View Transitions</a>
+</nav>
+
+<!-- ========== 1 ========== -->
+<section class="card" id="dcc" aria-labelledby="h-dcc">
+<h2 id="h-dcc">💳 해외 결제 통화 선택 — 기본값은 현지 통화, 원화(자국 통화)는 환율·마크업을 숫자로 보여준 뒤 고르게 <span class="tag">결제·체크아웃</span></h2>
+<p class="lead">DCC(Dynamic Currency Conversion, 자국 통화 결제)는 해외 가맹점이 "원화로 바로 결제할래요?"라고 제안하는 서비스입니다. 편해 보이지만 가맹점 쪽 환율에 마크업이 붙고, 카드사 해외 이용 수수료는 그대로 붙는 경우가 많습니다. 그래서 요즘 체크아웃은 <b>현지 통화를 기본</b>으로 두고, 원화 쪽은 <b>적용 환율·마크업·예상 차액</b>을 숫자로 먼저 보여준 다음 사용자가 고르게 합니다.</p>
+<div class="demo">
+  <p class="demo-title">시나리오를 바꿔 보세요 (모든 환율·수수료는 모의 값)</p>
+  <div class="scen" role="group" aria-label="결제 시나리오">
+    <button class="btn ghost sm" type="button" data-scen="A" aria-pressed="true">한국 카드 → 미국 가맹점 (USD 49.00)</button>
+    <button class="btn ghost sm" type="button" data-scen="B" aria-pressed="false">미국 카드 → 한국 가맹점 (₩68,000)</button>
+  </div>
+  <div class="two">
+    <div class="col">
+      <h4><span class="pill bad">나쁨</span> 자국 통화를 미리 골라 둔 버튼</h4>
+      <div class="pay" id="badPay">
+        <div class="what">결제 금액</div>
+        <div class="amt-big" id="badAmt"></div>
+        <button class="btn bigcta" type="button" id="badCta"></button>
+        <div class="tiny">편리한 자국 통화 결제가 적용됩니다 · <button type="button" id="badLink"></button></div>
+      </div>
+      <p class="cap">환율도 마크업도 안 보이고, 현지 통화는 회색 작은 글씨 링크로 숨어 있습니다. 누르면 그냥 비싼 쪽으로 결제됩니다.</p>
+    </div>
+    <div class="col">
+      <h4><span class="pill ok">좋음</span> 현지 통화 기본 + 숫자로 비교</h4>
+      <div class="pay">
+        <div class="what" id="goodWhat"></div>
+        <div class="amt-big" id="goodAmt"></div>
+        <fieldset class="opts">
+          <legend>어느 통화로 청구할까요?</legend>
+          <label class="opt"><input type="radio" name="cur" value="local" checked aria-describedby="locDesc">
+            <span><span class="nm" id="locName"></span><small id="locDesc"></small></span><span class="v" id="locV"></span></label>
+          <label class="opt"><input type="radio" name="cur" value="dcc" aria-describedby="dccDesc">
+            <span><span class="nm" id="dccName"></span><small id="dccDesc"></small></span><span class="v" id="dccV"></span></label>
+        </fieldset>
+        <div class="warnline" id="dccWarn" role="status" aria-live="polite"></div>
+        <dl class="kv" id="goodKv"></dl>
+        <button class="btn paybtn" type="button" id="goodCta"></button>
+      </div>
+      <p class="cap">기본 선택은 현지 통화. 자국 통화 쪽엔 적용 환율·기준 대비 마크업 %·예상 차액을 같이 적고, 버튼 문장이 실제 청구 통화와 금액을 그대로 말합니다.</p>
+    </div>
+  </div>
+  <div class="log" id="dccLog" aria-label="동작 기록"></div>
+</div>
+<pre><code>// 금액 계산은 정수 최소단위(minor unit)로 — 부동소수점 금지
+const minor = { KRW: 0, USD: 2 };                       // 통화별 소수 자릿수
+const fmt = (v, cur) =&gt; new Intl.NumberFormat('ko-KR', {
+  style: 'currency', currency: cur, maximumFractionDigits: minor[cur]
+}).format(v);
+
+// rate: 카드 통화 / 가맹점 통화 1단위,  markup: DCC 제공사 가산율
+function quote(amount, rate, markup, cardFee) {
+  const local = amount * rate * (1 + cardFee);           // 현지 통화 청구 → 카드사가 환전 (예상치)
+  const dcc   = amount * rate * (1 + markup) * (1 + cardFee); // 자국 통화로 확정
+  return { local, dcc, diff: dcc - local };
+}</code></pre>
+<div class="note">현지 통화로 청구하면 원화 금액은 카드사가 <b>매입 시점 환율</b>로 정하므로 결제 화면에선 "예상"일 수밖에 없습니다. 반대로 DCC는 금액이 결제 순간 확정되는 대신 비쌉니다. 그래서 좋은 화면은 현지 통화 쪽 원화 금액에 "약·예상"을 붙이고, DCC 쪽엔 "확정"을 붙입니다. 카드 브랜드 규정상 DCC는 고객이 명시적으로 고르게 하고 환율·마크업을 고지하도록 요구하는 것으로 알려져 있습니다(정확한 조건은 가맹점·PG 계약 확인 필요, 추정).</div>
+</section>
+
+<!-- ========== 2 ========== -->
+<section class="card" id="kbd" aria-labelledby="h-kbd">
+<h2 id="h-kbd">⌨️ 모바일 키보드 고르기 — inputmode는 자판, enterkeyhint는 엔터 라벨, autocomplete는 자동 채움, 숫자 "번호"에 type=number는 쓰지 않기 <span class="tag">입력·폼</span></h2>
+<p class="lead">모바일 결제 폼에서 체감 속도를 가장 크게 바꾸는 건 디자인이 아니라 <b>어떤 자판이 뜨느냐</b>입니다. <code>inputmode</code>(어떤 가상 키보드를 띄울지 힌트), <code>enterkeyhint</code>(엔터 키에 "다음·완료·검색" 같은 라벨을 붙이는 힌트), <code>autocomplete</code>(브라우저·OS 자동 채움이 어떤 값을 넣을지 알려 주는 토큰) 세 가지를 필드마다 맞춰 줍니다. 단, <code>enterkeyhint</code>는 <b>라벨만</b> 바꿉니다 — 엔터를 눌렀을 때 다음 칸으로 가는 동작은 직접 만들어야 합니다.</p>
+<div class="demo">
+  <p class="demo-title">필드를 눌러 보세요 — 오른쪽 모의 자판이 그 필드의 속성대로 바뀝니다 (자판을 눌러 입력도 가능)</p>
+  <div class="kgrid">
+    <form class="kf" id="kForm" novalidate>
+      <div class="field"><label for="k-cc">카드 번호</label><input id="k-cc" name="cc" type="text" inputmode="numeric" autocomplete="cc-number" enterkeyhint="next" placeholder="0000 0000 0000 0000" maxlength="23"><span class="meta">type=text · inputmode=numeric · autocomplete=cc-number · enterkeyhint=next</span></div>
+      <div class="field"><label for="k-exp">유효기간 (MM/YY)</label><input id="k-exp" name="exp" type="text" inputmode="numeric" autocomplete="cc-exp" enterkeyhint="next" placeholder="MM/YY" maxlength="5"><span class="meta">inputmode=numeric · autocomplete=cc-exp · enterkeyhint=next</span></div>
+      <div class="field"><label for="k-usd">해외 결제 금액 (USD)</label><input id="k-usd" name="usd" type="text" inputmode="decimal" enterkeyhint="next" placeholder="0.00"><span class="meta">inputmode=decimal (소수점 키 포함) · enterkeyhint=next</span></div>
+      <div class="field"><label for="k-tel">휴대폰 번호</label><input id="k-tel" name="tel" type="tel" autocomplete="tel-national" enterkeyhint="next" placeholder="010-0000-0000"><span class="meta">type=tel · autocomplete=tel-national · enterkeyhint=next</span></div>
+      <div class="field"><label for="k-mail">영수증 받을 이메일</label><input id="k-mail" name="mail" type="email" autocomplete="email" enterkeyhint="go" placeholder="name@example.com" autocapitalize="off" spellcheck="false"><span class="meta">type=email · autocomplete=email · enterkeyhint=go (마지막 칸 → 제출)</span></div>
+      <div class="row"><button class="btn" type="submit">결제하기</button></div>
+      <div class="field" style="margin-top:14px"><label for="k-q">거래 검색</label><input id="k-q" type="search" enterkeyhint="search" placeholder="주문번호·카드 끝 4자리"><span class="meta">type=search · enterkeyhint=search</span></div>
+    </form>
+    <div class="phone" aria-label="모의 모바일 자판">
+      <div class="info" id="kInfo" aria-live="polite"><b>필드를 선택하세요</b></div>
+      <div class="kb" id="kb"><div class="empty">입력칸에 포커스가 가면 자판이 뜹니다</div></div>
+    </div>
+  </div>
+  <div class="two" style="margin-top:16px">
+    <div class="col badnum">
+      <h4><span class="pill bad">나쁨</span> 카드 번호에 <code>type="number"</code></h4>
+      <label for="k-bad" class="sr-only">카드 번호 (나쁜 예)</label>
+      <input id="k-bad" type="number" placeholder="카드 번호" style="padding:9px 11px;border-radius:10px;border:1px solid var(--border);background:var(--surface)">
+      <div class="row"><button class="btn ghost sm" type="button" id="kBadFill">19자리 번호 넣기</button><button class="btn ghost sm" type="button" id="kBadStep">↑ 화살표/휠 한 번</button><button class="btn ghost sm" type="button" id="kBadE">"1e5" 넣기</button></div>
+      <div class="readout" id="kBadOut">value: ""</div>
+      <p class="cap">"수(數)"가 아니라 "번호"입니다. 휠·화살표로 값이 바뀌고, <code>e</code>가 입력되며, <code>maxlength</code>가 먹지 않고, 숫자로 다루는 순간 큰 자릿수는 정밀도를 잃습니다.</p>
+    </div>
+    <div class="col">
+      <h4><span class="pill ok">좋음</span> 엔터 동작은 직접 만든다</h4>
+      <p style="font-size:.84rem;margin:0">위 폼에서 엔터를 누르면 <b>다음 칸</b>으로 갑니다(마지막 칸에서만 제출). 폼 안 입력칸에서 엔터는 원래 <b>암묵적 제출</b>(implicit submission, 엔터만으로 폼이 제출되는 기본 동작)을 일으키기 때문에, 막지 않으면 카드 번호 치다가 결제가 눌립니다. 한글 조합 중(<code>e.isComposing</code>) 엔터는 건드리지 않습니다.</p>
+      <div class="log" id="kLog" aria-label="키보드 동작 기록"></div>
+    </div>
+  </div>
+  <table class="ktable">
+    <thead><tr><th>입력 값</th><th>권장</th><th>왜</th></tr></thead>
+    <tbody>
+      <tr><td>카드·계좌·사업자·인증번호</td><td><code>type=text inputmode=numeric</code></td><td>앞자리 0 보존, 스피너·휠 없음, 하이픈 포맷 가능</td></tr>
+      <tr><td>금액(소수 있는 통화)</td><td><code>inputmode=decimal</code></td><td>소수점 키 포함. 원화면 <code>numeric</code></td></tr>
+      <tr><td>전화번호</td><td><code>type=tel</code> + <code>autocomplete=tel-national</code></td><td>전화 자판(+ * #) + 저장된 번호 자동 채움</td></tr>
+      <tr><td>OTP</td><td><code>inputmode=numeric autocomplete=one-time-code</code></td><td>문자로 온 코드 제안(지원 OS에서)</td></tr>
+      <tr><td>수량·나이처럼 진짜 "수"</td><td><code>type=number</code> 가능</td><td>크기 비교·증감이 의미 있을 때만</td></tr>
+    </tbody>
+  </table>
+</div>
+<pre><code>&lt;input inputmode="numeric" autocomplete="cc-number" enterkeyhint="next"&gt;
+
+// enterkeyhint는 라벨만 — 동작은 직접
+form.addEventListener('keydown', (e) =&gt; {
+  if (e.key !== 'Enter' || e.isComposing || e.target.tagName === 'TEXTAREA') return;
+  const fields = [...form.querySelectorAll('input:not([type=hidden]):not(:disabled)')];
+  const i = fields.indexOf(e.target);
+  const hint = e.target.enterKeyHint;
+  if (hint === 'next' &amp;&amp; i &gt; -1 &amp;&amp; i &lt; fields.length - 1) {
+    e.preventDefault();              // 암묵적 제출 막기
+    fields[i + 1].focus();
+  }
+});</code></pre>
+<div class="note"><code>enterkeyhint</code>는 Chromium·Safari 계열에서 지원되며, 데스크톱 브라우저에선 보이는 차이가 없습니다. Firefox 지원 여부는 버전별로 확인이 필요합니다(추정). 모든 속성은 <b>힌트</b>라서 안 먹는 환경에서도 폼이 깨지지 않는 게 장점입니다. 참고: <a href="https://developer.mozilla.org/docs/Web/HTML/Global_attributes/enterkeyhint">MDN enterkeyhint</a>.</div>
+</section>
+
+<!-- ========== 3 ========== -->
+<section class="card" id="mpa" aria-labelledby="h-mpa">
+<h2 id="h-mpa">🌀 페이지 간 View Transitions — 진짜 페이지 이동(MPA)에도 <code>@view-transition</code> 한 줄로 목록→상세 연결 애니메이션 <span class="tag">트렌드</span></h2>
+<p class="lead">지난번까지 다룬 View Transitions는 한 페이지 안에서 DOM을 바꿀 때(<code>document.startViewTransition()</code>)였습니다. <b>교차 문서(cross-document) 전환</b>은 링크를 눌러 <b>새 HTML 문서로 이동</b>할 때도 같은 효과를 줍니다. 두 페이지 모두에 <code>@view-transition { navigation: auto }</code>를 넣고, 이어지는 요소에 같은 <code>view-transition-name</code>을 주면 브라우저가 이전 화면 스냅샷과 새 화면을 이어 붙입니다. 같은 출처(origin) 이동에만 적용됩니다.</p>
+<div class="demo">
+  <p class="demo-title">가맹점 카드를 눌러 보세요 — 실제로 새 문서를 불러오는 페이지 이동입니다 (뒤로 가기도 해 보세요)</p>
+  <div id="mpaView"></div>
+  <div class="sup" id="mpaSup"></div>
+  <div class="log" id="mpaLog" aria-label="전환 기록"></div>
+</div>
+<pre><code>/* 두 문서(목록·상세) 모두에 */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+/* 목록의 썸네일과 상세의 히어로에 같은 이름 → 이어지는 모핑 */
+.card[data-id="a"] .thumb { view-transition-name: m-a; }
+.detail .hero             { view-transition-name: m-a; }
+::view-transition-group(*) { animation-duration: .38s; }
+
+// 선택: 새 문서 쪽에서 전환 직전에 개입
+window.addEventListener('pagereveal', (e) =&gt; {
+  if (!e.viewTransition) return;            // 미지원·첫 진입이면 null
+  e.viewTransition.types?.add(isBack ? 'back' : 'forward');
+});</code></pre>
+<div class="note">지원 현황(2026-11 기준 확인 수준): Chromium 계열과 Safari는 지원, Firefox는 진행 중으로 알려져 있습니다(추정 — <a href="https://caniuse.com/cross-document-view-transitions">caniuse</a>에서 확인). 미지원 브라우저에선 그냥 평소처럼 페이지가 바뀌므로 <b>점진적 향상</b>(progressive enhancement, 되는 곳에서만 더 좋아지고 안 되는 곳에서도 기능은 그대로)입니다. 이 데모를 <code>file://</code>로 열면 출처가 불투명해 전환이 안 될 수 있습니다 — GitHub Pages 주소에서 확인하세요. 참고: <a href="https://developer.chrome.com/docs/web-platform/view-transitions/cross-document">Chrome 문서</a>.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-25 (수) · self-contained · ?embed=dcc|kbd|mpa · ?theme=dark</div>
+</div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>{setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark');renderMpa()});
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const logTo=el=>m=>{const t=new Date().toLocaleTimeString('ko-KR',{hour12:false,timeZone:'Asia/Seoul'});el.textContent=(t+'  '+m+'\n'+el.textContent).slice(0,3000)};
+
+/* ---------- 1. DCC ---------- */
+const dlog=logTo($('#dccLog'));
+const MINOR={KRW:0,USD:2};
+const fmt=(v,c)=>new Intl.NumberFormat('ko-KR',{style:'currency',currency:c,minimumFractionDigits:MINOR[c],maximumFractionDigits:MINOR[c]}).format(v);
+const round=(v,c)=>{const f=10**MINOR[c];return Math.round(v*f)/f};
+const SCEN={
+  A:{label:'미국 가맹점 · 한국 발급 카드',amount:49,mCur:'USD',cCur:'KRW',rate:1400,markup:.05,cardFee:.012},
+  B:{label:'한국 가맹점 · 미국 발급 카드',amount:68000,mCur:'KRW',cCur:'USD',rate:1/1400,markup:.05,cardFee:.03}
+};
+let sc='A';
+const curName={KRW:'원화(KRW)',USD:'달러(USD)'};
+function rateText(s,withMarkup){const r=s.rate*(withMarkup?1+s.markup:1);return s.mCur==='USD'?`1 USD = ${fmt(r,'KRW')}`:`1 USD = ${fmt(1/r,'KRW')}`}
+function renderDcc(){
+  const s=SCEN[sc];
+  const localCard=round(s.amount*s.rate*(1+s.cardFee),s.cCur);
+  const dccBase=round(s.amount*s.rate*(1+s.markup),s.cCur);
+  const dccCard=round(dccBase*(1+s.cardFee),s.cCur);
+  const diff=round(dccCard-localCard,s.cCur);
+  const pick=($('input[name=cur]:checked')||{}).value||'local';
+  // bad
+  $('#badAmt').textContent=fmt(dccBase,s.cCur);
+  $('#badCta').textContent=`${fmt(dccBase,s.cCur)} 결제하기`;
+  $('#badLink').textContent=`${s.mCur}로 결제`;
+  // good
+  $('#goodWhat').textContent=`${s.label} · 상품 금액`;
+  $('#goodAmt').textContent=fmt(s.amount,s.mCur);
+  $('#locName').textContent=`${curName[s.mCur]} — 가맹점 통화 (권장)`;
+  $('#locDesc').textContent=`카드사가 청구 시점 환율로 환전 · 카드 해외 이용 수수료 약 ${(s.cardFee*100).toFixed(1)}% 별도(모의) · 내 통화 예상 약 ${fmt(localCard,s.cCur)}`;
+  $('#locV').textContent=fmt(s.amount,s.mCur);
+  $('#dccName').textContent=`${curName[s.cCur]} — 내 카드 통화로 확정`;
+  $('#dccDesc').textContent=`적용 환율 ${rateText(s,true)} · 기준 환율 대비 +${(s.markup*100).toFixed(1)}% 마크업 · 해외 이용 수수료는 여전히 붙을 수 있음`;
+  $('#dccV').textContent=fmt(dccBase,s.cCur);
+  $('#dccWarn').textContent=pick==='dcc'?`이 선택은 현지 통화보다 약 ${fmt(diff,s.cCur)} 더 낼 수 있어요 (모의 계산). 금액은 지금 확정됩니다.`:`현지 통화로 결제하면 자국 통화 결제보다 약 ${fmt(diff,s.cCur)} 아낄 수 있어요 (모의 계산).`;
+  const rows=pick==='dcc'
+    ?[['청구 통화',curName[s.cCur]],['청구 금액(확정)',fmt(dccBase,s.cCur)],['적용 환율',rateText(s,true)],['마크업',`+${(s.markup*100).toFixed(1)}%`],['수수료 포함 예상',`약 ${fmt(dccCard,s.cCur)}`]]
+    :[['청구 통화',curName[s.mCur]],['청구 금액',fmt(s.amount,s.mCur)],['기준 환율(참고)',rateText(s,false)],['내 통화 예상',`약 ${fmt(localCard,s.cCur)}`],['확정 시점','카드사 매입일 환율']];
+  $('#goodKv').innerHTML=rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('');
+  $('#goodCta').textContent=pick==='dcc'?`${fmt(dccBase,s.cCur)} 결제 (${s.cCur}로 확정)`:`${fmt(s.amount,s.mCur)} 결제 (${s.mCur})`;
+}
+$$('[data-scen]').forEach(b=>b.addEventListener('click',()=>{sc=b.dataset.scen;$$('[data-scen]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('input[name=cur][value=local]').checked=true;dlog('시나리오 '+sc+' — 기본값은 다시 현지 통화');renderDcc()}));
+$$('input[name=cur]').forEach(r=>r.addEventListener('change',()=>{dlog('[좋음] 선택 → '+(r.value==='dcc'?'자국 통화(확정·비쌈)':'현지 통화(예상·저렴)'));renderDcc()}));
+$('#badCta').addEventListener('click',()=>dlog('[나쁨] 큰 버튼 = 자국 통화 결제. 환율·마크업을 한 번도 못 본 채 결제됨'));
+$('#badLink').addEventListener('click',()=>dlog('[나쁨] 현지 통화는 회색 링크 — 대부분 못 보고 지나감'));
+$('#goodCta').addEventListener('click',()=>dlog('[좋음] '+$('#goodCta').textContent+' 요청 — 버튼 문장 = 실제 청구 내용'));
+renderDcc();
+
+/* ---------- 2. keyboard ---------- */
+const klog=logTo($('#kLog'));
+const form=$('#kForm');
+const ENT={enter:'↵',done:'완료',go:'이동',next:'다음',previous:'이전',search:'검색',send:'보내기'};
+let cur=null;
+function layout(el){
+  const im=el.inputMode||'',ty=el.type;
+  if(im==='numeric')return[['1','2','3'],['4','5','6'],['7','8','9'],['⌫','0','ENT']];
+  if(im==='decimal')return[['1','2','3'],['4','5','6'],['7','8','9'],['.','0','⌫'],['ENT']];
+  if(ty==='tel')return[['1','2','3'],['4','5','6'],['7','8','9'],['*','0','#'],['+','⌫','ENT']];
+  const base=[['q','w','e','r','t','y','u','i','o','p'],['a','s','d','f','g','h','j','k','l'],['z','x','c','v','b','n','m','⌫']];
+  if(ty==='email')return[...base,['@','.','.com','ENT']];
+  return[...base,['space','ENT']];
+}
+function kbName(el){const im=el.inputMode,ty=el.type;if(im==='numeric')return'숫자 키패드';if(im==='decimal')return'숫자 + 소수점';if(ty==='tel')return'전화 다이얼 자판';if(ty==='email')return'영문 + @ . 키';if(ty==='search')return'일반 자판(검색)';return'일반 자판'}
+function renderKb(el){
+  cur=el;const h=el.enterKeyHint||'';
+  $('#kInfo').innerHTML=`<b>${el.labels&&el.labels[0]?el.labels[0].textContent:''}</b><br>자판: ${kbName(el)}<br>엔터 라벨: ${ENT[h]||'↵ (기본)'}<br>autocomplete: ${el.getAttribute('autocomplete')||'—'}`;
+  $('#kb').innerHTML=layout(el).map(r=>`<div class="r">${r.map(k=>k==='ENT'?`<button type="button" class="ent" data-k="ENT">${ENT[h]||'↵'}</button>`:`<button type="button" class="${k==='⌫'||k==='space'?'fn':''}" data-k="${k}" aria-label="${k==='⌫'?'지우기':k==='space'?'띄어쓰기':k}">${k==='space'?'␣':k}</button>`).join('')}</div>`).join('');
+}
+$('#kb').addEventListener('mousedown',e=>{if(e.target.closest('button'))e.preventDefault()});
+$('#kb').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b||!cur)return;const k=b.dataset.k;cur.focus();
+  if(k==='ENT'){cur.dispatchEvent(new KeyboardEvent('keydown',{key:'Enter',bubbles:true,cancelable:true}));return}
+  if(k==='⌫')cur.value=cur.value.slice(0,-1);else cur.value+=(k==='space'?' ':k);
+  cur.dispatchEvent(new Event('input',{bubbles:true}));
+});
+form.addEventListener('focusin',e=>{if(e.target.matches('input'))renderKb(e.target)});
+const fields=()=>[...form.querySelectorAll('input:not([type=search])')];
+form.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'||e.isComposing||!e.target.matches('input'))return;
+  const el=e.target,h=el.enterKeyHint;
+  if(el.type==='search'){e.preventDefault();klog('검색 실행: "'+el.value+'" (enterkeyhint=search → 우리가 검색 함수 호출)');return}
+  const fs=fields(),i=fs.indexOf(el);
+  if(h==='next'&&i>-1&&i<fs.length-1){e.preventDefault();fs[i+1].focus();klog('엔터('+ENT[h]+') → 다음 칸 "'+fs[i+1].labels[0].textContent+'" (암묵적 제출 막음)');return}
+  if(h==='go'){e.preventDefault();klog('엔터('+ENT[h]+') → 마지막 칸이라 제출');form.requestSubmit();}
+});
+form.addEventListener('submit',e=>{e.preventDefault();klog('submit — 결제 요청(모의)')});
+$('#k-cc').addEventListener('input',e=>{const el=e.target,d=el.value.replace(/\D/g,'').slice(0,19);el.value=d.replace(/(\d{4})(?=\d)/g,'$1 ')});
+$('#k-exp').addEventListener('input',e=>{const el=e.target,d=el.value.replace(/\D/g,'').slice(0,4);el.value=d.length>2?d.slice(0,2)+'/'+d.slice(2):d});
+$('#k-usd').addEventListener('input',e=>{const el=e.target;let v=el.value.replace(/[^\d.]/g,'');const p=v.split('.');if(p.length>2)v=p[0]+'.'+p.slice(1).join('');const [a,b]=v.split('.');el.value=b!==undefined?a+'.'+b.slice(0,2):a});
+$('#k-tel').addEventListener('input',e=>{const el=e.target,d=el.value.replace(/\D/g,'').slice(0,11);el.value=d.length<4?d:d.length<8?d.slice(0,3)+'-'+d.slice(3):d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7)});
+const bad=$('#k-bad');
+function badOut(){const n=bad.valueAsNumber;$('#kBadOut').textContent=`value: "${bad.value}"\nvalueAsNumber: ${isNaN(n)?'NaN':n}\nString(Number(value)): "${bad.value===''?'':String(Number(bad.value))}"\nvalidity.badInput: ${bad.validity.badInput}`}
+bad.addEventListener('input',badOut);
+$('#kBadFill').addEventListener('click',()=>{bad.value='6250941006528599123';badOut();klog('[나쁨] 19자리 → 숫자로 바꾸면 끝자리가 바뀜(정밀도 2^53 초과)')});
+$('#kBadStep').addEventListener('click',()=>{if(bad.value==='')bad.value='4111111111111111';bad.stepUp();badOut();klog('[나쁨] 화살표/휠 한 번에 카드 번호가 +1 됨')});
+$('#kBadE').addEventListener('click',()=>{bad.value='1e5';badOut();klog('[나쁨] "e"는 지수 표기라 숫자로 허용됨 → 100000')});
+badOut();
+
+/* ---------- 3. cross-document VT ---------- */
+const mlog=logTo($('#mpaLog'));
+const M={a:{n:'카페 모먼트',g:'g-a',c:'카페·음료',cnt:128,amt:1846000,fail:2},b:{n:'북스토어 리프',g:'g-b',c:'도서',cnt:41,amt:2390500,fail:0},c:{n:'플라워 소다',g:'g-c',c:'꽃·선물',cnt:67,amt:3102000,fail:1}};
+const won=v=>new Intl.NumberFormat('ko-KR').format(v)+'원';
+function href(id){const p=new URLSearchParams(location.search);id?p.set('vt',id):p.delete('vt');p.set('theme',root.getAttribute('data-theme'));return '?'+p.toString()+'#mpa'}
+function renderMpa(){
+  const id=new URLSearchParams(location.search).get('vt');const m=M[id];
+  if(m){
+    $('#mpaView').innerHTML=`<a class="backlink" href="${href(null)}">← 가맹점 목록</a><article class="mdetail"><div class="hero ${m.g}" style="view-transition-name:m-${id}"><h3 style="view-transition-name:t-${id}">${m.n}</h3></div><div class="bd"><span class="pill info">${m.c}</span><div class="stats"><div>오늘 승인<b>${m.cnt}건</b></div><div>승인 금액<b>${won(m.amt)}</b></div><div>실패<b>${m.fail}건</b></div></div><p class="cap" style="margin:0">이 화면은 <b>새로 불러온 문서</b>입니다(주소의 <code>?vt=${id}</code>). 그래도 썸네일이 히어로로 늘어나며 이어졌다면 교차 문서 전환이 동작한 것입니다.</p></div></article>`;
+  }else{
+    $('#mpaView').innerHTML=`<div class="mlist">${Object.entries(M).map(([k,v])=>`<a class="mcard" href="${href(k)}"><div class="thumb ${v.g}" style="view-transition-name:m-${k}"></div><div class="t"><b style="view-transition-name:t-${k};width:fit-content">${v.n}</b><small>오늘 ${v.cnt}건 · ${won(v.amt)}</small></div></a>`).join('')}</div>`;
+  }
+}
+renderMpa();
+const supVT='CSSViewTransitionRule' in window;
+const reduceM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+$('#mpaSup').innerHTML=`<div><span>이 브라우저의 <code>@view-transition</code></span><span class="pill ${supVT?'ok':'warn'}">${supVT?'지원':'미지원 → 그냥 페이지 이동'}</span></div><div><span>출처</span><span class="pill ${location.protocol==='file:'?'warn':'mut'}">${location.protocol==='file:'?'file:// → 전환 안 될 수 있음':location.origin}</span></div><div><span><code>prefers-reduced-motion</code></span><span class="pill ${reduceM?'warn':'mut'}">${reduceM?'줄이기 켜짐 → 전환 끔':'기본'}</span></div>`;
+window.addEventListener('pagereveal',e=>{
+  const id=new URLSearchParams(location.search).get('vt');
+  if(e.viewTransition){
+    try{e.viewTransition.types&&e.viewTransition.types.add(id?'forward':'back')}catch(_){}
+    mlog('pagereveal — 전환 실행 ('+(id?'목록 → 상세':'상세 → 목록')+')');
+    e.viewTransition.finished.then(()=>mlog('전환 끝')).catch(()=>{});
+  }else mlog('pagereveal — 전환 없음(첫 진입·미지원·감속 설정·다른 출처)');
+});
+window.addEventListener('pageswap',e=>{try{sessionStorage.setItem('vt-swap',e.viewTransition?'1':'0')}catch(_){}});
+})();
+</script>
+</body>
+</html>
