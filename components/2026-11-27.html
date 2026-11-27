@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Design Inspiration Daily — 2026-11-27 (금)</title>
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--surface-2:#f0f2f5;--text:#14181f;--muted:#5b6472;--border:#d9dee6;--brand:#4f46e5;--brand-ink:#fff;--brand-soft:#eef0fe;--ok:#15803d;--ok-soft:#e3f5e9;--warn:#92400e;--warn-soft:#fdf3e3;--bad:#b91c1c;--bad-soft:#fdecec;--ring:#2563eb;--radius:16px;--shadow:0 1px 2px rgba(16,24,40,.06);
+--s1:#3b5bdb;--s2:#1c7ed6;--s3:#0ca678;--s4:#f59f00;--s5:#e8590c;--s6:#ae3ec9;--s7:#5c7cfa;--s8:#868e96;--s9:#495057;--sx:#adb5bd}
+[data-theme="dark"]{--bg:#0b0e13;--surface:#141922;--surface-2:#1b212c;--text:#e7ebf2;--muted:#9aa4b2;--border:#2f3846;--brand:#8b8cf9;--brand-ink:#0b0e13;--brand-soft:#20233a;--ok:#34d399;--ok-soft:#123024;--warn:#fbbf24;--warn-soft:#2b2210;--bad:#f87171;--bad-soft:#2d1515;--ring:#60a5fa;--shadow:none;
+--s1:#748ffc;--s2:#4dabf7;--s3:#38d9a9;--s4:#ffd43b;--s5:#ff922b;--s6:#da77f2;--s7:#91a7ff;--s8:#adb5bd;--s9:#ced4da;--sx:#5c636e}
+html[data-theme=light]{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding:26px 20px 60px}
+header.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+header.top h1{font-size:1.4rem;margin:0 0 4px}.date{color:var(--muted);font-size:.92rem}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+.toggle{cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 14px;font-size:.9rem}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+nav.toc{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 26px}
+nav.toc a{text-decoration:none;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 13px;font-size:.86rem}
+nav.toc a:hover{border-color:var(--brand);color:var(--brand)}
+section.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px;margin:0 0 26px}
+h2{font-size:1.16rem;margin:0 0 6px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:.72rem;font-weight:600;color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:3px 9px}
+p.lead{color:var(--muted);margin:.4rem 0 0;font-size:.95rem}
+.demo{margin-top:14px;padding:18px;border:1px dashed var(--border);border-radius:12px;background:var(--surface-2)}
+.demo-title{font-size:.78rem;font-weight:700;color:var(--muted);margin:0 0 10px}
+.cap{font-size:.8rem;color:var(--muted);margin:10px 0 0}
+.note{margin-top:16px;font-size:.85rem;color:var(--muted);background:var(--surface-2);border-left:3px solid var(--brand);border-radius:6px;padding:10px 12px}
+.note a{color:var(--brand)}
+pre{background:#0d1117;color:#e6edf3;border-radius:10px;padding:14px 16px;overflow:auto;font-size:.82rem;line-height:1.5;margin:12px 0 0}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em}
+.btn{cursor:pointer;font-weight:600;border-radius:10px;padding:9px 16px;border:1px solid var(--brand);background:var(--brand);color:var(--brand-ink)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border)}
+.btn.sm{padding:5px 10px;font-size:.82rem}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--surface)}
+.seg button{cursor:pointer;border:0;background:transparent;padding:6px 12px;font-size:.84rem}
+.seg button+button{border-left:1px solid var(--border)}
+.seg button[aria-pressed=true]{background:var(--brand);color:var(--brand-ink);font-weight:700}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.footer{color:var(--muted);font-size:.82rem;text-align:center;margin-top:34px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.ctl{display:flex;gap:6px;align-items:center;font-size:.82rem;color:var(--muted)}
+.ctl select{padding:5px 8px;border-radius:8px;border:1px solid var(--border);background:var(--surface)}
+.log{font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px;margin-top:10px;min-height:60px;max-height:140px;overflow:auto;color:var(--muted);white-space:pre-wrap}
+.pill{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:2px 8px;white-space:nowrap}
+.pill.ok{color:var(--ok);background:var(--ok-soft)}.pill.bad{color:var(--bad);background:var(--bad-soft)}.pill.warn{color:var(--warn);background:var(--warn-soft)}.pill.mut{color:var(--muted);background:var(--surface);border:1px solid var(--border)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.col{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;min-width:0}
+.col h4{margin:0 0 8px;font-size:.9rem;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.num{font-variant-numeric:tabular-nums}
+/* embed */
+html.embed-mode body{background:transparent}
+html.embed-mode .wrap{max-width:none;padding:8px}
+html.embed-mode header.top,html.embed-mode nav.toc,html.embed-mode .footer{display:none}
+html.embed-mode section.card{display:none}
+html.embed-mode section.card.embed-show{display:block;box-shadow:none;border:0;padding:4px}
+html.embed-mode .embed-show p.lead,html.embed-mode .embed-show pre,html.embed-mode .embed-show .note,html.embed-mode .embed-show .cap.long{display:none}
+html.embed-mode .embed-show h2{font-size:1rem}
+
+/* ===== 1. share bar ===== */
+.bar{display:flex;height:28px;border-radius:8px;overflow:hidden;background:var(--surface-2);gap:2px}
+.bar span{display:block;min-width:2px;transition:opacity .15s,filter .15s}
+.bar.dim span{opacity:.3}.bar.dim span.hl{opacity:1}
+.legend{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+.legend li{display:grid;grid-template-columns:12px 1fr auto auto;gap:8px;align-items:center;padding:4px 6px;border-radius:6px;font-size:.84rem}
+.legend li.hl{background:var(--brand-soft)}
+.legend .sw{width:12px;height:12px;border-radius:3px}
+.legend .pct{font-weight:700;min-width:4.2em;text-align:right}
+.legend .abs{color:var(--muted);font-size:.76rem;min-width:7.5em;text-align:right}
+.legend li.etc{cursor:pointer}
+.legend li.sub{padding-left:26px;font-size:.78rem;color:var(--muted)}
+.legend button.etcbtn{all:unset;cursor:pointer;display:contents}
+.sum{margin-top:8px;font-size:.82rem;display:flex;justify-content:space-between;border-top:1px solid var(--border);padding-top:6px}
+/* ===== 2. stale results ===== */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chips button{cursor:pointer;border:1px solid var(--border);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:.84rem}
+.chips button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-weight:700}
+.search{padding:7px 10px;border-radius:10px;border:1px solid var(--border);background:var(--surface);min-width:180px}
+.tblwrap{position:relative;margin-top:10px;border:1px solid var(--border);border-radius:10px;background:var(--surface);overflow:hidden;min-height:250px}
+.tblwrap .prog{position:absolute;left:0;top:0;height:3px;width:100%;background:transparent;overflow:hidden;opacity:0;transition:opacity .15s}
+.tblwrap .prog::after{content:"";position:absolute;left:-40%;top:0;height:100%;width:40%;background:var(--brand);animation:slide 1s linear infinite}
+@keyframes slide{to{left:100%}}
+.tblwrap.loading .prog{opacity:1}
+.tblwrap table{width:100%;border-collapse:collapse;font-size:.84rem;transition:opacity .15s}
+.tblwrap.loading table{opacity:.5}
+.tblwrap th,.tblwrap td{padding:7px 10px;border-bottom:1px solid var(--border);text-align:left}
+.tblwrap th{font-size:.76rem;color:var(--muted);background:var(--surface-2)}
+.tblwrap td.r,.tblwrap th.r{text-align:right}
+.tblwrap caption{caption-side:top;text-align:left;padding:8px 10px;font-size:.82rem;color:var(--muted)}
+.spinner{display:grid;place-items:center;height:220px;color:var(--muted);font-size:.85rem}
+.spinner i{width:22px;height:22px;border:3px solid var(--border);border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;margin-bottom:6px}
+@keyframes spin{to{transform:rotate(1turn)}}
+.mismatch{margin-top:8px}
+/* ===== 3. content-visibility ===== */
+.cvbox{height:340px;overflow:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface);margin-top:10px}
+.cvbox .day{border-bottom:1px solid var(--border);padding:0 0 4px}
+.cvbox .day h5{margin:0;padding:6px 10px;background:var(--surface-2);font-size:.8rem;display:flex;justify-content:space-between}
+.cvbox .day div{display:flex;justify-content:space-between;padding:2px 10px;font-size:.78rem}
+.cvbox[data-cv="auto"] .day{content-visibility:auto}
+.cvbox[data-cv="auto-size"] .day{content-visibility:auto;contain-intrinsic-size:auto 330px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.stat b{display:block;font-size:1.05rem}
+.stat span{font-size:.74rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div>
+    <h1>🎨 Design Inspiration Daily</h1>
+    <div class="date">2026-11-27 (금) · 📊 데이터·차트 · 🔔 피드백·상태 · 🌀 트렌드</div>
+  </div>
+  <button type="button" class="toggle" id="themeBtn" aria-pressed="false">다크 모드</button>
+</header>
+<nav class="toc" aria-label="오늘의 항목">
+  <a href="#share">📊 구성비 100% 막대</a>
+  <a href="#stale">🔔 필터 바꿀 때 로딩</a>
+  <a href="#cv">🌀 content-visibility</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<section class="card" id="share" aria-labelledby="share-h">
+  <h2 id="share-h">📊 구성비 막대 — 도넛 대신 100% 누적 막대, 작은 조각은 '기타'로, 반올림 합계는 최대 잔여법으로 100%<span class="tag">데이터 시각화</span><span class="tag">정산 대시보드</span></h2>
+  <p class="lead">"결제 수단별 비중"을 도넛으로 그리면 1~3%짜리 조각은 각도로 구분이 안 되고, 퍼센트를 각자 <code>Math.round</code>하면 합계가 <b>98%</b>나 <b>101%</b>가 됩니다. 한 줄짜리 100% 막대 + 같은 순서의 범례 표, 작은 조각 묶기, 합이 정확히 100이 되게 나누는 <b>최대 잔여법</b>(각 값을 내림한 뒤 남은 1%p들을 소수점 아래가 큰 순서대로 나눠 주는 방법)을 비교합니다.</p>
+  <div class="demo">
+    <p class="demo-title">기준·소수 자릿수·묶기 기준을 바꿔 보고, 범례 줄에 마우스/포커스를 올려 보기</p>
+    <div class="row">
+      <div class="seg" role="group" aria-label="비중 기준">
+        <button type="button" data-basis="amt" aria-pressed="true">금액 기준</button>
+        <button type="button" data-basis="cnt" aria-pressed="false">건수 기준</button>
+      </div>
+      <label class="ctl">소수 자릿수 <select id="shDigits"><option value="0">0자리</option><option value="1">1자리</option></select></label>
+      <label class="ctl">기타로 묶기 <select id="shGroup"><option value="0">묶지 않음</option><option value="3" selected>3% 미만</option><option value="5">5% 미만</option></select></label>
+    </div>
+    <div class="two" style="margin-top:12px">
+      <div class="col">
+        <h4>😬 각자 Math.round <span id="sumNaive" class="pill"></span></h4>
+        <div class="bar" id="barNaive" role="img"></div>
+        <ul class="legend" id="lgNaive"></ul>
+        <div class="sum"><span>합계</span><b class="num" id="totNaive"></b></div>
+      </div>
+      <div class="col">
+        <h4>✅ 최대 잔여법 + 기타 묶기 <span id="sumLr" class="pill"></span></h4>
+        <div class="bar" id="barLr" role="img"></div>
+        <ul class="legend" id="lgLr"></ul>
+        <div class="sum"><span>합계</span><b class="num" id="totLr"></b></div>
+      </div>
+    </div>
+    <p class="cap">막대는 한눈에 보는 그림이고(<code>role="img"</code> + 요약 라벨), 정확한 값은 같은 순서의 범례 목록이 맡습니다. 색 말고도 순서·라벨·값이 붙어 있어 색약이어도 읽힙니다.</p>
+    <p class="cap long">'기타' 줄을 누르면 안에 묶인 항목이 펼쳐집니다. 묶어도 숨기지는 않습니다 — 정산 담당자는 "휴대폰결제가 몇 %인지"를 결국 찾으니까요.</p>
+  </div>
+<pre><code>// 최대 잔여법(Hamilton): 합이 정확히 100(또는 100.0)이 되게 나누기
+function percentLR(values, digits = 0) {
+  const unit = 10 ** digits, total = values.reduce((a, b) => a + b, 0);
+  if (!total) return values.map(() => 0);
+  const raw = values.map(v => (v / total) * 100 * unit);   // 0자리면 % 그대로, 1자리면 ×10
+  const floored = raw.map(Math.floor);
+  let left = 100 * unit - floored.reduce((a, b) => a + b, 0); // 남은 칸 수
+  raw.map((r, i) => [r - floored[i], i])
+     .sort((a, b) => b[0] - a[0])                              // 소수점 아래 큰 순
+     .forEach(([, i]) => { if (left-- > 0) floored[i] += 1; });
+  return floored.map(n => n / unit);
+}
+// 묶기는 '반올림 전 비율'로 판단하고, 묶은 뒤의 목록에 percentLR을 적용한다</code></pre>
+  <div class="note">참고: 최대 잔여법은 의석 배분에서 온 <a href="https://en.wikipedia.org/wiki/Largest_remainders_method" target="_blank" rel="noopener">Hamilton 방식</a>입니다. 화면 표시용이며, 금액 자체(원 단위 정산)를 나누는 데 쓰는 건 별개 문제입니다.</div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section class="card" id="stale" aria-labelledby="stale-h">
+  <h2 id="stale-h">🔔 필터 바꿀 때 로딩 — 이전 결과는 지우지 말고 흐리게, 늦게 온 옛 응답은 버리고, 끝나면 건수로 알리기<span class="tag">로딩 상태</span><span class="tag">경쟁 상태</span></h2>
+  <p class="lead">거래 목록에서 상태 칩을 빠르게 바꾸면 요청이 여러 개 동시에 날아갑니다. 응답은 <b>보낸 순서대로 오지 않습니다</b>. 늦게 도착한 옛 요청이 화면을 덮으면 "취소" 칩이 눌려 있는데 승인 건이 보이는 <b>경쟁 상태(race condition)</b>가 생기죠. 또 매번 표를 비우고 스피너를 돌리면 화면이 깜빡이고 스크롤 위치도 날아갑니다.</p>
+  <div class="demo">
+    <p class="demo-title">방식을 고르고 → 칩을 빠르게 연달아 눌러 보기 (예: 승인 → 취소 → 실패). '엇갈림 강제'를 켜면 옛 요청이 일부러 늦게 옵니다</p>
+    <div class="row">
+      <div class="seg" role="group" aria-label="로딩 방식">
+        <button type="button" data-mode="naive" aria-pressed="false">😬 비우고 스피너</button>
+        <button type="button" data-mode="good" aria-pressed="true">✅ 유지하고 흐리게</button>
+      </div>
+      <label class="ctl"><input type="checkbox" id="stForce" checked> 엇갈림 강제</label>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="chips" role="group" aria-label="거래 상태 필터" id="stChips">
+        <button type="button" data-st="all" aria-pressed="true">전체</button>
+        <button type="button" data-st="승인" aria-pressed="false">승인</button>
+        <button type="button" data-st="취소" aria-pressed="false">취소</button>
+        <button type="button" data-st="실패" aria-pressed="false">실패</button>
+      </div>
+      <label class="sr-only" for="stQ">가맹점 검색</label>
+      <input id="stQ" class="search" type="search" placeholder="가맹점 검색 (입력 멈추면 조회)" autocomplete="off">
+    </div>
+    <div class="tblwrap" id="stWrap">
+      <div class="prog" aria-hidden="true"></div>
+      <div id="stBody"></div>
+    </div>
+    <div class="mismatch" id="stMis" aria-hidden="true"></div>
+    <p class="sr-only" role="status" aria-live="polite" id="stLive"></p>
+    <div class="log" id="stLog" aria-label="요청 로그"></div>
+    <p class="cap">권장 방식: 기존 행은 그대로 두고 <code>aria-busy="true"</code> + 흐림 + 상단 얇은 진행 막대(150ms 지나도 안 끝날 때만). 새 요청을 보내면 이전 요청은 <code>AbortController</code>로 취소하고, 혹시 도착해도 요청 번호가 최신이 아니면 버립니다. 끝나면 "취소 12건"을 낭독기에 한 번만 알립니다.</p>
+    <p class="cap long">검색창은 <b>디바운스</b>(입력이 멈춘 뒤 일정 시간—여기선 300ms—이 지나야 한 번 실행)로 글자마다 요청이 나가지 않게 합니다.</p>
+  </div>
+<pre><code>// React 훅 형태(요지) — 최신 요청만 화면에 반영
+function useLatestQuery(params) {
+  const [state, set] = useState({ rows: [], loading: true, error: null });
+  const seq = useRef(0);
+  useEffect(() =&gt; {
+    const id = ++seq.current;
+    const ac = new AbortController();
+    set(s =&gt; ({ ...s, loading: true }));            // rows는 그대로 둔다 (stale-while-loading)
+    fetchTx(params, { signal: ac.signal })
+      .then(rows =&gt; { if (id === seq.current) set({ rows, loading: false, error: null }); })
+      .catch(e =&gt; { if (e.name !== 'AbortError' &amp;&amp; id === seq.current)
+                      set(s =&gt; ({ ...s, loading: false, error: e })); });
+    return () =&gt; ac.abort();                         // 파라미터가 바뀌면 이전 요청 취소
+  }, [JSON.stringify(params)]);
+  return state;
+}
+// TanStack Query라면 queryKey에 필터를 넣고 placeholderData: keepPreviousData로 같은 효과</code></pre>
+  <div class="note">참고: <a href="https://developer.mozilla.org/docs/Web/API/AbortController" target="_blank" rel="noopener">MDN AbortController</a>, <a href="https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Attributes/aria-busy" target="_blank" rel="noopener">MDN aria-busy</a>. abort는 브라우저 쪽 수신을 끊을 뿐 서버 처리를 되돌리지 않습니다 — 조회(GET)에만 쓰고, 결제 같은 쓰기 요청엔 쓰지 마세요.</div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section class="card" id="cv" aria-labelledby="cv-h">
+  <h2 id="cv-h">🌀 content-visibility: auto — 화면 밖 긴 목록의 렌더를 건너뛰고, contain-intrinsic-size로 스크롤바 튐 막기<span class="tag">CSS 성능</span><span class="tag">Baseline 2024</span></h2>
+  <p class="lead"><code>content-visibility: auto</code>는 "이 덩어리가 화면 근처에 오기 전까지는 안쪽 레이아웃·그리기를 건너뛰어도 된다"는 CSS 선언입니다. 가상 스크롤(보이는 행만 DOM에 두는 라이브러리) 없이도 수천 행 목록의 첫 렌더가 가벼워집니다. 단, 건너뛴 덩어리는 크기를 모르니 <code>contain-intrinsic-size</code>(렌더 전 임시로 가정할 크기)를 같이 줘야 스크롤바가 튀지 않습니다.</p>
+  <div class="demo">
+    <p class="demo-title">모드를 바꿔 '다시 그리기'를 누르고 → 레이아웃 시간과 전체 높이를 비교, 박스를 스크롤해 보기 (정산일 365개 × 12행 ≈ 4,400행)</p>
+    <div class="row">
+      <div class="seg" role="group" aria-label="content-visibility 모드">
+        <button type="button" data-cv="none" aria-pressed="true">끔</button>
+        <button type="button" data-cv="auto" aria-pressed="false">auto만</button>
+        <button type="button" data-cv="auto-size" aria-pressed="false">auto + contain-intrinsic-size</button>
+      </div>
+      <button type="button" class="btn sm" id="cvRun">다시 그리기</button>
+    </div>
+    <div class="stats" aria-live="polite">
+      <div class="stat"><b class="num" id="cvMs">–</b><span>DOM 생성 + 첫 레이아웃(ms)</span></div>
+      <div class="stat"><b class="num" id="cvH">–</b><span>스크롤 전체 높이(px)</span></div>
+      <div class="stat"><b class="num" id="cvJump">–</b><span>스크롤 중 높이 변화(px)</span></div>
+      <div class="stat"><b id="cvSup">–</b><span>이 브라우저 지원</span></div>
+    </div>
+    <div class="cvbox" id="cvBox" data-cv="none" tabindex="0" aria-label="정산일별 거래 목록 (스크롤 가능)"></div>
+    <p class="cap">'auto만'은 화면 밖 덩어리 높이를 0으로 보기 때문에 전체 높이가 비정상적으로 작고, 스크롤하면서 실제 크기가 드러나 스크롤바가 줄어듭니다. <code>contain-intrinsic-size: auto 330px</code>의 <code>auto</code>는 "한 번 그려진 뒤엔 실제 크기를 기억해 쓰라"는 뜻입니다.</p>
+    <p class="cap long">숫자는 기기·브라우저마다 크게 다릅니다. 차이가 작게 나오면 행 수가 적은 탓이니 상대 비교만 보세요. Ctrl+F로 아래쪽 날짜(예: 12-20)를 찾아도 건너뛴 영역이 정상적으로 검색됩니다.</p>
+  </div>
+<pre><code>/* 정산일 그룹(카드 한 장, 표 한 덩어리) 단위로 건다 — 행 하나하나에 걸면 이득이 적다 */
+.settle-day {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 330px;   /* 렌더 전 가정 높이. auto = 한 번 본 뒤엔 실제 크기 기억 */
+}
+/* 주의: 페인트 격리(contain: paint)가 함께 걸려 상자 밖으로 삐져나온 건 잘린다.
+   행 안의 ⋯ 메뉴·툴팁은 popover / top-layer로 띄우거나, 그 그룹엔 걸지 않는다 */</code></pre>
+  <div class="note">참고: <a href="https://web.dev/blog/css-content-visibility-baseline" target="_blank" rel="noopener">web.dev — content-visibility is now Baseline Newly available</a>, <a href="https://developer.mozilla.org/docs/Web/CSS/content-visibility" target="_blank" rel="noopener">MDN content-visibility</a>, <a href="https://developer.mozilla.org/docs/Web/CSS/contain-intrinsic-size" target="_blank" rel="noopener">MDN contain-intrinsic-size</a>.</div>
+</section>
+
+<div class="footer">Design Inspiration Daily · 2026-11-27 (금) · self-contained · ?embed=share|stale|cv · ?theme=dark</div>
+</div>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const root=document.documentElement,qs=new URLSearchParams(location.search);
+const setTheme=t=>{root.setAttribute('data-theme',t);const b=$('#themeBtn');b.setAttribute('aria-pressed',t==='dark');b.textContent=t==='dark'?'라이트 모드':'다크 모드'};
+setTheme(qs.get('theme')==='dark'||(!qs.get('theme')&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');
+$('#themeBtn').addEventListener('click',()=>setTheme(root.getAttribute('data-theme')==='dark'?'light':'dark'));
+const emb=qs.get('embed');
+if(emb&&document.getElementById(emb)){root.classList.add('embed-mode');document.getElementById(emb).classList.add('embed-show')}
+const won=n=>n.toLocaleString('ko-KR');
+const press=(group,btn)=>group.forEach(b=>b.setAttribute('aria-pressed',b===btn));
+
+/* ===== 1. share ===== */
+const DATA=[
+ {k:'신용카드',amt:612340000,cnt:18420,c:'--s1'},{k:'체크카드',amt:241880000,cnt:12905,c:'--s2'},
+ {k:'카카오페이',amt:118450000,cnt:6210,c:'--s3'},{k:'네이버페이',amt:96210000,cnt:4880,c:'--s4'},
+ {k:'토스페이',amt:51700000,cnt:3140,c:'--s5'},{k:'계좌이체',amt:38920000,cnt:640,c:'--s6'},
+ {k:'가상계좌',amt:17330000,cnt:290,c:'--s7'},{k:'휴대폰결제',amt:9860000,cnt:1450,c:'--s8'},
+ {k:'상품권',amt:4115000,cnt:330,c:'--s9'}];
+let basis='amt',etcOpen=false;
+function percentLR(values,digits=0){const unit=10**digits,total=values.reduce((a,b)=>a+b,0);if(!total)return values.map(()=>0);
+ const raw=values.map(v=>v/total*100*unit),fl=raw.map(Math.floor);let left=100*unit-fl.reduce((a,b)=>a+b,0);
+ raw.map((r,i)=>[r-fl[i],i]).sort((a,b)=>b[0]-a[0]).forEach(([,i])=>{if(left-->0)fl[i]+=1});return fl.map(n=>n/unit)}
+const fmtPct=(p,d)=>p.toFixed(d)+'%';
+const absTxt=v=>basis==='amt'?won(v)+'원':won(v)+'건';
+function renderBar(el,items,label){el.innerHTML=items.map((it,i)=>`<span data-i="${i}" style="flex:${it.v} 0 0;background:var(${it.c})"></span>`).join('');el.setAttribute('aria-label',label)}
+function hookHL(bar,lg){const set=i=>{bar.classList.toggle('dim',i!=null);bar.querySelectorAll('span').forEach(s=>s.classList.toggle('hl',s.dataset.i==i));lg.querySelectorAll('li[data-i]').forEach(l=>l.classList.toggle('hl',l.dataset.i==i))};
+ lg.querySelectorAll('li[data-i]').forEach(li=>{li.addEventListener('mouseenter',()=>set(li.dataset.i));li.addEventListener('mouseleave',()=>set(null));li.addEventListener('focusin',()=>set(li.dataset.i));li.addEventListener('focusout',()=>set(null))});
+ bar.querySelectorAll('span').forEach(s=>{s.addEventListener('mouseenter',()=>set(s.dataset.i));s.addEventListener('mouseleave',()=>set(null))})}
+function sumPill(el,tot,d){const ok=Math.abs(tot-100)<1e-9;el.className='pill '+(ok?'ok':'bad');el.textContent=ok?'합 100':'합 '+tot.toFixed(d)}
+function renderShare(){
+ const d=+$('#shDigits').value,th=+$('#shGroup').value;
+ const vals=DATA.map(x=>({...x,v:x[basis]})),total=vals.reduce((a,b)=>a+b.v,0);
+ // naive
+ const f=10**d,np=vals.map(x=>Math.round(x.v/total*100*f)/f),nt=np.reduce((a,b)=>a+b,0);
+ renderBar($('#barNaive'),vals,'결제 수단 비중 막대 (각자 반올림)');
+ $('#lgNaive').innerHTML=vals.map((x,i)=>`<li data-i="${i}" tabindex="0"><span class="sw" style="background:var(${x.c})"></span><span>${x.k}</span><span class="abs num">${absTxt(x.v)}</span><span class="pct num">${fmtPct(np[i],d)}</span></li>`).join('');
+ $('#totNaive').textContent=fmtPct(nt,d);sumPill($('#sumNaive'),Math.round(nt*f)/f,d);hookHL($('#barNaive'),$('#lgNaive'));
+ // grouped + LR (묶기는 반올림 전 비율로 판단)
+ let main=vals,small=[];
+ if(th){main=vals.filter(x=>x.v/total*100>=th);small=vals.filter(x=>x.v/total*100<th)}
+ const items=small.length>1?[...main,{k:`기타 (${small.length}개)`,v:small.reduce((a,b)=>a+b.v,0),c:'--sx',etc:true}]:vals;
+ const lp=percentLR(items.map(x=>x.v),d);const subP=small.length>1?percentLR(small.map(x=>x.v),d):[];
+ const top=items.slice().map((x,i)=>`${x.k} ${fmtPct(lp[i],d)}`).slice(0,3).join(', ');
+ renderBar($('#barLr'),items,`결제 수단 ${basis==='amt'?'금액':'건수'} 비중: ${top} 외`);
+ $('#lgLr').innerHTML=items.map((x,i)=>{
+   const row=`<span class="sw" style="background:var(${x.c})"></span><span>${x.etc?(etcOpen?'▾ ':'▸ ')+x.k:x.k}</span><span class="abs num">${absTxt(x.v)}</span><span class="pct num">${fmtPct(lp[i],d)}</span>`;
+   if(!x.etc)return `<li data-i="${i}" tabindex="0">${row}</li>`;
+   const subs=etcOpen?small.map((s,j)=>`<li class="sub"><span></span><span>${s.k} <small>(기타 중 ${fmtPct(subP[j],d)})</small></span><span class="abs num">${absTxt(s.v)}</span><span class="pct num">${fmtPct(s.v/total*100,Math.max(d,1))}</span></li>`).join(''):'';
+   return `<li data-i="${i}" class="etc" tabindex="0" role="button" aria-expanded="${etcOpen}">${row}</li>${subs}`}).join('');
+ const lt=lp.reduce((a,b)=>a+b,0);$('#totLr').textContent=fmtPct(lt,d);sumPill($('#sumLr'),Math.round(lt*f)/f,d);hookHL($('#barLr'),$('#lgLr'));
+ const etc=$('#lgLr li.etc');if(etc){const tog=()=>{etcOpen=!etcOpen;renderShare();$('#lgLr li.etc').focus()};etc.addEventListener('click',tog);etc.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}})}
+}
+const bb=$$('[data-basis]');bb.forEach(b=>b.addEventListener('click',()=>{press(bb,b);basis=b.dataset.basis;renderShare()}));
+$('#shDigits').addEventListener('change',renderShare);$('#shGroup').addEventListener('change',()=>{etcOpen=false;renderShare()});
+renderShare();
+
+/* ===== 2. stale ===== */
+const MER=['성수 베이커리','망원 커피랩','판교 샐러드','부산 서면점','제주 감귤농장','강남 헬스클럽','홍대 굿즈샵','대전 공방','인천 수산','광주 책방'];
+const ST=['승인','승인','승인','취소','실패'];
+let seed=7;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+const TX=Array.from({length:60},(_,i)=>({id:'TX'+(240000+i*37),m:MER[Math.floor(rnd()*MER.length)],s:ST[Math.floor(rnd()*ST.length)],a:Math.round(rnd()*300+5)*100}));
+let mode='good',curSt='all',curQ='',reqN=0,latest=0,ac=null,shown={st:'all',q:''},spinT=null;
+const log=t=>{const el=$('#stLog');el.textContent=(new Date().toLocaleTimeString('ko-KR',{hour12:false})+' '+t+'\n'+el.textContent).slice(0,3000)};
+function fakeFetch(p,id,signal){
+ const force=$('#stForce').checked;const ms=force?(id%2?1600:450):300+Math.random()*500;
+ return new Promise((res,rej)=>{const t=setTimeout(()=>res(TX.filter(x=>(p.st==='all'||x.s===p.st)&&(!p.q||x.m.includes(p.q)))),ms);
+  if(signal){if(signal.aborted){clearTimeout(t);rej(new DOMException('aborted','AbortError'))}signal.addEventListener('abort',()=>{clearTimeout(t);rej(new DOMException('aborted','AbortError'))})}})}
+const label=p=>(p.st==='all'?'전체':p.st)+(p.q?` · "${p.q}"`:'');
+function table(rows,p){if(!rows.length)return `<div class="spinner">조건에 맞는 거래가 없습니다 (${label(p)})</div>`;
+ return `<table><caption>${label(p)} · ${rows.length}건</caption><thead><tr><th scope="col">거래번호</th><th scope="col">가맹점</th><th scope="col">상태</th><th scope="col" class="r">금액</th></tr></thead><tbody>${rows.slice(0,6).map(r=>`<tr><td class="num">${r.id}</td><td>${r.m}</td><td><span class="pill ${r.s==='승인'?'ok':r.s==='취소'?'mut':'bad'}">${r.s}</span></td><td class="r num">${won(r.a)}원</td></tr>`).join('')}${rows.length>6?`<tr><td colspan="4" style="color:var(--muted);font-size:.78rem">… 외 ${rows.length-6}건</td></tr>`:''}</tbody></table>`}
+function checkMismatch(){const ok=shown.st===curSt&&shown.q===curQ;const el=$('#stMis');
+ el.innerHTML=ok?'':`<span class="pill bad">⚠ 눌린 필터는 "${label({st:curSt,q:curQ})}"인데 표는 "${label(shown)}" 결과</span>`}
+function run(){
+ const p={st:curSt,q:curQ},id=++reqN,wrap=$('#stWrap'),body=$('#stBody');
+ log(`#${id} 요청 → ${label(p)}`);
+ if(mode==='naive'){
+   body.innerHTML='<div class="spinner"><i></i>불러오는 중…</div>';wrap.classList.remove('loading');
+   fakeFetch(p,id).then(rows=>{body.innerHTML=table(rows,p);shown=p;log(`#${id} 도착 → 그대로 화면에 반영`);checkMismatch()});
+   return}
+ if(ac){ac.abort()}ac=new AbortController();latest=id;
+ wrap.setAttribute('aria-busy','true');clearTimeout(spinT);spinT=setTimeout(()=>wrap.classList.add('loading'),150);
+ fakeFetch(p,id,ac.signal).then(rows=>{
+   if(id!==latest){log(`#${id} 도착했지만 최신 아님 → 버림`);return}
+   clearTimeout(spinT);wrap.classList.remove('loading');wrap.setAttribute('aria-busy','false');
+   body.innerHTML=table(rows,p);shown=p;log(`#${id} 도착 → 반영 (${rows.length}건)`);
+   $('#stLive').textContent=`${label(p)} ${rows.length}건`;checkMismatch();
+ }).catch(e=>{if(e.name==='AbortError')log(`#${id} 취소됨 (AbortController)`)});
+}
+const chips=$$('#stChips button');chips.forEach(b=>b.addEventListener('click',()=>{press(chips,b);curSt=b.dataset.st;checkMismatch();run()}));
+let deb;$('#stQ').addEventListener('input',e=>{clearTimeout(deb);const v=e.target.value.trim();
+ if(mode==='naive'){curQ=v;checkMismatch();run();return}
+ deb=setTimeout(()=>{curQ=v;checkMismatch();run()},300)});
+const mb=$$('[data-mode]');mb.forEach(b=>b.addEventListener('click',()=>{press(mb,b);mode=b.dataset.mode;$('#stLog').textContent='';log(`방식: ${b.textContent}`);run()}));
+run();
+
+/* ===== 3. content-visibility ===== */
+const sup=CSS.supports('content-visibility','auto');$('#cvSup').textContent=sup?'지원 ✅':'미지원 (모드 차이 없음)';
+const box=$('#cvBox');let lastH=0,maxJump=0;
+function buildCV(){
+ const t0=performance.now();const frag=document.createDocumentFragment();const start=new Date(2026,0,1);
+ for(let d=0;d<365;d++){const day=new Date(start);day.setDate(start.getDate()+d);
+  const mm=String(day.getMonth()+1).padStart(2,'0'),dd=String(day.getDate()).padStart(2,'0');
+  const g=document.createElement('section');g.className='day';
+  let h=`<h5><span>${day.getFullYear()}-${mm}-${dd} 정산</span><span class="num">12건</span></h5>`;
+  for(let r=0;r<12;r++){h+=`<div><span>${MER[(d+r)%MER.length]} · TX${(d*12+r+100000)}</span><span class="num">${won(((d*7+r*13)%300+5)*100)}원</span></div>`}
+  g.innerHTML=h;frag.appendChild(g)}
+ box.replaceChildren(frag);const H=box.scrollHeight;const ms=performance.now()-t0;
+ $('#cvMs').textContent=ms.toFixed(1);$('#cvH').textContent=won(H);lastH=H;maxJump=0;$('#cvJump').textContent='0';box.scrollTop=0}
+box.addEventListener('scroll',()=>{const H=box.scrollHeight;if(H!==lastH){maxJump+=Math.abs(H-lastH);lastH=H;$('#cvH').textContent=won(H);$('#cvJump').textContent=won(maxJump)}},{passive:true});
+const cvb=$$('[data-cv]').filter(b=>b.tagName==='BUTTON');
+cvb.forEach(b=>b.addEventListener('click',()=>{press(cvb,b);box.dataset.cv=b.dataset.cv;buildCV()}));
+$('#cvRun').addEventListener('click',buildCV);
+buildCV();
+})();
+</script>
+</body>
+</html>
